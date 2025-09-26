@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/produtos_usuarios_ong.css">
+    <link rel="stylesheet" href="CSS/sucesso.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="CSS/breadcrumbs.css">
+    <link rel="stylesheet" href="CSS/modo_noturno.css">
+    <title>Produtos - Patas Conscientes - ReUse</title>
+</head>
+
+<style>
+    .cart-message {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%) translateY(-20px);
+        background-color: #4CAF50;
+        color: white;
+        padding: 15px 25px;
+        border-radius: 4px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        z-index: 1000;
+        opacity: 0;
+        transition: all 0.3s ease;
+    }
+    
+    .cart-icon.animate {
+        animation: bounce 0.6s;
+    }
+    
+    @keyframes bounce {
+        0%, 100% { transform: scale(1); }
+        30% { transform: scale(1.2); }
+        50% { transform: scale(0.9); }
+        70% { transform: scale(1.1); }
+    }
+    
+    .back-notification {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        background: rgba(0,0,0,0.8);
+        color: white;
+        padding: 15px;
+        border-radius: 5px;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .removal-message {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #4CAF50;
+        color: white;
+        padding: 15px 25px;
+        border-radius: 5px;
+        display: none;
+        align-items: center;
+        gap: 10px;
+        z-index: 1000;
+    }
+    
+    .removal-message.show {
+        display: flex;
+        animation: fadeInOut 3s forwards;
+    }
+    
+    @keyframes fadeInOut {
+        0% { opacity: 0; }
+        20% { opacity: 1; }
+        80% { opacity: 1; }
+        100% { opacity: 0; }
+    }
+</style>
+
+<body>
+ <!-- CABEÇALHO -->
+     <header>
+        <div class="container">
+            <div class="header-container">
+                <div class="logo-section">
+                    <div class="logo">
+                        <a href="cliente.html"><img src="IMG/reuse-logo-(1).svg" alt="ReUse Logo"></a>
+                    </div>
+                </div>
+
+                <!-- Barra de pesquisa e filtros no meio -->
+                <div class="search-section">
+                    <div class="search-combined">
+                        <div class="search-input">
+                            <input type="text" id="searchInput" placeholder="O que você está procurando?">
+                            <button id="searchButton" class="search-button" aria-label="Pesquisar">
+                               <i class="bi bi-search"></i>
+                            </button>
+                        </div>
+                        <div class="search-filters">
+                            <select>
+                                <option>Todos os filtros</option>
+                                <option>Roupas</option>
+                                <option>Eletrodomésticos</option>
+                                <option>Melhores preços</option>
+                                <option>Recém adicionados</option>
+                                <option>Itens para doação</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+               <div class="user-section">
+<!-- Estrutura atual (sem alterações) -->
+<button class="botaoMenu" id="botaoMenu">
+    <i class="bi bi-list"></i>
+</button>
+
+<nav class="nav-menu" id="navMenu">
+    <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+        <i class="bi bi-sun-fill" id="themeIcon"></i>
+    </button>
+    
+    <div class="cart">
+        <a href="carrinho.html">
+            <span class="cart-icon"><i class="bi bi-cart3"></i></span>
+        </a>
+        <span class="cart-count">1</span>
+    </div>
+    
+    <a href="login.html">
+        <i class="bi bi-box-arrow-right"></i> Sair da Conta
+    </a>
+    
+    <a href="perfil.html">
+        <i class="bi bi-person-fill"></i> Minha Conta
+    </a>
+</nav>
+</div>
+
+
+
+                <!-- Categorias abaixo -->
+                <div class="categories-section">
+                    <section class="categories">
+                        <div class="dropdown">
+                            <a href="#" data-category="Masculino">Masculino</a>
+                            <div class="dropdown-content">
+                                <div class="dropdown-category">Roupas</div>
+                                <a href="#">Camisetas</a>
+                                <a href="#">Camisas</a>
+                                <a href="#">Calças</a>
+                                <a href="#">Bermudas</a>
+                                <a href="#">Jaquetas</a>
+                                <div class="dropdown-category">Calçados</div>
+                                <a href="#">Tênis</a>
+                                <a href="#">Sapatos</a>
+                                <a href="#">Chinelos</a>
+                                <div class="dropdown-category">Acessórios</div>
+                                <a href="#">Relógios</a>
+                                <a href="#">Cintos</a>
+                                <a href="#">Bonés</a>
+                            </div>
+                        </div>
+
+                        <div class="dropdown">
+                            <a href="#" data-category="Feminino">Feminino</a>
+                            <div class="dropdown-content">
+                                <div class="dropdown-category">Roupas</div>
+                                <a href="#">Blusas</a>
+                                <a href="#">Vestidos</a>
+                                <a href="#">Calças</a>
+                                <a href="#">Saias</a>
+                                <a href="#">Jaquetas</a>
+                                <div class="dropdown-category">Calçados</div>
+                                <a href="#">Sapatos</a>
+                                <a href="#">Tênis</a>
+                                <a href="#">Sandálias</a>
+                                <a href="#">Botas</a>
+                                <div class="dropdown-category">Acessórios</div>
+                                <a href="#">Bolsas</a>
+                                <a href="#">Bijuterias</a>
+                                <a href="#">Lenços</a>
+                            </div>
+                        </div>
+
+                        <div class="dropdown">
+                            <a href="#" data-category="Infantil">Infantil</a>
+                            <div class="dropdown-content">
+                                <div class="dropdown-category">Roupas</div>
+                                <a href="#">Camisetas</a>
+                                <a href="#">Conjuntos</a>
+                                <a href="#">Calças</a>
+                                <a href="#">Vestidos</a>
+                                <div class="dropdown-category">Calçados</div>
+                                <a href="#">Tênis</a>
+                                <a href="#">Sandálias</a>
+                                <div class="dropdown-category">Outros</div>
+                                <a href="#">Brinquedos</a>
+                                <a href="#">Acessórios</a>
+                                <a href="#">Material Escolar</a>
+                            </div>
+                        </div>
+
+                        <div class="dropdown">
+                            <a href="#" data-category="Esportivo">Esportivo</a>
+                            <div class="dropdown-content">
+                                <div class="dropdown-category">Roupas</div>
+                                <a href="#">Camisetas</a>
+                                <a href="#">Bermudas</a>
+                                <a href="#">Leggings</a>
+                                <a href="#">Jaquetas</a>
+                                <div class="dropdown-category">Calçados</div>
+                                <a href="#">Tênis de Corrida</a>
+                                <a href="#">Chuteiras</a>
+                                <a href="#">Tênis para Academia</a>
+                                <div class="dropdown-category">Equipamentos</div>
+                                <a href="#">Bolas</a>
+                                <a href="#">Raquetes</a>
+                                <a href="#">Acessórios de Treino</a>
+                            </div>
+                        </div>
+
+                        <div class="dropdown">
+                            <a href="#" data-category="Casa/Cozinha">Casa/Cozinha</a>
+                            <div class="dropdown-content">
+                                <div class="dropdown-category">Eletrodomésticos</div>
+                                <a href="#">Liquidificadores</a>
+                                <a href="#">Cafeteiras</a>
+                                <a href="#">Micro-ondas</a>
+                                <a href="#">Batedeiras</a>
+                                <div class="dropdown-category">Móveis</div>
+                                <a href="#">Mesas</a>
+                                <a href="#">Cadeiras</a>
+                                <a href="#">Sofás</a>
+                                <a href="#">Estantes</a>
+                                <div class="dropdown-category">Utensílios</div>
+                                <a href="#">Panelas</a>
+                                <a href="#">Talheres</a>
+                                <a href="#">Copos</a>
+                                <a href="#">Pratos</a>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="main-container">
+            <div class="page-header">
+                <h1 class="page-title">Produtos - Patas Conscientes</h1>
+                <p class="page-subtitle">Adquira produtos exclusivos e ajude a instituição a continuar seu trabalho de resgate animal.</p>
+            </div>
+            
+            <div class="filter-section">
+                <div class="filter-options">
+                    <div class="filter-group">
+                        <label for="category-filter">Categoria:</label>
+                        <select id="category-filter">
+                            <option value="all">Todas as categorias</option>
+                            <option value="roupas">Roupas</option>
+                            <option value="acessorios">Acessórios</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="sort-filter">Ordenar por:</label>
+                        <select id="sort-filter">
+                            <option value="relevant">Mais relevantes</option>
+                            <option value="price-low">Menor preço</option>
+                            <option value="price-high">Maior preço</option>
+                            <option value="recent">Mais recentes</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Seção de Produtos -->
+            <div class="products-section">
+                <div class="products-grid">
+                    <!-- Produto 1: Camiseta -->
+                    <div class="product-card" data-category="roupas" data-price="35.00" data-date="2025-01-15">
+                        <div class="product-image camisa"><img src="IMG/camiseta-patas.jpg" alt="Camiseta Patas Conscientes"></div>
+                        <h3 class="product-name">Camiseta Patas Conscientes</h3>
+                        <div class="product-price">R$ 35,00</div>
+                        <p class="product-description">Camiseta de algodão com estampa da instituição, confortável e com design exclusivo.</p>
+                        <button class="add-to-cart" onclick="addToCart('Camiseta Patas Conscientes', 35.00, 'IMG/camiseta-patas.jpg', 'Camiseta de algodão com estampa da instituição', 'CMS001')">Adicionar ao Carrinho</button>
+                    </div>
+
+                    <!-- Produto 2: Broche -->
+                    <div class="product-card" data-category="acessorios" data-price="12.00" data-date="2025-02-10">
+                        <div class="product-image broche"><img src="IMG/broche-patas.jpg" alt="Broche Patas Conscientes"></div>
+                        <h3 class="product-name">Broche Patas Conscientes</h3>
+                        <div class="product-price">R$ 12,00</div>
+                        <p class="product-description">Broche metálico com logo da instituição, perfeito para mostrar seu apoio.</p>
+                        <button class="add-to-cart" onclick="addToCart('Broche Patas Conscientes', 12.00, 'IMG/broche-patas.jpg', 'Broche metálico com logo da instituição', 'BRC002')">Adicionar ao Carrinho</button>
+                    </div>
+
+                    <!-- Produto 3: Bolsa -->
+                    <div class="product-card" data-category="acessorios" data-price="45.00" data-date="2025-01-20">
+                        <div class="product-image bolsa"><img src="IMG/bolsa-patas.jpg" alt="Bolsa Patas Conscientes"></div>
+                        <h3 class="product-name">Bolsa Patas Conscientes</h3>
+                        <div class="product-price">R$ 45,00</div>
+                        <p class="product-description">Bolsa ecológica de algodão, ideal para o dia a dia e para carregar suas compras.</p>
+                        <button class="add-to-cart" onclick="addToCart('Bolsa Patas Conscientes', 45.00, 'IMG/bolsa-Patas.jpg', 'Bolsa ecológica de algodão', 'BLS003')">Adicionar ao Carrinho</button>
+                    </div>
+
+                    <!-- Produto 4: Boné -->
+                    <div class="product-card" data-category="acessorios" data-price="25.00" data-date="2025-03-05">
+                        <div class="product-image bone"><img src="IMG/bone-patas.jpg" alt="Boné Patas Conscientes"></div>
+                        <h3 class="product-name">Boné Patas Conscientes</h3>
+                        <div class="product-price">R$ 25,00</div>
+                        <p class="product-description">Boné ajustável com logo bordado, perfeito para proteção solar com estilo.</p>
+                        <button class="add-to-cart" onclick="addToCart('Boné Patas Conscientes', 25.00, 'IMG/bone-patas.jpg', 'Boné ajustável com logo bordado', 'BON004')">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+ <!-- RODAPÉ -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <!-- Seção Minha Conta -->
+                <div class="footer-links">
+                    <h3>Minha Conta</h3>
+                    <a href="perfil.html"><i class="bi bi-person-fill"></i> <span>Perfil</span></a>
+                    <a href="pedidos.html"><i class="bi bi-box-seam"></i> <span>Pedidos</span></a>
+                    <a href="favoritos.html"><i class="bi bi-heart-fill"></i> <span>Favoritos</span></a>
+                </div>
+
+                <!-- Seção Minha Loja -->
+                <div class="footer-links">
+                    <h3>Minha Loja</h3>
+                    <a href="login.html"><i class="bi bi-grid-3x3-gap-fill"></i> <span>Produtos</span></a>
+                    <a href="login.html"><i class="bi bi-bar-chart-line-fill"></i> <span>Estatísticas</span></a>
+                    <a href="login.html"><i class="bi bi-star-fill"></i> <span>Avaliações</span></a>
+                </div>
+
+                <!-- Seção Configurações -->
+                <div class="footer-links">
+                    <h3>Configurações</h3>
+                    <a href="configuracoes_cliente.html"><i class="bi bi-gear-fill"></i> <span>Configurações</span></a>
+                    <a href="privacidade.html"><i class="bi bi-shield-lock-fill"></i> <span>Privacidade</span></a>
+                    <a href="notificacao.html"><i class="bi bi-bell-fill"></i> <span>Notificações</span></a>
+                    <a href="pagamento.html"><i class="bi bi-credit-card-fill"></i> <span>Pagamentos</span></a>
+                </div>
+
+                <!-- Seção Sobre Nós -->
+                <div class="footer-links">
+                    <h3>Sobre Nós</h3>
+                    <a href="missao.html"><i class="bi bi-info-circle-fill"></i> <span>Missão</span></a>
+                    <a href="equipe.html"><i class="bi bi-people-fill"></i> <span>Equipe</span></a>
+                    <a href="chat_Com_Vendedor.html"><i class="bi bi-chat-dots-fill"></i> <span>Chat com Vendedor</span></a>
+
+                    <div class="social-links">
+                        <a href="#" title="Facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="#" title="Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" title="Twitter"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#" title="YouTube"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="copyright">
+                &copy; 2025 ReUse - <span>Todos os direitos reservados</span>
+            </div>
+        </div>
+    </footer>
+
+    <div class="cart-message" id="cartMessage"></div>
+    <div class="removal-message" id="removalMessage">
+        <i class="bi bi-check-circle-fill"></i>
+        <span>Item removido do carrinho</span>
+    </div>
+
+    <script>
+        // Função para adicionar produtos ao carrinho
+        function addToCart(name, price, image, description, sku) {
+            // Recuperar o carrinho atual do localStorage
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            // Verificar se o produto já está no carrinho
+            const existingProductIndex = cart.findIndex(item => item.sku === sku);
+            
+            if (existingProductIndex !== -1) {
+                // Se o produto já existe, aumentar a quantidade
+                cart[existingProductIndex].quantity += 1;
+            } else {
+                // Se não existe, adicionar novo produto
+                cart.push({
+                    name: name,
+                    price: price,
+                    image: image,
+                    description: description,
+                    sku: sku,
+                    quantity: 1
+                });
+            }
+            
+            // Salvar o carrinho atualizado no localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+            
+            // Atualizar a contagem do carrinho
+            updateCartCount();
+            
+            // Mostrar mensagem de sucesso
+            showCartMessage(`${name} foi adicionado ao carrinho!`);
+        }
+        
+        // Função para atualizar a contagem do carrinho
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            document.querySelector('.cart-count').textContent = totalItems;
+        }
+        
+        // Função para mostrar mensagem de adição ao carrinho
+        function showCartMessage(message) {
+            const cartMessage = document.getElementById('cartMessage');
+            const cartIcon = document.querySelector('.cart-icon');
+            
+            cartMessage.textContent = message;
+            cartMessage.style.opacity = '1';
+            cartMessage.style.transform = 'translateX(-50%) translateY(0)';
+            
+            // Adicionar animação ao ícone do carrinho
+            cartIcon.classList.add('animate');
+            
+            setTimeout(() => {
+                cartMessage.style.opacity = '0';
+                cartMessage.style.transform = 'translateX(-50%) translateY(-20px)';
+                cartIcon.classList.remove('animate');
+            }, 3000);
+        }
+        
+        // Inicializar a contagem do carrinho ao carregar a página
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+            
+            // Adicionar eventos aos filtros
+            const categoryFilter = document.getElementById('category-filter');
+            const sortFilter = document.getElementById('sort-filter');
+            
+            if (categoryFilter) {
+                categoryFilter.addEventListener('change', filterProducts);
+            }
+            
+            if (sortFilter) {
+                sortFilter.addEventListener('change', filterProducts);
+            }
+        });
+        
+        // Função para filtrar e ordenar produtos
+        function filterProducts() {
+            const categoryValue = document.getElementById('category-filter').value;
+            const sortValue = document.getElementById('sort-filter').value;
+            const productCards = document.querySelectorAll('.product-card');
+            
+            // Filtrar por categoria
+            productCards.forEach(card => {
+                if (categoryValue === 'all' || card.getAttribute('data-category') === categoryValue) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            // Ordenar produtos
+            const visibleProducts = Array.from(productCards).filter(card => card.style.display !== 'none');
+            
+            visibleProducts.sort((a, b) => {
+                switch(sortValue) {
+                    case 'price-low':
+                        return parseFloat(a.getAttribute('data-price')) - parseFloat(b.getAttribute('data-price'));
+                    case 'price-high':
+                        return parseFloat(b.getAttribute('data-price')) - parseFloat(a.getAttribute('data-price'));
+                    case 'recent':
+                        return new Date(b.getAttribute('data-date')) - new Date(a.getAttribute('data-date'));
+                    default:
+                        return 0;
+                }
+            });
+            
+            // Reorganizar os produtos no DOM
+            const productsGrid = document.querySelector('.products-grid');
+            visibleProducts.forEach(product => {
+                productsGrid.appendChild(product);
+            });
+        }
+    </script>
+    <script src="JS/modo_noturno.js"></script>
+    <script src="JS/menu.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReUse - Comprar, Vender e Doação de Itens Usados</title>
+    <link rel="stylesheet" href="CSS/cliente.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="CSS/breadcrumbs.css">
+    <link rel="stylesheet" href="CSS/favoritar.css">
+    <link rel="stylesheet" href="CSS/modo_noturno.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="header-container">
+                <div class="logo-section">
+                    <div class="logo">
+                        <a href="cliente.html"><img src="IMG/reuse-logo-(1).svg" alt="ReUse Logo"></a>
+                    </div>
+                </div>
+
+                <!-- Barra de pesquisa e filtros no meio -->
+                <div class="search-section">
+                    <div class="search-combined">
+                        <div class="search-input">
+                            <input type="text" id="searchInput" placeholder="O que você está procurando?">
+                            <button id="searchButton" class="search-button" aria-label="Pesquisar">
+                               <i class="bi bi-search"></i>
+                            </button>
+                        </div>
+                        <div class="search-filters">
+                            <select>
+                                <option>Todos os filtros</option>
+                                <option>Roupas</option>
+                                <option>Eletrodomésticos</option>
+                                <option>Melhores preços</option>
+                                <option>Recém adicionados</option>
+                                <option>Itens para doação</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Elementos do usuário à direita -->
+               <div class="user-section">
+<!-- Estrutura atual (sem alterações) -->
+<button class="botaoMenu" id="botaoMenu">
+    <i class="bi bi-list"></i>
+</button>
+
+<nav class="nav-menu" id="navMenu">
+    <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+        <i class="bi bi-sun-fill" id="themeIcon"></i>
+    </button>
+    
+    <div class="cart">
+        <a href="carrinho.html">
+            <span class="cart-icon"><i class="bi bi-cart3"></i></span>
+        </a>
+        <span class="cart-count">1</span>
+    </div>
+    
+    <a href="login.html">
+        <i class="bi bi-box-arrow-right"></i> Sair da Conta
+    </a>
+    
+    <a href="perfil.html">
+        <i class="bi bi-person-fill"></i> Minha Conta
+    </a>
+</nav>
+</div>
+
+                <!-- Categorias abaixo -->
+                <div class="categories-section">
+                    <section class="categories">
+                        <div class="dropdown">
+                            <a href="#">Masculino</a>
+                            <div class="dropdown-content">
+                                <div class="dropdown-category">Roupas</div>
+                                <a href="#">Camisetas</a>
+                                <a href="#">Camisas</a>
+                                <a href="#">Calças</a>
+                                <a href="#">Bermudas</a>
+                                <a href="#">Jaquetas</a>
+                                <div class="dropdown-category">Calçados</div>
+                                <a href="#">Tênis</a>
+                                <a href="#">Sapatos</a>
+                                <a href="#">Chinelos</a>
+                                <div class="dropdown-category">Acessórios</div>
+                                <a href="#">Relógios</a>
+                                <a href="#">Cintos</a>
+                                <a href="#">Bonés</a>
+                            </div>
+                        </div>
+
+                        <div class="dropdown">
+                            <a href="#">Feminino</a>
+                            <div class="dropdown-content">
+                                <div class="dropdown-category">Roupas</div>
+                                <a href="#">Blusas</a>
+                                <a href="#">Vestidos</a>
+                                <a href="#">Calças</a>
+                                <a href="#">Saias</a>
+                                <a href="#">Jaquetas</a>
+                                <div class="dropdown-category">Calçados</div>
+                                <a href="#">Sapatos</a>
+                                <a href="#">Tênis</a>
+                                <a href="#">Sandálias</a>
+                                <a href="#">Botas</a>
+                                <div class="dropdown-category">Acessórios</div>
+                                <a href="#">Bolsas</a>
+                                <a href="#">Bijuterias</a>
+                                <a href="#">Lenços</a>
+                            </div>
+                        </div>
+
+                        <div class="dropdown">
+                            <a href="#">Infantil</a>
+                            <div class="dropdown-content">
+                                <div class="dropdown-category">Roupas</div>
+                                <a href="#">Camisetas</a>
+                                <a href="#">Conjuntos</a>
+                                <a href="#">Calças</a>
+                                <a href="#">Vestidos</a>
+                                <div class="dropdown-category">Calçados</div>
+                                <a href="#">Tênis</a>
+                                <a href="#">Sandálias</a>
+                                <div class="dropdown-category">Outros</div>
+                                <a href="#">Brinquedos</a>
+                                <a href="#">Acessórios</a>
+                                <a href="#">Material Escolar</a>
+                            </div>
+                        </div>
+
+                        <div class="dropdown">
+                            <a href="#">Esportivo</a>
+                            <div class="dropdown-content">
+                                <div class="dropdown-category">Roupas</div>
+                                <a href="#">Camisetas</a>
+                                <a href="#">Bermudas</a>
+                                <a href="#">Leggings</a>
+                                <a href="#">Jaquetas</a>
+                                <div class="dropdown-category">Calçados</div>
+                                <a href="#">Tênis de Corrida</a>
+                                <a href="#">Chuteiras</a>
+                                <a href="#">Tênis para Academia</a>
+                                <div class="dropdown-category">Equipamentos</div>
+                                <a href="#">Bolas</a>
+                                <a href="#">Raquetes</a>
+                                <a href="#">Acessórios de Treino</a>
+                            </div>
+                        </div>
+
+                        <div class="dropdown">
+                            <a href="#">Casa/Cozinha</a>
+                            <div class="dropdown-content">
+                                <div class="dropdown-category">Eletrodomésticos</div>
+                                <a href="#">Liquidificadores</a>
+                                <a href="#">Cafeteiras</a>
+                                <a href="#">Micro-ondas</a>
+                                <a href="#">Batedeiras</a>
+                                <div class="dropdown-category">Móveis</div>
+                                <a href="#">Mesas</a>
+                                <a href="#">Cadeiras</a>
+                                <a href="#">Sofás</a>
+                                <a href="#">Estantes</a>
+                                <div class="dropdown-category">Utensílios</div>
+                                <a href="#">Panelas</a>
+                                <a href="#">Talheres</a>
+                                <a href="#">Copos</a>
+                                <a href="#">Pratos</a>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- Conteúdo específico para a página de favoritos -->
+        <div class="favorites-container" id="favoritesPage" style="display: none;">
+            <h1 class="page-title">Meus Favoritos</h1>
+
+            <!-- Grid para mostrar os favoritos -->
+            <div class="favorites-grid" id="favoritesGrid">
+                <!-- Os itens favoritos serão inseridos aqui via JavaScript -->
+            </div>
+
+            <!-- Estado vazio - aparece quando não há favoritos -->
+            <div class="empty-favorites" id="emptyFavorites">
+                <div class="empty-favorites-icon">
+                    <i class="bi bi-suit-heart-fill"></i>
+                </div>
+                <h2>Sua lista de favoritos está vazia</h2>
+                <p>Salve seus produtos preferidos para encontrá-los facilmente depois</p>
+
+                <div class="empty-favorites-actions">
+                    <a href="cliente.html" class="btn btn-primary">
+                        <i class="bi bi-bag"></i> Explorar Produtos
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Conteúdo específico para a página principal (cliente) -->
+        <div id="mainPage">
+            <section class="main-actions">
+                <a class="action-button buy with-icon">
+                    <i class="bi bi-cart3"></i>
+                    COMPRAR
+                </a>
+
+                <a href="login.html" class="action-button sell with-icon">
+                    <i class="bi bi-tag-fill"></i>
+                    VENDER
+                </a>
+
+                <a href="#" class="action-button donate with-icon" id="open-donation-modal">
+                    <i class="bi bi-gift-fill"></i>
+                    DOAR
+                </a>
+            </section>
+
+            <h2 class="section-title">Itens Mais Comprados</h2>
+            <div class="product-grid">
+                <!-- Produto 1 -->
+                <div class="product-card" data-id="1">
+                    <a href="produto.html?id=1">
+                        <div class="product-image">
+                            <img src="IMG/camiseta-polo.jpg" alt="Camiseta Polo">
+                            <button class="favorite-btn" data-id="1" aria-label="Adicionar aos favoritos">
+                                <i class="bi bi-heart"></i>
+                            </button>
+                        </div>
+                    </a>
+                    <div class="product-info">
+                        <div class="product-name">Camiseta Polo</div>
+                        <div class="product-price">R$ 39,90</div>
+                        <div class="product-category">Masculino</div>
+                        <button class="favorite-btn-bottom" data-id="1">
+                            <i class="bi bi-heart"></i> Favoritar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Produto 2 -->
+                <div class="product-card" data-id="2">
+                    <a href="produto.html?id=2">
+                        <div class="product-image">
+                            <img src="IMG/liquidificador-phill.jpg" alt="Liquidificador Philips">
+                            <button class="favorite-btn" data-id="2" aria-label="Adicionar aos favoritos">
+                                <i class="bi bi-heart"></i>
+                            </button>
+                        </div>
+                    </a>
+                    <div class="product-info">
+                        <div class="product-name">Liquidificador Philips</div>
+                        <div class="product-price">R$ 89,90</div>
+                        <div class="product-category">Casa/Cozinha</div>
+                        <button class="favorite-btn-bottom" data-id="2">
+                            <i class="bi bi-heart"></i> Favoritar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Produto 3 -->
+                <div class="product-card" data-id="3">
+                    <a href="produto.html?id=3">
+                        <div class="product-image">
+                            <img src="IMG/tenis-nike.avif" alt="Tênis Nike">
+                            <button class="favorite-btn" data-id="3" aria-label="Adicionar aos favoritos">
+                                <i class="bi bi-heart"></i>
+                            </button>
+                        </div>
+                    </a>
+                    <div class="product-info">
+                        <div class="product-name">Tênis Nike</div>
+                        <div class="product-price">R$ 199,99</div>
+                        <div class="product-category">Esportivo</div>
+                        <button class="favorite-btn-bottom" data-id="3">
+                            <i class="bi bi-heart"></i> Favoritar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Produto 4 -->
+                <div class="product-card" data-id="4">
+                    <a href="produto.html?id=4">
+                        <div class="product-image">
+                            <img src="IMG/vestido-floral.jpg" alt="Vestido Floral">
+                            <button class="favorite-btn" data-id="4" aria-label="Adicionar aos favoritos">
+                                <i class="bi bi-heart"></i>
+                            </button>
+                        </div>
+                    </a>
+                    <div class="product-info">
+                        <div class="product-name">Vestido Floral</div>
+                        <div class="product-price">R$ 65,00</div>
+                        <div class="product-category">Feminino</div>
+                        <button class="favorite-btn-bottom" data-id="4">
+                            <i class="bi bi-heart"></i> Favoritar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seção de instituições mais doadas -->
+            <h2 class="section-title">Instituições Mais Doadas</h2>
+            <div class="product-grid">
+                <!-- Instituição 1 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <a href="pagina_ong_usuario-2.html">
+                            <img src="IMG/patas-concientes.jpg" alt="Patas conscientes">
+                        </a>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Patas Conscientes</div>
+                        <div class="product-donate-info">Aceita doações de itens pet</div>
+                        <div class="product-category">Resgate Animal</div>
+                    </div>
+                </div>
+
+                <!-- Instituição 2 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="IMG/logo-cena.jpg" alt="Patas conscientes">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Centro Educacional Novo
+                            Amanhã</div>
+                        <div class="product-donate-info">Aceita doações de livros</div>
+                        <div class="product-category">Educação</div>
+                    </div>
+                </div>
+
+                <!-- Instituição 3 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="IMG/logo-lisv.jpg" alt="Patas conscientes">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Lar dos Idosos São Vicente</div>
+                        <div class="product-donate-info">Aceita doações de móveis</div>
+                        <div class="product-category">Assistência ao Idoso</div>
+                    </div>
+                </div>
+
+                <!-- Instituição 4 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <a href="pagina_ong_usuario.html">
+                            <img src="IMG/sos-felino.jpg" alt="SOS felino">
+                        </a>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">SOS Felino</div>
+                        <div class="product-donate-info">Aceita doações de itens pet</div>
+                        <div class="product-category">Resgate Animal</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <!-- Seção Minha Conta -->
+                <div class="footer-links">
+                    <h3>Minha Conta</h3>
+                    <a href="perfil.html"><i class="bi bi-person-fill"></i> <span>Perfil</span></a>
+                    <a href="pedidos.html"><i class="bi bi-box-seam"></i> <span>Pedidos</span></a>
+                    <a href="favoritos.html"><i class="bi bi-heart-fill"></i> <span>Favoritos</span></a>
+                </div>
+
+                <!-- Seção Minha Loja -->
+                <div class="footer-links">
+                    <h3>Minha Loja</h3>
+                    <a href="login.html"><i class="bi bi-grid-3x3-gap-fill"></i> <span>Produtos</span></a>
+                    <a href="login.html"><i class="bi bi-bar-chart-line-fill"></i> <span>Estatísticas</span></a>
+                    <a href="login.html"><i class="bi bi-star-fill"></i> <span>Avaliações</span></a>
+                </div>
+
+                <!-- Seção Configurações -->
+                <div class="footer-links">
+                    <h3>Configurações</h3>
+                    <a href="configuracoes_cliente.html"><i class="bi bi-gear-fill"></i> <span>Configurações</span></a>
+                    <a href="privacidade.html"><i class="bi bi-shield-lock-fill"></i> <span>Privacidade</span></a>
+                    <a href="notificacao.html"><i class="bi bi-bell-fill"></i> <span>Notificações</span></a>
+                    <a href="pagamento.html"><i class="bi bi-credit-card-fill"></i> <span>Pagamentos</span></a>
+                </div>
+
+                <!-- Seção Sobre Nós -->
+                <div class="footer-links">
+                    <h3>Sobre Nós</h3>
+                    <a href="missao.html"><i class="bi bi-info-circle-fill"></i> <span>Missão</span></a>
+                    <a href="equipe.html"><i class="bi bi-people-fill"></i> <span>Equipe</span></a>
+                    <a href="chat_Com_Vendedor.html"><i class="bi bi-chat-dots-fill"></i> <span>Chat com Vendedor</span></a>
+
+                    <div class="social-links">
+                        <a href="#" title="Facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="#" title="Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" title="Twitter"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#" title="YouTube"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="copyright">
+                &copy; 2025 ReUse - <span>Todos os direitos reservados</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal de Doação -->
+    <div class="modal-overlay" id="donation-modal">
+        <div class="modal-donation">
+            <div class="modal-header">
+                <h2>Doação</h2>
+                <button class="close-modal" id="close-donation-modal">
+                    <i class="bi bi-x"></i>
+                </button>
+            </div>
+            
+            <div class="modal-content">
+                <form id="donation-form" class="donation-form">
+                    <!-- Nome do Item -->
+                    <div class="form-field">
+                        <label for="item-name" class="field-label">Nome do Item *</label>
+                        <input type="text" id="item-name" name="item-name" class="input-field" 
+                               placeholder="Ex: Tênis Nike Preto" required>
+                    </div>
+
+                    <!-- Categoria do Item -->
+                    <div class="form-field">
+                        <label for="category" class="field-label">Categoria *</label>
+                        <select id="category" name="category" class="select-field" required>
+                            <option value="" selected disabled>Selecione uma categoria</option>
+                            <option value="clothes">Roupas</option>
+                            <option value="shoes">Calçados</option>
+                            <option value="books">Livros</option>
+                            <option value="toys">Brinquedos</option>
+                            <option value="appliances">Eletrodomésticos</option>
+                            <option value="furniture">Móveis</option>
+                        </select>
+                    </div>
+
+                    <!-- Qualidade do Item -->
+                    <div class="form-field">
+                        <label class="field-label">Qualidade do Item *</label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="quality" value="low" required>
+                                <span class="radio-custom"></span>
+                                Baixa
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="quality" value="medium">
+                                <span class="radio-custom"></span>
+                                Média
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="quality" value="high">
+                                <span class="radio-custom"></span>
+                                Alta
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Estado do Item -->
+                    <div class="form-field">
+                        <label class="field-label">Estado do Item *</label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="condition" value="used" required>
+                                <span class="radio-custom"></span>
+                                Usado
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="condition" value="semi-new">
+                                <span class="radio-custom"></span>
+                                Semi-novo
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="condition" value="new">
+                                <span class="radio-custom"></span>
+                                Novo
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Descrição do Produto -->
+                    <div class="form-field">
+                        <label for="description" class="field-label">Descrição do Produto *</label>
+                        <textarea id="description" name="description" class="textarea-field"
+                            placeholder="Descreva detalhes sobre o item (cor, tamanho, marca, etc.)" required></textarea>
+                    </div>
+
+                    <!-- Upload de Fotos -->
+                    <div class="form-field">
+                        <label class="field-label">Fotos do Item *</label>
+                        <label for="photos" class="file-upload-area">
+                            <div class="upload-content">
+                                <i class="bi bi-cloud-upload upload-icon"></i>
+                                <span class="upload-text">Clique ou arraste as fotos aqui</span>
+                                <span class="upload-hint">Máximo: 5 fotos (JPG, PNG - até 5MB cada)</span>
+                            </div>
+                            <input type="file" id="photos" name="photos" accept="image/*" multiple required>
+                        </label>
+                        <div id="selected-files" class="selected-files"></div>
+                    </div>
+
+                    <!-- Escolha da ONG -->
+                    <div class="form-field">
+                        <label for="ngo" class="field-label">Escolha para quem deseja doar *</label>
+                        <select id="ngo" name="ngo" class="select-field" required>
+                            <option value="" selected disabled>Selecione uma instituição</option>
+                            <option value="conscious-paws">Patas Concientes</option>
+                            <option value="new-tomorrow">Centro Educacional Novo Amanhã</option>
+                            <option value="st-vincent">Lar dos Idosos São Vicente</option>
+                            <option value="sos-feline">SOS Felino</option>
+                        </select>
+                    </div>
+
+                    <!-- Botão de Envio -->
+                    <div class="form-actions">
+                        <button type="submit" class="submit-button">
+                            Confirmar Doação
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mensagens de feedback -->
+    <div class="alert-message error" id="error-message">
+        <i class="bi bi-exclamation-circle alert-icon"></i>
+        <span id="error-text">Por favor, preencha todos os campos obrigatórios.</span>
+    </div>
+
+    <div class="modal-overlay success-overlay" id="success-overlay"></div>
+    <div class="modal-success" id="success-message">
+        <i class="bi bi-check-circle success-icon"></i>
+        <h3 class="success-title">Doação realizada com sucesso!</h3>
+        <p class="success-text">Obrigado por sua contribuição.</p>
+    </div>
+
+    <script>
+        // Detectar se estamos na página de favoritos
+        const isFavoritesPage = window.location.pathname.includes('favoritos.html') || 
+                               window.location.search.includes('page=favorites');
+        
+        // Mostrar a seção apropriada
+        if (isFavoritesPage) {
+            document.getElementById('favoritesPage').style.display = 'block';
+            document.getElementById('mainPage').style.display = 'none';
+            document.title = 'Meus Favoritos - ReUse';
+        } else {
+            document.getElementById('favoritesPage').style.display = 'none';
+            document.getElementById('mainPage').style.display = 'block';
+        }
+        
+        // Sistema de favoritos integrado
+        document.addEventListener('DOMContentLoaded', function() {
+            // Carregar favoritos do localStorage
+            let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+            
+            // Atualizar ícones com base nos favoritos existentes
+            updateFavoriteIcons(favorites);
+            
+            // Se estamos na página de favoritos, carregar os itens
+            if (isFavoritesPage) {
+                loadFavoritesPage(favorites);
+            }
+            
+            // Usar event delegation para evitar múltiplos listeners
+            document.addEventListener('click', function(e) {
+                // Verificar se o clique foi em um botão de favorito
+                const favoriteBtn = e.target.closest('.favorite-btn, .favorite-btn-bottom');
+                if (favoriteBtn) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const productId = favoriteBtn.getAttribute('data-id');
+                    handleFavoriteClick(productId, favoriteBtn, favorites);
+                }
+            });
+            
+            // Função para atualizar os ícones de favorito
+            function updateFavoriteIcons(favorites) {
+                document.querySelectorAll('.favorite-btn, .favorite-btn-bottom').forEach(btn => {
+                    const productId = btn.getAttribute('data-id');
+                    if (favorites.includes(productId)) {
+                        btn.classList.add('active');
+                        const icon = btn.querySelector('i');
+                        if (icon) {
+                            icon.classList.remove('bi-heart');
+                            icon.classList.add('bi-heart-fill');
+                        }
+                    } else {
+                        btn.classList.remove('active');
+                        const icon = btn.querySelector('i');
+                        if (icon) {
+                            icon.classList.remove('bi-heart-fill');
+                            icon.classList.add('bi-heart');
+                        }
+                    }
+                });
+            }
+            
+            // Função para lidar com o clique no botão de favorito
+            function handleFavoriteClick(productId, button, favorites) {
+                // Verificar se o produto já está favoritado
+                const index = favorites.indexOf(productId);
+                const isActive = favorites.includes(productId);
+                
+                if (isActive) {
+                    // Remover dos favoritos
+                    favorites.splice(index, 1);
+                    // Atualizar todos os botões para este produto
+                    document.querySelectorAll(`[data-id="${productId}"]`).forEach(btn => {
+                        btn.classList.remove('active');
+                        const icon = btn.querySelector('i');
+                        if (icon) {
+                            icon.classList.remove('bi-heart-fill');
+                            icon.classList.add('bi-heart');
+                        }
+                    });
+                } else {
+                    // Adicionar aos favoritos
+                    favorites.push(productId);
+                    // Atualizar todos os botões para este produto
+                    document.querySelectorAll(`[data-id="${productId}"]`).forEach(btn => {
+                        btn.classList.add('active');
+                        const icon = btn.querySelector('i');
+                        if (icon) {
+                            icon.classList.remove('bi-heart');
+                            icon.classList.add('bi-heart-fill');
+                        }
+                    });
+                }
+                
+                // Salvar no localStorage
+                localStorage.setItem('favorites', JSON.stringify(favorites));
+                
+                // Se estamos na página de favoritos, atualizar a lista
+                if (isFavoritesPage && !isActive) {
+                    // Se estamos adicionando um favorito da página de favoritos
+                    addFavoriteToPage(productId);
+                } else if (isFavoritesPage && isActive) {
+                    // Se estamos removendo um favorito da página de favoritos
+                    removeFavoriteFromPage(productId);
+                }
+                
+                // Mostrar feedback visual
+                showFavoriteFeedback(!isActive);
+            }
+            
+            // Função para carregar a página de favoritos
+            function loadFavoritesPage(favorites) {
+                const emptyFavoritesDiv = document.getElementById('emptyFavorites');
+                const favoritesGrid = document.getElementById('favoritesGrid');
+                
+                // Verifica se há favoritos
+                if (favorites.length > 0) {
+                    // Esconde a mensagem de lista vazia
+                    if (emptyFavoritesDiv) emptyFavoritesDiv.style.display = 'none';
+                    
+                    // Mostra o grid de favoritos
+                    if (favoritesGrid) {
+                        favoritesGrid.style.display = 'grid';
+                        favoritesGrid.innerHTML = ''; // Limpa o grid existente
+                    }
+                    
+                    // Adiciona cada favorito ao grid
+                    favorites.forEach(productId => {
+                        addFavoriteToPage(productId);
+                    });
+                } else {
+                    // Mostra a mensagem de lista vazia
+                    if (emptyFavoritesDiv) emptyFavoritesDiv.style.display = 'block';
+                    if (favoritesGrid) favoritesGrid.style.display = 'none';
+                }
+            }
+            
+            // Função para adicionar um favorito à página
+            function addFavoriteToPage(productId) {
+                const favoritesGrid = document.getElementById('favoritesGrid');
+                const emptyFavoritesDiv = document.getElementById('emptyFavorites');
+                
+                if (!favoritesGrid) return;
+                
+                // Obtém os dados do produto pelo ID
+                const productData = getProductDataById(productId);
+                
+                if (!productData) {
+                    console.error('Produto não encontrado para ID:', productId);
+                    return;
+                }
+                
+                // Esconde a mensagem de lista vazia
+                if (emptyFavoritesDiv) emptyFavoritesDiv.style.display = 'none';
+                
+                // Mostra o grid de favoritos
+                favoritesGrid.style.display = 'grid';
+                
+                // Cria o elemento do item de favorito
+                const favoriteItem = document.createElement('div');
+                favoriteItem.className = 'favorite-item';
+                favoriteItem.setAttribute('data-id', productId);
+                
+                // HTML do item de favorito
+                favoriteItem.innerHTML = `
+                    <div class="favorite-image">
+                        <a href="${productData.link}">
+                            <img src="${productData.image}" alt="${productData.name}">
+                        </a>
+                        <button class="favorite-btn active" data-id="${productId}" aria-label="Remover dos favoritos">
+                            <i class="bi bi-heart-fill"></i>
+                        </button>
+                    </div>
+                    <div class="favorite-info">
+                        <div class="favorite-name">
+                            <a href="${productData.link}">${productData.name}</a>
+                        </div>
+                        <div class="favorite-price">${productData.price}</div>
+                        <div class="favorite-category">${productData.category}</div>
+                        <div class="favorite-actions">
+                            <a href="${productData.link}" class="btn btn-primary btn-small">Ver Detalhes</a>
+                            <a href="#" class="btn btn-secondary btn-small">Adicionar ao Carrinho</a>
+                        </div>
+                    </div>
+                `;
+                
+                // Adiciona o item ao grid
+                favoritesGrid.appendChild(favoriteItem);
+            }
+            
+            // Função para remover um favorito da página
+            function removeFavoriteFromPage(productId) {
+                const favoriteItem = document.querySelector(`.favorite-item[data-id="${productId}"]`);
+                if (favoriteItem) {
+                    favoriteItem.remove();
+                }
+                
+                // Verifica se ainda há favoritos
+                const favoritesGrid = document.getElementById('favoritesGrid');
+                const emptyFavoritesDiv = document.getElementById('emptyFavorites');
+                
+                if (favoritesGrid && favoritesGrid.children.length === 0) {
+                    // Mostra a mensagem de lista vazia
+                    if (emptyFavoritesDiv) emptyFavoritesDiv.style.display = 'block';
+                    favoritesGrid.style.display = 'none';
+                }
+            }
+            
+            // Função para obter dados do produto pelo ID
+            function getProductDataById(productId) {
+                // Procura pelo produto na página
+                const productCard = document.querySelector(`.product-card[data-id="${productId}"]`);
+                
+                if (!productCard) {
+                    // Se não encontrar na página, retorna dados padrão baseados no ID
+                    return getDefaultProductData(productId);
+                }
+                
+                // Extrai os dados do produto
+                const name = productCard.querySelector('.product-name').textContent;
+                const price = productCard.querySelector('.product-price').textContent;
+                const category = productCard.querySelector('.product-category').textContent;
+                const image = productCard.querySelector('.product-image img').src;
+                const link = productCard.querySelector('a').href;
+                
+                return {
+                    name,
+                    price,
+                    category,
+                    image,
+                    link
+                };
+            }
+            
+            // Função para obter dados padrão de produto (caso não encontre na página)
+            function getDefaultProductData(productId) {
+                const products = {
+                    '1': {
+                        name: 'Camiseta Polo',
+                        price: 'R$ 39,90',
+                        category: 'Masculino',
+                        image: 'IMG/camiseta-polo.jpg',
+                        link: 'produto.html?id=1'
+                    },
+                    '2': {
+                        name: 'Liquidificador Philips',
+                        price: 'R$ 89,90',
+                        category: 'Casa/Cozinha',
+                        image: 'IMG/liquidificador-phill.jpg',
+                        link: 'produto.html?id=2'
+                    },
+                    '3': {
+                        name: 'Tênis Nike',
+                        price: 'R$ 199,99',
+                        category: 'Esportivo',
+                        image: 'IMG/tenis-nike.avif',
+                        link: 'produto.html?id=3'
+                    },
+                    '4': {
+                        name: 'Vestido Floral',
+                        price: 'R$ 65,00',
+                        category: 'Feminino',
+                        image: 'IMG/vestido-floral.jpg',
+                        link: 'produto.html?id=4'
+                    }
+                };
+                
+                return products[productId] || null;
+            }
+            
+            // Função para mostrar feedback visual ao favoritar/desfavoritar
+            function showFavoriteFeedback(isAdded) {
+                // Remove feedback anterior se existir
+                const existingFeedback = document.querySelector('.favorite-feedback');
+                if (existingFeedback) {
+                    existingFeedback.remove();
+                }
+                
+                // Cria o elemento de feedback
+                const feedback = document.createElement('div');
+                feedback.className = `favorite-feedback ${isAdded ? 'added' : 'removed'}`;
+                
+                // Define o conteúdo do feedback
+                feedback.innerHTML = `
+                    <i class="bi ${isAdded ? 'bi-heart-fill' : 'bi-heart'}"></i>
+                    ${isAdded ? 'Adicionado aos favoritos' : 'Removido dos favoritos'}
+                `;
+                
+                // Adiciona ao corpo do documento
+                document.body.appendChild(feedback);
+                
+                // Remove após 3 segundos
+                setTimeout(() => {
+                    feedback.style.animation = 'slideOut 0.3s ease';
+                    setTimeout(() => {
+                        if (feedback.parentNode) {
+                            feedback.parentNode.removeChild(feedback);
+                        }
+                    }, 300);
+                }, 3000);
+            }
+        });
+    </script>
+    <script src="JS/menu.js"></script>
+    <script src="JS/breadcrumbs.js"></script>
+    <script src="JS/cliente.js"></script>
+    <script src="JS/modal_doação_inicial.js"></script>
+    <script src="JS/modo_noturno.js"></script>
+</body>
+
+</html>

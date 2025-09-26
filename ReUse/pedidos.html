@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Pedidos - ReUse</title>
+    <link rel="stylesheet" href="CSS/cliente.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="CSS/pedidos.css">
+    <link rel="stylesheet" href="CSS/breadcrumbs.css">
+    <link rel="stylesheet" href="CSS/modo_noturno.css">
+</head>
+
+<body>
+ <!-- CABEÇALHO -->
+    <header>
+        <div class="container">
+            <div class="header-container">
+                <div class="logo-section">
+                    <div class="logo">
+                        <a href="cliente.html"><img src="IMG/reuse-logo-(1).svg" alt="ReUse Logo"></a>
+                    </div>
+                </div>
+
+                <!-- Barra de pesquisa e filtros no meio -->
+                <div class="search-section">
+                    <div class="search-combined">
+                        <div class="search-input">
+                            <input type="text" id="searchInput" placeholder="O que você está procurando?">
+                            <button id="searchButton" class="search-button" aria-label="Pesquisar">
+                               <i class="bi bi-search"></i>
+                            </button>
+                        </div>
+                        <div class="search-filters">
+                            <select>
+                                <option>Todos os filtros</option>
+                                <option>Roupas</option>
+                                <option>Eletrodomésticos</option>
+                                <option>Melhores preços</option>
+                                <option>Recém adicionados</option>
+                                <option>Itens para doação</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="user-section">
+<!-- Estrutura atual (sem alterações) -->
+<button class="botaoMenu" id="botaoMenu">
+    <i class="bi bi-list"></i>
+</button>
+
+<nav class="nav-menu" id="navMenu">
+    <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+        <i class="bi bi-sun-fill" id="themeIcon"></i>
+    </button>
+    
+    <div class="cart">
+        <a href="carrinho.html">
+            <span class="cart-icon"><i class="bi bi-cart3"></i></span>
+        </a>
+        <span class="cart-count">1</span>
+    </div>
+    
+    <a href="login.html">
+        <i class="bi bi-box-arrow-right"></i> Sair da Conta
+    </a>
+    
+    <a href="perfil.html">
+        <i class="bi bi-person-fill"></i> Minha Conta
+    </a>
+</nav>
+</div>
+
+
+                <!-- Categorias abaixo -->
+                <div class="categories-section">
+                    <section class="categories">
+                        <div class="dropdown">
+                            <a href="#">Masculino</a>
+                            <div class="dropdown-content">
+                                <div class="dropdown-category">Roupas</div>
+                                <a href="#">Camisetas</a>
+                                <a href="#">Camisas</a>
+                                <a href="#">Calças</a>
+                                <a href="#">Bermudas</a>
+                                <a href="#">Jaquetas</a>
+                                <div class="dropdown-category">Calçados</div>
+                                <a href="#">Tênis</a>
+                                <a href="#">Sapatos</a>
+                                <a href="#">Chinelos</a>
+                                <div class="dropdown-category">Acessórios</div>
+                                <a href="#">Relógios</a>
+                                <a href="#">Cintos</a>
+                                <a href="#">Bonés</a>
+                            </div>
+                        </div>
+
+                        <div class="dropdown">
+                            <a href="#">Feminino</a>
+                            <div class="dropdown-content">
+                                <div class="dropdown-category">Roupas</div>
+                                <a href="#">Blusas</a>
+                                <a href="#">Vestidos</a>
+                                <a href="#">Calças</a>
+                                <a href="#">Saias</a>
+                                <a href="#">Jaquetas</a>
+                                <div class="dropdown-category">Calçados</div>
+                                <a href="#">Sapatos</a>
+                                <a href="#">Tênis</a>
+                                <a href="#">Sandálias</a>
+                                <a href="#">Botas</a>
+                                <div class="dropdown-category">Acessórios</div>
+                                <a href="#">Bolsas</a>
+                                <a href="#">Bijuterias</a>
+                                <a href="#">Lenços</a>
+                            </div>
+                        </div>
+
+                        <div class="dropdown">
+                            <a href="#">Infantil</a>
+                            <div class="dropdown-content">
+                                <div class="dropdown-category">Roupas</div>
+                                <a href="#">Camisetas</a>
+                                <a href="#">Conjuntos</a>
+                                <a href="#">Calças</a>
+                                <a href="#">Vestidos</a>
+                                <div class="dropdown-category">Calçados</div>
+                                <a href="#">Tênis</a>
+                                <a href="#">Sandálias</a>
+                                <div class="dropdown-category">Outros</div>
+                                <a href="#">Brinquedos</a>
+                                <a href="#">Acessórios</a>
+                                <a href="#">Material Escolar</a>
+                            </div>
+                        </div>
+
+                        <div class="dropdown">
+                            <a href="#">Esportivo</a>
+                            <div class="dropdown-content">
+                                <div class="dropdown-category">Roupas</div>
+                                <a href="#">Camisetas</a>
+                                <a href="#">Bermudas</a>
+                                <a href="#">Leggings</a>
+                                <a href="#">Jaquetas</a>
+                                <div class="dropdown-category">Calçados</div>
+                                <a href="#">Tênis de Corrida</a>
+                                <a href="#">Chuteiras</a>
+                                <a href="#">Tênis para Academia</a>
+                                <div class="dropdown-category">Equipamentos</div>
+                                <a href="#">Bolas</a>
+                                <a href="#">Raquetes</a>
+                                <a href="#">Acessórios de Treino</a>
+                            </div>
+                        </div>
+
+                        <div class="dropdown">
+                            <a href="#">Casa/Cozinha</a>
+                            <div class="dropdown-content">
+                                <div class="dropdown-category">Eletrodomésticos</div>
+                                <a href="#">Liquidificadores</a>
+                                <a href="#">Cafeteiras</a>
+                                <a href="#">Micro-ondas</a>
+                                <a href="#">Batedeiras</a>
+                                <div class="dropdown-category">Móveis</div>
+                                <a href="#">Mesas</a>
+                                <a href="#">Cadeiras</a>
+                                <a href="#">Sofás</a>
+                                <a href="#">Estantes</a>
+                                <div class="dropdown-category">Utensílios</div>
+                                <a href="#">Panelas</a>
+                                <a href="#">Talheres</a>
+                                <a href="#">Copos</a>
+                                <a href="#">Pratos</a>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </header>
+
+   <!-- CONTEÚDO PRINCIPAL - PÁGINA DE PEDIDOS MELHORADA -->
+    <main class="container">
+        <div class="orders-container">
+            <h1 class="page-title">Meus Pedidos</h1>
+            
+            <!-- Filtros e busca -->
+            <div class="orders-filter">
+                <div class="filter-tabs">
+                    <div class="filter-tab active">Todos</div>
+                    <div class="filter-tab">Em Processamento</div>
+                    <div class="filter-tab">A Caminho</div>
+                    <div class="filter-tab">Entregues</div>
+                </div>
+                
+                <div class="search-orders">
+                    <i class="bi bi-search"></i>
+                    <input type="text" placeholder="Buscar nos pedidos...">
+                </div>
+            </div>
+            
+            <!-- Estado vazio com design melhorado -->
+            <div class="empty-orders">
+                <div class="empty-orders-icon">
+                    <i class="bi bi-boxes"></i>
+                </div>
+                <h2>Você ainda não fez nenhum pedido</h2>
+                <p>Explore nossa seleção de produtos sustentáveis e comece a fazer a diferença hoje mesmo! Encontre itens incríveis com preços acessíveis e ajude a reduzir o desperdício.</p>
+                
+                <div class="empty-orders-actions">
+                    <a href="cliente.html" class="btn btn-primary">
+                        <i class="bi bi-bag-plus"></i> Comprar Produtos
+                    </a>
+                    <a href="carrinho.html" class="btn btn-secondary">
+                        <i class="bi bi-cart3"></i> Ver Carrinho
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- RODAPÉ ORIGINAL -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <!-- Seção Minha Conta -->
+                <div class="footer-links">
+                    <h3>Minha Conta</h3>
+                    <a href="perfil.html"><i class="bi bi-person-fill"></i> <span>Perfil</span></a>
+                    <a href="pedidos.html"><i class="bi bi-box-seam"></i> <span>Pedidos</span></a>
+                    <a href="favoritos.html"><i class="bi bi-heart-fill"></i> <span>Favoritos</span></a>
+                </div>
+
+                <!-- Seção Minha Loja -->
+                <div class="footer-links">
+                    <h3>Minha Loja</h3>
+                    <a href="login.html"><i class="bi bi-grid-3x3-gap-fill"></i> <span>Produtos</span></a>
+                    <a href="login.html"><i class="bi bi-bar-chart-line-fill"></i> <span>Estatísticas</span></a>
+                    <a href="login.html"><i class="bi bi-star-fill"></i> <span>Avaliações</span></a>
+                </div>
+
+                <!-- Seção Configurações -->
+                <div class="footer-links">
+                    <h3>Configurações</h3>
+                    <a href="configuracoes_cliente.html"><i class="bi bi-gear-fill"></i> <span>Configurações</span></a>
+                    <a href="privacidade.html"><i class="bi bi-shield-lock-fill"></i> <span>Privacidade</span></a>
+                    <a href="notificacao.html"><i class="bi bi-bell-fill"></i> <span>Notificações</span></a>
+                    <a href="pagamento.html"><i class="bi bi-credit-card-fill"></i> <span>Pagamentos</span></a>
+                </div>
+
+                <!-- Seção Sobre Nós -->
+                <div class="footer-links">
+                    <h3>Sobre Nós</h3>
+                    <a href="missao.html"><i class="bi bi-info-circle-fill"></i> <span>Missão</span></a>
+                    <a href="equipe.html"><i class="bi bi-people-fill"></i> <span>Equipe</span></a>
+                    <a href="chat_Com_Vendedor.html"><i class="bi bi-chat-dots-fill"></i> <span>Chat com Vendedor</span></a>
+
+                    <div class="social-links">
+                        <a href="#" title="Facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="#" title="Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" title="Twitter"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#" title="YouTube"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="copyright">
+                &copy; 2025 ReUse - <span>Todos os direitos reservados</span>
+            </div>
+        </div>
+    </footer>
+
+<script src="JS/cliente.js"></script>
+    <script src="JS/breadcrumbs.js"></script>
+    <script src="JS/pedidos.js"></script>
+    <script src="JS/modo_noturno.js"></script>
+    <script src="JS/menu.js"></script>
+    <script>
+        // Interatividade básica para os filtros
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterTabs = document.querySelectorAll('.filter-tab');
+            
+            filterTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove a classe ativa de todas as abas
+                    filterTabs.forEach(t => t.classList.remove('active'));
+                    
+                    // Adiciona a classe ativa à aba clicada
+                    this.classList.add('active');
+                    
+                    // Aqui você pode adicionar a lógica para filtrar os pedidos
+                    // quando implementar a lista de pedidos
+                });
+            });
+        });
+    </script>
+</body>
+</html>
