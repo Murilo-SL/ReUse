@@ -10,51 +10,65 @@ document.addEventListener('DOMContentLoaded', () => {
     const institutionForm = document.getElementById('institution-form');
 
     // Função para trocar entre formulários com animação
-    function switchForm(activeButton, activeForm, direction) {
-        // Remover classe active de todos os botões
-        customerButton.classList.remove('active');
-        sellerButton.classList.remove('active');
-        institutionButton.classList.remove('active');
-        
-        // Adicionar classe active ao botão clicado
-        activeButton.classList.add('active');
-        
-        // Encontrar o formulário ativo atual
-        const currentActiveForm = document.querySelector('.form-container.active');
-        
-        if (currentActiveForm && currentActiveForm !== activeForm) {
-            // Determinar animações baseadas na direção
-            const currentIndex = Array.from([customerForm, sellerForm, institutionForm]).indexOf(currentActiveForm);
-            const newIndex = Array.from([customerForm, sellerForm, institutionForm]).indexOf(activeForm);
-            
-            const currentAnimation = newIndex > currentIndex ? 'slide-out-left' : 'slide-out-right';
-            const newAnimation = newIndex > currentIndex ? 'slide-in-right' : 'slide-in-left';
-            
-            // Aplicar animação de saída
-            currentActiveForm.classList.add(currentAnimation);
-            
-            // Remover classe active do formulário atual
-            setTimeout(() => {
-                currentActiveForm.classList.remove('active');
-                currentActiveForm.classList.remove(currentAnimation);
-                
-                // Adicionar classe active e animação de entrada ao novo formulário
-                activeForm.classList.add(newAnimation);
-                activeForm.classList.add('active');
-                
-                // Remover animação após a transição
-                setTimeout(() => {
-                    activeForm.classList.remove(newAnimation);
-                }, 400);
-            }, 400);
-        } else {
-            // Primeira vez ou mesmo formulário
-            document.querySelectorAll('.form-container').forEach(form => {
-                form.classList.remove('active');
-            });
-            activeForm.classList.add('active');
-        }
+function switchForm(activeButton, activeForm, direction) {
+    // Remover classe active de todos os botões
+    customerButton.classList.remove('active');
+    sellerButton.classList.remove('active');
+    institutionButton.classList.remove('active');
+    
+    // Adicionar classe active ao botão clicado
+    activeButton.classList.add('active');
+    
+    // Remover todas as animações do card-header
+    const cardHeader = document.querySelector('.card-header');
+    cardHeader.classList.remove('waves-animation', 'particles-animation', 'molecules-animation');
+    
+    // Adicionar animação específica baseada no tipo de login
+    if (activeButton === customerButton) {
+        cardHeader.classList.add('waves-animation');
+    } else if (activeButton === sellerButton) {
+        cardHeader.classList.add('particles-animation');
+    } else if (activeButton === institutionButton) {
+        cardHeader.classList.add('molecules-animation');
     }
+    
+    // [O resto do código permanece igual...]
+    // Encontrar o formulário ativo atual
+    const currentActiveForm = document.querySelector('.form-container.active');
+    
+    if (currentActiveForm && currentActiveForm !== activeForm) {
+        // Determinar animações baseadas na direção
+        const currentIndex = Array.from([customerForm, sellerForm, institutionForm]).indexOf(currentActiveForm);
+        const newIndex = Array.from([customerForm, sellerForm, institutionForm]).indexOf(activeForm);
+        
+        const currentAnimation = newIndex > currentIndex ? 'slide-out-left' : 'slide-out-right';
+        const newAnimation = newIndex > currentIndex ? 'slide-in-right' : 'slide-in-left';
+        
+        // Aplicar animação de saída
+        currentActiveForm.classList.add(currentAnimation);
+        
+        // Remover classe active do formulário atual
+        setTimeout(() => {
+            currentActiveForm.classList.remove('active');
+            currentActiveForm.classList.remove(currentAnimation);
+            
+            // Adicionar classe active e animação de entrada ao novo formulário
+            activeForm.classList.add(newAnimation);
+            activeForm.classList.add('active');
+            
+            // Remover animação após a transição
+            setTimeout(() => {
+                activeForm.classList.remove(newAnimation);
+            }, 400);
+        }, 400);
+    } else {
+        // Primeira vez ou mesmo formulário
+        document.querySelectorAll('.form-container').forEach(form => {
+            form.classList.remove('active');
+        });
+        activeForm.classList.add('active');
+    }
+}
 
     // Event listeners para os botões
     customerButton.addEventListener('click', () => {
