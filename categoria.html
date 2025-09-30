@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categoria - ReUse</title>
+    <link rel="stylesheet" href="CSS/cliente.css">
+    <link rel="stylesheet" href="CSS/categoria.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="CSS/breadcrumbs.css">
+    <link rel="stylesheet" href="CSS/favoritar.css">
+    <link rel="stylesheet" href="CSS/modo_noturno.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="header-container">
+                <div class="logo-section">
+                    <div class="logo">
+                        <a href="cliente.html"><img src="IMG/reuse-logo-(1).svg" alt="ReUse Logo"></a>
+                    </div>
+                </div>
+
+                <!-- Barra de pesquisa e filtros no meio -->
+                <div class="search-section">
+                    <div class="search-combined">
+                        <div class="search-input">
+                            <input type="text" id="searchInput" placeholder="O que você está procurando?">
+                            <button id="searchButton" class="search-button" aria-label="Pesquisar">
+                               <i class="bi bi-search"></i>
+                            </button>
+                        </div>
+                        <div class="search-filters">
+                            <select>
+                                <option>Todos os filtros</option>
+                                <option>Roupas</option>
+                                <option>Eletrodomésticos</option>
+                                <option>Melhores preços</option>
+                                <option>Recém adicionados</option>
+                                <option>Itens para doação</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Elementos do usuário à direita -->
+               <div class="user-section">
+<!-- Estrutura atual (sem alterações) -->
+<button class="botaoMenu" id="botaoMenu">
+    <i class="bi bi-list"></i>
+</button>
+
+<nav class="nav-menu" id="navMenu">
+    <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+        <i class="bi bi-sun-fill" id="themeIcon"></i>
+    </button>
+    
+    <div class="cart">
+        <a href="carrinho.html">
+            <span class="cart-icon"><i class="bi bi-cart3"></i></span>
+        </a>
+        <span class="cart-count">1</span>
+    </div>
+    
+    <a href="login.html">
+        <i class="bi bi-box-arrow-right"></i> Sair da Conta
+    </a>
+    
+    <a href="perfil.html">
+        <i class="bi bi-person-fill"></i> Minha Conta
+    </a>
+</nav>
+</div>
+
+                <!-- Categorias abaixo -->
+                <div class="categories-section">
+                    <section class="categories">
+                        <div class="dropdown">
+                            <a href="categoria.html?cat=masculino">Masculino</a>
+                            <div class="dropdown-content">
+                                <div class="dropdown-category"><a href="categoria.html?cat=masculino&sub=roupas">Roupas</a></div>
+                                <div class="dropdown-category"><a href="categoria.html?cat=masculino&sub=calcados">Calçados</a></div>
+                                <div class="dropdown-category"><a href="categoria.html?cat=masculino&sub=acessorios">Acessórios</a></div>
+                            </div>
+                        </div>
+
+                        <div class="dropdown">
+                            <a href="categoria.html?cat=feminino">Feminino</a>
+                            <div class="dropdown-content">
+                                <div class="dropdown-category"><a href="categoria.html?cat=feminino&sub=roupas">Roupas</a></div>
+                                <div class="dropdown-category"><a href="categoria.html?cat=feminino&sub=calcados">Calçados</a></div>
+                                <div class="dropdown-category"><a href="categoria.html?cat=feminino&sub=acessorios">Acessórios</a></div>
+                            </div>
+                        </div>
+
+                        <div class="dropdown">
+                            <a href="categoria.html?cat=infantil">Infantil</a>
+                            <div class="dropdown-content">
+                                <div class="dropdown-category"><a href="categoria.html?cat=infantil&sub=roupas">Roupas</a></div>
+                                <div class="dropdown-category"><a href="categoria.html?cat=infantil&sub=calcados">Calçados</a></div>
+                                <div class="dropdown-category"><a href="categoria.html?cat=infantil&sub=outros">Outros</a></div>
+                            </div>
+                        </div>
+
+                        <div class="dropdown">
+                            <a href="categoria.html?cat=esportivo">Esportivo</a>
+                            <div class="dropdown-content">
+                                <div class="dropdown-category"><a href="categoria.html?cat=esportivo&sub=roupas">Roupas</a></div>
+                                <div class="dropdown-category"><a href="categoria.html?cat=esportivo&sub=calcados">Calçados</a></div>
+                                <div class="dropdown-category"><a href="categoria.html?cat=esportivo&sub=outros">Outros</a></div>
+                            </div>
+                        </div>
+
+                        <div class="dropdown">
+                            <a href="categoria.html?cat=casa-cozinha">Casa/Cozinha</a>
+                            <div class="dropdown-content">
+                                <div class="dropdown-category"><a href="categoria.html?cat=casa-cozinha&sub=eletrodomesticos">Eletrodomésticos</a></div>
+                                <div class="dropdown-category"><a href="categoria.html?cat=casa-cozinha&sub=moveis">Movéis</a></div>
+                                <div class="dropdown-category"><a href="categoria.html?cat=casa-cozinha&sub=utensilios">Utensílios</a></div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Breadcrumbs -->
+        <div class="breadcrumbs">
+            <a href="cliente.html">Home</a> 
+            <span class="breadcrumb-separator">></span>
+            <span id="current-category">Categoria</span>
+            <span id="current-subcategory" class="breadcrumb-subcategory"></span>
+        </div>
+
+        <!-- Cabeçalho da categoria -->
+        <div class="category-header">
+            <h1 id="category-title">Categoria</h1>
+            <p id="category-description">Encontre os melhores produtos nesta categoria</p>
+        </div>
+
+        <!-- Filtros e ordenação -->
+        <div class="category-filters">
+            <div class="filter-section">
+                <label for="sort-select">Ordenar por:</label>
+                <select id="sort-select" class="filter-select">
+                    <option value="recent">Mais recentes</option>
+                    <option value="price-low">Menor preço</option>
+                    <option value="price-high">Maior preço</option>
+                    <option value="popular">Mais populares</option>
+                </select>
+            </div>
+            
+            <div class="filter-section">
+                <label for="condition-filter">Condição:</label>
+                <select id="condition-filter" class="filter-select">
+                    <option value="all">Todas</option>
+                    <option value="new">Novo</option>
+                    <option value="semi-new">Semi-novo</option>
+                    <option value="used">Usado</option>
+                </select>
+            </div>
+            
+            <div class="filter-section">
+                <label for="price-filter">Faixa de preço:</label>
+                <select id="price-filter" class="filter-select">
+                    <option value="all">Todos</option>
+                    <option value="0-50">Até R$ 50</option>
+                    <option value="50-100">R$ 50 - R$ 100</option>
+                    <option value="100-200">R$ 100 - R$ 200</option>
+                    <option value="200+">Acima de R$ 200</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Contador de produtos -->
+        <div class="products-count">
+            <span id="products-count">0</span> produtos encontrados
+        </div>
+
+        <!-- Grade de produtos -->
+        <div class="product-grid" id="category-products">
+            <!-- Os produtos serão carregados aqui via JavaScript -->
+        </div>
+
+        <!-- Estado vazio - aparece quando não há produtos -->
+        <div class="empty-category" id="emptyCategory">
+            <div class="empty-category-icon">
+                <i class="bi bi-search"></i>
+            </div>
+            <h2>Nenhum produto encontrado</h2>
+            <p>Tente ajustar os filtros ou explore outras categorias</p>
+
+            <div class="empty-category-actions">
+                <a href="cliente.html" class="btn btn-primary">
+                    <i class="bi bi-arrow-left"></i> Voltar para a página inicial
+                </a>
+            </div>
+        </div>
+
+        <!-- Paginação -->
+        <div class="pagination" id="pagination">
+            <button class="pagination-btn" id="prev-page" disabled>
+                <i class="bi bi-chevron-left"></i> Anterior
+            </button>
+            <div class="pagination-numbers" id="pagination-numbers"></div>
+            <button class="pagination-btn" id="next-page">
+                Próxima <i class="bi bi-chevron-right"></i>
+            </button>
+        </div>
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <!-- Seção Minha Conta -->
+                <div class="footer-links">
+                    <h3>Minha Conta</h3>
+                    <a href="perfil.html"><i class="bi bi-person-fill"></i> <span>Perfil</span></a>
+                    <a href="pedidos.html"><i class="bi bi-box-seam"></i> <span>Pedidos</span></a>
+                    <a href="favoritos.html"><i class="bi bi-heart-fill"></i> <span>Favoritos</span></a>
+                </div>
+
+                <!-- Seção Minha Loja -->
+                <div class="footer-links">
+                    <h3>Minha Loja</h3>
+                    <a href="login.html"><i class="bi bi-grid-3x3-gap-fill"></i> <span>Produtos</span></a>
+                    <a href="login.html"><i class="bi bi-bar-chart-line-fill"></i> <span>Estatísticas</span></a>
+                    <a href="login.html"><i class="bi bi-star-fill"></i> <span>Avaliações</span></a>
+                </div>
+
+                <!-- Seção Configurações -->
+                <div class="footer-links">
+                    <h3>Configurações</h3>
+                    <a href="configuracoes_cliente.html"><i class="bi bi-gear-fill"></i> <span>Configurações</span></a>
+                    <a href="privacidade.html"><i class="bi bi-shield-lock-fill"></i> <span>Privacidade</span></a>
+                    <a href="notificacao.html"><i class="bi bi-bell-fill"></i> <span>Notificações</span></a>
+                    <a href="pagamento.html"><i class="bi bi-credit-card-fill"></i> <span>Pagamentos</span></a>
+                </div>
+
+                <!-- Seção Sobre Nós -->
+                <div class="footer-links">
+                    <h3>Sobre Nós</h3>
+                    <a href="missao.html"><i class="bi bi-info-circle-fill"></i> <span>Missão</span></a>
+                    <a href="equipe.html"><i class="bi bi-people-fill"></i> <span>Equipe</span></a>
+                    <a href="chat_Com_Vendedor.html"><i class="bi bi-chat-dots-fill"></i> <span>Chat com Vendedor</span></a>
+
+                    <div class="social-links">
+                        <a href="#" title="Facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="#" title="Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" title="Twitter"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#" title="YouTube"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="copyright">
+                &copy; 2025 ReUse - <span>Todos os direitos reservados</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Dados dos produtos por categoria
+        const productsData = {
+            'masculino': {
+                title: 'Produtos Masculinos',
+                description: 'Encontre roupas, calçados e acessórios masculinos com ótimos preços',
+                products: [
+                    { id: 1, name: 'Camiseta Polo', price: 39.90, category: 'Masculino', subcategory: 'roupas', image: 'IMG/camiseta-polo.jpg', link: 'produto.html?id=1', condition: 'semi-new' },
+                    { id: 5, name: 'Calça Jeans Masculina', price: 79.90, category: 'Masculino', subcategory: 'roupas', image: 'IMG/calca-jeans-masculina.jpg', link: 'produto.html?id=5', condition: 'used' },
+                    { id: 6, name: 'Tênis Casual', price: 129.90, category: 'Masculino', subcategory: 'calcados', image: 'IMG/tenis-casual-masculino.jpg', link: 'produto.html?id=6', condition: 'new' },
+                    { id: 7, name: 'Relógio Esportivo', price: 89.90, category: 'Masculino', subcategory: 'acessorios', image: 'IMG/relogio-masculino.jpg', link: 'produto.html?id=7', condition: 'semi-new' },
+                    { id: 8, name: 'Jaqueta de Couro', price: 199.90, category: 'Masculino', subcategory: 'roupas', image: 'IMG/jaqueta-couro.jpg', link: 'produto.html?id=8', condition: 'used' }
+                ]
+            },
+            'feminino': {
+                title: 'Produtos Femininos',
+                description: 'Descubra roupas, calçados e acessórios femininos incríveis',
+                products: [
+                    { id: 4, name: 'Vestido Floral', price: 65.00, category: 'Feminino', subcategory: 'roupas', image: 'IMG/vestido-floral.jpg', link: 'produto.html?id=4', condition: 'new' },
+                    { id: 9, name: 'Blusa de Seda', price: 45.00, category: 'Feminino', subcategory: 'roupas', image: 'IMG/blusa-seda.jpg', link: 'produto.html?id=9', condition: 'semi-new' },
+                    { id: 10, name: 'Salto Alto', price: 89.90, category: 'Feminino', subcategory: 'calcados', image: 'IMG/salto-alto.jpg', link: 'produto.html?id=10', condition: 'used' },
+                    { id: 11, name: 'Bolsa de Couro', price: 120.00, category: 'Feminino', subcategory: 'acessorios', image: 'IMG/bolsa-couro.jpg', link: 'produto.html?id=11', condition: 'semi-new' },
+                    { id: 12, name: 'Saia Midi', price: 55.00, category: 'Feminino', subcategory: 'roupas', image: 'IMG/saia-midi.jpg', link: 'produto.html?id=12', condition: 'new' }
+                ]
+            },
+            'infantil': {
+                title: 'Produtos Infantis',
+                description: 'Roupas, calçados e brinquedos para crianças de todas as idades',
+                products: [
+                    { id: 13, name: 'Conjunto Infantil', price: 49.90, category: 'Infantil', subcategory: 'roupas', image: 'IMG/conjunto-infantil.jpg', link: 'produto.html?id=13', condition: 'semi-new' },
+                    { id: 14, name: 'Tênis Infantil', price: 39.90, category: 'Infantil', subcategory: 'calcados', image: 'IMG/tenis-infantil.jpg', link: 'produto.html?id=14', condition: 'new' },
+                    { id: 15, name: 'Carrinho de Brinquedo', price: 25.00, category: 'Infantil', subcategory: 'outros', image: 'IMG/carrinho-brinquedo.jpg', link: 'produto.html?id=15', condition: 'used' },
+                    { id: 16, name: 'Vestido Infantil', price: 35.00, category: 'Infantil', subcategory: 'roupas', image: 'IMG/vestido-infantil.jpg', link: 'produto.html?id=16', condition: 'semi-new' }
+                ]
+            },
+            'esportivo': {
+                title: 'Produtos Esportivos',
+                description: 'Equipamentos e roupas para suas atividades físicas',
+                products: [
+                    { id: 3, name: 'Tênis Nike', price: 199.99, category: 'Esportivo', subcategory: 'calcados', image: 'IMG/tenis-nike.avif', link: 'produto.html?id=3', condition: 'new' },
+                    { id: 17, name: 'Camiseta Dry Fit', price: 49.90, category: 'Esportivo', subcategory: 'roupas', image: 'IMG/camiseta-dryfit.jpg', link: 'produto.html?id=17', condition: 'semi-new' },
+                    { id: 18, name: 'Shorts de Corrida', price: 35.00, category: 'Esportivo', subcategory: 'roupas', image: 'IMG/shorts-corrida.jpg', link: 'produto.html?id=18', condition: 'used' },
+                    { id: 19, name: 'Garrafa Térmica', price: 29.90, category: 'Esportivo', subcategory: 'outros', image: 'IMG/garrafa-termica.jpg', link: 'produto.html?id=19', condition: 'new' }
+                ]
+            },
+            'casa-cozinha': {
+                title: 'Casa e Cozinha',
+                description: 'Eletrodomésticos, móveis e utensílios para seu lar',
+                products: [
+                    { id: 2, name: 'Liquidificador Philips', price: 89.90, category: 'Casa/Cozinha', subcategory: 'eletrodomesticos', image: 'IMG/liquidificador-phill.jpg', link: 'produto.html?id=2', condition: 'semi-new' },
+                    { id: 20, name: 'Panela de Pressão', price: 65.00, category: 'Casa/Cozinha', subcategory: 'utensilios', image: 'IMG/panela-pressao.jpg', link: 'produto.html?id=20', condition: 'used' },
+                    { id: 21, name: 'Cadeira de Escritório', price: 150.00, category: 'Casa/Cozinha', subcategory: 'moveis', image: 'IMG/cadeira-escritorio.jpg', link: 'produto.html?id=21', condition: 'semi-new' },
+                    { id: 22, name: 'Jogo de Panelas', price: 120.00, category: 'Casa/Cozinha', subcategory: 'utensilios', image: 'IMG/jogo-panelas.jpg', link: 'produto.html?id=22', condition: 'new' }
+                ]
+            }
+        };
+
+        // Mapeamento de categorias para nomes amigáveis
+        const categoryNames = {
+            'masculino': 'Masculino',
+            'feminino': 'Feminino',
+            'infantil': 'Infantil',
+            'esportivo': 'Esportivo',
+            'casa-cozinha': 'Casa/Cozinha'
+        };
+
+        // Mapeamento de subcategorias para nomes amigáveis
+        const subcategoryNames = {
+            'roupas': 'Roupas',
+            'calcados': 'Calçados',
+            'acessorios': 'Acessórios',
+            'outros': 'Outros',
+            'eletrodomesticos': 'Eletrodomésticos',
+            'moveis': 'Móveis',
+            'utensilios': 'Utensílios'
+        };
+
+        // Variáveis globais
+        let currentProducts = [];
+        let filteredProducts = [];
+        let currentPage = 1;
+        const productsPerPage = 8;
+
+        // Inicialização da página
+        document.addEventListener('DOMContentLoaded', function() {
+            // Obter parâmetros da URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const category = urlParams.get('cat');
+            const subcategory = urlParams.get('sub');
+            
+            // Carregar produtos da categoria
+            loadCategoryProducts(category, subcategory);
+            
+            // Configurar eventos dos filtros
+            setupFilters();
+            
+            // Configurar sistema de favoritos
+            setupFavorites();
+        });
+
+        // Carregar produtos da categoria
+        function loadCategoryProducts(category, subcategory) {
+            const categoryTitle = document.getElementById('category-title');
+            const categoryDescription = document.getElementById('category-description');
+            const currentCategoryElement = document.getElementById('current-category');
+            const currentSubcategoryElement = document.getElementById('current-subcategory');
+            
+            // Verificar se a categoria existe
+            if (!category || !productsData[category]) {
+                // Categoria não encontrada, redirecionar para página inicial
+                window.location.href = 'cliente.html';
+                return;
+            }
+            
+            // Atualizar informações da categoria
+            const categoryData = productsData[category];
+            categoryTitle.textContent = categoryData.title;
+            categoryDescription.textContent = categoryData.description;
+            currentCategoryElement.textContent = categoryNames[category];
+            
+            // Filtrar produtos por subcategoria se especificada
+            if (subcategory) {
+                currentProducts = categoryData.products.filter(product => 
+                    product.subcategory === subcategory
+                );
+                currentSubcategoryElement.textContent = ' > ' + subcategoryNames[subcategory];
+            } else {
+                currentProducts = [...categoryData.products];
+                currentSubcategoryElement.textContent = '';
+            }
+            
+            // Aplicar filtros iniciais
+            applyFilters();
+        }
+
+        // Configurar eventos dos filtros
+        function setupFilters() {
+            const sortSelect = document.getElementById('sort-select');
+            const conditionFilter = document.getElementById('condition-filter');
+            const priceFilter = document.getElementById('price-filter');
+            
+            sortSelect.addEventListener('change', applyFilters);
+            conditionFilter.addEventListener('change', applyFilters);
+            priceFilter.addEventListener('change', applyFilters);
+        }
+
+        // Aplicar filtros aos produtos
+        function applyFilters() {
+            const sortSelect = document.getElementById('sort-select');
+            const conditionFilter = document.getElementById('condition-filter');
+            const priceFilter = document.getElementById('price-filter');
+            
+            // Filtrar por condição
+            let tempProducts = [...currentProducts];
+            
+            if (conditionFilter.value !== 'all') {
+                tempProducts = tempProducts.filter(product => 
+                    product.condition === conditionFilter.value
+                );
+            }
+            
+            // Filtrar por preço
+            if (priceFilter.value !== 'all') {
+                tempProducts = tempProducts.filter(product => {
+                    const price = product.price;
+                    switch(priceFilter.value) {
+                        case '0-50': return price <= 50;
+                        case '50-100': return price > 50 && price <= 100;
+                        case '100-200': return price > 100 && price <= 200;
+                        case '200+': return price > 200;
+                        default: return true;
+                    }
+                });
+            }
+            
+            // Ordenar produtos
+            switch(sortSelect.value) {
+                case 'price-low':
+                    tempProducts.sort((a, b) => a.price - b.price);
+                    break;
+                case 'price-high':
+                    tempProducts.sort((a, b) => b.price - a.price);
+                    break;
+                case 'popular':
+                    // Simulação de ordenação por popularidade
+                    tempProducts.sort((a, b) => b.id - a.id);
+                    break;
+                case 'recent':
+                default:
+                    // Manter ordenação original (mais recentes primeiro)
+                    break;
+            }
+            
+            filteredProducts = tempProducts;
+            currentPage = 1;
+            displayProducts();
+        }
+
+        // Exibir produtos na página
+        function displayProducts() {
+            const productsGrid = document.getElementById('category-products');
+            const emptyCategory = document.getElementById('emptyCategory');
+            const productsCount = document.getElementById('products-count');
+            const pagination = document.getElementById('pagination');
+            
+            // Atualizar contador de produtos
+            productsCount.textContent = filteredProducts.length;
+            
+            // Verificar se há produtos
+            if (filteredProducts.length === 0) {
+                productsGrid.style.display = 'none';
+                emptyCategory.style.display = 'block';
+                pagination.style.display = 'none';
+                return;
+            }
+            
+            productsGrid.style.display = 'grid';
+            emptyCategory.style.display = 'none';
+            pagination.style.display = 'flex';
+            
+            // Calcular produtos para a página atual
+            const startIndex = (currentPage - 1) * productsPerPage;
+            const endIndex = startIndex + productsPerPage;
+            const productsToShow = filteredProducts.slice(startIndex, endIndex);
+            
+            // Limpar grade de produtos
+            productsGrid.innerHTML = '';
+            
+            // Adicionar produtos à grade
+            productsToShow.forEach(product => {
+                const productCard = createProductCard(product);
+                productsGrid.appendChild(productCard);
+            });
+            
+            // Atualizar paginação
+            updatePagination();
+            
+            // Atualizar ícones de favoritos
+            updateFavoriteIcons();
+        }
+
+        // Criar card de produto
+        function createProductCard(product) {
+            const productCard = document.createElement('div');
+            productCard.className = 'product-card';
+            productCard.setAttribute('data-id', product.id);
+            
+            // Verificar se o produto está favoritado
+            const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+            const isFavorited = favorites.includes(product.id.toString());
+            const favoriteClass = isFavorited ? 'active' : '';
+            const favoriteIcon = isFavorited ? 'bi-heart-fill' : 'bi-heart';
+            
+            productCard.innerHTML = `
+                <a href="${product.link}">
+                    <div class="product-image">
+                        <img src="${product.image}" alt="${product.name}">
+                        <button class="favorite-btn ${favoriteClass}" data-id="${product.id}" aria-label="${isFavorited ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}">
+                            <i class="bi ${favoriteIcon}"></i>
+                        </button>
+                    </div>
+                </a>
+                <div class="product-info">
+                    <div class="product-name">${product.name}</div>
+                    <div class="product-price">R$ ${product.price.toFixed(2).replace('.', ',')}</div>
+                    <div class="product-category">${product.category}</div>
+                    <div class="product-condition">${getConditionText(product.condition)}</div>
+                    <button class="favorite-btn-bottom ${favoriteClass}" data-id="${product.id}">
+                        <i class="bi ${favoriteIcon}"></i> ${isFavorited ? 'Favoritado' : 'Favoritar'}
+                    </button>
+                </div>
+            `;
+            
+            return productCard;
+        }
+
+        // Obter texto amigável para condição do produto
+        function getConditionText(condition) {
+            switch(condition) {
+                case 'new': return 'Novo';
+                case 'semi-new': return 'Semi-novo';
+                case 'used': return 'Usado';
+                default: return '';
+            }
+        }
+
+        // Atualizar paginação
+        function updatePagination() {
+            const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+            const prevButton = document.getElementById('prev-page');
+            const nextButton = document.getElementById('next-page');
+            const paginationNumbers = document.getElementById('pagination-numbers');
+            
+            // Atualizar estado dos botões
+            prevButton.disabled = currentPage === 1;
+            nextButton.disabled = currentPage === totalPages;
+            
+            // Atualizar números da paginação
+            paginationNumbers.innerHTML = '';
+            
+            for (let i = 1; i <= totalPages; i++) {
+                const pageButton = document.createElement('button');
+                pageButton.className = `pagination-number ${i === currentPage ? 'active' : ''}`;
+                pageButton.textContent = i;
+                pageButton.addEventListener('click', () => {
+                    currentPage = i;
+                    displayProducts();
+                });
+                paginationNumbers.appendChild(pageButton);
+            }
+            
+            // Configurar eventos dos botões
+            prevButton.onclick = () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    displayProducts();
+                }
+            };
+            
+            nextButton.onclick = () => {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    displayProducts();
+                }
+            };
+        }
+
+        // Configurar sistema de favoritos
+        function setupFavorites() {
+            // Usar event delegation para evitar múltiplos listeners
+            document.addEventListener('click', function(e) {
+                // Verificar se o clique foi em um botão de favorito
+                const favoriteBtn = e.target.closest('.favorite-btn, .favorite-btn-bottom');
+                if (favoriteBtn) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const productId = favoriteBtn.getAttribute('data-id');
+                    handleFavoriteClick(productId, favoriteBtn);
+                }
+            });
+        }
+
+        // Atualizar ícones de favoritos
+        function updateFavoriteIcons() {
+            const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+            
+            document.querySelectorAll('.favorite-btn, .favorite-btn-bottom').forEach(btn => {
+                const productId = btn.getAttribute('data-id');
+                if (favorites.includes(productId)) {
+                    btn.classList.add('active');
+                    const icon = btn.querySelector('i');
+                    if (icon) {
+                        icon.classList.remove('bi-heart');
+                        icon.classList.add('bi-heart-fill');
+                    }
+                    
+                    // Atualizar texto do botão inferior
+                    if (btn.classList.contains('favorite-btn-bottom')) {
+                        btn.innerHTML = '<i class="bi bi-heart-fill"></i> Favoritado';
+                    }
+                } else {
+                    btn.classList.remove('active');
+                    const icon = btn.querySelector('i');
+                    if (icon) {
+                        icon.classList.remove('bi-heart-fill');
+                        icon.classList.add('bi-heart');
+                    }
+                    
+                    // Atualizar texto do botão inferior
+                    if (btn.classList.contains('favorite-btn-bottom')) {
+                        btn.innerHTML = '<i class="bi bi-heart"></i> Favoritar';
+                    }
+                }
+            });
+        }
+
+        // Lidar com clique no botão de favorito
+        function handleFavoriteClick(productId, button) {
+            let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+            const isActive = favorites.includes(productId);
+            
+            if (isActive) {
+                // Remover dos favoritos
+                favorites = favorites.filter(id => id !== productId);
+            } else {
+                // Adicionar aos favoritos
+                favorites.push(productId);
+            }
+            
+            // Salvar no localStorage
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            
+            // Atualizar todos os botões para este produto
+            document.querySelectorAll(`[data-id="${productId}"]`).forEach(btn => {
+                if (isActive) {
+                    btn.classList.remove('active');
+                    const icon = btn.querySelector('i');
+                    if (icon) {
+                        icon.classList.remove('bi-heart-fill');
+                        icon.classList.add('bi-heart');
+                    }
+                    
+                    // Atualizar texto do botão inferior
+                    if (btn.classList.contains('favorite-btn-bottom')) {
+                        btn.innerHTML = '<i class="bi bi-heart"></i> Favoritar';
+                    }
+                } else {
+                    btn.classList.add('active');
+                    const icon = btn.querySelector('i');
+                    if (icon) {
+                        icon.classList.remove('bi-heart');
+                        icon.classList.add('bi-heart-fill');
+                    }
+                    
+                    // Atualizar texto do botão inferior
+                    if (btn.classList.contains('favorite-btn-bottom')) {
+                        btn.innerHTML = '<i class="bi bi-heart-fill"></i> Favoritado';
+                    }
+                }
+            });
+            
+            // Mostrar feedback visual
+            showFavoriteFeedback(!isActive);
+        }
+
+        // Mostrar feedback visual ao favoritar/desfavoritar
+        function showFavoriteFeedback(isAdded) {
+            // Remove feedback anterior se existir
+            const existingFeedback = document.querySelector('.favorite-feedback');
+            if (existingFeedback) {
+                existingFeedback.remove();
+            }
+            
+            // Cria o elemento de feedback
+            const feedback = document.createElement('div');
+            feedback.className = `favorite-feedback ${isAdded ? 'added' : 'removed'}`;
+            
+            // Define o conteúdo do feedback
+            feedback.innerHTML = `
+                <i class="bi ${isAdded ? 'bi-heart-fill' : 'bi-heart'}"></i>
+                ${isAdded ? 'Adicionado aos favoritos' : 'Removido dos favoritos'}
+            `;
+            
+            // Adiciona ao corpo do documento
+            document.body.appendChild(feedback);
+            
+            // Remove após 3 segundos
+            setTimeout(() => {
+                feedback.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => {
+                    if (feedback.parentNode) {
+                        feedback.parentNode.removeChild(feedback);
+                    }
+                }, 300);
+            }, 3000);
+        }
+    </script>
+    <script src="JS/menu.js"></script>
+    <script src="JS/breadcrumbs.js"></script>
+    <script src="JS/modo_noturno.js"></script>
+</body>
+</html>
