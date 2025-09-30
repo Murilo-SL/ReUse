@@ -9,34 +9,68 @@ document.addEventListener('DOMContentLoaded', () => {
     const sellerForm = document.getElementById('seller-form');
     const institutionForm = document.getElementById('institution-form');
 
-    // Função para trocar entre formulários
-    customerButton.addEventListener('click', () => {
-        customerButton.classList.add('active');
+    // Função para trocar entre formulários com animação
+    function switchForm(activeButton, activeForm, direction) {
+        // Remover classe active de todos os botões
+        customerButton.classList.remove('active');
         sellerButton.classList.remove('active');
         institutionButton.classList.remove('active');
-        customerForm.classList.add('active');
-        sellerForm.classList.remove('active');
-        institutionForm.classList.remove('active');
+        
+        // Adicionar classe active ao botão clicado
+        activeButton.classList.add('active');
+        
+        // Encontrar o formulário ativo atual
+        const currentActiveForm = document.querySelector('.form-container.active');
+        
+        if (currentActiveForm && currentActiveForm !== activeForm) {
+            // Determinar animações baseadas na direção
+            const currentIndex = Array.from([customerForm, sellerForm, institutionForm]).indexOf(currentActiveForm);
+            const newIndex = Array.from([customerForm, sellerForm, institutionForm]).indexOf(activeForm);
+            
+            const currentAnimation = newIndex > currentIndex ? 'slide-out-left' : 'slide-out-right';
+            const newAnimation = newIndex > currentIndex ? 'slide-in-right' : 'slide-in-left';
+            
+            // Aplicar animação de saída
+            currentActiveForm.classList.add(currentAnimation);
+            
+            // Remover classe active do formulário atual
+            setTimeout(() => {
+                currentActiveForm.classList.remove('active');
+                currentActiveForm.classList.remove(currentAnimation);
+                
+                // Adicionar classe active e animação de entrada ao novo formulário
+                activeForm.classList.add(newAnimation);
+                activeForm.classList.add('active');
+                
+                // Remover animação após a transição
+                setTimeout(() => {
+                    activeForm.classList.remove(newAnimation);
+                }, 400);
+            }, 400);
+        } else {
+            // Primeira vez ou mesmo formulário
+            document.querySelectorAll('.form-container').forEach(form => {
+                form.classList.remove('active');
+            });
+            activeForm.classList.add('active');
+        }
+    }
+
+    // Event listeners para os botões
+    customerButton.addEventListener('click', () => {
+        switchForm(customerButton, customerForm, 'left');
     });
 
     sellerButton.addEventListener('click', () => {
-        sellerButton.classList.add('active');
-        customerButton.classList.remove('active');
-        institutionButton.classList.remove('active');
-        sellerForm.classList.add('active');
-        customerForm.classList.remove('active');
-        institutionForm.classList.remove('active');
+        switchForm(sellerButton, sellerForm, 'middle');
     });
 
     institutionButton.addEventListener('click', () => {
-        institutionButton.classList.add('active');
-        customerButton.classList.remove('active');
-        sellerButton.classList.remove('active');
-        institutionForm.classList.add('active');
-        customerForm.classList.remove('active');
-        sellerForm.classList.remove('active');
+        switchForm(institutionButton, institutionForm, 'right');
     });
 
+    // Resto do código de validação permanece igual...
+    // [Todo o resto do código de validação dos formulários permanece igual]
     // Validação do formulário de cliente
     const customerLoginForm = document.getElementById('customerLoginForm');
 
