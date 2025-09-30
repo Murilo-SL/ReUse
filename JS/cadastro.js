@@ -1,4 +1,61 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // Elementos dos botões de seleção
+    const clientBtn = document.getElementById('client-btn');
+    const sellerBtn = document.getElementById('seller-btn');
+    const institutionBtn = document.getElementById('institution-btn');
+
+    // Formulários
+    const clientForm = document.getElementById('client-form');
+    const sellerForm = document.getElementById('seller-form');
+    const institutionForm = document.getElementById('institution-form');
+
+    // Função para atualizar a animação do card-header
+    function updateCardHeaderAnimation(activeBtn) {
+        const cardHeader = document.querySelector('.card-header');
+        
+        // Remover todas as animações anteriores
+        cardHeader.classList.remove('waves-animation', 'particles-animation', 'molecules-animation');
+        
+        // Adicionar animação baseada no tipo de conta selecionado
+        if (activeBtn.id === 'client-btn') {
+            cardHeader.classList.add('waves-animation');
+        } else if (activeBtn.id === 'seller-btn') {
+            cardHeader.classList.add('particles-animation');
+        } else if (activeBtn.id === 'institution-btn') {
+            cardHeader.classList.add('molecules-animation');
+        }
+    }
+
+    // Função para alternar entre formulários
+    function toggleForms(activeBtn, activeForm) {
+        // Remover classe active de todos os botões
+        [clientBtn, sellerBtn, institutionBtn].forEach(btn => btn.classList.remove('active'));
+        
+        // Ocultar todos os formulários
+        [clientForm, sellerForm, institutionForm].forEach(form => {
+            form.style.display = 'none';
+            form.classList.remove('active');
+        });
+
+        // Adicionar classe active ao botão clicado
+        activeBtn.classList.add('active');
+        
+        // Mostrar formulário ativo
+        activeForm.style.display = 'block';
+        activeForm.classList.add('active');
+        
+        // Atualizar a animação do card-header
+        updateCardHeaderAnimation(activeBtn);
+    }
+
+    // Event listeners para os botões
+    clientBtn.addEventListener('click', () => toggleForms(clientBtn, clientForm));
+    sellerBtn.addEventListener('click', () => toggleForms(sellerBtn, sellerForm));
+    institutionBtn.addEventListener('click', () => toggleForms(institutionBtn, institutionForm));
+
+    // Inicializar com a animação correta (Cliente por padrão)
+    updateCardHeaderAnimation(clientBtn);
+
     // Função para mostrar erros personalizados
     function showError(message) {
         const errorElement = document.getElementById('error-message-global');
@@ -12,40 +69,45 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 5000);
     }
 
-    // Fechar mensagem ao clicar
+    // Fechar mensagem de erro ao clicar
     document.getElementById('error-message-global')?.addEventListener('click', function () {
         this.style.display = 'none';
     });
 
-    // Form toggling functionality
-    const clientBtn = document.getElementById('client-btn');
-    const sellerBtn = document.getElementById('seller-btn');
-    const institutionBtn = document.getElementById('institution-btn');
-    const clientForm = document.getElementById('client-form');
-    const sellerForm = document.getElementById('seller-form');
-    const institutionForm = document.getElementById('institution-form');
+    // Função para mostrar sucesso
+    function showSuccess(message) {
+        const successElement = document.getElementById('success-message-global');
+        const successText = document.getElementById('success-text-global');
 
-    function toggleForms(activeBtn, activeForm) {
-        [clientBtn, sellerBtn, institutionBtn].forEach(btn => btn.classList.remove('active'));
-        [clientForm, sellerForm, institutionForm].forEach(form => form.style.display = 'none');
+        successText.textContent = message;
+        successElement.style.display = 'flex';
 
-        activeBtn.classList.add('active');
-        activeForm.style.display = 'block';
+        setTimeout(() => {
+            successElement.style.display = 'none';
+        }, 3000);
     }
 
-    clientBtn.addEventListener('click', () => toggleForms(clientBtn, clientForm));
-    sellerBtn.addEventListener('click', () => toggleForms(sellerBtn, sellerForm));
-    institutionBtn.addEventListener('click', () => toggleForms(institutionBtn, institutionForm));
+    // Fechar mensagem de sucesso ao clicar
+    document.getElementById('success-message-global')?.addEventListener('click', function () {
+        this.style.display = 'none';
+    });
 
     // Password visibility toggle
-    document.querySelectorAll('.toggle-password').forEach(icon => {
-        icon.addEventListener('click', function () {
-            const targetId = this.getAttribute('data-target');
-            const passwordInput = document.getElementById(targetId);
-            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-            passwordInput.setAttribute('type', type);
-            this.classList.toggle('fa-eye');
-            this.classList.toggle('fa-eye-slash');
+    document.querySelectorAll('.toggle-password').forEach(button => {
+        button.addEventListener('click', function () {
+            const icon = this.querySelector('i');
+            const input = this.parentElement.querySelector('input');
+
+            // Toggle between password and text type
+            const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+            input.setAttribute('type', type);
+
+            // Toggle eye icon
+            icon.classList.toggle('fa-eye');
+            icon.classList.toggle('fa-eye-slash');
+
+            // Toggle active class for styling
+            this.classList.toggle('active');
         });
     });
 
@@ -109,8 +171,28 @@ document.addEventListener('DOMContentLoaded', function () {
     const cnpjInput = document.getElementById('institution-cnpj');
     if (cnpjInput) formatCNPJInput(cnpjInput);
 
+    const sellerCnpjInput = document.getElementById('seller-cnpj');
+    if (sellerCnpjInput) formatCNPJInput(sellerCnpjInput);
+
     const verificationCodeInput = document.getElementById('verification-code');
     if (verificationCodeInput) formatVerificationCode(verificationCodeInput);
+
+    // Mostrar/ocultar campo CNPJ baseado no tipo de negócio
+    const businessTypeSelect = document.getElementById('business-type');
+    const cnpjFieldContainer = document.getElementById('cnpj-field-container');
+    
+    if (businessTypeSelect && cnpjFieldContainer) {
+        businessTypeSelect.addEventListener('change', function() {
+            if (this.value === 'empresa') {
+                cnpjFieldContainer.style.display = 'block';
+            } else {
+                cnpjFieldContainer.style.display = 'none';
+                // Limpar o campo CNPJ quando escondido
+                const sellerCnpjInput = document.getElementById('seller-cnpj');
+                if (sellerCnpjInput) sellerCnpjInput.value = '';
+            }
+        });
+    }
 
     // Password validation
     function validatePassword(password) {
@@ -251,6 +333,19 @@ document.addEventListener('DOMContentLoaded', function () {
             isValid = false;
         }
 
+        // CNPJ validation para empresas
+        if (businessType === 'empresa') {
+            const sellerCnpj = document.getElementById('seller-cnpj').value.trim();
+            const cnpjRegex = /^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/;
+            if (!sellerCnpj) {
+                showError('Por favor, insira o CNPJ da empresa');
+                isValid = false;
+            } else if (!cnpjRegex.test(sellerCnpj)) {
+                showError('Por favor, insira um CNPJ válido (ex: 00.000.000/0000-00)');
+                isValid = false;
+            }
+        }
+
         // Verification code validation
         const verificationCode = document.getElementById('verification-code').value.trim();
         if (!verificationCode) {
@@ -372,38 +467,26 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-   // Função para mostrar sucesso
-function showSuccess(message) {
-    const successElement = document.getElementById('success-message-global');
-    const successText = document.getElementById('success-text-global');
-
-    successText.textContent = message;
-    successElement.style.display = 'flex';
-
-    // Fechar automaticamente após 3 segundos
-    setTimeout(() => {
-        successElement.style.display = 'none';
-    }, 3000);
-}
-
-// Fechar mensagem ao clicar
-document.getElementById('success-message-global')?.addEventListener('click', function () {
-    this.style.display = 'none';
-});
-
-// Função para redirecionamento
-function redirectToPage(role) {
-    // Mostrar mensagem de sucesso
-    showSuccess('Cadastro realizado com sucesso! Redirecionando para login...');
-    
-    setTimeout(() => {
-        // Redirecionar para a página de login em vez das páginas específicas
-        window.location.href = 'login.html';
-    }, 3000); // Aumentei o tempo para 3 segundos para dar tempo de ver a mensagem
-}
+    // Função para redirecionamento
+    function redirectToPage(role) {
+        // Mostrar mensagem de sucesso
+        showSuccess('Cadastro realizado com sucesso! Redirecionando para login...');
+        
+        setTimeout(() => {
+            // Redirecionar para a página de login
+            window.location.href = 'login.html';
+        }, 3000);
+    }
 
     // Adiciona os event listeners aos formulários
     document.getElementById('signupForm')?.addEventListener('submit', validateClientForm);
     document.getElementById('sellerRegistrationForm')?.addEventListener('submit', validateSellerForm);
     document.getElementById('institutionRegistrationForm')?.addEventListener('submit', validateInstitutionForm);
+
+    // Adicionar validação em tempo real para melhor UX
+    document.querySelectorAll('input').forEach(input => {
+        input.addEventListener('blur', function() {
+            // Validação básica em tempo real pode ser adicionada aqui se necessário
+        });
+    });
 });
