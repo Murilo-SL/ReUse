@@ -1,4 +1,4 @@
-// Finalizar_Compra.js - Código completo atualizado com notificações
+// Finalizar_Compra.js - Código atualizado e otimizado
 document.addEventListener('DOMContentLoaded', function() {
     // Carrega os itens do carrinho do localStorage
     const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Atualiza as parcelas do cartão de crédito
-        if (installmentsSelect) {
+        if (installmentsSelect && total > 0) {
             installmentsSelect.innerHTML = '';
             const maxInstallments = Math.min(6, Math.floor(total / 20)); // Mínimo de R$20 por parcela
             for (let i = 1; i <= maxInstallments; i++) {
@@ -62,7 +62,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Calcula o valor do frete
     function calculateShipping() {
-        // Frete fixo de R$10 para pedidos não vazios
         return cartItems.length > 0 ? 10.00 : 0;
     }
     
@@ -143,12 +142,10 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         };
         
-        // Adiciona à lista de notificações
         const notifications = JSON.parse(localStorage.getItem('notifications')) || [];
         notifications.unshift(notification);
         localStorage.setItem('notifications', JSON.stringify(notifications));
         
-        // Atualiza o contador de notificações
         updateNotificationBadge();
     }
     
@@ -164,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Funções para aplicar máscaras em CPF e telefone
+    // Funções para aplicar máscaras
     function formatCPF(value) {
         value = value.replace(/\D/g, '');
         value = value.replace(/(\d{3})(\d)/, '$1.$2');
@@ -185,53 +182,103 @@ document.addEventListener('DOMContentLoaded', function() {
     const cpfInput = document.getElementById('cpf');
     if (cpfInput) {
         cpfInput.addEventListener('input', function(e) {
-            const cursorPosition = this.selectionStart;
-            const originalLength = this.value.length;
             this.value = formatCPF(this.value);
-            const newLength = this.value.length;
-            const cursorAdjustment = newLength - originalLength;
-            this.setSelectionRange(cursorPosition + cursorAdjustment, cursorPosition + cursorAdjustment);
+            validateCPFField(this);
+        });
+        
+        cpfInput.addEventListener('blur', function() {
+            validateCPFField(this);
         });
     }
 
     const telefoneInput = document.getElementById('telefone');
     if (telefoneInput) {
         telefoneInput.addEventListener('input', function(e) {
-            const cursorPosition = this.selectionStart;
-            const originalLength = this.value.length;
             this.value = formatTelefone(this.value);
-            const newLength = this.value.length;
-            const cursorAdjustment = newLength - originalLength;
-            this.setSelectionRange(cursorPosition + cursorAdjustment, cursorPosition + cursorAdjustment);
+            validatePhoneField(this);
         });
     }
 
-    // Validação do formulário para CPF
+    // Validação do CPF - Versão corrigida e otimizada
     function validateCPF(cpf) {
         cpf = cpf.replace(/\D/g, '');
+        
+        // Verifica se tem 11 dígitos
         if (cpf.length !== 11) return false;
+        
+        // Verifica se todos os dígitos são iguais (CPF inválido)
         if (/^(\d)\1+$/.test(cpf)) return false;
-
-        let soma = 0;
-        let resto;
-
+        
+        let sum = 0;
+        let remainder;
+        
+        // Validação do primeiro dígito verificador
         for (let i = 1; i <= 9; i++) {
-            soma = soma + parseInt(cpf.substring(i - 1, i)) * (11 - i);
+            sum += parseInt(cpf.substring(i-1, i)) * (11 - i);
         }
-
-        resto = (soma * 10) % 11;
-        if ((resto === 10) || (resto === 11)) resto = 0;
-        if (resto !== parseInt(cpf.substring(9, 10))) return false;
-
-        soma = 0;
+        
+        remainder = (sum * 10) % 11;
+        if (remainder === 10 || remainder === 11) remainder = 0;
+        if (remainder !== parseInt(cpf.substring(9, 10))) return false;
+        
+        // Validação do segundo dígito verificador
+        sum = 0;
         for (let i = 1; i <= 10; i++) {
-            soma = soma + parseInt(cpf.substring(i - 1, i)) * (12 - i);
+            sum += parseInt(cpf.substring(i-1, i)) * (12 - i);
         }
+        
+        remainder = (sum * 10) % 11;
+        if (remainder === 10 || remainder === 11) remainder = 0;
+        if (remainder !== parseInt(cpf.substring(10, 11))) return false;
+        
+        return true;
+    }
 
-        resto = (soma * 10) % 11;
-        if ((resto === 10) || (resto === 11)) resto = 0;
-        if (resto !== parseInt(cpf.substring(10, 11))) return false;
+    // Função auxiliar para validar e mostrar feedback visual do CPF
+    function validateCPFField(cpfField) {
+        const cpfValue = cpfField.value.replace(/\D/g, '');
+        
+        if (cpfValue.length === 0) {
+            cpfField.classList.remove('valid', 'invalid');
+            return false;
+        }
+        
+        if (cpfValue.length < 11) {
+            cpfField.classList.add('invalid');
+            cpfField.classList.remove('valid');
+            return false;
+        }
+        
+        const isValid = validateCPF(cpfField.value);
+        
+        if (isValid) {
+            cpfField.classList.add('valid');
+            cpfField.classList.remove('invalid');
+        } else {
+            cpfField.classList.add('invalid');
+            cpfField.classList.remove('valid');
+        }
+        
+        return isValid;
+    }
 
+    // Função auxiliar para validar telefone
+    function validatePhoneField(phoneField) {
+        const phoneValue = phoneField.value.replace(/\D/g, '');
+        
+        if (phoneValue.length === 0) {
+            phoneField.classList.remove('valid', 'invalid');
+            return false;
+        }
+        
+        if (phoneValue.length < 10) {
+            phoneField.classList.add('invalid');
+            phoneField.classList.remove('valid');
+            return false;
+        }
+        
+        phoneField.classList.add('valid');
+        phoneField.classList.remove('invalid');
         return true;
     }
 
@@ -244,36 +291,27 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!field.value.trim()) {
                 isValid = false;
                 field.classList.add('invalid');
+                field.classList.remove('valid');
+            } else {
+                field.classList.remove('invalid');
+                
+                // Validação específica para CPF
+                if (field.id === 'cpf') {
+                    if (!validateCPFField(field)) {
+                        isValid = false;
+                    }
+                }
+                
+                // Validação específica para telefone
+                if (field.id === 'telefone') {
+                    if (!validatePhoneField(field)) {
+                        isValid = false;
+                    }
+                }
             }
         });
 
         return isValid;
-    }
-
-    // Validação específica para CPF
-    if (cpfInput) {
-        cpfInput.addEventListener('blur', function() {
-            const cpfValue = this.value.replace(/\D/g, '');
-            if (cpfValue.length > 0 && !validateCPF(cpfValue)) {
-                this.classList.add('invalid');
-                showError('Por favor, digite um CPF válido.');
-            } else if (cpfValue.length > 0) {
-                this.classList.remove('invalid');
-            }
-        });
-    }
-
-    // Validação específica para telefone
-    if (telefoneInput) {
-        telefoneInput.addEventListener('blur', function() {
-            const telefoneValue = this.value.replace(/\D/g, '');
-            if (telefoneValue.length < 10 && telefoneValue.length > 0) {
-                this.classList.add('invalid');
-                showError('Por favor, digite um número de telefone válido com DDD.');
-            } else if (telefoneValue.length > 0) {
-                this.classList.remove('invalid');
-            }
-        });
     }
 
     // Navegação entre abas do formulário
@@ -283,11 +321,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     nextButtons.forEach(button => {
         button.addEventListener('click', function() {
-            if (this.classList.contains('btn-disabled')) {
-                showError('Por favor, preencha todos os campos obrigatórios para continuar.');
-                return;
-            }
-
             const currentTab = this.closest('.form-tab').id.replace('-form', '');
             const nextStep = this.getAttribute('data-next');
 
@@ -342,6 +375,14 @@ document.addEventListener('DOMContentLoaded', function() {
         requiredFields.forEach(field => {
             if (!field.value.trim()) {
                 allFilled = false;
+            } else {
+                // Validações específicas
+                if (field.id === 'cpf' && !validateCPFField(field)) {
+                    allFilled = false;
+                }
+                if (field.id === 'telefone' && !validatePhoneField(field)) {
+                    allFilled = false;
+                }
             }
         });
 
@@ -381,8 +422,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             const btn = this;
+            const originalText = btn.innerHTML;
             btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Buscando...';
-            btn.classList.add('btn-disabled');
+            btn.disabled = true;
 
             try {
                 const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
@@ -399,58 +441,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('numero').focus();
 
                 document.getElementById('cep').classList.remove('invalid');
+                document.getElementById('cep').classList.add('valid');
                 checkFormValid('address-form', 'btn-to-payment');
             } catch (error) {
                 showError('CEP não encontrado. Verifique o número e tente novamente.');
                 document.getElementById('cep').classList.add('invalid');
+                document.getElementById('cep').classList.remove('valid');
             } finally {
-                btn.innerHTML = '<i class="fas fa-search"></i> Buscar CEP';
-                btn.classList.remove('btn-disabled');
+                btn.innerHTML = originalText;
+                btn.disabled = false;
             }
         });
     }
-
-    // Aplicar formatação aos campos de cartão de débito
-const debitCardNumberInput = document.getElementById('debit-card-number');
-if (debitCardNumberInput) {
-    debitCardNumberInput.addEventListener('input', function() {
-        formatCardNumber(this);
-    });
-}
-
-const debitCardExpiryInput = document.getElementById('debit-card-expiry');
-if (debitCardExpiryInput) {
-    debitCardExpiryInput.addEventListener('input', function() {
-        formatCardExpiry(this);
-    });
-}
-
-const debitCardCvvInput = document.getElementById('debit-card-cvv');
-if (debitCardCvvInput) {
-    debitCardCvvInput.addEventListener('input', function() {
-        formatCardCvv(this);
-    });
-}
-
-// Monitorar mudanças nos campos de débito
-const debitCardInputs = document.querySelectorAll('#debit-card-form [required]');
-debitCardInputs.forEach(input => {
-    input.addEventListener('input', () => {
-        // Verificar se todos os campos obrigatórios estão preenchidos
-        let allFilled = true;
-        debitCardInputs.forEach(field => {
-            if (!field.value.trim()) {
-                allFilled = false;
-            }
-        });
-        
-        // Habilitar/desabilitar botão de finalização baseado na validação
-        if (allFilled && document.getElementById('debit-card')?.checked) {
-            checkoutButton.disabled = false;
-            checkoutButton.classList.remove('btn-disabled');
-        }
-    });
-});
 
     // Formatação para campos de cartão
     const formatCardNumber = (input) => {
@@ -472,26 +474,30 @@ debitCardInputs.forEach(input => {
     };
 
     // Aplicar formatação aos campos de cartão
-    const cardNumberInput = document.getElementById('card-number');
-    if (cardNumberInput) {
-        cardNumberInput.addEventListener('input', function() {
-            formatCardNumber(this);
-        });
-    }
+    const cardInputs = [
+        { id: 'card-number', format: formatCardNumber },
+        { id: 'debit-card-number', format: formatCardNumber },
+        { id: 'card-expiry', format: formatCardExpiry },
+        { id: 'debit-card-expiry', format: formatCardExpiry },
+        { id: 'card-cvv', format: formatCardCvv },
+        { id: 'debit-card-cvv', format: formatCardCvv }
+    ];
 
-    const cardExpiryInput = document.getElementById('card-expiry');
-    if (cardExpiryInput) {
-        cardExpiryInput.addEventListener('input', function() {
-            formatCardExpiry(this);
-        });
-    }
-
-    const cardCvvInput = document.getElementById('card-cvv');
-    if (cardCvvInput) {
-        cardCvvInput.addEventListener('input', function() {
-            formatCardCvv(this);
-        });
-    }
+    cardInputs.forEach(cardInput => {
+        const element = document.getElementById(cardInput.id);
+        if (element) {
+            element.addEventListener('input', function() {
+                cardInput.format(this);
+                // Validação básica em tempo real
+                if (this.value.replace(/\D/g, '').length >= (this.id.includes('cvv') ? 3 : (this.id.includes('expiry') ? 4 : 16))) {
+                    this.classList.add('valid');
+                    this.classList.remove('invalid');
+                } else {
+                    this.classList.remove('valid');
+                }
+            });
+        }
+    });
 
     // Configuração dos métodos de pagamento
     const paymentOptions = document.querySelectorAll('input[name="payment"]');
@@ -499,21 +505,29 @@ debitCardInputs.forEach(input => {
     const debitCardForm = document.getElementById('debit-card-form');
     const pixForm = document.getElementById('pix-form');
 
-    paymentOptions.forEach(option => {
-        option.addEventListener('change', function() {
-            if (creditCardForm) creditCardForm.style.display = 'none';
-            if (debitCardForm) debitCardForm.style.display = 'none';
-            if (pixForm) pixForm.style.display = 'none';
+    function showPaymentForm() {
+        if (creditCardForm) creditCardForm.style.display = 'none';
+        if (debitCardForm) debitCardForm.style.display = 'none';
+        if (pixForm) pixForm.style.display = 'none';
 
-            if (this.id === 'credit-card' && creditCardForm) {
-                creditCardForm.style.display = 'block';
-            } else if (this.id === 'debit-card' && debitCardForm) {
-                debitCardForm.style.display = 'block';
-            } else if (this.id === 'pix' && pixForm) {
-                pixForm.style.display = 'block';
-            }
-        });
+        const selectedPayment = document.querySelector('input[name="payment"]:checked');
+        if (!selectedPayment) return;
+
+        if (selectedPayment.id === 'credit-card' && creditCardForm) {
+            creditCardForm.style.display = 'block';
+        } else if (selectedPayment.id === 'debit-card' && debitCardForm) {
+            debitCardForm.style.display = 'block';
+        } else if (selectedPayment.id === 'pix' && pixForm) {
+            pixForm.style.display = 'block';
+        }
+    }
+
+    paymentOptions.forEach(option => {
+        option.addEventListener('change', showPaymentForm);
     });
+
+    // Inicializar formulário de pagamento
+    showPaymentForm();
 
     // Finalização do pedido
     if (checkoutButton) {
@@ -526,20 +540,51 @@ debitCardInputs.forEach(input => {
 
             // Validação dos campos de pagamento
             let paymentValid = true;
-            if (document.getElementById('credit-card')?.checked) {
+            const selectedPayment = document.querySelector('input[name="payment"]:checked');
+            
+            if (!selectedPayment) {
+                showError('Por favor, selecione um método de pagamento.');
+                return;
+            }
+
+            if (selectedPayment.id === 'credit-card') {
                 const creditCardFields = document.querySelectorAll('#credit-card-form [required]');
                 creditCardFields.forEach(field => {
                     if (!field.value.trim()) {
                         field.classList.add('invalid');
                         paymentValid = false;
+                    } else {
+                        field.classList.remove('invalid');
+                        // Validação básica de campos de cartão
+                        const cleanValue = field.value.replace(/\D/g, '');
+                        if ((field.id.includes('number') && cleanValue.length < 16) ||
+                            (field.id.includes('expiry') && cleanValue.length < 4) ||
+                            (field.id.includes('cvv') && cleanValue.length < 3)) {
+                            field.classList.add('invalid');
+                            paymentValid = false;
+                        } else {
+                            field.classList.add('valid');
+                        }
                     }
                 });
-            } else if (document.getElementById('debit-card')?.checked) {
+            } else if (selectedPayment.id === 'debit-card') {
                 const debitCardFields = document.querySelectorAll('#debit-card-form [required]');
                 debitCardFields.forEach(field => {
                     if (!field.value.trim()) {
                         field.classList.add('invalid');
                         paymentValid = false;
+                    } else {
+                        field.classList.remove('invalid');
+                        // Validação básica de campos de cartão
+                        const cleanValue = field.value.replace(/\D/g, '');
+                        if ((field.id.includes('number') && cleanValue.length < 16) ||
+                            (field.id.includes('expiry') && cleanValue.length < 4) ||
+                            (field.id.includes('cvv') && cleanValue.length < 3)) {
+                            field.classList.add('invalid');
+                            paymentValid = false;
+                        } else {
+                            field.classList.add('valid');
+                        }
                     }
                 });
             }
@@ -550,6 +595,7 @@ debitCardInputs.forEach(input => {
             }
 
             // Simulação de processamento
+            const originalText = this.innerHTML;
             this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processando...';
             this.disabled = true;
 
@@ -558,8 +604,11 @@ debitCardInputs.forEach(input => {
                 const newOrder = saveOrder();
                 
                 // Mostra mensagem de sucesso
-                document.getElementById('success-overlay').style.display = 'block';
-                document.getElementById('success-message').style.display = 'block';
+                const successOverlay = document.getElementById('success-overlay');
+                const successMessage = document.getElementById('success-message');
+                
+                if (successOverlay) successOverlay.style.display = 'block';
+                if (successMessage) successMessage.style.display = 'block';
                 
                 // Exibe detalhes do pedido na mensagem de sucesso
                 if (newOrder) {
@@ -597,6 +646,9 @@ debitCardInputs.forEach(input => {
             setTimeout(() => {
                 errorElement.style.display = 'none';
             }, 5000);
+        } else {
+            // Fallback caso os elementos de erro não existam
+            alert(message);
         }
     }
 
@@ -605,7 +657,5 @@ debitCardInputs.forEach(input => {
     updateOrderSummary();
     updateCartBadge();
     checkFormValid('personal-form', 'btn-to-address');
-    
-    // Atualiza o badge de notificações
     updateNotificationBadge();
 });
