@@ -634,6 +634,27 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Função para criar notificação de novo pedido (adicione no finalizar_compra.js)
+function createOrderNotification(order) {
+    const itemsCount = order.items.reduce((total, item) => total + item.quantity, 0);
+    const notification = {
+        id: Date.now(),
+        title: 'Novo pedido realizado!',
+        message: `Seu pedido #${order.trackingNumber} foi confirmado com sucesso. ${itemsCount} ${itemsCount === 1 ? 'item' : 'itens'} no total de R$ ${order.total.toFixed(2).replace('.', ',')}.`,
+        icon: 'bi bi-bag-check',
+        date: new Date().toISOString(),
+        read: false,
+        type: 'order',
+        orderId: order.id
+    };
+    
+    const notifications = JSON.parse(localStorage.getItem('notifications')) || [];
+    notifications.unshift(notification);
+    localStorage.setItem('notifications', JSON.stringify(notifications));
+    
+    updateNotificationBadge();
+}
+
     // Função para mostrar erros
     function showError(message) {
         const errorElement = document.getElementById('error-message');
