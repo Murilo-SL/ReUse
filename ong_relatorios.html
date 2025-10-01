@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SOS Felino - Relatórios</title>
-    
+
     <!-- Folhas de estilo -->
     <link rel="stylesheet" href="CSS/ong.css">
     <link rel="stylesheet" href="CSS/ong_relatorios.css">
@@ -13,6 +14,12 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+    <!-- VLibras -->
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+
 </head>
 
 <body>
@@ -38,7 +45,8 @@
             <ul class="sidebar-nav">
                 <li><a href="ong.html"><i class="bi bi-house"></i> Início</a></li>
                 <li><a href="ong_doacoes.html"><i class="bi bi-handbag"></i> Doações</a></li>
-                <li><a href="ong_doacoes_necessarias.html"><i class="bi bi-clipboard-check"></i> Doações Necessárias</a></li>
+                <li><a href="ong_doacoes_necessarias.html"><i class="bi bi-clipboard-check"></i> Doações Necessárias</a>
+                </li>
                 <li><a href="ong_beneficiarios.html"><i class="bi bi-people"></i> Beneficiários</a></li>
                 <li><a href="ong_relatorios.html"><i class="bi bi-bar-chart"></i> Relatórios</a></li>
                 <li><a href="ong_configuracoes.html" class="active"><i class="bi bi-gear"></i> Configurações</a></li>
@@ -53,9 +61,9 @@
             <div class="breadcrumbs-vendedor">
                 <a href="ong.html">Painel da Instituição</a> &gt; <span id="current-breadcrumb">Relatórios</span>
             </div>
-            
+
             <h1>Relatórios</h1>
-            
+
             <!-- Filtros -->
             <div class="filters-container">
                 <div class="filter-group">
@@ -68,15 +76,15 @@
                         <option value="custom">Personalizado</option>
                     </select>
                 </div>
-                
+
                 <div class="filter-group custom-date" style="display: none;">
                     <label for="data-inicio">De:</label>
                     <input type="date" id="data-inicio">
-                    
+
                     <label for="data-fim">Até:</label>
                     <input type="date" id="data-fim">
                 </div>
-                
+
                 <div class="filter-group">
                     <label for="tipo-relatorio">Tipo de Relatório:</label>
                     <select id="tipo-relatorio">
@@ -86,27 +94,27 @@
                         <option value="doadores">Principais Doadores</option>
                     </select>
                 </div>
-                
+
                 <button class="primary-button" id="gerar-relatorio">
                     <i class="fas fa-filter"></i> Aplicar Filtros
                 </button>
-                
+
                 <div class="export-buttons">
-    <button id="exportar-pdf" class="btn-export">
-        <i class="fas fa-file-pdf"></i> Exportar PDF
-    </button>
-    <button id="exportar-excel" class="btn-export">
-        <i class="fas fa-file-excel"></i> Exportar Excel
-    </button>
-</div>
+                    <button id="exportar-pdf" class="btn-export">
+                        <i class="fas fa-file-pdf"></i> Exportar PDF
+                    </button>
+                    <button id="exportar-excel" class="btn-export">
+                        <i class="fas fa-file-excel"></i> Exportar Excel
+                    </button>
+                </div>
             </div>
-            
+
             <!-- Indicador de carregamento -->
             <div class="loading" id="loading-indicator">
                 <div class="loading-spinner"></div>
                 <p>Gerando relatório...</p>
             </div>
-            
+
             <!-- Gráficos e Estatísticas -->
             <div class="charts-container" id="charts-container">
                 <div class="chart-row">
@@ -114,26 +122,26 @@
                         <h3>Doações Recebidas por Mês</h3>
                         <canvas id="doacoesChart"></canvas>
                     </div>
-                    
+
                     <div class="chart-card">
                         <h3>Itens por Categoria</h3>
                         <canvas id="categoriasChart"></canvas>
                     </div>
                 </div>
-                
+
                 <div class="chart-row">
                     <div class="chart-card">
                         <h3>Distribuição por Beneficiários</h3>
                         <canvas id="beneficiariosChart"></canvas>
                     </div>
-                    
+
                     <div class="chart-card">
                         <h3>Evolução de Itens Distribuídos</h3>
                         <canvas id="distribuicaoChart"></canvas>
                     </div>
                 </div>
             </div>
-            
+
             <!-- Tabela de Dados Detalhados - MELHORADA -->
             <div class="section-container" id="tabela-container">
                 <h2 class="section-title">Detalhamento de Doações</h2>
@@ -154,14 +162,15 @@
                         </tbody>
                     </table>
                 </div>
-                
+
                 <div class="pagination" id="pagination-controls">
-                    <button class="pagination-button" id="prev-page" disabled><i class="fas fa-chevron-left"></i></button>
+                    <button class="pagination-button" id="prev-page" disabled><i
+                            class="fas fa-chevron-left"></i></button>
                     <div id="page-numbers"></div>
                     <button class="pagination-button" id="next-page"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </div>
-            
+
             <!-- Resumo Estatístico - MELHORADO -->
             <div class="stats-summary" id="resumo-container">
                 <h2 class="section-title">Resumo Estatístico</h2>
@@ -194,11 +203,20 @@
         </div>
     </footer>
 
+    <!-- Widget VLibras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+
     <!-- Scripts JavaScript -->
     <script src="JS/ong_relatorios.js"></script>
     <!-- jsPDF para exportação em PDF -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </body>
+
 </html>

@@ -9,6 +9,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link rel="stylesheet" href="CSS/breadcrumbs.css">
+    <!-- VLibras -->
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+
 </head>
 
 <body>
@@ -35,81 +41,98 @@
 
             <!-- Barra de pesquisa com filtros -->
             <div class="search-bar">
-    <div class="search-input">
-        <input type="text" id="searchInput" placeholder="O que você está procurando?" data-translate-placeholder="search.placeholder">
-        <button id="searchButton" class="search-button" aria-label="Pesquisar">
-            <i class="fas fa-search"></i>
-        </button>
-    </div>
-    <div class="search-filters">
-        <select>
-            <option value="" data-translate="filters.all">Todos os filtros</option>
-            <option value="clothes" data-translate="filters.clothes">Roupas</option>
-            <option value="electronics" data-translate="filters.electronics">Eletrodomésticos</option>
-            <option value="price_asc" data-translate="filters.price_asc">Melhores preços</option>
-            <option value="new" data-translate="filters.new">Recém adicionados</option>
-            <option value="donated" data-translate="filters.donated">Itens para doação</option>
-        </select>
-    </div>
-</div>
-
-
-   <!-- Categorias abaixo -->
-                <div class="categories-section">
-                    <section class="categories">
-                        <div class="dropdown">
-                            <a href="categoria.html?cat=masculino">Masculino</a>
-                            <div class="dropdown-content">
-                                <div class="dropdown-category"><a href="categoria.html?cat=masculino&sub=roupas">Roupas</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=masculino&sub=calcados">Calçados</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=masculino&sub=acessorios">Acessórios</a></div>
-                            </div>
-                        </div>
-
-                        <div class="dropdown">
-                            <a href="categoria.html?cat=feminino">Feminino</a>
-                            <div class="dropdown-content">
-                                <div class="dropdown-category"><a href="categoria.html?cat=feminino&sub=roupas">Roupas</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=feminino&sub=calcados">Calçados</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=feminino&sub=acessorios">Acessórios</a></div>
-                            </div>
-                        </div>
-
-                        <div class="dropdown">
-                            <a href="categoria.html?cat=infantil">Infantil</a>
-                            <div class="dropdown-content">
-                                <div class="dropdown-category"><a href="categoria.html?cat=infantil&sub=roupas">Roupas</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=infantil&sub=calcados">Calçados</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=infantil&sub=outros">Outros</a></div>
-                            </div>
-                        </div>
-
-                        <div class="dropdown">
-                            <a href="categoria.html?cat=esportivo">Esportivo</a>
-                            <div class="dropdown-content">
-                                <div class="dropdown-category"><a href="categoria.html?cat=esportivo&sub=roupas">Roupas</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=esportivo&sub=calcados">Calçados</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=esportivo&sub=outros">Outros</a></div>
-                            </div>
-                        </div>
-
-                        <div class="dropdown">
-                            <a href="categoria.html?cat=casa-cozinha">Casa/Cozinha</a>
-                            <div class="dropdown-content">
-                                <div class="dropdown-category"><a href="categoria.html?cat=casa-cozinha&sub=eletrodomesticos">Eletrodomésticos</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=casa-cozinha&sub=moveis">Movéis</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=casa-cozinha&sub=utensilios">Utensílios</a></div>
-                            </div>
-                        </div>
-                    </section>
+                <div class="search-input">
+                    <input type="text" id="searchInput" placeholder="O que você está procurando?"
+                        data-translate-placeholder="search.placeholder">
+                    <button id="searchButton" class="search-button" aria-label="Pesquisar">
+                        <i class="fas fa-search"></i>
+                    </button>
                 </div>
+                <div class="search-filters">
+                    <select>
+                        <option value="" data-translate="filters.all">Todos os filtros</option>
+                        <option value="clothes" data-translate="filters.clothes">Roupas</option>
+                        <option value="electronics" data-translate="filters.electronics">Eletrodomésticos</option>
+                        <option value="price_asc" data-translate="filters.price_asc">Melhores preços</option>
+                        <option value="new" data-translate="filters.new">Recém adicionados</option>
+                        <option value="donated" data-translate="filters.donated">Itens para doação</option>
+                    </select>
+                </div>
+            </div>
+
+
+            <!-- Categorias abaixo -->
+            <div class="categories-section">
+                <section class="categories">
+                    <div class="dropdown">
+                        <a href="categoria.html?cat=masculino">Masculino</a>
+                        <div class="dropdown-content">
+                            <div class="dropdown-category"><a href="categoria.html?cat=masculino&sub=roupas">Roupas</a>
+                            </div>
+                            <div class="dropdown-category"><a
+                                    href="categoria.html?cat=masculino&sub=calcados">Calçados</a></div>
+                            <div class="dropdown-category"><a
+                                    href="categoria.html?cat=masculino&sub=acessorios">Acessórios</a></div>
+                        </div>
+                    </div>
+
+                    <div class="dropdown">
+                        <a href="categoria.html?cat=feminino">Feminino</a>
+                        <div class="dropdown-content">
+                            <div class="dropdown-category"><a href="categoria.html?cat=feminino&sub=roupas">Roupas</a>
+                            </div>
+                            <div class="dropdown-category"><a
+                                    href="categoria.html?cat=feminino&sub=calcados">Calçados</a></div>
+                            <div class="dropdown-category"><a
+                                    href="categoria.html?cat=feminino&sub=acessorios">Acessórios</a></div>
+                        </div>
+                    </div>
+
+                    <div class="dropdown">
+                        <a href="categoria.html?cat=infantil">Infantil</a>
+                        <div class="dropdown-content">
+                            <div class="dropdown-category"><a href="categoria.html?cat=infantil&sub=roupas">Roupas</a>
+                            </div>
+                            <div class="dropdown-category"><a
+                                    href="categoria.html?cat=infantil&sub=calcados">Calçados</a></div>
+                            <div class="dropdown-category"><a href="categoria.html?cat=infantil&sub=outros">Outros</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dropdown">
+                        <a href="categoria.html?cat=esportivo">Esportivo</a>
+                        <div class="dropdown-content">
+                            <div class="dropdown-category"><a href="categoria.html?cat=esportivo&sub=roupas">Roupas</a>
+                            </div>
+                            <div class="dropdown-category"><a
+                                    href="categoria.html?cat=esportivo&sub=calcados">Calçados</a></div>
+                            <div class="dropdown-category"><a href="categoria.html?cat=esportivo&sub=outros">Outros</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dropdown">
+                        <a href="categoria.html?cat=casa-cozinha">Casa/Cozinha</a>
+                        <div class="dropdown-content">
+                            <div class="dropdown-category"><a
+                                    href="categoria.html?cat=casa-cozinha&sub=eletrodomesticos">Eletrodomésticos</a>
+                            </div>
+                            <div class="dropdown-category"><a
+                                    href="categoria.html?cat=casa-cozinha&sub=moveis">Movéis</a></div>
+                            <div class="dropdown-category"><a
+                                    href="categoria.html?cat=casa-cozinha&sub=utensilios">Utensílios</a></div>
+                        </div>
+                    </div>
+                </section>
+            </div>
         </div>
     </header>
 
     <!-- CONTEÚDO PRINCIPAL -->
     <main class="container">
 
-         <a href="produto.html" class="back-button">
+        <a href="produto.html" class="back-button">
             <i class="fas fa-arrow-left"></i> Voltar
         </a>
         <!-- Perfil do Vendedor -->
@@ -371,78 +394,78 @@
             </div>
         </div>
 
-<div id="contato-content" class="tab-content">
-    <h2 class="section-title">Entre em Contato</h2>
-    <div class="contact-container">
-        <div class="contact-methods">
-            <div class="contact-item">
-                <div class="contact-icon">📧</div>
-                <div class="contact-info">
-                    <h4>Email</h4>
-                    <p>BrechoSus@gmail.com</p>
-                </div>
-            </div>
+        <div id="contato-content" class="tab-content">
+            <h2 class="section-title">Entre em Contato</h2>
+            <div class="contact-container">
+                <div class="contact-methods">
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div class="contact-info">
+                            <h4>Email</h4>
+                            <p>BrechoSus@gmail.com</p>
+                        </div>
+                    </div>
 
-            <div class="contact-item">
-                <div class="contact-icon">📱</div>
-                <div class="contact-info">
-                    <h4>WhatsApp</h4>
-                    <p>(11) 98765-4321</p>
-                </div>
-            </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📱</div>
+                        <div class="contact-info">
+                            <h4>WhatsApp</h4>
+                            <p>(11) 98765-4321</p>
+                        </div>
+                    </div>
 
-            <div class="contact-item">
-                <div class="contact-icon">🏠</div>
-                <div class="contact-info">
-                    <h4>Endereço</h4>
-                    <p>Rua Sustentável, 123 - Centro<br>São Paulo/SP - CEP: 01234-567</p>
-                </div>
-            </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🏠</div>
+                        <div class="contact-info">
+                            <h4>Endereço</h4>
+                            <p>Rua Sustentável, 123 - Centro<br>São Paulo/SP - CEP: 01234-567</p>
+                        </div>
+                    </div>
 
-            <div class="contact-item">
-                <div class="contact-icon">🕒</div>
-                <div class="contact-info">
-                    <h4>Horário de Funcionamento</h4>
-                    <p>Segunda a Sexta: 10h às 19h<br>Sábado: 10h às 16h<br>Domingo: Fechado</p>
+                    <div class="contact-item">
+                        <div class="contact-icon">🕒</div>
+                        <div class="contact-info">
+                            <h4>Horário de Funcionamento</h4>
+                            <p>Segunda a Sexta: 10h às 19h<br>Sábado: 10h às 16h<br>Domingo: Fechado</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Adicionando a seção do mapa aqui -->
+                <div class="map-section">
+                    <h3><i class="fas fa-map-marker-alt"></i> Localização da Loja</h3>
+                    <div class="map-container">
+                        <div id="map" class="map-placeholder"></div>
+                        <div class="address-info">
+                            <p><strong>Endereço:</strong> Rua Sustentável, 123 - Centro, São Paulo/SP</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <h3>Envie sua mensagem</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="contact-name">Nome</label>
+                            <input type="text" id="contact-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-email">Email</label>
+                            <input type="email" id="contact-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-subject">Assunto</label>
+                            <input type="text" id="contact-subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-message">Mensagem</label>
+                            <textarea id="contact-message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Enviar Mensagem</button>
+                    </form>
                 </div>
             </div>
         </div>
-
-        <!-- Adicionando a seção do mapa aqui -->
-        <div class="map-section">
-            <h3><i class="fas fa-map-marker-alt"></i> Localização da Loja</h3>
-            <div class="map-container">
-                <div id="map" class="map-placeholder"></div>
-                <div class="address-info">
-                    <p><strong>Endereço:</strong> Rua Sustentável, 123 - Centro, São Paulo/SP</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="contact-form">
-            <h3>Envie sua mensagem</h3>
-            <form>
-                <div class="form-group">
-                    <label for="contact-name">Nome</label>
-                    <input type="text" id="contact-name" required>
-                </div>
-                <div class="form-group">
-                    <label for="contact-email">Email</label>
-                    <input type="email" id="contact-email" required>
-                </div>
-                <div class="form-group">
-                    <label for="contact-subject">Assunto</label>
-                    <input type="text" id="contact-subject" required>
-                </div>
-                <div class="form-group">
-                    <label for="contact-message">Mensagem</label>
-                    <textarea id="contact-message" rows="5" required></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Enviar Mensagem</button>
-            </form>
-        </div>
-    </div>
-</div>
     </main>
 
     <!-- RODAPÉ -->
@@ -514,300 +537,308 @@
     </script>
 
     <!-- Modal de Confirmação -->
-<div id="confirmationModal" class="modal">
-    <div class="modal-content">
-        <span class="close-modal">&times;</span>
-        <h3>Confirmar Remoção</h3>
-        <p>Tem certeza que deseja remover este produto?</p>
-        <div class="modal-buttons">
-            <button id="confirmRemove" class="modal-btn confirm-btn">Sim, Remover</button>
-            <button id="cancelRemove" class="modal-btn cancel-btn">Cancelar</button>
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Confirmar Remoção</h3>
+            <p>Tem certeza que deseja remover este produto?</p>
+            <div class="modal-buttons">
+                <button id="confirmRemove" class="modal-btn confirm-btn">Sim, Remover</button>
+                <button id="cancelRemove" class="modal-btn cancel-btn">Cancelar</button>
+            </div>
         </div>
     </div>
-</div>
 
-<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Inicializar o mapa quando a aba de contato for aberta
-        const contactTab = document.querySelector('.vendor-tab[data-tab="contato"]');
-        
-        if (contactTab) {
-            contactTab.addEventListener('click', function() {
-                if (!window.mapInitialized) {
-                    initMap();
-                    window.mapInitialized = true;
-                }
-            });
-        }
+    <!-- Widget VLibras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
 
-        function initMap() {
-            // Coordenadas iniciais (São Paulo)
-            const initialCoords = [-23.5505, -46.6333];
-            const initialZoom = 13;
-            
-            // Criar o mapa
-            const map = L.map('map').setView(initialCoords, initialZoom);
-            
-            // Adicionar camada do OpenStreetMap
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(map);
-            
-            // Adicionar marcador
-            L.marker(initialCoords).addTo(map)
-                .bindPopup('Brechó Sustentável<br>Rua Sustentável, 123 - Centro, São Paulo/SP')
-                .openPopup();
-        }
-    });
-</script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Inicializar o mapa quando a aba de contato for aberta
+            const contactTab = document.querySelector('.vendor-tab[data-tab="contato"]');
 
-<script>
-    // Variáveis para dados de pesquisa
-let allProducts = [];
-let allInstitutions = [];
-let currentLanguage = 'pt-br'; // Definindo um valor padrão
-
-// Função para configurar os dados de pesquisa
-function setupSearchData() {
-    allProducts = [
-        { 
-            id: 1,
-            name: 'Camiseta Polo', 
-            category: 'Masculino',
-            price: 'R$ 39,90'
-        },
-        { 
-            id: 2,
-            name: 'Liquidificador Philips', 
-            category: 'Casa/Cozinha',
-            price: 'R$ 89,90'
-        },
-        { 
-            id: 3,
-            name: 'Tênis Nike', 
-            category: 'Esportivo',
-            price: 'R$ 199,99'
-        },
-        { 
-            id: 4,
-            name: 'Vestido Floral', 
-            category: 'Feminino',
-            price: 'R$ 65,00'
-        }
-    ];
-
-    allInstitutions = [
-        { 
-            id: 101,
-            name: 'Patas Conscientes', 
-            category: 'Resgate Animal' 
-        },
-        { 
-            id: 102,
-            name: 'Centro Educacional Novo Amanhã', 
-            category: 'Educação' 
-        },
-        { 
-            id: 103,
-            name: 'Lar dos Idosos São Vicente', 
-            category: 'Assistência ao Idoso' 
-        },
-        { 
-            id: 104,
-            name: 'SOS Felino', 
-            category: 'Resgate Animal' 
-        }
-    ];
-}
-
-// Função principal para configurar a barra de pesquisa
-function setupSearchBar() {
-    const searchInput = document.getElementById('searchInput');
-    const searchButton = document.getElementById('searchButton');
-    
-    // Criar elemento de sugestões se não existir
-    if (!document.getElementById('searchSuggestions')) {
-        const suggestionsDiv = document.createElement('div');
-        suggestionsDiv.id = 'searchSuggestions';
-        suggestionsDiv.className = 'search-suggestions-container';
-        suggestionsDiv.style.display = 'none';
-        
-        const searchContainer = document.querySelector('.search-input');
-        if (searchContainer) {
-            searchContainer.appendChild(suggestionsDiv);
-        }
-    }
-
-    // Evento de input na barra de pesquisa
-    searchInput.addEventListener('input', function() {
-        const searchTerm = this.value.trim().toLowerCase();
-        
-        if (searchTerm.length === 0) {
-            document.getElementById('searchSuggestions').style.display = 'none';
-            return;
-        }
-
-        const matchedProducts = allProducts.filter(item => 
-            item.name.toLowerCase().includes(searchTerm) || 
-            item.category.toLowerCase().includes(searchTerm)
-        );
-
-        const matchedInstitutions = allInstitutions.filter(item => 
-            item.name.toLowerCase().includes(searchTerm) || 
-            item.category.toLowerCase().includes(searchTerm)
-        );
-
-        displaySuggestions(matchedProducts, matchedInstitutions);
-    });
-
-    // Evento de foco
-    searchInput.addEventListener('focus', function() {
-        if (this.value.trim().length > 0) {
-            document.getElementById('searchSuggestions').style.display = 'block';
-        }
-    });
-
-    // Evento de blur
-    searchInput.addEventListener('blur', function() {
-        setTimeout(() => {
-            document.getElementById('searchSuggestions').style.display = 'none';
-        }, 200);
-    });
-
-    // Evento do botão de pesquisa
-    searchButton.addEventListener('click', function(e) {
-        e.preventDefault();
-        performSearch();
-    });
-
-    // Evento de tecla Enter
-    searchInput.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            performSearch();
-        }
-    });
-
-    // Função para exibir sugestões
-    function displaySuggestions(products, institutions) {
-        const searchSuggestions = document.getElementById('searchSuggestions');
-        if (products.length === 0 && institutions.length === 0) {
-            searchSuggestions.style.display = 'none';
-            return;
-        }
-
-        searchSuggestions.innerHTML = '';
-        
-        if (products.length > 0) {
-            const productsHeader = document.createElement('div');
-            productsHeader.className = 'search-suggestion-header';
-            productsHeader.textContent = 'Itens Mais Comprados';
-            searchSuggestions.appendChild(productsHeader);
-
-            products.slice(0, 5).forEach(product => {
-                const suggestion = document.createElement('div');
-                suggestion.className = 'search-suggestion';
-                suggestion.dataset.type = 'product';
-                suggestion.dataset.id = product.id;
-                
-                const nameElement = document.createElement('div');
-                nameElement.textContent = product.name;
-                
-                const categoryElement = document.createElement('div');
-                categoryElement.textContent = product.category;
-                
-                suggestion.appendChild(nameElement);
-                suggestion.appendChild(categoryElement);
-                
-                suggestion.addEventListener('click', function() {
-                    window.location.href = 'Produto.html?id=' + product.id;
-                });
-                
-                searchSuggestions.appendChild(suggestion);
-            });
-        }
-
-        if (institutions.length > 0) {
-            const institutionsHeader = document.createElement('div');
-            institutionsHeader.className = 'search-suggestion-header';
-            institutionsHeader.textContent = 'Instituições Mais Doadas';
-            searchSuggestions.appendChild(institutionsHeader);
-
-            institutions.slice(0, 5).forEach(institution => {
-                const suggestion = document.createElement('div');
-                suggestion.className = 'search-suggestion';
-                suggestion.dataset.type = 'institution';
-                suggestion.dataset.id = institution.id;
-                
-                const nameElement = document.createElement('div');
-                nameElement.textContent = institution.name;
-                
-                const categoryElement = document.createElement('div');
-                categoryElement.textContent = institution.category;
-                
-                suggestion.appendChild(nameElement);
-                suggestion.appendChild(categoryElement);
-                
-                suggestion.addEventListener('click', function() {
-                    if (institution.name === 'Patas Conscientes') {
-                        window.location.href = 'Pagina_ONG_Usuario-2.html';
-                    } else if (institution.name === 'SOS Felino') {
-                        window.location.href = 'Pagina_ONG_Usuario.html';
-                    } else {
-                        window.location.href = 'instituicao.html?id=' + institution.id;
+            if (contactTab) {
+                contactTab.addEventListener('click', function () {
+                    if (!window.mapInitialized) {
+                        initMap();
+                        window.mapInitialized = true;
                     }
                 });
-                
-                searchSuggestions.appendChild(suggestion);
-            });
-        }
-
-        searchSuggestions.style.display = 'block';
-    }
-
-    // Função para executar a pesquisa
-    function performSearch() {
-        const searchTerm = searchInput.value.trim();
-        if (searchTerm.length === 0) return;
-
-        document.getElementById('searchSuggestions').style.display = 'none';
-
-        const matchedProducts = allProducts.filter(item => 
-            item.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
-            item.category.toLowerCase().includes(searchTerm.toLowerCase())
-        );
-
-        const matchedInstitutions = allInstitutions.filter(item => 
-            item.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
-            item.category.toLowerCase().includes(searchTerm.toLowerCase())
-        );
-
-        if (matchedProducts.length > 0) {
-            const firstProduct = matchedProducts[0];
-            window.location.href = 'Produto.html?id=' + firstProduct.id;
-        } else if (matchedInstitutions.length > 0) {
-            const firstInstitution = matchedInstitutions[0];
-            if (firstInstitution.name === 'Patas Conscientes') {
-                window.location.href = 'Pagina_ONG_Usuario-2.html';
-            } else if (firstInstitution.name === 'SOS Felino') {
-                window.location.href = 'Pagina_ONG_Usuario.html';
-            } else {
-                window.location.href = 'instituicao.html?id=' + firstInstitution.id;
             }
-        } else {
-            alert('Nenhum resultado encontrado');
+
+            function initMap() {
+                // Coordenadas iniciais (São Paulo)
+                const initialCoords = [-23.5505, -46.6333];
+                const initialZoom = 13;
+
+                // Criar o mapa
+                const map = L.map('map').setView(initialCoords, initialZoom);
+
+                // Adicionar camada do OpenStreetMap
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                }).addTo(map);
+
+                // Adicionar marcador
+                L.marker(initialCoords).addTo(map)
+                    .bindPopup('Brechó Sustentável<br>Rua Sustentável, 123 - Centro, São Paulo/SP')
+                    .openPopup();
+            }
+        });
+    </script>
+
+    <script>
+        // Variáveis para dados de pesquisa
+        let allProducts = [];
+        let allInstitutions = [];
+        let currentLanguage = 'pt-br'; // Definindo um valor padrão
+
+        // Função para configurar os dados de pesquisa
+        function setupSearchData() {
+            allProducts = [
+                {
+                    id: 1,
+                    name: 'Camiseta Polo',
+                    category: 'Masculino',
+                    price: 'R$ 39,90'
+                },
+                {
+                    id: 2,
+                    name: 'Liquidificador Philips',
+                    category: 'Casa/Cozinha',
+                    price: 'R$ 89,90'
+                },
+                {
+                    id: 3,
+                    name: 'Tênis Nike',
+                    category: 'Esportivo',
+                    price: 'R$ 199,99'
+                },
+                {
+                    id: 4,
+                    name: 'Vestido Floral',
+                    category: 'Feminino',
+                    price: 'R$ 65,00'
+                }
+            ];
+
+            allInstitutions = [
+                {
+                    id: 101,
+                    name: 'Patas Conscientes',
+                    category: 'Resgate Animal'
+                },
+                {
+                    id: 102,
+                    name: 'Centro Educacional Novo Amanhã',
+                    category: 'Educação'
+                },
+                {
+                    id: 103,
+                    name: 'Lar dos Idosos São Vicente',
+                    category: 'Assistência ao Idoso'
+                },
+                {
+                    id: 104,
+                    name: 'SOS Felino',
+                    category: 'Resgate Animal'
+                }
+            ];
         }
-    }
-}
 
-// Inicialização quando o DOM estiver pronto
-document.addEventListener('DOMContentLoaded', function() {
-    setupSearchData();
-    setupSearchBar();
-});
+        // Função principal para configurar a barra de pesquisa
+        function setupSearchBar() {
+            const searchInput = document.getElementById('searchInput');
+            const searchButton = document.getElementById('searchButton');
 
-</script>
-<script src="JS/breadcrumbs.js"></script>
+            // Criar elemento de sugestões se não existir
+            if (!document.getElementById('searchSuggestions')) {
+                const suggestionsDiv = document.createElement('div');
+                suggestionsDiv.id = 'searchSuggestions';
+                suggestionsDiv.className = 'search-suggestions-container';
+                suggestionsDiv.style.display = 'none';
+
+                const searchContainer = document.querySelector('.search-input');
+                if (searchContainer) {
+                    searchContainer.appendChild(suggestionsDiv);
+                }
+            }
+
+            // Evento de input na barra de pesquisa
+            searchInput.addEventListener('input', function () {
+                const searchTerm = this.value.trim().toLowerCase();
+
+                if (searchTerm.length === 0) {
+                    document.getElementById('searchSuggestions').style.display = 'none';
+                    return;
+                }
+
+                const matchedProducts = allProducts.filter(item =>
+                    item.name.toLowerCase().includes(searchTerm) ||
+                    item.category.toLowerCase().includes(searchTerm)
+                );
+
+                const matchedInstitutions = allInstitutions.filter(item =>
+                    item.name.toLowerCase().includes(searchTerm) ||
+                    item.category.toLowerCase().includes(searchTerm)
+                );
+
+                displaySuggestions(matchedProducts, matchedInstitutions);
+            });
+
+            // Evento de foco
+            searchInput.addEventListener('focus', function () {
+                if (this.value.trim().length > 0) {
+                    document.getElementById('searchSuggestions').style.display = 'block';
+                }
+            });
+
+            // Evento de blur
+            searchInput.addEventListener('blur', function () {
+                setTimeout(() => {
+                    document.getElementById('searchSuggestions').style.display = 'none';
+                }, 200);
+            });
+
+            // Evento do botão de pesquisa
+            searchButton.addEventListener('click', function (e) {
+                e.preventDefault();
+                performSearch();
+            });
+
+            // Evento de tecla Enter
+            searchInput.addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+
+            // Função para exibir sugestões
+            function displaySuggestions(products, institutions) {
+                const searchSuggestions = document.getElementById('searchSuggestions');
+                if (products.length === 0 && institutions.length === 0) {
+                    searchSuggestions.style.display = 'none';
+                    return;
+                }
+
+                searchSuggestions.innerHTML = '';
+
+                if (products.length > 0) {
+                    const productsHeader = document.createElement('div');
+                    productsHeader.className = 'search-suggestion-header';
+                    productsHeader.textContent = 'Itens Mais Comprados';
+                    searchSuggestions.appendChild(productsHeader);
+
+                    products.slice(0, 5).forEach(product => {
+                        const suggestion = document.createElement('div');
+                        suggestion.className = 'search-suggestion';
+                        suggestion.dataset.type = 'product';
+                        suggestion.dataset.id = product.id;
+
+                        const nameElement = document.createElement('div');
+                        nameElement.textContent = product.name;
+
+                        const categoryElement = document.createElement('div');
+                        categoryElement.textContent = product.category;
+
+                        suggestion.appendChild(nameElement);
+                        suggestion.appendChild(categoryElement);
+
+                        suggestion.addEventListener('click', function () {
+                            window.location.href = 'Produto.html?id=' + product.id;
+                        });
+
+                        searchSuggestions.appendChild(suggestion);
+                    });
+                }
+
+                if (institutions.length > 0) {
+                    const institutionsHeader = document.createElement('div');
+                    institutionsHeader.className = 'search-suggestion-header';
+                    institutionsHeader.textContent = 'Instituições Mais Doadas';
+                    searchSuggestions.appendChild(institutionsHeader);
+
+                    institutions.slice(0, 5).forEach(institution => {
+                        const suggestion = document.createElement('div');
+                        suggestion.className = 'search-suggestion';
+                        suggestion.dataset.type = 'institution';
+                        suggestion.dataset.id = institution.id;
+
+                        const nameElement = document.createElement('div');
+                        nameElement.textContent = institution.name;
+
+                        const categoryElement = document.createElement('div');
+                        categoryElement.textContent = institution.category;
+
+                        suggestion.appendChild(nameElement);
+                        suggestion.appendChild(categoryElement);
+
+                        suggestion.addEventListener('click', function () {
+                            if (institution.name === 'Patas Conscientes') {
+                                window.location.href = 'Pagina_ONG_Usuario-2.html';
+                            } else if (institution.name === 'SOS Felino') {
+                                window.location.href = 'Pagina_ONG_Usuario.html';
+                            } else {
+                                window.location.href = 'instituicao.html?id=' + institution.id;
+                            }
+                        });
+
+                        searchSuggestions.appendChild(suggestion);
+                    });
+                }
+
+                searchSuggestions.style.display = 'block';
+            }
+
+            // Função para executar a pesquisa
+            function performSearch() {
+                const searchTerm = searchInput.value.trim();
+                if (searchTerm.length === 0) return;
+
+                document.getElementById('searchSuggestions').style.display = 'none';
+
+                const matchedProducts = allProducts.filter(item =>
+                    item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    item.category.toLowerCase().includes(searchTerm.toLowerCase())
+                );
+
+                const matchedInstitutions = allInstitutions.filter(item =>
+                    item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    item.category.toLowerCase().includes(searchTerm.toLowerCase())
+                );
+
+                if (matchedProducts.length > 0) {
+                    const firstProduct = matchedProducts[0];
+                    window.location.href = 'Produto.html?id=' + firstProduct.id;
+                } else if (matchedInstitutions.length > 0) {
+                    const firstInstitution = matchedInstitutions[0];
+                    if (firstInstitution.name === 'Patas Conscientes') {
+                        window.location.href = 'Pagina_ONG_Usuario-2.html';
+                    } else if (firstInstitution.name === 'SOS Felino') {
+                        window.location.href = 'Pagina_ONG_Usuario.html';
+                    } else {
+                        window.location.href = 'instituicao.html?id=' + firstInstitution.id;
+                    }
+                } else {
+                    alert('Nenhum resultado encontrado');
+                }
+            }
+        }
+
+        // Inicialização quando o DOM estiver pronto
+        document.addEventListener('DOMContentLoaded', function () {
+            setupSearchData();
+            setupSearchBar();
+        });
+
+    </script>
+    <script src="JS/breadcrumbs.js"></script>
 </body>
 
 </html>

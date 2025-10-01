@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nossa Missão - ReUse</title>
-    <meta name="description" content="Conheça a missão da ReUse em promover sustentabilidade, solidariedade e economia circular através da reutilização de produtos.">
+    <meta name="description"
+        content="Conheça a missão da ReUse em promover sustentabilidade, solidariedade e economia circular através da reutilização de produtos.">
     <link rel="stylesheet" href="CSS/cliente.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
@@ -14,6 +15,12 @@
     <link rel="stylesheet" href="CSS/breadcrumbs.css">
     <link rel="stylesheet" href="CSS/modo_noturno-2.css">
     <link rel="stylesheet" href="CSS/modo_noturno.css">
+    <!-- VLibras -->
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+
 </head>
 
 <body>
@@ -32,7 +39,7 @@
                         <div class="search-input">
                             <input type="text" id="searchInput" placeholder="O que você está procurando?">
                             <button id="searchButton" class="search-button" aria-label="Pesquisar">
-                               <i class="bi bi-search"></i>
+                                <i class="bi bi-search"></i>
                             </button>
                         </div>
                         <div class="search-filters">
@@ -49,79 +56,95 @@
                 </div>
 
                 <!-- Elementos do usuário à direita -->
-               <div class="user-section">
-<button class="botaoMenu" id="botaoMenu">
-    <i class="bi bi-list"></i>
-</button>
+                <div class="user-section">
+                    <button class="botaoMenu" id="botaoMenu">
+                        <i class="bi bi-list"></i>
+                    </button>
 
-<nav class="nav-menu" id="navMenu">
-    <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
-        <i class="bi bi-sun-fill" id="themeIcon"></i>
-    </button>
-    
-    <div class="cart">
-        <a href="carrinho.html">
-            <span class="cart-icon"><i class="bi bi-cart3"></i></span>
-        </a>
-        <span class="cart-count">1</span>
-    </div>
-    
-    <a href="login.html">
-        <i class="bi bi-box-arrow-right"></i> Sair da Conta
-    </a>
-    
-    <a href="perfil.html">
-        <i class="bi bi-person-fill"></i> Minha Conta
-    </a>
-</nav>
-</div>
+                    <nav class="nav-menu" id="navMenu">
+                        <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+                            <i class="bi bi-sun-fill" id="themeIcon"></i>
+                        </button>
+
+                        <div class="cart">
+                            <a href="carrinho.html">
+                                <span class="cart-icon"><i class="bi bi-cart3"></i></span>
+                            </a>
+                            <span class="cart-count">1</span>
+                        </div>
+
+                        <a href="login.html">
+                            <i class="bi bi-box-arrow-right"></i> Sair da Conta
+                        </a>
+
+                        <a href="perfil.html">
+                            <i class="bi bi-person-fill"></i> Minha Conta
+                        </a>
+                    </nav>
+                </div>
 
 
-   <!-- Categorias abaixo -->
+                <!-- Categorias abaixo -->
                 <div class="categories-section">
                     <section class="categories">
                         <div class="dropdown">
                             <a href="categoria.html?cat=masculino">Masculino</a>
                             <div class="dropdown-content">
-                                <div class="dropdown-category"><a href="categoria.html?cat=masculino&sub=roupas">Roupas</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=masculino&sub=calcados">Calçados</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=masculino&sub=acessorios">Acessórios</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=masculino&sub=roupas">Roupas</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=masculino&sub=calcados">Calçados</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=masculino&sub=acessorios">Acessórios</a></div>
                             </div>
                         </div>
 
                         <div class="dropdown">
                             <a href="categoria.html?cat=feminino">Feminino</a>
                             <div class="dropdown-content">
-                                <div class="dropdown-category"><a href="categoria.html?cat=feminino&sub=roupas">Roupas</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=feminino&sub=calcados">Calçados</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=feminino&sub=acessorios">Acessórios</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=feminino&sub=roupas">Roupas</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=feminino&sub=calcados">Calçados</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=feminino&sub=acessorios">Acessórios</a></div>
                             </div>
                         </div>
 
                         <div class="dropdown">
                             <a href="categoria.html?cat=infantil">Infantil</a>
                             <div class="dropdown-content">
-                                <div class="dropdown-category"><a href="categoria.html?cat=infantil&sub=roupas">Roupas</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=infantil&sub=calcados">Calçados</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=infantil&sub=outros">Outros</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=infantil&sub=roupas">Roupas</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=infantil&sub=calcados">Calçados</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=infantil&sub=outros">Outros</a></div>
                             </div>
                         </div>
 
                         <div class="dropdown">
                             <a href="categoria.html?cat=esportivo">Esportivo</a>
                             <div class="dropdown-content">
-                                <div class="dropdown-category"><a href="categoria.html?cat=esportivo&sub=roupas">Roupas</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=esportivo&sub=calcados">Calçados</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=esportivo&sub=outros">Outros</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=esportivo&sub=roupas">Roupas</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=esportivo&sub=calcados">Calçados</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=esportivo&sub=outros">Outros</a></div>
                             </div>
                         </div>
 
                         <div class="dropdown">
                             <a href="categoria.html?cat=casa-cozinha">Casa/Cozinha</a>
                             <div class="dropdown-content">
-                                <div class="dropdown-category"><a href="categoria.html?cat=casa-cozinha&sub=eletrodomesticos">Eletrodomésticos</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=casa-cozinha&sub=moveis">Movéis</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=casa-cozinha&sub=utensilios">Utensílios</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=casa-cozinha&sub=eletrodomesticos">Eletrodomésticos</a>
+                                </div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=casa-cozinha&sub=moveis">Movéis</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=casa-cozinha&sub=utensilios">Utensílios</a></div>
                             </div>
                         </div>
                     </section>
@@ -135,52 +158,62 @@
     <main class="container">
         <section class="mission-section animate__animated animate__fadeIn">
             <h1 class="section-title">Nossa Missão</h1>
-            
+
             <div class="mission-content">
                 <article class="mission-card animate__animated animate__fadeInUp">
                     <div class="mission-icon">
                         <i class="fas fa-recycle"></i>
                     </div>
                     <h2>Sustentabilidade</h2>
-                    <p>Promover o consumo consciente e reduzir o impacto ambiental através da reutilização de produtos, diminuindo a quantidade de resíduos que seriam descartados no meio ambiente.</p>
+                    <p>Promover o consumo consciente e reduzir o impacto ambiental através da reutilização de produtos,
+                        diminuindo a quantidade de resíduos que seriam descartados no meio ambiente.</p>
                 </article>
-                
+
                 <article class="mission-card animate__animated animate__fadeInUp animate__delay-1s">
                     <div class="mission-icon">
                         <i class="fas fa-hands-helping"></i>
                     </div>
                     <h2>Solidariedade</h2>
-                    <p>Facilitar a doação de itens em bom estado para instituições de caridade e pessoas em situação de vulnerabilidade, criando uma ponte entre quem pode ajudar e quem precisa.</p>
+                    <p>Facilitar a doação de itens em bom estado para instituições de caridade e pessoas em situação de
+                        vulnerabilidade, criando uma ponte entre quem pode ajudar e quem precisa.</p>
                 </article>
-                
+
                 <article class="mission-card animate__animated animate__fadeInUp animate__delay-2s">
                     <div class="mission-icon">
                         <i class="fas fa-hand-holding-usd"></i>
                     </div>
                     <h2>Economia Circular</h2>
-                    <p>Fomentar uma economia onde produtos ganham nova vida útil, beneficiando tanto vendedores que podem obter renda extra quanto compradores que encontram produtos de qualidade a preços acessíveis.</p>
+                    <p>Fomentar uma economia onde produtos ganham nova vida útil, beneficiando tanto vendedores que
+                        podem obter renda extra quanto compradores que encontram produtos de qualidade a preços
+                        acessíveis.</p>
                 </article>
-                
+
                 <article class="mission-card animate__animated animate__fadeInUp animate__delay-3s">
                     <div class="mission-icon">
                         <i class="fas fa-users"></i>
                     </div>
                     <h2>Comunidade</h2>
-                    <p>Criar uma comunidade engajada em práticas sustentáveis, onde usuários compartilham valores de consumo responsável e preocupação com o futuro do planeta.</p>
+                    <p>Criar uma comunidade engajada em práticas sustentáveis, onde usuários compartilham valores de
+                        consumo responsável e preocupação com o futuro do planeta.</p>
                 </article>
             </div>
-            
+
             <article class="mission-values animate__animated animate__fadeIn">
                 <h2 class="section-title">Nossos Valores</h2>
                 <ul>
-                    <li><strong>Sustentabilidade:</strong> Acreditamos que pequenas ações podem gerar grandes impactos positivos no meio ambiente.</li>
-                    <li><strong>Transparência:</strong> Todas as transações e doações são realizadas com total clareza para nossos usuários.</li>
-                    <li><strong>Responsabilidade Social:</strong> Comprometimento com causas sociais e com o desenvolvimento de comunidades.</li>
-                    <li><strong>Inovação:</strong> Buscamos constantemente melhorar nossa plataforma para oferecer a melhor experiência aos usuários.</li>
-                    <li><strong>Respeito:</strong> Valorizamos a diversidade e promovemos um ambiente de respeito entre todos os membros da comunidade.</li>
+                    <li><strong>Sustentabilidade:</strong> Acreditamos que pequenas ações podem gerar grandes impactos
+                        positivos no meio ambiente.</li>
+                    <li><strong>Transparência:</strong> Todas as transações e doações são realizadas com total clareza
+                        para nossos usuários.</li>
+                    <li><strong>Responsabilidade Social:</strong> Comprometimento com causas sociais e com o
+                        desenvolvimento de comunidades.</li>
+                    <li><strong>Inovação:</strong> Buscamos constantemente melhorar nossa plataforma para oferecer a
+                        melhor experiência aos usuários.</li>
+                    <li><strong>Respeito:</strong> Valorizamos a diversidade e promovemos um ambiente de respeito entre
+                        todos os membros da comunidade.</li>
                 </ul>
             </article>
-            
+
             <article class="mission-impact animate__animated animate__fadeIn">
                 <h2 class="section-title">Nosso Impacto</h2>
                 <p class="impact-description">Veja os números que mostram a diferença que estamos fazendo juntos:</p>
@@ -203,10 +236,11 @@
                     </div>
                 </div>
             </article>
-            
+
             <article class="mission-join animate__animated animate__fadeIn">
                 <h2>Junte-se a nós nessa missão!</h2>
-                <p>Seja vendendo, comprando ou doando, você está contribuindo para um mundo mais sustentável e solidário.</p>
+                <p>Seja vendendo, comprando ou doando, você está contribuindo para um mundo mais sustentável e
+                    solidário.</p>
                 <div class="join-buttons">
                     <a href="cadastro.html" class="action-button buy">Cadastre-se</a>
                     <a href="#" class="action-button donate">Faça uma Doação</a>
@@ -248,7 +282,8 @@
                     <h3>Sobre Nós</h3>
                     <a href="missao.html"><i class="bi bi-info-circle-fill"></i> <span>Missão</span></a>
                     <a href="equipe.html"><i class="bi bi-people-fill"></i> <span>Equipe</span></a>
-                    <a href="chat_com_vendedor.html"><i class="bi bi-chat-dots-fill"></i> <span>Chat com Vendedor</span></a>
+                    <a href="chat_com_vendedor.html"><i class="bi bi-chat-dots-fill"></i> <span>Chat com
+                            Vendedor</span></a>
 
                     <div class="social-links">
                         <a href="#" title="Facebook"><i class="bi bi-facebook"></i></a>
@@ -264,8 +299,18 @@
             </div>
         </div>
     </footer>
+
+    <!-- Widget VLibras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+
     <script src="JS/breadcrumbs.js"></script>
     <script src="JS/modo_noturno.js"></script>
     <script src="JS/menu.js"></script>
 </body>
+
 </html>

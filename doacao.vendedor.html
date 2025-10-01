@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,8 +9,15 @@
     <link rel="stylesheet" href="CSS/vendedor-sub.css">
     <link rel="stylesheet" href="CSS/breadcrumbs-vendedor.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-  
+    <!-- VLibras -->
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+
+
 </head>
+
 <body>
     <!-- CABEÇALHO -->
     <header>
@@ -20,7 +28,7 @@
                 </div>
                 <div class="user-actions">
                     <a href="login.html">
-                       <i class="bi bi-box-arrow-left"></i> Sair da Conta
+                        <i class="bi bi-box-arrow-left"></i> Sair da Conta
                     </a>
                 </div>
             </div>
@@ -39,7 +47,8 @@
                 <li><a href="estatisticas.html"><i class="bi bi-bar-chart"></i> Estatísticas</a></li>
                 <li><a href="avaliacoes.html"><i class="bi bi-star-fill"></i> Avaliações</a></li>
                 <li><a href="configuracoes.html"><i class="bi bi-gear"></i> Configurações</a></li>
-                <li><a href="doacao.vendedor.html" id="doacao-link" class="active"><i class="bi bi-gift-fill"></i> Fazer Doação</a></li>
+                <li><a href="doacao.vendedor.html" id="doacao-link" class="active"><i class="bi bi-gift-fill"></i> Fazer
+                        Doação</a></li>
                 <li><a href="chat_clientes.html"><i class="bi bi-chat-dots"></i> Chat com Clientes</a></li>
             </ul>
         </aside>
@@ -50,9 +59,9 @@
             <div id="breadcrumbs-container" class="breadcrumbs-vendedor">
                 <a href="vendedor.html">Painel do Vendedor</a> &gt; <span>Fazer Doação</span>
             </div>
-            
+
             <h1>Fazer Doação</h1>
-            
+
             <div class="donation-container">
                 <form id="donationForm" class="donation-form">
                     <div class="form-group full-width">
@@ -62,7 +71,7 @@
                             <!-- Os produtos serão preenchidos via JavaScript -->
                         </select>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="ong">ONG Beneficiada</label>
                         <select id="ong" required>
@@ -74,32 +83,32 @@
                             <option value="ong5">Greenpeace</option>
                         </select>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="date">Data de Entrega</label>
                         <input type="date" id="date" required>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="contact">Contato da ONG</label>
                         <input type="text" id="contact" readonly>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="address">Endereço para Entrega</label>
                         <input type="text" id="address" readonly>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="phone">Telefone para Contato</label>
                         <input type="text" id="phone" readonly>
                     </div>
-                    
+
                     <div class="form-group full-width">
                         <label for="message">Mensagem (opcional)</label>
                         <textarea id="message" placeholder="Deixe uma mensagem para a ONG..."></textarea>
                     </div>
-                    
+
                     <button type="submit" class="donation-btn">
                         <i class="bi bi-gift-fill"></i> Confirmar Doação
                     </button>
@@ -112,15 +121,26 @@
     <div class="confirmation-modal" id="confirmationModal">
         <div class="modal-content">
             <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-                <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
-                <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none" />
+                <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
             </svg>
             <h2>Doação Realizada com Sucesso!</h2>
             <p>Sua doação foi registrada e a ONG será notificada. Obrigado por fazer a diferença!</p>
             <div class="modal-actions">
-                <button class="modal-btn btn-primary" onclick="window.location.href='Vendedor.html'">Voltar ao Início</button>
-                <button class="modal-btn btn-secondary" onclick="document.getElementById('confirmationModal').style.display='none'">Fazer Nova Doação</button>
+                <button class="modal-btn btn-primary" onclick="window.location.href='Vendedor.html'">Voltar ao
+                    Início</button>
+                <button class="modal-btn btn-secondary"
+                    onclick="document.getElementById('confirmationModal').style.display='none'">Fazer Nova
+                    Doação</button>
             </div>
+        </div>
+    </div>
+
+    <!-- Widget VLibras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
         </div>
     </div>
 
@@ -168,16 +188,16 @@
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Carregar produtos do localStorage
             const produtos = JSON.parse(localStorage.getItem('produtosVendedor')) || [];
             const selectProduto = document.getElementById('product');
-            
+
             // Limpar options padrão, mantendo a primeira
             while (selectProduto.options.length > 1) {
                 selectProduto.remove(1);
             }
-            
+
             // Adicionar produtos disponíveis
             produtos.forEach(produto => {
                 if (produto.status === 'Disponível') {
@@ -187,9 +207,9 @@
                     selectProduto.appendChild(option);
                 }
             });
-            
+
             // Atualizar informações da ONG quando selecionada
-            document.getElementById('ong').addEventListener('change', function() {
+            document.getElementById('ong').addEventListener('change', function () {
                 const ongInfo = {
                     'ong1': { contact: 'Maria Silva', address: 'Rua das Flores, 123 - Centro', phone: '(11) 9999-8888' },
                     'ong2': { contact: 'João Santos', address: 'Av. Principal, 456 - Jardins', phone: '(11) 7777-6666' },
@@ -197,7 +217,7 @@
                     'ong4': { contact: 'Pedro Costa', address: 'Alameda Santos, 1001 - Consolação', phone: '(11) 3333-2222' },
                     'ong5': { contact: 'Carla Mendes', address: 'Rua Augusta, 2000 - Cerqueira César', phone: '(11) 1111-0000' }
                 };
-                
+
                 const selectedOng = this.value;
                 if (selectedOng && ongInfo[selectedOng]) {
                     document.getElementById('contact').value = ongInfo[selectedOng].contact;
@@ -209,30 +229,30 @@
                     document.getElementById('phone').value = '';
                 }
             });
-            
+
             // Manipular envio do formulário
-            document.getElementById('donationForm').addEventListener('submit', function(e) {
+            document.getElementById('donationForm').addEventListener('submit', function (e) {
                 e.preventDefault();
-                
+
                 // Obter dados do formulário
                 const productId = document.getElementById('product').value;
                 const ong = document.getElementById('ong').value;
                 const date = document.getElementById('date').value;
-                
+
                 // Validar dados
                 if (!productId || !ong || !date) {
                     alert('Por favor, preencha todos os campos obrigatórios.');
                     return;
                 }
-                
+
                 // Atualizar status do produto para "Doado"
                 const produtos = JSON.parse(localStorage.getItem('produtosVendedor')) || [];
                 const produtoIndex = produtos.findIndex(p => p.id === productId);
-                
+
                 if (produtoIndex !== -1) {
                     produtos[produtoIndex].status = 'Doado';
                     localStorage.setItem('produtosVendedor', JSON.stringify(produtos));
-                    
+
                     // Registrar a doação
                     const doacoes = JSON.parse(localStorage.getItem('doacoesVendedor')) || [];
                     doacoes.push({
@@ -245,7 +265,7 @@
                         timestamp: new Date().toISOString()
                     });
                     localStorage.setItem('doacoesVendedor', JSON.stringify(doacoes));
-                    
+
                     // Mostrar animação de confirmação
                     document.getElementById('confirmationModal').style.display = 'flex';
                 }
@@ -253,4 +273,5 @@
         });
     </script>
 </body>
+
 </html>

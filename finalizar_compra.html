@@ -10,6 +10,12 @@
     <link rel="stylesheet" href="CSS/breadcrumbs.css">
     <link rel="stylesheet" href="CSS/cliente.css">
     <link rel="stylesheet" href="CSS/modo_noturno.css">
+    <!-- VLibras -->
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+
 
 </head>
 
@@ -20,33 +26,33 @@
                 <a href="cliente.html"><img src="IMG/reuse-logo-(1).svg" alt="ReUse Logo"></a>
             </div>
             <h1 class="cart-title">Finalizar Compra</h1>
-               <div class="user-section">
-<!-- Estrutura atual (sem alterações) -->
-<button class="botaoMenu" id="botaoMenu">
-    <i class="bi bi-list"></i>
-</button>
+            <div class="user-section">
+                <!-- Estrutura atual (sem alterações) -->
+                <button class="botaoMenu" id="botaoMenu">
+                    <i class="bi bi-list"></i>
+                </button>
 
-<nav class="nav-menu" id="navMenu">
-    <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
-        <i class="bi bi-sun-fill" id="themeIcon"></i>
-    </button>
-    
-    <div class="cart">
-        <a href="carrinho.html">
-            <span class="cart-icon"><i class="bi bi-cart3"></i></span>
-        </a>
-        <span class="cart-count">1</span>
-    </div>
-    
-    <a href="login.html">
-        <i class="bi bi-box-arrow-right"></i> Sair da Conta
-    </a>
-    
-    <a href="perfil.html">
-        <i class="bi bi-person-fill"></i> Minha Conta
-    </a>
-</nav>
-</div>
+                <nav class="nav-menu" id="navMenu">
+                    <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+                        <i class="bi bi-sun-fill" id="themeIcon"></i>
+                    </button>
+
+                    <div class="cart">
+                        <a href="carrinho.html">
+                            <span class="cart-icon"><i class="bi bi-cart3"></i></span>
+                        </a>
+                        <span class="cart-count">1</span>
+                    </div>
+
+                    <a href="login.html">
+                        <i class="bi bi-box-arrow-right"></i> Sair da Conta
+                    </a>
+
+                    <a href="perfil.html">
+                        <i class="bi bi-person-fill"></i> Minha Conta
+                    </a>
+                </nav>
+            </div>
 
 
         </div>
@@ -314,84 +320,90 @@
                                 </div>
                             </div>
 
-<!-- Formulário Cartão de Débito -->
-<div id="debit-card-form" class="payment-detail-form" style="display: none;">
-    <div class="form-row">
-        <label>Bandeira do Cartão</label>
-        <div class="card-brands">
-            <div class="card-brand-option">
-                <input type="radio" name="debit-card-brand" id="debit-visa" value="visa" checked>
-                <label for="debit-visa">
-                    <span><img src="IMG/Visa.svg" alt="Visa"></span>
-                    <span>Visa</span>
-                </label>
-            </div>
-            <div class="card-brand-option">
-                <input type="radio" name="debit-card-brand" id="debit-mastercard" value="mastercard">
-                <label for="debit-mastercard">
-                    <span><img src="IMG/Mastercard.svg" alt="Mastercard"></span>
-                    <span>Mastercard</span>
-                </label>
-            </div>
-            <div class="card-brand-option">
-                <input type="radio" name="debit-card-brand" id="debit-elo" value="elo">
-                <label for="debit-elo">
-                    <span><img src="IMG/ELO.svg" alt="ELO"></span>
-                    <span>elo</span>
-                </label>
-            </div>
-            <div class="card-brand-option">
-                <input type="radio" name="debit-card-brand" id="debit-hipercard" value="hipercard">
-                <label for="debit-hipercard">
-                    <span><img src="IMG/HiperCard.svg" alt="Hipercard"></span>
-                    <span>HiperCard</span>
-                </label>
-            </div>
-        </div>
-    </div>
+                            <!-- Formulário Cartão de Débito -->
+                            <div id="debit-card-form" class="payment-detail-form" style="display: none;">
+                                <div class="form-row">
+                                    <label>Bandeira do Cartão</label>
+                                    <div class="card-brands">
+                                        <div class="card-brand-option">
+                                            <input type="radio" name="debit-card-brand" id="debit-visa" value="visa"
+                                                checked>
+                                            <label for="debit-visa">
+                                                <span><img src="IMG/Visa.svg" alt="Visa"></span>
+                                                <span>Visa</span>
+                                            </label>
+                                        </div>
+                                        <div class="card-brand-option">
+                                            <input type="radio" name="debit-card-brand" id="debit-mastercard"
+                                                value="mastercard">
+                                            <label for="debit-mastercard">
+                                                <span><img src="IMG/Mastercard.svg" alt="Mastercard"></span>
+                                                <span>Mastercard</span>
+                                            </label>
+                                        </div>
+                                        <div class="card-brand-option">
+                                            <input type="radio" name="debit-card-brand" id="debit-elo" value="elo">
+                                            <label for="debit-elo">
+                                                <span><img src="IMG/ELO.svg" alt="ELO"></span>
+                                                <span>elo</span>
+                                            </label>
+                                        </div>
+                                        <div class="card-brand-option">
+                                            <input type="radio" name="debit-card-brand" id="debit-hipercard"
+                                                value="hipercard">
+                                            <label for="debit-hipercard">
+                                                <span><img src="IMG/HiperCard.svg" alt="Hipercard"></span>
+                                                <span>HiperCard</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
 
-    <div class="form-row">
-        <label for="debit-card-number">Número do Cartão</label>
-        <div class="input-with-icon">
-            <input type="text" id="debit-card-number" placeholder="0000 0000 0000 0000" required>
-            <i class="bi bi-credit-card"></i>
-        </div>
-    </div>
-    <div class="form-row form-row-split">
-        <div class="form-group">
-            <label for="debit-card-name">Nome no Cartão</label>
-            <input type="text" id="debit-card-name" placeholder="Nome impresso no cartão" required>
-        </div>
-        <div class="form-group">
-            <label for="debit-card-expiry">Validade</label>
-            <input type="text" id="debit-card-expiry" placeholder="MM/AA" required>
-        </div>
-    </div>
-    <div class="form-row form-row-split">
-        <div class="form-group">
-            <label for="debit-card-cvv">CVC</label>
-            <div class="input-with-icon">
-                <input type="text" id="debit-card-cvv" placeholder="000" required>
-                <i class="bi bi-question-circle" title="Código de 3 dígitos no verso do cartão"></i>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="debit-card-bank">Banco Emissor</label>
-            <select id="debit-card-bank" required>
-                <option value="" selected disabled>Selecione o banco</option>
-                <option value="001">Banco do Brasil</option>
-                <option value="104">Caixa Econômica Federal</option>
-                <option value="033">Santander</option>
-                <option value="341">Itaú</option>
-                <option value="237">Bradesco</option>
-                <option value="077">Inter</option>
-                <option value="260">Nubank</option>
-                <option value="336">C6 Bank</option>
-                <option value="other">Outro</option>
-            </select>
-        </div>
-    </div>
-</div>
+                                <div class="form-row">
+                                    <label for="debit-card-number">Número do Cartão</label>
+                                    <div class="input-with-icon">
+                                        <input type="text" id="debit-card-number" placeholder="0000 0000 0000 0000"
+                                            required>
+                                        <i class="bi bi-credit-card"></i>
+                                    </div>
+                                </div>
+                                <div class="form-row form-row-split">
+                                    <div class="form-group">
+                                        <label for="debit-card-name">Nome no Cartão</label>
+                                        <input type="text" id="debit-card-name" placeholder="Nome impresso no cartão"
+                                            required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="debit-card-expiry">Validade</label>
+                                        <input type="text" id="debit-card-expiry" placeholder="MM/AA" required>
+                                    </div>
+                                </div>
+                                <div class="form-row form-row-split">
+                                    <div class="form-group">
+                                        <label for="debit-card-cvv">CVC</label>
+                                        <div class="input-with-icon">
+                                            <input type="text" id="debit-card-cvv" placeholder="000" required>
+                                            <i class="bi bi-question-circle"
+                                                title="Código de 3 dígitos no verso do cartão"></i>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="debit-card-bank">Banco Emissor</label>
+                                        <select id="debit-card-bank" required>
+                                            <option value="" selected disabled>Selecione o banco</option>
+                                            <option value="001">Banco do Brasil</option>
+                                            <option value="104">Caixa Econômica Federal</option>
+                                            <option value="033">Santander</option>
+                                            <option value="341">Itaú</option>
+                                            <option value="237">Bradesco</option>
+                                            <option value="077">Inter</option>
+                                            <option value="260">Nubank</option>
+                                            <option value="336">C6 Bank</option>
+                                            <option value="other">Outro</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
 
                             <!-- Formulário PIX -->
                             <div id="pix-form" class="payment-detail-form" style="display: none;">
@@ -542,6 +554,14 @@
         });
     </script>
 </body>
+
+<!-- Widget VLibras -->
+<div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+        <div class="vw-plugin-top-wrapper"></div>
+    </div>
+</div>
 
 <script src="JS/finalizar_compra.js"></script>
 <script src="JS/breadcrumbs.js"></script>

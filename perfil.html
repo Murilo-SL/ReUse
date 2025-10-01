@@ -10,12 +10,17 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="CSS/breadcrumbs.css">
     <link rel="stylesheet" href="CSS/modo_noturno.css">
+    <!-- VLibras -->
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
 
 </head>
 
 <body>
- <!-- CABEÇALHO -->
-   <header>
+    <!-- CABEÇALHO -->
+    <header>
         <div class="container">
             <div class="header-container">
                 <!-- Logo à esquerda -->
@@ -48,80 +53,96 @@
                 </div>
 
                 <div class="user-section">
-<!-- Estrutura atual (sem alterações) -->
-<button class="botaoMenu" id="botaoMenu">
-    <i class="bi bi-list"></i>
-</button>
+                    <!-- Estrutura atual (sem alterações) -->
+                    <button class="botaoMenu" id="botaoMenu">
+                        <i class="bi bi-list"></i>
+                    </button>
 
-<nav class="nav-menu" id="navMenu">
-    <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
-        <i class="bi bi-sun-fill" id="themeIcon"></i>
-    </button>
-    
-    <div class="cart">
-        <a href="carrinho.html">
-            <span class="cart-icon"><i class="bi bi-cart3"></i></span>
-        </a>
-        <span class="cart-count">1</span>
-    </div>
-    
-    <a href="login.html">
-        <i class="bi bi-box-arrow-right"></i> Sair da Conta
-    </a>
-    
-    <a href="perfil.html">
-        <i class="bi bi-person-fill"></i> Minha Conta
-    </a>
-</nav>
-</div>
+                    <nav class="nav-menu" id="navMenu">
+                        <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+                            <i class="bi bi-sun-fill" id="themeIcon"></i>
+                        </button>
+
+                        <div class="cart">
+                            <a href="carrinho.html">
+                                <span class="cart-icon"><i class="bi bi-cart3"></i></span>
+                            </a>
+                            <span class="cart-count">1</span>
+                        </div>
+
+                        <a href="login.html">
+                            <i class="bi bi-box-arrow-right"></i> Sair da Conta
+                        </a>
+
+                        <a href="perfil.html">
+                            <i class="bi bi-person-fill"></i> Minha Conta
+                        </a>
+                    </nav>
+                </div>
 
 
 
-   <!-- Categorias abaixo -->
+                <!-- Categorias abaixo -->
                 <div class="categories-section">
                     <section class="categories">
                         <div class="dropdown">
                             <a href="categoria.html?cat=masculino">Masculino</a>
                             <div class="dropdown-content">
-                                <div class="dropdown-category"><a href="categoria.html?cat=masculino&sub=roupas">Roupas</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=masculino&sub=calcados">Calçados</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=masculino&sub=acessorios">Acessórios</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=masculino&sub=roupas">Roupas</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=masculino&sub=calcados">Calçados</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=masculino&sub=acessorios">Acessórios</a></div>
                             </div>
                         </div>
 
                         <div class="dropdown">
                             <a href="categoria.html?cat=feminino">Feminino</a>
                             <div class="dropdown-content">
-                                <div class="dropdown-category"><a href="categoria.html?cat=feminino&sub=roupas">Roupas</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=feminino&sub=calcados">Calçados</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=feminino&sub=acessorios">Acessórios</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=feminino&sub=roupas">Roupas</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=feminino&sub=calcados">Calçados</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=feminino&sub=acessorios">Acessórios</a></div>
                             </div>
                         </div>
 
                         <div class="dropdown">
                             <a href="categoria.html?cat=infantil">Infantil</a>
                             <div class="dropdown-content">
-                                <div class="dropdown-category"><a href="categoria.html?cat=infantil&sub=roupas">Roupas</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=infantil&sub=calcados">Calçados</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=infantil&sub=outros">Outros</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=infantil&sub=roupas">Roupas</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=infantil&sub=calcados">Calçados</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=infantil&sub=outros">Outros</a></div>
                             </div>
                         </div>
 
                         <div class="dropdown">
                             <a href="categoria.html?cat=esportivo">Esportivo</a>
                             <div class="dropdown-content">
-                                <div class="dropdown-category"><a href="categoria.html?cat=esportivo&sub=roupas">Roupas</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=esportivo&sub=calcados">Calçados</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=esportivo&sub=outros">Outros</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=esportivo&sub=roupas">Roupas</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=esportivo&sub=calcados">Calçados</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=esportivo&sub=outros">Outros</a></div>
                             </div>
                         </div>
 
                         <div class="dropdown">
                             <a href="categoria.html?cat=casa-cozinha">Casa/Cozinha</a>
                             <div class="dropdown-content">
-                                <div class="dropdown-category"><a href="categoria.html?cat=casa-cozinha&sub=eletrodomesticos">Eletrodomésticos</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=casa-cozinha&sub=moveis">Movéis</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=casa-cozinha&sub=utensilios">Utensílios</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=casa-cozinha&sub=eletrodomesticos">Eletrodomésticos</a>
+                                </div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=casa-cozinha&sub=moveis">Movéis</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=casa-cozinha&sub=utensilios">Utensílios</a></div>
                             </div>
                         </div>
                     </section>
@@ -152,7 +173,8 @@
                 </div>
 
                 <div class="profile-menu">
-                    <a href="#" class="active" data-section="personal-info"><i class="bi bi-person"></i> Informações Pessoais</a>
+                    <a href="#" class="active" data-section="personal-info"><i class="bi bi-person"></i> Informações
+                        Pessoais</a>
                     <a href="#" data-section="addresses"><i class="bi bi-geo-alt"></i> Endereços</a>
                     <a href="#" data-section="security"><i class="bi bi-lock"></i> Segurança</a>
                     <a href="#" data-section="payments"><i class="bi bi-credit-card"></i> Métodos de Pagamento</a>
@@ -163,35 +185,37 @@
                 <!-- Seção de Informações Pessoais -->
                 <div id="personal-info-section" class="profile-section active">
                     <h2><i class="bi bi-person"></i> Informações Pessoais</h2>
-                    
+
                     <div class="info-section">
                         <div class="info-item">
                             <label>Nome Completo:</label>
                             <span class="info-value">William Wallace do Carmo</span>
                             <button class="edit-btn"><i class="bi bi-pencil"></i> Editar</button>
                         </div>
-                        
+
                         <div class="info-item">
                             <label>Telefone:</label>
                             <span class="info-value">(16) 99713-9654</span>
                             <button class="edit-btn"><i class="bi bi-pencil"></i> Editar</button>
                         </div>
-                        
+
                         <div class="info-item">
                             <label>Email:</label>
                             <span class="info-value">William@gmail.com</span>
                             <button class="edit-btn"><i class="bi bi-pencil"></i> Editar</button>
                         </div>
-                        
+
                         <div class="info-item">
                             <label>Senha:</label>
                             <div class="password-container">
-                                <input type="password" id="user-password-input" value="••••••••" disabled class="password-input">
+                                <input type="password" id="user-password-input" value="••••••••" disabled
+                                    class="password-input">
                                 <button type="button" class="toggle-password"><i class="bi bi-eye"></i></button>
                             </div>
-                            <button class="edit-btn" id="edit-password-btn"><i class="bi bi-pencil"></i> Alterar</button>
+                            <button class="edit-btn" id="edit-password-btn"><i class="bi bi-pencil"></i>
+                                Alterar</button>
                         </div>
-                        
+
                         <div class="info-actions">
                             <button class="btn-save"><i class="bi bi-save"></i> Salvar Alterações</button>
                             <button class="btn-cancel"><i class="bi bi-x"></i> Cancelar</button>
@@ -202,7 +226,7 @@
                 <!-- Seção de Endereços -->
                 <div id="addresses-section" class="profile-section">
                     <h2><i class="bi bi-geo-alt"></i> Endereços</h2>
-                    
+
                     <div class="address-list">
                         <div class="address-card">
                             <div class="address-header">
@@ -220,16 +244,16 @@
                                 <p>Telefone: (16) 99713-9654</p>
                             </div>
                         </div>
-                        
+
                         <button class="btn-add-address"><i class="bi bi-plus"></i> Adicionar Novo Endereço</button>
                     </div>
-                    
+
                     <div class="address-form" style="display: none;">
                         <div class="form-group">
                             <label for="address-name">Apelido do Endereço:</label>
                             <input type="text" id="address-name" placeholder="Ex: Casa, Trabalho">
                         </div>
-                        
+
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="address-cep">CEP:</label>
@@ -240,17 +264,17 @@
                                 <input type="text" id="address-number" placeholder="123">
                             </div>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="address-street">Rua:</label>
                             <input type="text" id="address-street" placeholder="Rua, Avenida, etc.">
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="address-complement">Complemento:</label>
                             <input type="text" id="address-complement" placeholder="Apartamento, bloco, etc.">
                         </div>
-                        
+
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="address-city">Cidade:</label>
@@ -290,17 +314,17 @@
                                 </select>
                             </div>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="address-country">País:</label>
                             <input type="text" id="address-country" value="Brasil" disabled>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="address-phone">Telefone:</label>
                             <input type="text" id="address-phone" placeholder="(00) 00000-0000">
                         </div>
-                        
+
                         <div class="form-actions">
                             <button class="btn-save"><i class="bi bi-save"></i> Salvar Endereço</button>
                             <button class="btn-cancel"><i class="bi bi-x"></i> Cancelar</button>
@@ -311,7 +335,7 @@
                 <!-- Seção de Segurança -->
                 <div id="security-section" class="profile-section">
                     <h2><i class="bi bi-lock"></i> Segurança</h2>
-                    
+
                     <div class="security-section">
                         <h3><i class="bi bi-shield-check"></i> Segurança da Conta</h3>
                         <div class="security-item">
@@ -321,7 +345,7 @@
                             </div>
                             <button class="btn-change-password"><i class="bi bi-pencil"></i> Alterar Senha</button>
                         </div>
-                        
+
                         <div class="security-item">
                             <div class="security-info">
                                 <h4>Autenticação de Dois Fatores</h4>
@@ -333,7 +357,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="security-section">
                         <h3><i class="bi bi-laptop"></i> Dispositivos Conectados</h3>
                         <div class="device-list">
@@ -347,9 +371,10 @@
                                     <p>Último acesso: Hoje, 14:30</p>
                                     <p>Local: Araraquara, SP</p>
                                 </div>
-                                <button class="btn-logout-device"><i class="bi bi-box-arrow-right"></i> Desconectar</button>
+                                <button class="btn-logout-device"><i class="bi bi-box-arrow-right"></i>
+                                    Desconectar</button>
                             </div>
-                            
+
                             <div class="device-item">
                                 <div class="device-icon">
                                     <i class="bi bi-phone"></i>
@@ -360,22 +385,25 @@
                                     <p>Último acesso: Ontem, 22:15</p>
                                     <p>Local: Araraquara, SP</p>
                                 </div>
-                                <button class="btn-logout-device"><i class="bi bi-box-arrow-right"></i> Desconectar</button>
+                                <button class="btn-logout-device"><i class="bi bi-box-arrow-right"></i>
+                                    Desconectar</button>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="security-section">
                         <h3><i class="bi bi-exclamation-triangle"></i> Ações de Segurança</h3>
-                        <button class="btn-logout-all"><i class="bi bi-box-arrow-right"></i> Desconectar Todos os Dispositivos</button>
-                        <button class="btn-delete-account"><i class="bi bi-trash"></i> Excluir Conta Permanentemente</button>
+                        <button class="btn-logout-all"><i class="bi bi-box-arrow-right"></i> Desconectar Todos os
+                            Dispositivos</button>
+                        <button class="btn-delete-account"><i class="bi bi-trash"></i> Excluir Conta
+                            Permanentemente</button>
                     </div>
                 </div>
 
                 <!-- Seção de Pagamentos -->
                 <div id="payments-section" class="profile-section">
                     <h2><i class="bi bi-credit-card"></i> Métodos de Pagamento</h2>
-                    
+
                     <div class="payment-methods">
                         <div class="payment-method">
                             <div class="payment-card">
@@ -393,7 +421,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="payment-method">
                             <div class="payment-card">
                                 <div class="card-logo">
@@ -409,7 +437,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="payment-method">
                             <div class="payment-card">
                                 <div class="card-logo">
@@ -427,26 +455,30 @@
                             </div>
                         </div>
                     </div>
-                    
-                    <button class="btn-add-payment"><i class="bi bi-plus"></i> Adicionar Novo Método de Pagamento</button>
-                    
+
+                    <button class="btn-add-payment"><i class="bi bi-plus"></i> Adicionar Novo Método de
+                        Pagamento</button>
+
                     <div class="payment-form" style="display: none;">
                         <div class="form-group">
                             <label>Tipo de Pagamento:</label>
                             <div class="payment-types">
-                                <button class="payment-type active" data-type="credit"><i class="bi bi-credit-card"></i> Cartão de Crédito</button>
-                                <button class="payment-type" data-type="debit"><i class="bi bi-credit-card"></i> Cartão de Débito</button>
-                                <button class="payment-type" data-type="boleto"><i class="bi bi-upc"></i> Boleto</button>
+                                <button class="payment-type active" data-type="credit"><i class="bi bi-credit-card"></i>
+                                    Cartão de Crédito</button>
+                                <button class="payment-type" data-type="debit"><i class="bi bi-credit-card"></i> Cartão
+                                    de Débito</button>
+                                <button class="payment-type" data-type="boleto"><i class="bi bi-upc"></i>
+                                    Boleto</button>
                                 <button class="payment-type" data-type="pix"><i class="bi bi-qr-code"></i> Pix</button>
                             </div>
                         </div>
-                        
+
                         <div id="credit-card-form">
                             <div class="form-group">
                                 <label for="card-number">Número do Cartão:</label>
                                 <input type="text" id="card-number" placeholder="0000 0000 0000 0000">
                             </div>
-                            
+
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="card-name">Nome no Cartão:</label>
@@ -457,7 +489,7 @@
                                     <input type="text" id="card-cvv" placeholder="000">
                                 </div>
                             </div>
-                            
+
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="card-expiry">Validade:</label>
@@ -476,7 +508,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="form-actions">
                             <button class="btn-save"><i class="bi bi-save"></i> Salvar Método de Pagamento</button>
                             <button class="btn-cancel"><i class="bi bi-x"></i> Cancelar</button>
@@ -521,7 +553,8 @@
                     <h3>Sobre Nós</h3>
                     <a href="missao.html"><i class="bi bi-info-circle-fill"></i> <span>Missão</span></a>
                     <a href="equipe.html"><i class="bi bi-people-fill"></i> <span>Equipe</span></a>
-                    <a href="chat_Com_Vendedor.html"><i class="bi bi-chat-dots-fill"></i> <span>Chat com Vendedor</span></a>
+                    <a href="chat_Com_Vendedor.html"><i class="bi bi-chat-dots-fill"></i> <span>Chat com
+                            Vendedor</span></a>
 
                     <div class="social-links">
                         <a href="#" title="Facebook"><i class="bi bi-facebook"></i></a>
@@ -537,6 +570,14 @@
             </div>
         </div>
     </footer>
+
+    <!-- Widget VLibras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
 
     <script src="JS/perfil.js"></script>
     <script src="JS/breadcrumbs.js"></script>

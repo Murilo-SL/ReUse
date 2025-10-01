@@ -207,3 +207,77 @@
             font-size: 1.2rem;
             width: 30px;
         }
+
+                /* Estilos para o modo de edição */
+        .edit-mode .view-mode {
+            display: none;
+        }
+        
+        .edit-mode .edit-mode-field {
+            display: block;
+        }
+        
+        .edit-mode-field {
+            display: none;
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .edit-textarea {
+            display: none;
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .contact-item {
+            position: relative;
+        }
+        
+        .edit-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .edit-toggle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 4px;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .edit-toggle:hover {
+            background: #e0e0e0;
+        }
+        
+        .social-edit {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .social-edit-field {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .social-edit-field i {
+            font-size: 1.2rem;
+            width: 30px;
+        }

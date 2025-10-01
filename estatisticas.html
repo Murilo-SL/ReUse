@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +10,14 @@
     <link rel="stylesheet" href="CSS/breadcrumbs-vendedor.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- VLibras -->
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+
 </head>
+
 <body>
     <!-- CABEÇALHO -->
     <header>
@@ -20,7 +28,7 @@
                 </div>
                 <div class="user-actions">
                     <a href="login.html">
-                       <i class="bi bi-box-arrow-left"></i> Sair da Conta
+                        <i class="bi bi-box-arrow-left"></i> Sair da Conta
                     </a>
                 </div>
             </div>
@@ -39,7 +47,8 @@
                 <li><a href="estatisticas.html" class="active"><i class="bi bi-bar-chart"></i> Estatísticas</a></li>
                 <li><a href="avaliacoes.html"><i class="bi bi-star-fill"></i> Avaliações</a></li>
                 <li><a href="configuracoes.html"><i class="bi bi-gear"></i> Configurações</a></li>
-                <li><a href="doacao.vendedor.html" id="doacao-link"><i class="bi bi-gift-fill"></i> Fazer Doação</a></li>
+                <li><a href="doacao.vendedor.html" id="doacao-link"><i class="bi bi-gift-fill"></i> Fazer Doação</a>
+                </li>
                 <li><a href="chat_clientes.html"><i class="bi bi-chat-dots"></i> Chat com Clientes</a></li>
             </ul>
         </aside>
@@ -50,9 +59,9 @@
             <div id="breadcrumbs-container" class="breadcrumbs-vendedor">
                 <a href="vendedor.html">Painel do Vendedor</a> &gt; <span>Estatísticas</span>
             </div>
-            
+
             <h1>Estatísticas de Vendas</h1>
-            
+
             <!-- Filtros -->
             <div class="filters-container">
                 <div class="filter-group">
@@ -65,18 +74,18 @@
                         <option value="custom">Personalizado</option>
                     </select>
                 </div>
-                
+
                 <div class="filter-group custom-dates" style="display: none;">
                     <label for="data-inicio">De:</label>
                     <input type="date" id="data-inicio">
-                    
+
                     <label for="data-fim">Até:</label>
                     <input type="date" id="data-fim">
                 </div>
-                
+
                 <button class="filter-btn">Aplicar Filtros</button>
             </div>
-            
+
             <!-- Cards de Resumo -->
             <div class="stats-cards">
                 <div class="stat-card">
@@ -91,7 +100,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="stat-card">
                     <div class="stat-icon" style="background-color: #e8f5e9;">
                         <i class="bi bi-cart-check" style="color: #4CAF50;"></i>
@@ -104,7 +113,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="stat-card">
                     <div class="stat-icon" style="background-color: #fff3e0;">
                         <i class="bi bi-eye" style="color: #FF9800;"></i>
@@ -117,7 +126,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="stat-card">
                     <div class="stat-icon" style="background-color: #fbe9e7;">
                         <i class="bi bi-cart-x" style="color: #FF5722;"></i>
@@ -131,25 +140,25 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Gráficos -->
             <div class="charts-container">
                 <div class="chart-wrapper">
                     <h2 class="section-title">Receita por Período</h2>
                     <canvas id="revenueChart"></canvas>
                 </div>
-                
+
                 <div class="chart-wrapper">
                     <h2 class="section-title">Categorias Mais Vendidas</h2>
                     <canvas id="categoriesChart"></canvas>
                 </div>
-                
+
                 <div class="chart-wrapper full-width">
                     <h2 class="section-title">Desempenho de Vendas</h2>
                     <canvas id="salesChart"></canvas>
                 </div>
             </div>
-            
+
             <!-- Tabela de Produtos Mais Vendidos -->
             <h2 class="section-title">Produtos Mais Vendidos</h2>
             <div class="table-container">
@@ -248,26 +257,34 @@
         </div>
     </footer>
 
+    <!-- Widget VLibras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+
     <!-- Scripts JavaScript -->
     <script src="JS/breadcrumbs-vendedor.js"></script>
     <script>
         // Ativar item do menu lateral
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Configurar breadcrumbs
             if (typeof updateBreadcrumbs === 'function') {
                 updateBreadcrumbs('Estatísticas');
             }
-            
+
             // Mostrar/ocultar datas personalizadas
-            document.getElementById('periodo').addEventListener('change', function() {
+            document.getElementById('periodo').addEventListener('change', function () {
                 const customDates = document.querySelector('.custom-dates');
                 customDates.style.display = this.value === 'custom' ? 'flex' : 'none';
             });
-            
+
             // Inicializar gráficos
             initCharts();
         });
-        
+
         function initCharts() {
             // Gráfico de Receita
             const revenueCtx = document.getElementById('revenueChart').getContext('2d');
@@ -299,7 +316,7 @@
                     }
                 }
             });
-            
+
             // Gráfico de Categorias
             const categoriesCtx = document.getElementById('categoriesChart').getContext('2d');
             const categoriesChart = new Chart(categoriesCtx, {
@@ -332,7 +349,7 @@
                     }
                 }
             });
-            
+
             // Gráfico de Desempenho de Vendas
             const salesCtx = document.getElementById('salesChart').getContext('2d');
             const salesChart = new Chart(salesCtx, {
@@ -373,4 +390,5 @@
         }
     </script>
 </body>
+
 </html>

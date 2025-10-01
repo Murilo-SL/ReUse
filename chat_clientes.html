@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,14 @@
     <link rel="stylesheet" href="CSS/vendedor.css">
     <link rel="stylesheet" href="CSS/chat_clientes.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <!-- VLibras -->
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+
 </head>
+
 <body>
     <!-- CABEÇALHO (mantido do original) -->
     <header>
@@ -18,7 +26,7 @@
                 </div>
                 <div class="user-actions">
                     <a href="login.html">
-                       <i class="bi bi-box-arrow-left"></i> Sair da Conta
+                        <i class="bi bi-box-arrow-left"></i> Sair da Conta
                     </a>
                 </div>
             </div>
@@ -36,9 +44,11 @@
                 <li><a href="add_produto_v.html"><i class="bi bi-plus-circle"></i> Adicionar Produto</a></li>
                 <li><a href="estatisticas.html"><i class="bi bi-bar-chart"></i> Estatísticas</a></li>
                 <li><a href="avaliacoes.html"><i class="bi bi-star-fill"></i> Avaliações</a></li>
-                <li><a href="chat_clientes.html" class="active"><i class="bi bi-chat-dots"></i> Chat com Clientes</a></li>
+                <li><a href="chat_clientes.html" class="active"><i class="bi bi-chat-dots"></i> Chat com Clientes</a>
+                </li>
                 <li><a href="configuracoes.html"><i class="bi bi-gear"></i> Configurações</a></li>
-                <li><a href="doacao.vendedor.html" id="doacao-link"><i class="bi bi-gift-fill"></i> Fazer Doação</a></li>
+                <li><a href="doacao.vendedor.html" id="doacao-link"><i class="bi bi-gift-fill"></i> Fazer Doação</a>
+                </li>
             </ul>
         </aside>
 
@@ -50,7 +60,7 @@
                         <input type="text" placeholder="Buscar conversas...">
                         <i class="bi bi-search"></i>
                     </div>
-                    
+
                     <div class="chat-list">
                         <div class="chat-item active" data-chat-id="maria">
                             <div class="chat-avatar">
@@ -62,7 +72,7 @@
                                 <span class="chat-time">10:42</span>
                             </div>
                         </div>
-                        
+
                         <div class="chat-item" data-chat-id="joao">
                             <div class="chat-avatar">
                                 <img src="IMG/avatar2.jpg" alt="João Santos">
@@ -73,7 +83,7 @@
                                 <span class="chat-time">Ontem</span>
                             </div>
                         </div>
-                        
+
                         <div class="chat-item" data-chat-id="ana">
                             <div class="chat-avatar">
                                 <img src="IMG/avatar3.jpg" alt="Ana Costa">
@@ -84,7 +94,7 @@
                                 <span class="chat-time">Seg</span>
                             </div>
                         </div>
-                        
+
                         <div class="chat-item" data-chat-id="pedro">
                             <div class="chat-avatar">
                                 <img src="IMG/avatar4.jpg" alt="Pedro Almeida">
@@ -97,7 +107,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="chat-conversation">
                     <div class="chat-header">
                         <div class="current-chat-info">
@@ -115,11 +125,11 @@
                             <button><i class="bi bi-three-dots-vertical"></i></button>
                         </div>
                     </div>
-                    
+
                     <div class="chat-messages" id="chat-messages-container">
                         <!-- As mensagens serão carregadas aqui via JavaScript -->
                     </div>
-                    
+
                     <div class="chat-input">
                         <button><i class="bi bi-emoji-smile"></i></button>
                         <button><i class="bi bi-paperclip"></i></button>
@@ -175,6 +185,14 @@
         </div>
     </footer>
 
+    <!-- Widget VLibras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+
     <script>
         // Estrutura de dados para armazenar as conversas
         const conversas = {
@@ -228,26 +246,26 @@
         function carregarMensagens() {
             const container = document.getElementById('chat-messages-container');
             const conversa = conversas[conversaAtual];
-            
+
             // Limpar o container
             container.innerHTML = '';
-            
+
             // Adicionar cada mensagem
             conversa.mensagens.forEach(msg => {
                 const messageDiv = document.createElement('div');
                 messageDiv.className = `message ${msg.enviada ? 'sent' : 'received'}`;
-                
+
                 messageDiv.innerHTML = `
                     <p>${msg.texto}</p>
                     <span>${msg.hora}</span>
                 `;
-                
+
                 container.appendChild(messageDiv);
             });
-            
+
             // Rolar para o final das mensagens
             container.scrollTop = container.scrollHeight;
-            
+
             // Atualizar informações do chat atual
             document.getElementById('current-chat-name').textContent = conversa.nome;
             document.getElementById('current-chat-status').textContent = conversa.status;
@@ -258,56 +276,56 @@
         function enviarMensagem() {
             const input = document.getElementById('message-input');
             const texto = input.value.trim();
-            
+
             if (texto === '') return;
-            
+
             // Obter hora atual
             const agora = new Date();
             const hora = `${agora.getHours()}:${agora.getMinutes().toString().padStart(2, '0')}`;
-            
+
             // Adicionar mensagem à conversa atual
             conversas[conversaAtual].mensagens.push({
                 texto: texto,
                 enviada: true,
                 hora: hora
             });
-            
+
             // Limpar o input
             input.value = '';
-            
+
             // Recarregar as mensagens
             carregarMensagens();
         }
 
         // Inicializar o chat
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Carregar a primeira conversa
             carregarMensagens();
-            
+
             // Adicionar event listeners para os itens da lista de conversas
             document.querySelectorAll('.chat-item').forEach(item => {
-                item.addEventListener('click', function() {
+                item.addEventListener('click', function () {
                     // Remover a classe active de todos os itens
                     document.querySelectorAll('.chat-item').forEach(i => {
                         i.classList.remove('active');
                     });
-                    
+
                     // Adicionar a classe active ao item clicado
                     this.classList.add('active');
-                    
+
                     // Atualizar a conversa atual
                     conversaAtual = this.getAttribute('data-chat-id');
-                    
+
                     // Carregar as mensagens da nova conversa
                     carregarMensagens();
                 });
             });
-            
+
             // Event listener para o botão de enviar
             document.getElementById('send-button').addEventListener('click', enviarMensagem);
-            
+
             // Event listener para pressionar Enter no input
-            document.getElementById('message-input').addEventListener('keypress', function(e) {
+            document.getElementById('message-input').addEventListener('keypress', function (e) {
                 if (e.key === 'Enter') {
                     enviarMensagem();
                 }
@@ -315,4 +333,5 @@
         });
     </script>
 </body>
+
 </html>

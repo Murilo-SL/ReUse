@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +10,14 @@
     <link rel="stylesheet" href="CSS/breadcrumbs-vendedor.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- VLibras -->
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+
 </head>
+
 <body>
     <!-- CABEÇALHO (mantido do original) -->
     <header>
@@ -20,7 +28,7 @@
                 </div>
                 <div class="user-actions">
                     <a href="login.html">
-                       <i class="bi bi-box-arrow-left"></i> Sair da Conta
+                        <i class="bi bi-box-arrow-left"></i> Sair da Conta
                     </a>
                 </div>
             </div>
@@ -39,7 +47,8 @@
                 <li><a href="estatisticas.html"><i class="bi bi-bar-chart"></i> Estatísticas</a></li>
                 <li><a href="avaliacoes.html"><i class="bi bi-star-fill"></i> Avaliações</a></li>
                 <li><a href="configuracoes.html"><i class="bi bi-gear"></i> Configurações</a></li>
-                <li><a href="doacao.vendedor.html" id="doacao-link"><i class="bi bi-gift-fill"></i> Fazer Doação</a></li>
+                <li><a href="doacao.vendedor.html" id="doacao-link"><i class="bi bi-gift-fill"></i> Fazer Doação</a>
+                </li>
                 <li><a href="chat_clientes.html"><i class="bi bi-chat-dots"></i> Chat com Clientes</a></li>
             </ul>
         </aside>
@@ -50,9 +59,9 @@
             <div id="breadcrumbs-container" class="breadcrumbs-vendedor">
                 <a href="vendedor.html">Painel do Vendedor</a> &gt; <span>Dashboard</span>
             </div>
-            
+
             <h1>Dashboard</h1>
-            
+
             <!-- Cards de Resumo -->
             <div class="stats-cards">
                 <div class="stat-card">
@@ -64,17 +73,17 @@
                         <div class="stat-label">Produtos</div>
                     </div>
                 </div>
-                
+
                 <div class="stat-card">
                     <div class="stat-icon" style="background-color: #e8f5e9;">
-                       <i class="bi bi-receipt" style="color: #4CAF50;"></i>
+                        <i class="bi bi-receipt" style="color: #4CAF50;"></i>
                     </div>
                     <div class="stat-info">
                         <div class="stat-value">64</div>
                         <div class="stat-label">Vendas</div>
                     </div>
                 </div>
-                
+
                 <div class="stat-card">
                     <div class="stat-icon" style="background-color: #fff3e0;">
                         <i class="bi bi-box2-heart-fill" style="color: #FF9800;"></i>
@@ -84,7 +93,7 @@
                         <div class="stat-label">Doações</div>
                     </div>
                 </div>
-                
+
                 <div class="stat-card">
                     <div class="stat-icon" style="background-color: #ffebee;">
                         <i class="bi bi-hourglass-bottom" style="color: #F44336;"></i>
@@ -95,12 +104,12 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Gráfico -->
             <div class="chart-container">
                 <canvas id="salesChart"></canvas>
             </div>
-            
+
             <!-- Tabela de Produtos -->
             <div class="products-table">
                 <table>
@@ -206,12 +215,12 @@
             <h2 class="modal-title">Editar Produto</h2>
             <form id="form-editar-produto">
                 <input type="hidden" id="edit-produto-id">
-                
+
                 <div class="form-group">
                     <label for="edit-nome">Nome do Produto:</label>
                     <input type="text" id="edit-nome" required>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="edit-categoria">Categoria:</label>
                     <select id="edit-categoria" required>
@@ -224,12 +233,12 @@
                         <option value="Calçados">Calçados</option>
                     </select>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="edit-preco">Preço (R$):</label>
                     <input type="text" id="edit-preco" placeholder="Ex: 99,90" required>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="edit-status">Status:</label>
                     <select id="edit-status" required>
@@ -238,12 +247,12 @@
                         <option value="Doado">Doado</option>
                     </select>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="edit-descricao">Descrição:</label>
                     <textarea id="edit-descricao"></textarea>
                 </div>
-                
+
                 <div class="modal-actions">
                     <button type="button" class="modal-btn modal-btn-cancel" id="cancelar-edicao">Cancelar</button>
                     <button type="submit" class="modal-btn modal-btn-edit">Salvar Alterações</button>
@@ -253,7 +262,7 @@
     </div>
 
     <!-- RODAPÉ (mantido do original) -->
-     <footer>
+    <footer>
         <div class="container">
             <div class="footer-content">
 
@@ -295,9 +304,17 @@
         </div>
     </footer>
 
+    <!-- Widget VLibras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+
     <script>
         // Configuração do gráfico
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const ctx = document.getElementById('salesChart').getContext('2d');
             const salesChart = new Chart(ctx, {
                 type: 'bar',
@@ -326,7 +343,7 @@
                     }
                 }
             });
-            
+
             // Inicializar funcionalidades
             inicializarModais();
         });
@@ -338,113 +355,113 @@
             const btnCancelarExclusao = document.getElementById('cancelar-exclusao');
             const btnConfirmarExclusao = document.getElementById('confirmar-exclusao');
             const spanFecharExcluir = modalExcluir.querySelector('.close-modal');
-            
+
             // Configurar modal de sucesso de exclusão
             const modalSucessoExclusao = document.getElementById('modal-sucesso-exclusao');
             const btnFecharSucesso = document.getElementById('fechar-sucesso');
             const spanFecharSucesso = modalSucessoExclusao.querySelector('.close-modal');
-            
+
             // Configurar modal de edição
             const modalEditar = document.getElementById('modal-editar');
             const btnCancelarEdicao = document.getElementById('cancelar-edicao');
             const formEditar = document.getElementById('form-editar-produto');
             const spanFecharEditar = modalEditar.querySelector('.close-modal');
-            
+
             // Função para abrir modal de exclusão
             document.querySelectorAll('.delete-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
+                btn.addEventListener('click', function () {
                     const produtoId = this.getAttribute('data-id');
                     const produtoNome = this.closest('tr').querySelector('td:first-child').textContent;
-                    
+
                     document.getElementById('nome-produto-excluir').textContent = produtoNome;
                     modalExcluir.setAttribute('data-produto-id', produtoId);
                     modalExcluir.setAttribute('data-produto-nome', produtoNome);
                     modalExcluir.style.display = 'block';
                 });
             });
-            
+
             // Função para abrir modal de edição
             document.querySelectorAll('.edit-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
+                btn.addEventListener('click', function () {
                     const produtoId = this.getAttribute('data-id');
                     const linhaProduto = this.closest('tr');
                     const nome = linhaProduto.cells[0].textContent;
                     const categoria = linhaProduto.cells[1].textContent;
                     const preco = linhaProduto.cells[2].textContent.replace('R$ ', '');
                     const status = linhaProduto.cells[3].querySelector('.status').textContent;
-                    
+
                     // Preencher o formulário com os dados atuais
                     document.getElementById('edit-produto-id').value = produtoId;
                     document.getElementById('edit-nome').value = nome;
                     document.getElementById('edit-categoria').value = categoria;
                     document.getElementById('edit-preco').value = preco;
                     document.getElementById('edit-status').value = status;
-                    
+
                     // Abrir modal de edição
                     modalEditar.style.display = 'block';
                 });
             });
-            
+
             // Fechar modais ao clicar no X
             spanFecharExcluir.addEventListener('click', () => {
                 modalExcluir.style.display = 'none';
             });
-            
+
             spanFecharSucesso.addEventListener('click', () => {
                 modalSucessoExclusao.style.display = 'none';
             });
-            
+
             spanFecharEditar.addEventListener('click', () => {
                 modalEditar.style.display = 'none';
             });
-            
+
             // Cancelar ações
             btnCancelarExclusao.addEventListener('click', () => {
                 modalExcluir.style.display = 'none';
             });
-            
+
             btnCancelarEdicao.addEventListener('click', () => {
                 modalEditar.style.display = 'none';
             });
-            
+
             // Fechar modal de sucesso
             btnFecharSucesso.addEventListener('click', () => {
                 modalSucessoExclusao.style.display = 'none';
             });
-            
+
             // Confirmar exclusão
             btnConfirmarExclusao.addEventListener('click', () => {
                 const produtoId = modalExcluir.getAttribute('data-produto-id');
                 const produtoNome = modalExcluir.getAttribute('data-produto-nome');
-                
+
                 // Aqui você implementaria a lógica real de exclusão
                 // Após a exclusão bem-sucedida, mostre a modal de sucesso:
-                
+
                 // Fechar a modal de confirmação
                 modalExcluir.style.display = 'none';
-                
+
                 // Mostrar modal de sucesso
                 document.getElementById('nome-produto-sucesso').textContent = produtoNome;
                 modalSucessoExclusao.style.display = 'block';
             });
-            
+
             // Submeter formulário de edição
-            formEditar.addEventListener('submit', function(e) {
+            formEditar.addEventListener('submit', function (e) {
                 e.preventDefault();
-                
+
                 const produtoId = document.getElementById('edit-produto-id').value;
                 const nome = document.getElementById('edit-nome').value;
                 const categoria = document.getElementById('edit-categoria').value;
                 const preco = document.getElementById('edit-preco').value;
                 const status = document.getElementById('edit-status').value;
-                
+
                 // Aqui você implementaria a lógica real de atualização
                 alert(`Produto ${produtoId} atualizado com sucesso!`);
                 modalEditar.style.display = 'none';
             });
-            
+
             // Fechar modais ao clicar fora deles
-            window.addEventListener('click', function(event) {
+            window.addEventListener('click', function (event) {
                 if (event.target == modalExcluir) {
                     modalExcluir.style.display = 'none';
                 }
@@ -458,4 +475,5 @@
         }
     </script>
 </body>
+
 </html>

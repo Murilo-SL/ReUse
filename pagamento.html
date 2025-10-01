@@ -11,10 +11,16 @@
     <link rel="stylesheet" href="CSS/breadcrumbs.css">
     <link rel="stylesheet" href="CSS/modo_noturno-2.css">
     <link rel="stylesheet" href="CSS/modo_noturno.css">
+    <!-- VLibras -->
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+
 </head>
 
 <body>
- <!-- CABEÇALHO -->
+    <!-- CABEÇALHO -->
     <header>
         <div class="container">
             <div class="header-container">
@@ -30,7 +36,7 @@
                         <div class="search-input">
                             <input type="text" id="searchInput" placeholder="O que você está procurando?">
                             <button id="searchButton" class="search-button" aria-label="Pesquisar">
-                               <i class="bi bi-search"></i>
+                                <i class="bi bi-search"></i>
                             </button>
                         </div>
                         <div class="search-filters">
@@ -46,81 +52,97 @@
                     </div>
                 </div>
 
-               <div class="user-section">
-<!-- Estrutura atual (sem alterações) -->
-<button class="botaoMenu" id="botaoMenu">
-    <i class="bi bi-list"></i>
-</button>
+                <div class="user-section">
+                    <!-- Estrutura atual (sem alterações) -->
+                    <button class="botaoMenu" id="botaoMenu">
+                        <i class="bi bi-list"></i>
+                    </button>
 
-<nav class="nav-menu" id="navMenu">
-    <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
-        <i class="bi bi-sun-fill" id="themeIcon"></i>
-    </button>
-    
-    <div class="cart">
-        <a href="carrinho.html">
-            <span class="cart-icon"><i class="bi bi-cart3"></i></span>
-        </a>
-        <span class="cart-count">1</span>
-    </div>
-    
-    <a href="login.html">
-        <i class="bi bi-box-arrow-right"></i> Sair da Conta
-    </a>
-    
-    <a href="perfil.html">
-        <i class="bi bi-person-fill"></i> Minha Conta
-    </a>
-</nav>
-</div>
+                    <nav class="nav-menu" id="navMenu">
+                        <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+                            <i class="bi bi-sun-fill" id="themeIcon"></i>
+                        </button>
+
+                        <div class="cart">
+                            <a href="carrinho.html">
+                                <span class="cart-icon"><i class="bi bi-cart3"></i></span>
+                            </a>
+                            <span class="cart-count">1</span>
+                        </div>
+
+                        <a href="login.html">
+                            <i class="bi bi-box-arrow-right"></i> Sair da Conta
+                        </a>
+
+                        <a href="perfil.html">
+                            <i class="bi bi-person-fill"></i> Minha Conta
+                        </a>
+                    </nav>
+                </div>
 
 
 
-   <!-- Categorias abaixo -->
+                <!-- Categorias abaixo -->
                 <div class="categories-section">
                     <section class="categories">
                         <div class="dropdown">
                             <a href="categoria.html?cat=masculino">Masculino</a>
                             <div class="dropdown-content">
-                                <div class="dropdown-category"><a href="categoria.html?cat=masculino&sub=roupas">Roupas</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=masculino&sub=calcados">Calçados</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=masculino&sub=acessorios">Acessórios</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=masculino&sub=roupas">Roupas</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=masculino&sub=calcados">Calçados</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=masculino&sub=acessorios">Acessórios</a></div>
                             </div>
                         </div>
 
                         <div class="dropdown">
                             <a href="categoria.html?cat=feminino">Feminino</a>
                             <div class="dropdown-content">
-                                <div class="dropdown-category"><a href="categoria.html?cat=feminino&sub=roupas">Roupas</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=feminino&sub=calcados">Calçados</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=feminino&sub=acessorios">Acessórios</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=feminino&sub=roupas">Roupas</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=feminino&sub=calcados">Calçados</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=feminino&sub=acessorios">Acessórios</a></div>
                             </div>
                         </div>
 
                         <div class="dropdown">
                             <a href="categoria.html?cat=infantil">Infantil</a>
                             <div class="dropdown-content">
-                                <div class="dropdown-category"><a href="categoria.html?cat=infantil&sub=roupas">Roupas</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=infantil&sub=calcados">Calçados</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=infantil&sub=outros">Outros</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=infantil&sub=roupas">Roupas</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=infantil&sub=calcados">Calçados</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=infantil&sub=outros">Outros</a></div>
                             </div>
                         </div>
 
                         <div class="dropdown">
                             <a href="categoria.html?cat=esportivo">Esportivo</a>
                             <div class="dropdown-content">
-                                <div class="dropdown-category"><a href="categoria.html?cat=esportivo&sub=roupas">Roupas</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=esportivo&sub=calcados">Calçados</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=esportivo&sub=outros">Outros</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=esportivo&sub=roupas">Roupas</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=esportivo&sub=calcados">Calçados</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=esportivo&sub=outros">Outros</a></div>
                             </div>
                         </div>
 
                         <div class="dropdown">
                             <a href="categoria.html?cat=casa-cozinha">Casa/Cozinha</a>
                             <div class="dropdown-content">
-                                <div class="dropdown-category"><a href="categoria.html?cat=casa-cozinha&sub=eletrodomesticos">Eletrodomésticos</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=casa-cozinha&sub=moveis">Movéis</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=casa-cozinha&sub=utensilios">Utensílios</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=casa-cozinha&sub=eletrodomesticos">Eletrodomésticos</a>
+                                </div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=casa-cozinha&sub=moveis">Movéis</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=casa-cozinha&sub=utensilios">Utensílios</a></div>
                             </div>
                         </div>
                     </section>
@@ -145,8 +167,9 @@
                     <i class="bi bi-credit-card-fill"></i>
                     <h2>Cartão de Crédito</h2>
                 </div>
-                <p class="section-description">Pague em até 12x com juros ou à vista com desconto. Aceitamos as seguintes bandeiras:</p>
-                
+                <p class="section-description">Pague em até 12x com juros ou à vista com desconto. Aceitamos as
+                    seguintes bandeiras:</p>
+
                 <div class="cards-container">
                     <div class="card-method">
                         <div class="card-logo">
@@ -193,8 +216,9 @@
                     <i class="bi bi-credit-card-2-back-fill"></i>
                     <h2>Cartão de Débito</h2>
                 </div>
-                <p class="section-description">Pague diretamente da sua conta corrente, com desconto adicional. Bandeiras aceitas:</p>
-                
+                <p class="section-description">Pague diretamente da sua conta corrente, com desconto adicional.
+                    Bandeiras aceitas:</p>
+
                 <div class="cards-container">
                     <div class="card-method">
                         <div class="card-logo">
@@ -230,13 +254,16 @@
                     </div>
                     <div class="pix-details">
                         <h3>Pagamento instantâneo com até 10% de desconto</h3>
-                        <p>O PIX é a forma mais rápida e segura de pagar suas compras. Basta escanear o QR code ou copiar o código durante o checkout.</p>
-                        
+                        <p>O PIX é a forma mais rápida e segura de pagar suas compras. Basta escanear o QR code ou
+                            copiar o código durante o checkout.</p>
+
                         <ul class="pix-benefits">
-                            <li><i class="bi bi-lightning-charge-fill"></i> Pagamento instantâneo - sua compra é confirmada em segundos</li>
+                            <li><i class="bi bi-lightning-charge-fill"></i> Pagamento instantâneo - sua compra é
+                                confirmada em segundos</li>
                             <li><i class="bi bi-chevron-double-down"></i> Desconto especial para pagamentos via PIX</li>
                             <li><i class="bi bi-clock-fill"></i>Disponível 24 horas por dia, 7 dias por semana</li>
-                            <li><i class="bi bi-credit-card-2-front-fill"></i> Sem necessidade de cartão ou cadastro adicional</li>
+                            <li><i class="bi bi-credit-card-2-front-fill"></i> Sem necessidade de cartão ou cadastro
+                                adicional</li>
                         </ul>
                     </div>
                 </div>
@@ -248,170 +275,178 @@
                     <i class="bi bi-shield-shaded"></i>
                     <h3>Pagamentos 100% Seguros</h3>
                 </div>
-                <p>Todas as transações no ReUse são processadas com tecnologia de criptografia avançada. Trabalhamos com os maiores processadores de pagamento do mercado para garantir a segurança das suas informações financeiras. Nunca armazenamos dados completos do seu cartão em nossos sistemas.</p>
+                <p>Todas as transações no ReUse são processadas com tecnologia de criptografia avançada. Trabalhamos com
+                    os maiores processadores de pagamento do mercado para garantir a segurança das suas informações
+                    financeiras. Nunca armazenamos dados completos do seu cartão em nossos sistemas.</p>
             </div>
 
-     <!-- FAQ Atualizado -->
-    <div class="payment-faq">
-        <div class="faq-header">
-            <h2><i class="bi bi-question-octagon-fill"></i> Perguntas Frequentes</h2>
-            <p>Tire suas dúvidas sobre pagamentos e formas de compra</p>
-        </div>
-        
-        <div class="faq-container">
-            <div class="faq-item active">
-                <div class="faq-question">
-                    <div class="question-icon">
-                        <i class="bi bi-credit-card-2-back-fill"></i>
-                    </div>
-                    <div class="question-text">
-                        <h3>Posso parcelar no cartão de crédito?</h3>
-                        <div class="question-meta">
-                            <span class="category">Cartão de Crédito</span>
-                            <span class="time">2 min de leitura</span>
-                        </div>
-                    </div>
-                    <i class="bi bi-caret-down"></i>
+            <!-- FAQ Atualizado -->
+            <div class="payment-faq">
+                <div class="faq-header">
+                    <h2><i class="bi bi-question-octagon-fill"></i> Perguntas Frequentes</h2>
+                    <p>Tire suas dúvidas sobre pagamentos e formas de compra</p>
                 </div>
-                <div class="faq-answer">
-                    <div class="answer-content">
-                        <p>Sim, você pode parcelar suas compras em até 12x no cartão de crédito, sujeito à análise de crédito pela administradora do seu cartão.</p>
-                        <ul class="answer-details">
-                            <li><i class="bi bi-check-circle-fill"></i> Parcelamento mínimo: R$ 20,00 por parcela</li>
-                            <li><i class="bi bi-check-circle-fill"></i> Juros a partir da 3ª parcela</li>
-                            <li><i class="bi bi-check-circle-fill"></i> Bandeiras aceitas: Visa, Mastercard, Elo, American Express</li>
-                        </ul>
-                        <div class="answer-help">
-                            <i class="bi bi-info-circle-fill"></i> Dica: Pagamentos à vista no crédito têm 5% de desconto!
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="faq-item">
-                <div class="faq-question">
-                    <div class="question-icon">
-                       <i class="bi bi-qr-code"></i>
-                    </div>
-                    <div class="question-text">
-                        <h3>Qual o prazo para confirmação do PIX?</h3>
-                        <div class="question-meta">
-                            <span class="category">PIX</span>
-                            <span class="time">1 min de leitura</span>
-                        </div>
-                    </div>
-                    <i class="bi bi-caret-down"></i>
-                </div>
-                <div class="faq-answer">
-                    <div class="answer-content">
-                        <p>O pagamento via PIX é confirmado quase instantaneamente em nosso sistema.</p>
-                        <div class="timeline">
-                            <div class="timeline-step">
-                                <div class="timeline-icon">
-                                    <i class="bi bi-check-circle-fill"></i>
-                                </div>
-                                <div class="timeline-content">
-                                    <strong>0-30 segundos</strong>
-                                    <p>Confirmação automática do pagamento</p>
+
+                <div class="faq-container">
+                    <div class="faq-item active">
+                        <div class="faq-question">
+                            <div class="question-icon">
+                                <i class="bi bi-credit-card-2-back-fill"></i>
+                            </div>
+                            <div class="question-text">
+                                <h3>Posso parcelar no cartão de crédito?</h3>
+                                <div class="question-meta">
+                                    <span class="category">Cartão de Crédito</span>
+                                    <span class="time">2 min de leitura</span>
                                 </div>
                             </div>
-                            <div class="timeline-step">
-                                <div class="timeline-icon">
-                                    <i class="bi bi-envelope-fill"></i>
-                                </div>
-                                <div class="timeline-content">
-                                    <strong>1-2 minutos</strong>
-                                    <p>E-mail de confirmação enviado</p>
+                            <i class="bi bi-caret-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="answer-content">
+                                <p>Sim, você pode parcelar suas compras em até 12x no cartão de crédito, sujeito à
+                                    análise de crédito pela administradora do seu cartão.</p>
+                                <ul class="answer-details">
+                                    <li><i class="bi bi-check-circle-fill"></i> Parcelamento mínimo: R$ 20,00 por
+                                        parcela</li>
+                                    <li><i class="bi bi-check-circle-fill"></i> Juros a partir da 3ª parcela</li>
+                                    <li><i class="bi bi-check-circle-fill"></i> Bandeiras aceitas: Visa, Mastercard,
+                                        Elo, American Express</li>
+                                </ul>
+                                <div class="answer-help">
+                                    <i class="bi bi-info-circle-fill"></i> Dica: Pagamentos à vista no crédito têm 5% de
+                                    desconto!
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <div class="question-icon">
+                                <i class="bi bi-qr-code"></i>
+                            </div>
+                            <div class="question-text">
+                                <h3>Qual o prazo para confirmação do PIX?</h3>
+                                <div class="question-meta">
+                                    <span class="category">PIX</span>
+                                    <span class="time">1 min de leitura</span>
+                                </div>
+                            </div>
+                            <i class="bi bi-caret-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="answer-content">
+                                <p>O pagamento via PIX é confirmado quase instantaneamente em nosso sistema.</p>
+                                <div class="timeline">
+                                    <div class="timeline-step">
+                                        <div class="timeline-icon">
+                                            <i class="bi bi-check-circle-fill"></i>
+                                        </div>
+                                        <div class="timeline-content">
+                                            <strong>0-30 segundos</strong>
+                                            <p>Confirmação automática do pagamento</p>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-step">
+                                        <div class="timeline-icon">
+                                            <i class="bi bi-envelope-fill"></i>
+                                        </div>
+                                        <div class="timeline-content">
+                                            <strong>1-2 minutos</strong>
+                                            <p>E-mail de confirmação enviado</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <div class="question-icon">
+                                <i class="bi bi-cash"></i>
+                            </div>
+                            <div class="question-text">
+                                <h3>Há cobrança de taxas para pagamentos no débito ou PIX?</h3>
+                                <div class="question-meta">
+                                    <span class="category">Taxas</span>
+                                    <span class="time">1 min de leitura</span>
+                                </div>
+                            </div>
+                            <i class="bi bi-caret-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="answer-content">
+                                <p>Não cobramos nenhuma taxa adicional para pagamentos realizados com cartão de débito
+                                    ou PIX.</p>
+                                <div class="benefits-grid">
+                                    <div class="benefit-card">
+                                        <i class="bi bi-piggy-bank-fill"></i>
+                                        <h4>Desconto no PIX</h4>
+                                        <p>10% OFF em qualquer compra</p>
+                                    </div>
+                                    <div class="benefit-card">
+                                        <i class="bi bi-credit-card-2-front-fill"></i>
+                                        <h4>Débito</h4>
+                                        <p>5% OFF em compras acima de R$100</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <div class="question-icon">
+                                <i class="bi bi-floppy"></i>
+                            </div>
+                            <div class="question-text">
+                                <h3>Posso salvar meu cartão para compras futuras?</h3>
+                                <div class="question-meta">
+                                    <span class="category">Segurança</span>
+                                    <span class="time">2 min de leitura</span>
+                                </div>
+                            </div>
+                            <i class="bi bi-caret-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="answer-content">
+                                <p>Sim, você pode armazenar seus cartões de forma segura em nosso sistema.</p>
+                                <div class="security-features">
+                                    <div class="security-card">
+                                        <i class="bi bi-lock-fill"></i>
+                                        <p>Criptografia de ponta a ponta</p>
+                                    </div>
+                                    <div class="security-card">
+                                        <i class="bi bi-shield-fill"></i>
+                                        <p>Certificado PCI DSS Nível 1</p>
+                                    </div>
+                                    <div class="security-card">
+                                        <i class="bi bi-fingerprint"></i>
+                                        <p>Autenticação em duas etapas</p>
+                                    </div>
+                                </div>
+                                <div class="answer-note">
+                                    <i class="bi bi-exclamation-triangle-fill"></i> Nunca armazenamos o código de
+                                    segurança (CVV) do seu cartão.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="faq-contact">
+                        <div class="contact-icon">
+                            <i class="bi bi-headset"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Ainda com dúvidas?</h3>
+                            <p>Nosso time está pronto para te ajudar!</p>
+                        </div>
+                        <i class="bi bi-chat-right-fill"></i> Falar com atendente
+                    </button>
                 </div>
             </div>
-            
-            <div class="faq-item">
-                <div class="faq-question">
-                    <div class="question-icon">
-                        <i class="bi bi-cash"></i>
-                    </div>
-                    <div class="question-text">
-                        <h3>Há cobrança de taxas para pagamentos no débito ou PIX?</h3>
-                        <div class="question-meta">
-                            <span class="category">Taxas</span>
-                            <span class="time">1 min de leitura</span>
-                        </div>
-                    </div>
-                    <i class="bi bi-caret-down"></i>
-                </div>
-                <div class="faq-answer">
-                    <div class="answer-content">
-                        <p>Não cobramos nenhuma taxa adicional para pagamentos realizados com cartão de débito ou PIX.</p>
-                        <div class="benefits-grid">
-                            <div class="benefit-card">
-                                <i class="bi bi-piggy-bank-fill"></i>
-                                <h4>Desconto no PIX</h4>
-                                <p>10% OFF em qualquer compra</p>
-                            </div>
-                            <div class="benefit-card">
-                                <i class="bi bi-credit-card-2-front-fill"></i>
-                                <h4>Débito</h4>
-                                <p>5% OFF em compras acima de R$100</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="faq-item">
-                <div class="faq-question">
-                    <div class="question-icon">
-                        <i class="bi bi-floppy"></i>
-                    </div>
-                    <div class="question-text">
-                        <h3>Posso salvar meu cartão para compras futuras?</h3>
-                        <div class="question-meta">
-                            <span class="category">Segurança</span>
-                            <span class="time">2 min de leitura</span>
-                        </div>
-                    </div>
-                    <i class="bi bi-caret-down"></i>
-                </div>
-                <div class="faq-answer">
-                    <div class="answer-content">
-                        <p>Sim, você pode armazenar seus cartões de forma segura em nosso sistema.</p>
-                        <div class="security-features">
-                            <div class="security-card">
-                                <i class="bi bi-lock-fill"></i>
-                                <p>Criptografia de ponta a ponta</p>
-                            </div>
-                            <div class="security-card">
-                                <i class="bi bi-shield-fill"></i>
-                                <p>Certificado PCI DSS Nível 1</p>
-                            </div>
-                            <div class="security-card">
-                                <i class="bi bi-fingerprint"></i>
-                                <p>Autenticação em duas etapas</p>
-                            </div>
-                        </div>
-                        <div class="answer-note">
-                            <i class="bi bi-exclamation-triangle-fill"></i> Nunca armazenamos o código de segurança (CVV) do seu cartão.
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <button class="faq-contact">
-                <div class="contact-icon">
-                    <i class="bi bi-headset"></i>
-                </div>
-                <div class="contact-text">
-                    <h3>Ainda com dúvidas?</h3>
-                    <p>Nosso time está pronto para te ajudar!</p>
-                </div>
-                    <i class="bi bi-chat-right-fill"></i> Falar com atendente
-            </button>
-        </div>
-    </div>
     </main>
 
     <!-- RODAPÉ (o mesmo do site principal) -->
@@ -447,7 +482,8 @@
                     <h3>Sobre Nós</h3>
                     <a href="missao.html"><i class="bi bi-info-circle-fill"></i> <span>Missão</span></a>
                     <a href="equipe.html"><i class="bi bi-people-fill"></i> <span>Equipe</span></a>
-                    <a href="chat_com_vendedor.html"><i class="bi bi-chat-dots-fill"></i> <span>Chat com Vendedor</span></a>
+                    <a href="chat_com_vendedor.html"><i class="bi bi-chat-dots-fill"></i> <span>Chat com
+                            Vendedor</span></a>
 
                     <div class="social-links">
                         <a href="#" title="Facebook"><i class="bi bi-facebook"></i></a>
@@ -463,9 +499,19 @@
             </div>
         </div>
     </footer>
+
+    <!-- Widget VLibras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+
     <script src="JS/breadcrumbs.js"></script>
     <script src="JS/pagamento.js"></script>
     <script src="JS/modo_noturno.js"></script>
     <script src="JS/menu.js"></script>
 </body>
+
 </html>

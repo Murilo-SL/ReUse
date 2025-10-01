@@ -1,15 +1,22 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SOS Felino - Doações</title>
-    
+
     <!-- Folhas de estilo -->
     <link rel="stylesheet" href="CSS/ong.css">
     <link rel="stylesheet" href="CSS/ong_doacao.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <!-- VLibras -->
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+
 </head>
 
 <body>
@@ -33,9 +40,10 @@
         <aside class="sidebar">
             <h2 class="sidebar-title">Patas Concientes</h2>
             <ul class="sidebar-nav">
-               <li><a href="ong-2.html"><i class="bi bi-house"></i> Início</a></li>
+                <li><a href="ong-2.html"><i class="bi bi-house"></i> Início</a></li>
                 <li><a href="ong_doacoes-2.html"><i class="bi bi-handbag"></i> Doações</a></li>
-                <li><a href="ong_doacoes-2_necessarias.html"><i class="bi bi-clipboard-check"></i> Doações Necessárias</a></li>
+                <li><a href="ong_doacoes-2_necessarias.html"><i class="bi bi-clipboard-check"></i> Doações
+                        Necessárias</a></li>
                 <li><a href="ong_configuracoes-2.html"><i class="bi bi-people"></i> Beneficiários</a></li>
                 <li><a href="ong_relatorios-2.html"><i class="bi bi-bar-chart"></i> Relatórios</a></li>
                 <li><a href="ong_configuracoes-2.html" class="active"><i class="bi bi-gear"></i> Configurações</a></li>
@@ -50,9 +58,9 @@
             <div class="breadcrumbs-vendedor">
                 <a href="ong-2.html">Painel da Instituição</a> &gt; <span id="current-breadcrumb">Doações</span>
             </div>
-            
+
             <h1>Doações Recebidas</h1>
-            
+
             <!-- Filtros -->
             <div class="filters-section">
                 <div class="filter-group">
@@ -64,7 +72,7 @@
                         <option value="scheduled">Agendadas</option>
                     </select>
                 </div>
-                
+
                 <div class="filter-group">
                     <label for="date-filter">Período</label>
                     <select id="date-filter">
@@ -75,7 +83,7 @@
                         <option value="year">Este ano</option>
                     </select>
                 </div>
-                
+
                 <div class="filter-group">
                     <label for="category-filter">Categoria</label>
                     <select id="category-filter">
@@ -87,18 +95,18 @@
                         <option value="food">Ração</option>
                     </select>
                 </div>
-                
+
                 <button id="filter-button" class="primary-button small">
                     <i class="fas fa-filter"></i> Filtrar
                 </button>
             </div>
-            
+
             <!-- Lista de Doações -->
             <div class="section-container">
                 <div id="donations-container" class="donations-grid">
                     <!-- Doações serão carregadas dinamicamente via JavaScript -->
                 </div>
-                
+
                 <!-- Paginação -->
                 <div class="pagination">
                     <button id="prev-page" class="pagination-button" disabled>
@@ -133,6 +141,14 @@
             <p>&copy; 2025 ReUse - Todos os direitos reservados</p>
         </div>
     </footer>
+
+    <!-- Widget VLibras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
 
     <!-- Scripts JavaScript -->
     <script>
@@ -212,7 +228,7 @@
         let filteredDonations = [...donationsData];
 
         // Inicialização quando a página carrega
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             renderDonations();
             setupEventListeners();
         });
@@ -221,14 +237,14 @@
         function setupEventListeners() {
             // Filtros
             document.getElementById('filter-button').addEventListener('click', applyFilters);
-            
+
             // Paginação
             document.getElementById('prev-page').addEventListener('click', goToPrevPage);
             document.getElementById('next-page').addEventListener('click', goToNextPage);
-            
+
             // Modal
             document.querySelector('.close').addEventListener('click', closeModal);
-            window.addEventListener('click', function(event) {
+            window.addEventListener('click', function (event) {
                 const modal = document.getElementById('details-modal');
                 if (event.target === modal) {
                     closeModal();
@@ -240,22 +256,22 @@
         function applyFilters() {
             const statusFilter = document.getElementById('status-filter').value;
             const categoryFilter = document.getElementById('category-filter').value;
-            
+
             filteredDonations = donationsData.filter(donation => {
                 // Filtro por status
                 if (statusFilter !== 'all' && donation.status !== statusFilter) {
                     return false;
                 }
-                
+
                 // Filtro por categoria
                 if (categoryFilter !== 'all') {
                     const hasCategory = donation.items.some(item => item.category === categoryFilter);
                     if (!hasCategory) return false;
                 }
-                
+
                 return true;
             });
-            
+
             currentPage = 1;
             renderDonations();
         }
@@ -264,26 +280,26 @@
         function renderDonations() {
             const container = document.getElementById('donations-container');
             container.innerHTML = '';
-            
+
             const startIndex = (currentPage - 1) * itemsPerPage;
             const endIndex = startIndex + itemsPerPage;
             const donationsToShow = filteredDonations.slice(startIndex, endIndex);
-            
+
             if (donationsToShow.length === 0) {
                 container.innerHTML = '<p class="no-results">Nenhuma doação encontrada com os filtros aplicados.</p>';
                 setupPagination();
                 return;
             }
-            
+
             donationsToShow.forEach(donation => {
                 const donationCard = document.createElement('div');
                 donationCard.className = 'donation-card';
-                
+
                 // Determinar classe de status
                 let statusClass = '';
                 let statusText = '';
-                
-                switch(donation.status) {
+
+                switch (donation.status) {
                     case 'received':
                         statusClass = 'status-received';
                         statusText = 'Recebida';
@@ -297,7 +313,7 @@
                         statusText = 'Agendada';
                         break;
                 }
-                
+
                 donationCard.innerHTML = `
                     <div class="donation-header">
                         <div class="donation-donor">${donation.donor}</div>
@@ -319,10 +335,10 @@
                         </button>
                     </div>
                 `;
-                
+
                 container.appendChild(donationCard);
             });
-            
+
             setupPagination();
         }
 
@@ -331,10 +347,10 @@
             const totalPages = Math.ceil(filteredDonations.length / itemsPerPage);
             const pageButtonsContainer = document.getElementById('page-buttons');
             pageButtonsContainer.innerHTML = '';
-            
+
             // Botão anterior
             document.getElementById('prev-page').disabled = currentPage === 1;
-            
+
             // Botões de página
             for (let i = 1; i <= totalPages; i++) {
                 const button = document.createElement('button');
@@ -349,7 +365,7 @@
                 });
                 pageButtonsContainer.appendChild(button);
             }
-            
+
             // Botão próximo
             document.getElementById('next-page').disabled = currentPage === totalPages || totalPages === 0;
         }
@@ -375,13 +391,13 @@
         function viewDonationDetails(id) {
             const donation = donationsData.find(d => d.id === id);
             if (!donation) return;
-            
+
             const modal = document.getElementById('details-modal');
             const detailsContainer = document.getElementById('donation-details');
-            
+
             // Determinar texto de status
             let statusText = '';
-            switch(donation.status) {
+            switch (donation.status) {
                 case 'received':
                     statusText = 'Recebida';
                     break;
@@ -392,7 +408,7 @@
                     statusText = 'Agendada';
                     break;
             }
-            
+
             // Gerar HTML dos itens
             let itemsHTML = '';
             donation.items.forEach(item => {
@@ -403,7 +419,7 @@
                     </div>
                 `;
             });
-            
+
             detailsContainer.innerHTML = `
                 <div class="donation-item">
                     <span><strong>Doador:</strong></span>
@@ -426,7 +442,7 @@
                     <p>${donation.notes}</p>
                 </div>
             `;
-            
+
             modal.style.display = 'block';
         }
 
@@ -441,11 +457,12 @@
             const toast = document.getElementById('toast');
             toast.textContent = message;
             toast.className = 'toast show';
-            
+
             setTimeout(() => {
                 toast.className = toast.className.replace('show', '');
             }, 3000);
         }
     </script>
 </body>
+
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +11,14 @@
     <link rel="stylesheet" href="CSS/breadcrumbs.css">
     <link rel="stylesheet" href="CSS/modo_noturno.css">
     <link rel="stylesheet" href="CSS/modo_noturno-2.css">
+    <!-- VLibras -->
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+
 </head>
+
 <body>
     <!-- CABEÇALHO (mantido do Cliente.html) -->
     <header>
@@ -28,7 +36,7 @@
                         <div class="search-input">
                             <input type="text" id="searchInput" placeholder="O que você está procurando?">
                             <button id="searchButton" class="search-button" aria-label="Pesquisar">
-                               <i class="bi bi-search"></i>
+                                <i class="bi bi-search"></i>
                             </button>
                         </div>
                         <div class="search-filters">
@@ -45,80 +53,96 @@
                 </div>
 
                 <!-- Elementos do usuário à direita -->
-               <div class="user-section">
-<!-- Estrutura atual (sem alterações) -->
-<button class="botaoMenu" id="botaoMenu">
-    <i class="bi bi-list"></i>
-</button>
+                <div class="user-section">
+                    <!-- Estrutura atual (sem alterações) -->
+                    <button class="botaoMenu" id="botaoMenu">
+                        <i class="bi bi-list"></i>
+                    </button>
 
-<nav class="nav-menu" id="navMenu">
-    <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
-        <i class="bi bi-sun-fill" id="themeIcon"></i>
-    </button>
-    
-    <div class="cart">
-        <a href="carrinho.html">
-            <span class="cart-icon"><i class="bi bi-cart3"></i></span>
-        </a>
-        <span class="cart-count">1</span>
-    </div>
-    
-    <a href="login.html">
-        <i class="bi bi-box-arrow-right"></i> Sair da Conta
-    </a>
-    
-    <a href="perfil.html">
-        <i class="bi bi-person-fill"></i> Minha Conta
-    </a>
-</nav>
-</div>
+                    <nav class="nav-menu" id="navMenu">
+                        <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+                            <i class="bi bi-sun-fill" id="themeIcon"></i>
+                        </button>
+
+                        <div class="cart">
+                            <a href="carrinho.html">
+                                <span class="cart-icon"><i class="bi bi-cart3"></i></span>
+                            </a>
+                            <span class="cart-count">1</span>
+                        </div>
+
+                        <a href="login.html">
+                            <i class="bi bi-box-arrow-right"></i> Sair da Conta
+                        </a>
+
+                        <a href="perfil.html">
+                            <i class="bi bi-person-fill"></i> Minha Conta
+                        </a>
+                    </nav>
+                </div>
 
 
-    <!-- Categorias abaixo -->
+                <!-- Categorias abaixo -->
                 <div class="categories-section">
                     <section class="categories">
                         <div class="dropdown">
                             <a href="categoria.html?cat=masculino">Masculino</a>
                             <div class="dropdown-content">
-                                <div class="dropdown-category"><a href="categoria.html?cat=masculino&sub=roupas">Roupas</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=masculino&sub=calcados">Calçados</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=masculino&sub=acessorios">Acessórios</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=masculino&sub=roupas">Roupas</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=masculino&sub=calcados">Calçados</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=masculino&sub=acessorios">Acessórios</a></div>
                             </div>
                         </div>
 
                         <div class="dropdown">
                             <a href="categoria.html?cat=feminino">Feminino</a>
                             <div class="dropdown-content">
-                                <div class="dropdown-category"><a href="categoria.html?cat=feminino&sub=roupas">Roupas</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=feminino&sub=calcados">Calçados</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=feminino&sub=acessorios">Acessórios</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=feminino&sub=roupas">Roupas</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=feminino&sub=calcados">Calçados</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=feminino&sub=acessorios">Acessórios</a></div>
                             </div>
                         </div>
 
                         <div class="dropdown">
                             <a href="categoria.html?cat=infantil">Infantil</a>
                             <div class="dropdown-content">
-                                <div class="dropdown-category"><a href="categoria.html?cat=infantil&sub=roupas">Roupas</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=infantil&sub=calcados">Calçados</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=infantil&sub=outros">Outros</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=infantil&sub=roupas">Roupas</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=infantil&sub=calcados">Calçados</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=infantil&sub=outros">Outros</a></div>
                             </div>
                         </div>
 
                         <div class="dropdown">
                             <a href="categoria.html?cat=esportivo">Esportivo</a>
                             <div class="dropdown-content">
-                                <div class="dropdown-category"><a href="categoria.html?cat=esportivo&sub=roupas">Roupas</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=esportivo&sub=calcados">Calçados</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=esportivo&sub=outros">Outros</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=esportivo&sub=roupas">Roupas</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=esportivo&sub=calcados">Calçados</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=esportivo&sub=outros">Outros</a></div>
                             </div>
                         </div>
 
                         <div class="dropdown">
                             <a href="categoria.html?cat=casa-cozinha">Casa/Cozinha</a>
                             <div class="dropdown-content">
-                                <div class="dropdown-category"><a href="categoria.html?cat=casa-cozinha&sub=eletrodomesticos">Eletrodomésticos</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=casa-cozinha&sub=moveis">Movéis</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=casa-cozinha&sub=utensilios">Utensílios</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=casa-cozinha&sub=eletrodomesticos">Eletrodomésticos</a>
+                                </div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=casa-cozinha&sub=moveis">Movéis</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=casa-cozinha&sub=utensilios">Utensílios</a></div>
                             </div>
                         </div>
                     </section>
@@ -137,7 +161,8 @@
                 <li><a href="perfil.html"><i class="bi bi-person"></i> Meu Perfil</a></li>
                 <li><a href="pedidos.html"><i class="bi bi-bag"></i> Meus Pedidos</a></li>
                 <li><a href="favoritos.html"><i class="bi bi-heart"></i> Favoritos</a></li>
-                <li><a href="chat_com_vendedor.html" class="active"><i class="bi bi-chat-dots"></i> Chat com Vendedores</a></li>
+                <li><a href="chat_com_vendedor.html" class="active"><i class="bi bi-chat-dots"></i> Chat com
+                        Vendedores</a></li>
             </ul>
         </aside>
 
@@ -149,7 +174,7 @@
                         <input type="text" placeholder="Buscar conversas...">
                         <i class="bi bi-search"></i>
                     </div>
-                    
+
                     <div class="chat-list">
                         <div class="chat-item active" data-chat-id="brechoElegante">
                             <div class="chat-avatar">
@@ -161,7 +186,7 @@
                                 <span class="chat-time">10:42</span>
                             </div>
                         </div>
-                        
+
                         <div class="chat-item" data-chat-id="casaUsados">
                             <div class="chat-avatar">
                                 <img src="IMG/brecho2.jpg" alt="Casa dos Usados">
@@ -172,7 +197,7 @@
                                 <span class="chat-time">Ontem</span>
                             </div>
                         </div>
-                        
+
                         <div class="chat-item" data-chat-id="estiloVintage">
                             <div class="chat-avatar">
                                 <img src="IMG/brecho3.jpg" alt="Estilo Vintage">
@@ -183,7 +208,7 @@
                                 <span class="chat-time">Seg</span>
                             </div>
                         </div>
-                        
+
                         <div class="chat-item" data-chat-id="doacaoAmiga">
                             <div class="chat-avatar">
                                 <img src="IMG/ong1.jpg" alt="Doação Amiga">
@@ -196,7 +221,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="chat-conversation">
                     <div class="chat-header">
                         <div class="current-chat-info">
@@ -214,11 +239,11 @@
                             <button><i class="bi bi-three-dots-vertical"></i></button>
                         </div>
                     </div>
-                    
+
                     <div class="chat-messages" id="chat-messages-container">
                         <!-- As mensagens serão carregadas aqui via JavaScript -->
                     </div>
-                    
+
                     <div class="chat-input">
                         <button><i class="bi bi-emoji-smile"></i></button>
                         <button><i class="bi bi-paperclip"></i></button>
@@ -276,7 +301,8 @@
                     <h3>Sobre Nós</h3>
                     <a href="missao.html"><i class="bi bi-info-circle-fill"></i> <span>Missão</span></a>
                     <a href="equipe.html"><i class="bi bi-people-fill"></i> <span>Equipe</span></a>
-                    <a href="chat_com_vendedor.html"><i class="bi bi-chat-dots-fill"></i> <span>Chat com Vendedor</span></a>
+                    <a href="chat_com_vendedor.html"><i class="bi bi-chat-dots-fill"></i> <span>Chat com
+                            Vendedor</span></a>
 
                     <div class="social-links">
                         <a href="#" title="Facebook"><i class="bi bi-facebook"></i></a>
@@ -292,6 +318,14 @@
             </div>
         </div>
     </footer>
+
+    <!-- Widget VLibras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
 
     <script>
         // Estrutura de dados para armazenar as conversas (perspectiva do cliente)
@@ -345,26 +379,26 @@
         function carregarMensagens() {
             const container = document.getElementById('chat-messages-container');
             const conversa = conversas[conversaAtual];
-            
+
             // Limpar o container
             container.innerHTML = '';
-            
+
             // Adicionar cada mensagem
             conversa.mensagens.forEach(msg => {
                 const messageDiv = document.createElement('div');
                 messageDiv.className = `message ${msg.enviada ? 'sent' : 'received'}`;
-                
+
                 messageDiv.innerHTML = `
                     <p>${msg.texto}</p>
                     <span>${msg.hora}</span>
                 `;
-                
+
                 container.appendChild(messageDiv);
             });
-            
+
             // Rolar para o final das mensagens
             container.scrollTop = container.scrollHeight;
-            
+
             // Atualizar informações do chat atual
             document.getElementById('current-chat-name').textContent = conversa.nome;
             document.getElementById('current-chat-status').textContent = conversa.status;
@@ -375,56 +409,56 @@
         function enviarMensagem() {
             const input = document.getElementById('message-input');
             const texto = input.value.trim();
-            
+
             if (texto === '') return;
-            
+
             // Obter hora atual
             const agora = new Date();
             const hora = `${agora.getHours()}:${agora.getMinutes().toString().padStart(2, '0')}`;
-            
+
             // Adicionar mensagem à conversa atual
             conversas[conversaAtual].mensagens.push({
                 texto: texto,
                 enviada: true,
                 hora: hora
             });
-            
+
             // Limpar o input
             input.value = '';
-            
+
             // Recarregar as mensagens
             carregarMensagens();
         }
 
         // Inicializar o chat
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Carregar a primeira conversa
             carregarMensagens();
-            
+
             // Adicionar event listeners para os itens da lista de conversas
             document.querySelectorAll('.chat-item').forEach(item => {
-                item.addEventListener('click', function() {
+                item.addEventListener('click', function () {
                     // Remover a classe active de todos os itens
                     document.querySelectorAll('.chat-item').forEach(i => {
                         i.classList.remove('active');
                     });
-                    
+
                     // Adicionar a classe active ao item clicado
                     this.classList.add('active');
-                    
+
                     // Atualizar a conversa atual
                     conversaAtual = this.getAttribute('data-chat-id');
-                    
+
                     // Carregar as mensagens da nova conversa
                     carregarMensagens();
                 });
             });
-            
+
             // Event listener para o botão de enviar
             document.getElementById('send-button').addEventListener('click', enviarMensagem);
-            
+
             // Event listener para pressionar Enter no input
-            document.getElementById('message-input').addEventListener('keypress', function(e) {
+            document.getElementById('message-input').addEventListener('keypress', function (e) {
                 if (e.key === 'Enter') {
                     enviarMensagem();
                 }
@@ -435,4 +469,5 @@
     <script src="JS/modo_noturno.js"></script>
     <script src="JS/menu.js"></script>
 </body>
+
 </html>

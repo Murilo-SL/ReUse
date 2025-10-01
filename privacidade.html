@@ -9,9 +9,17 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="CSS/privacidade.css">
     <link rel="stylesheet" href="CSS/breadcrumbs.css">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Poppins:wght@500;600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="CSS/modo_noturno.css">
     <link rel="stylesheet" href="CSS/modo_noturno-2.css">
+    <!-- VLibras -->
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+
 </head>
 
 <body>
@@ -30,7 +38,7 @@
                         <div class="search-input">
                             <input type="text" id="searchInput" placeholder="O que você está procurando?">
                             <button id="searchButton" class="search-button" aria-label="Pesquisar">
-                               <i class="bi bi-search"></i>
+                                <i class="bi bi-search"></i>
                             </button>
                         </div>
                         <div class="search-filters">
@@ -46,81 +54,97 @@
                     </div>
                 </div>
 
-               <div class="user-section">
-<!-- Estrutura atual (sem alterações) -->
-<button class="botaoMenu" id="botaoMenu">
-    <i class="bi bi-list"></i>
-</button>
+                <div class="user-section">
+                    <!-- Estrutura atual (sem alterações) -->
+                    <button class="botaoMenu" id="botaoMenu">
+                        <i class="bi bi-list"></i>
+                    </button>
 
-<nav class="nav-menu" id="navMenu">
-    <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
-        <i class="bi bi-sun-fill" id="themeIcon"></i>
-    </button>
-    
-    <div class="cart">
-        <a href="carrinho.html">
-            <span class="cart-icon"><i class="bi bi-cart3"></i></span>
-        </a>
-        <span class="cart-count">1</span>
-    </div>
-    
-    <a href="login.html">
-        <i class="bi bi-box-arrow-right"></i> Sair da Conta
-    </a>
-    
-    <a href="perfil.html">
-        <i class="bi bi-person-fill"></i> Minha Conta
-    </a>
-</nav>
-</div>
+                    <nav class="nav-menu" id="navMenu">
+                        <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+                            <i class="bi bi-sun-fill" id="themeIcon"></i>
+                        </button>
+
+                        <div class="cart">
+                            <a href="carrinho.html">
+                                <span class="cart-icon"><i class="bi bi-cart3"></i></span>
+                            </a>
+                            <span class="cart-count">1</span>
+                        </div>
+
+                        <a href="login.html">
+                            <i class="bi bi-box-arrow-right"></i> Sair da Conta
+                        </a>
+
+                        <a href="perfil.html">
+                            <i class="bi bi-person-fill"></i> Minha Conta
+                        </a>
+                    </nav>
+                </div>
 
 
 
-   <!-- Categorias abaixo -->
+                <!-- Categorias abaixo -->
                 <div class="categories-section">
                     <section class="categories">
                         <div class="dropdown">
                             <a href="categoria.html?cat=masculino">Masculino</a>
                             <div class="dropdown-content">
-                                <div class="dropdown-category"><a href="categoria.html?cat=masculino&sub=roupas">Roupas</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=masculino&sub=calcados">Calçados</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=masculino&sub=acessorios">Acessórios</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=masculino&sub=roupas">Roupas</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=masculino&sub=calcados">Calçados</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=masculino&sub=acessorios">Acessórios</a></div>
                             </div>
                         </div>
 
                         <div class="dropdown">
                             <a href="categoria.html?cat=feminino">Feminino</a>
                             <div class="dropdown-content">
-                                <div class="dropdown-category"><a href="categoria.html?cat=feminino&sub=roupas">Roupas</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=feminino&sub=calcados">Calçados</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=feminino&sub=acessorios">Acessórios</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=feminino&sub=roupas">Roupas</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=feminino&sub=calcados">Calçados</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=feminino&sub=acessorios">Acessórios</a></div>
                             </div>
                         </div>
 
                         <div class="dropdown">
                             <a href="categoria.html?cat=infantil">Infantil</a>
                             <div class="dropdown-content">
-                                <div class="dropdown-category"><a href="categoria.html?cat=infantil&sub=roupas">Roupas</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=infantil&sub=calcados">Calçados</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=infantil&sub=outros">Outros</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=infantil&sub=roupas">Roupas</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=infantil&sub=calcados">Calçados</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=infantil&sub=outros">Outros</a></div>
                             </div>
                         </div>
 
                         <div class="dropdown">
                             <a href="categoria.html?cat=esportivo">Esportivo</a>
                             <div class="dropdown-content">
-                                <div class="dropdown-category"><a href="categoria.html?cat=esportivo&sub=roupas">Roupas</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=esportivo&sub=calcados">Calçados</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=esportivo&sub=outros">Outros</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=esportivo&sub=roupas">Roupas</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=esportivo&sub=calcados">Calçados</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=esportivo&sub=outros">Outros</a></div>
                             </div>
                         </div>
 
                         <div class="dropdown">
                             <a href="categoria.html?cat=casa-cozinha">Casa/Cozinha</a>
                             <div class="dropdown-content">
-                                <div class="dropdown-category"><a href="categoria.html?cat=casa-cozinha&sub=eletrodomesticos">Eletrodomésticos</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=casa-cozinha&sub=moveis">Movéis</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=casa-cozinha&sub=utensilios">Utensílios</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=casa-cozinha&sub=eletrodomesticos">Eletrodomésticos</a>
+                                </div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=casa-cozinha&sub=moveis">Movéis</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=casa-cozinha&sub=utensilios">Utensílios</a></div>
                             </div>
                         </div>
                     </section>
@@ -145,30 +169,42 @@
             <div class="privacy-sections">
                 <section id="introducao" class="privacy-section">
                     <h2><span>1</span>Introdução</h2>
-                    <p>Na ReUse, levamos a sua privacidade a sério. Esta Política de Privacidade explica como coletamos, usamos, compartilhamos e protegemos suas informações quando você utiliza nossos serviços de compra, venda e doação de itens usados.</p>
-                    <p>Ao acessar ou usar o site ReUse, você concorda com os termos desta Política de Privacidade. Se você não concordar com estes termos, por favor, não utilize nossos serviços.</p>
+                    <p>Na ReUse, levamos a sua privacidade a sério. Esta Política de Privacidade explica como coletamos,
+                        usamos, compartilhamos e protegemos suas informações quando você utiliza nossos serviços de
+                        compra, venda e doação de itens usados.</p>
+                    <p>Ao acessar ou usar o site ReUse, você concorda com os termos desta Política de Privacidade. Se
+                        você não concordar com estes termos, por favor, não utilize nossos serviços.</p>
                 </section>
 
                 <section id="informacoes-coletadas" class="privacy-section">
                     <h2><span>2</span>Informações que Coletamos</h2>
-                    
+
                     <div class="subsection">
                         <h3><i class="bi bi-person-fill-gear"></i> Informações que você nos fornece</h3>
                         <ul class="icon-list">
-                            <li><i class="bi bi-check-circle-fill"></i> <strong>Dados de cadastro:</strong> Nome, e-mail, CPF, data de nascimento, endereço, telefone</li>
-                            <li><i class="bi bi-credit-card-fill"></i> <strong>Informações de pagamento:</strong> Dados do cartão de crédito ou conta bancária (processados por parceiros de pagamento seguros)</li>
-                            <li><i class="bi bi-tag-fill"></i> <strong>Conteúdo de anúncios:</strong> Descrições, fotos e detalhes dos itens que você cadastra</li>
-                            <li><i class="bi bi-chat-right-fill"></i> <strong>Comunicações:</strong> Mensagens trocadas com outros usuários ou com nosso suporte</li>
+                            <li><i class="bi bi-check-circle-fill"></i> <strong>Dados de cadastro:</strong> Nome,
+                                e-mail, CPF, data de nascimento, endereço, telefone</li>
+                            <li><i class="bi bi-credit-card-fill"></i> <strong>Informações de pagamento:</strong> Dados
+                                do cartão de crédito ou conta bancária (processados por parceiros de pagamento seguros)
+                            </li>
+                            <li><i class="bi bi-tag-fill"></i> <strong>Conteúdo de anúncios:</strong> Descrições, fotos
+                                e detalhes dos itens que você cadastra</li>
+                            <li><i class="bi bi-chat-right-fill"></i> <strong>Comunicações:</strong> Mensagens trocadas
+                                com outros usuários ou com nosso suporte</li>
                         </ul>
                     </div>
-                    
+
                     <div class="subsection">
                         <h3><i class="bi bi-gear-fill"></i> Informações coletadas automaticamente</h3>
                         <ul class="icon-list">
-                            <li><i class="bi bi-bar-chart-fill"></i><strong>Dados de uso:</strong> Páginas visitadas, tempo gasto, cliques, pesquisas realizadas</li>
-                            <li><i class="bi bi-phone-fill"></i> <strong>Dados do dispositivo:</strong> Tipo de dispositivo, sistema operacional, navegador, endereço IP</li>
-                            <li><i class="bi bi-geo-alt-fill"></i> <strong>Localização:</strong> Aproximada, baseada no IP ou GPS (quando permitido)</li>
-                            <li><i class="bi bi-tools"></i> <strong>Cookies e tecnologias similares:</strong> Para personalizar sua experiência e análises</li>
+                            <li><i class="bi bi-bar-chart-fill"></i><strong>Dados de uso:</strong> Páginas visitadas,
+                                tempo gasto, cliques, pesquisas realizadas</li>
+                            <li><i class="bi bi-phone-fill"></i> <strong>Dados do dispositivo:</strong> Tipo de
+                                dispositivo, sistema operacional, navegador, endereço IP</li>
+                            <li><i class="bi bi-geo-alt-fill"></i> <strong>Localização:</strong> Aproximada, baseada no
+                                IP ou GPS (quando permitido)</li>
+                            <li><i class="bi bi-tools"></i> <strong>Cookies e tecnologias similares:</strong> Para
+                                personalizar sua experiência e análises</li>
                         </ul>
                     </div>
                 </section>
@@ -198,7 +234,7 @@
                             <p>Prevenir fraudes e atividades suspeitas</p>
                         </div>
                         <div class="usage-item">
-                           <i class="bi bi-briefcase-fill"></i>
+                            <i class="bi bi-briefcase-fill"></i>
                             <p>Cumprir obrigações legais</p>
                         </div>
                     </div>
@@ -207,15 +243,17 @@
                 <section id="compartilhamento" class="privacy-section">
                     <h2><span>4</span>Compartilhamento de Informações</h2>
                     <p>Podemos compartilhar suas informações nas seguintes situações:</p>
-                    
+
                     <div class="subsection">
                         <h3><i class="bi bi-people-fill"></i> Com outros usuários</h3>
                         <ul class="icon-list">
-                            <li><i class="bi bi-person-vcard-fill"></i> Informações básicas do perfil quando você publica um item</li>
-                            <li><i class="bi bi-coin"></i> Dados de contato limitados quando uma transação é iniciada</li>
+                            <li><i class="bi bi-person-vcard-fill"></i> Informações básicas do perfil quando você
+                                publica um item</li>
+                            <li><i class="bi bi-coin"></i> Dados de contato limitados quando uma transação é iniciada
+                            </li>
                         </ul>
                     </div>
-                    
+
                     <div class="subsection">
                         <h3><i class="bi bi-cash-coin"></i> Com prestadores de serviços</h3>
                         <ul class="icon-list">
@@ -224,10 +262,11 @@
                             <li><i class="bi bi-pie-chart-fill"></i> Provedores de análise de dados e marketing</li>
                         </ul>
                     </div>
-                    
+
                     <div class="subsection">
                         <h3><i class="bi bi-hammer"></i> Por motivos legais</h3>
-                        <p>Podemos divulgar informações se exigido por lei ou em resposta a solicitações legais válidas.</p>
+                        <p>Podemos divulgar informações se exigido por lei ou em resposta a solicitações legais válidas.
+                        </p>
                     </div>
                 </section>
 
@@ -286,7 +325,7 @@
                     <div class="contact-rights">
                         <p>Para exercer esses direitos, entre em contato através do e-mail:</p>
                         <a href="mailto:privacidade@reuse.com.br" class="email-btn">
-                           <i class="bi bi-envelope-fill"></i> privacidade@reuse.com.br
+                            <i class="bi bi-envelope-fill"></i> privacidade@reuse.com.br
                         </a>
                     </div>
                 </section>
@@ -330,7 +369,9 @@
                     <h2><span>8</span>Menores de Idade</h2>
                     <div class="age-warning">
                         <i class="bi bi-person-standing"></i>
-                        <p>Nossos serviços não são destinados a menores de 18 anos. Não coletamos intencionalmente dados de crianças. Se tomarmos conhecimento de tal coleta, tomaremos medidas para excluir essas informações.</p>
+                        <p>Nossos serviços não são destinados a menores de 18 anos. Não coletamos intencionalmente dados
+                            de crianças. Se tomarmos conhecimento de tal coleta, tomaremos medidas para excluir essas
+                            informações.</p>
                     </div>
                 </section>
 
@@ -338,16 +379,19 @@
                     <h2><span>9</span>Alterações nesta Política</h2>
                     <div class="changes-info">
                         <i class="bi bi-arrow-clockwise"></i>
-                        <p>Podemos atualizar esta Política periodicamente. A versão mais recente estará sempre disponível em nosso site com a data de "Última atualização". Alterações significativas serão comunicadas por e-mail ou através de avisos no site.</p>
+                        <p>Podemos atualizar esta Política periodicamente. A versão mais recente estará sempre
+                            disponível em nosso site com a data de "Última atualização". Alterações significativas serão
+                            comunicadas por e-mail ou através de avisos no site.</p>
                     </div>
                 </section>
 
                 <section id="contato" class="privacy-section contact-section">
                     <h2><span>10</span>Contato</h2>
-                    <p>Se tiver dúvidas sobre esta Política de Privacidade ou sobre como tratamos seus dados pessoais, entre em contato conosco:</p>
+                    <p>Se tiver dúvidas sobre esta Política de Privacidade ou sobre como tratamos seus dados pessoais,
+                        entre em contato conosco:</p>
                     <div class="contact-methods">
                         <div class="contact-method">
-                           <i class="bi bi-envelope-at-fill"></i>
+                            <i class="bi bi-envelope-at-fill"></i>
                             <p><strong>E-mail:</strong> privacidade@reuse.com.br</p>
                         </div>
                         <div class="contact-method">
@@ -406,7 +450,8 @@
                     <h3>Sobre Nós</h3>
                     <a href="missao.html"><i class="bi bi-info-circle-fill"></i> <span>Missão</span></a>
                     <a href="equipe.html"><i class="bi bi-people-fill"></i> <span>Equipe</span></a>
-                    <a href="chat_Com_Vendedor.html"><i class="bi bi-chat-dots-fill"></i> <span>Chat com Vendedor</span></a>
+                    <a href="chat_Com_Vendedor.html"><i class="bi bi-chat-dots-fill"></i> <span>Chat com
+                            Vendedor</span></a>
 
                     <div class="social-links">
                         <a href="#" title="Facebook"><i class="bi bi-facebook"></i></a>
@@ -423,9 +468,18 @@
         </div>
     </footer>
 
-  
+    <!-- Widget VLibras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+
+
     <script src="JS/breadcrumbs.js"></script>
     <script src="JS/modo_noturno.js"></script>
     <script src="JS/menu.js"></script>
 </body>
+
 </html>

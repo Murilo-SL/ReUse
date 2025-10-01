@@ -10,6 +10,12 @@
     <link rel="stylesheet" href="CSS/breadcrumbs.css">
     <link rel="stylesheet" href="CSS/modo_noturno.css">
     <link rel="stylesheet" href="CSS/configuracoes_Cliente.css">
+    <!-- VLibras -->
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+
 </head>
 
 <body>
@@ -28,7 +34,7 @@
                         <div class="search-input">
                             <input type="text" id="searchInput" placeholder="O que você está procurando?">
                             <button id="searchButton" class="search-button" aria-label="Pesquisar">
-                               <i class="bi bi-search"></i>
+                                <i class="bi bi-search"></i>
                             </button>
                         </div>
                         <div class="search-filters">
@@ -45,81 +51,97 @@
                 </div>
 
                 <!-- Elementos do usuário à direita -->
-               <div class="user-section">
-<!-- Estrutura atual (sem alterações) -->
-<button class="botaoMenu" id="botaoMenu">
-    <i class="bi bi-list"></i>
-</button>
+                <div class="user-section">
+                    <!-- Estrutura atual (sem alterações) -->
+                    <button class="botaoMenu" id="botaoMenu">
+                        <i class="bi bi-list"></i>
+                    </button>
 
-<nav class="nav-menu" id="navMenu">
-    <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
-        <i class="bi bi-sun-fill" id="themeIcon"></i>
-    </button>
-    
-    <div class="cart">
-        <a href="carrinho.html">
-            <span class="cart-icon"><i class="bi bi-cart3"></i></span>
-        </a>
-        <span class="cart-count">1</span>
-    </div>
-    
-    <a href="login.html">
-        <i class="bi bi-box-arrow-right"></i> Sair da Conta
-    </a>
-    
-    <a href="perfil.html">
-        <i class="bi bi-person-fill"></i> Minha Conta
-    </a>
-</nav>
-</div>
+                    <nav class="nav-menu" id="navMenu">
+                        <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+                            <i class="bi bi-sun-fill" id="themeIcon"></i>
+                        </button>
+
+                        <div class="cart">
+                            <a href="carrinho.html">
+                                <span class="cart-icon"><i class="bi bi-cart3"></i></span>
+                            </a>
+                            <span class="cart-count">1</span>
+                        </div>
+
+                        <a href="login.html">
+                            <i class="bi bi-box-arrow-right"></i> Sair da Conta
+                        </a>
+
+                        <a href="perfil.html">
+                            <i class="bi bi-person-fill"></i> Minha Conta
+                        </a>
+                    </nav>
+                </div>
 
 
 
-   <!-- Categorias abaixo -->
+                <!-- Categorias abaixo -->
                 <div class="categories-section">
                     <section class="categories">
                         <div class="dropdown">
                             <a href="categoria.html?cat=masculino">Masculino</a>
                             <div class="dropdown-content">
-                                <div class="dropdown-category"><a href="categoria.html?cat=masculino&sub=roupas">Roupas</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=masculino&sub=calcados">Calçados</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=masculino&sub=acessorios">Acessórios</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=masculino&sub=roupas">Roupas</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=masculino&sub=calcados">Calçados</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=masculino&sub=acessorios">Acessórios</a></div>
                             </div>
                         </div>
 
                         <div class="dropdown">
                             <a href="categoria.html?cat=feminino">Feminino</a>
                             <div class="dropdown-content">
-                                <div class="dropdown-category"><a href="categoria.html?cat=feminino&sub=roupas">Roupas</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=feminino&sub=calcados">Calçados</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=feminino&sub=acessorios">Acessórios</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=feminino&sub=roupas">Roupas</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=feminino&sub=calcados">Calçados</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=feminino&sub=acessorios">Acessórios</a></div>
                             </div>
                         </div>
 
                         <div class="dropdown">
                             <a href="categoria.html?cat=infantil">Infantil</a>
                             <div class="dropdown-content">
-                                <div class="dropdown-category"><a href="categoria.html?cat=infantil&sub=roupas">Roupas</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=infantil&sub=calcados">Calçados</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=infantil&sub=outros">Outros</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=infantil&sub=roupas">Roupas</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=infantil&sub=calcados">Calçados</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=infantil&sub=outros">Outros</a></div>
                             </div>
                         </div>
 
                         <div class="dropdown">
                             <a href="categoria.html?cat=esportivo">Esportivo</a>
                             <div class="dropdown-content">
-                                <div class="dropdown-category"><a href="categoria.html?cat=esportivo&sub=roupas">Roupas</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=esportivo&sub=calcados">Calçados</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=esportivo&sub=outros">Outros</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=esportivo&sub=roupas">Roupas</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=esportivo&sub=calcados">Calçados</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=esportivo&sub=outros">Outros</a></div>
                             </div>
                         </div>
 
                         <div class="dropdown">
                             <a href="categoria.html?cat=casa-cozinha">Casa/Cozinha</a>
                             <div class="dropdown-content">
-                                <div class="dropdown-category"><a href="categoria.html?cat=casa-cozinha&sub=eletrodomesticos">Eletrodomésticos</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=casa-cozinha&sub=moveis">Movéis</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=casa-cozinha&sub=utensilios">Utensílios</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=casa-cozinha&sub=eletrodomesticos">Eletrodomésticos</a>
+                                </div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=casa-cozinha&sub=moveis">Movéis</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=casa-cozinha&sub=utensilios">Utensílios</a></div>
                             </div>
                         </div>
                     </section>
@@ -139,25 +161,26 @@
                 <!-- Seção de Informações Pessoais -->
                 <div class="settings-section">
                     <h2><i class="bi bi-person"></i> Informações Pessoais</h2>
-                    
+
                     <div class="form-group">
                         <label for="name">Nome Completo</label>
                         <input type="text" id="name" class="form-control" value="João da Silva" required>
                         <div class="validation-message" id="name-validation">Por favor, insira um nome válido</div>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="email">E-mail</label>
                         <input type="email" id="email" class="form-control" value="joao.silva@exemplo.com" required>
                         <div class="validation-message" id="email-validation">Por favor, insira um e-mail válido</div>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="phone">Telefone</label>
-                        <input type="tel" id="phone" class="form-control" value="(11) 99999-9999" pattern="\([0-9]{2}\) [0-9]{4,5}-[0-9]{4}" required>
+                        <input type="tel" id="phone" class="form-control" value="(11) 99999-9999"
+                            pattern="\([0-9]{2}\) [0-9]{4,5}-[0-9]{4}" required>
                         <div class="validation-message" id="phone-validation">Formato: (11) 99999-9999</div>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="birthdate">Data de Nascimento</label>
                         <input type="date" id="birthdate" class="form-control" value="1990-05-15" required>
@@ -168,33 +191,33 @@
                 <!-- Seção de Preferências de Notificação -->
                 <div class="settings-section">
                     <h2><i class="bi bi-bell"></i> Preferências de Notificação</h2>
-                    
+
                     <div class="notification-preferences">
                         <div class="checkbox-group">
                             <input type="checkbox" id="notif-email" checked>
                             <label for="notif-email">Notificações por E-mail</label>
                         </div>
-                        
+
                         <div class="checkbox-group">
                             <input type="checkbox" id="notif-promo" checked>
                             <label for="notif-promo">Promoções e ofertas</label>
                         </div>
-                        
+
                         <div class="checkbox-group">
                             <input type="checkbox" id="notif-order" checked>
                             <label for="notif-order">Atualizações de pedidos</label>
                         </div>
-                        
+
                         <div class="checkbox-group">
                             <input type="checkbox" id="notif-stock">
                             <label for="notif-stock">Produtos esgotados</label>
                         </div>
-                        
+
                         <div class="checkbox-group">
                             <input type="checkbox" id="notif-news" checked>
                             <label for="notif-news">Notícias e atualizações</label>
                         </div>
-                        
+
                         <div class="checkbox-group">
                             <input type="checkbox" id="notif-donation">
                             <label for="notif-donation">Oportunidades de doação</label>
@@ -205,26 +228,27 @@
                 <!-- Seção de Privacidade -->
                 <div class="settings-section">
                     <h2><i class="bi bi-shield-lock"></i> Privacidade e Segurança</h2>
-                    
+
                     <div class="checkbox-group">
                         <input type="checkbox" id="privacy-profile" checked>
                         <label for="privacy-profile">Perfil público</label>
                     </div>
-                    
+
                     <div class="checkbox-group">
                         <input type="checkbox" id="privacy-activity">
                         <label for="privacy-activity">Compartilhar minha atividade</label>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="password">Alterar Senha</label>
                         <input type="password" id="password" class="form-control" placeholder="Nova senha">
                         <div class="password-strength" id="password-strength"></div>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="confirm-password">Confirmar Senha</label>
-                        <input type="password" id="confirm-password" class="form-control" placeholder="Confirmar nova senha">
+                        <input type="password" id="confirm-password" class="form-control"
+                            placeholder="Confirmar nova senha">
                         <div class="validation-message" id="password-validation">As senhas não coincidem</div>
                     </div>
                 </div>
@@ -232,12 +256,12 @@
                 <!-- Seção de Preferências de Pagamento -->
                 <div class="settings-section">
                     <h2><i class="bi bi-credit-card"></i> Preferências de Pagamento</h2>
-                    
+
                     <div class="checkbox-group">
                         <input type="checkbox" id="save-cards" checked>
                         <label for="save-cards">Salvar meus cartões para compras futuras</label>
                     </div>
-                    
+
                     <div class="checkbox-group">
                         <input type="checkbox" id="default-payment">
                         <label for="default-payment">Usar PayPal como método de pagamento padrão</label>
@@ -247,15 +271,15 @@
                 <!-- Zona de Perigo -->
                 <div class="settings-section danger-zone">
                     <h2><i class="bi bi-exclamation-triangle"></i> Zona de Perigo</h2>
-                    
+
                     <p>Ações nesta seção são irreversíveis. Por favor, proceda com cautela.</p>
-                    
+
                     <div class="form-group">
                         <button type="button" class="btn btn-danger" id="export-data">
                             <i class="bi bi-download"></i> Exportar Meus Dados
                         </button>
                     </div>
-                    
+
                     <div class="form-group">
                         <button type="button" class="btn btn-danger" id="delete-account">
                             <i class="bi bi-trash"></i> Excluir Minha Conta
@@ -274,7 +298,7 @@
     </main>
 
     <!-- RODAPÉ -->
-      <footer>
+    <footer>
         <div class="container">
             <div class="footer-content">
                 <!-- Seção de Idioma -->
@@ -289,9 +313,9 @@
                         </button>
                     </div>
                 </div>
-  
-''
-                
+
+                ''
+
 
                 <!-- Seção Minha Conta -->
                 <div class="footer-links">
@@ -323,7 +347,8 @@
                     <h3>Sobre Nós</h3>
                     <a href="missao.html"><i class="bi bi-info-circle-fill"></i> <span>Missão</span></a>
                     <a href="equipe.html"><i class="bi bi-people-fill"></i> <span>Equipe</span></a>
-                    <a href="chat_Com_Vendedor.html"><i class="bi bi-chat-dots-fill"></i> <span>Chat com Vendedor</span></a>
+                    <a href="chat_Com_Vendedor.html"><i class="bi bi-chat-dots-fill"></i> <span>Chat com
+                            Vendedor</span></a>
 
                     <div class="social-links">
                         <a href="#" title="Facebook"><i class="bi bi-facebook"></i></a>
@@ -336,9 +361,17 @@
 
             <div class="copyright">
                 &copy; 2025 ReUse - <span>Todos os direitos reservados</span>
-    </div>
+            </div>
         </div>
     </footer>
+
+    <!-- Widget VLibras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
 
     <div id="custom-alert-container"></div>
 

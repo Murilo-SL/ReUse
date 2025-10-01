@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="CSS/cadastro.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="CSS/xmbwave.css">
+    <!-- VLibras -->
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
     <title>Cadastro - ReUse</title>
 </head>
 
@@ -151,7 +156,8 @@
                         <div class="form-group password-container">
                             <label for="seller-confirm-password">Confirmar Senha</label>
                             <div class="password-input-wrapper">
-                                <input type="password" id="seller-confirm-password" name="seller-confirm-password" required>
+                                <input type="password" id="seller-confirm-password" name="seller-confirm-password"
+                                    required>
                                 <span class="toggle-password"><i class="fas fa-eye"></i></span>
                             </div>
                         </div>
@@ -197,8 +203,8 @@
 
                         <div class="form-group">
                             <label for="institution-zipcode">CEP</label>
-                            <input type="text" id="institution-zipcode" name="institution-zipcode" placeholder="00000-000"
-                                required>
+                            <input type="text" id="institution-zipcode" name="institution-zipcode"
+                                placeholder="00000-000" required>
                         </div>
 
                         <div class="form-group">
@@ -230,8 +236,8 @@
                         <div class="form-group password-container">
                             <label for="institution-confirm-password">Confirmar Senha</label>
                             <div class="password-input-wrapper">
-                                <input type="password" id="institution-confirm-password" name="institution-confirm-password"
-                                    required>
+                                <input type="password" id="institution-confirm-password"
+                                    name="institution-confirm-password" required>
                                 <span class="toggle-password"><i class="fas fa-eye"></i></span>
                             </div>
                         </div>
@@ -259,27 +265,35 @@
         <span id="error-text-global">Por favor, preencha todos os campos obrigatórios.</span>
     </div>
 
+    <!-- Widget VLibras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+
     <script src="JS/cadastro.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Container de ondas
             const waveContainer = document.createElement('div');
             waveContainer.className = 'wave-container';
-            
+
             for (let i = 0; i < 4; i++) {
                 const wave = document.createElement('div');
                 wave.className = 'wave';
                 waveContainer.appendChild(wave);
             }
-            
+
             // Container de partículas
             const particlesContainer = document.createElement('div');
             particlesContainer.className = 'particles';
-            
+
             for (let i = 0; i < 20; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
-                
+
                 const size = Math.random() * 5 + 2;
                 particle.style.width = `${size}px`;
                 particle.style.height = `${size}px`;
@@ -287,10 +301,10 @@
                 particle.style.bottom = `${Math.random() * 20}px`;
                 particle.style.animationDuration = `${Math.random() * 20 + 10}s`;
                 particle.style.animationDelay = `${Math.random() * 5}s`;
-                
+
                 particlesContainer.appendChild(particle);
             }
-            
+
             document.body.insertBefore(particlesContainer, document.body.firstChild);
             document.body.insertBefore(waveContainer, document.body.firstChild);
 
@@ -298,39 +312,39 @@
             const clientBtn = document.getElementById('client-btn');
             const sellerBtn = document.getElementById('seller-btn');
             const institutionBtn = document.getElementById('institution-btn');
-            
+
             const clientForm = document.getElementById('client-form');
             const sellerForm = document.getElementById('seller-form');
             const institutionForm = document.getElementById('institution-form');
-            
+
             function activateForm(button, form) {
                 // Remover classe active de todos os botões
                 clientBtn.classList.remove('active');
                 sellerBtn.classList.remove('active');
                 institutionBtn.classList.remove('active');
-                
+
                 // Remover classe active de todos os formulários
                 clientForm.classList.remove('active');
                 sellerForm.classList.remove('active');
                 institutionForm.classList.remove('active');
-                
+
                 // Adicionar classe active ao botão e formulário selecionados
                 button.classList.add('active');
                 form.classList.add('active');
             }
-            
+
             clientBtn.addEventListener('click', () => activateForm(clientBtn, clientForm));
             sellerBtn.addEventListener('click', () => activateForm(sellerBtn, sellerForm));
             institutionBtn.addEventListener('click', () => activateForm(institutionBtn, institutionForm));
-            
+
             // Toggle password visibility
             const togglePasswordButtons = document.querySelectorAll('.toggle-password');
             togglePasswordButtons.forEach(button => {
-                button.addEventListener('click', function() {
+                button.addEventListener('click', function () {
                     const targetId = this.closest('.password-container').querySelector('input').id;
                     const passwordInput = document.getElementById(targetId);
                     const icon = this.querySelector('i');
-                    
+
                     if (passwordInput.type === 'password') {
                         passwordInput.type = 'text';
                         icon.classList.remove('fa-eye');
@@ -344,13 +358,13 @@
                     }
                 });
             });
-            
+
             // Mostrar/ocultar campo CNPJ baseado no tipo de negócio
             const businessTypeSelect = document.getElementById('business-type');
             const cnpjFieldContainer = document.getElementById('cnpj-field-container');
-            
+
             if (businessTypeSelect && cnpjFieldContainer) {
-                businessTypeSelect.addEventListener('change', function() {
+                businessTypeSelect.addEventListener('change', function () {
                     if (this.value === 'empresa') {
                         cnpjFieldContainer.style.display = 'block';
                     } else {

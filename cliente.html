@@ -10,6 +10,12 @@
     <link rel="stylesheet" href="CSS/breadcrumbs.css">
     <link rel="stylesheet" href="CSS/favoritar.css">
     <link rel="stylesheet" href="CSS/modo_noturno.css">
+    <!-- VLibras -->
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+
 </head>
 
 <body>
@@ -28,7 +34,7 @@
                         <div class="search-input">
                             <input type="text" id="searchInput" placeholder="O que você está procurando?">
                             <button id="searchButton" class="search-button" aria-label="Pesquisar">
-                               <i class="bi bi-search"></i>
+                                <i class="bi bi-search"></i>
                             </button>
                         </div>
                         <div class="search-filters">
@@ -45,33 +51,33 @@
                 </div>
 
                 <!-- Elementos do usuário à direita -->
-               <div class="user-section">
-<!-- Estrutura atual (sem alterações) -->
-<button class="botaoMenu" id="botaoMenu">
-    <i class="bi bi-list"></i>
-</button>
+                <div class="user-section">
+                    <!-- Estrutura atual (sem alterações) -->
+                    <button class="botaoMenu" id="botaoMenu">
+                        <i class="bi bi-list"></i>
+                    </button>
 
-<nav class="nav-menu" id="navMenu">
-    <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
-        <i class="bi bi-sun-fill" id="themeIcon"></i>
-    </button>
-    
-    <div class="cart">
-        <a href="carrinho.html">
-            <span class="cart-icon"><i class="bi bi-cart3"></i></span>
-        </a>
-        <span class="cart-count">1</span>
-    </div>
-    
-    <a href="login.html">
-        <i class="bi bi-box-arrow-right"></i> Sair da Conta
-    </a>
-    
-    <a href="perfil.html">
-        <i class="bi bi-person-fill"></i> Minha Conta
-    </a>
-</nav>
-</div>
+                    <nav class="nav-menu" id="navMenu">
+                        <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+                            <i class="bi bi-sun-fill" id="themeIcon"></i>
+                        </button>
+
+                        <div class="cart">
+                            <a href="carrinho.html">
+                                <span class="cart-icon"><i class="bi bi-cart3"></i></span>
+                            </a>
+                            <span class="cart-count">1</span>
+                        </div>
+
+                        <a href="login.html">
+                            <i class="bi bi-box-arrow-right"></i> Sair da Conta
+                        </a>
+
+                        <a href="perfil.html">
+                            <i class="bi bi-person-fill"></i> Minha Conta
+                        </a>
+                    </nav>
+                </div>
 
                 <!-- Categorias abaixo -->
                 <!-- Categorias abaixo -->
@@ -80,45 +86,61 @@
                         <div class="dropdown">
                             <a href="categoria.html?cat=masculino">Masculino</a>
                             <div class="dropdown-content">
-                                <div class="dropdown-category"><a href="categoria.html?cat=masculino&sub=roupas">Roupas</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=masculino&sub=calcados">Calçados</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=masculino&sub=acessorios">Acessórios</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=masculino&sub=roupas">Roupas</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=masculino&sub=calcados">Calçados</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=masculino&sub=acessorios">Acessórios</a></div>
                             </div>
                         </div>
 
                         <div class="dropdown">
                             <a href="categoria.html?cat=feminino">Feminino</a>
                             <div class="dropdown-content">
-                                <div class="dropdown-category"><a href="categoria.html?cat=feminino&sub=roupas">Roupas</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=feminino&sub=calcados">Calçados</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=feminino&sub=acessorios">Acessórios</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=feminino&sub=roupas">Roupas</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=feminino&sub=calcados">Calçados</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=feminino&sub=acessorios">Acessórios</a></div>
                             </div>
                         </div>
 
                         <div class="dropdown">
                             <a href="categoria.html?cat=infantil">Infantil</a>
                             <div class="dropdown-content">
-                                <div class="dropdown-category"><a href="categoria.html?cat=infantil&sub=roupas">Roupas</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=infantil&sub=calcados">Calçados</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=infantil&sub=outros">Outros</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=infantil&sub=roupas">Roupas</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=infantil&sub=calcados">Calçados</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=infantil&sub=outros">Outros</a></div>
                             </div>
                         </div>
 
                         <div class="dropdown">
                             <a href="categoria.html?cat=esportivo">Esportivo</a>
                             <div class="dropdown-content">
-                                <div class="dropdown-category"><a href="categoria.html?cat=esportivo&sub=roupas">Roupas</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=esportivo&sub=calcados">Calçados</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=esportivo&sub=outros">Outros</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=esportivo&sub=roupas">Roupas</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=esportivo&sub=calcados">Calçados</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=esportivo&sub=outros">Outros</a></div>
                             </div>
                         </div>
 
                         <div class="dropdown">
                             <a href="categoria.html?cat=casa-cozinha">Casa/Cozinha</a>
                             <div class="dropdown-content">
-                                <div class="dropdown-category"><a href="categoria.html?cat=casa-cozinha&sub=eletrodomesticos">Eletrodomésticos</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=casa-cozinha&sub=moveis">Movéis</a></div>
-                                <div class="dropdown-category"><a href="categoria.html?cat=casa-cozinha&sub=utensilios">Utensílios</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=casa-cozinha&sub=eletrodomesticos">Eletrodomésticos</a>
+                                </div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=casa-cozinha&sub=moveis">Movéis</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=casa-cozinha&sub=utensilios">Utensílios</a></div>
                             </div>
                         </div>
                     </section>
@@ -349,7 +371,8 @@
                     <h3>Sobre Nós</h3>
                     <a href="missao.html"><i class="bi bi-info-circle-fill"></i> <span>Missão</span></a>
                     <a href="equipe.html"><i class="bi bi-people-fill"></i> <span>Equipe</span></a>
-                    <a href="chat_Com_Vendedor.html"><i class="bi bi-chat-dots-fill"></i> <span>Chat com Vendedor</span></a>
+                    <a href="chat_Com_Vendedor.html"><i class="bi bi-chat-dots-fill"></i> <span>Chat com
+                            Vendedor</span></a>
 
                     <div class="social-links">
                         <a href="#" title="Facebook"><i class="bi bi-facebook"></i></a>
@@ -375,14 +398,14 @@
                     <i class="bi bi-x"></i>
                 </button>
             </div>
-            
+
             <div class="modal-content">
                 <form id="donation-form" class="donation-form">
                     <!-- Nome do Item -->
                     <div class="form-field">
                         <label for="item-name" class="field-label">Nome do Item *</label>
-                        <input type="text" id="item-name" name="item-name" class="input-field" 
-                               placeholder="Ex: Tênis Nike Preto" required>
+                        <input type="text" id="item-name" name="item-name" class="input-field"
+                            placeholder="Ex: Tênis Nike Preto" required>
                     </div>
 
                     <!-- Categoria do Item -->
@@ -447,7 +470,8 @@
                     <div class="form-field">
                         <label for="description" class="field-label">Descrição do Produto *</label>
                         <textarea id="description" name="description" class="textarea-field"
-                            placeholder="Descreva detalhes sobre o item (cor, tamanho, marca, etc.)" required></textarea>
+                            placeholder="Descreva detalhes sobre o item (cor, tamanho, marca, etc.)"
+                            required></textarea>
                     </div>
 
                     <!-- Upload de Fotos -->
@@ -500,11 +524,19 @@
         <p class="success-text">Obrigado por sua contribuição.</p>
     </div>
 
+    <!-- Widget VLibras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+
     <script>
         // Detectar se estamos na página de favoritos
-        const isFavoritesPage = window.location.pathname.includes('favoritos.html') || 
-                               window.location.search.includes('page=favorites');
-        
+        const isFavoritesPage = window.location.pathname.includes('favoritos.html') ||
+            window.location.search.includes('page=favorites');
+
         // Mostrar a seção apropriada
         if (isFavoritesPage) {
             document.getElementById('favoritesPage').style.display = 'block';
@@ -514,33 +546,33 @@
             document.getElementById('favoritesPage').style.display = 'none';
             document.getElementById('mainPage').style.display = 'block';
         }
-        
+
         // Sistema de favoritos integrado
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Carregar favoritos do localStorage
             let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-            
+
             // Atualizar ícones com base nos favoritos existentes
             updateFavoriteIcons(favorites);
-            
+
             // Se estamos na página de favoritos, carregar os itens
             if (isFavoritesPage) {
                 loadFavoritesPage(favorites);
             }
-            
+
             // Usar event delegation para evitar múltiplos listeners
-            document.addEventListener('click', function(e) {
+            document.addEventListener('click', function (e) {
                 // Verificar se o clique foi em um botão de favorito
                 const favoriteBtn = e.target.closest('.favorite-btn, .favorite-btn-bottom');
                 if (favoriteBtn) {
                     e.preventDefault();
                     e.stopPropagation();
-                    
+
                     const productId = favoriteBtn.getAttribute('data-id');
                     handleFavoriteClick(productId, favoriteBtn, favorites);
                 }
             });
-            
+
             // Função para atualizar os ícones de favorito
             function updateFavoriteIcons(favorites) {
                 document.querySelectorAll('.favorite-btn, .favorite-btn-bottom').forEach(btn => {
@@ -562,13 +594,13 @@
                     }
                 });
             }
-            
+
             // Função para lidar com o clique no botão de favorito
             function handleFavoriteClick(productId, button, favorites) {
                 // Verificar se o produto já está favoritado
                 const index = favorites.indexOf(productId);
                 const isActive = favorites.includes(productId);
-                
+
                 if (isActive) {
                     // Remover dos favoritos
                     favorites.splice(index, 1);
@@ -594,10 +626,10 @@
                         }
                     });
                 }
-                
+
                 // Salvar no localStorage
                 localStorage.setItem('favorites', JSON.stringify(favorites));
-                
+
                 // Se estamos na página de favoritos, atualizar a lista
                 if (isFavoritesPage && !isActive) {
                     // Se estamos adicionando um favorito da página de favoritos
@@ -606,27 +638,27 @@
                     // Se estamos removendo um favorito da página de favoritos
                     removeFavoriteFromPage(productId);
                 }
-                
+
                 // Mostrar feedback visual
                 showFavoriteFeedback(!isActive);
             }
-            
+
             // Função para carregar a página de favoritos
             function loadFavoritesPage(favorites) {
                 const emptyFavoritesDiv = document.getElementById('emptyFavorites');
                 const favoritesGrid = document.getElementById('favoritesGrid');
-                
+
                 // Verifica se há favoritos
                 if (favorites.length > 0) {
                     // Esconde a mensagem de lista vazia
                     if (emptyFavoritesDiv) emptyFavoritesDiv.style.display = 'none';
-                    
+
                     // Mostra o grid de favoritos
                     if (favoritesGrid) {
                         favoritesGrid.style.display = 'grid';
                         favoritesGrid.innerHTML = ''; // Limpa o grid existente
                     }
-                    
+
                     // Adiciona cada favorito ao grid
                     favorites.forEach(productId => {
                         addFavoriteToPage(productId);
@@ -637,33 +669,33 @@
                     if (favoritesGrid) favoritesGrid.style.display = 'none';
                 }
             }
-            
+
             // Função para adicionar um favorito à página
             function addFavoriteToPage(productId) {
                 const favoritesGrid = document.getElementById('favoritesGrid');
                 const emptyFavoritesDiv = document.getElementById('emptyFavorites');
-                
+
                 if (!favoritesGrid) return;
-                
+
                 // Obtém os dados do produto pelo ID
                 const productData = getProductDataById(productId);
-                
+
                 if (!productData) {
                     console.error('Produto não encontrado para ID:', productId);
                     return;
                 }
-                
+
                 // Esconde a mensagem de lista vazia
                 if (emptyFavoritesDiv) emptyFavoritesDiv.style.display = 'none';
-                
+
                 // Mostra o grid de favoritos
                 favoritesGrid.style.display = 'grid';
-                
+
                 // Cria o elemento do item de favorito
                 const favoriteItem = document.createElement('div');
                 favoriteItem.className = 'favorite-item';
                 favoriteItem.setAttribute('data-id', productId);
-                
+
                 // HTML do item de favorito
                 favoriteItem.innerHTML = `
                     <div class="favorite-image">
@@ -686,46 +718,46 @@
                         </div>
                     </div>
                 `;
-                
+
                 // Adiciona o item ao grid
                 favoritesGrid.appendChild(favoriteItem);
             }
-            
+
             // Função para remover um favorito da página
             function removeFavoriteFromPage(productId) {
                 const favoriteItem = document.querySelector(`.favorite-item[data-id="${productId}"]`);
                 if (favoriteItem) {
                     favoriteItem.remove();
                 }
-                
+
                 // Verifica se ainda há favoritos
                 const favoritesGrid = document.getElementById('favoritesGrid');
                 const emptyFavoritesDiv = document.getElementById('emptyFavorites');
-                
+
                 if (favoritesGrid && favoritesGrid.children.length === 0) {
                     // Mostra a mensagem de lista vazia
                     if (emptyFavoritesDiv) emptyFavoritesDiv.style.display = 'block';
                     favoritesGrid.style.display = 'none';
                 }
             }
-            
+
             // Função para obter dados do produto pelo ID
             function getProductDataById(productId) {
                 // Procura pelo produto na página
                 const productCard = document.querySelector(`.product-card[data-id="${productId}"]`);
-                
+
                 if (!productCard) {
                     // Se não encontrar na página, retorna dados padrão baseados no ID
                     return getDefaultProductData(productId);
                 }
-                
+
                 // Extrai os dados do produto
                 const name = productCard.querySelector('.product-name').textContent;
                 const price = productCard.querySelector('.product-price').textContent;
                 const category = productCard.querySelector('.product-category').textContent;
                 const image = productCard.querySelector('.product-image img').src;
                 const link = productCard.querySelector('a').href;
-                
+
                 return {
                     name,
                     price,
@@ -734,7 +766,7 @@
                     link
                 };
             }
-            
+
             // Função para obter dados padrão de produto (caso não encontre na página)
             function getDefaultProductData(productId) {
                 const products = {
@@ -767,10 +799,10 @@
                         link: 'produto.html?id=4'
                     }
                 };
-                
+
                 return products[productId] || null;
             }
-            
+
             // Função para mostrar feedback visual ao favoritar/desfavoritar
             function showFavoriteFeedback(isAdded) {
                 // Remove feedback anterior se existir
@@ -778,20 +810,20 @@
                 if (existingFeedback) {
                     existingFeedback.remove();
                 }
-                
+
                 // Cria o elemento de feedback
                 const feedback = document.createElement('div');
                 feedback.className = `favorite-feedback ${isAdded ? 'added' : 'removed'}`;
-                
+
                 // Define o conteúdo do feedback
                 feedback.innerHTML = `
                     <i class="bi ${isAdded ? 'bi-heart-fill' : 'bi-heart'}"></i>
                     ${isAdded ? 'Adicionado aos favoritos' : 'Removido dos favoritos'}
                 `;
-                
+
                 // Adiciona ao corpo do documento
                 document.body.appendChild(feedback);
-                
+
                 // Remove após 3 segundos
                 setTimeout(() => {
                     feedback.style.animation = 'slideOut 0.3s ease';
