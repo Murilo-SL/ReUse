@@ -1046,3 +1046,220 @@ body.night-mode .favorite-feedback.removed {
         background-color: transparent;
     }
 }
+
+/* ================ PERFIL DO VENDEDOR NO MODO NOTURNO ================ */
+body.night-mode .perfil-vendedor-container {
+    background: transparent;
+}
+
+body.night-mode .perfil-header {
+    background: linear-gradient(135deg, #2d2d44 0%, #3d3d5c 100%);
+    border: 1px solid #4b5563;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+body.night-mode .vendedor-info h1 {
+    color: #e6e6e6;
+}
+
+body.night-mode .vendedor-avaliacao span {
+    color: #b8b8cc;
+}
+
+body.night-mode .vendedor-localizacao {
+    color: #b8b8cc;
+}
+
+body.night-mode .estatistica-item {
+    background: rgba(77, 166, 255, 0.1);
+}
+
+body.night-mode .estatistica-item:hover {
+    background: rgba(77, 166, 255, 0.2);
+}
+
+body.night-mode .estatistica-valor {
+    color: #4da6ff;
+}
+
+body.night-mode .estatistica-label {
+    color: #b8b8cc;
+}
+
+body.night-mode .perfil-tabs {
+    background: #2d2d44;
+    border-bottom-color: #4b5563;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+body.night-mode .tab {
+    color: #b8b8cc;
+    background: #2d2d44;
+}
+
+body.night-mode .tab:hover {
+    color: #4da6ff;
+    background: rgba(77, 166, 255, 0.1);
+}
+
+body.night-mode .tab.active {
+    color: #4da6ff;
+    background: rgba(77, 166, 255, 0.15);
+    border-bottom-color: #4da6ff;
+}
+
+body.night-mode .section-title {
+    color: #e6e6e6;
+    border-bottom-color: #4da6ff;
+}
+
+/* Produtos no modo noturno */
+body.night-mode .product-card {
+    background: #2d2d44;
+    border: 1px solid #4b5563;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+body.night-mode .product-card:hover {
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+    border-color: #4da6ff;
+}
+
+body.night-mode .product-info h3 {
+    color: #e6e6e6;
+}
+
+body.night-mode .price {
+    color: #4da6ff;
+}
+
+body.night-mode .product-category {
+    background: #3d3d5c;
+    color: #b8b8cc;
+}
+
+/* Avaliações no modo noturno */
+body.night-mode .avaliacao-item {
+    background: #2d2d44;
+    border-left-color: #4da6ff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+body.night-mode .avaliacao-cliente {
+    color: #e6e6e6;
+}
+
+body.night-mode .avaliacao-texto {
+    color: #b8b8cc;
+}
+
+/* Sobre o vendedor no modo noturno */
+body.night-mode .sobre-vendedor {
+    background: #2d2d44;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    color: #b8b8cc;
+}
+
+/* Contato no modo noturno */
+body.night-mode .contato-vendedor {
+    background: #2d2d44;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+body.night-mode .contato-item {
+    color: #b8b8cc;
+}
+
+body.night-mode .contato-item:hover {
+    background: rgba(77, 166, 255, 0.1);
+}
+
+body.night-mode .contato-item i {
+    color: #4da6ff;
+}
+
+body.night-mode .btn-contato {
+    background: linear-gradient(135deg, #4da6ff 0%, #2563eb 100%);
+    box-shadow: 0 4px 15px rgba(77, 166, 255, 0.3);
+}
+
+body.night-mode .btn-contato:hover {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    box-shadow: 0 8px 20px rgba(77, 166, 255, 0.4);
+}
+
+/* Estados vazios no modo noturno */
+body.night-mode .produtos-vendedor:empty::before,
+body.night-mode .avaliacoes-lista:empty::before,
+body.night-mode .sobre-vendedor:empty::before {
+    color: #888;
+}
+
+/* Favoritos no modo noturno */
+body.night-mode .favorite-btn {
+    background: rgba(45, 45, 68, 0.95);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+body.night-mode .favorite-btn:hover {
+    background: rgba(61, 61, 92, 0.95);
+}
+
+body.night-mode .favorite-btn i {
+    color: #a0aec0;
+}
+
+body.night-mode .favorite-btn.active {
+    background: rgba(231, 76, 60, 0.2);
+}
+
+body.night-mode .favorite-btn.active i {
+    color: #ff6b6b;
+}
+
+body.night-mode .favorite-btn-bottom {
+    background: #3d3d5c;
+    border-color: #4b5563;
+    color: #e6e6e6;
+}
+
+body.night-mode .favorite-btn-bottom:hover {
+    background: #4b5563;
+}
+
+body.night-mode .favorite-btn-bottom.active {
+    background: rgba(231, 76, 60, 0.2);
+    border-color: #ff6b6b;
+    color: #ff6b6b;
+}
+
+body.night-mode .favorite-feedback {
+    background: #2d2d44;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+body.night-mode .favorite-feedback.added {
+    border-left-color: #ff6b6b;
+}
+
+body.night-mode .favorite-feedback.removed {
+    border-left-color: #4da6ff;
+}
+
+/* Imagens de produto no modo noturno */
+body.night-mode .product-image {
+    background-color: #3d3d5c;
+}
+
+body.night-mode .product-image img {
+    filter: brightness(0.9);
+}
+
+body.night-mode .product-card:hover .product-image img {
+    filter: brightness(1);
+}
+
+/* Mensagem de nenhum produto */
+body.night-mode .no-products {
+    color: #b8b8cc;
+}
