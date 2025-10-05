@@ -16,7 +16,6 @@
     <script>
         new window.VLibras.Widget('https://vlibras.gov.br/app');
     </script>
-
 </head>
 
 <body>
@@ -80,7 +79,6 @@
                         </a>
                     </nav>
                 </div>
-
 
                 <!-- Categorias abaixo -->
                 <div class="categories-section">
@@ -151,25 +149,23 @@
         </div>
     </header>
 
-    <!-- DASHBOARD PRINCIPAL - Adaptado para cliente -->
+    <!-- DASHBOARD PRINCIPAL - Sem menu lateral -->
     <div class="dashboard-container">
-        <!-- Menu Lateral para cliente -->
-        <aside class="sidebar">
-            <h2 class="sidebar-title">Minha Conta</h2>
-            <ul class="sidebar-nav">
-                <li><a href="cliente.html"><i class="bi bi-house"></i> Início</a></li>
-                <li><a href="perfil.html"><i class="bi bi-person"></i> Meu Perfil</a></li>
-                <li><a href="pedidos.html"><i class="bi bi-bag"></i> Meus Pedidos</a></li>
-                <li><a href="favoritos.html"><i class="bi bi-heart"></i> Favoritos</a></li>
-                <li><a href="chat_com_vendedor.html" class="active"><i class="bi bi-chat-dots"></i> Chat com
-                        Vendedores</a></li>
-            </ul>
-        </aside>
-
         <!-- Conteúdo Principal -->
         <main class="main-content">
+            <div class="page-header">
+                <h1>Chat com Vendedores</h1>
+                <p>Converse diretamente com os vendedores sobre produtos e negociações</p>
+            </div>
+
             <div class="chat-container">
                 <div class="chat-sidebar">
+                    <!-- Adicione isso dentro de .chat-sidebar, antes do .chat-search -->
+                    <div class="sidebar-header">
+                        <button class="btn-iniciar-conversa-sidebar">
+                            <i class="bi bi-plus-circle"></i> Nova Conversa
+                        </button>
+                    </div>
                     <div class="chat-search">
                         <input type="text" placeholder="Buscar conversas...">
                         <i class="bi bi-search"></i>
@@ -327,156 +323,20 @@
         </div>
     </div>
 
-    <script>
-        // Estrutura de dados para armazenar as conversas (perspectiva do cliente)
-        const conversas = {
-            brechoElegante: {
-                nome: "Brechó Elegante",
-                avatar: "IMG/brecho1.jpg",
-                status: "Online",
-                mensagens: [
-                    { texto: "Olá, temos várias opções de roupas masculinas em ótimo estado", enviada: false, hora: "10:30" },
-                    { texto: "Olá! Gostaria de saber mais sobre a camiseta Polo que vocês estão vendendo", enviada: true, hora: "10:32" },
-                    { texto: "Claro! Ela é original e está em ótimo estado, sem manchas ou furos", enviada: false, hora: "10:35" },
-                    { texto: "Perfeito! Vocês fazem entregas ou só retirada?", enviada: true, hora: "10:42" }
-                ]
-            },
-            casaUsados: {
-                nome: "Casa dos Usados",
-                avatar: "IMG/brecho2.jpg",
-                status: "Offline",
-                mensagens: [
-                    { texto: "Olá, vi o liquidificador que você está vendendo", enviada: true, hora: "14:20" },
-                    { texto: "Oi! Sim, é um liquidificador Philips em ótimo estado", enviada: false, hora: "14:25" },
-                    { texto: "Você pode fazer um desconto?", enviada: true, hora: "14:30" }
-                ]
-            },
-            estiloVintage: {
-                nome: "Estilo Vintage",
-                avatar: "IMG/brecho3.jpg",
-                status: "Online",
-                mensagens: [
-                    { texto: "Boa tarde! Vi o vestido floral no catálogo de vocês", enviada: true, hora: "09:15" },
-                    { texto: "Boa tarde! Sim, é lindo, quase não foi usado", enviada: false, hora: "09:18" },
-                    { texto: "O vestido ainda está disponível?", enviada: true, hora: "09:20" }
-                ]
-            },
-            doacaoAmiga: {
-                nome: "Doação Amiga",
-                avatar: "IMG/ong1.jpg",
-                status: "Offline",
-                mensagens: [
-                    { texto: "Olá, gostaria de fazer uma doação de roupas", enviada: true, hora: "16:45" },
-                    { texto: "Que maravilha! Aceitamos doações de roupas em bom estado", enviada: false, hora: "16:50" },
-                    { texto: "Perfeito! Como posso entregar?", enviada: true, hora: "16:55" }
-                ]
-            }
-        };
-
-        let conversaAtual = "brechoElegante"; // ID da conversa atual
-
-        // Função para carregar as mensagens da conversa atual
-        function carregarMensagens() {
-            const container = document.getElementById('chat-messages-container');
-            const conversa = conversas[conversaAtual];
-
-            // Limpar o container
-            container.innerHTML = '';
-
-            // Adicionar cada mensagem
-            conversa.mensagens.forEach(msg => {
-                const messageDiv = document.createElement('div');
-                messageDiv.className = `message ${msg.enviada ? 'sent' : 'received'}`;
-
-                messageDiv.innerHTML = `
-                    <p>${msg.texto}</p>
-                    <span>${msg.hora}</span>
-                `;
-
-                container.appendChild(messageDiv);
-            });
-
-            // Rolar para o final das mensagens
-            container.scrollTop = container.scrollHeight;
-
-            // Atualizar informações do chat atual
-            document.getElementById('current-chat-name').textContent = conversa.nome;
-            document.getElementById('current-chat-status').textContent = conversa.status;
-            document.getElementById('current-avatar').src = conversa.avatar;
-        }
-
-        // Função para enviar uma mensagem
-        function enviarMensagem() {
-            const input = document.getElementById('message-input');
-            const texto = input.value.trim();
-
-            if (texto === '') return;
-
-            // Obter hora atual
-            const agora = new Date();
-            const hora = `${agora.getHours()}:${agora.getMinutes().toString().padStart(2, '0')}`;
-
-            // Adicionar mensagem à conversa atual
-            conversas[conversaAtual].mensagens.push({
-                texto: texto,
-                enviada: true,
-                hora: hora
-            });
-
-            // Limpar o input
-            input.value = '';
-
-            // Recarregar as mensagens
-            carregarMensagens();
-        }
-
-        // Inicializar o chat
-        document.addEventListener('DOMContentLoaded', function () {
-            // Carregar a primeira conversa
-            carregarMensagens();
-
-            // Adicionar event listeners para os itens da lista de conversas
-            document.querySelectorAll('.chat-item').forEach(item => {
-                item.addEventListener('click', function () {
-                    // Remover a classe active de todos os itens
-                    document.querySelectorAll('.chat-item').forEach(i => {
-                        i.classList.remove('active');
-                    });
-
-                    // Adicionar a classe active ao item clicado
-                    this.classList.add('active');
-
-                    // Atualizar a conversa atual
-                    conversaAtual = this.getAttribute('data-chat-id');
-
-                    // Carregar as mensagens da nova conversa
-                    carregarMensagens();
-                });
-            });
-
-            // Event listener para o botão de enviar
-            document.getElementById('send-button').addEventListener('click', enviarMensagem);
-
-            // Event listener para pressionar Enter no input
-            document.getElementById('message-input').addEventListener('keypress', function (e) {
-                if (e.key === 'Enter') {
-                    enviarMensagem();
-                }
-            });
-        });
-    </script>
+    <!-- Scripts externos -->
     <script src="JS/breadcrumbs.js"></script>
     <script src="JS/modo_noturno.js"></script>
     <script src="JS/menu.js"></script>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q755SR73MY"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script src="JS/chat_com_vendedor.js"></script>
 
-  gtag('config', 'G-Q755SR73MY');
-</script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q755SR73MY"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-Q755SR73MY');
+    </script>
 </body>
 
 </html>

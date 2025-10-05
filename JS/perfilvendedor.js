@@ -878,6 +878,86 @@ function inicializarEstadoFavoritos() {
     });
 }
 
+// Função para configurar o botão de chat
+function configurarChat() {
+    document.getElementById('btn-chat').addEventListener('click', function() {
+        const vendedorNome = document.getElementById('vendedor-nome').textContent;
+        
+        // Criar ou atualizar conversa com este vendedor
+        criarConversaNoPerfil(vendedorNome);
+        
+        // Redirecionar para a página de chat
+        window.location.href = `chat_com_vendedor.html?vendedor=${encodeURIComponent(vendedorNome)}`;
+    });
+}
+
+// Função para criar/atualizar conversa quando clicado no perfil
+function criarConversaNoPerfil(nomeVendedor) {
+    // Obter conversas existentes do localStorage
+    let conversas = JSON.parse(localStorage.getItem('conversas')) || [];
+    
+    // Verificar se já existe conversa com este vendedor
+    const conversaExistente = conversas.find(conv => conv.vendedor === nomeVendedor);
+    
+    if (!conversaExistente) {
+        // Dados do vendedor (usando informações do banco de dados)
+        const vendedorInfo = vendedores[nomeVendedor];
+        const avatar = vendedorInfo ? vendedorInfo.avatar : 'IMG/placeholder-vendedor.jpg';
+        
+        // Mensagem inicial personalizada baseada no tipo de vendedor
+        let mensagemInicial = "Olá! Como posso ajudar?";
+        if (vendedorInfo && vendedorInfo.sobre) {
+            if (vendedorInfo.sobre.includes('roupas')) {
+                mensagemInicial = "Olá! Tenho ótimas peças de roupas para você. Como posso ajudar?";
+            } else if (vendedorInfo.sobre.includes('eletrodomésticos')) {
+                mensagemInicial = "Olá! Posso ajudar com eletrodomésticos em ótimo estado. O que procura?";
+            } else if (vendedorInfo.sobre.includes('sustentável')) {
+                mensagemInicial = "Olá! Trabalhamos com moda sustentável. Posso ajudar?";
+            }
+        }
+        
+        // Criar nova conversa
+        const novaConversa = {
+            id: 'chat_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9),
+            vendedor: nomeVendedor,
+            avatar: avatar,
+            ultimaMensagem: mensagemInicial,
+            tempo: new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }),
+            mensagens: [
+                { 
+                    remetente: "vendedor", 
+                    texto: mensagemInicial, 
+                    tempo: new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
+                }
+            ],
+            naoLida: true,
+            dataCriacao: new Date().toISOString()
+        };
+        
+        conversas.unshift(novaConversa);
+        
+        // Salvar no localStorage
+        localStorage.setItem('conversas', JSON.stringify(conversas));
+        
+        console.log(`Nova conversa criada com: ${nomeVendedor}`);
+    } else {
+        // Se já existe, apenas marcar como não lida e mover para o topo
+        conversaExistente.naoLida = true;
+        conversaExistente.tempo = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+        
+        // Mover para o topo da lista
+        conversas = conversas.filter(conv => conv.vendedor !== nomeVendedor);
+        conversas.unshift(conversaExistente);
+        
+        localStorage.setItem('conversas', JSON.stringify(conversas));
+        
+        console.log(`Conversa existente atualizada com: ${nomeVendedor}`);
+    }
+    
+    // Disparar evento customizado para notificar outras abas/páginas
+    window.dispatchEvent(new CustomEvent('conversaAtualizada'));
+}
+
 // Inicializar a página quando carregar
 document.addEventListener('DOMContentLoaded', function() {
     carregarVendedor();
