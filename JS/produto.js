@@ -1,4 +1,4 @@
-// Banco de dados de produtos
+// Banco de dados de produtos (SIMPLIFICADO - todos os produtos pertencem às 4 lojas)
 const produtos = {
     "1": {
         id: "1",
@@ -29,7 +29,7 @@ const produtos = {
         descricao: "Liquidificador em perfeito estado, pouco uso.",
         medidas: ["Altura: 30cm", "Largura: 15cm"],
         vendedor: "Casa Usada",
-        vendedorLink: "perfilVendedor.html",
+        vendedorLink: "perfilvendedor.html",
         informacoes: [
             "Potência: 500W",
             "Cor: Vermelho",
@@ -48,7 +48,7 @@ const produtos = {
         descricao: "Tênis Nike usado em ótimo estado, ideal para quem busca qualidade e economia.",
         medidas: ["Tamanho do Calçado: 42"],
         vendedor: "Brechó Sustentável",
-        vendedorLink: "Perfilvendedor.html",
+        vendedorLink: "perfilvendedor.html",
         informacoes: [
             "Material: mistura de couro, tecido, espuma e borracha",
             "Cor: Azul marinho e Branco",
@@ -84,7 +84,7 @@ const produtos = {
         imagem: "IMG/calca_j.jpg",
         descricao: "Calça jeans masculina em ótimo estado, perfeita para o dia a dia.",
         medidas: ["Tamanho: 42", "Comprimento: 100cm"],
-        vendedor: "Brechó Masculino",
+        vendedor: "Brechó Elegante",
         vendedorLink: "perfilvendedor.html",
         informacoes: [
             "Material: Jeans",
@@ -103,7 +103,7 @@ const produtos = {
         imagem: "IMG/tenis_c.jpg",
         descricao: "Tênis casual novo, ideal para looks despojados.",
         medidas: ["Tamanho: 41"],
-        vendedor: "Calçados & Cia",
+        vendedor: "Brechó Sustentável",
         vendedorLink: "perfilvendedor.html",
         informacoes: [
             "Material: Couro sintético",
@@ -122,7 +122,7 @@ const produtos = {
         imagem: "IMG/relogio_s_n.jpg",
         descricao: "Relógio esportivo semi-novo com cronômetro e resistente à água.",
         medidas: ["Pulseira: 22cm"],
-        vendedor: "Acessórios Premium",
+        vendedor: "Moda Circular",
         vendedorLink: "perfilvendedor.html",
         informacoes: [
             "Material: Silicone",
@@ -141,7 +141,7 @@ const produtos = {
         imagem: "IMG/jaqueta_c_u.jpg",
         descricao: "Jaqueta de couro legítimo, usada mas em bom estado.",
         medidas: ["Tamanho: G", "Comprimento: 70cm"],
-        vendedor: "Moda Masculina",
+        vendedor: "Brechó Elegante",
         vendedorLink: "perfilvendedor.html",
         informacoes: [
             "Material: Couro legítimo",
@@ -160,7 +160,7 @@ const produtos = {
         imagem: "IMG/blusa_s_s.jpg",
         descricao: "Blusa de seda semi-nova, muito elegante e confortável.",
         medidas: ["Tamanho: P", "Comprimento: 60cm"],
-        vendedor: "Moda Feminina",
+        vendedor: "Moda Circular",
         vendedorLink: "perfilvendedor.html",
         informacoes: [
             "Material: Seda 100%",
@@ -179,7 +179,7 @@ const produtos = {
         imagem: "IMG/salto_a_u.jpg",
         descricao: "Salto alto usado, ainda em bom estado para ocasiões especiais.",
         medidas: ["Tamanho: 36", "Altura do salto: 10cm"],
-        vendedor: "Sapatos Elegantes",
+        vendedor: "Moda Circular",
         vendedorLink: "perfilvendedor.html",
         informacoes: [
             "Material: Couro sintético",
@@ -198,7 +198,7 @@ const produtos = {
         imagem: "IMG/bolsa_c_s.jpg",
         descricao: "Bolsa de couro semi-nova, espaçosa e elegante.",
         medidas: ["Largura: 35cm", "Altura: 25cm"],
-        vendedor: "Acessórios Femininos",
+        vendedor: "Moda Circular",
         vendedorLink: "perfilvendedor.html",
         informacoes: [
             "Material: Couro legítimo",
@@ -217,7 +217,7 @@ const produtos = {
         imagem: "IMG/saia_m_n.jpg",
         descricao: "Saia midi nova, perfeita para o trabalho ou eventos.",
         medidas: ["Tamanho: M", "Comprimento: 75cm"],
-        vendedor: "Moda Atual",
+        vendedor: "Moda Circular",
         vendedorLink: "perfilvendedor.html",
         informacoes: [
             "Material: Viscose",
@@ -236,7 +236,7 @@ const produtos = {
         imagem: "IMG/conjunto_i_s.jpg",
         descricao: "Conjunto infantil semi-novo, muito fofo e confortável.",
         medidas: ["Tamanho: 6 anos"],
-        vendedor: "Moda Infantil",
+        vendedor: "Brechó Sustentável",
         vendedorLink: "perfilvendedor.html",
         informacoes: [
             "Material: Algodão",
@@ -255,7 +255,7 @@ const produtos = {
         imagem: "IMG/tenis_i_n.jpg",
         descricao: "Tênis infantil novo, com luzes LED divertidas.",
         medidas: ["Tamanho: 28"],
-        vendedor: "Calçados Kids",
+        vendedor: "Brechó Sustentável",
         vendedorLink: "perfilvendedor.html",
         informacoes: [
             "Material: Têxtil e sintético",
@@ -274,7 +274,7 @@ const produtos = {
         imagem: "IMG/carrinho_b_u.jpg",
         descricao: "Carrinho de brinquedo usado, mas ainda funcional e divertido.",
         medidas: ["Comprimento: 20cm", "Largura: 10cm"],
-        vendedor: "Brinquedos Usados",
+        vendedor: "Brechó Sustentável",
         vendedorLink: "perfilvendedor.html",
         informacoes: [
             "Material: Plástico",
@@ -293,7 +293,7 @@ const produtos = {
         imagem: "IMG/vestido_i_s.jpg",
         descricao: "Vestido infantil semi-novo, perfeito para festas.",
         medidas: ["Tamanho: 4 anos"],
-        vendedor: "Moda Kids",
+        vendedor: "Brechó Sustentável",
         vendedorLink: "perfilvendedor.html",
         informacoes: [
             "Material: Tule e algodão",
@@ -312,7 +312,7 @@ const produtos = {
         imagem: "IMG/camiseta_d_f_s.jpg",
         descricao: "Camiseta dry fit semi-nova, ideal para atividades físicas.",
         medidas: ["Tamanho: G"],
-        vendedor: "Esportes & Ação",
+        vendedor: "Brechó Sustentável",
         vendedorLink: "perfilvendedor.html",
         informacoes: [
             "Material: Dry Fit",
@@ -331,7 +331,7 @@ const produtos = {
         imagem: "IMG/short_c_u.jpg",
         descricao: "Shorts de corrida usado, ainda em bom estado.",
         medidas: ["Tamanho: M"],
-        vendedor: "Corrida Livre",
+        vendedor: "Brechó Sustentável",
         vendedorLink: "perfilvendedor.html",
         informacoes: [
             "Material: Poliéster",
@@ -350,7 +350,7 @@ const produtos = {
         imagem: "IMG/garrafa_t_n.jpg",
         descricao: "Garrafa térmica nova, mantém líquidos quentes ou frios por horas.",
         medidas: ["Capacidade: 750ml"],
-        vendedor: "Casa & Utilidades",
+        vendedor: "Casa Usada",
         vendedorLink: "perfilvendedor.html",
         informacoes: [
             "Material: Aço inoxidável",
@@ -369,7 +369,7 @@ const produtos = {
         imagem: "IMG/panela_p_u.jpg",
         descricao: "Panela de pressão usada, ainda funcional e segura.",
         medidas: ["Capacidade: 4,5L"],
-        vendedor: "Utensílios Domésticos",
+        vendedor: "Casa Usada",
         vendedorLink: "perfilvendedor.html",
         informacoes: [
             "Material: Alumínio",
@@ -388,7 +388,7 @@ const produtos = {
         imagem: "IMG/cadeira_e_s.jpg",
         descricao: "Cadeira de escritório semi-nova, ergonômica e confortável.",
         medidas: ["Altura: 80-100cm", "Largura: 60cm"],
-        vendedor: "Móveis & Escritório",
+        vendedor: "Casa Usada",
         vendedorLink: "perfilvendedor.html",
         informacoes: [
             "Material: Couro sintético",
@@ -407,7 +407,7 @@ const produtos = {
         imagem: "IMG/panela_n.jpg",
         descricao: "Jogo de panelas novo, antiaderente e durável.",
         medidas: ["5 peças"],
-        vendedor: "Cozinha Completa",
+        vendedor: "Casa Usada",
         vendedorLink: "perfilvendedor.html",
         informacoes: [
             "Material: Alumínio com antiaderente",
@@ -512,8 +512,9 @@ function carregarProduto() {
         medidasList.appendChild(li);
     });
     
+    // ATUALIZAÇÃO AQUI: Link para a página de perfil do vendedor
     document.getElementById('produto-vendedor').textContent = produto.vendedor;
-    document.getElementById('produto-vendedor-link').href = produto.vendedorLink;
+    document.getElementById('produto-vendedor-link').href = `perfilvendedor.html?vendedor=${encodeURIComponent(produto.vendedor)}`;
     
     const infoList = document.getElementById('produto-informacoes');
     infoList.innerHTML = '';
