@@ -32,7 +32,7 @@ function switchForm(activeButton, activeForm, direction) {
         cardHeader.classList.add('molecules-animation');
     }
     
-    // [O resto do código permanece igual...]
+
     // Encontrar o formulário ativo atual
     const currentActiveForm = document.querySelector('.form-container.active');
     
@@ -83,8 +83,7 @@ function switchForm(activeButton, activeForm, direction) {
         switchForm(institutionButton, institutionForm, 'right');
     });
 
-    // Resto do código de validação permanece igual...
-    // [Todo o resto do código de validação dos formulários permanece igual]
+
     // Validação do formulário de cliente
     const customerLoginForm = document.getElementById('customerLoginForm');
 
@@ -125,7 +124,7 @@ function switchForm(activeButton, activeForm, direction) {
         }
     });
 
-    // Validação do formulário de vendedor (ATUALIZADO)
+    // Validação do formulário de vendedor 
     const sellerLoginForm = document.getElementById('sellerLoginForm');
 
     sellerLoginForm.addEventListener('submit', (e) => {
@@ -185,7 +184,7 @@ function switchForm(activeButton, activeForm, direction) {
         }
     });
 
-    // Validação do formulário de instituição (ATUALIZADO)
+    // Validação do formulário de instituição 
     const institutionLoginForm = document.getElementById('institutionLoginForm');
 
     institutionLoginForm.addEventListener('submit', (e) => {
