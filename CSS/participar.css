@@ -1,4 +1,4 @@
-   :root {
+        :root {
             --primary-blue: #0066cc;
             --primary-green: #00cc99;
             --dark-blue: #0052a3;
@@ -27,6 +27,7 @@
             padding: 20px;
             color: var(--text-dark);
             line-height: 1.6;
+            overflow-x: hidden;
         }
         
         .container {
@@ -40,6 +41,9 @@
             overflow: hidden;
             box-shadow: var(--shadow-hover);
             min-height: 700px;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: containerEntrance 1s ease 0.2s forwards;
         }
         
         /* Lado Esquerdo - Apresentação */
@@ -70,14 +74,21 @@
             margin-bottom: 30px;
             position: relative;
             z-index: 2;
+            transform: translateX(-20px);
+            opacity: 0;
+            animation: slideInLeft 0.8s ease 0.5s forwards;
         }
         
-.logo-container img {
-    max-width: 200px;
-    height: auto;
-    /* Substituir o filtro por uma solução mais compatível */
-    filter: none; /* Remover o filtro anterior */
-}
+        .logo-container img {
+            max-width: 200px;
+            height: auto;
+            filter: brightness(0) invert(1);
+            transition: transform 0.5s ease;
+        }
+        
+        .logo-container:hover img {
+            transform: scale(1.05);
+        }
         
         .presentation-side h1 {
             font-size: 2.8rem;
@@ -85,6 +96,9 @@
             line-height: 1.2;
             position: relative;
             z-index: 2;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.7s forwards;
         }
         
         .presentation-side p {
@@ -93,6 +107,9 @@
             margin-bottom: 40px;
             position: relative;
             z-index: 2;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.9s forwards;
         }
         
         .features {
@@ -108,6 +125,20 @@
             display: flex;
             align-items: center;
             gap: 15px;
+            transform: translateX(-20px);
+            opacity: 0;
+        }
+        
+        .feature:nth-child(1) {
+            animation: slideInLeft 0.8s ease 1.1s forwards;
+        }
+        
+        .feature:nth-child(2) {
+            animation: slideInLeft 0.8s ease 1.3s forwards;
+        }
+        
+        .feature:nth-child(3) {
+            animation: slideInLeft 0.8s ease 1.5s forwards;
         }
         
         .feature-icon {
@@ -119,6 +150,12 @@
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .feature:hover .feature-icon {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1) rotate(5deg);
         }
         
         /* Lado Direito - Opções de Login/Cadastro */
@@ -133,11 +170,17 @@
             font-size: 2rem;
             margin-bottom: 10px;
             color: var(--text-dark);
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.7s forwards;
         }
         
         .options-side > p {
             color: var(--text-light);
             margin-bottom: 40px;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.9s forwards;
         }
         
         .options-container {
@@ -150,10 +193,20 @@
             background: var(--light-bg);
             border-radius: 16px;
             padding: 30px;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: 1px solid rgba(0, 0, 0, 0.05);
             position: relative;
             overflow: hidden;
+            transform: translateY(20px);
+            opacity: 0;
+        }
+        
+        .option-card:nth-child(1) {
+            animation: fadeInUp 0.8s ease 1.1s forwards;
+        }
+        
+        .option-card:nth-child(2) {
+            animation: fadeInUp 0.8s ease 1.3s forwards;
         }
         
         .option-card::before {
@@ -164,7 +217,7 @@
             width: 5px;
             height: 100%;
             background: var(--primary-blue);
-            transition: width 0.3s ease;
+            transition: all 0.4s ease;
         }
         
         .option-card.secondary::before {
@@ -172,12 +225,13 @@
         }
         
         .option-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
             box-shadow: var(--shadow-hover);
         }
         
         .option-card:hover::before {
-            width: 8px;
+            width: 100%;
+            opacity: 0.1;
         }
         
         .option-header {
@@ -185,6 +239,8 @@
             align-items: center;
             gap: 15px;
             margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
         }
         
         .option-icon {
@@ -197,6 +253,11 @@
             justify-content: center;
             color: white;
             font-size: 1.8rem;
+            transition: all 0.3s ease;
+        }
+        
+        .option-card:hover .option-icon {
+            transform: scale(1.1) rotate(5deg);
         }
         
         .option-card.secondary .option-icon {
@@ -206,12 +267,16 @@
         .option-title {
             font-size: 1.5rem;
             font-weight: 600;
+            position: relative;
+            z-index: 1;
         }
         
         .option-description {
             color: var(--text-light);
             margin-bottom: 25px;
             padding-left: 75px;
+            position: relative;
+            z-index: 1;
         }
         
         .option-button {
@@ -224,17 +289,35 @@
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: none;
             cursor: pointer;
             font-size: 1rem;
             margin-left: 75px;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+        
+        .option-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .option-button:hover::before {
+            left: 100%;
         }
         
         .option-button:hover {
             background: var(--dark-blue);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 102, 204, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 102, 204, 0.4);
         }
         
         .option-button.secondary {
@@ -243,7 +326,7 @@
         
         .option-button.secondary:hover {
             background: var(--dark-green);
-            box-shadow: 0 5px 15px rgba(0, 204, 153, 0.3);
+            box-shadow: 0 8px 20px rgba(0, 204, 153, 0.4);
         }
         
         .back-section {
@@ -251,6 +334,9 @@
             margin-top: 40px;
             padding-top: 30px;
             border-top: 1px solid rgba(0, 0, 0, 0.1);
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 1.5s forwards;
         }
         
         .back-link {
@@ -259,12 +345,16 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            transition: color 0.3s;
+            transition: all 0.3s ease;
             font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 50px;
         }
         
         .back-link:hover {
             color: var(--primary-blue);
+            background: rgba(0, 102, 204, 0.1);
+            transform: translateX(-5px);
         }
         
         /* Efeitos de partículas */
@@ -284,9 +374,31 @@
             animation: float linear infinite;
         }
         
+        /* Animações principais */
+        @keyframes containerEntrance {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideInLeft {
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
         @keyframes float {
             0% {
-                transform: translateY(100vh) translateX(0);
+                transform: translateY(100vh) translateX(0) rotate(0deg);
                 opacity: 0;
             }
             10% {
@@ -296,7 +408,7 @@
                 opacity: 0.7;
             }
             100% {
-                transform: translateY(-100px) translateX(20px);
+                transform: translateY(-100px) translateX(20px) rotate(180deg);
                 opacity: 0;
             }
         }
@@ -350,24 +462,4 @@
                 width: 100%;
                 justify-content: center;
             }
-        }
-        
-        /* Animações */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .fade-in {
-            animation: fadeIn 0.8s ease forwards;
-        }
-        
-        .delay-1 {
-            animation-delay: 0.2s;
-            opacity: 0;
-        }
-        
-        .delay-2 {
-            animation-delay: 0.4s;
-            opacity: 0;
         }
