@@ -1052,6 +1052,27 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 </script>
+
+<script>
+    // Adicionar ao arquivo JS/menu.js ou incluir no final do HTML
+document.addEventListener('DOMContentLoaded', function() {
+    const botaoMenu = document.getElementById('botaoMenu');
+    const navMenu = document.getElementById('navMenu');
+    
+    if (botaoMenu && navMenu) {
+        botaoMenu.addEventListener('click', function() {
+            navMenu.classList.toggle('mostrar');
+        });
+        
+        // Fechar menu ao clicar fora
+        document.addEventListener('click', function(event) {
+            if (!botaoMenu.contains(event.target) && !navMenu.contains(event.target)) {
+                navMenu.classList.remove('mostrar');
+            }
+        });
+    }
+});
+</script>
 <script src="JS/breadcrumbs.js"></script>
 <script src="JS/modal_doação_sos_felino.js"></script>
 <script src="JS/modal_voluntario_sos_felino.js"></script>

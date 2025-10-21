@@ -1752,3 +1752,1111 @@ footer {
         border-bottom: none;
     }
 }
+
+/* ================ MELHORIAS DE RESPONSIVIDADE ================ */
+
+/* Ajustes gerais para telas menores */
+@media (max-width: 950px) {
+    /* Header responsivo */
+    .header-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .logo-section, .search-section, .user-section {
+        width: 100%;
+    }
+    
+    .logo img {
+        width: 150px;
+        margin: 0 auto;
+        display: block;
+    }
+    
+    .search-combined {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .search-filters select {
+        width: 100%;
+    }
+    
+    /* Menu responsivo */
+    .nav-menu {
+        flex-direction: column;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        position: absolute;
+        top: 100%;
+        left: 0;
+        padding: 15px;
+        border-radius: 0 0 8px 8px;
+        z-index: 1000;
+        display: none;
+    }
+    
+    .nav-menu.mostrar {
+        display: flex;
+    }
+    
+    .nav-menu > * {
+        margin: 5px 0;
+        padding: 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .nav-menu > *:last-child {
+        border-bottom: none;
+    }
+    
+    .botaoMenu {
+        display: flex;
+    }
+    
+    /* Categorias responsivas */
+    .categories {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .dropdown {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .dropdown-content {
+        position: static;
+        transform: none;
+        width: 100%;
+        box-shadow: none;
+        margin-top: 5px;
+    }
+    
+    /* Perfil da instituição responsivo */
+    .institution-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .institution-logo {
+        width: 100%;
+        max-width: 300px;
+        height: 150px;
+        margin: 0 auto 20px;
+    }
+    
+    .institution-info h1 {
+        font-size: 24px;
+    }
+    
+    /* Botões de ação responsivos */
+    .donate-button, .buy-button, .Voluntário-button {
+        width: 100%;
+        margin: 5px 0;
+    }
+    
+    /* Estatísticas responsivas */
+    .institution-stats {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    /* Tabs responsivas */
+    .institution-tabs {
+        flex-direction: column;
+    }
+    
+    .institution-tab {
+        text-align: center;
+        border-right: none;
+        border-bottom: 1px solid #e0e0e0;
+    }
+    
+    .institution-tab.active {
+        border-bottom: 3px solid #2196F3;
+        margin-bottom: 0;
+    }
+    
+    /* Grid de doações responsivo */
+    .donations-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Depoimentos responsivos */
+    .testimonials-section {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Footer responsivo */
+    .footer-content {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .footer-links {
+        width: 100%;
+    }
+    
+    /* Modal responsivo */
+    .modal-content {
+        width: 95%;
+        margin: 10% auto;
+        padding: 15px;
+    }
+    
+    .volunteer-form {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Ajustes para telas muito pequenas (até 480px) */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 10px;
+    }
+    
+    .institution-profile, .donations-section, .products-section {
+        padding: 20px 15px;
+        margin: 20px 0;
+    }
+    
+    .institution-logo {
+        height: 120px;
+    }
+    
+    .page-title {
+        font-size: 1.8rem;
+    }
+    
+    .stat-number {
+        font-size: 24px;
+    }
+    
+    .testimonial-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .testimonial-header img {
+        margin: 0 auto 10px;
+    }
+    
+    .contact-display {
+        flex-direction: column;
+        text-align: center;
+        gap: 5px;
+    }
+    
+    /* Ajustes no formulário de voluntário para mobile */
+    .birthdate-container, .cep-search {
+        flex-direction: column;
+    }
+    
+    .radio-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+/* Melhorias de acessibilidade e usabilidade em mobile */
+@media (max-width: 768px) {
+    /* Aumentar área de toque para botões */
+    button, .donate-btn, .view-btn, .search-button {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    /* Ajustar inputs para facilitar toque */
+    input, select, textarea {
+        font-size: 16px; /* Evita zoom no iOS */
+    }
+    
+    /* Melhorar legibilidade do texto */
+    body {
+        font-size: 16px;
+        line-height: 1.5;
+    }
+    
+    /* Ajustar espaçamentos */
+    .institution-profile, .donations-section, .tab-content {
+        margin: 20px 0;
+        padding: 20px;
+    }
+    
+    /* Otimizar visualização do mapa */
+    .map-container iframe {
+        height: 250px;
+    }
+}
+
+/* Correção para evitar quebra de layout em orientação paisagem */
+@media (max-height: 500px) and (orientation: landscape) {
+    .header-container {
+        flex-wrap: nowrap;
+    }
+    
+    .categories-section {
+        order: 0;
+        margin-top: 0;
+    }
+    
+    .institution-header {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+    
+    .institution-logo {
+        width: 120px;
+        height: 80px;
+        margin-right: 15px;
+    }
+}
+
+/* Melhorias para tablets (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .donations-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .testimonials-section {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .institution-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Prevenir overflow horizontal */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Melhorar a visualização das imagens em mobile */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Ajustes específicos para o menu mobile */
+@media (max-width: 950px) {
+    .user-section {
+        position: relative;
+    }
+    
+    .cart-count {
+        top: -5px;
+        right: -5px;
+    }
+}
+
+/* Melhorar a experiência de toque nos dropdowns */
+@media (max-width: 950px) {
+    .dropdown:hover .dropdown-content {
+        display: none;
+    }
+    
+    .dropdown:active .dropdown-content,
+    .dropdown:focus .dropdown-content {
+        display: block;
+    }
+}
+
+/* ================ AJUSTES ESPECÍFICOS PARA 600px ================ */
+@media (max-width: 600px) {
+    /* Container principal */
+    .container {
+        padding: 0 12px;
+    }
+    
+    /* Header compacto */
+    .header-container {
+        gap: 12px;
+        padding: 10px 0;
+    }
+    
+    .logo img {
+        width: 140px;
+    }
+    
+    /* Barra de pesquisa otimizada */
+    .search-section {
+        min-width: 100%;
+        order: 3;
+        margin-top: 10px;
+    }
+    
+    .search-combined {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .search-input input {
+        padding: 14px 16px;
+        font-size: 16px; /* Previne zoom no iOS */
+    }
+    
+    .search-filters select {
+        width: 100%;
+        padding: 14px;
+    }
+    
+    /* Seção do usuário reorganizada */
+    .user-section {
+        width: 100%;
+        justify-content: space-between;
+        order: 2;
+    }
+    
+    .botaoMenu {
+        display: flex;
+        margin-left: auto;
+    }
+    
+    .nav-menu {
+        right: 12px;
+        left: 12px;
+        width: auto;
+    }
+    
+    /* Categorias em layout vertical */
+    .categories {
+        flex-direction: column;
+        gap: 8px;
+        padding: 12px 0;
+    }
+    
+    .categories a {
+        padding: 12px 15px;
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 6px;
+    }
+    
+    .dropdown-content {
+        position: static;
+        transform: none;
+        width: 100%;
+        box-shadow: none;
+        margin-top: 8px;
+        background-color: rgba(255, 255, 255, 0.95);
+    }
+    
+    /* Título da página */
+    .title {
+        font-size: 1.5rem;
+        padding: 15px 0;
+        margin: 10px 0;
+    }
+    
+    /* Perfil da instituição compacto */
+    .institution-profile {
+        padding: 20px;
+        margin: 20px 0;
+    }
+    
+    .institution-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    .institution-logo {
+        width: 100%;
+        max-width: 280px;
+        height: 140px;
+        margin: 0 auto;
+    }
+    
+    .institution-info h1 {
+        font-size: 1.5rem;
+        margin-bottom: 5px;
+    }
+    
+    .institution-category {
+        font-size: 0.85rem;
+        padding: 4px 12px;
+    }
+    
+    .institution-description {
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+    
+    /* Botões de ação em coluna */
+    .donate-button, .buy-button, .Voluntário-button {
+        width: 100%;
+        margin: 8px 0;
+        padding: 14px 20px;
+        font-size: 15px;
+    }
+    
+    /* Estatísticas em grid 2x2 */
+    .institution-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin: 20px 0;
+    }
+    
+    .stat-card {
+        padding: 15px;
+    }
+    
+    .stat-number {
+        font-size: 1.5rem;
+    }
+    
+    .stat-label {
+        font-size: 0.8rem;
+    }
+    
+    /* Tabs verticais */
+    .institution-tabs {
+        flex-direction: column;
+        border-bottom: none;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    
+    .institution-tab {
+        padding: 15px 20px;
+        border-right: none;
+        border-bottom: 1px solid #e0e0e0;
+        text-align: center;
+        background-color: #f8f9fa;
+    }
+    
+    .institution-tab:last-child {
+        border-bottom: none;
+    }
+    
+    .institution-tab.active {
+        background-color: white;
+        color: #2196F3;
+        border-bottom: 3px solid #2196F3;
+        margin-bottom: 0;
+    }
+    
+    /* Conteúdo das tabs */
+    .tab-content {
+        padding: 20px;
+        margin: 15px 0;
+        border-radius: 8px;
+    }
+    
+    .section-title {
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+    }
+    
+    /* Grid de doações em coluna única */
+    .donations-section {
+        padding: 20px;
+        margin: 20px 0;
+    }
+    
+    .donations-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .donation-item {
+        padding: 15px;
+    }
+    
+    .donation-image img {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .progress-bar {
+        height: 16px;
+        margin: 8px 0;
+    }
+    
+    .progress-bar span {
+        font-size: 10px;
+    }
+    
+    .donate-btn {
+        padding: 12px 20px;
+        width: 100%;
+    }
+    
+    /* Depoimentos em coluna única */
+    .testimonials-section {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .testimonial-card {
+        padding: 15px;
+    }
+    
+    .testimonial-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+    
+    .testimonial-header img {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .testimonial-header h3 {
+        font-size: 1rem;
+    }
+    
+    /* Informações de contato */
+    .contact-info-container {
+        padding: 20px;
+    }
+    
+    .contact-display {
+        flex-direction: column;
+        text-align: center;
+        gap: 5px;
+        padding: 12px;
+    }
+    
+    .form-group h3 {
+        font-size: 1rem;
+    }
+    
+    /* Mapa */
+    .map-container {
+        padding: 15px;
+    }
+    
+    .map-container iframe {
+        height: 200px;
+    }
+    
+    /* Footer reorganizado */
+    footer {
+        padding: 30px 0 15px;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        gap: 25px;
+    }
+    
+    .footer-links {
+        text-align: center;
+    }
+    
+    .social-links {
+        justify-content: center;
+        margin-top: 10px;
+    }
+    
+    /* Modais responsivos */
+    .modal-content {
+        width: 95%;
+        margin: 5% auto;
+        padding: 20px 15px;
+    }
+    
+    .volunteer-modal-content {
+        max-height: 85vh;
+        overflow-y: auto;
+    }
+    
+    .volunteer-form {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .form-group.full-width {
+        grid-column: 1;
+    }
+    
+    .birthdate-container {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .cep-search {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .radio-group {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    /* Melhorias de usabilidade */
+    button, a, input, select {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    /* Ajustes de tipografia */
+    body {
+        font-size: 15px;
+        line-height: 1.4;
+    }
+    
+    h1 {
+        font-size: 1.6rem;
+    }
+    
+    h2 {
+        font-size: 1.4rem;
+    }
+    
+    h3 {
+        font-size: 1.2rem;
+    }
+    
+    /* Espaçamentos reduzidos */
+    main {
+        padding: 15px 0;
+    }
+    
+    .page-header {
+        margin-bottom: 20px;
+        padding: 15px 0;
+    }
+    
+    .page-title {
+        font-size: 1.8rem;
+    }
+    
+    .page-subtitle {
+        font-size: 1rem;
+    }
+}
+
+/* Ajustes extras para orientação paisagem em 600px */
+@media (max-width: 600px) and (orientation: landscape) {
+    .header-container {
+        flex-wrap: wrap;
+    }
+    
+    .logo-section {
+        flex: 0 0 30%;
+    }
+    
+    .user-section {
+        flex: 0 0 60%;
+        justify-content: flex-end;
+    }
+    
+    .search-section {
+        order: 3;
+        margin-top: 10px;
+    }
+    
+    .institution-header {
+        flex-direction: row;
+        align-items: flex-start;
+        text-align: left;
+    }
+    
+    .institution-logo {
+        width: 120px;
+        height: 80px;
+        margin-right: 15px;
+        margin-bottom: 0;
+    }
+    
+    .institution-info h1 {
+        font-size: 1.3rem;
+    }
+    
+    .donate-button, .buy-button, .Voluntário-button {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+    
+    .modal-content {
+        margin: 2% auto;
+    }
+}
+
+/* Prevenir problemas comuns em 600px */
+@media (max-width: 600px) {
+    /* Evitar overflow horizontal */
+    html, body {
+        overflow-x: hidden;
+        position: relative;
+    }
+    
+    /* Garantir que imagens não quebrem o layout */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    /* Melhorar legibilidade do texto */
+    p, li, span {
+        line-height: 1.5;
+    }
+    
+    /* Ajustar tabelas se houver */
+    table {
+        font-size: 14px;
+    }
+    
+    /* Otimizar formulários */
+    input, textarea, select {
+        font-size: 16px; /* Previne zoom no iOS */
+    }
+}
+
+/* ================ MELHORIA ESPECÍFICA PARA OS TRÊS BOTÕES ================ */
+@media (max-width: 600px) {
+    /* Container dos botões - layout vertical otimizado */
+    .institution-info {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        width: 100%;
+    }
+    
+    /* Estilo base para todos os botões */
+    .donate-button, 
+    .buy-button, 
+    .Voluntário-button {
+        width: 100%;
+        margin: 0;
+        padding: 16px 20px;
+        font-size: 15px;
+        font-weight: 600;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        text-decoration: none;
+        text-align: center;
+        min-height: 52px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+    
+    /* Botão Doar - Verde */
+    .donate-button {
+        background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+        color: white;
+        order: 1; /* Primeiro na ordem */
+    }
+    
+    .donate-button:hover {
+        background: linear-gradient(135deg, #45a049 0%, #3d8b40 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+    }
+    
+    .donate-button:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 4px rgba(76, 175, 80, 0.3);
+    }
+    
+    /* Botão Comprar - Azul */
+    .buy-button {
+        background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+        color: white;
+        order: 2; /* Segundo na ordem */
+    }
+    
+    .buy-button:hover {
+        background: linear-gradient(135deg, #1976D2 0%, #1565C0 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+    }
+    
+    .buy-button:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 4px rgba(33, 150, 243, 0.3);
+    }
+    
+    /* Botão Voluntário - Roxo/Azul escuro */
+    .Voluntário-button {
+        background: linear-gradient(135deg, #2196F3 0%, #000 100%);
+        color: white;
+        order: 3; /* Terceiro na ordem */
+    }
+    
+    .Voluntário-button:hover {
+        background: linear-gradient(135deg, #1976D2 0%, #000 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+    }
+    
+    .Voluntário-button:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 4px rgba(33, 150, 243, 0.3);
+    }
+    
+    /* Ícones nos botões */
+    .donate-button::before {
+        content: "❤️";
+        font-size: 18px;
+    }
+    
+    .buy-button::before {
+        content: "🛒";
+        font-size: 18px;
+    }
+    
+    .Voluntário-button::before {
+        content: "👥";
+        font-size: 18px;
+    }
+    
+    /* Estados de foco para acessibilidade */
+    .donate-button:focus,
+    .buy-button:focus,
+    .Voluntário-button:focus {
+        outline: 3px solid rgba(33, 150, 243, 0.5);
+        outline-offset: 2px;
+    }
+    
+    /* Efeito de loading nos botões */
+    .donate-button.loading,
+    .buy-button.loading,
+    .Voluntário-button.loading {
+        position: relative;
+        color: transparent;
+    }
+    
+    .donate-button.loading::after,
+    .buy-button.loading::after,
+    .Voluntário-button.loading::after {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        border: 2px solid transparent;
+        border-top: 2px solid white;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+}
+
+/* ================ LAYOUT ALTERNATIVO PARA BOTÕES ================ */
+
+/* Opção 1: Botões em grid 2x2 (quando há espaço) */
+@media (max-width: 600px) and (min-height: 700px) {
+    .institution-info {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        align-items: start;
+    }
+    
+    .donate-button {
+        grid-column: 1 / 2;
+    }
+    
+    .buy-button {
+        grid-column: 2 / 3;
+    }
+    
+    .Voluntário-button {
+        grid-column: 1 / -1;
+        width: 100%;
+    }
+}
+
+/* Opção 2: Botões com ícones maiores e texto menor */
+@media (max-width: 500px) {
+    .donate-button, 
+    .buy-button, 
+    .Voluntário-button {
+        padding: 14px 16px;
+        font-size: 14px;
+        min-height: 48px;
+        gap: 8px;
+    }
+    
+    .donate-button::before,
+    .buy-button::before,
+    .Voluntário-button::before {
+        font-size: 16px;
+    }
+}
+
+/* Opção 3: Botões com estilo de cards */
+@media (max-width: 600px) {
+    .button-card-layout {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin: 20px 0;
+    }
+    
+    .button-card {
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        border-left: 4px solid;
+        transition: all 0.3s ease;
+    }
+    
+    .button-card.doar {
+        border-left-color: #4CAF50;
+    }
+    
+    .button-card.comprar {
+        border-left-color: #2196F3;
+    }
+    
+    .button-card.voluntario {
+        border-left-color: #2196F3;
+    }
+    
+    .button-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+    
+    .button-card-content {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .button-card-icon {
+        font-size: 24px;
+        margin-bottom: 5px;
+    }
+    
+    .button-card-title {
+        font-size: 16px;
+        font-weight: 600;
+        color: #333;
+        margin: 0;
+    }
+    
+    .button-card-description {
+        font-size: 13px;
+        color: #666;
+        line-height: 1.4;
+        margin: 0;
+    }
+    
+    .button-card-action {
+        margin-top: 10px;
+    }
+    
+    .card-button {
+        width: 100%;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 6px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .card-button.doar {
+        background: #4CAF50;
+        color: white;
+    }
+    
+    .card-button.comprar {
+        background: #2196F3;
+        color: white;
+    }
+    
+    .card-button.voluntario {
+        background: linear-gradient(135deg, #2196F3 0%, #000 100%);
+        color: white;
+    }
+}
+
+/* ================ MELHORIAS DE ACESSIBILIDADE ================ */
+@media (max-width: 600px) {
+    /* Garantir contraste adequado */
+    .donate-button,
+    .buy-button,
+    .Voluntário-button {
+        color: white !important;
+    }
+    
+    /* Texto não deve quebrar */
+    .donate-button,
+    .buy-button,
+    .Voluntário-button {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    /* Feedback tátil melhorado */
+    @media (hover: none) {
+        .donate-button:active,
+        .buy-button:active,
+        .Voluntário-button:active {
+            transform: scale(0.98);
+            opacity: 0.9;
+        }
+    }
+}
+
+/* ================ ANIMAÇÕES ESPECIAIS ================ */
+@media (max-width: 600px) {
+    /* Animação de entrada dos botões */
+    .donate-button,
+    .buy-button,
+    .Voluntário-button {
+        animation: slideUp 0.5s ease-out;
+        animation-fill-mode: both;
+    }
+    
+    .buy-button {
+        animation-delay: 0.1s;
+    }
+    
+    .Voluntário-button {
+        animation-delay: 0.2s;
+    }
+    
+    @keyframes slideUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    /* Efeito de pulso para chamar atenção */
+    .donate-button.highlight {
+        animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+        0% {
+            box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7);
+        }
+        70% {
+            box-shadow: 0 0 0 10px rgba(76, 175, 80, 0);
+        }
+        100% {
+            box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
+        }
+    }
+}
