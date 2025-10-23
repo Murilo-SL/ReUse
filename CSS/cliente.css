@@ -435,6 +435,7 @@ header {
 
 .action-button:hover {
     transform: translateY(-5px);
+    transition: all 1s;
 }
 
 .action-button.buy {
@@ -448,6 +449,22 @@ header {
 .action-button.donate {
     background: linear-gradient(135deg, #20c95f 0%, #00DEC8 100%);
 }
+
+.action-button.buy:hover {
+    background:linear-gradient(135deg, #1764A3 0% , #2196F3 100% ); 
+    transition: all 1s;
+}
+
+.action-button.sell:hover {
+    background: linear-gradient(135deg, #00DEC8 0%, #009688 100%) #009688;
+    transition: all 1s;
+}
+
+.action-button.donate:hover {
+    background: linear-gradient(135deg, #00DEC8 0%, #20c95f 100%);
+    transition: all 1s;
+}
+
 
 /* Títulos de seção */
 .section-title {
@@ -604,18 +621,20 @@ footer {
 
 .social-links a {
     color: white;
-    background-color: #2196F3;
+    background: linear-gradient(135deg, #2196F3 25%, #4CAF50 100%);
     width: 40px;
     height: 40px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.3s;
 }
 
 .social-links a:hover {
-    background-color: #1976D2;
+    transition: 1s;
+    transform: translateY(-2px);
+    background: linear-gradient(135deg,  #4CAF50 25%,#2196F3 100%);
+    color: whitesmoke;
 }
 
 /* Copyright */
@@ -1150,4 +1169,30 @@ footer {
     .nav-menu > *:last-child {
         border-bottom: none;
     }
+}
+
+
+/* Estilo para o título das redes sociais com gradiente */
+.socials-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 15px;
+    margin-bottom: 0px;
+    font-weight: 600;
+    font-size: 30px;
+    background: linear-gradient(135deg, #2196F3 0%, #4CAF50 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+
+.socials-title i {
+    font-size: 30px;
+    background: linear-gradient(135deg, #2196F3 0%, #4CAF50 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
 }

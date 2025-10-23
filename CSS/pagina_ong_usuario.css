@@ -649,18 +649,20 @@ footer {
 
 .social-links a {
     color: white;
-    background-color:  #2196F3;
+    background: linear-gradient(135deg, #2196F3 25%, #4CAF50 100%);
     width: 40px;
     height: 40px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.3s;
 }
 
 .social-links a:hover {
-    background-color: #1976D2;
+    transition: 1s;
+    transform: translateY(-2px);
+    background: linear-gradient(135deg,  #4CAF50 25%,#2196F3 100%);
+    color: whitesmoke;
 }
 
 .social-links img {
@@ -2859,4 +2861,29 @@ img {
             box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
         }
     }
+}
+
+/* Estilo para o título das redes sociais com gradiente */
+.socials-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 15px;
+    margin-bottom: 0px;
+    font-weight: 600;
+    font-size: 30px;
+    background: linear-gradient(135deg, #2196F3 0%, #4CAF50 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+
+.socials-title i {
+    font-size: 30px;
+    background: linear-gradient(135deg, #2196F3 0%, #4CAF50 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
 }

@@ -113,18 +113,20 @@ footer {
 
 .social-links a {
     color: white;
-    background-color:  #2196F3;
+    background: linear-gradient(135deg, #2196F3 25%, #4CAF50 100%);
     width: 40px;
     height: 40px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.3s;
 }
 
 .social-links a:hover {
-    background-color: #1976D2;
+    transition: 1s;
+    transform: translateY(-2px);
+    background: linear-gradient(135deg,  #4CAF50 25%,#2196F3 100%);
+    color: whitesmoke;
 }
 
 /* Estilo do copyright */
