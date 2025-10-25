@@ -1957,3 +1957,76 @@ header {
         min-width: 100%;
     }
 }
+
+
+/* Estilos para os campos de edição */
+.edit-input {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.edit-input:focus {
+    outline: none;
+    border-color: #0066cc;
+    box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.1);
+}
+
+.info-item.editing .info-value {
+    display: none;
+}
+
+/* Estilos para alertas personalizados */
+.custom-alert {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    border-radius: 8px;
+    color: white;
+    z-index: 10000;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    opacity: 1;
+    transition: opacity 0.5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 300px;
+}
+
+.custom-alert.success {
+    background-color: #4CAF50;
+}
+
+.custom-alert.error {
+    background-color: #f44336;
+}
+
+.custom-alert.warning {
+    background-color: #ff9800;
+}
+
+.custom-alert .close-alert {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-left: 15px;
+}
+
+.fade-out {
+    opacity: 0 !important;
+}
+
+/* Melhorias de responsividade */
+@media (max-width: 768px) {
+    .custom-alert {
+        left: 20px;
+        right: 20px;
+        min-width: auto;
+    }
+}

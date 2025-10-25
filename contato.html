@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contatos - ReUse</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="CSS/contato.css">
+    <link rel="stylesheet" href="CSS/modo_noturno.css">
+    <link rel="stylesheet" href="CSS/breadcrumbs.css">
+        <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="header-container">
+                <div class="logo-section">
+                    <div class="logo">
+                        <a href="cliente.html"><img src="IMG/reuse-logo-(1).svg" alt="ReUse Logo"></a>
+                    </div>
+                </div>
+
+                <!-- Barra de pesquisa e filtros no meio -->
+                <div class="search-section">
+                    <div class="search-combined">
+                        <div class="search-input">
+                            <input type="text" id="searchInput" placeholder="O que você está procurando?">
+                            <button id="searchButton" class="search-button" aria-label="Pesquisar">
+                                <i class="bi bi-search"></i>
+                            </button>
+                        </div>
+                        <div class="search-filters">
+                            <select>
+                                <option>Todos os filtros</option>
+                                <option>Roupas</option>
+                                <option>Eletrodomésticos</option>
+                                <option>Melhores preços</option>
+                                <option>Recém adicionados</option>
+                                <option>Itens para doação</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Elementos do usuário à direita -->
+                <div class="user-section">
+                    <!-- Estrutura atual (sem alterações) -->
+                    <button class="botaoMenu" id="botaoMenu">
+                        <i class="bi bi-list"></i>
+                    </button>
+
+                    <nav class="nav-menu" id="navMenu">
+                        <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+                            <i class="bi bi-sun-fill" id="themeIcon"></i>
+                        </button>
+
+                        <div class="cart">
+                            <a href="carrinho.html">
+                                <span class="cart-icon"><i class="bi bi-cart3"></i></span>
+                            </a>
+                            <span class="cart-count">1</span>
+                        </div>
+
+                        <a href="login.html">
+                            <i class="bi bi-box-arrow-right"></i> Sair da Conta
+                        </a>
+
+                        <a href="perfil.html">
+                            <i class="bi bi-person-fill"></i> Minha Conta
+                        </a>
+                    </nav>
+                </div>
+
+                <!-- Categorias abaixo -->
+                <div class="categories-section">
+                    <section class="categories">
+                        <div class="dropdown">
+                            <a href="categoria.html?cat=masculino">Masculino</a>
+                            <div class="dropdown-content">
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=masculino&sub=roupas">Roupas</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=masculino&sub=calcados">Calçados</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=masculino&sub=acessorios">Acessórios</a></div>
+                            </div>
+                        </div>
+
+                        <div class="dropdown">
+                            <a href="categoria.html?cat=feminino">Feminino</a>
+                            <div class="dropdown-content">
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=feminino&sub=roupas">Roupas</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=feminino&sub=calcados">Calçados</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=feminino&sub=acessorios">Acessórios</a></div>
+                            </div>
+                        </div>
+
+                        <div class="dropdown">
+                            <a href="categoria.html?cat=infantil">Infantil</a>
+                            <div class="dropdown-content">
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=infantil&sub=roupas">Roupas</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=infantil&sub=calcados">Calçados</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=infantil&sub=outros">Outros</a></div>
+                            </div>
+                        </div>
+
+                        <div class="dropdown">
+                            <a href="categoria.html?cat=esportivo">Esportivo</a>
+                            <div class="dropdown-content">
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=esportivo&sub=roupas">Roupas</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=esportivo&sub=calcados">Calçados</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=esportivo&sub=outros">Outros</a></div>
+                            </div>
+                        </div>
+
+                        <div class="dropdown">
+                            <a href="categoria.html?cat=casa-cozinha">Casa/Cozinha</a>
+                            <div class="dropdown-content">
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=casa-cozinha&sub=eletrodomesticos">Eletrodomésticos</a>
+                                </div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=casa-cozinha&sub=moveis">Movéis</a></div>
+                                <div class="dropdown-category"><a
+                                        href="categoria.html?cat=casa-cozinha&sub=utensilios">Utensílios</a></div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Seção Hero -->
+        <section class="contacts-hero">
+            <h1>Entre em Contato Conosco</h1>
+            <p>Tem alguma dúvida, sugestão ou precisa de ajuda? Estamos aqui para atendê-lo da melhor forma possível.</p>
+        </section>
+
+        <!-- Seção de Contato -->
+        <div class="contacts-container">
+            <!-- Formulário de Contato -->
+            <div class="contact-form">
+                <h2>Envie uma Mensagem</h2>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Nome Completo</label>
+                        <input type="text" id="name" class="form-control" placeholder="Digite seu nome completo" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" class="form-control" placeholder="seu@email.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Assunto</label>
+                        <select id="subject" class="form-control" required>
+                            <option value="" disabled selected>Selecione um assunto</option>
+                            <option value="duvida">Dúvida sobre produto</option>
+                            <option value="problema">Problema com pedido</option>
+                            <option value="sugestao">Sugestão</option>
+                            <option value="reclamacao">Reclamação</option>
+                            <option value="parceria">Proposta de parceria</option>
+                            <option value="outro">Outro</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Mensagem</label>
+                        <textarea id="message" class="form-control" placeholder="Descreva sua dúvida, problema ou sugestão..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn-submit">
+                        <i class="fas fa-paper-plane"></i> Enviar Mensagem
+                    </button>
+                </form>
+            </div>
+            
+            <!-- Informações de Contato -->
+            <div class="contact-info">
+                <h2>Nossos Contatos</h2>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="bi bi-telephone-fill"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>Telefone</h3>
+                        <p>(11) 9999-9999</p>
+                        <p>(11) 8888-8888</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="bi bi-envelope-fill"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>E-mail</h3>
+                        <p>contato@reuse.com.br</p>
+                        <p>suporte@reuse.com.br</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="bi bi-geo-alt-fill"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>Endereço</h3>
+                        <p>Rua Exemplo, 123</p>
+                        <p>São Paulo - SP, 01234-567</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="bi bi-clock-fill"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>Horário de Atendimento</h3>
+                        <p>Segunda a Sexta: 9h às 18h</p>
+                        <p>Sábado: 9h às 13h</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="bi bi-share-fill"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>Redes Sociais</h3>
+                        <p>Siga-nos nas redes sociais</p>
+                        <div class="social-contact">
+                            <a href="https://www.facebook.com/profile.php?id=61582645355166&locale=pt_BR" target="_blank" title="Facebook">
+                                <i class="bi bi-facebook"></i>
+                            </a>
+                            <a href="https://www.instagram.com/projeto_reuse/" target="_blank" title="Instagram">
+                                <i class="bi bi-instagram"></i>
+                            </a>
+                            <a href="https://x.com/Re_Use_Projeto" target="_blank" title="Twitter">
+                                <i class="bi bi-twitter-x"></i>
+                            </a>
+                            <a href="https://github.com/Murilo-SL/ReUse" target="_blank" title="GitHub">
+                                <i class="bi bi-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Seção de Perguntas Frequentes -->
+        <section class="faq-section">
+            <h2>Perguntas Frequentes</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Como faço para comprar um produto?</span>
+                        <i class="bi bi-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Para comprar um produto, basta navegar pelo site, selecionar o item desejado, adicioná-lo ao carrinho e finalizar a compra. Você precisará criar uma conta ou fazer login para completar a transação.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Como posso vender meus itens usados?</span>
+                        <i class="bi bi-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Para vender seus itens, clique no botão "VENDER" no menu principal. Você será direcionado para uma página onde poderá cadastrar seus produtos, adicionar fotos, descrições e definir preços.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Como funciona o processo de doação?</span>
+                        <i class="bi bi-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Para doar itens, clique no botão "DOAR" no menu principal. Preencha o formulário com informações sobre o item, selecione uma instituição beneficiária e agende a coleta ou indique o local de entrega.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Quais são as formas de pagamento aceitas?</span>
+                        <i class="bi bi-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Aceitamos cartões de crédito (Visa, Mastercard, Elo, American Express), débito online, PIX e boleto bancário. Todas as transações são processadas de forma segura.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Qual é a política de devolução?</span>
+                        <i class="bi bi-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Oferecemos devolução em até 7 dias após o recebimento do produto, desde que o item esteja nas mesmas condições em que foi enviado. Entre em contato conosco para iniciar o processo de devolução.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Seção do Mapa -->
+        <section class="map-section">
+            <h2>Onde Estamos</h2>
+            <div class="map-container">
+                <div class="map-placeholder">
+                    <i class="bi bi-geo-alt-fill"></i>
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.0754267452906!2d-46.65342658502166!3d-23.565734367639193!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59c8da0aa315%3A0xd59f9431f2c9776a!2sAv.%20Paulista%2C%20S%C3%A3o%20Paulo%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1621019413893!5m2!1spt-BR!2sbr" 
+                        width="100%" 
+                        height="300" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+                <!-- Em um cenário real, aqui estaria um iframe do Google Maps ou similar -->
+            </div>
+        </section>
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <!-- Seção Minha Conta -->
+                <div class="footer-links">
+                    <h3>Minha Conta</h3>
+                    <a href="perfil.html"><i class="bi bi-person-fill"></i> <span>Perfil</span></a>
+                    <a href="pedidos.html"><i class="bi bi-box-seam"></i> <span>Pedidos</span></a>
+                    <a href="favoritos.html"><i class="bi bi-heart-fill"></i> <span>Favoritos</span></a>
+                </div>
+
+                <!-- Seção Minha Loja -->
+                <div class="footer-links">
+                    <h3>Minha Loja</h3>
+                    <a href="login.html"><i class="bi bi-grid-3x3-gap-fill"></i> <span>Produtos</span></a>
+                    <a href="login.html"><i class="bi bi-bar-chart-line-fill"></i> <span>Estatísticas</span></a>
+                    <a href="login.html"><i class="bi bi-star-fill"></i> <span>Avaliações</span></a>
+                </div>
+
+                <!-- Seção Configurações -->
+                <div class="footer-links">
+                    <h3>Configurações</h3>
+                    <a href="configuracoes_cliente.html"><i class="bi bi-gear-fill"></i> <span>Configurações</span></a>
+                    <a href="privacidade.html"><i class="bi bi-shield-lock-fill"></i> <span>Privacidade</span></a>
+                    <a href="notificacao.html"><i class="bi bi-bell-fill"></i> <span>Notificações</span></a>
+                    <a href="pagamento.html"><i class="bi bi-credit-card-fill"></i> <span>Pagamentos</span></a>
+                </div>
+
+                <!-- Seção Sobre Nós -->
+                <div class="footer-links">
+                    <h3>Sobre Nós</h3>
+                    <a href="missao.html"><i class="bi bi-info-circle-fill"></i> <span>Missão</span></a>
+                    <a href="equipe.html"><i class="bi bi-people-fill"></i> <span>Equipe</span></a>
+                    <a href="contato.html"><i class="bi bi-envelope-fill"></i><span>Contato</span></a>
+
+                    <div class="socials-title">
+                        <i class="bi bi-globe2"></i>
+                        <span>Redes Sociais</span>
+                    </div>
+
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/profile.php?id=61582645355166&locale=pt_BR" target="_blank"
+                            title="Facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="https://www.instagram.com/projeto_reuse/" target="_blank" title="Instagram"><i
+                                class="bi bi-instagram"></i></a>
+                        <a href="https://x.com/Re_Use_Projeto" target="_blank" title="Twitter"><i
+                                class="bi bi-twitter-x"></i></a>
+                        <a href="https://github.com/Murilo-SL/ReUse" target="_blank" title="GitHub"><i
+                                class="bi bi-github"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="copyright">
+                &copy; 2025 ReUse - <span>Todos os direitos reservados</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mensagem de Sucesso -->
+    <div class="overlay" id="overlay"></div>
+    
+    <div class="success-message" id="successMessage">
+        <div class="success-icon">
+            <i class="fas fa-check"></i>
+        </div>
+        <h2>Mensagem Enviada!</h2>
+        <p>Sua mensagem foi enviada com sucesso. Entraremos em contato em breve.</p>
+        <button class="btn-close" id="closeSuccess">
+            <i class="fas fa-times"></i> Fechar
+        </button>
+    </div>
+
+        <!-- Widget VLibras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+
+    </script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q755SR73MY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Q755SR73MY');
+</script>
+<script>
+    // Variável para controlar se o mapa já foi carregado
+    let mapLoaded = false;
+
+    // Função para carregar o mapa quando a aba de Contato for ativada
+    function setupMapTab() {
+        const tabs = document.querySelectorAll('.institution-tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabs.forEach((tab, index) => {
+            tab.addEventListener('click', () => {
+                // Se for a aba de Contato (índice 3) e o mapa ainda não foi carregado
+                if (index === 3 && !mapLoaded) {
+                    loadMap();
+                    mapLoaded = true;
+                }
+            });
+        });
+    }
+
+    // Carrega a biblioteca Leaflet para o mapa
+    function loadMap() {
+        if (window.L) {
+            initMap();
+            return;
+        }
+
+        const leafletCSS = document.createElement('link');
+        leafletCSS.rel = 'stylesheet';
+        leafletCSS.href = 'https://unpkg.com/leaflet@1.7.1/dist/leaflet.css';
+        document.head.appendChild(leafletCSS);
+        
+        const leafletJS = document.createElement('script');
+        leafletJS.src = 'https://unpkg.com/leaflet@1.7.1/dist/leaflet.js';
+        leafletJS.onload = initMap;
+        document.head.appendChild(leafletJS);
+    }
+
+    function initMap() {
+    // Coordenadas da Escola Chlorita em Matão: -21.6035, -48.3649
+    const map = L.map('map').setView([-21.6035, -48.3649], 15);
+    
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+    
+    L.marker([-21.6035, -48.3649]).addTo(map)
+        .bindPopup('<b>SOS Felino</b><br>Rua João Pessoa, 1000 - Centro, Matão/SP')
+        .openPopup();
+}
+
+    // Configura o mapa quando a página carregar
+    document.addEventListener('DOMContentLoaded', function() {
+        setupMapTab();
+    });
+</script>
+    <script src="JS/contato.js"></script>
+    <script src="JS/breadcrumbs.js"></script>
+    <script src="JS/modo_noturno.js"></script>
+</body>
+</html>

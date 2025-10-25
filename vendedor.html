@@ -4,10 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ReUse - Dashboard do Vendedor</title>
+    <title>Casa Usada - Dashboard do Vendedor - ReUse</title>
     <link rel="stylesheet" href="CSS/vendedor.css">
     <link rel="stylesheet" href="CSS/vendedor-sub.css">
-    <link rel="stylesheet" href="CSS/breadcrumbs-vendedor.css">
+    <link rel="stylesheet" href="CSS/breadcrumbs.css">
+    <link rel="stylesheet" href="CSS/modo_noturno_vendedor.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- VLibras -->
@@ -27,6 +28,10 @@
                     <img src="IMG/reuse-logo-(1).svg" alt="ReUse Logo">
                 </div>
                 <div class="user-actions">
+                    <!-- Botão do Modo Noturno -->
+                    <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+                        <i class="bi bi-sun-fill" id="themeIcon"></i>
+                    </button>
                     <a href="login.html">
                         <i class="bi bi-box-arrow-left"></i> Sair da Conta
                     </a>
@@ -39,26 +44,39 @@
     <div class="dashboard-container">
         <!-- Menu Lateral -->
         <aside class="sidebar">
+            <div class="vendedor-info-sidebar">
+                <img src="IMG/vendedor-casa-usada.jpg" alt="Casa Usada" class="vendedor-avatar-sidebar">
+                <div class="vendedor-dados-sidebar">
+                    <h3>Casa Usada</h3>
+                    <div class="estrelas-sidebar">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star"></i>
+                        <span>4.3</span>
+                    </div>
+                    <p>Rio de Janeiro, RJ</p>
+                </div>
+            </div>
+            
             <h2 class="sidebar-title">Meu Brechó</h2>
             <ul class="sidebar-nav">
-                <li><a href="#" class="active"><i class="bi bi-house"></i> Início</a></li>
+                <li><a href="vendedor.html" class="active"><i class="bi bi-house"></i> Início</a></li>
                 <li><a href="meus_produtos.html"><i class="bi bi-box-seam"></i> Meus Produtos</a></li>
                 <li><a href="add_produto_v.html"><i class="bi bi-plus-circle"></i> Adicionar Produto</a></li>
                 <li><a href="estatisticas.html"><i class="bi bi-bar-chart"></i> Estatísticas</a></li>
                 <li><a href="avaliacoes.html"><i class="bi bi-star-fill"></i> Avaliações</a></li>
                 <li><a href="configuracoes.html"><i class="bi bi-gear"></i> Configurações</a></li>
                 <li><a href="doacao.vendedor.html" id="doacao-link"><i class="bi bi-gift-fill"></i> Fazer Doação</a></li>
+                <li><a href="lixeira.html"><i class="bi bi-trash3"></i>lixeira</a></li>
             </ul>
         </aside>
 
         <!-- Conteúdo Principal -->
         <main class="main-content">
-            <!-- Breadcrumbs -->
-            <div id="breadcrumbs-container" class="breadcrumbs-vendedor">
-                <a href="vendedor.html">Painel do Vendedor</a> &gt; <span>Dashboard</span>
-            </div>
 
-            <h1>Dashboard</h1>
+            <h1>Dashboard - Casa Usada</h1>
 
             <!-- Cards de Resumo -->
             <div class="stats-cards">
@@ -67,8 +85,8 @@
                         <i class="bi bi-box-seam-fill" style="color: #2196F3;"></i>
                     </div>
                     <div class="stat-info">
-                        <div class="stat-value">8</div>
-                        <div class="stat-label">Produtos</div>
+                        <div class="stat-value" id="total-produtos">0</div>
+                        <div class="stat-label">Produtos Ativos</div>
                     </div>
                 </div>
 
@@ -77,8 +95,8 @@
                         <i class="bi bi-receipt" style="color: #4CAF50;"></i>
                     </div>
                     <div class="stat-info">
-                        <div class="stat-value">64</div>
-                        <div class="stat-label">Vendas</div>
+                        <div class="stat-value" id="total-vendas">89</div>
+                        <div class="stat-label">Vendas Realizadas</div>
                     </div>
                 </div>
 
@@ -87,18 +105,18 @@
                         <i class="bi bi-box2-heart-fill" style="color: #FF9800;"></i>
                     </div>
                     <div class="stat-info">
-                        <div class="stat-value">12</div>
+                        <div class="stat-value" id="total-doacoes">12</div>
                         <div class="stat-label">Doações</div>
                     </div>
                 </div>
 
                 <div class="stat-card">
-                    <div class="stat-icon" style="background-color: #ffebee;">
-                        <i class="bi bi-hourglass-bottom" style="color: #F44336;"></i>
+                    <div class="stat-icon" style="background-color: #f3e5f5;">
+                        <i class="bi bi-star-fill" style="color: #9C27B0;"></i>
                     </div>
                     <div class="stat-info">
-                        <div class="stat-value">3</div>
-                        <div class="stat-label">Esgotados</div>
+                        <div class="stat-value">4.3</div>
+                        <div class="stat-label">Avaliação Média</div>
                     </div>
                 </div>
             </div>
@@ -108,71 +126,61 @@
                 <canvas id="salesChart"></canvas>
             </div>
 
-            <!-- Tabela de Produtos -->
+            <!-- Produtos em Destaque -->
             <div class="products-table">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Nome do Produto</th>
-                            <th>Categoria</th>
-                            <th>Preço</th>
-                            <th>Status</th>
-                            <th>Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Camiseta Polo Lacoste</td>
-                            <td>Masculino</td>
-                            <td>R$ 79,90</td>
-                            <td><span class="status status-available">Disponível</span></td>
-                            <td>
-                                <button class="action-btn edit-btn" data-id="prod1">Editar</button>
-                                <button class="action-btn delete-btn" data-id="prod1">Excluir</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Calça Jeans Levi's</td>
-                            <td>Masculino</td>
-                            <td>R$ 129,90</td>
-                            <td><span class="status status-sold">Vendido</span></td>
-                            <td>
-                                <button class="action-btn edit-btn" data-id="prod2">Editar</button>
-                                <button class="action-btn delete-btn" data-id="prod2">Excluir</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Vestido Floral Zara</td>
-                            <td>Feminino</td>
-                            <td>R$ 89,90</td>
-                            <td><span class="status status-available">Disponível</span></td>
-                            <td>
-                                <button class="action-btn edit-btn" data-id="prod3">Editar</button>
-                                <button class="action-btn delete-btn" data-id="prod3">Excluir</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Bolsa Michael Kors</td>
-                            <td>Feminino</td>
-                            <td>R$ 299,90</td>
-                            <td><span class="status status-donated">Doado</span></td>
-                            <td>
-                                <button class="action-btn edit-btn" data-id="prod4">Editar</button>
-                                <button class="action-btn delete-btn" data-id="prod4">Excluir</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Tênis Nike</td>
-                            <td>Esportivo</td>
-                            <td>R$ 199,99</td>
-                            <td><span class="status status-available">Disponível</span></td>
-                            <td>
-                                <button class="action-btn edit-btn" data-id="prod5">Editar</button>
-                                <button class="action-btn delete-btn" data-id="prod5">Excluir</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="table-header">
+                    <h2 class="section-title">Meus Produtos</h2>
+                    <div class="table-actions">
+                        <button class="btn-refresh" id="btn-refresh-produtos">
+                            <i class="bi bi-arrow-clockwise"></i> Atualizar
+                        </button>
+                        <span class="produtos-count" id="produtos-count">Carregando...</span>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table id="tabela-produtos">
+                        <thead>
+                            <tr>
+                                <th>Nome do Produto</th>
+                                <th>Categoria</th>
+                                <th>Preço</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="produtos-body">
+                            <!-- Produtos serão carregados via JavaScript -->
+                            <tr>
+                                <td colspan="5" class="loading-row">
+                                    <div class="loading-spinner">
+                                        <i class="bi bi-arrow-repeat"></i>
+                                        <span>Carregando produtos...</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Informações da Loja -->
+            <div class="loja-info">
+                <h2 class="section-title">Informações da Loja</h2>
+                <div class="info-cards">
+                    <div class="info-card">
+                        <h3><i class="bi bi-info-circle"></i> Sobre a Casa Usada</h3>
+                        <p>Oferecemos eletrodomésticos e utensílios domésticos em ótimo estado, com garantia de funcionamento. Todos os produtos passam por uma avaliação criteriosa antes de serem disponibilizados.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3><i class="bi bi-geo-alt"></i> Localização</h3>
+                        <p>Av. Brasil, 456 - Copacabana, Rio de Janeiro - RJ</p>
+                    </div>
+                    <div class="info-card">
+                        <h3><i class="bi bi-telephone"></i> Contato</h3>
+                        <p>Email: casausada@email.com</p>
+                        <p>Telefone: (21) 98888-8888</p>
+                    </div>
+                </div>
             </div>
         </main>
     </div>
@@ -223,12 +231,10 @@
                     <label for="edit-categoria">Categoria:</label>
                     <select id="edit-categoria" required>
                         <option value="">Selecione uma categoria</option>
-                        <option value="Masculino">Masculino</option>
-                        <option value="Feminino">Feminino</option>
-                        <option value="Infantil">Infantil</option>
-                        <option value="Esportivo">Esportivo</option>
-                        <option value="Acessórios">Acessórios</option>
-                        <option value="Calçados">Calçados</option>
+                        <option value="Eletrodomésticos">Eletrodomésticos</option>
+                        <option value="Utensílios">Utensílios</option>
+                        <option value="Móveis">Móveis</option>
+                        <option value="Casa e Cozinha">Casa e Cozinha</option>
                     </select>
                 </div>
 
@@ -263,8 +269,6 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-
-
                 <!-- Seção Minha Loja -->
                 <div class="footer-links">
                     <h3>Minha Loja</h3>
@@ -276,15 +280,15 @@
                 <!-- Seção Configurações -->
                 <div class="footer-links">
                     <h3>Configurações</h3>
-                    <a href="#"><i class="bi bi-shield-lock-fill"></i> <span>Privacidade</span></a>
-                    <a href="#"><i class="bi bi-credit-card-fill"></i> <span>Pagamentos</span></a>
+                    <a href="configuracoes.html"><i class="bi bi-shield-lock-fill"></i> <span>Privacidade</span></a>
+                    <a href="configuracoes.html"><i class="bi bi-credit-card-fill"></i> <span>Pagamentos</span></a>
                 </div>
 
                 <!-- Seção Sobre Nós -->
                 <div class="footer-links">
                     <h3>Sobre Nós</h3>
-                    <a href="#"><i class="bi bi-info-circle-fill"></i> <span>Missão</span></a>
-                    <a href="#"><i class="bi bi-people-fill"></i> <span>Equipe</span></a>
+                    <a href=""><i class="bi bi-info-circle-fill"></i> <span>Missão</span></a>
+                    <a href=""><i class="bi bi-people-fill"></i> <span>Equipe</span></a>
                     <a href=""><i class="bi bi-envelope-fill"></i> <span>Contato</span></a>
 
                     <div class="socials-title">
@@ -319,177 +323,18 @@
         </div>
     </div>
 
-    <script>
-        // Configuração do gráfico
-        document.addEventListener('DOMContentLoaded', function () {
-            const ctx = document.getElementById('salesChart').getContext('2d');
-            const salesChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'],
-                    datasets: [
-                        {
-                            label: 'Vendas',
-                            data: [12, 19, 8, 15, 14, 17],
-                            backgroundColor: '#2196F3',
-                        },
-                        {
-                            label: 'Doações',
-                            data: [5, 3, 6, 4, 7, 5],
-                            backgroundColor: '#FF9800',
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-
-            // Inicializar funcionalidades
-            inicializarModais();
-        });
-
-        // Função para inicializar os modais
-        function inicializarModais() {
-            // Configurar modal de exclusão
-            const modalExcluir = document.getElementById('modal-excluir');
-            const btnCancelarExclusao = document.getElementById('cancelar-exclusao');
-            const btnConfirmarExclusao = document.getElementById('confirmar-exclusao');
-            const spanFecharExcluir = modalExcluir.querySelector('.close-modal');
-
-            // Configurar modal de sucesso de exclusão
-            const modalSucessoExclusao = document.getElementById('modal-sucesso-exclusao');
-            const btnFecharSucesso = document.getElementById('fechar-sucesso');
-            const spanFecharSucesso = modalSucessoExclusao.querySelector('.close-modal');
-
-            // Configurar modal de edição
-            const modalEditar = document.getElementById('modal-editar');
-            const btnCancelarEdicao = document.getElementById('cancelar-edicao');
-            const formEditar = document.getElementById('form-editar-produto');
-            const spanFecharEditar = modalEditar.querySelector('.close-modal');
-
-            // Função para abrir modal de exclusão
-            document.querySelectorAll('.delete-btn').forEach(btn => {
-                btn.addEventListener('click', function () {
-                    const produtoId = this.getAttribute('data-id');
-                    const produtoNome = this.closest('tr').querySelector('td:first-child').textContent;
-
-                    document.getElementById('nome-produto-excluir').textContent = produtoNome;
-                    modalExcluir.setAttribute('data-produto-id', produtoId);
-                    modalExcluir.setAttribute('data-produto-nome', produtoNome);
-                    modalExcluir.style.display = 'block';
-                });
-            });
-
-            // Função para abrir modal de edição
-            document.querySelectorAll('.edit-btn').forEach(btn => {
-                btn.addEventListener('click', function () {
-                    const produtoId = this.getAttribute('data-id');
-                    const linhaProduto = this.closest('tr');
-                    const nome = linhaProduto.cells[0].textContent;
-                    const categoria = linhaProduto.cells[1].textContent;
-                    const preco = linhaProduto.cells[2].textContent.replace('R$ ', '');
-                    const status = linhaProduto.cells[3].querySelector('.status').textContent;
-
-                    // Preencher o formulário com os dados atuais
-                    document.getElementById('edit-produto-id').value = produtoId;
-                    document.getElementById('edit-nome').value = nome;
-                    document.getElementById('edit-categoria').value = categoria;
-                    document.getElementById('edit-preco').value = preco;
-                    document.getElementById('edit-status').value = status;
-
-                    // Abrir modal de edição
-                    modalEditar.style.display = 'block';
-                });
-            });
-
-            // Fechar modais ao clicar no X
-            spanFecharExcluir.addEventListener('click', () => {
-                modalExcluir.style.display = 'none';
-            });
-
-            spanFecharSucesso.addEventListener('click', () => {
-                modalSucessoExclusao.style.display = 'none';
-            });
-
-            spanFecharEditar.addEventListener('click', () => {
-                modalEditar.style.display = 'none';
-            });
-
-            // Cancelar ações
-            btnCancelarExclusao.addEventListener('click', () => {
-                modalExcluir.style.display = 'none';
-            });
-
-            btnCancelarEdicao.addEventListener('click', () => {
-                modalEditar.style.display = 'none';
-            });
-
-            // Fechar modal de sucesso
-            btnFecharSucesso.addEventListener('click', () => {
-                modalSucessoExclusao.style.display = 'none';
-            });
-
-            // Confirmar exclusão
-            btnConfirmarExclusao.addEventListener('click', () => {
-                const produtoId = modalExcluir.getAttribute('data-produto-id');
-                const produtoNome = modalExcluir.getAttribute('data-produto-nome');
-
-                // Aqui você implementaria a lógica real de exclusão
-                // Após a exclusão bem-sucedida, mostre a modal de sucesso:
-
-                // Fechar a modal de confirmação
-                modalExcluir.style.display = 'none';
-
-                // Mostrar modal de sucesso
-                document.getElementById('nome-produto-sucesso').textContent = produtoNome;
-                modalSucessoExclusao.style.display = 'block';
-            });
-
-            // Submeter formulário de edição
-            formEditar.addEventListener('submit', function (e) {
-                e.preventDefault();
-
-                const produtoId = document.getElementById('edit-produto-id').value;
-                const nome = document.getElementById('edit-nome').value;
-                const categoria = document.getElementById('edit-categoria').value;
-                const preco = document.getElementById('edit-preco').value;
-                const status = document.getElementById('edit-status').value;
-
-                // Aqui você implementaria a lógica real de atualização
-                alert(`Produto ${produtoId} atualizado com sucesso!`);
-                modalEditar.style.display = 'none';
-            });
-
-            // Fechar modais ao clicar fora deles
-            window.addEventListener('click', function (event) {
-                if (event.target == modalExcluir) {
-                    modalExcluir.style.display = 'none';
-                }
-                if (event.target == modalSucessoExclusao) {
-                    modalSucessoExclusao.style.display = 'none';
-                }
-                if (event.target == modalEditar) {
-                    modalEditar.style.display = 'none';
-                }
-            });
-        }
-    </script>
+    <!-- Scripts -->
+    <script src="JS/vendedor-produtos.js"></script>
+    <script src="JS/modo_noturno_vendedor.js"></script>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q755SR73MY"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-Q755SR73MY');
-</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q755SR73MY"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-Q755SR73MY');
+    </script>
+    <script src="JS/breadcrumbs-vendedor.js"></script>
 </body>
 
 </html>

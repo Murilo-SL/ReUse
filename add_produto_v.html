@@ -7,7 +7,8 @@
     <title>ReUse - Adicionar Produto</title>
     <link rel="stylesheet" href="CSS/vendedor.css">
     <link rel="stylesheet" href="CSS/vendedor-sub.css">
-    <link rel="stylesheet" href="CSS/breadcrumbs-vendedor.css">
+    <link rel="stylesheet" href="CSS/breadcrumbs.css">
+    <link rel="stylesheet" href="CSS/modo_noturno_vendedor.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <!-- VLibras -->
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
@@ -25,6 +26,10 @@
                     <img src="IMG/reuse-logo-(1).svg" alt="ReUse Logo">
                 </div>
                 <div class="user-actions">
+                    <!-- Botão do Modo Noturno -->
+                    <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+                        <i class="bi bi-sun-fill" id="themeIcon"></i>
+                    </button>
                     <a href="login.html">
                         <i class="bi bi-box-arrow-left"></i> Sair da Conta
                     </a>
@@ -68,7 +73,7 @@
                         <div class="form-group">
                             <label for="nome-produto">Nome do Produto *</label>
                             <input type="text" id="nome-produto" name="nome-produto" required
-                                placeholder="Ex: Camiseta Polo Lacoste">
+                                placeholder="Ex: Liquidificador Philips">
                         </div>
 
                         <div class="form-group">
@@ -82,12 +87,10 @@
                                 <label for="categoria-produto">Categoria *</label>
                                 <select id="categoria-produto" name="categoria-produto" required>
                                     <option value="">Selecione uma categoria</option>
-                                    <option value="Masculino">Masculino</option>
-                                    <option value="Feminino">Feminino</option>
-                                    <option value="Infantil">Infantil</option>
-                                    <option value="Esportivo">Esportivo</option>
-                                    <option value="Acessórios">Acessórios</option>
-                                    <option value="Calçados">Calçados</option>
+                                    <option value="Eletrodomésticos">Eletrodomésticos</option>
+                                    <option value="Utensílios">Utensílios</option>
+                                    <option value="Móveis">Móveis</option>
+                                    <option value="Casa e Cozinha">Casa e Cozinha</option>
                                 </select>
                             </div>
 
@@ -95,10 +98,10 @@
                                 <label for="condicao-produto">Condição *</label>
                                 <select id="condicao-produto" name="condicao-produto" required>
                                     <option value="">Selecione a condição</option>
-                                    <option value="nova">Nova (com etiqueta)</option>
-                                    <option value="excelente">Excelente (pouco uso)</option>
-                                    <option value="boa">Boa (alguns sinais de uso)</option>
-                                    <option value="usada">Usada (sinais visíveis de uso)</option>
+                                    <option value="Novo">Novo</option>
+                                    <option value="Semi-novo">Semi-novo</option>
+                                    <option value="Usado - Excelente estado">Usado - Excelente estado</option>
+                                    <option value="Usado - Bom estado">Usado - Bom estado</option>
                                 </select>
                             </div>
                         </div>
@@ -119,6 +122,18 @@
                                 <input type="number" id="quantidade-produto" name="quantidade-produto" min="1" required
                                     placeholder="1">
                             </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="parcelas-produto">Parcelas</label>
+                            <select id="parcelas-produto" name="parcelas-produto">
+                                <option value="1">À vista</option>
+                                <option value="2">2x</option>
+                                <option value="3" selected>3x</option>
+                                <option value="4">4x</option>
+                                <option value="5">5x</option>
+                                <option value="6">6x</option>
+                            </select>
                         </div>
                     </div>
 
@@ -163,46 +178,22 @@
                     <div class="form-section">
                         <h2>Detalhes Adicionais</h2>
 
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="marca-produto">Marca</label>
-                                <input type="text" id="marca-produto" name="marca-produto"
-                                    placeholder="Ex: Nike, Zara, etc.">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="tamanho-produto">Tamanho</label>
-                                <select id="tamanho-produto" name="tamanho-produto">
-                                    <option value="">Selecione o tamanho</option>
-                                    <option value="PP">PP</option>
-                                    <option value="P">P</option>
-                                    <option value="M">M</option>
-                                    <option value="G">G</option>
-                                    <option value="GG">GG</option>
-                                    <option value="XG">XG</option>
-                                    <option value="34">34</option>
-                                    <option value="36">36</option>
-                                    <option value="38">38</option>
-                                    <option value="40">40</option>
-                                    <option value="42">42</option>
-                                    <option value="44">44</option>
-                                    <option value="46">46</option>
-                                    <option value="Único">Único</option>
-                                </select>
-                            </div>
+                        <div class="form-group">
+                            <label for="marca-produto">Marca</label>
+                            <input type="text" id="marca-produto" name="marca-produto"
+                                placeholder="Ex: Philips, Tramontina, etc.">
                         </div>
 
                         <div class="form-group">
-                            <label for="cor-produto">Cor</label>
-                            <input type="text" id="cor-produto" name="cor-produto"
-                                placeholder="Ex: Azul, Vermelho, etc.">
+                            <label for="medidas-produto">Medidas</label>
+                            <input type="text" id="medidas-produto" name="medidas-produto"
+                                placeholder="Ex: Altura: 30cm, Largura: 15cm">
                         </div>
 
                         <div class="form-group">
-                            <label for="tags-produto">Palavras-chave (Tags)</label>
-                            <input type="text" id="tags-produto" name="tags-produto"
-                                placeholder="Separe por vírgulas (ex: verão, casual, esporte)">
-                            <p class="form-help">Estas palavras ajudarão os clientes a encontrar seu produto.</p>
+                            <label for="informacoes-produto">Informações Adicionais</label>
+                            <textarea id="informacoes-produto" name="informacoes-produto" rows="3"
+                                placeholder="Informações técnicas, características, etc."></textarea>
                         </div>
                     </div>
 
@@ -232,8 +223,8 @@
                 <!-- Seção Configurações -->
                 <div class="footer-links">
                     <h3>Configurações</h3>
-                    <a href="#"><i class="bi bi-shield-lock-fill"></i> <span>Privacidade</span></a>
-                    <a href="#"><i class="bi bi-credit-card-fill"></i> <span>Pagamentos</span></a>
+                    <a href="configuracoes.html"><i class="bi bi-shield-lock-fill"></i> <span>Privacidade</span></a>
+                    <a href="configuracoes.html"><i class="bi bi-credit-card-fill"></i> <span>Pagamentos</span></a>
                 </div>
 
                 <!-- Seção Sobre Nós -->
@@ -277,6 +268,7 @@
 
     <!-- Scripts JavaScript -->
     <script src="JS/vendedor.js"></script>
+    <script src="JS/modo_noturno_vendedor.js"></script>
     <script src="JS/breadcrumbs-vendedor.js"></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q755SR73MY"></script>
@@ -289,10 +281,62 @@
     </script>
 
     <script>
+        // ============ SISTEMA DE ARMAZENAMENTO COMPATÍVEL ============
+        
+        // Função para obter produtos do localStorage (compatível com vendedor-produtos.js)
+        function obterProdutos() {
+            const produtosSalvos = localStorage.getItem('produtosCasaUsada');
+            return produtosSalvos ? JSON.parse(produtosSalvos) : {};
+        }
+
+        // Função para salvar produtos no localStorage
+        function salvarProdutos(produtos) {
+            localStorage.setItem('produtosCasaUsada', JSON.stringify(produtos));
+            // Disparar evento personalizado para sincronização
+            window.dispatchEvent(new Event('produtosAtualizados'));
+        }
+
         // Função para gerar ID único para o produto
         function gerarIdUnico() {
             return Date.now().toString(36) + Math.random().toString(36).substr(2);
         }
+
+        // Função para mostrar notificações
+        function mostrarNotificacao(mensagem, tipo = 'info') {
+            try {
+                // Criar elemento de notificação
+                const notification = document.createElement('div');
+                notification.className = `alert-notification alert-${tipo}`;
+                notification.innerHTML = `
+                    <i class="bi bi-${tipo === 'success' ? 'check-circle' : tipo === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+                    ${mensagem}
+                `;
+                
+                document.body.appendChild(notification);
+                
+                // Animação de entrada
+                setTimeout(() => {
+                    notification.style.transform = 'translateX(0)';
+                    notification.style.opacity = '1';
+                }, 100);
+                
+                // Remover após 3 segundos
+                setTimeout(() => {
+                    notification.style.transform = 'translateX(100%)';
+                    notification.style.opacity = '0';
+                    setTimeout(() => {
+                        if (notification.parentNode) {
+                            notification.remove();
+                        }
+                    }, 300);
+                }, 3000);
+                
+            } catch (error) {
+                console.error('Erro ao mostrar notificação:', error);
+            }
+        }
+
+        // ============ VALIDAÇÃO E PROCESSAMENTO DO FORMULÁRIO ============
 
         // Validação do formulário
         document.getElementById('produto-form').addEventListener('submit', function (e) {
@@ -303,59 +347,69 @@
             const preco = document.getElementById('preco-produto').value;
             const categoria = document.getElementById('categoria-produto').value;
             const quantidade = document.getElementById('quantidade-produto').value;
+            const condicao = document.getElementById('condicao-produto').value;
 
-            if (!nome || !preco || !categoria || !quantidade) {
-                alert('Por favor, preencha todos os campos obrigatórios.');
+            if (!nome || !preco || !categoria || !quantidade || !condicao) {
+                mostrarNotificacao('Por favor, preencha todos os campos obrigatórios.', 'error');
                 return;
             }
 
-            // Criar objeto do produto
+            // Processar informações adicionais
+            const informacoes = document.getElementById('informacoes-produto').value;
+            const informacoesArray = informacoes ? informacoes.split('\n').filter(info => info.trim() !== '') : [];
+
+            // Processar medidas
+            const medidas = document.getElementById('medidas-produto').value;
+            const medidasArray = medidas ? medidas.split(',').map(medida => medida.trim()) : [];
+
+            // Calcular preço parcelado
+            const parcelas = parseInt(document.getElementById('parcelas-produto').value);
+            const precoParcelado = parcelas > 1 ? parseFloat(preco) / parcelas : parseFloat(preco);
+
+            // Criar objeto do produto com estrutura compatível
             const novoProduto = {
                 id: gerarIdUnico(),
                 nome: nome,
                 descricao: document.getElementById('descricao-produto').value,
                 categoria: categoria,
-                condicao: document.getElementById('condicao-produto').value,
-                preco: parseFloat(preco).toFixed(2),
+                condicao: condicao,
+                precoVista: parseFloat(preco),
+                precoParcelado: precoParcelado,
+                parcelas: parcelas,
                 quantidade: parseInt(quantidade),
-                marca: document.getElementById('marca-produto').value,
-                tamanho: document.getElementById('tamanho-produto').value,
-                cor: document.getElementById('cor-produto').value,
-                tags: document.getElementById('tags-produto').value,
-                status: 'Disponível',
-                dataCadastro: new Date().toISOString()
+                marca: document.getElementById('marca-produto').value || 'Sem marca',
+                medidas: medidasArray,
+                informacoes: informacoesArray,
+                vendedor: "Casa Usada",
+                status: "Disponível",
+                dataCadastro: new Date().toISOString(),
+                // Imagem padrão (será substituída quando implementar upload real)
+                imagem: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIHZpZXdCb3g9IjAgMCA1MCA1MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjUwIiBoZWlnaHQ9IjUwIiBmaWxsPSIjRjBGMEYwIi8+CjxwYXRoIGQ9Ik0zMCAyMEgyMFYzMEgzMFYyMFpNMzIgMzJIMThWMTguMDAwMUgzMlYzMlpNMzIgMzJIMThWMTguMDAwMUgzMlYzMloiIGZpbGw9IiNDQ0NDQ0MiLz4KPC9zdmc+"
             };
 
             // Salvar produto no localStorage
             salvarProduto(novoProduto);
 
             // Mensagem de sucesso
-            alert('Produto cadastrado com sucesso!');
+            mostrarNotificacao('Produto cadastrado com sucesso!', 'success');
 
-            // Redirecionar para a página principal
-            window.location.href = 'Vendedor.html';
+            // Redirecionar para a página de produtos após 1.5 segundos
+            setTimeout(() => {
+                window.location.href = 'meus_produtos.html';
+            }, 1500);
         });
 
-        // Função para salvar produto no localStorage
+        // Função para salvar produto no localStorage (compatível)
         function salvarProduto(produto) {
-            let produtos = JSON.parse(localStorage.getItem('produtosVendedor')) || [];
-            produtos.push(produto);
-            localStorage.setItem('produtosVendedor', JSON.stringify(produtos));
-
-            // Atualizar contador de produtos
-            atualizarContadorProdutos();
-        }
-
-        // Função para atualizar contador de produtos
-        function atualizarContadorProdutos() {
-            let produtos = JSON.parse(localStorage.getItem('produtosVendedor')) || [];
-            localStorage.setItem('totalProdutos', produtos.length);
+            let produtos = obterProdutos();
+            produtos[produto.id] = produto;
+            salvarProdutos(produtos);
         }
 
         // Cancelar e voltar
         document.getElementById('cancelar-btn').addEventListener('click', function () {
             if (confirm('Tem certeza que deseja cancelar? Todas as informações não salvas serão perdidas.')) {
-                window.location.href = 'Vendedor.html';
+                window.location.href = 'vendedor.html';
             }
         });
 
@@ -374,6 +428,11 @@
                     reader.readAsDataURL(this.files[0]);
                 }
             });
+        });
+
+        // Inicializar quando o DOM estiver carregado
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Sistema de adição de produtos inicializado!');
         });
     </script>
 </body>

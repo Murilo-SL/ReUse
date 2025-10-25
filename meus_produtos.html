@@ -7,7 +7,8 @@
     <title>ReUse - Meus Produtos</title>
     <link rel="stylesheet" href="CSS/vendedor.css">
     <link rel="stylesheet" href="CSS/vendedor-sub.css">
-    <link rel="stylesheet" href="CSS/breadcrumbs-vendedor.css">
+    <link rel="stylesheet" href="CSS/breadcrumbs.css">
+    <link rel="stylesheet" href="CSS/modo_noturno_vendedor.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <!-- VLibras -->
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
@@ -26,6 +27,10 @@
                     <img src="IMG/reuse-logo-(1).svg" alt="ReUse Logo">
                 </div>
                 <div class="user-actions">
+                    <!-- Botão do Modo Noturno -->
+                    <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+                        <i class="bi bi-sun-fill" id="themeIcon"></i>
+                    </button>
                     <a href="login.html">
                         <i class="bi bi-box-arrow-left"></i> Sair da Conta
                     </a>
@@ -38,6 +43,22 @@
     <div class="dashboard-container">
         <!-- Menu Lateral -->
         <aside class="sidebar">
+            <div class="vendedor-info-sidebar">
+                <img src="IMG/vendedor-casa-usada.jpg" alt="Casa Usada" class="vendedor-avatar-sidebar">
+                <div class="vendedor-dados-sidebar">
+                    <h3>Casa Usada</h3>
+                    <div class="estrelas-sidebar">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star"></i>
+                        <span>4.3</span>
+                    </div>
+                    <p>Rio de Janeiro, RJ</p>
+                </div>
+            </div>
+            
             <h2 class="sidebar-title">Meu Brechó</h2>
             <ul class="sidebar-nav">
                 <li><a href="vendedor.html"><i class="bi bi-house"></i> Início</a></li>
@@ -47,37 +68,32 @@
                 <li><a href="avaliacoes.html"><i class="bi bi-star-fill"></i> Avaliações</a></li>
                 <li><a href="configuracoes.html"><i class="bi bi-gear"></i> Configurações</a></li>
                 <li><a href="doacao.vendedor.html" id="doacao-link"><i class="bi bi-gift-fill"></i> Fazer Doação</a></li>
+                <li><a href="lixeira.html"><i class="bi bi-trash3"></i>lixeira</a></li>
             </ul>
         </aside>
 
         <!-- Conteúdo Principal -->
         <main class="main-content">
-            <!-- Breadcrumbs -->
-            <div id="breadcrumbs-container" class="breadcrumbs-vendedor">
-                <a href="vendedor.html">Painel do Vendedor</a> &gt; <span>Meus Produtos</span>
-            </div>
 
             <h1>Meus Produtos</h1>
 
             <!-- Filtros e Busca -->
             <div class="filters-container">
                 <div class="search-box">
-                    <input type="text" placeholder="Buscar produtos...">
-                    <button><i class="bi bi-search"></i></button>
+                    <input type="text" id="buscar-produtos" placeholder="Buscar produtos...">
+                    <button id="btn-buscar"><i class="bi bi-search"></i></button>
                 </div>
 
                 <div class="filter-options">
-                    <select>
+                    <select id="filtro-categoria">
                         <option value="">Todas as categorias</option>
-                        <option value="Masculino">Masculino</option>
-                        <option value="Feminino">Feminino</option>
-                        <option value="Infantil">Infantil</option>
-                        <option value="Esportivo">Esportivo</option>
-                        <option value="Acessórios">Acessórios</option>
-                        <option value="Calçados">Calçados</option>
+                        <option value="Eletrodomésticos">Eletrodomésticos</option>
+                        <option value="Utensílios">Utensílios</option>
+                        <option value="Móveis">Móveis</option>
+                        <option value="Casa e Cozinha">Casa e Cozinha</option>
                     </select>
 
-                    <select>
+                    <select id="filtro-status">
                         <option value="">Todos os status</option>
                         <option value="Disponível">Disponível</option>
                         <option value="Vendido">Vendido</option>
@@ -88,75 +104,39 @@
 
             <!-- Tabela de Produtos -->
             <div class="products-table">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Imagem</th>
-                            <th>Nome do Produto</th>
-                            <th>Categoria</th>
-                            <th>Preço</th>
-                            <th>Status</th>
-                            <th>Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><img src="IMG/produto1.jpg" alt="Camiseta Polo Lacoste" class="product-thumb"></td>
-                            <td>Camiseta Polo Lacoste</td>
-                            <td>Masculino</td>
-                            <td>R$ 79,90</td>
-                            <td><span class="status status-available">Disponível</span></td>
-                            <td>
-                                <button class="action-btn edit-btn" data-id="prod1">Editar</button>
-                                <button class="action-btn delete-btn" data-id="prod1">Excluir</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><img src="IMG/produto2.jpg" alt="Calça Jeans Levi's" class="product-thumb"></td>
-                            <td>Calça Jeans Levi's</td>
-                            <td>Masculino</td>
-                            <td>R$ 129,90</td>
-                            <td><span class="status status-sold">Vendido</span></td>
-                            <td>
-                                <button class="action-btn edit-btn" data-id="prod2">Editar</button>
-                                <button class="action-btn delete-btn" data-id="prod2">Excluir</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><img src="IMG/produto3.jpg" alt="Vestido Floral Zara" class="product-thumb"></td>
-                            <td>Vestido Floral Zara</td>
-                            <td>Feminino</td>
-                            <td>R$ 89,90</td>
-                            <td><span class="status status-available">Disponível</span></td>
-                            <td>
-                                <button class="action-btn edit-btn" data-id="prod3">Editar</button>
-                                <button class="action-btn delete-btn" data-id="prod3">Excluir</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><img src="IMG/produto4.jpg" alt="Bolsa Michael Kors" class="product-thumb"></td>
-                            <td>Bolsa Michael Kors</td>
-                            <td>Feminino</td>
-                            <td>R$ 299,90</td>
-                            <td><span class="status status-donated">Doado</span></td>
-                            <td>
-                                <button class="action-btn edit-btn" data-id="prod4">Editar</button>
-                                <button class="action-btn delete-btn" data-id="prod4">Excluir</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><img src="IMG/produto5.jpg" alt="Tênis Nike" class="product-thumb"></td>
-                            <td>Tênis Nike</td>
-                            <td>Esportivo</td>
-                            <td>R$ 199,99</td>
-                            <td><span class="status status-available">Disponível</span></td>
-                            <td>
-                                <button class="action-btn edit-btn" data-id="prod5">Editar</button>
-                                <button class="action-btn delete-btn" data-id="prod5">Excluir</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="table-header">
+                    <h2 class="section-title">Todos os Produtos</h2>
+                    <div class="table-actions">
+                        <button class="btn-refresh" id="btn-refresh-produtos">
+                            <i class="bi bi-arrow-clockwise"></i> Atualizar
+                        </button>
+                        <span class="produtos-count" id="produtos-count">Carregando...</span>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table id="tabela-produtos">
+                        <thead>
+                            <tr>
+                                <th>Produto</th>
+                                <th>Categoria</th>
+                                <th>Preço</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="produtos-body">
+                            <!-- Produtos serão carregados via JavaScript -->
+                            <tr>
+                                <td colspan="5" class="loading-row">
+                                    <div class="loading-spinner">
+                                        <i class="bi bi-arrow-repeat"></i>
+                                        <span>Carregando produtos...</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </main>
     </div>
@@ -207,12 +187,10 @@
                     <label for="edit-categoria">Categoria:</label>
                     <select id="edit-categoria" required>
                         <option value="">Selecione uma categoria</option>
-                        <option value="Masculino">Masculino</option>
-                        <option value="Feminino">Feminino</option>
-                        <option value="Infantil">Infantil</option>
-                        <option value="Esportivo">Esportivo</option>
-                        <option value="Acessórios">Acessórios</option>
-                        <option value="Calçados">Calçados</option>
+                        <option value="Eletrodomésticos">Eletrodomésticos</option>
+                        <option value="Utensílios">Utensílios</option>
+                        <option value="Móveis">Móveis</option>
+                        <option value="Casa e Cozinha">Casa e Cozinha</option>
                     </select>
                 </div>
 
@@ -248,7 +226,6 @@
         <div class="container">
             <div class="footer-content">
 
-
                 <!-- Seção Minha Loja -->
                 <div class="footer-links">
                     <h3>Minha Loja</h3>
@@ -260,8 +237,8 @@
                 <!-- Seção Configurações -->
                 <div class="footer-links">
                     <h3>Configurações</h3>
-                    <a href="#"><i class="bi bi-shield-lock-fill"></i> <span>Privacidade</span></a>
-                    <a href="#"><i class="bi bi-credit-card-fill"></i> <span>Pagamentos</span></a>
+                    <a href="configuracoes.html"><i class="bi bi-shield-lock-fill"></i> <span>Privacidade</span></a>
+                    <a href="configuracoes.html"><i class="bi bi-credit-card-fill"></i> <span>Pagamentos</span></a>
                 </div>
 
                 <!-- Seção Sobre Nós -->
@@ -303,147 +280,19 @@
         </div>
     </div>
 
-    <script>
-        // Inicializar funcionalidades quando o documento estiver carregado
-        document.addEventListener('DOMContentLoaded', function () {
-            inicializarModais();
-        });
-
-        // Função para inicializar os modais
-        function inicializarModais() {
-            // Configurar modal de exclusão
-            const modalExcluir = document.getElementById('modal-excluir');
-            const btnCancelarExclusao = document.getElementById('cancelar-exclusao');
-            const btnConfirmarExclusao = document.getElementById('confirmar-exclusao');
-            const spanFecharExcluir = modalExcluir.querySelector('.close-modal');
-
-            // Configurar modal de sucesso de exclusão
-            const modalSucessoExclusao = document.getElementById('modal-sucesso-exclusao');
-            const btnFecharSucesso = document.getElementById('fechar-sucesso');
-            const spanFecharSucesso = modalSucessoExclusao.querySelector('.close-modal');
-
-            // Configurar modal de edição
-            const modalEditar = document.getElementById('modal-editar');
-            const btnCancelarEdicao = document.getElementById('cancelar-edicao');
-            const formEditar = document.getElementById('form-editar-produto');
-            const spanFecharEditar = modalEditar.querySelector('.close-modal');
-
-            // Função para abrir modal de exclusão
-            document.querySelectorAll('.delete-btn').forEach(btn => {
-                btn.addEventListener('click', function () {
-                    const produtoId = this.getAttribute('data-id');
-                    const produtoNome = this.closest('tr').querySelector('td:nth-child(2)').textContent;
-
-                    document.getElementById('nome-produto-excluir').textContent = produtoNome;
-                    modalExcluir.setAttribute('data-produto-id', produtoId);
-                    modalExcluir.setAttribute('data-produto-nome', produtoNome);
-                    modalExcluir.style.display = 'block';
-                });
-            });
-
-            // Função para abrir modal de edição
-            document.querySelectorAll('.edit-btn').forEach(btn => {
-                btn.addEventListener('click', function () {
-                    const produtoId = this.getAttribute('data-id');
-                    const linhaProduto = this.closest('tr');
-                    const nome = linhaProduto.cells[1].textContent;
-                    const categoria = linhaProduto.cells[2].textContent;
-                    const preco = linhaProduto.cells[3].textContent.replace('R$ ', '');
-                    const status = linhaProduto.cells[4].querySelector('.status').textContent;
-
-                    // Preencher o formulário com os dados atuais
-                    document.getElementById('edit-produto-id').value = produtoId;
-                    document.getElementById('edit-nome').value = nome;
-                    document.getElementById('edit-categoria').value = categoria;
-                    document.getElementById('edit-preco').value = preco;
-                    document.getElementById('edit-status').value = status;
-
-                    // Abrir modal de edição
-                    modalEditar.style.display = 'block';
-                });
-            });
-
-            // Fechar modais ao clicar no X
-            spanFecharExcluir.addEventListener('click', () => {
-                modalExcluir.style.display = 'none';
-            });
-
-            spanFecharSucesso.addEventListener('click', () => {
-                modalSucessoExclusao.style.display = 'none';
-            });
-
-            spanFecharEditar.addEventListener('click', () => {
-                modalEditar.style.display = 'none';
-            });
-
-            // Cancelar ações
-            btnCancelarExclusao.addEventListener('click', () => {
-                modalExcluir.style.display = 'none';
-            });
-
-            btnCancelarEdicao.addEventListener('click', () => {
-                modalEditar.style.display = 'none';
-            });
-
-            // Fechar modal de sucesso
-            btnFecharSucesso.addEventListener('click', () => {
-                modalSucessoExclusao.style.display = 'none';
-            });
-
-            // Confirmar exclusão
-            btnConfirmarExclusao.addEventListener('click', () => {
-                const produtoId = modalExcluir.getAttribute('data-produto-id');
-                const produtoNome = modalExcluir.getAttribute('data-produto-nome');
-
-                // Aqui você implementaria a lógica real de exclusão
-                // Após a exclusão bem-sucedida, mostre a modal de sucesso:
-
-                // Fechar a modal de confirmação
-                modalExcluir.style.display = 'none';
-
-                // Mostrar modal de sucesso
-                document.getElementById('nome-produto-sucesso').textContent = produtoNome;
-                modalSucessoExclusao.style.display = 'block';
-            });
-
-            // Submeter formulário de edição
-            formEditar.addEventListener('submit', function (e) {
-                e.preventDefault();
-
-                const produtoId = document.getElementById('edit-produto-id').value;
-                const nome = document.getElementById('edit-nome').value;
-                const categoria = document.getElementById('edit-categoria').value;
-                const preco = document.getElementById('edit-preco').value;
-                const status = document.getElementById('edit-status').value;
-
-                // Aqui você implementaria a lógica real de atualização
-                alert(`Produto ${produtoId} atualizado com sucesso!`);
-                modalEditar.style.display = 'none';
-            });
-
-            // Fechar modais ao clicar fora deles
-            window.addEventListener('click', function (event) {
-                if (event.target == modalExcluir) {
-                    modalExcluir.style.display = 'none';
-                }
-                if (event.target == modalSucessoExclusao) {
-                    modalSucessoExclusao.style.display = 'none';
-                }
-                if (event.target == modalEditar) {
-                    modalEditar.style.display = 'none';
-                }
-            });
-        }
-    </script>
+    <!-- Scripts -->
+    <script src="JS/vendedor-produtos.js"></script>
+    <script src="JS/breadcrumbs-vendedor.js"></script>
+    <script src="JS/modo_noturno_vendedor.js"></script>
+    
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q755SR73MY"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-Q755SR73MY');
-</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q755SR73MY"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-Q755SR73MY');
+    </script>
 </body>
 
 </html>

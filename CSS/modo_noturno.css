@@ -2233,3 +2233,370 @@ body.night-mode .privacy-breadcrumbs {
     }
 }
 
+/* ================ PÁGINA DE CONTATOS NO MODO NOTURNO ================ */
+
+/* Seção Hero */
+body.night-mode .contacts-hero {
+    background: linear-gradient(135deg, #2d2d44 0%, #3d3d5c 100%);
+    color: #e6e6e6;
+}
+
+body.night-mode .contacts-hero h1 {
+    color: #4da6ff;
+}
+
+body.night-mode .contacts-hero p {
+    color: #b8b8cc;
+}
+
+/* Container de Contatos */
+body.night-mode .contacts-container {
+    background: transparent;
+}
+
+/* Formulário de Contato */
+body.night-mode .contact-form {
+    background-color: #2d2d44;
+    border: 1px solid #4b5563;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+body.night-mode .contact-form h2 {
+    color: #4da6ff;
+    border-bottom-color: #4da6ff;
+}
+
+body.night-mode .form-group label {
+    color: #e6e6e6;
+}
+
+body.night-mode .form-control {
+    background-color: #3d3d5c;
+    color: #e6e6e6;
+    border: 1px solid #4b5563;
+}
+
+body.night-mode .form-control:focus {
+    border-color: #4da6ff;
+    box-shadow: 0 0 0 2px rgba(77, 166, 255, 0.2);
+}
+
+body.night-mode .form-control::placeholder {
+    color: #a0aec0;
+}
+
+body.night-mode .btn-submit {
+    background: linear-gradient(135deg, #2563eb 0%, #4CAF50 100%);
+    color: white;
+    border: none;
+}
+
+body.night-mode .btn-submit:hover {
+    background: linear-gradient(135deg, #1d4ed8 0%, #3d8b40 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(33, 150, 243, 0.4);
+}
+
+/* Informações de Contato */
+body.night-mode .contact-info {
+    background-color: #2d2d44;
+    border: 1px solid #4b5563;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+body.night-mode .contact-info h2 {
+    color: #4da6ff;
+    border-bottom-color: #4da6ff;
+}
+
+body.night-mode .contact-item {
+    border-bottom: 1px solid #4b5563;
+}
+
+body.night-mode .contact-item:last-child {
+    border-bottom: none;
+}
+
+body.night-mode .contact-icon {
+    background: linear-gradient(135deg, #2563eb 0%, #4CAF50 100%);
+    color: white;
+}
+
+body.night-mode .contact-details h3 {
+    color: #e6e6e6;
+}
+
+body.night-mode .contact-details p {
+    color: #b8b8cc;
+}
+
+body.night-mode .social-contact a {
+    color: #4da6ff;
+    transition: all 0.3s ease;
+}
+
+body.night-mode .social-contact a:hover {
+    color: #4CAF50;
+    transform: translateY(-3px);
+}
+
+/* Seção FAQ */
+body.night-mode .faq-section h2 {
+    color: #4da6ff;
+}
+
+body.night-mode .faq-item {
+    background-color: #2d2d44;
+    border: 1px solid #4b5563;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+body.night-mode .faq-item:hover {
+    box-shadow: 0 4px 15px rgba(77, 166, 255, 0.2);
+}
+
+body.night-mode .faq-question {
+    background-color: #3d3d5c;
+    color: #e6e6e6;
+}
+
+body.night-mode .faq-question:hover {
+    background-color: #4b5563;
+}
+
+body.night-mode .faq-answer {
+    background-color: #2d2d44;
+    color: #b8b8cc;
+}
+
+/* Seção do Mapa */
+body.night-mode .map-section h2 {
+    color: #4da6ff;
+}
+
+body.night-mode .map-container {
+    background-color: #2d2d44;
+    border: 1px solid #4b5563;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+body.night-mode .map-placeholder {
+    background-color: #3d3d5c;
+    color: #b8b8cc;
+}
+
+body.night-mode .map-placeholder i {
+    color: #4da6ff;
+}
+
+/* Mensagem de Sucesso */
+body.night-mode .success-message {
+    background-color: #2d2d44;
+    color: #e6e6e6;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    border: 1px solid #4b5563;
+}
+
+body.night-mode .success-icon {
+    background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
+}
+
+body.night-mode .success-message h2 {
+    color: #4CAF50;
+}
+
+body.night-mode .success-message p {
+    color: #b8b8cc;
+}
+
+body.night-mode .btn-close {
+    background: linear-gradient(135deg, #2563eb 0%, #4CAF50 100%);
+    color: white;
+    border: none;
+}
+
+body.night-mode .btn-close:hover {
+    background: linear-gradient(135deg, #1d4ed8 0%, #3d8b40 100%);
+    transform: translateY(-2px);
+}
+
+/* Overlay */
+body.night-mode .overlay {
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+}
+
+/* Confetti */
+body.night-mode .confetti {
+    background-color: #4da6ff;
+}
+
+/* Animações específicas para modo noturno */
+@keyframes nightModePulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(77, 166, 255, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(77, 166, 255, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(77, 166, 255, 0);
+    }
+}
+
+body.night-mode .contact-icon {
+    animation: nightModePulse 2s infinite;
+}
+
+/* Estados de foco melhorados para modo noturno */
+body.night-mode .form-control:focus {
+    animation: nightModePulse 1.5s infinite;
+}
+
+/* Efeitos de hover refinados */
+body.night-mode .faq-item:hover .faq-question {
+    color: #4da6ff;
+}
+
+body.night-mode .contact-item:hover .contact-icon {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+/* Responsividade para modo noturno */
+@media (max-width: 768px) {
+    body.night-mode .contacts-container {
+        gap: 20px;
+    }
+    
+    body.night-mode .contact-form,
+    body.night-mode .contact-info {
+        background-color: #2d2d44;
+        border: 1px solid #4b5563;
+    }
+    
+    body.night-mode .faq-item {
+        background-color: #2d2d44;
+    }
+    
+    body.night-mode .success-message {
+        width: 95%;
+        padding: 30px 20px;
+    }
+}
+
+/* Estados de loading para modo noturno */
+body.night-mode .btn-submit:disabled {
+    background: #3d3d5c;
+    color: #a0aec0;
+    cursor: not-allowed;
+}
+
+body.night-mode .btn-submit.loading {
+    background: linear-gradient(135deg, #3d3d5c 0%, #4b5563 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+body.night-mode .btn-submit.loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(77, 166, 255, 0.4), transparent);
+    animation: loadingShine 1.5s infinite;
+}
+
+@keyframes loadingShine {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+/* Validação de formulário no modo noturno */
+body.night-mode .form-control.error {
+    border-color: #ff6b6b;
+    box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.2);
+}
+
+body.night-mode .form-control.success {
+    border-color: #4CAF50;
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+}
+
+/* Tooltips no modo noturno */
+body.night-mode .contact-item .tooltip {
+    background-color: #3d3d5c;
+    color: #e6e6e6;
+    border: 1px solid #4b5563;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+body.night-mode .contact-item .tooltip::before {
+    border-top-color: #3d3d5c;
+}
+
+/* Efeitos de transição suaves */
+body.night-mode .contact-form,
+body.night-mode .contact-info,
+body.night-mode .faq-item,
+body.night-mode .map-container {
+    transition: all 0.3s ease;
+}
+
+body.night-mode .contact-form:hover,
+body.night-mode .contact-info:hover,
+body.night-mode .faq-item:hover,
+body.night-mode .map-container:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Estados de foco para acessibilidade */
+body.night-mode .btn-submit:focus,
+body.night-mode .btn-close:focus,
+body.night-mode .faq-question:focus {
+    outline: 2px solid #4da6ff;
+    outline-offset: 2px;
+}
+
+/* Animações de entrada para elementos da página de contatos */
+@keyframes slideInUpNight {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+body.night-mode .contact-form,
+body.night-mode .contact-info,
+body.night-mode .faq-item,
+body.night-mode .map-container {
+    animation: slideInUpNight 0.6s ease-out;
+}
+
+/* Delay para animação em cascata */
+body.night-mode .contact-form {
+    animation-delay: 0.1s;
+}
+
+body.night-mode .contact-info {
+    animation-delay: 0.2s;
+}
+
+body.night-mode .faq-section h2 {
+    animation-delay: 0.3s;
+}
+
+body.night-mode .map-section h2 {
+    animation-delay: 0.4s;
+}

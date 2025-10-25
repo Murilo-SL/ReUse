@@ -7,7 +7,9 @@
     <title>ReUse - Configurações do Vendedor</title>
     <link rel="stylesheet" href="CSS/vendedor.css">
     <link rel="stylesheet" href="CSS/vendedor-sub.css">
-    <link rel="stylesheet" href="CSS/breadcrumbs-vendedor.css">
+    <link rel="stylesheet" href="CSS/breadcrumbs.css">
+    <link rel="stylesheet" href="CSS/modo_noturno_vendedor.css">
+    <link rel="stylesheet" href="CSS/configuracoes_vendedor.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <!-- VLibras -->
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
@@ -26,6 +28,10 @@
                     <img src="IMG/reuse-logo-(1).svg" alt="ReUse Logo">
                 </div>
                 <div class="user-actions">
+                    <!-- Botão do Modo Noturno -->
+                    <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+                        <i class="bi bi-sun-fill" id="themeIcon"></i>
+                    </button>
                     <a href="login.html">
                         <i class="bi bi-box-arrow-left"></i> Sair da Conta
                     </a>
@@ -36,8 +42,24 @@
 
     <!-- DASHBOARD PRINCIPAL -->
     <div class="dashboard-container">
-        <!-- Menu Lateral -->
+        <!-- Menu Lateral Atualizado -->
         <aside class="sidebar">
+            <div class="vendedor-info-sidebar">
+                <img src="IMG/vendedor-casa-usada.jpg" alt="Casa Usada" class="vendedor-avatar-sidebar">
+                <div class="vendedor-dados-sidebar">
+                    <h3>Casa Usada</h3>
+                    <div class="estrelas-sidebar">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star"></i>
+                        <span>4.3</span>
+                    </div>
+                    <p>Rio de Janeiro, RJ</p>
+                </div>
+            </div>
+            
             <h2 class="sidebar-title">Meu Brechó</h2>
             <ul class="sidebar-nav">
                 <li><a href="vendedor.html"><i class="bi bi-house"></i> Início</a></li>
@@ -47,17 +69,47 @@
                 <li><a href="avaliacoes.html"><i class="bi bi-star-fill"></i> Avaliações</a></li>
                 <li><a href="configuracoes.html" class="active"><i class="bi bi-gear"></i> Configurações</a></li>
                 <li><a href="doacao.vendedor.html" id="doacao-link"><i class="bi bi-gift-fill"></i> Fazer Doação</a></li>
+                <li><a href="lixeira.html"><i class="bi bi-trash3"></i> Lixeira</a></li>
             </ul>
         </aside>
 
         <!-- Conteúdo Principal -->
         <main class="main-content">
-            <!-- Breadcrumbs -->
-            <div id="breadcrumbs-container" class="breadcrumbs-vendedor">
-                <a href="Vendedor.html">Painel do Vendedor</a> &gt; <span>Configurações</span>
-            </div>
 
-            <h1>Configurações da Conta</h1>
+            <h1>Configurações da Conta - Casa Usada</h1>
+
+            <!-- Cards de Resumo Rápidos -->
+            <div class="stats-cards">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background-color: #e1f5fe;">
+                        <i class="bi bi-shield-check" style="color: #2196F3;"></i>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-value">Premium</div>
+                        <div class="stat-label">Status da Conta</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon" style="background-color: #e8f5e9;">
+                        <i class="bi bi-calendar-check" style="color: #4CAF50;"></i>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-value">12 meses</div>
+                        <div class="stat-label">Membro desde</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon" style="background-color: #fff3e0;">
+                        <i class="bi bi-bell" style="color: #FF9800;"></i>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="notificacoes-pendentes">3</div>
+                        <div class="stat-label">Notificações</div>
+                    </div>
+                </div>
+            </div>
 
             <!-- Formulário de Configurações -->
             <div class="settings-container">
@@ -67,6 +119,7 @@
                     <button class="tab-btn" data-tab="privacidade">Privacidade</button>
                     <button class="tab-btn" data-tab="pagamentos">Pagamentos</button>
                     <button class="tab-btn" data-tab="notificacoes">Notificações</button>
+                    <button class="tab-btn" data-tab="loja">Minha Loja</button>
                 </div>
 
                 <!-- Conteúdo das Abas -->
@@ -81,37 +134,77 @@
 
                         <div class="form-group">
                             <label for="email">E-mail</label>
-                            <input type="email" id="email" value="maria.silva@email.com" required>
+                            <input type="email" id="email" value="casausada@email.com" required>
                         </div>
 
                         <div class="form-group">
                             <label for="telefone">Telefone</label>
-                            <input type="tel" id="telefone" value="(11) 99999-9999" required>
+                            <input type="tel" id="telefone" value="(21) 98888-8888" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="nome-loja">Nome da Loja</label>
-                            <input type="text" id="nome-loja" value="Brechó da Maria" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="descricao-loja">Descrição da Loja</label>
-                            <textarea id="descricao-loja"
-                                rows="4">Roupas em ótimo estado com preços acessíveis. Peças selecionadas com cuidado para oferecer o melhor para meus clientes.</textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="foto-perfil">Foto de Perfil</label>
-                            <div class="file-upload">
-                                <img src="IMG/placeholder-profile.jpg" alt="Foto de perfil" class="profile-pic"
-                                    id="profile-preview">
-                                <input type="file" id="foto-perfil" accept="image/*" class="file-input">
-                                <label for="foto-perfil" class="upload-btn">Alterar foto</label>
-                            </div>
+                            <label for="cpf-cnpj">CPF/CNPJ</label>
+                            <input type="text" id="cpf-cnpj" value="12.345.678/0001-90" required>
                         </div>
 
                         <div class="form-actions">
                             <button type="button" class="cancel-btn" id="cancel-conta">Cancelar</button>
+                            <button type="submit" class="save-btn">Salvar Alterações</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="tab-content" id="loja-tab">
+                    <h2>Configurações da Loja</h2>
+
+                    <form class="settings-form" id="loja-form">
+                        <div class="form-group">
+                            <label for="nome-loja">Nome da Loja</label>
+                            <input type="text" id="nome-loja" value="Casa Usada" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="descricao-loja">Descrição da Loja</label>
+                            <textarea id="descricao-loja" rows="4">Oferecemos eletrodomésticos e utensílios domésticos em ótimo estado, com garantia de funcionamento. Todos os produtos passam por uma avaliação criteriosa antes de serem disponibilizados.</textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="categoria-principal">Categoria Principal</label>
+                            <select id="categoria-principal">
+                                <option value="eletrodomesticos" selected>Eletrodomésticos</option>
+                                <option value="moveis">Móveis</option>
+                                <option value="utensilios">Utensílios Domésticos</option>
+                                <option value="casa-cozinha">Casa e Cozinha</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="tempo-resposta">Tempo Médio de Resposta</label>
+                            <select id="tempo-resposta">
+                                <option value="2" selected>Até 2 horas</option>
+                                <option value="4">Até 4 horas</option>
+                                <option value="8">Até 8 horas</option>
+                                <option value="24">Até 24 horas</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="politica-trocas">Política de Trocas</label>
+                            <textarea id="politica-trocas" rows="3">Aceitamos trocas em até 7 dias para produtos com defeito. Produtos em perfeito estado não são passíveis de troca.</textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="foto-perfil">Logo da Loja</label>
+                            <div class="file-upload">
+                                <img src="IMG/vendedor-casa-usada.jpg" alt="Logo da loja" class="profile-pic"
+                                    id="logo-preview">
+                                <input type="file" id="foto-perfil" accept="image/*" class="file-input">
+                                <label for="foto-perfil" class="upload-btn">Alterar logo</label>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="cancel-btn" id="cancel-loja">Cancelar</button>
                             <button type="submit" class="save-btn">Salvar Alterações</button>
                         </div>
                     </form>
@@ -153,6 +246,19 @@
                                 <input type="checkbox" id="mostrar-estatisticas" checked>
                                 <label for="mostrar-estatisticas">Mostrar estatísticas da loja publicamente</label>
                             </div>
+
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="mostrar-vendas" checked>
+                                <label for="mostrar-vendas">Mostrar histórico de vendas</label>
+                            </div>
+                        </div>
+
+                        <div class="security-section">
+                            <h3>Segurança</h3>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="autenticacao-2fatores">
+                                <label for="autenticacao-2fatores">Ativar autenticação de dois fatores</label>
+                            </div>
                         </div>
 
                         <div class="form-actions">
@@ -182,7 +288,7 @@
                                 <i class="bi bi-paypal"></i>
                                 <div>
                                     <h4>PayPal</h4>
-                                    <p>maria.silva@email.com</p>
+                                    <p>casausada@email.com</p>
                                 </div>
                             </div>
                             <button class="edit-payment-btn" data-type="paypal" data-id="2">Editar</button>
@@ -211,7 +317,7 @@
                             <label for="conta-pagamento">Conta para recebimentos</label>
                             <select id="conta-pagamento">
                                 <option selected>Conta Corrente ••• 5678</option>
-                                <option>PayPal - maria.silva@email.com</option>
+                                <option>PayPal - casausada@email.com</option>
                             </select>
                         </div>
 
@@ -249,13 +355,18 @@
                             </div>
 
                             <div class="checkbox-group">
-                                <input type="checkbox" id="email-avaliacoes">
+                                <input type="checkbox" id="email-avaliacoes" checked>
                                 <label for="email-avaliacoes">Novas avaliações</label>
                             </div>
 
                             <div class="checkbox-group">
                                 <input type="checkbox" id="email-promocoes" checked>
                                 <label for="email-promocoes">Promoções e novidades</label>
+                            </div>
+
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="email-mensagens" checked>
+                                <label for="email-mensagens">Novas mensagens</label>
                             </div>
                         </div>
 
@@ -276,6 +387,25 @@
                                 <input type="checkbox" id="site-atualizacoes" checked>
                                 <label for="site-atualizacoes">Atualizações do sistema</label>
                             </div>
+
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="site-promocoes" checked>
+                                <label for="site-promocoes">Oportunidades de promoção</label>
+                            </div>
+                        </div>
+
+                        <div class="notification-category">
+                            <h3>Notificações por SMS</h3>
+
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="sms-vendas">
+                                <label for="sms-vendas">Vendas importantes</label>
+                            </div>
+
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="sms-suporte">
+                                <label for="sms-suporte">Alertas de suporte</label>
+                            </div>
                         </div>
 
                         <div class="form-actions">
@@ -283,6 +413,36 @@
                             <button type="submit" class="save-btn">Salvar Alterações</button>
                         </div>
                     </form>
+                </div>
+            </div>
+
+            <!-- Seção de Perigo -->
+            <div class="danger-zone">
+                <h2 class="section-title" style="color: #dc3545;">Zona de Perigo</h2>
+                <div class="danger-actions">
+                    <div class="danger-action">
+                        <h3>Exportar Dados</h3>
+                        <p>Baixe todos os seus dados da loja em formato CSV</p>
+                        <button class="btn-export" id="btn-export-data">
+                            <i class="bi bi-download"></i> Exportar Dados
+                        </button>
+                    </div>
+                    
+                    <div class="danger-action">
+                        <h3>Desativar Loja</h3>
+                        <p>Temporariamente desative sua loja (seus produtos não serão exibidos)</p>
+                        <button class="btn-disable" id="btn-disable-store">
+                            <i class="bi bi-pause-circle"></i> Desativar Loja
+                        </button>
+                    </div>
+                    
+                    <div class="danger-action">
+                        <h3>Excluir Conta</h3>
+                        <p>Exclua permanentemente sua conta e todos os dados</p>
+                        <button class="btn-delete-account" id="btn-delete-account">
+                            <i class="bi bi-trash"></i> Excluir Conta
+                        </button>
+                    </div>
                 </div>
             </div>
         </main>
@@ -359,6 +519,69 @@
         </div>
     </div>
 
+    <!-- Modal de Confirmação para Ações Perigosas -->
+    <div id="danger-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 class="modal-title" id="danger-modal-title">Confirmar Ação</h2>
+            <p id="danger-modal-message">Tem certeza que deseja realizar esta ação?</p>
+            <div class="modal-actions">
+                <button class="modal-btn modal-btn-cancel" id="cancel-danger">Cancelar</button>
+                <button class="modal-btn modal-btn-confirm" id="confirm-danger">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- RODAPÉ (mantido do original) -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <!-- Seção Minha Loja -->
+                <div class="footer-links">
+                    <h3>Minha Loja</h3>
+                    <a href="meus_produtos.html"><i class="bi bi-grid-3x3-gap-fill"></i> <span>Produtos</span></a>
+                    <a href="estatisticas.html"><i class="bi bi-bar-chart-line-fill"></i> <span>Estatísticas</span></a>
+                    <a href="avaliacoes.html"><i class="bi bi-star-fill"></i> <span>Avaliações</span></a>
+                </div>
+
+                <!-- Seção Configurações -->
+                <div class="footer-links">
+                    <h3>Configurações</h3>
+                    <a href="configuracoes.html"><i class="bi bi-shield-lock-fill"></i> <span>Privacidade</span></a>
+                    <a href="configuracoes.html"><i class="bi bi-credit-card-fill"></i> <span>Pagamentos</span></a>
+                </div>
+
+                <!-- Seção Sobre Nós -->
+                <div class="footer-links">
+                    <h3>Sobre Nós</h3>
+                    <a href=""><i class="bi bi-info-circle-fill"></i> <span>Missão</span></a>
+                    <a href=""><i class="bi bi-people-fill"></i> <span>Equipe</span></a>
+                    <a href=""><i class="bi bi-envelope-fill"></i> <span>Contato</span></a>
+
+                    <div class="socials-title">
+                        <i class="bi bi-globe2"></i>
+                        <span>Redes Sociais</span>
+                    </div>
+
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/profile.php?id=61582645355166&locale=pt_BR" target="_blank"
+                            title="Facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="https://www.instagram.com/projeto_reuse/" target="_blank" title="Instagram"><i
+                                class="bi bi-instagram"></i></a>
+                        <a href="https://x.com/Re_Use_Projeto" target="_blank" title="Twitter"><i
+                                class="bi bi-twitter-x"></i></a>
+                        <a href="https://github.com/Murilo-SL/ReUse" target="_blank" title="GitHub"><i
+                                class="bi bi-github"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="copyright">
+                &copy; 2025 ReUse - <span>Todos os direitos reservados</span>
+            </div>
+        </div>
+    </footer>
+
     <!-- Widget VLibras -->
     <div vw class="enabled">
         <div vw-access-button class="active"></div>
@@ -370,405 +593,9 @@
     <!-- Toast para mensagens -->
     <div id="toast" class="toast"></div>
 
-    <script>
-        // Dados iniciais (simulando dados do usuário)
-        const userData = {
-            nome: "Maria Silva",
-            email: "maria.silva@email.com",
-            telefone: "(11) 99999-9999",
-            nomeLoja: "Brechó da Maria",
-            descricaoLoja: "Roupas em ótimo estado com preços acessíveis. Peças selecionadas com cuidado para oferecer o melhor para meus clientes.",
-            fotoPerfil: "IMG/placeholder-profile.jpg",
-            privacidade: {
-                perfilPublico: true,
-                mostrarEmail: false,
-                mostrarEstatisticas: true
-            },
-            notificacoes: {
-                emailVendas: true,
-                emailEstoque: true,
-                emailAvaliacoes: false,
-                emailPromocoes: true,
-                siteVendas: true,
-                siteMensagens: true,
-                siteAtualizacoes: true
-            },
-            pagamentos: {
-                contaPagamento: "Conta Corrente ••• 5678",
-                frequenciaPagamento: "Quinzenal"
-            }
-        };
-
-        // Elementos DOM
-        const tabBtns = document.querySelectorAll('.tab-btn');
-        const tabContents = document.querySelectorAll('.tab-content');
-        const profilePreview = document.getElementById('profile-preview');
-        const fotoPerfilInput = document.getElementById('foto-perfil');
-        const toast = document.getElementById('toast');
-        const paymentModal = document.getElementById('payment-modal');
-        const closeModalBtn = document.querySelector('.close-modal');
-        const cancelPaymentBtn = document.getElementById('cancel-payment');
-        const paymentForm = document.getElementById('payment-form');
-        const tipoPagamentoSelect = document.getElementById('tipo-pagamento');
-        const addPaymentBtn = document.getElementById('add-payment-btn');
-        const editPaymentBtns = document.querySelectorAll('.edit-payment-btn');
-        const paymentMethodsList = document.getElementById('payment-methods-list');
-        const savePagamentosBtn = document.getElementById('save-pagamentos');
-
-        // Inicializar a página
-        document.addEventListener('DOMContentLoaded', function () {
-            // Carregar dados do usuário
-            loadUserData();
-
-            // Configurar eventos
-            setupEventListeners();
-        });
-
-        // Carregar dados do usuário nos formulários
-        function loadUserData() {
-            // Dados da conta
-            document.getElementById('nome').value = userData.nome;
-            document.getElementById('email').value = userData.email;
-            document.getElementById('telefone').value = userData.telefone;
-            document.getElementById('nome-loja').value = userData.nomeLoja;
-            document.getElementById('descricao-loja').value = userData.descricaoLoja;
-            profilePreview.src = userData.fotoPerfil;
-
-            // Dados de privacidade
-            document.getElementById('perfil-publico').checked = userData.privacidade.perfilPublico;
-            document.getElementById('mostrar-email').checked = userData.privacidade.mostrarEmail;
-            document.getElementById('mostrar-estatisticas').checked = userData.privacidade.mostrarEstatisticas;
-
-            // Dados de notificações
-            document.getElementById('email-vendas').checked = userData.notificacoes.emailVendas;
-            document.getElementById('email-estoque').checked = userData.notificacoes.emailEstoque;
-            document.getElementById('email-avaliacoes').checked = userData.notificacoes.emailAvaliacoes;
-            document.getElementById('email-promocoes').checked = userData.notificacoes.emailPromocoes;
-            document.getElementById('site-vendas').checked = userData.notificacoes.siteVendas;
-            document.getElementById('site-mensagens').checked = userData.notificacoes.siteMensagens;
-            document.getElementById('site-atualizacoes').checked = userData.notificacoes.siteAtualizacoes;
-
-            // Dados de pagamentos
-            document.getElementById('conta-pagamento').value = userData.pagamentos.contaPagamento;
-            document.getElementById('frequencia-pagamento').value = userData.pagamentos.frequenciaPagamento;
-        }
-
-        // Configurar event listeners
-        function setupEventListeners() {
-            // Sistema de abas
-            tabBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const tabId = btn.getAttribute('data-tab');
-                    activateTab(tabId);
-                });
-            });
-
-            // Preview da imagem de perfil
-            fotoPerfilInput.addEventListener('change', function () {
-                if (this.files && this.files[0]) {
-                    const reader = new FileReader();
-                    reader.onload = function (e) {
-                        profilePreview.src = e.target.result;
-                    }
-                    reader.readAsDataURL(this.files[0]);
-                }
-            });
-
-            // Formulários
-            document.getElementById('conta-form').addEventListener('submit', handleContaSubmit);
-            document.getElementById('privacidade-form').addEventListener('submit', handlePrivacidadeSubmit);
-            document.getElementById('notificacoes-form').addEventListener('submit', handleNotificacoesSubmit);
-
-            // Botões de cancelar
-            document.getElementById('cancel-conta').addEventListener('click', resetContaForm);
-            document.getElementById('cancel-privacidade').addEventListener('click', resetPrivacidadeForm);
-            document.getElementById('cancel-notificacoes').addEventListener('click', resetNotificacoesForm);
-            document.getElementById('cancel-pagamentos').addEventListener('click', resetPagamentosForm);
-
-            // Modal de pagamentos
-            addPaymentBtn.addEventListener('click', openAddPaymentModal);
-            editPaymentBtns.forEach(btn => {
-                btn.addEventListener('click', function () {
-                    const type = this.getAttribute('data-type');
-                    const id = this.getAttribute('data-id');
-                    openEditPaymentModal(type, id);
-                });
-            });
-
-            closeModalBtn.addEventListener('click', closePaymentModal);
-            cancelPaymentBtn.addEventListener('click', closePaymentModal);
-            paymentForm.addEventListener('submit', handlePaymentSubmit);
-            tipoPagamentoSelect.addEventListener('change', togglePaymentFields);
-
-            // Botão salvar pagamentos
-            savePagamentosBtn.addEventListener('click', handlePagamentosSubmit);
-
-            // Fechar modal ao clicar fora dele
-            window.addEventListener('click', function (event) {
-                if (event.target === paymentModal) {
-                    closePaymentModal();
-                }
-            });
-        }
-
-        // Ativar aba
-        function activateTab(tabId) {
-            // Desativar todas as abas
-            tabBtns.forEach(btn => btn.classList.remove('active'));
-            tabContents.forEach(content => content.classList.remove('active'));
-
-            // Ativar a aba clicada
-            document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
-            document.getElementById(`${tabId}-tab`).classList.add('active');
-        }
-
-        // Manipuladores de formulários
-        function handleContaSubmit(e) {
-            e.preventDefault();
-
-            // Validar dados
-            if (!validateContaForm()) {
-                showToast('Por favor, preencha todos os campos obrigatórios.', 'error');
-                return;
-            }
-
-            // Simular salvamento (em uma aplicação real, faria uma requisição AJAX)
-            setTimeout(() => {
-                showToast('Configurações da conta salvas com sucesso!', 'success');
-            }, 500);
-        }
-
-        function handlePrivacidadeSubmit(e) {
-            e.preventDefault();
-
-            // Validar senhas
-            const novaSenha = document.getElementById('nova-senha').value;
-            const confirmarSenha = document.getElementById('confirmar-senha').value;
-
-            if (novaSenha && novaSenha !== confirmarSenha) {
-                showToast('As senhas não coincidem.', 'error');
-                return;
-            }
-
-            // Simular salvamento
-            setTimeout(() => {
-                showToast('Configurações de privacidade salvas com sucesso!', 'success');
-                document.getElementById('senha-atual').value = '';
-                document.getElementById('nova-senha').value = '';
-                document.getElementById('confirmar-senha').value = '';
-            }, 500);
-        }
-
-        function handleNotificacoesSubmit(e) {
-            e.preventDefault();
-
-            // Simular salvamento
-            setTimeout(() => {
-                showToast('Preferências de notificação salvas com sucesso!', 'success');
-            }, 500);
-        }
-
-        function handlePagamentosSubmit() {
-            // Simular salvamento
-            setTimeout(() => {
-                showToast('Preferências de pagamento salvas com sucesso!', 'success');
-            }, 500);
-        }
-
-        function handlePaymentSubmit(e) {
-            e.preventDefault();
-
-            // Validar formulário baseado no tipo de pagamento
-            const tipoPagamento = tipoPagamentoSelect.value;
-            let isValid = true;
-
-            if (tipoPagamento === 'cartao') {
-                // Validação simplificada para cartão
-                const numeroCartao = document.getElementById('numero-cartao').value;
-                if (!numeroCartao || numeroCartao.replace(/\s/g, '').length < 16) {
-                    isValid = false;
-                }
-            } else if (tipoPagamento === 'paypal') {
-                const emailPaypal = document.getElementById('email-paypal').value;
-                if (!emailPaypal || !emailPaypal.includes('@')) {
-                    isValid = false;
-                }
-            } else if (tipoPagamento === 'conta') {
-                const banco = document.getElementById('banco').value;
-                const agencia = document.getElementById('agencia').value;
-                const conta = document.getElementById('conta-bancaria').value;
-                if (!banco || !agencia || !conta) {
-                    isValid = false;
-                }
-            }
-
-            if (!isValid) {
-                showToast('Por favor, preencha todos os campos obrigatórios.', 'error');
-                return;
-            }
-
-            // Simular salvamento
-            setTimeout(() => {
-                showToast('Método de pagamento salvo com sucesso!', 'success');
-                closePaymentModal();
-
-                // Em uma aplicação real, atualizaria a lista de métodos de pagamento
-                // Aqui apenas simulamos um recarregamento visual
-                if (paymentModal.dataset.mode === 'add') {
-                    // Adicionar novo método à lista (simulação)
-                    const newPayment = document.createElement('div');
-                    newPayment.className = 'payment-card';
-                    newPayment.innerHTML = `
-                        <div class="payment-info">
-                            <i class="bi bi-credit-card"></i>
-                            <div>
-                                <h4>Novo Cartão</h4>
-                                <p>**** **** **** 0000</p>
-                            </div>
-                        </div>
-                        <button class="edit-payment-btn" data-type="cartao" data-id="4">Editar</button>
-                    `;
-                    paymentMethodsList.appendChild(newPayment);
-
-                    // Adicionar event listener ao novo botão
-                    newPayment.querySelector('.edit-payment-btn').addEventListener('click', function () {
-                        const type = this.getAttribute('data-type');
-                        const id = this.getAttribute('data-id');
-                        openEditPaymentModal(type, id);
-                    });
-                }
-            }, 500);
-        }
-
-        // Funções de validação
-        function validateContaForm() {
-            const nome = document.getElementById('nome').value;
-            const email = document.getElementById('email').value;
-            const telefone = document.getElementById('telefone').value;
-            const nomeLoja = document.getElementById('nome-loja').value;
-
-            return nome && email && telefone && nomeLoja;
-        }
-
-        // Funções de reset de formulários
-        function resetContaForm() {
-            document.getElementById('nome').value = userData.nome;
-            document.getElementById('email').value = userData.email;
-            document.getElementById('telefone').value = userData.telefone;
-            document.getElementById('nome-loja').value = userData.nomeLoja;
-            document.getElementById('descricao-loja').value = userData.descricaoLoja;
-            profilePreview.src = userData.fotoPerfil;
-            fotoPerfilInput.value = '';
-        }
-
-        function resetPrivacidadeForm() {
-            document.getElementById('senha-atual').value = '';
-            document.getElementById('nova-senha').value = '';
-            document.getElementById('confirmar-senha').value = '';
-            document.getElementById('perfil-publico').checked = userData.privacidade.perfilPublico;
-            document.getElementById('mostrar-email').checked = userData.privacidade.mostrarEmail;
-            document.getElementById('mostrar-estatisticas').checked = userData.privacidade.mostrarEstatisticas;
-        }
-
-        function resetNotificacoesForm() {
-            document.getElementById('email-vendas').checked = userData.notificacoes.emailVendas;
-            document.getElementById('email-estoque').checked = userData.notificacoes.emailEstoque;
-            document.getElementById('email-avaliacoes').checked = userData.notificacoes.emailAvaliacoes;
-            document.getElementById('email-promocoes').checked = userData.notificacoes.emailPromocoes;
-            document.getElementById('site-vendas').checked = userData.notificacoes.siteVendas;
-            document.getElementById('site-mensagens').checked = userData.notificacoes.siteMensagens;
-            document.getElementById('site-atualizacoes').checked = userData.notificacoes.siteAtualizacoes;
-        }
-
-        function resetPagamentosForm() {
-            document.getElementById('conta-pagamento').value = userData.pagamentos.contaPagamento;
-            document.getElementById('frequencia-pagamento').value = userData.pagamentos.frequenciaPagamento;
-        }
-
-        // Funções para modal de pagamento
-        function openAddPaymentModal() {
-            document.getElementById('payment-modal-title').textContent = 'Adicionar Método de Pagamento';
-            paymentForm.reset();
-            paymentModal.dataset.mode = 'add';
-            paymentModal.style.display = 'block';
-            togglePaymentFields(); // Mostrar campos corretos baseados no tipo selecionado
-        }
-
-        function openEditPaymentModal(type, id) {
-            document.getElementById('payment-modal-title').textContent = 'Editar Método de Pagamento';
-            paymentForm.reset();
-            paymentModal.dataset.mode = 'edit';
-            paymentModal.dataset.id = id;
-
-            // Preencher com dados existentes (simulação)
-            if (type === 'cartao') {
-                tipoPagamentoSelect.value = 'cartao';
-                document.getElementById('numero-cartao').value = '1234 5678 9012 3456';
-                document.getElementById('nome-cartao').value = 'Maria Silva';
-                document.getElementById('validade-cartao').value = '12/25';
-                document.getElementById('cvv-cartao').value = '123';
-            } else if (type === 'paypal') {
-                tipoPagamentoSelect.value = 'paypal';
-                document.getElementById('email-paypal').value = 'maria.silva@email.com';
-            } else if (type === 'conta') {
-                tipoPagamentoSelect.value = 'conta';
-                document.getElementById('banco').value = 'Banco do Brasil';
-                document.getElementById('tipo-conta').value = 'corrente';
-                document.getElementById('agencia').value = '1234';
-                document.getElementById('conta-bancaria').value = '12345-6';
-            }
-
-            togglePaymentFields(); // Mostrar campos corretos
-            paymentModal.style.display = 'block';
-        }
-
-        function closePaymentModal() {
-            paymentModal.style.display = 'none';
-        }
-
-        function togglePaymentFields() {
-            const tipo = tipoPagamentoSelect.value;
-
-            // Esconder todos os campos primeiro
-            document.getElementById('cartao-fields').classList.add('hidden');
-            document.getElementById('paypal-fields').classList.add('hidden');
-            document.getElementById('conta-fields').classList.add('hidden');
-
-            // Mostrar apenas os campos relevantes
-            if (tipo === 'cartao') {
-                document.getElementById('cartao-fields').classList.remove('hidden');
-            } else if (tipo === 'paypal') {
-                document.getElementById('paypal-fields').classList.remove('hidden');
-            } else if (tipo === 'conta') {
-                document.getElementById('conta-fields').classList.remove('hidden');
-            }
-        }
-
-        // Função para mostrar toast (mensagem de feedback)
-        function showToast(message, type = '') {
-            toast.textContent = message;
-            toast.className = 'toast';
-
-            if (type) {
-                toast.classList.add(type);
-            }
-
-            toast.classList.add('show');
-
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
-        }
-    </script>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q755SR73MY"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-Q755SR73MY');
-</script>
+    <script src="JS/configuracoes_vendedor.js"></script>
+    <script src="JS/breadcrumbs-vendedor.js"></script>
+    <script src="JS/modo_noturno_vendedor.js"></script>
 </body>
 
 </html>
