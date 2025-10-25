@@ -1,4 +1,4 @@
-// ========== MODAIS ATUALIZADOS PARA PÁGINA DA ONG ==========
+// ========== MODAIS ATUALIZADOS PARA SOS FELINO ==========
 document.addEventListener('DOMContentLoaded', function() {
     // Elementos dos modais
     const donationModal = document.getElementById('donation-modal');
@@ -28,6 +28,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // ========== FUNÇÕES DE CONTROLE DOS MODAIS ==========
     
+    window.openDonationModal = function() {
+        openModal(donationModal);
+    }
+    
+    window.openVolunteerModal = function() {
+        openModal(volunteerModal);
+    }
+    
     function openModal(modal) {
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
@@ -49,22 +57,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // ========== EVENT LISTENERS ==========
-    
-    // Abrir modal de doação
-    donateButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
-            e.preventDefault();
-            openModal(donationModal);
-        });
-    });
-    
-    // Abrir modal de voluntário
-    volunteerButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
-            e.preventDefault();
-            openModal(volunteerModal);
-        });
-    });
     
     // Fechar modais
     if (closeDonationModal) {

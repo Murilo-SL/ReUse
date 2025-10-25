@@ -189,10 +189,10 @@
                     VENDER
                 </a>
 
-                <a href="#" class="action-button donate with-icon" id="open-donation-modal">
-                    <i class="bi bi-gift-fill"></i>
-                    DOAR
-                </a>
+<a href="#" class="action-button donate with-icon" id="open-donation-modal">
+    <i class="bi bi-gift-fill"></i>
+    DOAR
+</a>
             </section>
 
             <h2 class="section-title">Itens Mais Comprados</h2>
@@ -397,140 +397,159 @@
         </div>
     </footer>
 
-    <!-- Modal de Doação -->
-    <div class="modal-overlay" id="donation-modal">
-        <div class="modal-donation">
-            <div class="modal-header">
-                <h2>Doação</h2>
-                <button class="close-modal" id="close-donation-modal">
-                    <i class="bi bi-x"></i>
-                </button>
-            </div>
+<!-- Modal de Doação -->
+<div class="modal-overlay" id="donation-modal">
+    <div class="modal-donation">
+        <div class="modal-header">
+            <h2><i class="bi bi-gift-fill"></i> Fazer Doação</h2>
+            <button class="close-modal" id="close-donation-modal">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
 
-            <div class="modal-content">
-                <form id="donation-form" class="donation-form">
-                    <!-- Nome do Item -->
-                    <div class="form-field">
-                        <label for="item-name" class="field-label">Nome do Item *</label>
-                        <input type="text" id="item-name" name="item-name" class="input-field"
-                            placeholder="Ex: Tênis Nike Preto" required>
-                    </div>
+        <div class="modal-content">
+            <form id="donation-form" class="donation-form">
+                <!-- Nome do Item -->
+                <div class="form-field">
+                    <label for="item-name" class="field-label">Nome do Item *</label>
+                    <input type="text" id="item-name" name="item-name" class="input-field" 
+                           placeholder="Ex: Tênis Nike Preto, Livro de Matemática..." required>
+                </div>
 
-                    <!-- Categoria do Item -->
-                    <div class="form-field">
-                        <label for="category" class="field-label">Categoria *</label>
-                        <select id="category" name="category" class="select-field" required>
-                            <option value="" selected disabled>Selecione uma categoria</option>
-                            <option value="clothes">Roupas</option>
-                            <option value="shoes">Calçados</option>
-                            <option value="books">Livros</option>
-                            <option value="toys">Brinquedos</option>
-                            <option value="appliances">Eletrodomésticos</option>
-                            <option value="furniture">Móveis</option>
-                        </select>
-                    </div>
+                <!-- Categoria do Item -->
+                <div class="form-field">
+                    <label for="category" class="field-label">Categoria *</label>
+                    <select id="category" name="category" class="select-field" required>
+                        <option value="" selected disabled>Selecione uma categoria</option>
+                        <option value="clothes">Roupas</option>
+                        <option value="shoes">Calçados</option>
+                        <option value="books">Livros</option>
+                        <option value="toys">Brinquedos</option>
+                        <option value="appliances">Eletrodomésticos</option>
+                        <option value="furniture">Móveis</option>
+                        <option value="electronics">Eletrônicos</option>
+                        <option value="other">Outros</option>
+                    </select>
+                </div>
 
-                    <!-- Qualidade do Item -->
-                    <div class="form-field">
-                        <label class="field-label">Qualidade do Item *</label>
-                        <div class="radio-group">
-                            <label class="radio-option">
-                                <input type="radio" name="quality" value="low" required>
-                                <span class="radio-custom"></span>
-                                Baixa
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="quality" value="medium">
-                                <span class="radio-custom"></span>
-                                Média
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="quality" value="high">
-                                <span class="radio-custom"></span>
-                                Alta
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Estado do Item -->
-                    <div class="form-field">
-                        <label class="field-label">Estado do Item *</label>
-                        <div class="radio-group">
-                            <label class="radio-option">
-                                <input type="radio" name="condition" value="used" required>
-                                <span class="radio-custom"></span>
-                                Usado
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="condition" value="semi-new">
-                                <span class="radio-custom"></span>
-                                Semi-novo
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="condition" value="new">
-                                <span class="radio-custom"></span>
-                                Novo
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Descrição do Produto -->
-                    <div class="form-field">
-                        <label for="description" class="field-label">Descrição do Produto *</label>
-                        <textarea id="description" name="description" class="textarea-field"
-                            placeholder="Descreva detalhes sobre o item (cor, tamanho, marca, etc.)"
-                            required></textarea>
-                    </div>
-
-                    <!-- Upload de Fotos -->
-                    <div class="form-field">
-                        <label class="field-label">Fotos do Item *</label>
-                        <label for="photos" class="file-upload-area">
-                            <div class="upload-content">
-                                <i class="bi bi-cloud-upload upload-icon"></i>
-                                <span class="upload-text">Clique ou arraste as fotos aqui</span>
-                                <span class="upload-hint">Máximo: 5 fotos (JPG, PNG - até 5MB cada)</span>
-                            </div>
-                            <input type="file" id="photos" name="photos" accept="image/*" multiple required>
+                <!-- Qualidade do Item -->
+                <div class="form-field">
+                    <label class="field-label">Qualidade do Item *</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="quality" value="low" required>
+                            <span class="radio-custom"></span>
+                            Baixa
                         </label>
-                        <div id="selected-files" class="selected-files"></div>
+                        <label class="radio-option">
+                            <input type="radio" name="quality" value="medium">
+                            <span class="radio-custom"></span>
+                            Média
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="quality" value="high">
+                            <span class="radio-custom"></span>
+                            Alta
+                        </label>
                     </div>
+                </div>
 
-                    <!-- Escolha da ONG -->
-                    <div class="form-field">
-                        <label for="ngo" class="field-label">Escolha para quem deseja doar *</label>
-                        <select id="ngo" name="ngo" class="select-field" required>
-                            <option value="" selected disabled>Selecione uma instituição</option>
-                            <option value="conscious-paws">Patas Concientes</option>
-                            <option value="new-tomorrow">Centro Educacional Novo Amanhã</option>
-                            <option value="st-vincent">Lar dos Idosos São Vicente</option>
-                            <option value="sos-feline">SOS Felino</option>
-                        </select>
+                <!-- Estado do Item -->
+                <div class="form-field">
+                    <label class="field-label">Estado do Item *</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="condition" value="used" required>
+                            <span class="radio-custom"></span>
+                            Usado
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="condition" value="semi-new">
+                            <span class="radio-custom"></span>
+                            Semi-novo
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="condition" value="new">
+                            <span class="radio-custom"></span>
+                            Novo
+                        </label>
                     </div>
+                </div>
 
-                    <!-- Botão de Envio -->
-                    <div class="form-actions">
-                        <button type="submit" class="submit-button">
-                            Confirmar Doação
-                        </button>
-                    </div>
-                </form>
-            </div>
+                <!-- Descrição do Produto -->
+                <div class="form-field">
+                    <label for="description" class="field-label">Descrição do Produto *</label>
+                    <textarea id="description" name="description" class="textarea-field" 
+                              placeholder="Descreva detalhes sobre o item (cor, tamanho, marca, estado de conservação, etc.)"
+                              rows="4" required></textarea>
+                </div>
+
+                <!-- Upload de Fotos -->
+                <div class="form-field">
+                    <label class="field-label">Fotos do Item *</label>
+                    <label for="photos" class="file-upload-area">
+                        <div class="upload-content">
+                            <i class="bi bi-cloud-upload upload-icon"></i>
+                            <span class="upload-text">Clique ou arraste as fotos aqui</span>
+                            <span class="upload-hint">Máximo: 5 fotos (JPG, PNG - até 5MB cada)</span>
+                        </div>
+                        <input type="file" id="photos" name="photos" accept="image/*" multiple required>
+                    </label>
+                    <div id="selected-files" class="selected-files"></div>
+                </div>
+
+                <!-- Escolha da ONG -->
+                <div class="form-field">
+                    <label for="ngo" class="field-label">Escolha para quem deseja doar *</label>
+                    <select id="ngo" name="ngo" class="select-field" required>
+                        <option value="" selected disabled>Selecione uma instituição</option>
+                        <option value="conscious-paws">Patas Conscientes</option>
+                        <option value="new-tomorrow">Centro Educacional Novo Amanhã</option>
+                        <option value="st-vincent">Lar dos Idosos São Vicente</option>
+                        <option value="sos-feline">SOS Felino</option>
+                    </select>
+                </div>
+
+                <!-- Botão de Envio -->
+                <div class="form-actions">
+                    <button type="submit" class="submit-button">
+                        <i class="bi bi-heart-fill"></i> Confirmar Doação
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
+</div>
 
-    <!-- Mensagens de feedback -->
-    <div class="alert-message error" id="error-message">
-        <i class="bi bi-exclamation-circle alert-icon"></i>
-        <span id="error-text">Por favor, preencha todos os campos obrigatórios.</span>
+<!-- Modal de Sucesso -->
+<div class="modal-overlay success-overlay" id="success-overlay">
+    <div class="modal-success">
+        <div class="success-icon">
+            <i class="bi bi-check-circle-fill"></i>
+        </div>
+        <h3 class="success-title">Doação Realizada com Sucesso!</h3>
+        <p class="success-text">
+            Sua doação foi registrada e em breve estará disponível para as instituições. 
+            Obrigado por fazer a diferença na vida de quem mais precisa!
+        </p>
+        <div class="success-details">
+            <p><strong>Próximos passos:</strong></p>
+            <ul>
+                <li><i class="bi bi-check"></i> Sua doação será revisada pela nossa equipe</li>
+                <li><i class="bi bi-check"></i> As instituições poderão visualizar seu item</li>
+                <li><i class="bi bi-check"></i> Você receberá atualizações por email</li>
+            </ul>
+        </div>
+        <div class="success-actions">
+            <button class="btn-success" id="close-success-modal">
+                <i class="bi bi-house-fill"></i> Voltar para a Página Inicial
+            </button>
+        </div>
+        <div class="success-countdown" id="success-countdown">
+            Fechando automaticamente em <span id="countdown-number">5</span> segundos
+        </div>
     </div>
-
-    <div class="modal-overlay success-overlay" id="success-overlay"></div>
-    <div class="modal-success" id="success-message">
-        <i class="bi bi-check-circle success-icon"></i>
-        <h3 class="success-title">Doação realizada com sucesso!</h3>
-        <p class="success-text">Obrigado por sua contribuição.</p>
-    </div>
+</div>
 
     <!-- Widget VLibras -->
     <div vw class="enabled">

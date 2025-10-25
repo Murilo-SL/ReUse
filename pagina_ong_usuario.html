@@ -145,12 +145,9 @@
                     <p class="institution-description">
                         Dedicada ao Acolhimento, Resgate e cuidados de animais
                     </p>
-                    <button type="button" class="donate-button"
-                        onclick="window.location.href='#'">Quero Doar</button>
-                    <button type="button" class="buy-button"
-                        onclick="window.location.href='Produtos_Usuario_ONG.html'">Comprar Produtos</button>
-                    <button type="button" class="Voluntário-button"
-                        onclick="window.location.href='#'">Quero ser Voluntário</button>
+<button type="button" class="donate-button" onclick="openDonationModal()">Quero Doar</button>
+<button type="button" class="buy-button" onclick="window.location.href='Produtos_Usuario_ONG.html'">Comprar Produtos</button>
+<button type="button" class="Voluntário-button" onclick="openVolunteerModal()">Quero ser Voluntário</button>
                 </div>
             </div>
         </div>
@@ -446,287 +443,287 @@
     </div>
 </div>
 
-    <!-- Modal de Cadastro de Voluntário -->
-<div id="volunteerModal" class="modal">
-  <div class="modal-content volunteer-modal-content">
-    <span class="close volunteer-close">&times;</span>
-    
-    <!-- Cabeçalho da ONG -->
-    <div class="volunteer-header">
-      <img src="IMG/SOS felino.jpg" alt="SOS Felino">
-      <h1>SOS Felino - Cadastro de Voluntário</h1>
+<!-- Modal de Doação para SOS Felino -->
+<div class="modal-overlay" id="donation-modal">
+    <div class="modal-donation">
+        <div class="modal-header">
+            <h2><i class="bi bi-gift-fill"></i> Doação para SOS Felino</h2>
+            <button class="close-modal" id="close-donation-modal">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
+
+        <div class="modal-content">
+            <form id="donation-form" class="donation-form">
+                <!-- Nome do Item -->
+                <div class="form-field">
+                    <label for="item-name" class="field-label">Nome do Item *</label>
+                    <input type="text" id="item-name" name="item-name" class="input-field" 
+                           placeholder="Ex: Ração para gatos, Cobertores, Brinquedos..." required>
+                </div>
+
+                <!-- Categoria do Item (adaptada para SOS Felino) -->
+                <div class="form-field">
+                    <label for="category" class="field-label">Categoria *</label>
+                    <select id="category" name="category" class="select-field" required>
+                        <option value="" selected disabled>Selecione uma categoria</option>
+                        <option value="racao">Ração para gatos</option>
+                        <option value="cobertores">Cobertores</option>
+                        <option value="brinquedos">Brinquedos</option>
+                        <option value="medicamentos">Medicamentos</option>
+                        <option value="higiene">Produtos de higiene</option>
+                        <option value="roupas-pets">Roupas para pets</option>
+                        <option value="outros">Outros</option>
+                    </select>
+                </div>
+
+                <!-- Qualidade do Item -->
+                <div class="form-field">
+                    <label class="field-label">Qualidade do Item *</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="quality" value="low" required>
+                            <span class="radio-custom"></span>
+                            Baixa
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="quality" value="medium">
+                            <span class="radio-custom"></span>
+                            Média
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="quality" value="high">
+                            <span class="radio-custom"></span>
+                            Alta
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Estado do Item -->
+                <div class="form-field">
+                    <label class="field-label">Estado do Item *</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="condition" value="used" required>
+                            <span class="radio-custom"></span>
+                            Usado
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="condition" value="semi-new">
+                            <span class="radio-custom"></span>
+                            Semi-novo
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="condition" value="new">
+                            <span class="radio-custom"></span>
+                            Novo
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Descrição do Produto -->
+                <div class="form-field">
+                    <label for="description" class="field-label">Descrição do Produto *</label>
+                    <textarea id="description" name="description" class="textarea-field" 
+                              placeholder="Descreva detalhes sobre o item (marca, quantidade, validade, etc.)"
+                              rows="4" required></textarea>
+                </div>
+
+                <!-- Upload de Fotos -->
+                <div class="form-field">
+                    <label class="field-label">Fotos do Item *</label>
+                    <label for="photos" class="file-upload-area">
+                        <div class="upload-content">
+                            <i class="bi bi-cloud-upload upload-icon"></i>
+                            <span class="upload-text">Clique ou arraste as fotos aqui</span>
+                            <span class="upload-hint">Máximo: 5 fotos (JPG, PNG - até 5MB cada)</span>
+                        </div>
+                        <input type="file" id="photos" name="photos" accept="image/*" multiple required>
+                    </label>
+                    <div id="selected-files" class="selected-files"></div>
+                </div>
+
+                <!-- Instituição fixa (SOS Felino) -->
+                <div class="form-field">
+                    <label class="field-label">Instituição Beneficiada *</label>
+                    <div class="institution-display">
+                        <div class="institution-info-small">
+                            <img src="IMG/sos-felino.jpg" alt="SOS Felino" style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px;">
+                            <span style="font-weight: 600; color: #333;">SOS Felino</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botão de Envio -->
+                <div class="form-actions">
+                    <button type="submit" class="submit-button">
+                        <i class="bi bi-heart-fill"></i> Confirmar Doação
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
-
-    <!-- Formulário de cadastro -->
-    <div class="volunteer-form-container">
-      <h2 class="form-title">Preencha o formulário abaixo</h2>
-      <form id="volunteerForm" class="volunteer-form">
-        <!-- Dados pessoais -->
-        <div class="form-group">
-          <label for="fullName">Nome completo:</label>
-          <input type="text" id="fullName" name="fullName" required>
-        </div>
-
-        <div class="form-group">
-          <label for="birthDate">Data de nascimento:</label>
-          <div class="birthdate-container">
-            <select id="birthDay" name="birthDay" class="birthdate-select" required>
-              <option value="" disabled selected>Dia</option>
-              <!-- Dias serão preenchidos por JavaScript -->
-            </select>
-            <select id="birthMonth" name="birthMonth" class="birthdate-select" required>
-              <option value="" disabled selected>Mês</option>
-              <!-- Meses serão preenchidos por JavaScript -->
-            </select>
-            <select id="birthYear" name="birthYear" class="birthdate-select" required>
-              <option value="" disabled selected>Ano</option>
-              <!-- Anos serão preenchidos por JavaScript -->
-            </select>
-          </div>
-          <input type="hidden" id="birthDate" name="birthDate">
-        </div>
-
-        <div class="form-group">
-          <label for="age">Idade:</label>
-          <input type="number" id="age" name="age" min="18" required>
-        </div>
-
-        <div class="form-group">
-          <label for="gender">Gênero (opcional):</label>
-          <select id="gender" name="gender">
-            <option value="">Selecione</option>
-            <option value="feminino">Feminino</option>
-            <option value="masculino">Masculino</option>
-            <option value="outro">Outro</option>
-            <option value="prefiro-nao-dizer">Prefiro não dizer</option>
-          </select>
-        </div>
-
-        <!-- Endereço -->
-        <div class="form-group">
-          <label for="cep">CEP:</label>
-          <div class="cep-search">
-            <input type="text" id="cep" name="cep" placeholder="00000-000" required maxlength="9"
-                   pattern="\d{5}-?\d{3}">
-            <button type="button" id="cep-button" class="cep-button">Buscar</button>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="address">Endereço:</label>
-          <input type="text" id="address" name="address" required>
-        </div>
-
-        <div class="form-group">
-          <label for="complement">Complemento (opcional):</label>
-          <input type="text" id="complement" name="complement">
-        </div>
-
-        <div class="form-group">
-          <label for="neighborhood">Bairro:</label>
-          <input type="text" id="neighborhood" name="neighborhood" required>
-        </div>
-
-        <div class="form-group">
-          <label for="city">Cidade:</label>
-          <input type="text" id="city" name="city" required>
-        </div>
-
-        <div class="form-group">
-          <label for="state">Estado:</label>
-          <input type="text" id="state" name="state" required>
-        </div>
-
-        <!-- Contato -->
-        <div class="form-group">
-          <label for="phone">Telefone para contato (com DDD):</label>
-          <input type="tel" id="phone" name="phone" placeholder="(00) 00000-0000" required maxlength="15">
-        </div>
-
-        <div class="form-group">
-          <label for="email">E-mail:</label>
-          <input type="email" id="email" name="email" required>
-        </div>
-
-        <!-- Experiência -->
-        <div class="form-group full-width">
-          <label>Você já participou de trabalhos voluntários antes?</label>
-          <div class="radio-group">
-            <div class="radio-option">
-              <input type="radio" id="volunteerYes" name="volunteerBefore" value="sim">
-              <label for="volunteerYes">Sim</label>
-            </div>
-            <div class="radio-option">
-              <input type="radio" id="volunteerNo" name="volunteerBefore" value="nao" checked>
-              <label for="volunteerNo">Não</label>
-            </div>
-          </div>
-        </div>
-
-        <div class="form-group full-width" id="experienceGroup" style="display: none;">
-          <label for="experience">Se sim, descreva sua experiência:</label>
-          <textarea id="experience" name="experience" rows="3"></textarea>
-        </div>
-
-        <!-- Disponibilidade -->
-        <div class="form-group">
-          <label for="availableDays">Dias da semana:</label>
-          <input type="text" id="availableDays" name="availableDays" placeholder="Ex: Segunda, Quarta, Sexta"
-                 required>
-        </div>
-
-        <div class="form-group">
-          <label for="availableHours">Horários disponíveis:</label>
-          <input type="text" id="availableHours" name="availableHours" placeholder="Ex: Manhã, Tarde"
-                 required>
-        </div>
-
-        <!-- Capacitações -->
-        <div class="form-group full-width">
-          <label>Está disponível para participar de capacitações e reuniões eventuais?</label>
-          <div class="radio-group">
-            <div class="radio-option">
-              <input type="radio" id="trainingYes" name="trainingAvailable" value="sim" checked>
-              <label for="trainingYes">Sim</label>
-            </div>
-            <div class="radio-option">
-              <input type="radio" id="trainingNo" name="trainingAvailable" value="nao">
-              <label for="trainingNo">Não</label>
-            </div>
-          </div>
-        </div>
-
-        <!-- Saúde -->
-        <div class="form-group full-width">
-          <label for="healthCondition">Você possui alguma limitação física ou condição de saúde que deveríamos
-            saber?</label>
-          <textarea id="healthCondition" name="healthCondition" rows="3"></textarea>
-        </div>
-
-        <!-- Motivação -->
-        <div class="form-group full-width">
-          <label for="motivation">Por que você quer ser voluntário em nossa ONG? (opcional)</label>
-          <textarea id="motivation" name="motivation" rows="4"></textarea>
-        </div>
-
-        <!-- Botão de envio -->
-        <button type="submit" class="submit-button">Enviar Cadastro</button>
-      </form>
-    </div>
-  </div>
 </div>
 
-<!-- Overlay e mensagem de sucesso -->
-<div class="overlay" id="volunteer-success-overlay" style="display: none;"></div>
-<div class="success-message-new" id="volunteer-success-message" style="display: none;">
-  <i class="bi bi-check-circle-fill"></i>
-  <h3>Cadastro realizado com sucesso!</h3>
-  <p>Obrigado por sua contribuição.</p>
+<!-- Modal de Voluntário para SOS Felino -->
+<div class="modal-overlay" id="volunteer-modal">
+    <div class="modal-donation volunteer-modal">
+        <div class="modal-header">
+            <h2><i class="bi bi-people-fill"></i> Cadastro de Voluntário</h2>
+            <button class="close-modal" id="close-volunteer-modal">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
+
+        <div class="modal-content">
+            <!-- Cabeçalho da ONG -->
+            <div class="volunteer-header">
+                <img src="IMG/sos-felino.jpg" alt="SOS Felino">
+                <h1>SOS Felino</h1>
+                <p>Junte-se à nossa equipe de voluntários</p>
+            </div>
+
+            <form id="volunteer-form" class="volunteer-form">
+                <!-- Dados pessoais -->
+                <div class="form-row">
+                    <div class="form-field">
+                        <label for="fullName" class="field-label">Nome completo *</label>
+                        <input type="text" id="fullName" name="fullName" class="input-field" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-field">
+                        <label for="birthDate" class="field-label">Data de nascimento *</label>
+                        <input type="date" id="birthDate" name="birthDate" class="input-field" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="age" class="field-label">Idade *</label>
+                        <input type="number" id="age" name="age" class="input-field" min="16" required>
+                    </div>
+                </div>
+
+                <div class="form-field">
+                    <label for="gender" class="field-label">Gênero</label>
+                    <select id="gender" name="gender" class="select-field">
+                        <option value="">Selecione</option>
+                        <option value="feminino">Feminino</option>
+                        <option value="masculino">Masculino</option>
+                        <option value="outro">Outro</option>
+                        <option value="prefiro-nao-dizer">Prefiro não dizer</option>
+                    </select>
+                </div>
+
+                <!-- Endereço -->
+                <div class="form-field">
+                    <label for="cep" class="field-label">CEP *</label>
+                    <div class="cep-search">
+                        <input type="text" id="cep" name="cep" class="input-field" placeholder="00000-000" required maxlength="9">
+                        <button type="button" id="cep-button" class="cep-button">Buscar</button>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-field" style="flex: 2;">
+                        <label for="address" class="field-label">Endereço *</label>
+                        <input type="text" id="address" name="address" class="input-field" required>
+                    </div>
+                    <div class="form-field" style="flex: 1;">
+                        <label for="complement" class="field-label">Complemento</label>
+                        <input type="text" id="complement" name="complement" class="input-field">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-field">
+                        <label for="neighborhood" class="field-label">Bairro *</label>
+                        <input type="text" id="neighborhood" name="neighborhood" class="input-field" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="city" class="field-label">Cidade *</label>
+                        <input type="text" id="city" name="city" class="input-field" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="state" class="field-label">Estado *</label>
+                        <input type="text" id="state" name="state" class="input-field" required>
+                    </div>
+                </div>
+
+                <!-- Contato -->
+                <div class="form-row">
+                    <div class="form-field">
+                        <label for="phone" class="field-label">Telefone *</label>
+                        <input type="tel" id="phone" name="phone" class="input-field" placeholder="(00) 00000-0000" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="email" class="field-label">E-mail *</label>
+                        <input type="email" id="email" name="email" class="input-field" required>
+                    </div>
+                </div>
+
+                <!-- Experiência -->
+                <div class="form-field">
+                    <label class="field-label">Já participou de trabalhos voluntários antes? *</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="volunteerBefore" value="sim" required>
+                            <span class="radio-custom"></span>
+                            Sim
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="volunteerBefore" value="nao">
+                            <span class="radio-custom"></span>
+                            Não
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-field" id="experienceGroup" style="display: none;">
+                    <label for="experience" class="field-label">Descreva sua experiência</label>
+                    <textarea id="experience" name="experience" class="textarea-field" rows="3"></textarea>
+                </div>
+
+                <!-- Disponibilidade -->
+                <div class="form-row">
+                    <div class="form-field">
+                        <label for="availableDays" class="field-label">Dias disponíveis *</label>
+                        <input type="text" id="availableDays" name="availableDays" class="input-field" 
+                               placeholder="Ex: Segunda, Quarta, Sexta" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="availableHours" class="field-label">Horários disponíveis *</label>
+                        <input type="text" id="availableHours" name="availableHours" class="input-field" 
+                               placeholder="Ex: Manhã, Tarde" required>
+                    </div>
+                </div>
+
+                <!-- Botão de Envio -->
+                <div class="form-actions">
+                    <button type="submit" class="submit-button">
+                        <i class="bi bi-person-plus-fill"></i> Enviar Cadastro
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 
-    <!-- Modal de Doação Específica -->
-<div id="donationModal" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    
-    <div class="donation-form">
-      <h2 class="form-title">Doação para SOS Felino</h2>
-      <form id="doacao-form">
-        <!-- Nome do Item -->
-        <div class="form-group">
-          <label for="nome-item" class="form-label">Nome do Item *</label>
-          <input type="text" id="nome-item" name="nome-item" class="form-control"
-                 placeholder="Ex: Cobertor para gatos" required>
+<!-- Modal de Sucesso -->
+<div class="modal-overlay success-overlay" id="success-overlay">
+    <div class="modal-success">
+        <div class="success-icon">
+            <i class="bi bi-check-circle-fill"></i>
         </div>
-
-        <!-- Categoria do Item (fixa para SOS Felino) -->
-        <div class="form-group">
-          <label for="categoria" class="form-label">Categoria *</label>
-          <select id="categoria" name="categoria" class="form-select" required>
-            <option value="" selected disabled>Selecione uma categoria</option>
-            <option value="roupas-pets">Roupas para pets</option>
-            <option value="cobertores">Cobertores</option>
-            <option value="brinquedos">Brinquedos</option>
-            <option value="higiene">Produtos de higiene</option>
-          </select>
+        <h3 class="success-title">Cadastro Realizado com Sucesso!</h3>
+        <p class="success-text">
+            Obrigado por seu interesse em fazer a diferença! Entraremos em contato em breve.
+        </p>
+        <div class="success-actions">
+            <button class="btn-success" id="close-success-modal">
+                <i class="bi bi-house-fill"></i> Fechar
+            </button>
         </div>
-
-        <!-- Qualidade do Item -->
-        <div class="form-group">
-          <label class="form-label">Qualidade do Item *</label>
-          <div class="form-check-group">
-            <label class="form-check">
-              <input type="radio" name="qualidade" value="baixa" required>
-              Baixa
-            </label>
-            <label class="form-check">
-              <input type="radio" name="qualidade" value="media">
-              Média
-            </label>
-            <label class="form-check">
-              <input type="radio" name="qualidade" value="alta">
-              Alta
-            </label>
-          </div>
-        </div>
-
-        <!-- Estado do Item -->
-        <div class="form-group">
-          <label class="form-label">Estado do Item *</label>
-          <div class="form-check-group">
-            <label class="form-check">
-              <input type="radio" name="estado" value="usado" required>
-              Usado
-            </label>
-            <label class="form-check">
-              <input type="radio" name="estado" value="semi-novo">
-              Semi-novo
-            </label>
-            <label class="form-check">
-              <input type="radio" name="estado" value="novo">
-              Novo
-            </label>
-          </div>
-        </div>
-
-        <!-- Descrição do Produto -->
-        <div class="form-group">
-          <label for="descricao" class="form-label">Descrição do Produto *</label>
-          <textarea id="descricao" name="descricao" class="form-control form-textarea"
-                    placeholder="Descreva detalhes sobre o item (cor, tamanho, marca, etc.)" required></textarea>
-        </div>
-
-        <!-- Upload de Fotos -->
-        <div class="form-group">
-          <label class="form-label">Fotos do Item *</label>
-          <label for="fotos" class="file-upload">
-            <i class="bi bi-cloud-upload"></i>
-            <span class="upload-text">Clique ou arraste as fotos aqui</span>
-            <span class="upload-hint">Máximo: 5 fotos (JPG, PNG - até 5MB cada)</span>
-            <input type="file" id="fotos" name="fotos" accept="image/*" multiple required>
-          </label>
-        </div>
-
-        <!-- Instituição fixa (SOS Felino) -->
-        <div class="form-group">
-          <label class="form-label">Instituição Beneficiada *</label>
-          <div class="institution-info">
-            <div class="institution-logo-small">
-              <img src="IMG/sos-felino.jpg" alt="SOS Felino">
-            </div>
-            <div class="institution-name">SOS Felino</div>
-          </div>
-        </div>
-
-        <!-- Botão de Envio -->
-        <div class="submit-wrapper text-center">
-          <button type="submit" class="btn btn-primary btn-lg">
-            <i class="bi bi-heart-fill"></i> Confirmar Doação
-          </button>
-        </div>
-      </form>
     </div>
-  </div>
 </div>
 
     <script>
@@ -1083,8 +1080,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 <script src="JS/breadcrumbs.js"></script>
-<script src="JS/modal_doação_sos_felino.js"></script>
-<script src="JS/modal_voluntario_sos_felino.js"></script>
+<script src="JS/modal_sos_felino.js"></script>
 <script src="JS/modo_noturno.js"></script>
 <script src="JS/menu.js"></script>
 </body>

@@ -84,45 +84,45 @@ function switchForm(activeButton, activeForm, direction) {
     });
 
 
-    // Validação do formulário de cliente
-    const customerLoginForm = document.getElementById('customerLoginForm');
+// Validação do formulário de cliente
+const customerLoginForm = document.getElementById('customerLoginForm');
 
-    customerLoginForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        let isValid = true;
+customerLoginForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let isValid = true;
 
-        // Validação do email
-        const email = document.getElementById('customer-email');
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!email.value.trim()) {
-            const emailError = document.getElementById('customer-email-error');
-            emailError.textContent = 'O email é obrigatório';
-            isValid = false;
-        } else if (!emailRegex.test(email.value)) {
-            const emailError = document.getElementById('customer-email-error');
-            emailError.textContent = 'Digite um email válido';
-            isValid = false;
-        } else {
-            const emailError = document.getElementById('customer-email-error');
-            emailError.textContent = '';
-        }
+    // Validação do email
+    const email = document.getElementById('customer-email');
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email.value.trim()) {
+        const emailError = document.getElementById('customer-email-error');
+        emailError.textContent = '* O email é obrigatório';
+        isValid = false;
+    } else if (!emailRegex.test(email.value)) {
+        const emailError = document.getElementById('customer-email-error');
+        emailError.textContent = '* Digite um email válido';
+        isValid = false;
+    } else {
+        const emailError = document.getElementById('customer-email-error');
+        emailError.textContent = '';
+    }
 
-        // Validação da senha
-        const password = document.getElementById('customer-password');
-        if (!password.value) {
-            const passwordError = document.getElementById('customer-password-error');
-            passwordError.textContent = 'A senha é obrigatória';
-            isValid = false;
-        } else {
-            const passwordError = document.getElementById('customer-password-error');
-            passwordError.textContent = '';
-        }
+    // Validação da senha
+    const password = document.getElementById('customer-password');
+    if (!password.value) {
+        const passwordError = document.getElementById('customer-password-error');
+        passwordError.textContent = '* A senha é obrigatória';
+        isValid = false;
+    } else {
+        const passwordError = document.getElementById('customer-password-error');
+        passwordError.textContent = '';
+    }
 
-        // Se o formulário for válido, enviar
-        if (isValid) {
-            window.location.href = 'cliente.html';
-        }
-    });
+    // Se o formulário for válido, enviar (qualquer email e senha válidos)
+    if (isValid) {
+        window.location.href = 'cliente.html';
+    }
+});
 
     // Validação do formulário de vendedor 
     const sellerLoginForm = document.getElementById('sellerLoginForm');
@@ -136,10 +136,10 @@ function switchForm(activeButton, activeForm, direction) {
         const verificationCodeError = document.getElementById('verification-code-error');
         const verificationCodeRegex = /^[A-Za-z0-9]{3}$/;
         if (!verificationCode.value.trim()) {
-            verificationCodeError.textContent = 'O código de verificação é obrigatório';
+            verificationCodeError.textContent = '* O código de verificação é obrigatório';
             isValid = false;
         } else if (!verificationCodeRegex.test(verificationCode.value)) {
-            verificationCodeError.textContent = 'O código deve conter exatamente 3 caracteres (letras ou números)';
+            verificationCodeError.textContent = '* O código deve conter exatamente 3 caracteres (letras ou números)';
             isValid = false;
         } else {
             verificationCodeError.textContent = '';
@@ -149,7 +149,7 @@ function switchForm(activeButton, activeForm, direction) {
         const password = document.getElementById('seller-password');
         const passwordError = document.getElementById('password-error');
         if (!password.value) {
-            passwordError.textContent = 'A senha é obrigatória';
+            passwordError.textContent = '* A senha é obrigatória';
             isValid = false;
         } else {
             passwordError.textContent = '';
@@ -196,10 +196,10 @@ function switchForm(activeButton, activeForm, direction) {
         const cnpjError = document.getElementById('cnpj-error');
         const cnpjRegex = /^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/;
         if (!cnpj.value.trim()) {
-            cnpjError.textContent = 'O CNPJ é obrigatório';
+            cnpjError.textContent = '* O CNPJ é obrigatório';
             isValid = false;
         } else if (!cnpjRegex.test(cnpj.value)) {
-            cnpjError.textContent = 'CNPJ deve estar no formato 00.000.000/0000-00';
+            cnpjError.textContent = '* CNPJ deve estar no formato 00.000.000/0000-00';
             isValid = false;
         } else {
             cnpjError.textContent = '';
@@ -209,7 +209,7 @@ function switchForm(activeButton, activeForm, direction) {
         const password = document.getElementById('institution-password');
         const passwordError = document.getElementById('institution-password-error');
         if (!password.value) {
-            passwordError.textContent = 'A senha é obrigatória';
+            passwordError.textContent = '* A senha é obrigatória';
             isValid = false;
         } else {
             passwordError.textContent = '';

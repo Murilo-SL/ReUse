@@ -758,260 +758,6 @@ footer {
     }
 }
 
-/* Modal de Doação */
-.modal-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-overlay.active {
-    display: flex;
-}
-
-.modal-donation {
-    background: white;
-    border-radius: 12px;
-    width: 90%;
-    max-width: 600px;
-    max-height: 90vh;
-    overflow-y: auto;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-}
-
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    border-bottom: 1px solid #eaeaea;
-}
-
-.modal-header h2 {
-    margin: 0;
-    color: #2c3e50;
-    font-size: 1.5rem;
-}
-
-.close-modal {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: #7f8c8d;
-}
-
-.close-modal:hover {
-    color: #2c3e50;
-}
-
-.modal-content {
-    padding: 20px;
-}
-
-/* Estilos do formulário de doação */
-.donation-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.form-field {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.field-label {
-    font-weight: 600;
-    color: #2c3e50;
-}
-
-.input-field, .select-field, .textarea-field {
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    font-size: 1rem;
-}
-
-.textarea-field {
-    min-height: 100px;
-    resize: vertical;
-}
-
-.radio-group {
-    display: flex;
-    gap: 20px;
-}
-
-.radio-option {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    cursor: pointer;
-}
-
-.radio-custom {
-    display: inline-block;
-    width: 18px;
-    height: 18px;
-    border: 2px solid #ddd;
-    border-radius: 50%;
-    position: relative;
-}
-
-.radio-option input[type="radio"]:checked + .radio-custom::after {
-    content: '';
-    position: absolute;
-    top: 3px;
-    left: 3px;
-    width: 8px;
-    height: 8px;
-    background: #27ae60;
-    border-radius: 50%;
-}
-
-.radio-option input[type="radio"]:checked + .radio-custom {
-    border-color: #27ae60;
-}
-
-.file-upload-area {
-    border: 2px dashed #ddd;
-    border-radius: 6px;
-    padding: 30px;
-    text-align: center;
-    cursor: pointer;
-    transition: border-color 0.3s;
-}
-
-.file-upload-area:hover {
-    border-color: #27ae60;
-}
-
-.upload-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-}
-
-.upload-icon {
-    font-size: 2rem;
-    color: #7f8c8d;
-}
-
-.upload-text {
-    font-weight: 600;
-    color: #2c3e50;
-}
-
-.upload-hint {
-    font-size: 0.9rem;
-    color: #7f8c8d;
-}
-
-.file-upload-area input[type="file"] {
-    display: none;
-}
-
-.selected-files {
-    margin-top: 10px;
-    font-size: 0.9rem;
-    color: #7f8c8d;
-}
-
-.form-actions {
-    margin-top: 20px;
-}
-
-.submit-button {
-    background-color: #27ae60;
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 6px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.submit-button:hover {
-    background-color: #219a52;
-}
-
-/* Mensagens de alerta */
-.alert-message {
-    display: none;
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    padding: 15px 20px;
-    border-radius: 6px;
-    background-color: #e74c3c;
-    color: white;
-    z-index: 1100;
-    align-items: center;
-    gap: 10px;
-}
-
-.alert-message.error {
-    background-color: #e74c3c;
-}
-
-.alert-icon {
-    font-size: 1.2rem;
-}
-
-/* Mensagem de sucesso */
-.modal-success {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    text-align: center;
-    z-index: 1100;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-}
-
-.success-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 1050;
-}
-
-.success-icon {
-    font-size: 3rem;
-    color: #27ae60;
-    margin-bottom: 15px;
-}
-
-.success-title {
-    margin: 0 0 10px 0;
-    color: #2c3e50;
-}
-
-.success-text {
-    margin: 0;
-    color: #7f8c8d;
-}
-
 /* Estilos para o botão de favoritar */
 .favorite-btn {
     position: absolute;
@@ -1195,4 +941,531 @@ footer {
     -webkit-text-fill-color: transparent;
     background-clip: text;
     color: transparent;
+}
+
+/* ================ MODAL DE DOAÇÃO ================ */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    backdrop-filter: blur(5px);
+}
+
+.modal-overlay.active {
+    display: flex;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-donation {
+    background: white;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    transform: scale(0.9);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.active .modal-donation {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 30px;
+    border-bottom: 2px solid #f0f0f0;
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+    color: white;
+    border-radius: 16px 16px 0 0;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.close-modal {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 18px;
+}
+
+.close-modal:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+}
+
+.modal-content {
+    padding: 30px;
+}
+
+/* Formulário de Doação */
+.donation-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.field-label {
+    font-weight: 600;
+    color: #333;
+    font-size: 14px;
+}
+
+.field-label::after {
+    content: " *";
+    color: #e74c3c;
+}
+
+.input-field, .select-field, .textarea-field {
+    padding: 12px 16px;
+    border: 2px solid #e1e5e9;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.input-field:focus, .select-field:focus, .textarea-field:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+}
+
+.textarea-field {
+    resize: vertical;
+    min-height: 100px;
+    font-family: inherit;
+}
+
+/* Radio Groups */
+.radio-group {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.radio-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.radio-option:hover {
+    background: #f8f9fa;
+}
+
+.radio-option input[type="radio"] {
+    display: none;
+}
+
+.radio-custom {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #ddd;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.radio-custom::after {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #4CAF50;
+    transform: scale(0);
+    transition: transform 0.3s ease;
+}
+
+.radio-option input[type="radio"]:checked + .radio-custom {
+    border-color: #4CAF50;
+}
+
+.radio-option input[type="radio"]:checked + .radio-custom::after {
+    transform: scale(1);
+}
+
+/* Upload de Arquivos */
+.file-upload-area {
+    border: 2px dashed #ddd;
+    border-radius: 8px;
+    padding: 40px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: #fafafa;
+}
+
+.file-upload-area:hover {
+    border-color: #4CAF50;
+    background: #f0f9f0;
+}
+
+.file-upload-area.dragover {
+    border-color: #4CAF50;
+    background: #e8f5e8;
+    transform: scale(1.02);
+}
+
+.upload-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.upload-icon {
+    font-size: 48px;
+    color: #4CAF50;
+}
+
+.upload-text {
+    font-weight: 600;
+    color: #333;
+    font-size: 16px;
+}
+
+.upload-hint {
+    color: #666;
+    font-size: 12px;
+}
+
+.file-upload-area input[type="file"] {
+    display: none;
+}
+
+.selected-files {
+    margin-top: 15px;
+}
+
+.selected-files h4 {
+    margin: 0 0 10px 0;
+    font-size: 14px;
+    color: #333;
+}
+
+.selected-files ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.selected-files li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 6px;
+    margin-bottom: 5px;
+}
+
+.file-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.file-icon {
+    color: #4CAF50;
+}
+
+.file-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.file-name {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.file-size {
+    font-size: 12px;
+    color: #666;
+}
+
+.file-remove {
+    background: none;
+    border: none;
+    color: #e74c3c;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+
+.file-remove:hover {
+    background: #ffeaea;
+}
+
+/* Botão de Envio */
+.form-actions {
+    margin-top: 20px;
+}
+
+.submit-button {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.submit-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(76, 175, 80, 0.3);
+}
+
+.submit-button:active {
+    transform: translateY(0);
+}
+
+/* ================ MODAL DE SUCESSO ================ */
+.success-overlay {
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 10000;
+}
+
+.modal-success {
+    background: white;
+    border-radius: 20px;
+    padding: 40px 30px;
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    transform: scale(0.9);
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.success-overlay.active .modal-success {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.success-icon {
+    font-size: 80px;
+    color: #4CAF50;
+    margin-bottom: 20px;
+    animation: bounceIn 0.6s ease;
+}
+
+.success-title {
+    color: #2c3e50;
+    font-size: 28px;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.success-text {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.success-details {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.success-details p {
+    margin: 0 0 10px 0;
+    font-weight: 600;
+    color: #333;
+}
+
+.success-details ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.success-details li {
+    padding: 8px 0;
+    color: #555;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.success-details li i {
+    color: #4CAF50;
+    font-size: 14px;
+}
+
+.success-actions {
+    margin-bottom: 20px;
+}
+
+.btn-success {
+    padding: 14px 30px;
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-success:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(76, 175, 80, 0.3);
+}
+
+.success-countdown {
+    color: #888;
+    font-size: 14px;
+    font-style: italic;
+}
+
+#countdown-number {
+    font-weight: 600;
+    color: #4CAF50;
+}
+
+/* Animações */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes bounceIn {
+    0% { transform: scale(0.3); opacity: 0; }
+    50% { transform: scale(1.05); }
+    70% { transform: scale(0.9); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.shake {
+    animation: shake 0.5s ease;
+}
+
+/* Mensagens de Erro */
+.error-message {
+    color: #e74c3c;
+    font-size: 12px;
+    margin-top: 5px;
+    font-weight: 500;
+}
+
+.custom-error-message {
+    background: #ffeaea;
+    color: #e74c3c;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border-left: 4px solid #e74c3c;
+    font-weight: 500;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .modal-donation {
+        width: 95%;
+        margin: 20px;
+    }
+    
+    .modal-header {
+        padding: 20px;
+    }
+    
+    .modal-content {
+        padding: 20px;
+    }
+    
+    .radio-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .success-title {
+        font-size: 24px;
+    }
+    
+    .modal-success {
+        padding: 30px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-header h2 {
+        font-size: 1.3rem;
+    }
+    
+    .success-title {
+        font-size: 22px;
+    }
+    
+    .success-text {
+        font-size: 14px;
+    }
+    
+    .btn-success {
+        width: 100%;
+        justify-content: center;
+    }
 }

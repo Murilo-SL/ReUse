@@ -1,492 +1,587 @@
-document.addEventListener('DOMContentLoaded', function () {
-    // Elementos dos botões de seleção
-    const clientBtn = document.getElementById('client-btn');
-    const sellerBtn = document.getElementById('seller-btn');
-    const institutionBtn = document.getElementById('institution-btn');
+        document.addEventListener('DOMContentLoaded', () => {
+            // Elementos dos botões de seleção
+            const customerButton = document.getElementById('customer-button');
+            const sellerButton = document.getElementById('seller-button');
+            const institutionButton = document.getElementById('institution-button');
 
-    // Formulários
-    const clientForm = document.getElementById('client-form');
-    const sellerForm = document.getElementById('seller-form');
-    const institutionForm = document.getElementById('institution-form');
+            // Formulários
+            const customerForm = document.getElementById('customer-form');
+            const sellerForm = document.getElementById('seller-form');
+            const institutionForm = document.getElementById('institution-form');
 
-    // Função para atualizar a animação do card-header
-    function updateCardHeaderAnimation(activeBtn) {
-        const cardHeader = document.querySelector('.card-header');
-        
-        // Remover todas as animações anteriores
-        cardHeader.classList.remove('waves-animation', 'particles-animation', 'molecules-animation');
-        
-        // Adicionar animação baseada no tipo de conta selecionado
-        if (activeBtn.id === 'client-btn') {
-            cardHeader.classList.add('waves-animation');
-        } else if (activeBtn.id === 'seller-btn') {
-            cardHeader.classList.add('particles-animation');
-        } else if (activeBtn.id === 'institution-btn') {
-            cardHeader.classList.add('molecules-animation');
-        }
-    }
+            // Mensagem de sucesso
+            const successMessage = document.getElementById('successMessage');
+            const countdownElement = document.getElementById('countdown');
 
-    // Função para alternar entre formulários
-    function toggleForms(activeBtn, activeForm) {
-        // Remover classe active de todos os botões
-        [clientBtn, sellerBtn, institutionBtn].forEach(btn => btn.classList.remove('active'));
-        
-        // Ocultar todos os formulários
-        [clientForm, sellerForm, institutionForm].forEach(form => {
-            form.style.display = 'none';
-            form.classList.remove('active');
-        });
-
-        // Adicionar classe active ao botão clicado
-        activeBtn.classList.add('active');
-        
-        // Mostrar formulário ativo
-        activeForm.style.display = 'block';
-        activeForm.classList.add('active');
-        
-        // Atualizar a animação do card-header
-        updateCardHeaderAnimation(activeBtn);
-    }
-
-    // Event listeners para os botões
-    clientBtn.addEventListener('click', () => toggleForms(clientBtn, clientForm));
-    sellerBtn.addEventListener('click', () => toggleForms(sellerBtn, sellerForm));
-    institutionBtn.addEventListener('click', () => toggleForms(institutionBtn, institutionForm));
-
-    // Inicializar com a animação correta (Cliente por padrão)
-    updateCardHeaderAnimation(clientBtn);
-
-    // Função para mostrar erros personalizados
-    function showError(message) {
-        const errorElement = document.getElementById('error-message-global');
-        const errorText = document.getElementById('error-text-global');
-
-        errorText.textContent = message;
-        errorElement.style.display = 'flex';
-
-        setTimeout(() => {
-            errorElement.style.display = 'none';
-        }, 5000);
-    }
-
-    // Fechar mensagem de erro ao clicar
-    document.getElementById('error-message-global')?.addEventListener('click', function () {
-        this.style.display = 'none';
-    });
-
-    // Função para mostrar sucesso
-    function showSuccess(message) {
-        const successElement = document.getElementById('success-message-global');
-        const successText = document.getElementById('success-text-global');
-
-        successText.textContent = message;
-        successElement.style.display = 'flex';
-
-        setTimeout(() => {
-            successElement.style.display = 'none';
-        }, 3000);
-    }
-
-    // Fechar mensagem de sucesso ao clicar
-    document.getElementById('success-message-global')?.addEventListener('click', function () {
-        this.style.display = 'none';
-    });
-
-    // Password visibility toggle
-    document.querySelectorAll('.toggle-password').forEach(button => {
-        button.addEventListener('click', function () {
-            const icon = this.querySelector('i');
-            const input = this.parentElement.querySelector('input');
-
-            // Toggle between password and text type
-            const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
-            input.setAttribute('type', type);
-
-            // Toggle eye icon
-            icon.classList.toggle('fa-eye');
-            icon.classList.toggle('fa-eye-slash');
-
-            // Toggle active class for styling
-            this.classList.toggle('active');
-        });
-    });
-
-    // Input formatting functions
-    function formatPhoneInput(input) {
-        input.addEventListener('input', function (e) {
-            let value = e.target.value.replace(/\D/g, '');
-            if (value.length > 11) value = value.substring(0, 11);
-
-            if (value.length > 2) value = `(${value.substring(0, 2)}) ${value.substring(2)}`;
-            if (value.length > 10) value = `${value.substring(0, 10)}-${value.substring(10)}`;
-
-            e.target.value = value;
-        });
-    }
-
-    function formatZipcodeInput(input) {
-        input.addEventListener('input', function (e) {
-            let value = e.target.value.replace(/\D/g, '');
-            if (value.length > 8) value = value.substring(0, 8);
-            if (value.length > 5) value = `${value.substring(0, 5)}-${value.substring(5)}`;
-            e.target.value = value;
-        });
-    }
-
-    function formatCNPJInput(input) {
-        input.addEventListener('input', function (e) {
-            let value = e.target.value.replace(/\D/g, '');
-            if (value.length > 14) value = value.substring(0, 14);
-
-            if (value.length > 2) value = `${value.substring(0, 2)}.${value.substring(2)}`;
-            if (value.length > 6) value = `${value.substring(0, 6)}.${value.substring(6)}`;
-            if (value.length > 10) value = `${value.substring(0, 10)}/${value.substring(10)}`;
-            if (value.length > 15) value = `${value.substring(0, 15)}-${value.substring(15)}`;
-
-            e.target.value = value;
-        });
-    }
-
-    function formatVerificationCode(input) {
-        input.addEventListener('input', function (e) {
-            let value = e.target.value.replace(/[^A-Za-z0-9]/g, '');
-            if (value.length > 3) value = value.substring(0, 3);
-            e.target.value = value.toUpperCase();
-        });
-    }
-
-    // Initialize input formatting
-    const phoneInput = document.getElementById('phone');
-    if (phoneInput) formatPhoneInput(phoneInput);
-
-    const institutionPhoneInput = document.getElementById('institution-phone');
-    if (institutionPhoneInput) formatPhoneInput(institutionPhoneInput);
-
-    const zipcodeInput = document.getElementById('zipcode');
-    if (zipcodeInput) formatZipcodeInput(zipcodeInput);
-
-    const institutionZipcodeInput = document.getElementById('institution-zipcode');
-    if (institutionZipcodeInput) formatZipcodeInput(institutionZipcodeInput);
-
-    const cnpjInput = document.getElementById('institution-cnpj');
-    if (cnpjInput) formatCNPJInput(cnpjInput);
-
-    const sellerCnpjInput = document.getElementById('seller-cnpj');
-    if (sellerCnpjInput) formatCNPJInput(sellerCnpjInput);
-
-    const verificationCodeInput = document.getElementById('verification-code');
-    if (verificationCodeInput) formatVerificationCode(verificationCodeInput);
-
-    // Mostrar/ocultar campo CNPJ baseado no tipo de negócio
-    const businessTypeSelect = document.getElementById('business-type');
-    const cnpjFieldContainer = document.getElementById('cnpj-field-container');
-    
-    if (businessTypeSelect && cnpjFieldContainer) {
-        businessTypeSelect.addEventListener('change', function() {
-            if (this.value === 'empresa') {
-                cnpjFieldContainer.style.display = 'block';
-            } else {
-                cnpjFieldContainer.style.display = 'none';
-                // Limpar o campo CNPJ quando escondido
-                const sellerCnpjInput = document.getElementById('seller-cnpj');
-                if (sellerCnpjInput) sellerCnpjInput.value = '';
+            // Função para mostrar mensagem de sucesso
+            function showSuccessMessage() {
+                successMessage.classList.add('active');
+                
+                let seconds = 3;
+                countdownElement.textContent = `Redirecionando em ${seconds} segundos...`;
+                
+                const countdownInterval = setInterval(() => {
+                    seconds--;
+                    if (seconds > 0) {
+                        countdownElement.textContent = `Redirecionando em ${seconds} segundo${seconds > 1 ? 's' : ''}...`;
+                    } else {
+                        countdownElement.textContent = 'Redirecionando agora...';
+                        clearInterval(countdownInterval);
+                        
+                        // Redirecionar para a página de login após 1 segundo
+                        setTimeout(() => {
+                            window.location.href = 'login.html';
+                        }, 1000);
+                    }
+                }, 1000);
             }
-        });
-    }
 
-    // Password validation
-    function validatePassword(password) {
-        if (!password) {
-            showError('Por favor, insira uma senha');
-            return false;
-        }
-
-        if (password.length < 8) {
-            showError('A senha deve ter pelo menos 8 caracteres');
-            return false;
-        }
-
-        if (!password.match(/[A-Za-z]/)) {
-            showError('A senha deve incluir pelo menos uma letra');
-            return false;
-        }
-
-        if (!password.match(/\d/)) {
-            showError('A senha deve incluir pelo menos um número');
-            return false;
-        }
-
-        if (!password.match(/[@$!%*#?&]/)) {
-            showError('A senha deve incluir pelo menos um caractere especial (@, $, !, %, *, #, ?, &)');
-            return false;
-        }
-
-        return true;
-    }
-
-    // Form validation functions
-    function validateClientForm(event) {
-        event.preventDefault();
-        let isValid = true;
-
-        // Name validation
-        const name = document.getElementById('name').value.trim();
-        if (!name) {
-            showError('Por favor, insira seu nome completo');
-            isValid = false;
-        }
-
-        // Email validation
-        const email = document.getElementById('email').value.trim();
-        const emailRegex = /^[a-zA-Z0-9._%+-]+@(gmail|hotmail|yahoo)\.(com|com\.br)$/i;
-        if (!email) {
-            showError('Por favor, insira seu email');
-            isValid = false;
-        } else if (!emailRegex.test(email)) {
-            showError('Por favor, use apenas email do Gmail, Hotmail ou Yahoo');
-            isValid = false;
-        }
-
-        // Password validation
-        const password = document.getElementById('password').value;
-        if (!validatePassword(password)) {
-            isValid = false;
-        }
-
-        // Confirm password
-        const confirmPassword = document.getElementById('confirm-password').value;
-        if (!confirmPassword) {
-            showError('Por favor, confirme sua senha');
-            isValid = false;
-        } else if (confirmPassword !== password) {
-            showError('As senhas não coincidem');
-            isValid = false;
-        }
-
-        if (isValid) {
-            redirectToPage('client');
-        }
-    }
-
-    function validateSellerForm(event) {
-        event.preventDefault();
-        let isValid = true;
-
-        // Business type validation
-        const businessType = document.getElementById('business-type').value;
-        if (!businessType) {
-            showError('Por favor, selecione um tipo de negócio');
-            isValid = false;
-        }
-
-        // Store name validation
-        const storeName = document.getElementById('store-name').value.trim();
-        if (!storeName) {
-            showError('Por favor, insira o nome da loja');
-            isValid = false;
-        }
-
-        // Phone validation
-        const phone = document.getElementById('phone').value.trim();
-        const phoneRegex = /^\(\d{2}\) \d{4,5}-\d{4}$/;
-        if (!phone) {
-            showError('Por favor, insira um número de telefone');
-            isValid = false;
-        } else if (!phoneRegex.test(phone)) {
-            showError('Por favor, insira um telefone válido (ex: (11) 99999-9999)');
-            isValid = false;
-        }
-
-        // Zipcode validation
-        const zipcode = document.getElementById('zipcode').value.trim();
-        const zipcodeRegex = /^\d{5}-\d{3}$/;
-        if (!zipcode) {
-            showError('Por favor, insira o CEP');
-            isValid = false;
-        } else if (!zipcodeRegex.test(zipcode)) {
-            showError('Por favor, insira um CEP válido (ex: 12345-678)');
-            isValid = false;
-        }
-
-        // Address validation
-        const address = document.getElementById('address').value.trim();
-        if (!address) {
-            showError('Por favor, insira o endereço');
-            isValid = false;
-        }
-
-        // Category validation
-        const category = document.getElementById('category').value;
-        if (!category) {
-            showError('Por favor, selecione uma categoria');
-            isValid = false;
-        }
-
-        // Email validation
-        const storeEmail = document.getElementById('store-email').value.trim();
-        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        if (!storeEmail) {
-            showError('Por favor, insira o email da loja');
-            isValid = false;
-        } else if (!emailRegex.test(storeEmail)) {
-            showError('Por favor, insira um email válido');
-            isValid = false;
-        }
-
-        // CNPJ validation para empresas
-        if (businessType === 'empresa') {
-            const sellerCnpj = document.getElementById('seller-cnpj').value.trim();
-            const cnpjRegex = /^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/;
-            if (!sellerCnpj) {
-                showError('Por favor, insira o CNPJ da empresa');
-                isValid = false;
-            } else if (!cnpjRegex.test(sellerCnpj)) {
-                showError('Por favor, insira um CNPJ válido (ex: 00.000.000/0000-00)');
-                isValid = false;
+            // Função para trocar entre formulários com animação
+            function switchForm(activeButton, activeForm, direction) {
+                // Remover classe active de todos os botões
+                customerButton.classList.remove('active');
+                sellerButton.classList.remove('active');
+                institutionButton.classList.remove('active');
+                
+                // Adicionar classe active ao botão clicado
+                activeButton.classList.add('active');
+                
+                // Remover todas as animações do card-header
+                const cardHeader = document.querySelector('.card-header');
+                cardHeader.classList.remove('waves-animation', 'particles-animation', 'molecules-animation');
+                
+                // Adicionar animação específica baseada no tipo de login
+                if (activeButton === customerButton) {
+                    cardHeader.classList.add('waves-animation');
+                } else if (activeButton === sellerButton) {
+                    cardHeader.classList.add('particles-animation');
+                } else if (activeButton === institutionButton) {
+                    cardHeader.classList.add('molecules-animation');
+                }
+                
+                // Encontrar o formulário ativo atual
+                const currentActiveForm = document.querySelector('.form-container.active');
+                
+                if (currentActiveForm && currentActiveForm !== activeForm) {
+                    // Determinar animações baseadas na direção
+                    const currentIndex = Array.from([customerForm, sellerForm, institutionForm]).indexOf(currentActiveForm);
+                    const newIndex = Array.from([customerForm, sellerForm, institutionForm]).indexOf(activeForm);
+                    
+                    const currentAnimation = newIndex > currentIndex ? 'slide-out-left' : 'slide-out-right';
+                    const newAnimation = newIndex > currentIndex ? 'slide-in-right' : 'slide-in-left';
+                    
+                    // Aplicar animação de saída
+                    currentActiveForm.classList.add(currentAnimation);
+                    
+                    // Remover classe active do formulário atual
+                    setTimeout(() => {
+                        currentActiveForm.classList.remove('active');
+                        currentActiveForm.classList.remove(currentAnimation);
+                        
+                        // Adicionar classe active e animação de entrada ao novo formulário
+                        activeForm.classList.add(newAnimation);
+                        activeForm.classList.add('active');
+                        
+                        // Remover animação após a transição
+                        setTimeout(() => {
+                            activeForm.classList.remove(newAnimation);
+                        }, 400);
+                    }, 400);
+                } else {
+                    // Primeira vez ou mesmo formulário
+                    document.querySelectorAll('.form-container').forEach(form => {
+                        form.classList.remove('active');
+                    });
+                    activeForm.classList.add('active');
+                }
             }
-        }
 
-        // Verification code validation
-        const verificationCode = document.getElementById('verification-code').value.trim();
-        if (!verificationCode) {
-            showError('Por favor, crie um código de verificação');
-            isValid = false;
-        } else if (verificationCode.length !== 3) {
-            showError('O código deve ter exatamente 3 caracteres');
-            isValid = false;
-        }
+            // Event listeners para os botões
+            customerButton.addEventListener('click', () => {
+                switchForm(customerButton, customerForm, 'left');
+            });
 
-        // Password validation
-        const password = document.getElementById('seller-password').value;
-        if (!validatePassword(password)) {
-            isValid = false;
-        }
+            sellerButton.addEventListener('click', () => {
+                switchForm(sellerButton, sellerForm, 'middle');
+            });
 
-        // Confirm password
-        const confirmPassword = document.getElementById('seller-confirm-password').value;
-        if (!confirmPassword) {
-            showError('Por favor, confirme sua senha');
-            isValid = false;
-        } else if (confirmPassword !== password) {
-            showError('As senhas não coincidem');
-            isValid = false;
-        }
+            institutionButton.addEventListener('click', () => {
+                switchForm(institutionButton, institutionForm, 'right');
+            });
 
-        if (isValid) {
-            redirectToPage('seller');
-        }
-    }
+            // Função para verificar força da senha
+            function checkPasswordStrength(password) {
+                let strength = 0;
+                
+                if (password.length >= 8) strength++;
+                if (/[a-z]/.test(password)) strength++;
+                if (/[A-Z]/.test(password)) strength++;
+                if (/[0-9]/.test(password)) strength++;
+                if (/[^A-Za-z0-9]/.test(password)) strength++;
+                
+                return strength;
+            }
 
-    function validateInstitutionForm(event) {
-        event.preventDefault();
-        let isValid = true;
+            // Função para exibir força da senha
+            function displayPasswordStrength(password, strengthElement) {
+                const strength = checkPasswordStrength(password);
+                
+                if (password.length === 0) {
+                    strengthElement.textContent = '';
+                    return;
+                }
+                
+                if (strength <= 2) {
+                    strengthElement.textContent = 'Senha fraca';
+                    strengthElement.className = 'password-strength strength-weak';
+                } else if (strength <= 4) {
+                    strengthElement.textContent = 'Senha média';
+                    strengthElement.className = 'password-strength strength-medium';
+                } else {
+                    strengthElement.textContent = 'Senha forte';
+                    strengthElement.className = 'password-strength strength-strong';
+                }
+            }
 
-        // Institution type validation
-        const institutionType = document.getElementById('institution-type').value;
-        if (!institutionType) {
-            showError('Por favor, selecione um tipo de instituição');
-            isValid = false;
-        }
+            // Validação do formulário de cliente
+            const customerSignupForm = document.getElementById('customerSignupForm');
 
-        // Institution name validation
-        const institutionName = document.getElementById('institution-name').value.trim();
-        if (!institutionName) {
-            showError('Por favor, insira o nome da instituição');
-            isValid = false;
-        }
+            customerSignupForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                let isValid = true;
 
-        // Phone validation
-        const phone = document.getElementById('institution-phone').value.trim();
-        const phoneRegex = /^\(\d{2}\) \d{4,5}-\d{4}$/;
-        if (!phone) {
-            showError('Por favor, insira um número de telefone');
-            isValid = false;
-        } else if (!phoneRegex.test(phone)) {
-            showError('Por favor, insira um telefone válido (ex: (11) 99999-9999)');
-            isValid = false;
-        }
+                // Validação do nome
+                const firstName = document.getElementById('customer-first-name');
+                if (!firstName.value.trim()) {
+                    const firstNameError = document.getElementById('customer-first-name-error');
+                    firstNameError.textContent = '* O nome é obrigatório';
+                    isValid = false;
+                } else {
+                    const firstNameError = document.getElementById('customer-first-name-error');
+                    firstNameError.textContent = '';
+                }
 
-        // Zipcode validation
-        const zipcode = document.getElementById('institution-zipcode').value.trim();
-        const zipcodeRegex = /^\d{5}-\d{3}$/;
-        if (!zipcode) {
-            showError('Por favor, insira o CEP');
-            isValid = false;
-        } else if (!zipcodeRegex.test(zipcode)) {
-            showError('Por favor, insira um CEP válido (ex: 12345-678)');
-            isValid = false;
-        }
+                // Validação do sobrenome
+                const lastName = document.getElementById('customer-last-name');
+                if (!lastName.value.trim()) {
+                    const lastNameError = document.getElementById('customer-last-name-error');
+                    lastNameError.textContent = '* O sobrenome é obrigatório';
+                    isValid = false;
+                } else {
+                    const lastNameError = document.getElementById('customer-last-name-error');
+                    lastNameError.textContent = '';
+                }
 
-        // Address validation
-        const address = document.getElementById('institution-address').value.trim();
-        if (!address) {
-            showError('Por favor, insira o endereço');
-            isValid = false;
-        }
+                // Validação do email
+                const email = document.getElementById('customer-email');
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!email.value.trim()) {
+                    const emailError = document.getElementById('customer-email-error');
+                    emailError.textContent = '* O email é obrigatório';
+                    isValid = false;
+                } else if (!emailRegex.test(email.value)) {
+                    const emailError = document.getElementById('customer-email-error');
+                    emailError.textContent = '* Digite um email válido';
+                    isValid = false;
+                } else {
+                    const emailError = document.getElementById('customer-email-error');
+                    emailError.textContent = '';
+                }
 
-        // Email validation
-        const institutionEmail = document.getElementById('institution-email').value.trim();
-        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        if (!institutionEmail) {
-            showError('Por favor, insira o email da instituição');
-            isValid = false;
-        } else if (!emailRegex.test(institutionEmail)) {
-            showError('Por favor, insira um email válido');
-            isValid = false;
-        }
+                // Validação do telefone
+                const phone = document.getElementById('customer-phone');
+                const phoneRegex = /^\(?\d{2}\)?[\s-]?\d{4,5}-?\d{4}$/;
+                if (!phone.value.trim()) {
+                    const phoneError = document.getElementById('customer-phone-error');
+                    phoneError.textContent = '* O telefone é obrigatório';
+                    isValid = false;
+                } else if (!phoneRegex.test(phone.value)) {
+                    const phoneError = document.getElementById('customer-phone-error');
+                    phoneError.textContent = '* Digite um telefone válido';
+                    isValid = false;
+                } else {
+                    const phoneError = document.getElementById('customer-phone-error');
+                    phoneError.textContent = '';
+                }
 
-        // CNPJ validation
-        const cnpj = document.getElementById('institution-cnpj').value.trim();
-        const cnpjRegex = /^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/;
-        if (!cnpj) {
-            showError('Por favor, insira o CNPJ');
-            isValid = false;
-        } else if (!cnpjRegex.test(cnpj)) {
-            showError('Por favor, insira um CNPJ válido (ex: 00.000.000/0000-00)');
-            isValid = false;
-        }
+                // Validação da senha
+                const password = document.getElementById('customer-password');
+                if (!password.value) {
+                    const passwordError = document.getElementById('customer-password-error');
+                    passwordError.textContent = '* A senha é obrigatória';
+                    isValid = false;
+                } else if (password.value.length < 6) {
+                    const passwordError = document.getElementById('customer-password-error');
+                    passwordError.textContent = '* A senha deve ter pelo menos 6 caracteres';
+                    isValid = false;
+                } else {
+                    const passwordError = document.getElementById('customer-password-error');
+                    passwordError.textContent = '';
+                }
 
-        // Password validation
-        const password = document.getElementById('institution-password').value;
-        if (!validatePassword(password)) {
-            isValid = false;
-        }
+                // Validação da confirmação de senha
+                const confirmPassword = document.getElementById('customer-confirm-password');
+                if (!confirmPassword.value) {
+                    const confirmPasswordError = document.getElementById('customer-confirm-password-error');
+                    confirmPasswordError.textContent = '* Confirme sua senha';
+                    isValid = false;
+                } else if (password.value !== confirmPassword.value) {
+                    const confirmPasswordError = document.getElementById('customer-confirm-password-error');
+                    confirmPasswordError.textContent = '* As senhas não coincidem';
+                    isValid = false;
+                } else {
+                    const confirmPasswordError = document.getElementById('customer-confirm-password-error');
+                    confirmPasswordError.textContent = '';
+                }
 
-        // Confirm password
-        const confirmPassword = document.getElementById('institution-confirm-password').value;
-        if (!confirmPassword) {
-            showError('Por favor, confirme sua senha');
-            isValid = false;
-        } else if (confirmPassword !== password) {
-            showError('As senhas não coincidem');
-            isValid = false;
-        }
+                // Validação dos termos
+                const terms = document.getElementById('customer-terms');
+                if (!terms.checked) {
+                    const termsError = document.getElementById('customer-terms-error');
+                    termsError.textContent = '* Você deve aceitar os termos e condições';
+                    isValid = false;
+                } else {
+                    const termsError = document.getElementById('customer-terms-error');
+                    termsError.textContent = '';
+                }
 
-        if (isValid) {
-            redirectToPage('institution');
-        }
-    }
+                // Se o formulário for válido, enviar
+                if (isValid) {
+                    // Aqui você faria a requisição para o backend
+                    // Após o sucesso, mostrar a mensagem de sucesso
+                    showSuccessMessage();
+                }
+            });
 
-    // Função para redirecionamento
-    function redirectToPage(role) {
-        // Mostrar mensagem de sucesso
-        showSuccess('Cadastro realizado com sucesso! Redirecionando para login...');
-        
-        setTimeout(() => {
-            // Redirecionar para a página de login
-            window.location.href = 'login.html';
-        }, 3000);
-    }
+            // Validação do formulário de vendedor
+            const sellerSignupForm = document.getElementById('sellerSignupForm');
 
-    // Adiciona os event listeners aos formulários
-    document.getElementById('signupForm')?.addEventListener('submit', validateClientForm);
-    document.getElementById('sellerRegistrationForm')?.addEventListener('submit', validateSellerForm);
-    document.getElementById('institutionRegistrationForm')?.addEventListener('submit', validateInstitutionForm);
+            sellerSignupForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                let isValid = true;
 
-    // Adicionar validação em tempo real para melhor UX
-    document.querySelectorAll('input').forEach(input => {
-        input.addEventListener('blur', function() {
-            // Validação básica em tempo real pode ser adicionada aqui se necessário
+                // Validação do nome da empresa
+                const businessName = document.getElementById('seller-business-name');
+                if (!businessName.value.trim()) {
+                    const businessNameError = document.getElementById('seller-business-name-error');
+                    businessNameError.textContent = '* O nome da empresa é obrigatório';
+                    isValid = false;
+                } else {
+                    const businessNameError = document.getElementById('seller-business-name-error');
+                    businessNameError.textContent = '';
+                }
+
+                // Validação do email
+                const email = document.getElementById('seller-email');
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!email.value.trim()) {
+                    const emailError = document.getElementById('seller-email-error');
+                    emailError.textContent = '* O email é obrigatório';
+                    isValid = false;
+                } else if (!emailRegex.test(email.value)) {
+                    const emailError = document.getElementById('seller-email-error');
+                    emailError.textContent = '* Digite um email válido';
+                    isValid = false;
+                } else {
+                    const emailError = document.getElementById('seller-email-error');
+                    emailError.textContent = '';
+                }
+
+                // Validação do telefone
+                const phone = document.getElementById('seller-phone');
+                const phoneRegex = /^\(?\d{2}\)?[\s-]?\d{4,5}-?\d{4}$/;
+                if (!phone.value.trim()) {
+                    const phoneError = document.getElementById('seller-phone-error');
+                    phoneError.textContent = '* O telefone é obrigatório';
+                    isValid = false;
+                } else if (!phoneRegex.test(phone.value)) {
+                    const phoneError = document.getElementById('seller-phone-error');
+                    phoneError.textContent = '* Digite um telefone válido';
+                    isValid = false;
+                } else {
+                    const phoneError = document.getElementById('seller-phone-error');
+                    phoneError.textContent = '';
+                }
+
+                // Validação do endereço
+                const address = document.getElementById('seller-address');
+                if (!address.value.trim()) {
+                    const addressError = document.getElementById('seller-address-error');
+                    addressError.textContent = '* O endereço é obrigatório';
+                    isValid = false;
+                } else {
+                    const addressError = document.getElementById('seller-address-error');
+                    addressError.textContent = '';
+                }
+
+                // Validação da senha
+                const password = document.getElementById('seller-password');
+                if (!password.value) {
+                    const passwordError = document.getElementById('seller-password-error');
+                    passwordError.textContent = '* A senha é obrigatória';
+                    isValid = false;
+                } else if (password.value.length < 6) {
+                    const passwordError = document.getElementById('seller-password-error');
+                    passwordError.textContent = '* A senha deve ter pelo menos 6 caracteres';
+                    isValid = false;
+                } else {
+                    const passwordError = document.getElementById('seller-password-error');
+                    passwordError.textContent = '';
+                }
+
+                // Validação da confirmação de senha
+                const confirmPassword = document.getElementById('seller-confirm-password');
+                if (!confirmPassword.value) {
+                    const confirmPasswordError = document.getElementById('seller-confirm-password-error');
+                    confirmPasswordError.textContent = '* Confirme sua senha';
+                    isValid = false;
+                } else if (password.value !== confirmPassword.value) {
+                    const confirmPasswordError = document.getElementById('seller-confirm-password-error');
+                    confirmPasswordError.textContent = '* As senhas não coincidem';
+                    isValid = false;
+                } else {
+                    const confirmPasswordError = document.getElementById('seller-confirm-password-error');
+                    confirmPasswordError.textContent = '';
+                }
+
+                // Validação dos termos
+                const terms = document.getElementById('seller-terms');
+                if (!terms.checked) {
+                    const termsError = document.getElementById('seller-terms-error');
+                    termsError.textContent = '* Você deve aceitar os termos e condições';
+                    isValid = false;
+                } else {
+                    const termsError = document.getElementById('seller-terms-error');
+                    termsError.textContent = '';
+                }
+
+                // Se o formulário for válido, enviar
+                if (isValid) {
+                    // Aqui você faria a requisição para o backend
+                    // Após o sucesso, mostrar a mensagem de sucesso
+                    showSuccessMessage();
+                }
+            });
+
+            // Validação do formulário de instituição
+            const institutionSignupForm = document.getElementById('institutionSignupForm');
+
+            institutionSignupForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                let isValid = true;
+
+                // Validação do nome da instituição
+                const institutionName = document.getElementById('institution-name');
+                if (!institutionName.value.trim()) {
+                    const institutionNameError = document.getElementById('institution-name-error');
+                    institutionNameError.textContent = '* O nome da instituição é obrigatório';
+                    isValid = false;
+                } else {
+                    const institutionNameError = document.getElementById('institution-name-error');
+                    institutionNameError.textContent = '';
+                }
+
+                // Validação do CNPJ
+                const cnpj = document.getElementById('institution-cnpj');
+                const cnpjRegex = /^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/;
+                if (!cnpj.value.trim()) {
+                    const cnpjError = document.getElementById('institution-cnpj-error');
+                    cnpjError.textContent = '* O CNPJ é obrigatório';
+                    isValid = false;
+                } else if (!cnpjRegex.test(cnpj.value)) {
+                    const cnpjError = document.getElementById('institution-cnpj-error');
+                    cnpjError.textContent = '* CNPJ deve estar no formato 00.000.000/0000-00';
+                    isValid = false;
+                } else {
+                    const cnpjError = document.getElementById('institution-cnpj-error');
+                    cnpjError.textContent = '';
+                }
+
+                // Validação do email
+                const email = document.getElementById('institution-email');
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!email.value.trim()) {
+                    const emailError = document.getElementById('institution-email-error');
+                    emailError.textContent = '* O email é obrigatório';
+                    isValid = false;
+                } else if (!emailRegex.test(email.value)) {
+                    const emailError = document.getElementById('institution-email-error');
+                    emailError.textContent = '* Digite um email válido';
+                    isValid = false;
+                } else {
+                    const emailError = document.getElementById('institution-email-error');
+                    emailError.textContent = '';
+                }
+
+                // Validação do telefone
+                const phone = document.getElementById('institution-phone');
+                const phoneRegex = /^\(?\d{2}\)?[\s-]?\d{4,5}-?\d{4}$/;
+                if (!phone.value.trim()) {
+                    const phoneError = document.getElementById('institution-phone-error');
+                    phoneError.textContent = '* O telefone é obrigatório';
+                    isValid = false;
+                } else if (!phoneRegex.test(phone.value)) {
+                    const phoneError = document.getElementById('institution-phone-error');
+                    phoneError.textContent = '* Digite um telefone válido';
+                    isValid = false;
+                } else {
+                    const phoneError = document.getElementById('institution-phone-error');
+                    phoneError.textContent = '';
+                }
+
+                // Validação do endereço
+                const address = document.getElementById('institution-address');
+                if (!address.value.trim()) {
+                    const addressError = document.getElementById('institution-address-error');
+                    addressError.textContent = '* O endereço é obrigatório';
+                    isValid = false;
+                } else {
+                    const addressError = document.getElementById('institution-address-error');
+                    addressError.textContent = '';
+                }
+
+                // Validação da descrição
+                const description = document.getElementById('institution-description');
+                if (!description.value.trim()) {
+                    const descriptionError = document.getElementById('institution-description-error');
+                    descriptionError.textContent = '* A descrição é obrigatória';
+                    isValid = false;
+                } else if (description.value.trim().length < 10) {
+                    const descriptionError = document.getElementById('institution-description-error');
+                    descriptionError.textContent = '* A descrição deve ter pelo menos 10 caracteres';
+                    isValid = false;
+                } else {
+                    const descriptionError = document.getElementById('institution-description-error');
+                    descriptionError.textContent = '';
+                }
+
+                // Validação da senha
+                const password = document.getElementById('institution-password');
+                if (!password.value) {
+                    const passwordError = document.getElementById('institution-password-error');
+                    passwordError.textContent = '* A senha é obrigatória';
+                    isValid = false;
+                } else if (password.value.length < 6) {
+                    const passwordError = document.getElementById('institution-password-error');
+                    passwordError.textContent = '* A senha deve ter pelo menos 6 caracteres';
+                    isValid = false;
+                } else {
+                    const passwordError = document.getElementById('institution-password-error');
+                    passwordError.textContent = '';
+                }
+
+                // Validação da confirmação de senha
+                const confirmPassword = document.getElementById('institution-confirm-password');
+                if (!confirmPassword.value) {
+                    const confirmPasswordError = document.getElementById('institution-confirm-password-error');
+                    confirmPasswordError.textContent = '* Confirme sua senha';
+                    isValid = false;
+                } else if (password.value !== confirmPassword.value) {
+                    const confirmPasswordError = document.getElementById('institution-confirm-password-error');
+                    confirmPasswordError.textContent = '* As senhas não coincidem';
+                    isValid = false;
+                } else {
+                    const confirmPasswordError = document.getElementById('institution-confirm-password-error');
+                    confirmPasswordError.textContent = '';
+                }
+
+                // Validação dos termos
+                const terms = document.getElementById('institution-terms');
+                if (!terms.checked) {
+                    const termsError = document.getElementById('institution-terms-error');
+                    termsError.textContent = '* Você deve aceitar os termos e condições';
+                    isValid = false;
+                } else {
+                    const termsError = document.getElementById('institution-terms-error');
+                    termsError.textContent = '';
+                }
+
+                // Se o formulário for válido, enviar
+                if (isValid) {
+                    // Aqui você faria a requisição para o backend
+                    // Após o sucesso, mostrar a mensagem de sucesso
+                    showSuccessMessage();
+                }
+            });
+
+            // Formatação do CNPJ
+            const cnpjInput = document.getElementById('institution-cnpj');
+            cnpjInput.addEventListener('input', (e) => {
+                let value = e.target.value.replace(/\D/g, '');
+
+                // Limita a 14 caracteres (números)
+                if (value.length > 14) {
+                    value = value.substring(0, 14);
+                }
+
+                // Aplica a formatação apenas se tiver dígitos suficientes
+                if (value.length > 0) {
+                    value = value.replace(/^(\d{2})(\d)/, '$1.$2');
+                    if (value.length > 3) value = value.replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3');
+                    if (value.length > 7) value = value.replace(/\.(\d{3})(\d)/, '.$1/$2');
+                    if (value.length > 12) value = value.replace(/(\d{4})(\d)/, '$1-$2');
+                }
+
+                e.target.value = value;
+            });
+
+            // Adiciona validação para garantir que não ultrapasse 14 dígitos
+            cnpjInput.addEventListener('keydown', (e) => {
+                const currentValue = e.target.value.replace(/\D/g, '');
+                if (currentValue.length >= 14 && !['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+                    e.preventDefault();
+                }
+            });
+
+            // Formatação do telefone
+            const phoneInputs = document.querySelectorAll('input[type="tel"]');
+            phoneInputs.forEach(input => {
+                input.addEventListener('input', (e) => {
+                    let value = e.target.value.replace(/\D/g, '');
+                    
+                    if (value.length > 11) {
+                        value = value.substring(0, 11);
+                    }
+                    
+                    if (value.length > 0) {
+                        if (value.length <= 2) {
+                            value = `(${value}`;
+                        } else if (value.length <= 6) {
+                            value = `(${value.substring(0,2)}) ${value.substring(2)}`;
+                        } else if (value.length <= 10) {
+                            value = `(${value.substring(0,2)}) ${value.substring(2,6)}-${value.substring(6)}`;
+                        } else {
+                            value = `(${value.substring(0,2)}) ${value.substring(2,7)}-${value.substring(7)}`;
+                        }
+                    }
+                    
+                    e.target.value = value;
+                });
+            });
+
+            // Verificação de força da senha
+            const passwordInputs = document.querySelectorAll('input[type="password"]');
+            passwordInputs.forEach(input => {
+                if (input.id.includes('password') && !input.id.includes('confirm')) {
+                    input.addEventListener('input', (e) => {
+                        const strengthElement = document.getElementById(`${input.id}-strength`);
+                        if (strengthElement) {
+                            displayPasswordStrength(e.target.value, strengthElement);
+                        }
+                    });
+                }
+            });
+
+            // Toggle password visibility for all password fields
+            document.querySelectorAll('.toggle-password').forEach(button => {
+                button.addEventListener('click', function() {
+                    const passwordInput = this.parentElement.querySelector('input');
+                    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                    passwordInput.setAttribute('type', type);
+                    
+                    // Toggle icon
+                    this.querySelector('i').classList.toggle('fa-eye');
+                    this.querySelector('i').classList.toggle('fa-eye-slash');
+                });
+            });
         });
-    });
-});
