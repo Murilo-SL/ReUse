@@ -9,17 +9,18 @@
     <!-- Folhas de estilo -->
     <link rel="stylesheet" href="CSS/ong.css">
     <link rel="stylesheet" href="CSS/ong_configuracoes.css">
+    <link rel="stylesheet" href="CSS/breadcrumbs.css">
+    <link rel="stylesheet" href="CSS/modo_noturno_ong.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <!-- Bibliotecas JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- VLibras -->
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <script>
         new window.VLibras.Widget('https://vlibras.gov.br/app');
     </script>
 
-
+    <!-- Bibliotecas JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -31,9 +32,11 @@
                     <img src="IMG/reuse-logo-(1).svg" alt="ReUse Logo">
                 </div>
                 <div class="user-actions">
-                    <a href="login.html">
-                        <i class="fas fa-sign-out-alt"></i> Sair da Conta
-                    </a>
+                    <!-- Botão do Modo Noturno -->
+                    <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+                        <i class="bi bi-sun-fill" id="themeIcon"></i>
+                    </button>
+                    <a href="login.html"><i class="fas fa-sign-out-alt"></i> Sair</a>
                 </div>
             </div>
         </div>
@@ -43,7 +46,7 @@
     <div class="dashboard-container">
         <!-- Menu Lateral -->
         <aside class="sidebar">
-            <h2 class="sidebar-title">Patas concientes</h2>
+            <h2 class="sidebar-title">Patas Conscientes</h2>
             <ul class="sidebar-nav">
                 <li><a href="ong-2.html"><i class="bi bi-house"></i> Início</a></li>
                 <li><a href="ong_doacoes-2.html"><i class="bi bi-handbag"></i> Doações</a></li>
@@ -371,15 +374,6 @@
         </div>
     </div>
 
-    <!-- RODAPÉ -->
-    <footer>
-        <div class="container">
-            <div class="footer">
-                <p>&copy; 2025 ReUse - Todos os direitos reservados.</p>
-            </div>
-        </div>
-    </footer>
-
     <!-- Widget VLibras -->
     <div vw class="enabled">
         <div vw-access-button class="active"></div>
@@ -389,16 +383,18 @@
     </div>
 
     <!-- Scripts JavaScript -->
-    <script src="JS/ong_configuracoes-2.js"></script>
+    <script src="JS/ong_configuracoes.js"></script>
+    <script src="JS/menu-aside.js"></script>
+    <script src="JS/breadcrumbs-ong.js"></script>
+    <script src="JS/modo_noturno_ong.js"></script>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q755SR73MY"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-Q755SR73MY');
-</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q755SR73MY"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-Q755SR73MY');
+    </script>
 </body>
 
 </html>

@@ -9,14 +9,15 @@
     <!-- Folhas de estilo -->
     <link rel="stylesheet" href="CSS/ong.css">
     <link rel="stylesheet" href="CSS/ong_contato.css">
+    <link rel="stylesheet" href="CSS/breadcrumbs.css">
+    <link rel="stylesheet" href="CSS/modo_noturno_ong.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <!-- VLibras -->
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <script>
         new window.VLibras.Widget('https://vlibras.gov.br/app');
     </script>
-
 </head>
 
 <body>
@@ -28,9 +29,11 @@
                     <img src="IMG/reuse-logo-(1).svg" alt="ReUse Logo">
                 </div>
                 <div class="user-actions">
-                    <a href="login.html">
-                        <i class="fas fa-sign-out-alt"></i> Sair da Conta
-                    </a>
+                    <!-- Botão do Modo Noturno -->
+                    <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+                        <i class="bi bi-sun-fill" id="themeIcon"></i>
+                    </button>
+                    <a href="login.html"><i class="fas fa-sign-out-alt"></i> Sair</a>
                 </div>
             </div>
         </div>
@@ -40,16 +43,15 @@
     <div class="dashboard-container">
         <!-- Menu Lateral -->
         <aside class="sidebar">
-            <h2 class="sidebar-title">Patas concientes</h2>
+            <h2 class="sidebar-title">Patas Conscientes</h2>
             <ul class="sidebar-nav">
                 <li><a href="ong-2.html"><i class="bi bi-house"></i> Início</a></li>
                 <li><a href="ong_doacoes-2.html"><i class="bi bi-handbag"></i> Doações</a></li>
-                <li><a href="ong_doacoes-2_necessarias.html"><i class="bi bi-clipboard-check"></i> Doações
-                        Necessárias</a></li>
+                <li><a href="ong_doacoes-2_necessarias.html"><i class="bi bi-clipboard-check"></i> Doações Necessárias</a></li>
                 <li><a href="ong_configuracoes-2.html"><i class="bi bi-people"></i> Beneficiários</a></li>
                 <li><a href="ong_relatorios-2.html"><i class="bi bi-bar-chart"></i> Relatórios</a></li>
-                <li><a href="ong_configuracoes-2.html" class="active"><i class="bi bi-gear"></i> Configurações</a></li>
-                <li><a href="ong_contato-2.html"><i class="bi bi-envelope"></i> Contato</a></li>
+                <li><a href="ong_configuracoes-2.html"><i class="bi bi-gear"></i> Configurações</a></li>
+                <li><a href="ong_contato-2.html" class="active"><i class="bi bi-envelope"></i> Contato</a></li>
                 <li><a href="ong_produto-2.html"><i class="bi bi-box-seam"></i> Produtos</a></li>
             </ul>
         </aside>
@@ -83,8 +85,8 @@
                                 <p class="phone-line1">(11) 98765-4321</p>
                                 <p class="phone-line2">(11) 3456-7890</p>
                             </div>
-                            <input type="text" class="edit-mode-field" data-field="phone-line1" value="(11) 98765-4321">
-                            <input type="text" class="edit-mode-field" data-field="phone-line2" value="(11) 3456-7890">
+                            <input type="text" class="edit-mode-field" data-field="phone-line1" value="(11) 98765-4321" style="display: none;">
+                            <input type="text" class="edit-mode-field" data-field="phone-line2" value="(11) 3456-7890" style="display: none;">
                         </div>
                     </div>
 
@@ -100,9 +102,9 @@
                                 <p class="email-line2">doacoes@patasconscientes.org.br</p>
                             </div>
                             <input type="email" class="edit-mode-field" data-field="email-line1"
-                                value="contato@patasconscientes.org.br">
+                                value="contato@patasconscientes.org.br" style="display: none;">
                             <input type="email" class="edit-mode-field" data-field="email-line2"
-                                value="doacoes@patasconscientes.org.br">
+                                value="doacoes@patasconscientes.org.br" style="display: none;">
                         </div>
                     </div>
 
@@ -119,11 +121,11 @@
                                 <p class="address-line3">CEP: 01234-567</p>
                             </div>
                             <input type="text" class="edit-mode-field" data-field="address-line1"
-                                value="Rua dos Animais, 123">
+                                value="Rua dos Animais, 123" style="display: none;">
                             <input type="text" class="edit-mode-field" data-field="address-line2"
-                                value="Jardim Felino - São Paulo, SP">
+                                value="Jardim Felino - São Paulo, SP" style="display: none;">
                             <input type="text" class="edit-mode-field" data-field="address-line3"
-                                value="CEP: 01234-567">
+                                value="CEP: 01234-567" style="display: none;">
                         </div>
                     </div>
 
@@ -140,11 +142,11 @@
                                 <p class="hours-line3">Domingo: Fechado</p>
                             </div>
                             <input type="text" class="edit-mode-field" data-field="hours-line1"
-                                value="Segunda a Sexta: 9h às 18h">
+                                value="Segunda a Sexta: 9h às 18h" style="display: none;">
                             <input type="text" class="edit-mode-field" data-field="hours-line2"
-                                value="Sábado: 9h às 13h">
+                                value="Sábado: 9h às 13h" style="display: none;">
                             <input type="text" class="edit-mode-field" data-field="hours-line3"
-                                value="Domingo: Fechado">
+                                value="Domingo: Fechado" style="display: none;">
                         </div>
                     </div>
                 </div>
@@ -277,9 +279,7 @@
     <!-- RODAPÉ -->
     <footer>
         <div class="container">
-            <div class="footer">
-                <p>&copy; 2025 ReUse - Todos os direitos reservados.</p>
-            </div>
+            <p>&copy; 2025 ReUse - Todos os direitos reservados</p>
         </div>
     </footer>
 
@@ -315,6 +315,7 @@
 
             let isEditMode = false;
 
+            // Alternar modo de edição
             toggleEditBtn.addEventListener('click', function () {
                 isEditMode = !isEditMode;
                 document.body.classList.toggle('edit-mode', isEditMode);
@@ -322,41 +323,102 @@
                 toggleEditBtn.innerHTML = isEditMode ?
                     '<i class="fas fa-times"></i> Sair do Modo Edição' :
                     '<i class="fas fa-edit"></i> Editar Informações';
+
+                // Mostrar/ocultar campos de edição das redes sociais
+                document.querySelector('.social-edit').style.display = isEditMode ? 'flex' : 'none';
+                document.querySelector('.social-media').style.display = isEditMode ? 'none' : 'flex';
             });
 
+            // Botões de edição individuais
+            editToggles.forEach(button => {
+                button.addEventListener('click', function () {
+                    if (!isEditMode) return;
+
+                    const fieldType = this.getAttribute('data-field');
+                    const parentContainer = this.closest('.contact-item') || this.parentElement;
+
+                    // Alternar visibilidade dos campos de edição
+                    const editFields = parentContainer.querySelectorAll('.edit-mode-field');
+                    editFields.forEach(field => {
+                        field.style.display = field.style.display === 'none' ? 'block' : 'none';
+                    });
+
+                    // Caso especial para o mapa
+                    if (fieldType === 'map') {
+                        const mapUrlField = document.querySelector('.edit-mode-field[data-field="map-url"]');
+                        mapUrlField.style.display = mapUrlField.style.display === 'none' ? 'block' : 'none';
+                    }
+
+                    // Caso especial para redes sociais
+                    if (fieldType === 'social') {
+                        const socialEdit = document.querySelector('.social-edit');
+                        socialEdit.style.display = socialEdit.style.display === 'none' ? 'flex' : 'none';
+                    }
+                });
+            });
+
+            // Cancelar edição
             cancelEditBtn.addEventListener('click', function () {
                 isEditMode = false;
                 document.body.classList.remove('edit-mode');
                 editButtons.style.display = 'none';
                 toggleEditBtn.innerHTML = '<i class="fas fa-edit"></i> Editar Informações';
 
-                // Restaurar valores originais (aqui seria implementada a lógica para reverter as alterações)
+                // Ocultar todos os campos de edição
+                document.querySelectorAll('.edit-mode-field').forEach(field => {
+                    field.style.display = 'none';
+                });
+
+                // Restaurar redes sociais
+                document.querySelector('.social-edit').style.display = 'none';
+                document.querySelector('.social-media').style.display = 'flex';
             });
 
+            // Salvar alterações
             saveChangesBtn.addEventListener('click', function () {
-                // Coletar todos os dados dos campos de edição
-                const phoneLine1 = document.querySelector('[data-field="phone-line1"]').value;
-                const phoneLine2 = document.querySelector('[data-field="phone-line2"]').value;
-                const emailLine1 = document.querySelector('[data-field="email-line1"]').value;
-                const emailLine2 = document.querySelector('[data-field="email-line2"]').value;
-                const addressLine1 = document.querySelector('[data-field="address-line1"]').value;
-                const addressLine2 = document.querySelector('[data-field="address-line2"]').value;
-                const addressLine3 = document.querySelector('[data-field="address-line3"]').value;
-                const hoursLine1 = document.querySelector('[data-field="hours-line1"]').value;
-                const hoursLine2 = document.querySelector('[data-field="hours-line2"]').value;
-                const hoursLine3 = document.querySelector('[data-field="hours-line3"]').value;
+                // Atualizar telefones
+                document.querySelector('.phone-line1').textContent = document.querySelector('input[data-field="phone-line1"]').value;
+                document.querySelector('.phone-line2').textContent = document.querySelector('input[data-field="phone-line2"]').value;
 
-                // Atualizar os elementos de visualização
-                document.querySelector('.phone-line1').textContent = phoneLine1;
-                document.querySelector('.phone-line2').textContent = phoneLine2;
-                document.querySelector('.email-line1').textContent = emailLine1;
-                document.querySelector('.email-line2').textContent = emailLine2;
-                document.querySelector('.address-line1').textContent = addressLine1;
-                document.querySelector('.address-line2').textContent = addressLine2;
-                document.querySelector('.address-line3').textContent = addressLine3;
-                document.querySelector('.hours-line1').textContent = hoursLine1;
-                document.querySelector('.hours-line2').textContent = hoursLine2;
-                document.querySelector('.hours-line3').textContent = hoursLine3;
+                // Atualizar emails
+                document.querySelector('.email-line1').textContent = document.querySelector('input[data-field="email-line1"]').value;
+                document.querySelector('.email-line2').textContent = document.querySelector('input[data-field="email-line2"]').value;
+
+                // Atualizar endereço
+                document.querySelector('.address-line1').textContent = document.querySelector('input[data-field="address-line1"]').value;
+                document.querySelector('.address-line2').textContent = document.querySelector('input[data-field="address-line2"]').value;
+                document.querySelector('.address-line3').textContent = document.querySelector('input[data-field="address-line3"]').value;
+
+                // Atualizar horários
+                document.querySelector('.hours-line1').textContent = document.querySelector('input[data-field="hours-line1"]').value;
+                document.querySelector('.hours-line2').textContent = document.querySelector('input[data-field="hours-line2"]').value;
+                document.querySelector('.hours-line3').textContent = document.querySelector('input[data-field="hours-line3"]').value;
+
+                // Atualizar redes sociais
+                const facebookLink = document.getElementById('facebook-link');
+                facebookLink.href = document.querySelector('input[data-field="facebook-url"]').value;
+                facebookLink.querySelector('.social-text').textContent = document.querySelector('input[data-field="facebook-text"]').value;
+
+                const instagramLink = document.getElementById('instagram-link');
+                instagramLink.href = document.querySelector('input[data-field="instagram-url"]').value;
+                instagramLink.querySelector('.social-text').textContent = document.querySelector('input[data-field="instagram-text"]').value;
+
+                const whatsappLink = document.getElementById('whatsapp-link');
+                whatsappLink.href = document.querySelector('input[data-field="whatsapp-url"]').value;
+                whatsappLink.querySelector('.social-text').textContent = document.querySelector('input[data-field="whatsapp-text"]').value;
+
+                const youtubeLink = document.getElementById('youtube-link');
+                youtubeLink.href = document.querySelector('input[data-field="youtube-url"]').value;
+                youtubeLink.querySelector('.social-text').textContent = document.querySelector('input[data-field="youtube-text"]').value;
+
+                // Atualizar mapa (se alterado)
+                const newMapUrl = document.getElementById('map-embed-url').value;
+                if (newMapUrl) {
+                    document.querySelector('iframe').src = newMapUrl;
+                }
+
+                // Simular salvamento (em um caso real, enviaria para o servidor)
+                alert('Alterações salvas com sucesso!');
 
                 // Sair do modo de edição
                 isEditMode = false;
@@ -364,47 +426,29 @@
                 editButtons.style.display = 'none';
                 toggleEditBtn.innerHTML = '<i class="fas fa-edit"></i> Editar Informações';
 
-                // Aqui você normalmente enviaria os dados para o servidor
-                alert('Alterações salvas com sucesso!');
-            });
-
-            // Controle dos botões de edição individual
-            editToggles.forEach(toggle => {
-                toggle.addEventListener('click', function () {
-                    const field = this.getAttribute('data-field');
-                    const editFields = document.querySelectorAll(`.edit-mode-field[data-field^="${field}"]`);
-
-                    // Alternar a exibição dos campos de edição
-                    editFields.forEach(field => {
-                        field.style.display = field.style.display === 'block' ? 'none' : 'block';
-                    });
-
-                    // Para as redes sociais, mostrar/ocultar a seção de edição
-                    if (field === 'social') {
-                        const socialEdit = document.querySelector('.social-edit');
-                        const socialView = document.querySelector('.social-media');
-                        socialEdit.style.display = socialEdit.style.display === 'flex' ? 'none' : 'flex';
-                        socialView.style.display = socialView.style.display === 'none' ? 'flex' : 'none';
-                    }
-
-                    // Para o mapa, mostrar/ocultar o campo de URL
-                    if (field === 'map') {
-                        const mapUrlField = document.querySelector('[data-field="map-url"]');
-                        mapUrlField.style.display = mapUrlField.style.display === 'block' ? 'none' : 'block';
-                    }
+                // Ocultar todos os campos de edição
+                document.querySelectorAll('.edit-mode-field').forEach(field => {
+                    field.style.display = 'none';
                 });
+
+                // Restaurar redes sociais
+                document.querySelector('.social-edit').style.display = 'none';
+                document.querySelector('.social-media').style.display = 'flex';
             });
         });
     </script>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q755SR73MY"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q755SR73MY"></script>
+    <script src="JS/menu-aside.js"></script>
+    <script src="JS/breadcrumbs-ong.js"></script>
+    <script src="JS/modo_noturno_ong.js"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-  gtag('config', 'G-Q755SR73MY');
-</script>
+      gtag('config', 'G-Q755SR73MY');
+    </script>
 </body>
 
 </html>

@@ -1,447 +1,639 @@
-        // Dados de exemplo para as doações necessárias
-        const necessaryDonationsData = [
-            {
-                id: 1,
-                title: "Ração para Gatos Adultos",
+// ong_doacoes-2_necessarias.js - Sistema completo e sincronizado
+
+// ============ SISTEMA DE ARMAZENAMENTO ============
+
+// Função para obter doações do localStorage (fonte única da verdade)
+function obterDoacoes() {
+    const doacoesSalvas = localStorage.getItem('doacoesNecessarias');
+    return doacoesSalvas ? JSON.parse(doacoesSalvas) : {};
+}
+
+// Função para salvar doações no localStorage
+function salvarDoacoes(doacoes) {
+    localStorage.setItem('doacoesNecessarias', JSON.stringify(doacoes));
+    // Disparar evento personalizado para sincronização
+    window.dispatchEvent(new Event('doacoesAtualizadas'));
+}
+
+// Função para inicializar doações padrão se não existirem
+function inicializarDoacoesPadrao() {
+    let doacoes = obterDoacoes();
+    
+    if (Object.keys(doacoes).length === 0) {
+        console.log('Inicializando doações padrão...');
+        // Doações padrão da Patas Conscientes
+        doacoes = {
+            "1": {
+                id: "1",
+                name: "Ração para Gatos",
+                description: "Precisamos de ração seca e úmida para alimentar nossos resgatados",
                 category: "Alimentação",
-                description: "Ração de boa qualidade para gatos adultos, preferencialmente sem corantes.",
                 priority: "Alta",
-                quantityNeeded: 50,
-                quantityCollected: 25,
+                target: 50,
+                collected: 22.5,
+                image: "",
                 status: "Ativo",
-                image: "https://via.placeholder.com/300x200?text=Racao+Gatos"
+                date: "10/05/2025",
+                created: "2025-01-10"
             },
-            {
-                id: 2,
-                title: "Areia Sanitária",
-                category: "Higiene",
-                description: "Areia higiênica para gatos, qualquer marca é bem-vinda.",
-                priority: "Alta",
-                quantityNeeded: 30,
-                quantityCollected: 10,
-                status: "Ativo",
-                image: "https://via.placeholder.com/300x200?text=Areia+Sanitaria"
-            },
-            {
-                id: 3,
-                title: "Brinquedos para Gatos",
-                category: "Brinquedos",
-                description: "Brinquedos interativos, arranhadores e bolinhas para nossos felinos.",
+            "2": {
+                id: "2",
+                name: "Cobertores",
+                description: "Para manter os animais aquecidos no inverno",
+                category: "Roupas",
                 priority: "Média",
-                quantityNeeded: 20,
-                quantityCollected: 15,
+                target: 20,
+                collected: 14,
+                image: "",
                 status: "Ativo",
-                image: "https://via.placeholder.com/300x200?text=Brinquedos+Gatos"
+                date: "05/05/2025",
+                created: "2025-01-05"
             },
-            {
-                id: 4,
-                title: "Vermífugo para Gatos",
+            "3": {
+                id: "3",
+                name: "Medicamentos",
+                description: "Antipulgas, vermífugos e outros remédios básicos",
                 category: "Medicamentos",
-                description: "Medicamento para controle de vermes em gatos adultos e filhotes.",
                 priority: "Alta",
-                quantityNeeded: 40,
-                quantityCollected: 40,
-                status: "Atendido",
-                image: "https://via.placeholder.com/300x200?text=Vermifugo+Gatos"
+                target: 50,
+                collected: 15,
+                image: "",
+                status: "Ativo",
+                date: "01/05/2025",
+                created: "2025-01-01"
             },
-            {
-                id: 5,
-                title: "Coleiras Ajustáveis",
-                category: "Outros",
-                description: "Coleiras de identificação para gatos, de vários tamanhos.",
+            "4": {
+                id: "4",
+                name: "Brinquedos",
+                description: "Para enriquecimento ambiental dos animais",
+                category: "Brinquedos",
                 priority: "Baixa",
-                quantityNeeded: 15,
-                quantityCollected: 5,
+                target: 30,
+                collected: 18,
+                image: "",
                 status: "Ativo",
-                image: "https://via.placeholder.com/300x200?text=Coleiras+Gatos"
-            },
-            {
-                id: 6,
-                title: "Caixas de Transporte",
-                category: "Outros",
-                description: "Caixas para transporte seguro de gatos para consultas veterinárias.",
-                priority: "Média",
-                quantityNeeded: 10,
-                quantityCollected: 3,
-                status: "Ativo",
-                image: "https://via.placeholder.com/300x200?text=Caixas+Transporte"
+                date: "28/04/2025",
+                created: "2025-04-28"
             }
-        ];
+        };
+        
+        salvarDoacoes(doacoes);
+    }
+    
+    return doacoes;
+}
 
-        // Variáveis globais
-        let currentPage = 1;
-        const itemsPerPage = 6;
-        let filteredDonations = [...necessaryDonationsData];
-        let donationToDelete = null;
+// Inicializar lixeira se não existir
+function inicializarLixeira() {
+    if (!localStorage.getItem('lixeiraDoacoes')) {
+        localStorage.setItem('lixeiraDoacoes', JSON.stringify([]));
+    }
+}
 
-        // Inicialização quando a página carrega
-        document.addEventListener('DOMContentLoaded', function() {
-            loadDonations();
-            setupEventListeners();
-        });
+// ============ SISTEMA DE SINCRONIZAÇÃO ============
 
-        // Configurar event listeners
-        function setupEventListeners() {
-            // Pesquisa em tempo real
-            document.getElementById('searchInput').addEventListener('input', function() {
-                applyFilters();
-            });
-            
-            // Filtros que disparam automaticamente
-            document.getElementById('categoryFilter').addEventListener('change', applyFilters);
-            document.getElementById('priorityFilter').addEventListener('change', applyFilters);
-            document.getElementById('statusFilter').addEventListener('change', applyFilters);
-            
-            // Formulário de doação
-            document.getElementById('donationForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                saveDonation();
-            });
-            
-            // Confirmação de exclusão
-            document.getElementById('confirmDeleteBtn').addEventListener('click', function() {
-                if (donationToDelete) {
-                    deleteDonation(donationToDelete);
-                    closeDeleteModal();
-                }
-            });
+function inicializarSincronizacao() {
+    // Ouvir mudanças no localStorage de outras abas/páginas
+    window.addEventListener('storage', function(e) {
+        if (e.key === 'doacoesNecessarias' || e.key === 'lixeiraDoacoes') {
+            console.log('Mudança detectada no localStorage, atualizando interface...');
+            carregarDoacoes();
+            atualizarEstatisticas();
+            mostrarNotificacao('Dados atualizados automaticamente', 'info');
         }
+    });
+    
+    // Ouvir eventos personalizados
+    window.addEventListener('doacoesAtualizadas', function() {
+        console.log('Evento doacoesAtualizadas disparado, recarregando...');
+        carregarDoacoes();
+        atualizarEstatisticas();
+    });
+    
+    // Recarregar quando a página ganhar foco
+    window.addEventListener('focus', function() {
+        console.log('Página em foco, verificando atualizações...');
+        carregarDoacoes();
+        atualizarEstatisticas();
+    });
+    
+    // Recarregar a cada 30 segundos para garantir sincronização
+    setInterval(function() {
+        carregarDoacoes();
+        atualizarEstatisticas();
+    }, 30000);
+}
 
-        // Carregar doações na página
-        function loadDonations() {
-            const donationsContainer = document.getElementById('necessaryDonations');
-            const noResultsElement = document.getElementById('noResults');
-            const paginationElement = document.getElementById('pagination');
+// ============ SISTEMA DE DOAÇÕES ============
+
+// Função para carregar doações
+function carregarDoacoes() {
+    const container = document.getElementById('necessaryDonations');
+    if (!container) return; // Elemento não existe nesta página
+    
+    // Mostrar loading
+    container.innerHTML = `
+        <div class="loading-state">
+            <div class="loading-spinner">
+                <i class="fas fa-spinner"></i>
+            </div>
+            <span>Carregando doações...</span>
+        </div>
+    `;
+    
+    // Simular carregamento assíncrono
+    setTimeout(() => {
+        try {
+            const doacoes = obterDoacoes();
+            const doacoesArray = Object.values(doacoes);
             
-            // Verificar se há resultados
-            if (filteredDonations.length === 0) {
-                donationsContainer.innerHTML = '';
-                noResultsElement.style.display = 'block';
-                paginationElement.innerHTML = '';
-                return;
-            }
+            // Aplicar filtros
+            const doacoesFiltradas = filtrarDoacoes(doacoesArray);
             
-            noResultsElement.style.display = 'none';
-            
-            // Calcular índices para a página atual
-            const startIndex = (currentPage - 1) * itemsPerPage;
-            const endIndex = Math.min(startIndex + itemsPerPage, filteredDonations.length);
-            const currentDonations = filteredDonations.slice(startIndex, endIndex);
-            
-            // Gerar HTML para as doações
-            donationsContainer.innerHTML = '';
-            currentDonations.forEach(donation => {
-                const progressPercentage = (donation.quantityCollected / donation.quantityNeeded) * 100;
-                
-                donationsContainer.innerHTML += `
-                    <div class="donation-card">
-                        <div class="donation-header">
-                            <h3 class="donation-title">${donation.title}</h3>
-                            <span class="priority-badge priority-${donation.priority.toLowerCase()}">${donation.priority}</span>
-                        </div>
-                        <div class="donation-category">${donation.category}</div>
-                        <p class="donation-description">${donation.description}</p>
-                        
-                        <div class="progress-container">
-                            <div class="progress-info">
-                                <span>Arrecadado: ${donation.quantityCollected} de ${donation.quantityNeeded}</span>
-                                <span>${Math.round(progressPercentage)}%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: ${progressPercentage}%;"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="donation-actions">
-                            <button class="secondary-button small" onclick="editDonation(${donation.id})">
-                                <i class="fas fa-edit"></i> Editar
-                            </button>
-                            <button class="danger-button small" onclick="confirmDelete(${donation.id})">
-                                <i class="fas fa-trash"></i> Excluir
-                            </button>
-                        </div>
+            // Gerar HTML das doações
+            if (doacoesFiltradas.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-search"></i>
+                        <h3>Nenhuma doação encontrada</h3>
+                        <p>Tente ajustar os filtros ou termos de pesquisa.</p>
+                        <button class="primary-button" onclick="openAddModal()">
+                            <i class="fas fa-plus"></i> Nova Doação
+                        </button>
                     </div>
                 `;
-            });
+            } else {
+                container.innerHTML = doacoesFiltradas.map(doacao => criarCardDoacao(doacao)).join('');
+            }
             
-            // Gerar paginação
-            generatePagination();
+            // Re-inicializar eventos dos botões
+            inicializarEventosDoacoes();
+            
+        } catch (error) {
+            console.error('Erro ao carregar doações:', error);
+            container.innerHTML = `
+                <div class="error-state">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3>Erro ao carregar doações</h3>
+                    <p>Recarregue a página e tente novamente.</p>
+                    <button onclick="location.reload()" class="primary-button">Recarregar Página</button>
+                </div>
+            `;
         }
+    }, 500);
+}
 
-        // Gerar controles de paginação
-        function generatePagination() {
-            const totalPages = Math.ceil(filteredDonations.length / itemsPerPage);
-            const paginationElement = document.getElementById('pagination');
-            
-            if (totalPages <= 1) {
-                paginationElement.innerHTML = '';
-                return;
-            }
-            
-            let paginationHTML = '';
-            
-            // Botão anterior
-            if (currentPage > 1) {
-                paginationHTML += `<button onclick="goToPage(${currentPage - 1})"><i class="fas fa-chevron-left"></i></button>`;
-            }
-            
-            // Páginas
-            for (let i = 1; i <= totalPages; i++) {
-                if (i === currentPage) {
-                    paginationHTML += `<button class="active">${i}</button>`;
-                } else {
-                    paginationHTML += `<button onclick="goToPage(${i})">${i}</button>`;
+// Função para criar card de doação
+function criarCardDoacao(doacao) {
+    const progress = Math.min((doacao.collected / doacao.target) * 100, 100);
+    const progressColor = getProgressColor(doacao.collected, doacao.target);
+    const hasImage = doacao.image && doacao.image.startsWith('data:image');
+
+    return `
+        <div class="donation-card" data-id="${doacao.id}">
+            <div class="donation-image">
+                ${hasImage ? 
+                    `<img src="${doacao.image}" alt="${doacao.name}">` :
+                    `<div class="placeholder-image">
+                        <i class="fas fa-${getCategoryIcon(doacao.category)}"></i>
+                        <span>${doacao.category}</span>
+                    </div>`
                 }
+            </div>
+            
+            <div class="donation-header">
+                <h3 class="donation-title">${doacao.name}</h3>
+                <span class="priority-badge priority-${doacao.priority.toLowerCase()}">
+                    ${doacao.priority}
+                </span>
+            </div>
+            
+            <div class="donation-category">
+                <i class="fas fa-tag"></i> ${doacao.category}
+            </div>
+            
+            <p class="donation-description">${doacao.description}</p>
+            
+            <div class="progress-container">
+                <div class="progress-info">
+                    <span><i class="fas fa-box"></i> ${doacao.collected}/${doacao.target}</span>
+                    <span>${Math.round(progress)}%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: ${progress}%; background-color: ${progressColor};"></div>
+                </div>
+            </div>
+            
+            <div class="card-details">
+                <div class="detail-item">
+                    <i class="fas fa-info-circle"></i>
+                    <span class="status status-${doacao.status.toLowerCase()}">${doacao.status}</span>
+                </div>
+                <div class="detail-item">
+                    <i class="fas fa-calendar"></i>
+                    <span>${doacao.date}</span>
+                </div>
+            </div>
+            
+            <div class="donation-actions">
+                <button class="secondary-button small edit-btn" data-id="${doacao.id}" title="Editar doação">
+                    <i class="fas fa-edit"></i> Editar
+                </button>
+                <button class="danger-button small delete-btn" data-id="${doacao.id}" title="Excluir doação">
+                    <i class="fas fa-trash"></i> Excluir
+                </button>
+            </div>
+        </div>
+    `;
+}
+
+// Função para filtrar doações
+function filtrarDoacoes(doacoesArray) {
+    const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+    const categoriaSelecionada = document.getElementById('categoryFilter').value;
+    const prioridadeSelecionada = document.getElementById('priorityFilter').value;
+    const statusSelecionado = document.getElementById('statusFilter').value;
+    
+    return doacoesArray.filter(doacao => {
+        const correspondeBusca = doacao.name.toLowerCase().includes(searchTerm) || 
+                               doacao.description.toLowerCase().includes(searchTerm) ||
+                               doacao.category.toLowerCase().includes(searchTerm);
+        const correspondeCategoria = !categoriaSelecionada || doacao.category === categoriaSelecionada;
+        const correspondePrioridade = !prioridadeSelecionada || doacao.priority === prioridadeSelecionada;
+        const correspondeStatus = !statusSelecionado || doacao.status === statusSelecionado;
+        
+        return correspondeBusca && correspondeCategoria && correspondePrioridade && correspondeStatus;
+    });
+}
+
+// Função para aplicar filtros e atualizar a lista
+function aplicarFiltros() {
+    try {
+        carregarDoacoes();
+        atualizarEstatisticas();
+    } catch (error) {
+        console.error('Erro ao aplicar filtros:', error);
+        mostrarNotificacao('Erro ao filtrar doações', 'error');
+    }
+}
+
+// ============ SISTEMA DE EXCLUSÃO ============
+
+// Função para excluir doação (mover para lixeira)
+function excluirDoacao(id) {
+    try {
+        const doacoes = obterDoacoes();
+        const doacao = doacoes[id];
+        
+        if (!doacao) {
+            mostrarNotificacao('Doação não encontrada', 'error');
+            return;
+        }
+        
+        // Adicionar data de exclusão
+        doacao.dataExclusao = new Date().toISOString();
+        
+        // Mover para lixeira
+        const lixeira = JSON.parse(localStorage.getItem('lixeiraDoacoes')) || [];
+        lixeira.push(doacao);
+        localStorage.setItem('lixeiraDoacoes', JSON.stringify(lixeira));
+        
+        // Remover das doações ativas
+        delete doacoes[id];
+        salvarDoacoes(doacoes);
+        
+        // Mostrar notificação
+        mostrarNotificacao(`"${doacao.name}" movida para a lixeira`, 'success');
+        
+    } catch (error) {
+        console.error('Erro ao excluir doação:', error);
+        mostrarNotificacao('Erro ao excluir doação', 'error');
+    }
+}
+
+// ============ SISTEMA DE EDIÇÃO ============
+
+// Função para abrir modal de edição
+function abrirModalEdicao(id) {
+    try {
+        const doacoes = obterDoacoes();
+        const doacao = doacoes[id];
+        
+        if (!doacao) {
+            mostrarNotificacao('Doação não encontrada', 'error');
+            return;
+        }
+        
+        document.getElementById('modalTitle').textContent = 'Editar Doação Necessária';
+        document.getElementById('donationId').value = doacao.id;
+        document.getElementById('itemName').value = doacao.name;
+        document.getElementById('itemDescription').value = doacao.description;
+        document.getElementById('itemCategory').value = doacao.category;
+        document.getElementById('itemPriority').value = doacao.priority;
+        document.getElementById('itemQuantity').value = doacao.target;
+        document.getElementById('itemCollected').value = doacao.collected;
+        document.getElementById('itemStatus').value = doacao.status;
+        document.getElementById('currentImage').value = doacao.image || '';
+        
+        loadExistingImage(doacao.image, doacao.id);
+        clearAllErrors();
+        document.getElementById('donationModal').style.display = 'block';
+        
+    } catch (error) {
+        console.error('Erro ao abrir modal de edição:', error);
+        mostrarNotificacao('Erro ao abrir edição', 'error');
+    }
+}
+
+// Função para salvar edição da doação
+function salvarEdicaoDoacao(id) {
+    try {
+        const doacoes = obterDoacoes();
+        const doacao = doacoes[id];
+        
+        if (!doacao) {
+            mostrarNotificacao('Doação não encontrada', 'error');
+            return;
+        }
+        
+        // Atualizar dados
+        doacao.name = document.getElementById('itemName').value;
+        doacao.description = document.getElementById('itemDescription').value;
+        doacao.category = document.getElementById('itemCategory').value;
+        doacao.priority = document.getElementById('itemPriority').value;
+        doacao.target = parseInt(document.getElementById('itemQuantity').value);
+        doacao.collected = parseInt(document.getElementById('itemCollected').value) || 0;
+        doacao.status = document.getElementById('itemStatus').value;
+        doacao.image = getCurrentImage();
+        doacao.date = new Date().toLocaleDateString('pt-BR');
+        
+        // Salvar alterações
+        salvarDoacoes(doacoes);
+        
+        // Mostrar notificação
+        mostrarNotificacao('Doação atualizada com sucesso!', 'success');
+        
+        return true;
+        
+    } catch (error) {
+        console.error('Erro ao salvar edição:', error);
+        mostrarNotificacao('Erro ao salvar alterações', 'error');
+        return false;
+    }
+}
+
+// ============ SISTEMA DE ADIÇÃO ============
+
+// Função para abrir modal de adição
+function openAddModal() {
+    document.getElementById('modalTitle').textContent = 'Nova Doação Necessária';
+    document.getElementById('donationForm').reset();
+    document.getElementById('donationId').value = '';
+    document.getElementById('itemCollected').value = '0';
+    document.getElementById('itemStatus').value = 'Ativo';
+    document.getElementById('currentImage').value = '';
+    
+    removeImage();
+    clearAllErrors();
+    document.getElementById('donationModal').style.display = 'block';
+    
+    setTimeout(() => document.getElementById('itemName').focus(), 100);
+}
+
+// Função para salvar nova doação
+function salvarNovaDoacao() {
+    try {
+        const formData = getFormData();
+        const doacoes = obterDoacoes();
+        
+        // Adicionar nova doação
+        doacoes[formData.id] = formData;
+        
+        // Salvar alterações
+        salvarDoacoes(doacoes);
+        
+        // Limpar storage temporário
+        cleanupTempStorage(formData.id);
+        
+        // Mostrar notificação
+        mostrarNotificacao('Doação adicionada com sucesso!', 'success');
+        
+        return true;
+        
+    } catch (error) {
+        console.error('Erro ao salvar nova doação:', error);
+        mostrarNotificacao('Erro ao salvar doação', 'error');
+        return false;
+    }
+}
+
+// ============ SISTEMA DE EVENTOS ============
+
+// Função para inicializar eventos das doações
+function inicializarEventosDoacoes() {
+    // Eventos dos botões de edição
+    document.querySelectorAll('.edit-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const doacaoId = this.getAttribute('data-id');
+            abrirModalEdicao(doacaoId);
+        });
+    });
+    
+    // Eventos dos botões de exclusão
+    document.querySelectorAll('.delete-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const doacaoId = this.getAttribute('data-id');
+            const doacoes = obterDoacoes();
+            const doacao = doacoes[doacaoId];
+            if (doacao) {
+                abrirModalExclusao(doacaoId, doacao.name);
             }
-            
-            // Botão próximo
-            if (currentPage < totalPages) {
-                paginationHTML += `<button onclick="goToPage(${currentPage + 1})"><i class="fas fa-chevron-right"></i></button>`;
+        });
+    });
+}
+
+// Função para inicializar eventos de filtro
+function inicializarEventosFiltro() {
+    const buscaInput = document.getElementById('searchInput');
+    const btnBuscar = document.getElementById('searchButton');
+    const filtroCategoria = document.getElementById('categoryFilter');
+    const filtroPrioridade = document.getElementById('priorityFilter');
+    const filtroStatus = document.getElementById('statusFilter');
+    const btnAplicarFiltros = document.getElementById('applyFilters');
+    const btnLimparFiltros = document.getElementById('clearFilters');
+    
+    if (buscaInput && btnBuscar) {
+        // Busca ao digitar (com debounce)
+        let timeoutBusca;
+        buscaInput.addEventListener('input', function() {
+            clearTimeout(timeoutBusca);
+            timeoutBusca = setTimeout(aplicarFiltros, 300);
+        });
+        
+        // Busca ao clicar no botão
+        btnBuscar.addEventListener('click', aplicarFiltros);
+        
+        // Busca ao pressionar Enter
+        buscaInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                aplicarFiltros();
             }
-            
-            paginationElement.innerHTML = paginationHTML;
-        }
-
-        // Navegar para uma página específica
-        function goToPage(page) {
-            currentPage = page;
-            loadDonations();
-        }
-
-        // Aplicar filtros
-        function applyFilters() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            const category = document.getElementById('categoryFilter').value;
-            const priority = document.getElementById('priorityFilter').value;
-            const status = document.getElementById('statusFilter').value;
-            
-            filteredDonations = necessaryDonationsData.filter(donation => {
-                // Filtro de pesquisa
-                const matchesSearch = searchTerm === '' || 
-                    donation.title.toLowerCase().includes(searchTerm) ||
-                    donation.description.toLowerCase().includes(searchTerm) ||
-                    donation.category.toLowerCase().includes(searchTerm);
-                
-                // Filtro de categoria
-                const matchesCategory = category === '' || donation.category === category;
-                
-                // Filtro de prioridade
-                const matchesPriority = priority === '' || donation.priority === priority;
-                
-                // Filtro de status
-                const matchesStatus = status === '' || donation.status === status;
-                
-                return matchesSearch && matchesCategory && matchesPriority && matchesStatus;
-            });
-            
-            currentPage = 1;
-            loadDonations();
-        }
-
-        // Limpar filtros
-        function clearFilters() {
-            document.getElementById('searchInput').value = '';
+        });
+    }
+    
+    if (filtroCategoria) {
+        filtroCategoria.addEventListener('change', aplicarFiltros);
+    }
+    
+    if (filtroPrioridade) {
+        filtroPrioridade.addEventListener('change', aplicarFiltros);
+    }
+    
+    if (filtroStatus) {
+        filtroStatus.addEventListener('change', aplicarFiltros);
+    }
+    
+    if (btnAplicarFiltros) {
+        btnAplicarFiltros.addEventListener('click', aplicarFiltros);
+    }
+    
+    if (btnLimparFiltros) {
+        btnLimparFiltros.addEventListener('click', function() {
             document.getElementById('categoryFilter').value = '';
             document.getElementById('priorityFilter').value = '';
             document.getElementById('statusFilter').value = '';
-            
-            applyFilters();
-        }
+            document.getElementById('searchInput').value = '';
+            aplicarFiltros();
+        });
+    }
+}
 
-        // Abrir modal para adicionar/editar doação
-        function openDonationModal(donationId = null) {
-            const modal = document.getElementById('donationModal');
-            const modalTitle = document.getElementById('modalTitle');
-            const form = document.getElementById('donationForm');
-            
-            // Limpar formulário
-            form.reset();
-            hideAllErrorMessages();
-            
-            if (donationId) {
-                // Modo edição
-                modalTitle.textContent = 'Editar Doação Necessária';
-                const donation = necessaryDonationsData.find(d => d.id === donationId);
-                
-                if (donation) {
-                    document.getElementById('donationId').value = donation.id;
-                    document.getElementById('itemName').value = donation.title;
-                    document.getElementById('itemDescription').value = donation.description;
-                    document.getElementById('itemCategory').value = donation.category;
-                    document.getElementById('itemPriority').value = donation.priority;
-                    document.getElementById('itemQuantity').value = donation.quantityNeeded;
-                    document.getElementById('itemCollected').value = donation.quantityCollected;
-                    document.getElementById('itemImage').value = donation.image || '';
-                    document.getElementById('itemStatus').value = donation.status;
-                }
-            } else {
-                // Modo adição
-                modalTitle.textContent = 'Nova Doação Necessária';
-                document.getElementById('donationId').value = '';
-                document.getElementById('itemCollected').value = 0;
-                document.getElementById('itemStatus').value = 'Ativo';
-            }
-            
-            modal.style.display = 'block';
-        }
+// ============ SISTEMA DE ESTATÍSTICAS ============
 
-        // Fechar modal de doação
-        function closeDonationModal() {
-            document.getElementById('donationModal').style.display = 'none';
-        }
+// Função para obter estatísticas das doações
+function atualizarEstatisticas() {
+    try {
+        const doacoes = obterDoacoes();
+        const doacoesArray = Object.values(doacoes);
+        
+        const totalDoacoes = doacoesArray.length;
+        const doacoesAtivas = doacoesArray.filter(d => d.status === 'Ativo').length;
+        const doacoesAtendidas = doacoesArray.filter(d => d.status === 'Atendido').length;
+        const prioridadeAlta = doacoesArray.filter(d => d.priority === 'Alta').length;
+        
+        // Atualizar elementos da interface
+        const totalElement = document.getElementById('totalDoacoes');
+        const ativasElement = document.getElementById('doacoesAtivas');
+        const atendidasElement = document.getElementById('doacoesAtendidas');
+        const prioridadeElement = document.getElementById('prioridadeAlta');
+        
+        if (totalElement) totalElement.textContent = totalDoacoes;
+        if (ativasElement) ativasElement.textContent = doacoesAtivas;
+        if (atendidasElement) atendidasElement.textContent = doacoesAtendidas;
+        if (prioridadeElement) prioridadeElement.textContent = prioridadeAlta;
+        
+    } catch (error) {
+        console.error('Erro ao atualizar estatísticas:', error);
+    }
+}
 
-        // Salvar doação (adicionar ou editar)
-        function saveDonation() {
-            // Validar formulário
-            if (!validateForm()) {
-                return;
-            }
-            
-            const donationId = document.getElementById('donationId').value;
-            const donationData = {
-                title: document.getElementById('itemName').value,
-                description: document.getElementById('itemDescription').value,
-                category: document.getElementById('itemCategory').value,
-                priority: document.getElementById('itemPriority').value,
-                quantityNeeded: parseInt(document.getElementById('itemQuantity').value),
-                quantityCollected: parseInt(document.getElementById('itemCollected').value),
-                image: document.getElementById('itemImage').value,
-                status: document.getElementById('itemStatus').value
-            };
-            
-            if (donationId) {
-                // Editar doação existente
-                const index = necessaryDonationsData.findIndex(d => d.id === parseInt(donationId));
-                if (index !== -1) {
-                    donationData.id = parseInt(donationId);
-                    necessaryDonationsData[index] = donationData;
-                }
-            } else {
-                // Adicionar nova doação
-                const newId = necessaryDonationsData.length > 0 
-                    ? Math.max(...necessaryDonationsData.map(d => d.id)) + 1 
-                    : 1;
-                donationData.id = newId;
-                necessaryDonationsData.push(donationData);
-            }
-            
-            // Atualizar lista e fechar modal
-            applyFilters();
-            closeDonationModal();
-            
-            // Mostrar mensagem de sucesso (poderia ser um toast/alert)
-            alert(`Doação ${donationId ? 'atualizada' : 'adicionada'} com sucesso!`);
-        }
+// ============ SISTEMA DE NOTIFICAÇÕES ============
 
-        // Validar formulário
-        function validateForm() {
-            let isValid = true;
-            hideAllErrorMessages();
-            
-            // Validar nome do item
-            const itemName = document.getElementById('itemName').value.trim();
-            if (!itemName) {
-                showError('itemNameError', 'Por favor, informe o nome do item.');
-                isValid = false;
-            }
-            
-            // Validar descrição
-            const itemDescription = document.getElementById('itemDescription').value.trim();
-            if (!itemDescription) {
-                showError('itemDescriptionError', 'Por favor, informe a descrição do item.');
-                isValid = false;
-            }
-            
-            // Validar categoria
-            const itemCategory = document.getElementById('itemCategory').value;
-            if (!itemCategory) {
-                showError('itemCategoryError', 'Por favor, selecione uma categoria.');
-                isValid = false;
-            }
-            
-            // Validar prioridade
-            const itemPriority = document.getElementById('itemPriority').value;
-            if (!itemPriority) {
-                showError('itemPriorityError', 'Por favor, selecione uma prioridade.');
-                isValid = false;
-            }
-            
-            // Validar quantidade necessária
-            const itemQuantity = document.getElementById('itemQuantity').value;
-            if (!itemQuantity || parseInt(itemQuantity) <= 0) {
-                showError('itemQuantityError', 'Por favor, informe uma quantidade válida.');
-                isValid = false;
-            }
-            
-            // Validar quantidade arrecadada
-            const itemCollected = document.getElementById('itemCollected').value;
-            if (itemCollected && parseInt(itemCollected) < 0) {
-                showError('itemCollectedError', 'A quantidade arrecadada não pode ser negativa.');
-                isValid = false;
-            }
-            
-            // Validar status
-            const itemStatus = document.getElementById('itemStatus').value;
-            if (!itemStatus) {
-                showError('itemStatusError', 'Por favor, selecione um status.');
-                isValid = false;
-            }
-            
-            return isValid;
-        }
+// Função para mostrar notificações
+function mostrarNotificacao(mensagem, tipo = 'info') {
+    const notification = document.getElementById('successMessage');
+    const messageText = document.getElementById('successMessageText');
+    
+    if (!notification || !messageText) return;
+    
+    // Configurar estilo baseado no tipo
+    notification.className = 'success-message';
+    if (tipo === 'error') {
+        notification.classList.add('error');
+    } else if (tipo === 'warning') {
+        notification.classList.add('warning');
+    } else if (tipo === 'info') {
+        notification.classList.add('info');
+    }
+    
+    // Configurar ícone baseado no tipo
+    let icon = 'fas fa-check-circle';
+    if (tipo === 'error') icon = 'fas fa-exclamation-circle';
+    if (tipo === 'warning') icon = 'fas fa-exclamation-triangle';
+    if (tipo === 'info') icon = 'fas fa-info-circle';
+    
+    notification.querySelector('i').className = icon;
+    messageText.textContent = mensagem;
+    
+    // Mostrar notificação
+    notification.style.display = 'flex';
+    
+    // Auto-esconder após 5 segundos
+    setTimeout(() => {
+        notification.style.display = 'none';
+    }, 5000);
+}
 
-        // Mostrar mensagem de erro
-        function showError(elementId, message) {
-            const errorElement = document.getElementById(elementId);
-            errorElement.textContent = message;
-            errorElement.style.display = 'block';
-        }
+// ============ FUNÇÕES AUXILIARES ============
 
-        // Ocultar todas as mensagens de erro
-        function hideAllErrorMessages() {
-            const errorElements = document.querySelectorAll('.error-message');
-            errorElements.forEach(element => {
-                element.style.display = 'none';
-            });
-        }
+// Função para obter cor do progresso
+function getProgressColor(collected, target) {
+    const progress = (collected / target) * 100;
+    if (progress >= 100) return '#28a745'; // Verde
+    if (progress >= 75) return '#17a2b8';  // Azul
+    if (progress >= 50) return '#ffc107';  // Amarelo
+    if (progress >= 25) return '#fd7e14';  // Laranja
+    return '#dc3545';                      // Vermelho
+}
 
-        // Editar doação
-        function editDonation(donationId) {
-            openDonationModal(donationId);
-        }
+// Função para obter ícone da categoria
+function getCategoryIcon(category) {
+    const icons = {
+        'Alimentação': 'utensils',
+        'Higiene': 'soap',
+        'Brinquedos': 'gamepad',
+        'Medicamentos': 'pills',
+        'Roupas': 'tshirt',
+        'Outros': 'box'
+    };
+    return icons[category] || 'box';
+}
 
-        // Confirmar exclusão
-        function confirmDelete(donationId) {
-            donationToDelete = donationId;
-            document.getElementById('deleteModal').style.display = 'block';
-        }
+// ============ INICIALIZAÇÃO ============
 
-        // Fechar modal de exclusão
-        function closeDeleteModal() {
-            document.getElementById('deleteModal').style.display = 'none';
-            donationToDelete = null;
-        }
+// Função principal de inicialização
+function inicializarSistemaDoacoes() {
+    try {
+        console.log('Inicializando sistema de doações...');
+        
+        // Inicializar dados
+        inicializarDoacoesPadrao();
+        inicializarLixeira();
+        
+        // Carregar interface
+        carregarDoacoes();
+        atualizarEstatisticas();
+        
+        // Inicializar eventos
+        inicializarEventosFiltro();
+        inicializarSincronizacao();
+        
+        console.log('Sistema de doações inicializado com sucesso!');
+        
+    } catch (error) {
+        console.error('Erro na inicialização do sistema:', error);
+        mostrarNotificacao('Erro ao inicializar sistema', 'error');
+    }
+}
 
-        // Excluir doação
-        function deleteDonation(donationId) {
-            const index = necessaryDonationsData.findIndex(d => d.id === donationId);
-            if (index !== -1) {
-                necessaryDonationsData.splice(index, 1);
-                applyFilters();
-                alert('Doação excluída com sucesso!');
-            }
-        }
+// Inicializar quando o DOM estiver carregado
+document.addEventListener('DOMContentLoaded', function() {
+    inicializarSistemaDoacoes();
+});
 
-        // Fechar modais ao clicar fora deles
-        window.onclick = function(event) {
-            const donationModal = document.getElementById('donationModal');
-            const deleteModal = document.getElementById('deleteModal');
-            
-            if (event.target === donationModal) {
-                closeDonationModal();
-            }
-            
-            if (event.target === deleteModal) {
-                closeDeleteModal();
-            }
-        }
+// ============ EXPORTAÇÕES PARA USO GLOBAL ============
+
+// Exportar funções para uso global
+window.openAddModal = openAddModal;
+window.aplicarFiltros = aplicarFiltros;
+window.excluirDoacao = excluirDoacao;

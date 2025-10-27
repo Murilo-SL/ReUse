@@ -9,6 +9,8 @@
     <!-- Folhas de estilo -->
     <link rel="stylesheet" href="CSS/ong.css">
     <link rel="stylesheet" href="CSS/ong_configuracoes.css">
+    <link rel="stylesheet" href="CSS/breadcrumbs.css">
+    <link rel="stylesheet" href="CSS/modo_noturno_ong.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <!-- VLibras -->
@@ -30,9 +32,13 @@
                 <div class="logo">
                     <img src="IMG/reuse-logo-(1).svg" alt="ReUse Logo">
                 </div>
-                <div class="user-actions">
-                    <a href="login.html"><i class="fas fa-sign-out-alt"></i> Sair</a>
-                </div>
+<div class="user-actions">
+    <!-- Botão do Modo Noturno -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+        <i class="bi bi-sun-fill" id="themeIcon"></i>
+    </button>
+    <a href="login.html"><i class="fas fa-sign-out-alt"></i> Sair</a>
+</div>
             </div>
         </div>
     </header>
@@ -45,8 +51,7 @@
             <ul class="sidebar-nav">
                 <li><a href="ong.html"><i class="bi bi-house"></i> Início</a></li>
                 <li><a href="ong_doacoes.html"><i class="bi bi-handbag"></i> Doações</a></li>
-                <li><a href="ong_doacoes_necessarias.html"><i class="bi bi-clipboard-check"></i> Doações Necessárias</a>
-                </li>
+                <li><a href="ong_doacoes_necessarias.html"><i class="bi bi-clipboard-check"></i> Doações Necessárias</a></li>
                 <li><a href="ong_beneficiarios.html"><i class="bi bi-people"></i> Beneficiários</a></li>
                 <li><a href="ong_relatorios.html"><i class="bi bi-bar-chart"></i> Relatórios</a></li>
                 <li><a href="ong_configuracoes.html" class="active"><i class="bi bi-gear"></i> Configurações</a></li>
@@ -378,6 +383,9 @@
 
     <!-- Scripts JavaScript -->
     <script src="JS/ong_configuracoes.js"></script>
+    <script src="JS/menu-aside.js"></script>
+    <script src="JS/breadcrumbs-ong.js"></script>
+    <script src="JS/modo_noturno_ong.js"></script>
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q755SR73MY"></script>
 <script>

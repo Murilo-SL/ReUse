@@ -1,164 +1,634 @@
-       // Variáveis globais
-        let produtos = [
-            {
-                id: 1,
-                nome: "Camiseta Patas Conscientes",
-                preco: 35.00,
-                categoria: "roupas",
-                descricao: "Camiseta de algodão com estampa da instituição, confortável e com design exclusivo.",
-                imagem: "IMG/Camiseta-Patas.jpg",
-                vendidos: 18,
-                avaliacao: 4.8
-            },
-            {
-                id: 2,
-                nome: "Broche Patas Conscientes",
-                preco: 12.00,
-                categoria: "acessorios",
-                descricao: "Broche metálico com logo da instituição, perfeito para mostrar seu apoio.",
-                imagem: "IMG/Broche.SOS.jpg",
-                vendidos: 12,
-                avaliacao: 4.9
-            },
-            {
-                id: 3,
-                nome: "Bolsa Patas Conscientes",
-                preco: 45.00,
-                categoria: "acessorios",
-                descricao: "Bolsa ecológica de algodão, ideal para o dia a dia e para carregar suas compras.",
-                imagem: "IMG/Bolsa-Patas.jpg",
-                vendidos: 8,
-                avaliacao: 4.6
-            },
-            {
-                id: 4,
-                nome: "Boné Patas Conscientes",
-                preco: 25.00,
-                categoria: "acessorios",
-                descricao: "Boné ajustável com logo bordado, perfeito para proteção solar com estilo.",
-                imagem: "IMG/Bone-Patas.jpg",
-                vendidos: 4,
-                avaliacao: 4.5
+        // ============ SISTEMA DE ARMAZENAMENTO ============
+        function obterProdutos() {
+            const produtosSalvos = localStorage.getItem('produtosPatasConscientes');
+            return produtosSalvos ? JSON.parse(produtosSalvos) : [];
+        }
+
+        function salvarProdutos(produtos) {
+            localStorage.setItem('produtosPatasConscientes', JSON.stringify(produtos));
+            window.dispatchEvent(new Event('produtosAtualizados'));
+        }
+
+        // ============ VARIÁVEIS GLOBAIS ============
+        let produtos = [];
+        let produtoAtualId = null;
+        let produtosFiltrados = [];
+        let proximoId = 5;
+
+        // ============ INICIALIZAÇÃO ============
+        function inicializarPagina() {
+            console.log('🚀 Inicializando página de produtos da Patas Conscientes...');
+            
+            // Adicionar CSS personalizado
+            adicionarCSSPersonalizado();
+            
+            // Inicializar dados
+            inicializarProdutosPadrao();
+            
+            // Configurar interface
+            destacarPaginaAtiva();
+            inicializarEventosModal();
+            inicializarUploadImagens();
+            inicializarSincronizacao();
+            adicionarEventListeners();
+            
+            // Carregar dados
+            carregarProdutos();
+            atualizarEstatisticas();
+            
+            console.log('✅ Página inicializada com sucesso');
+        }
+
+        function adicionarCSSPersonalizado() {
+            if (!document.querySelector('#custom-styles')) {
+                const style = document.createElement('style');
+                style.id = 'custom-styles';
+                style.textContent = `
+                    .modal {
+                        display: none;
+                        position: fixed;
+                        z-index: 10000;
+                        left: 0;
+                        top: 0;
+                        width: 100%;
+                        height: 100%;
+                        background-color: rgba(0, 0, 0, 0.6);
+                        backdrop-filter: blur(5px);
+                        animation: fadeIn 0.3s ease;
+                    }
+                    
+                    .modal-content {
+                        background-color: white;
+                        margin: 5% auto;
+                        padding: 0;
+                        border-radius: 12px;
+                        width: 90%;
+                        max-width: 600px;
+                        box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+                        animation: slideIn 0.3s ease;
+                        position: relative;
+                    }
+                    
+                    @keyframes fadeIn {
+                        from { opacity: 0; }
+                        to { opacity: 1; }
+                    }
+                    
+                    @keyframes slideIn {
+                        from { 
+                            opacity: 0;
+                            transform: translateY(-50px) scale(0.9);
+                        }
+                        to { 
+                            opacity: 1;
+                            transform: translateY(0) scale(1);
+                        }
+                    }
+                    
+                    .modal-header {
+                        padding: 20px 25px;
+                        border-bottom: 1px solid #e9ecef;
+                        background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+                        border-radius: 12px 12px 0 0;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                    }
+                    
+                    .modal-header h2 {
+                        margin: 0;
+                        color: #2c3e50;
+                        font-size: 1.5rem;
+                        font-weight: 600;
+                    }
+                    
+                    .close {
+                        color: #6c757d;
+                        font-size: 28px;
+                        font-weight: bold;
+                        cursor: pointer;
+                        transition: color 0.3s ease;
+                        line-height: 1;
+                    }
+                    
+                    .close:hover {
+                        color: #2c3e50;
+                    }
+                    
+                    .modal-body {
+                        padding: 25px;
+                        max-height: 70vh;
+                        overflow-y: auto;
+                    }
+                    
+                    .image-preview {
+                        margin: 15px 0;
+                        padding: 15px;
+                        border: 2px dashed #dee2e6;
+                        border-radius: 8px;
+                        text-align: center;
+                        background-color: #f8f9fa;
+                    }
+                    
+                    .image-preview img {
+                        max-width: 100%;
+                        max-height: 200px;
+                        border-radius: 6px;
+                        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                    }
+                    
+                    .error-message {
+                        color: #dc3545;
+                        font-size: 0.875rem;
+                        margin-top: 5px;
+                        display: none;
+                    }
+                    
+                    .loading-spinner {
+                        text-align: center;
+                        padding: 40px 20px;
+                        color: #6c757d;
+                    }
+                    
+                    .loading-spinner i {
+                        font-size: 24px;
+                        animation: spin 1s linear infinite;
+                        margin-bottom: 10px;
+                    }
+                    
+                    @keyframes spin {
+                        from { transform: rotate(0deg); }
+                        to { transform: rotate(360deg); }
+                    }
+                    
+                    .toast-container {
+                        position: fixed;
+                        top: 20px;
+                        right: 20px;
+                        z-index: 10001;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 10px;
+                    }
+                    
+                    .toast {
+                        padding: 15px 20px;
+                        border-radius: 8px;
+                        color: white;
+                        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        min-width: 300px;
+                        max-width: 400px;
+                        animation: toastIn 0.3s ease;
+                    }
+                    
+                    .toast-success { background: linear-gradient(135deg, #28a745, #20c997); }
+                    .toast-error { background: linear-gradient(135deg, #dc3545, #e83e8c); }
+                    .toast-warning { background: linear-gradient(135deg, #ffc107, #fd7e14); }
+                    .toast-info { background: linear-gradient(135deg, #17a2b8, #6f42c1); }
+                    
+                    .toast-close {
+                        background: none;
+                        border: none;
+                        color: white;
+                        cursor: pointer;
+                        margin-left: 15px;
+                        font-size: 18px;
+                    }
+                    
+                    @keyframes toastIn {
+                        from { 
+                            transform: translateX(100%);
+                            opacity: 0;
+                        }
+                        to { 
+                            transform: translateX(0);
+                            opacity: 1;
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
             }
-        ];
+        }
 
-        // Elementos DOM
-        const modalAdicionar = document.getElementById('modalAdicionar');
-        const modalEditar = document.getElementById('modalEditar');
-        const modalExcluir = document.getElementById('modalExcluir');
-        const btnAdicionarProduto = document.getElementById('btnAdicionarProduto');
-        const formAdicionarProduto = document.getElementById('formAdicionarProduto');
-        const formEditarProduto = document.getElementById('formEditarProduto');
-        const productsGrid = document.getElementById('products-grid');
-        const emptyState = document.getElementById('empty-state');
-        const categoriaFilter = document.getElementById('categoria');
-        const ordenarFilter = document.getElementById('ordenar');
-        const buscaInput = document.getElementById('busca');
+        function inicializarProdutosPadrao() {
+            const produtosExistentes = obterProdutos();
+            
+            if (produtosExistentes.length === 0) {
+                console.log('📦 Criando produtos padrão para Patas Conscientes...');
+                
+                const produtosPadrao = [
+                    {
+                        id: 1,
+                        nome: "Camiseta Patas Conscientes",
+                        preco: 35.00,
+                        categoria: "roupas",
+                        descricao: "Camiseta de algodão com estampa da instituição, confortável e com design exclusivo.",
+                        imagem: "IMG/camiseta-patas.jpg",
+                        vendidos: 18,
+                        avaliacao: 4.8,
+                        dataCadastro: new Date().toISOString()
+                    },
+                    {
+                        id: 2,
+                        nome: "Broche Patas Conscientes",
+                        preco: 12.00,
+                        categoria: "acessorios",
+                        descricao: "Broche metálico com logo da instituição, perfeito para mostrar seu apoio.",
+                        imagem: "IMG/broche.sos.jpg",
+                        vendidos: 12,
+                        avaliacao: 4.9,
+                        dataCadastro: new Date().toISOString()
+                    },
+                    {
+                        id: 3,
+                        nome: "Bolsa Patas Conscientes",
+                        preco: 45.00,
+                        categoria: "acessorios",
+                        descricao: "Bolsa ecológica de algodão, ideal para o dia a dia e para carregar suas compras.",
+                        imagem: "IMG/bolsa-patas.jpg",
+                        vendidos: 8,
+                        avaliacao: 4.6,
+                        dataCadastro: new Date().toISOString()
+                    },
+                    {
+                        id: 4,
+                        nome: "Boné Patas Conscientes",
+                        preco: 25.00,
+                        categoria: "acessorios",
+                        descricao: "Boné ajustável com logo bordado, perfeito para proteção solar com estilo.",
+                        imagem: "IMG/bone-patas.jpg",
+                        vendidos: 4,
+                        avaliacao: 4.5,
+                        dataCadastro: new Date().toISOString()
+                    }
+                ];
+                
+                salvarProdutos(produtosPadrao);
+            }
+            
+            produtos = obterProdutos();
+            produtosFiltrados = [...produtos];
+            proximoId = produtos.length > 0 ? Math.max(...produtos.map(p => p.id)) + 1 : 5;
+        }
 
-        // Event Listeners
-        document.addEventListener('DOMContentLoaded', function() {
+        function destacarPaginaAtiva() {
+            const menuItems = document.querySelectorAll('.sidebar-nav a');
+            menuItems.forEach(item => {
+                if (item.getAttribute('href') === 'ong_produto-2.html') {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+        }
+
+        // ============ SISTEMA DE MODAIS ============
+        function inicializarEventosModal() {
+            console.log('🔧 Configurando eventos dos modais...');
+            
             // Botão adicionar produto
-            btnAdicionarProduto.addEventListener('click', function() {
-                modalAdicionar.style.display = 'block';
-            });
+            const btnAdicionar = document.getElementById('btnAdicionarProduto');
+            if (btnAdicionar) {
+                btnAdicionar.addEventListener('click', abrirModalAdicionar);
+                console.log('✅ Botão adicionar configurado');
+            }
 
-            // Formulário adicionar produto
-            formAdicionarProduto.addEventListener('submit', function(e) {
-                e.preventDefault();
-                adicionarProduto();
-            });
-
-            // Formulário editar produto
-            formEditarProduto.addEventListener('submit', function(e) {
-                e.preventDefault();
-                salvarEdicaoProduto();
-            });
-
-            // Filtros
-            categoriaFilter.addEventListener('change', filtrarProdutos);
-            ordenarFilter.addEventListener('change', filtrarProdutos);
-            buscaInput.addEventListener('input', filtrarProdutos);
-
-            // Botões de cancelar
-            document.getElementById('cancelarAdicao').addEventListener('click', function() {
-                modalAdicionar.style.display = 'none';
-                formAdicionarProduto.reset();
-            });
-
-            document.getElementById('cancelarEdicao').addEventListener('click', function() {
-                modalEditar.style.display = 'none';
-            });
-
-            document.getElementById('cancelarExclusao').addEventListener('click', function() {
-                modalExcluir.style.display = 'none';
-            });
-
-            // Botão confirmar exclusão
-            document.getElementById('confirmarExclusao').addEventListener('click', function() {
-                const produtoId = document.getElementById('nomeProdutoExcluir').getAttribute('data-id');
-                excluirProdutoConfirmado(parseInt(produtoId));
-            });
-
-            // Fechar modais ao clicar no X
-            const closeButtons = document.querySelectorAll('.close');
-            closeButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    modalAdicionar.style.display = 'none';
-                    modalEditar.style.display = 'none';
-                    modalExcluir.style.display = 'none';
+            // Eventos de fechar modais
+            document.querySelectorAll('.close').forEach(closeBtn => {
+                closeBtn.addEventListener('click', function() {
+                    const modal = this.closest('.modal');
+                    if (modal) fecharModal(modal.id);
                 });
             });
 
-            // Fechar modais ao clicar fora deles
+            // Fechar modal ao clicar fora
             window.addEventListener('click', function(event) {
-                if (event.target == modalAdicionar) {
-                    modalAdicionar.style.display = 'none';
-                }
-                if (event.target == modalEditar) {
-                    modalEditar.style.display = 'none';
-                }
-                if (event.target == modalExcluir) {
-                    modalExcluir.style.display = 'none';
+                if (event.target.classList.contains('modal')) {
+                    fecharModal(event.target.id);
                 }
             });
-        });
 
-        // Função para adicionar produto
-        function adicionarProduto() {
-            const nome = document.getElementById('novoNomeProduto').value;
-            const preco = parseFloat(document.getElementById('novoPrecoProduto').value);
-            const categoria = document.getElementById('novoCategoriaProduto').value;
-            const descricao = document.getElementById('novaDescricaoProduto').value;
-            const imagem = document.getElementById('novaImagemProduto').value || 'IMG/placeholder-produto.png';
-
-            // Criar novo produto
-            const novoProduto = {
-                id: produtos.length > 0 ? Math.max(...produtos.map(p => p.id)) + 1 : 1,
-                nome: nome,
-                preco: preco,
-                categoria: categoria,
-                descricao: descricao,
-                imagem: imagem,
-                vendidos: 0,
-                avaliacao: 5.0
-            };
-
-            // Adicionar ao array
-            produtos.push(novoProduto);
-
-            // Atualizar a interface
-            renderizarProdutos();
-
-            // Fechar modal e limpar formulário
-            modalAdicionar.style.display = 'none';
-            formAdicionarProduto.reset();
-
-            // Atualizar estatísticas
-            atualizarEstatisticas();
+            // Prevenir fechamento ao clicar dentro do modal
+            document.querySelectorAll('.modal-content').forEach(modalContent => {
+                modalContent.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            });
         }
 
-        // Função para editar produto
+        function abrirModalAdicionar() {
+            console.log('➕ Abrindo modal de adicionar produto');
+            
+            // Limpar formulário
+            const form = document.getElementById('formAdicionarProduto');
+            if (form) form.reset();
+            
+            // Limpar preview
+            const previewNova = document.getElementById('previewNovaImagem');
+            if (previewNova) previewNova.style.display = 'none';
+            
+            // Limpar erros
+            const erroImagem = document.getElementById('erroImagem');
+            if (erroImagem) erroImagem.style.display = 'none';
+            
+            abrirModal('modalAdicionar');
+        }
+
+        function abrirModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+                console.log(`✅ Modal ${modalId} aberto`);
+            }
+        }
+
+        function fecharModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                console.log(`❌ Modal ${modalId} fechado`);
+                
+                // Limpeza específica por modal
+                switch(modalId) {
+                    case 'modalAdicionar':
+                        const formAdd = document.getElementById('formAdicionarProduto');
+                        if (formAdd) formAdd.reset();
+                        const previewAdd = document.getElementById('previewNovaImagem');
+                        if (previewAdd) previewAdd.style.display = 'none';
+                        break;
+                        
+                    case 'modalEditar':
+                        const inputImg = document.getElementById('imagemProduto');
+                        if (inputImg) inputImg.value = '';
+                        break;
+                }
+            }
+        }
+
+        // ============ SISTEMA DE UPLOAD DE IMAGENS ============
+        function inicializarUploadImagens() {
+            console.log('🖼️ Configurando upload de imagens...');
+            
+            // Modal de adição
+            const inputNovaImagem = document.getElementById('novaImagemProduto');
+            const previewNova = document.getElementById('previewNovaImagem');
+            const previewImgNova = document.getElementById('previewImgNova');
+            const erroImagem = document.getElementById('erroImagem');
+
+            if (inputNovaImagem && previewImgNova) {
+                inputNovaImagem.addEventListener('change', function(e) {
+                    validarEExibirPreview(this, previewImgNova, previewNova, erroImagem);
+                });
+            }
+
+            // Modal de edição
+            const inputImagemEditar = document.getElementById('imagemProduto');
+            const previewAtual = document.getElementById('previewImagemAtual');
+            const previewImgAtual = document.getElementById('previewImgAtual');
+            const erroImagemEditar = document.getElementById('erroImagemEditar');
+
+            if (inputImagemEditar && previewImgAtual) {
+                inputImagemEditar.addEventListener('change', function(e) {
+                    validarEExibirPreview(this, previewImgAtual, previewAtual, erroImagemEditar);
+                });
+            }
+        }
+
+        function validarEExibirPreview(input, imgElement, container, erroElement) {
+            const file = input.files[0];
+            
+            if (!file) {
+                if (container) container.style.display = 'none';
+                if (erroElement) erroElement.style.display = 'none';
+                return false;
+            }
+
+            // Validar tipo
+            const tiposPermitidos = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+            if (!tiposPermitidos.includes(file.type)) {
+                if (erroElement) {
+                    erroElement.textContent = 'Formato não suportado. Use JPG, PNG, GIF ou WebP.';
+                    erroElement.style.display = 'block';
+                }
+                input.value = '';
+                return false;
+            }
+
+            // Validar tamanho (2MB)
+            const tamanhoMaximo = 2 * 1024 * 1024;
+            if (file.size > tamanhoMaximo) {
+                if (erroElement) {
+                    erroElement.textContent = 'Imagem muito grande. Tamanho máximo: 2MB.';
+                    erroElement.style.display = 'block';
+                }
+                input.value = '';
+                return false;
+            }
+
+            // Limpar erros
+            if (erroElement) erroElement.style.display = 'none';
+
+            // Criar preview
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                imgElement.src = e.target.result;
+                if (container) container.style.display = 'block';
+            };
+            reader.onerror = function() {
+                if (erroElement) {
+                    erroElement.textContent = 'Erro ao carregar imagem. Tente novamente.';
+                    erroElement.style.display = 'block';
+                }
+            };
+            reader.readAsDataURL(file);
+
+            return true;
+        }
+
+        function imagemParaBase64(file, callback) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                callback(e.target.result);
+            };
+            reader.onerror = function(error) {
+                console.error('❌ Erro ao ler imagem:', error);
+                callback(null);
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // ============ SISTEMA DE SINCRONIZAÇÃO ============
+        function inicializarSincronizacao() {
+            window.addEventListener('storage', function(e) {
+                if (e.key === 'produtosPatasConscientes') {
+                    console.log('🔄 Atualizando dados do localStorage...');
+                    produtos = obterProdutos();
+                    carregarProdutos();
+                    atualizarEstatisticas();
+                }
+            });
+            
+            window.addEventListener('produtosAtualizados', function() {
+                produtos = obterProdutos();
+                carregarProdutos();
+                atualizarEstatisticas();
+            });
+        }
+
+        // ============ SISTEMA DE INTERFACE ============
+        function adicionarEventListeners() {
+            console.log('🎯 Configurando event listeners...');
+            
+            // Filtros
+            const elementos = {
+                categoria: document.getElementById('categoria'),
+                ordenar: document.getElementById('ordenar'),
+                busca: document.getElementById('busca'),
+                formEditar: document.getElementById('formEditarProduto'),
+                formAdicionar: document.getElementById('formAdicionarProduto')
+            };
+            
+            // Eventos de filtro
+            if (elementos.categoria) {
+                elementos.categoria.addEventListener('change', filtrarEOrdenarProdutos);
+            }
+            if (elementos.ordenar) {
+                elementos.ordenar.addEventListener('change', filtrarEOrdenarProdutos);
+            }
+            if (elementos.busca) {
+                elementos.busca.addEventListener('input', filtrarEOrdenarProdutos);
+            }
+            
+            // Eventos de formulário
+            if (elementos.formEditar) {
+                elementos.formEditar.addEventListener('submit', salvarEdicaoProduto);
+            }
+            if (elementos.formAdicionar) {
+                elementos.formAdicionar.addEventListener('submit', adicionarNovoProduto);
+            }
+        }
+
+        function carregarProdutos() {
+            const productsGrid = document.getElementById('products-grid');
+            const emptyState = document.getElementById('empty-state');
+            
+            if (!productsGrid) return;
+            
+            // Loading
+            productsGrid.innerHTML = `
+                <div class="loading-spinner">
+                    <i class="bi bi-arrow-repeat"></i>
+                    <span>Carregando produtos...</span>
+                </div>
+            `;
+            
+            setTimeout(() => {
+                try {
+                    produtos = obterProdutos();
+                    filtrarEOrdenarProdutos();
+                } catch (error) {
+                    console.error('❌ Erro ao carregar produtos:', error);
+                    productsGrid.innerHTML = `
+                        <div class="empty-state">
+                            <i class="bi bi-exclamation-triangle"></i>
+                            <h3>Erro ao carregar produtos</h3>
+                            <p>Recarregue a página e tente novamente.</p>
+                        </div>
+                    `;
+                }
+            }, 500);
+        }
+
+        function filtrarEOrdenarProdutos() {
+            const categoria = document.getElementById('categoria')?.value || 'todos';
+            const busca = document.getElementById('busca')?.value.toLowerCase() || '';
+            const ordenacao = document.getElementById('ordenar')?.value || 'recentes';
+            
+            // Filtrar
+            produtosFiltrados = produtos.filter(produto => {
+                const categoriaMatch = categoria === 'todos' || produto.categoria === categoria;
+                const buscaMatch = produto.nome.toLowerCase().includes(busca) || 
+                                  produto.descricao.toLowerCase().includes(busca);
+                return categoriaMatch && buscaMatch;
+            });
+            
+            // Ordenar
+            produtosFiltrados.sort((a, b) => {
+                switch(ordenacao) {
+                    case 'recentes': return b.id - a.id;
+                    case 'vendidos': return b.vendidos - a.vendidos;
+                    case 'preco-menor': return a.preco - b.preco;
+                    case 'preco-maior': return b.preco - a.preco;
+                    default: return 0;
+                }
+            });
+            
+            renderizarProdutos();
+        }
+
+        function renderizarProdutos() {
+            const productsGrid = document.getElementById('products-grid');
+            const emptyState = document.getElementById('empty-state');
+            
+            if (!productsGrid) return;
+            
+            if (produtosFiltrados.length === 0) {
+                productsGrid.innerHTML = '';
+                if (emptyState) emptyState.style.display = 'block';
+                return;
+            }
+            
+            if (emptyState) emptyState.style.display = 'none';
+            
+            productsGrid.innerHTML = produtosFiltrados.map(produto => `
+                <div class="product-card" data-categoria="${produto.categoria}" 
+                     data-vendidos="${produto.vendidos}" data-preco="${produto.preco}" 
+                     data-avaliacao="${produto.avaliacao}">
+                    <div class="product-image ${produto.categoria}">
+                        <img src="${produto.imagem}" alt="${produto.nome}" 
+                             onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNGMEYwRjAiLz48cGF0aCBkPSJNODAgODBIMTIwVjEyMEg4MFY4MFpNMTQwIDE0MEg2MFY2MEgxNDBWMTQwWiIgZmlsbD0iI0NDQ0NDQyIvPjwvc3ZnPg=='">
+                    </div>
+                    <h3 class="product-name">${produto.nome}</h3>
+                    <div class="product-price">R$ ${produto.preco.toFixed(2)}</div>
+                    <p class="product-description">${produto.descricao}</p>
+                    <div class="product-stats">
+                        <span><i class="bi bi-cart"></i> ${produto.vendidos} vendidos</span>
+                        <span><i class="bi bi-star-fill"></i> ${produto.avaliacao} (${Math.round(produto.vendidos * 0.8)} avaliações)</span>
+                    </div>
+                    <div class="donation-actions">
+                        <button class="primary-button small" onclick="editarProduto(${produto.id})">
+                            <i class="fas fa-edit"></i> Editar
+                        </button>
+                        <button class="danger-button small" onclick="excluirProduto(${produto.id})">
+                            <i class="fas fa-trash"></i> Excluir
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function atualizarEstatisticas() {
+            const produtosAtivos = produtos.length;
+            const totalVendas = produtos.reduce((total, produto) => total + produto.vendidos, 0);
+            const faturamentoTotal = produtos.reduce((total, produto) => total + (produto.preco * produto.vendidos), 0);
+            const avaliacaoMedia = produtos.length > 0 ? 
+                produtos.reduce((total, produto) => total + produto.avaliacao, 0) / produtos.length : 0;
+            
+            // Atualizar elementos específicos
+            document.getElementById('statProdutosAtivos').textContent = produtosAtivos;
+            document.getElementById('statTotalVendas').textContent = totalVendas;
+            document.getElementById('statFaturamento').textContent = `R$ ${faturamentoTotal.toFixed(2)}`;
+            document.getElementById('statAvaliacao').textContent = avaliacaoMedia.toFixed(1);
+        }
+
+        // ============ SISTEMA DE CRUD ============
         function editarProduto(id) {
+            produtoAtualId = id;
             const produto = produtos.find(p => p.id === id);
             
             if (produto) {
@@ -167,194 +637,203 @@
                 document.getElementById('precoProduto').value = produto.preco;
                 document.getElementById('categoriaProduto').value = produto.categoria;
                 document.getElementById('descricaoProduto').value = produto.descricao;
-                document.getElementById('imagemProduto').value = produto.imagem;
                 
-                modalEditar.style.display = 'block';
+                // Mostrar imagem atual
+                const previewImgAtual = document.getElementById('previewImgAtual');
+                const previewImagemAtual = document.getElementById('previewImagemAtual');
+                
+                if (previewImgAtual && previewImagemAtual) {
+                    previewImgAtual.src = produto.imagem;
+                    previewImagemAtual.style.display = 'block';
+                }
+                
+                // Limpar upload
+                const inputImagem = document.getElementById('imagemProduto');
+                if (inputImagem) inputImagem.value = '';
+                
+                const erroImagemEditar = document.getElementById('erroImagemEditar');
+                if (erroImagemEditar) erroImagemEditar.style.display = 'none';
+                
+                abrirModal('modalEditar');
             }
         }
 
-        // Função para salvar edição do produto
-        function salvarEdicaoProduto() {
-            const id = parseInt(document.getElementById('produtoId').value);
-            const nome = document.getElementById('nomeProduto').value;
-            const preco = parseFloat(document.getElementById('precoProduto').value);
-            const categoria = document.getElementById('categoriaProduto').value;
-            const descricao = document.getElementById('descricaoProduto').value;
-            const imagem = document.getElementById('imagemProduto').value;
-
-            // Encontrar e atualizar o produto
-            const index = produtos.findIndex(p => p.id === id);
-            if (index !== -1) {
-                produtos[index].nome = nome;
-                produtos[index].preco = preco;
-                produtos[index].categoria = categoria;
-                produtos[index].descricao = descricao;
-                produtos[index].imagem = imagem;
-                
-                // Atualizar a interface
-                renderizarProdutos();
-                
-                // Fechar o modal
-                modalEditar.style.display = 'none';
-            }
-        }
-
-        // Função para excluir produto
         function excluirProduto(id) {
+            produtoAtualId = id;
             const produto = produtos.find(p => p.id === id);
             
             if (produto) {
                 document.getElementById('nomeProdutoExcluir').textContent = produto.nome;
-                document.getElementById('nomeProdutoExcluir').setAttribute('data-id', produto.id);
-                modalExcluir.style.display = 'block';
+                abrirModal('modalExcluir');
             }
         }
 
-        // Função para confirmar exclusão
-        function excluirProdutoConfirmado(id) {
-            // Remover o produto do array
-            produtos = produtos.filter(p => p.id !== id);
+        function adicionarNovoProduto(e) {
+            e.preventDefault();
             
-            // Atualizar a interface
-            renderizarProdutos();
+            const inputImagem = document.getElementById('novaImagemProduto');
+            const erroImagem = document.getElementById('erroImagem');
             
-            // Fechar o modal
-            modalExcluir.style.display = 'none';
-            
-            // Atualizar estatísticas
-            atualizarEstatisticas();
-        }
-
-        // Função para renderizar produtos
-        function renderizarProdutos() {
-            // Limpar grid
-            productsGrid.innerHTML = '';
-            
-            // Verificar se há produtos
-            if (produtos.length === 0) {
-                emptyState.style.display = 'block';
+            // Validar imagem
+            if (!inputImagem || !inputImagem.files[0]) {
+                if (erroImagem) {
+                    erroImagem.textContent = 'Selecione uma imagem para o produto.';
+                    erroImagem.style.display = 'block';
+                }
                 return;
             }
-            
-            emptyState.style.display = 'none';
-            
-            // Adicionar cada produto ao grid
-            produtos.forEach(produto => {
-                const productCard = document.createElement('div');
-                productCard.className = 'product-card';
-                productCard.setAttribute('data-categoria', produto.categoria);
-                productCard.setAttribute('data-vendidos', produto.vendidos);
-                productCard.setAttribute('data-preco', produto.preco);
-                productCard.setAttribute('data-avaliacao', produto.avaliacao);
+
+            // Converter imagem
+            imagemParaBase64(inputImagem.files[0], function(imagemBase64) {
+                if (!imagemBase64) {
+                    mostrarNotificacao('Erro ao processar imagem. Tente novamente.', 'error');
+                    return;
+                }
+
+                const novoProduto = {
+                    id: proximoId++,
+                    nome: document.getElementById('novoNomeProduto').value,
+                    preco: parseFloat(document.getElementById('novoPrecoProduto').value),
+                    categoria: document.getElementById('novoCategoriaProduto').value,
+                    descricao: document.getElementById('novaDescricaoProduto').value,
+                    imagem: imagemBase64,
+                    vendidos: 0,
+                    avaliacao: 0,
+                    dataCadastro: new Date().toISOString()
+                };
                 
-                productCard.innerHTML = `
-                    <div class="product-image ${produto.categoria}"><img src="${produto.imagem}" alt="${produto.nome}"></div>
-                    <h3 class="product-name">${produto.nome}</h3>
-                    <div class="product-price">R$ ${produto.preco.toFixed(2)}</div>
-                    <p class="product-description">${produto.descricao}</p>
-                    <div class="product-stats">
-                        <span><i class="bi bi-cart"></i> ${produto.vendidos} vendidos</span>
-                        <span><i class="bi bi-star-fill"></i> ${produto.avaliacao} (${Math.floor(produto.vendidos * 0.7)} avaliações)</span>
-                    </div>
-                    <div class="donation-actions">
-                        <button class="primary-button small" onclick="editarProduto(${produto.id})">
-                            <i class="fas fa-edit"></i> Editar
-                        </button>
-                        <button class="danger-button small" onclick="excluirProduto(${produto.id})">
-                            <i class="fas fa-trash"></i> Excluir
-                        </button>
-                    </div>
-                `;
+                produtos.push(novoProduto);
+                salvarProdutos(produtos);
                 
-                productsGrid.appendChild(productCard);
+                fecharModal('modalAdicionar');
+                mostrarNotificacao('🎉 Produto adicionado com sucesso!', 'success');
             });
         }
 
-        // Função para filtrar produtos
-        function filtrarProdutos() {
-            const categoria = categoriaFilter.value;
-            const ordenar = ordenarFilter.value;
-            const busca = buscaInput.value.toLowerCase();
+        function salvarEdicaoProduto(e) {
+            e.preventDefault();
             
-            let produtosFiltrados = produtos.filter(produto => {
-                const correspondeCategoria = categoria === 'todos' || produto.categoria === categoria;
-                const correspondeBusca = produto.nome.toLowerCase().includes(busca) || 
-                                        produto.descricao.toLowerCase().includes(busca);
-                return correspondeCategoria && correspondeBusca;
-            });
+            const produtoIndex = produtos.findIndex(p => p.id === produtoAtualId);
+            const inputImagem = document.getElementById('imagemProduto');
             
-            // Ordenar produtos
-            switch(ordenar) {
-                case 'recentes':
-                    // Já estão ordenados por adição (mais recentes primeiro)
-                    break;
-                case 'vendidos':
-                    produtosFiltrados.sort((a, b) => b.vendidos - a.vendidos);
-                    break;
-                case 'preco-menor':
-                    produtosFiltrados.sort((a, b) => a.preco - b.preco);
-                    break;
-                case 'preco-maior':
-                    produtosFiltrados.sort((a, b) => b.preco - a.preco);
-                    break;
-            }
-            
-            // Atualizar grid com produtos filtrados
-            productsGrid.innerHTML = '';
-            
-            if (produtosFiltrados.length === 0) {
-                emptyState.style.display = 'block';
+            if (produtoIndex === -1) {
+                mostrarNotificacao('Produto não encontrado', 'error');
                 return;
             }
-            
-            emptyState.style.display = 'none';
-            
-            produtosFiltrados.forEach(produto => {
-                const productCard = document.createElement('div');
-                productCard.className = 'product-card';
-                productCard.setAttribute('data-categoria', produto.categoria);
-                productCard.setAttribute('data-vendidos', produto.vendidos);
-                productCard.setAttribute('data-preco', produto.preco);
-                productCard.setAttribute('data-avaliacao', produto.avaliacao);
-                
-                productCard.innerHTML = `
-                    <div class="product-image ${produto.categoria}"><img src="${produto.imagem}" alt="${produto.nome}"></div>
-                    <h3 class="product-name">${produto.nome}</h3>
-                    <div class="product-price">R$ ${produto.preco.toFixed(2)}</div>
-                    <p class="product-description">${produto.descricao}</p>
-                    <div class="product-stats">
-                        <span><i class="bi bi-cart"></i> ${produto.vendidos} vendidos</span>
-                        <span><i class="bi bi-star-fill"></i> ${produto.avaliacao} (${Math.floor(produto.vendidos * 0.7)} avaliações)</span>
-                    </div>
-                    <div class="donation-actions">
-                        <button class="primary-button small" onclick="editarProduto(${produto.id})">
-                            <i class="fas fa-edit"></i> Editar
-                        </button>
-                        <button class="danger-button small" onclick="excluirProduto(${produto.id})">
-                            <i class="fas fa-trash"></i> Excluir
-                        </button>
-                    </div>
-                `;
-                
-                productsGrid.appendChild(productCard);
-            });
+
+            if (inputImagem && inputImagem.files[0]) {
+                imagemParaBase64(inputImagem.files[0], function(novaImagemBase64) {
+                    if (novaImagemBase64) {
+                        atualizarProdutoComImagem(produtoIndex, novaImagemBase64);
+                    } else {
+                        mostrarNotificacao('Erro ao processar imagem', 'error');
+                    }
+                });
+            } else {
+                atualizarProdutoComImagem(produtoIndex, produtos[produtoIndex].imagem);
+            }
         }
 
-        // Função para limpar filtros
+        function atualizarProdutoComImagem(produtoIndex, imagem) {
+            produtos[produtoIndex].nome = document.getElementById('nomeProduto').value;
+            produtos[produtoIndex].preco = parseFloat(document.getElementById('precoProduto').value);
+            produtos[produtoIndex].categoria = document.getElementById('categoriaProduto').value;
+            produtos[produtoIndex].descricao = document.getElementById('descricaoProduto').value;
+            produtos[produtoIndex].imagem = imagem;
+            
+            salvarProdutos(produtos);
+            fecharModal('modalEditar');
+            mostrarNotificacao('✅ Produto atualizado com sucesso!', 'success');
+        }
+
+        function confirmarExclusao() {
+            const produtoIndex = produtos.findIndex(p => p.id === produtoAtualId);
+            
+            if (produtoIndex !== -1) {
+                const produtoExcluido = produtos[produtoIndex];
+                produtos.splice(produtoIndex, 1);
+                salvarProdutos(produtos);
+                
+                fecharModal('modalExcluir');
+                mostrarNotificacao(`🗑️ "${produtoExcluido.nome}" excluído com sucesso!`, 'success');
+            }
+        }
+
         function limparFiltros() {
-            categoriaFilter.value = 'todos';
-            ordenarFilter.value = 'recentes';
-            buscaInput.value = '';
-            renderizarProdutos();
+            const categoriaSelect = document.getElementById('categoria');
+            const ordenarSelect = document.getElementById('ordenar');
+            const buscaInput = document.getElementById('busca');
+            
+            if (categoriaSelect) categoriaSelect.value = 'todos';
+            if (ordenarSelect) ordenarSelect.value = 'recentes';
+            if (buscaInput) buscaInput.value = '';
+            
+            filtrarEOrdenarProdutos();
         }
 
-        // Função para atualizar estatísticas
-        function atualizarEstatisticas() {
-            const statValueElements = document.querySelectorAll('.stat-value');
-            if (statValueElements.length >= 1) {
-                statValueElements[0].textContent = produtos.length;
+        // ============ SISTEMA DE NOTIFICAÇÕES ============
+        function mostrarNotificacao(mensagem, tipo = 'info') {
+            let toastContainer = document.querySelector('.toast-container');
+            if (!toastContainer) {
+                toastContainer = document.createElement('div');
+                toastContainer.className = 'toast-container';
+                document.body.appendChild(toastContainer);
             }
+            
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${tipo}`;
+            
+            const icons = {
+                success: 'bi-check-circle-fill',
+                error: 'bi-exclamation-circle-fill',
+                warning: 'bi-exclamation-triangle-fill',
+                info: 'bi-info-circle-fill'
+            };
+            
+            toast.innerHTML = `
+                <div style="display: flex; align-items: center;">
+                    <i class="bi ${icons[tipo] || icons.info}"></i>
+                    <span style="margin-left: 10px;">${mensagem}</span>
+                </div>
+                <button class="toast-close" onclick="this.parentElement.remove()">
+                    <i class="bi bi-x"></i>
+                </button>
+            `;
+            
+            toastContainer.appendChild(toast);
+            
+            // Auto-remover
+            setTimeout(() => {
+                if (toast.parentElement) {
+                    toast.remove();
+                }
+            }, 5000);
         }
 
-        // Inicializar a página
-        renderizarProdutos();
+        // ============ INICIALIZAÇÃO GLOBAL ============
+        document.addEventListener('DOMContentLoaded', function() {
+            // Pequeno delay para garantir que o DOM esteja totalmente carregado
+            setTimeout(() => {
+                inicializarPagina();
+            }, 100);
+        });
+
+        // Funções globais para uso nos botões HTML
+        window.abrirModalAdicionar = abrirModalAdicionar;
+        window.editarProduto = editarProduto;
+        window.excluirProduto = excluirProduto;
+        window.confirmarExclusao = confirmarExclusao;
+        window.limparFiltros = limparFiltros;
+        window.fecharModal = fecharModal;
+
+        // Debug helper
+        window.debugProdutos = function() {
+            console.log('=== DEBUG PRODUTOS PATAS CONSCIENTES ===');
+            console.log('Produtos:', produtos);
+            console.log('Produtos filtrados:', produtosFiltrados);
+            console.log('Próximo ID:', proximoId);
+            console.log('Botão adicionar:', document.getElementById('btnAdicionarProduto'));
+            console.log('Modal adicionar:', document.getElementById('modalAdicionar'));
+        };
+
+

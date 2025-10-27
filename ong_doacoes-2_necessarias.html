@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patas Conscientes - Doações Necessárias</title>
     <link rel="stylesheet" href="CSS/ong.css">
+    <link rel="stylesheet" href="CSS/ong_doacoes_necessarias.css">
+    <link rel="stylesheet" href="CSS/breadcrumbs.css">
+    <link rel="stylesheet" href="CSS/modo_noturno_ong.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <!-- VLibras -->
@@ -25,6 +28,10 @@
                     <img src="IMG/reuse-logo-(1).svg" alt="ReUse Logo">
                 </div>
                 <div class="user-actions">
+                    <!-- Botão do Modo Noturno -->
+                    <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+                        <i class="bi bi-sun-fill" id="themeIcon"></i>
+                    </button>
                     <a href="login.html">
                         <i class="fas fa-sign-out-alt"></i> Sair da Conta
                     </a>
@@ -41,11 +48,10 @@
             <ul class="sidebar-nav">
                 <li><a href="ong-2.html"><i class="bi bi-house"></i> Início</a></li>
                 <li><a href="ong_doacoes-2.html"><i class="bi bi-handbag"></i> Doações</a></li>
-                <li><a href="ong_doacoes-2_necessarias.html"><i class="bi bi-clipboard-check"></i> Doações
-                        Necessárias</a></li>
-                <li><a href="ong_configuracoes-2.html"><i class="bi bi-people"></i> Beneficiários</a></li>
+                <li><a href="ong_doacoes-2_necessarias.html" class="active"><i class="bi bi-clipboard-check"></i> Doações Necessárias</a></li>
+                <li><a href="ong_beneficiarios-2.html"><i class="bi bi-people"></i> Beneficiários</a></li>
                 <li><a href="ong_relatorios-2.html"><i class="bi bi-bar-chart"></i> Relatórios</a></li>
-                <li><a href="ong_configuracoes-2.html" class="active"><i class="bi bi-gear"></i> Configurações</a></li>
+                <li><a href="ong_configuracoes-2.html"><i class="bi bi-gear"></i> Configurações</a></li>
                 <li><a href="ong_contato-2.html"><i class="bi bi-envelope"></i> Contato</a></li>
                 <li><a href="ong_produto-2.html"><i class="bi bi-box-seam"></i> Produtos</a></li>
             </ul>
@@ -63,7 +69,7 @@
 
             <!-- Ações -->
             <div class="action-buttons">
-                <button class="primary-button" id="addDonationBtn" onclick="openDonationModal()">
+                <button class="primary-button" id="addDonationBtn">
                     <i class="fas fa-plus"></i> Nova Doação Necessária
                 </button>
             </div>
@@ -110,12 +116,52 @@
                 </div>
 
                 <div class="filter-group">
-                    <button class="primary-button small" id="applyFilters" onclick="applyFilters()">
+                    <button class="primary-button small" id="applyFilters">
                         <i class="fas fa-filter"></i> Aplicar Filtros
                     </button>
-                    <button class="secondary-button small" id="clearFilters" onclick="clearFilters()">
+                    <button class="secondary-button small" id="clearFilters">
                         <i class="fas fa-times"></i> Limpar
                     </button>
+                </div>
+            </div>
+
+            <!-- Estatísticas -->
+            <div class="stats-section" id="statsSection">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="totalDoacoes">0</h3>
+                        <p>Total de Doações</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="doacoesAtivas">0</h3>
+                        <p>Doações Ativas</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="doacoesAtendidas">0</h3>
+                        <p>Doações Atendidas</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="prioridadeAlta">0</h3>
+                        <p>Prioridade Alta</p>
+                    </div>
                 </div>
             </div>
 
@@ -145,11 +191,12 @@
     <!-- Modal para Adicionar/Editar Doação Necessária -->
     <div id="donationModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeDonationModal()">&times;</span>
+            <span class="close">&times;</span>
             <h2 id="modalTitle">Nova Doação Necessária</h2>
 
             <form id="donationForm" class="settings-form">
                 <input type="hidden" id="donationId">
+                <input type="hidden" id="currentImage">
 
                 <div class="form-group">
                     <label for="itemName">Nome do Item <span class="required">*</span></label>
@@ -204,11 +251,36 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="itemImage">Imagem do Item (URL)</label>
-                    <input type="url" id="itemImage" placeholder="https://exemplo.com/imagem.jpg">
-                    <div class="error-message" id="itemImageError"></div>
+                <!-- Container de upload de imagem -->
+                <div class="image-upload-container">
+                    <div class="image-preview" id="imagePreview">
+                        <img id="previewImage" src="" alt="Pré-visualização">
+                        <div class="image-preview-placeholder" id="imagePlaceholder">
+                            <i class="fas fa-image"></i>
+                            <span>Nenhuma imagem selecionada</span>
+                        </div>
+                    </div>
+                    
+                    <div class="file-name-display" id="fileName">
+                        <i class="fas fa-file-image"></i>
+                        <span></span>
+                    </div>
+                    
+                    <div class="upload-controls">
+                        <input type="file" id="itemImage" accept="image/*" class="file-input">
+                        <label for="itemImage" class="upload-button">
+                            <i class="fas fa-upload"></i> Escolher Imagem
+                        </label>
+                        <button type="button" class="secondary-button small" id="removeImage" style="display: none;">
+                            <i class="fas fa-trash"></i> Remover
+                        </button>
+                    </div>
+                    
+                    <div class="upload-info">
+                        <small>Formatos suportados: JPG, PNG, GIF (Máx. 5MB)</small>
+                    </div>
                 </div>
+                <div class="error-message" id="itemImageError"></div>
 
                 <div class="form-group">
                     <label for="itemStatus">Status <span class="required">*</span></label>
@@ -221,7 +293,7 @@
                 </div>
 
                 <div class="form-actions">
-                    <button type="button" class="secondary-button" onclick="closeDonationModal()">Cancelar</button>
+                    <button type="button" class="secondary-button" id="cancelButton">Cancelar</button>
                     <button type="submit" class="primary-button">
                         <i class="fas fa-save"></i> Salvar Doação
                     </button>
@@ -233,16 +305,25 @@
     <!-- Modal de Confirmação de Exclusão -->
     <div id="deleteModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeDeleteModal()">&times;</span>
+            <span class="close">&times;</span>
             <h2>Confirmar Exclusão</h2>
-            <p>Tem certeza que deseja excluir esta doação necessária? Esta ação não pode ser desfeita.</p>
+            <p id="deleteMessage">Tem certeza que deseja excluir esta doação necessária? Esta ação não pode ser desfeita.</p>
             <div class="form-actions">
-                <button type="button" class="secondary-button" onclick="closeDeleteModal()">Cancelar</button>
-                <button type="button" class="danger-button" id="confirmDeleteBtn">
+                <button type="button" class="secondary-button" id="cancelDeleteButton">Cancelar</button>
+                <button type="button" class="danger-button" id="confirmDeleteButton">
                     <i class="fas fa-trash"></i> Excluir
                 </button>
             </div>
         </div>
+    </div>
+
+    <!-- Mensagem de Sucesso -->
+    <div id="successMessage" class="success-message">
+        <i class="fas fa-check-circle"></i>
+        <div class="message-content" id="successMessageText">Operação realizada com sucesso!</div>
+        <button class="close-message" id="closeSuccessMessage">
+            <i class="fas fa-times"></i>
+        </button>
     </div>
 
     <!-- Widget VLibras -->
@@ -253,16 +334,20 @@
         </div>
     </div>
 
+    <!-- Scripts JavaScript -->
     <script src="JS/ong_doacoes-2_necessarias.js"></script>
+    <script src="JS/menu-aside.js"></script>
+    <script src="JS/breadcrumbs-ong.js"></script>
+    <script src="JS/modo_noturno_ong.js"></script>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q755SR73MY"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q755SR73MY"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-  gtag('config', 'G-Q755SR73MY');
-</script>
+      gtag('config', 'G-Q755SR73MY');
+    </script>
 </body>
 
 </html>

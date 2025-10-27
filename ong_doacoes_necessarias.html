@@ -7,6 +7,8 @@
     <title>Doações Necessárias - SOS Felino</title>
     <link rel="stylesheet" href="CSS/ong.css">
     <link rel="stylesheet" href="CSS/ong_doacoes_necessarias.css">
+    <link rel="stylesheet" href="CSS/breadcrumbs.css">
+    <link rel="stylesheet" href="CSS/modo_noturno_ong.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -26,30 +28,32 @@
                 <div class="logo">
                     <img src="IMG/reuse-logo-(1).svg" alt="ReUse Logo">
                 </div>
-                <div class="user-actions">
-                    <a href="login.html"><i class="fas fa-sign-out-alt"></i> Sair</a>
-                </div>
+<div class="user-actions">
+    <!-- Botão do Modo Noturno -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+        <i class="bi bi-sun-fill" id="themeIcon"></i>
+    </button>
+    <a href="login.html"><i class="fas fa-sign-out-alt"></i> Sair</a>
+</div>
             </div>
         </div>
     </header>
-
     <!-- DASHBOARD PRINCIPAL -->
     <div class="dashboard-container">
-        <!-- Menu Lateral -->
-        <aside class="sidebar">
-            <h2 class="sidebar-title">SOS Felino</h2>
-            <ul class="sidebar-nav">
-                <li><a href="ong.html"><i class="bi bi-house"></i> Início</a></li>
-                <li><a href="ong_doacoes.html"><i class="bi bi-handbag"></i> Doações</a></li>
-                <li><a href="ong_doacoes_necessarias.html"><i class="bi bi-clipboard-check"></i> Doações Necessárias</a>
-                </li>
-                <li><a href="ong_beneficiarios.html"><i class="bi bi-people"></i> Beneficiários</a></li>
-                <li><a href="ong_relatorios.html"><i class="bi bi-bar-chart"></i> Relatórios</a></li>
-                <li><a href="ong_configuracoes.html" class="active"><i class="bi bi-gear"></i> Configurações</a></li>
-                <li><a href="ong_contato.html"><i class="bi bi-envelope"></i> Contato</a></li>
-                <li><a href="ong_produto.html"><i class="bi bi-box-seam"></i> Produtos</a></li>
-            </ul>
-        </aside>
+<!-- Menu Lateral -->
+<aside class="sidebar">
+    <h2 class="sidebar-title">SOS Felino</h2>
+    <ul class="sidebar-nav">
+        <li><a href="ong.html"><i class="bi bi-house"></i> Início</a></li>
+        <li><a href="ong_doacoes.html"><i class="bi bi-handbag"></i> Doações</a></li>
+        <li><a href="ong_doacoes_necessarias.html" class="active"><i class="bi bi-clipboard-check"></i> Doações Necessárias</a></li>
+        <li><a href="ong_beneficiarios.html"><i class="bi bi-people"></i> Beneficiários</a></li>
+        <li><a href="ong_relatorios.html"><i class="bi bi-bar-chart"></i> Relatórios</a></li>
+        <li><a href="ong_configuracoes.html"><i class="bi bi-gear"></i> Configurações</a></li>
+        <li><a href="ong_contato.html"><i class="bi bi-envelope"></i> Contato</a></li>
+        <li><a href="ong_produto.html"><i class="bi bi-box-seam"></i> Produtos</a></li>
+    </ul>
+</aside>
 
         <!-- Conteúdo Principal -->
         <main class="main-content">
@@ -142,93 +146,121 @@
         </main>
     </div>
 
-    <!-- Modal para Adicionar/Editar Doação Necessária -->
-    <div id="donationModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2 id="modalTitle">Nova Doação Necessária</h2>
+<!-- Modal para Adicionar/Editar Doação Necessária -->
+<div id="donationModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 id="modalTitle">Nova Doação Necessária</h2>
 
-            <form id="donationForm" class="settings-form">
-                <input type="hidden" id="donationId">
+        <form id="donationForm" class="settings-form">
+            <input type="hidden" id="donationId">
+            <input type="hidden" id="currentImage">
 
+            <div class="form-group">
+                <label for="itemName">Nome do Item <span class="required">*</span></label>
+                <input type="text" id="itemName" required>
+                <div class="error-message" id="itemNameError"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="itemDescription">Descrição <span class="required">*</span></label>
+                <textarea id="itemDescription" rows="3" required></textarea>
+                <div class="error-message" id="itemDescriptionError"></div>
+            </div>
+
+            <div class="form-row">
                 <div class="form-group">
-                    <label for="itemName">Nome do Item <span class="required">*</span></label>
-                    <input type="text" id="itemName" required>
-                    <div class="error-message" id="itemNameError"></div>
-                </div>
-
-                <div class="form-group">
-                    <label for="itemDescription">Descrição <span class="required">*</span></label>
-                    <textarea id="itemDescription" rows="3" required></textarea>
-                    <div class="error-message" id="itemDescriptionError"></div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="itemCategory">Categoria <span class="required">*</span></label>
-                        <select id="itemCategory" required>
-                            <option value="">Selecione uma categoria</option>
-                            <option value="Alimentação">Alimentação</option>
-                            <option value="Higiene">Higiene</option>
-                            <option value="Brinquedos">Brinquedos</option>
-                            <option value="Medicamentos">Medicamentos</option>
-                            <option value="Roupas">Roupas</option>
-                            <option value="Outros">Outros</option>
-                        </select>
-                        <div class="error-message" id="itemCategoryError"></div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="itemPriority">Prioridade <span class="required">*</span></label>
-                        <select id="itemPriority" required>
-                            <option value="">Selecione a prioridade</option>
-                            <option value="Alta">Alta</option>
-                            <option value="Média">Média</option>
-                            <option value="Baixa">Baixa</option>
-                        </select>
-                        <div class="error-message" id="itemPriorityError"></div>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="itemQuantity">Quantidade Necessária <span class="required">*</span></label>
-                        <input type="number" id="itemQuantity" min="1" required>
-                        <div class="error-message" id="itemQuantityError"></div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="itemCollected">Quantidade Arrecadada</label>
-                        <input type="number" id="itemCollected" min="0">
-                        <div class="error-message" id="itemCollectedError"></div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="itemImage">Imagem do Item (URL)</label>
-                    <input type="url" id="itemImage" placeholder="https://exemplo.com/imagem.jpg">
-                    <div class="error-message" id="itemImageError"></div>
-                </div>
-
-                <div class="form-group">
-                    <label for="itemStatus">Status <span class="required">*</span></label>
-                    <select id="itemStatus" required>
-                        <option value="Ativo">Ativo</option>
-                        <option value="Inativo">Inativo</option>
-                        <option value="Atendido">Atendido</option>
+                    <label for="itemCategory">Categoria <span class="required">*</span></label>
+                    <select id="itemCategory" required>
+                        <option value="">Selecione uma categoria</option>
+                        <option value="Alimentação">Alimentação</option>
+                        <option value="Higiene">Higiene</option>
+                        <option value="Brinquedos">Brinquedos</option>
+                        <option value="Medicamentos">Medicamentos</option>
+                        <option value="Roupas">Roupas</option>
+                        <option value="Outros">Outros</option>
                     </select>
-                    <div class="error-message" id="itemStatusError"></div>
+                    <div class="error-message" id="itemCategoryError"></div>
                 </div>
 
-                <div class="form-actions">
-                    <button type="button" class="secondary-button" id="cancelButton">Cancelar</button>
-                    <button type="submit" class="primary-button">
-                        <i class="fas fa-save"></i> Salvar Doação
-                    </button>
+                <div class="form-group">
+                    <label for="itemPriority">Prioridade <span class="required">*</span></label>
+                    <select id="itemPriority" required>
+                        <option value="">Selecione a prioridade</option>
+                        <option value="Alta">Alta</option>
+                        <option value="Média">Média</option>
+                        <option value="Baixa">Baixa</option>
+                    </select>
+                    <div class="error-message" id="itemPriorityError"></div>
                 </div>
-            </form>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="itemQuantity">Quantidade Necessária <span class="required">*</span></label>
+                    <input type="number" id="itemQuantity" min="1" required>
+                    <div class="error-message" id="itemQuantityError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="itemCollected">Quantidade Arrecadada</label>
+                    <input type="number" id="itemCollected" min="0">
+                    <div class="error-message" id="itemCollectedError"></div>
+                </div>
+            </div>
+
+<!-- Dentro do container de upload de imagem no modal -->
+<div class="image-upload-container">
+    <div class="image-preview" id="imagePreview">
+        <img id="previewImage" src="" alt="Pré-visualização">
+        <div class="image-preview-placeholder" id="imagePlaceholder">
+            <i class="fas fa-image"></i>
+            <span>Nenhuma imagem selecionada</span>
         </div>
     </div>
+    
+    <!-- Adicione esta linha para mostrar o nome do arquivo -->
+    <div class="file-name-display" id="fileName">
+        <i class="fas fa-file-image"></i>
+        <span></span>
+    </div>
+    
+    <div class="upload-controls">
+        <input type="file" id="itemImage" accept="image/*" class="file-input">
+        <label for="itemImage" class="upload-button">
+            <i class="fas fa-upload"></i> Escolher Imagem
+        </label>
+        <button type="button" class="secondary-button small" id="removeImage" style="display: none;">
+            <i class="fas fa-trash"></i> Remover
+        </button>
+    </div>
+    
+    <div class="upload-info">
+        <small>Formatos suportados: JPG, PNG, GIF (Máx. 5MB)</small>
+    </div>
+</div>
+                <div class="error-message" id="itemImageError"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="itemStatus">Status <span class="required">*</span></label>
+                <select id="itemStatus" required>
+                    <option value="Ativo">Ativo</option>
+                    <option value="Inativo">Inativo</option>
+                    <option value="Atendido">Atendido</option>
+                </select>
+                <div class="error-message" id="itemStatusError"></div>
+            </div>
+
+            <div class="form-actions">
+                <button type="button" class="secondary-button" id="cancelButton">Cancelar</button>
+                <button type="submit" class="primary-button">
+                    <i class="fas fa-save"></i> Salvar Doação
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
 
     <!-- Modal de Confirmação de Exclusão -->
     <div id="deleteModal" class="modal">
@@ -244,6 +276,16 @@
             </div>
         </div>
     </div>
+
+
+    <!-- Mensagem de Sucesso -->
+<div id="successMessage" class="success-message">
+    <i class="fas fa-check-circle"></i>
+    <div class="message-content" id="successMessageText">Operação realizada com sucesso!</div>
+    <button class="close-message" id="closeSuccessMessage">
+        <i class="fas fa-times"></i>
+    </button>
+</div>
 
     <!-- RODAPÉ -->
     <footer>
@@ -262,6 +304,9 @@
 
     <!-- Scripts JavaScript -->
     <script src="JS/ong_doacoes_necessarias.js"></script>
+    <script src="JS/menu-aside.js"></script>
+    <script src="JS/breadcrumbs-ong.js"></script>
+    <script src="JS/modo_noturno_ong.js"></script>
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q755SR73MY"></script>
 <script>

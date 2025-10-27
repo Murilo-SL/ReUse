@@ -14,37 +14,26 @@ class ONGBreadcrumbs {
     this.pageTitles = {
       // Páginas principais
       'ong.html': 'Painel da ONG',
-      'ong-2.html': 'Página Inicial',
-      
-      // Páginas de produtos
-      'ong_produto.html': () => this.getProductTitle(),
-      'Produtos_Usuario_ONG.html': 'Produtos da ONG',
-      'adicionar_produto_ong.html': 'Adicionar Produto',
-      'Editar_Produto_ONG.html': 'Editar Produto',
-      
-      // Páginas de doações
-      'todas_doacoes.html': 'Histórico de Doações',
-      'doacao_espesifico.html': 'Doação Específica',
-      'Relatorios_Doacoes.html': 'Relatórios',
-      
-      // Páginas de gestão
-      'Metas_ONG.html': 'Metas e Objetivos',
-      'Configuracoes_ONG.html': 'Configurações'
     };
 
     // Mapeamento de ícones para páginas da ONG
     this.pageIcons = {
-      'ong.html': '🤝',
-      'ong-2.html': '🐾',
-      'ong_produto.html': '📦',
-      'Produtos_Usuario_ONG.html': '📦',
-      'adicionar_produto_ong.html': '➕',
-      'Editar_Produto_ONG.html': '✏️',
-      'todas_doacoes.html': '📋',
-      'doacao_espesifico.html': '❤️',
-      'Relatorios_Doacoes.html': '📊',
-      'Metas_ONG.html': '🎯',
-      'Configuracoes_ONG.html': '⚙️'
+      'ong.html': ' <i class="bi bi-buildings"></i>',
+      'ong-2.html': ' <i class="bi bi-buildings"></i>',
+      'ong_produto.html': ' <i class="bi bi-box-seam"></i>',
+      'ong_produto-2.html': ' <i class="bi bi-box-seam"></i>',
+      'ong_beneficiarios.html': ' <i class="bi bi-people-fill"></i>',
+      'ong_beneficiarios-2.html':' <i class="bi bi-people-fill"></i>',
+      'ong_configuracoes.html': ' <i class="bi bi-gear"></i>',
+      'ong_configuracoes-2.html': ' <i class="bi bi-gear"></i>',
+      'ong_contato.html': ' <i class="bi bi-chat-left-text"></i>',
+      'ong_contato-2.html': ' <i class="bi bi-chat-left-text"></i>',
+      'ong_doacoes_necessarias.html': ' <i class="bi bi-send-exclamation"></i>',
+      'ong_doacoes_necessarias-2.html': ' <i class="bi bi-send-exclamation"></i>',
+      'ong_doacoes.html': ' <i class="bi bi-send"></i>',
+      'ong_doacoes-2.html': ' <i class="bi bi-send"></i>',
+      'ong_relatorios.html': ' <i class="bi bi-clipboard2-data"></i>',
+      'ong_relatorios-2.html': ' <i class="bi bi-clipboard2-data"></i>',
     };
 
     this.init();

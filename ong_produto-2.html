@@ -9,6 +9,8 @@
     <!-- Folhas de estilo -->
     <link rel="stylesheet" href="CSS/ong.css">
     <link rel="stylesheet" href="CSS/ong_produto.css">
+    <link rel="stylesheet" href="CSS/breadcrumbs.css">
+    <link rel="stylesheet" href="CSS/modo_noturno_ong.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <!-- VLibras -->
@@ -16,7 +18,6 @@
     <script>
         new window.VLibras.Widget('https://vlibras.gov.br/app');
     </script>
-
 </head>
 
 <body>
@@ -28,7 +29,11 @@
                     <img src="IMG/reuse-logo-(1).svg" alt="ReUse Logo">
                 </div>
                 <div class="user-actions">
-                    <a href="Login.html"><i class="fas fa-sign-out-alt"></i> Sair</a>
+                    <!-- Botão do Modo Noturno -->
+                    <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+                        <i class="bi bi-sun-fill" id="themeIcon"></i>
+                    </button>
+                    <a href="login.html"><i class="fas fa-sign-out-alt"></i> Sair</a>
                 </div>
             </div>
         </div>
@@ -42,13 +47,12 @@
             <ul class="sidebar-nav">
                 <li><a href="ong-2.html"><i class="bi bi-house"></i> Início</a></li>
                 <li><a href="ong_doacoes-2.html"><i class="bi bi-handbag"></i> Doações</a></li>
-                <li><a href="ong_doacoes-2_necessarias.html"><i class="bi bi-clipboard-check"></i> Doações
-                        Necessárias</a></li>
+                <li><a href="ong_doacoes-2_necessarias.html"><i class="bi bi-clipboard-check"></i> Doações Necessárias</a></li>
                 <li><a href="ong_configuracoes-2.html"><i class="bi bi-people"></i> Beneficiários</a></li>
                 <li><a href="ong_relatorios-2.html"><i class="bi bi-bar-chart"></i> Relatórios</a></li>
-                <li><a href="ong_configuracoes-2.html" class="active"><i class="bi bi-gear"></i> Configurações</a></li>
+                <li><a href="ong_configuracoes-2.html"><i class="bi bi-gear"></i> Configurações</a></li>
                 <li><a href="ong_contato-2.html"><i class="bi bi-envelope"></i> Contato</a></li>
-                <li><a href="ong_produto-2.html"><i class="bi bi-box-seam"></i> Produtos</a></li>
+                <li><a href="ong_produto-2.html" class="active"><i class="bi bi-box-seam"></i> Produtos</a></li>
             </ul>
         </aside>
 
@@ -68,7 +72,7 @@
                         <i class="bi bi-box-seam" style="color: #4CAF50;"></i>
                     </div>
                     <div class="stat-info">
-                        <div class="stat-value">4</div>
+                        <div class="stat-value" id="statProdutosAtivos">4</div>
                         <div class="stat-label">Produtos Ativos</div>
                     </div>
                 </div>
@@ -78,7 +82,7 @@
                         <i class="bi bi-cart-check" style="color: #2196F3;"></i>
                     </div>
                     <div class="stat-info">
-                        <div class="stat-value">42</div>
+                        <div class="stat-value" id="statTotalVendas">42</div>
                         <div class="stat-label">Total de Vendas</div>
                     </div>
                 </div>
@@ -88,7 +92,7 @@
                         <i class="bi bi-currency-dollar" style="color: #FF9800;"></i>
                     </div>
                     <div class="stat-info">
-                        <div class="stat-value">R$ 1.245,00</div>
+                        <div class="stat-value" id="statFaturamento">R$ 1.245,00</div>
                         <div class="stat-label">Faturamento Total</div>
                     </div>
                 </div>
@@ -98,7 +102,7 @@
                         <i class="bi bi-star" style="color: #9C27B0;"></i>
                     </div>
                     <div class="stat-info">
-                        <div class="stat-value">4.7</div>
+                        <div class="stat-value" id="statAvaliacao">4.7</div>
                         <div class="stat-label">Avaliação Média</div>
                     </div>
                 </div>
@@ -135,103 +139,17 @@
                         <label for="busca">Buscar:</label>
                         <input type="text" id="busca" placeholder="Nome do produto...">
                     </div>
+
+                    <button class="secondary-button" onclick="limparFiltros()" style="margin-top: 25px;">
+                        <i class="fas fa-times"></i> Limpar Filtros
+                    </button>
                 </div>
             </div>
 
             <!-- Grid de Produtos -->
             <div class="products-section">
                 <div class="products-grid" id="products-grid">
-                    <!-- Produto 1: Camiseta -->
-                    <div class="product-card" data-categoria="roupas" data-vendidos="18" data-preco="35"
-                        data-avaliacao="4.8">
-                        <div class="product-image camisa"><img src="IMG/camiseta-patas.jpg"
-                                alt="Camiseta Patas Conscientes"></div>
-                        <h3 class="product-name">Camiseta Patas Conscientes</h3>
-                        <div class="product-price">R$ 35,00</div>
-                        <p class="product-description">Camiseta de algodão com estampa da instituição, confortável e com
-                            design exclusivo.</p>
-                        <div class="product-stats">
-                            <span><i class="bi bi-cart"></i> 18 vendidos</span>
-                            <span><i class="bi bi-star-fill"></i> 4.8 (15 avaliações)</span>
-                        </div>
-                        <div class="donation-actions">
-                            <button class="primary-button small" onclick="editarProduto(1)">
-                                <i class="fas fa-edit"></i> Editar
-                            </button>
-                            <button class="danger-button small" onclick="excluirProduto(1)">
-                                <i class="fas fa-trash"></i> Excluir
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Produto 2: Broche -->
-                    <div class="product-card" data-categoria="acessorios" data-vendidos="12" data-preco="12"
-                        data-avaliacao="4.9">
-                        <div class="product-image broche"><img src="IMG/broche.sos.jpg" alt="Broche Patas Conscientes">
-                        </div>
-                        <h3 class="product-name">Broche Patas Conscientes</h3>
-                        <div class="product-price">R$ 12,00</div>
-                        <p class="product-description">Broche metálico com logo da instituição, perfeito para mostrar
-                            seu apoio.</p>
-                        <div class="product-stats">
-                            <span><i class="bi bi-cart"></i> 12 vendidos</span>
-                            <span><i class="bi bi-star-fill"></i> 4.9 (10 avaliações)</span>
-                        </div>
-                        <div class="donation-actions">
-                            <button class="primary-button small" onclick="editarProduto(2)">
-                                <i class="fas fa-edit"></i> Editar
-                            </button>
-                            <button class="danger-button small" onclick="excluirProduto(2)">
-                                <i class="fas fa-trash"></i> Excluir
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Produto 3: Bolsa -->
-                    <div class="product-card" data-categoria="acessorios" data-vendidos="8" data-preco="45"
-                        data-avaliacao="4.6">
-                        <div class="product-image bolsa"><img src="IMG/bolsa-patas.jpg" alt="Bolsa Patas Conscientes">
-                        </div>
-                        <h3 class="product-name">Bolsa Patas Conscientes</h3>
-                        <div class="product-price">R$ 45,00</div>
-                        <p class="product-description">Bolsa ecológica de algodão, ideal para o dia a dia e para
-                            carregar suas compras.</p>
-                        <div class="product-stats">
-                            <span><i class="bi bi-cart"></i> 8 vendidos</span>
-                            <span><i class="bi bi-star-fill"></i> 4.6 (7 avaliações)</span>
-                        </div>
-                        <div class="donation-actions">
-                            <button class="primary-button small" onclick="editarProduto(3)">
-                                <i class="fas fa-edit"></i> Editar
-                            </button>
-                            <button class="danger-button small" onclick="excluirProduto(3)">
-                                <i class="fas fa-trash"></i> Excluir
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Produto 4: Boné -->
-                    <div class="product-card" data-categoria="acessorios" data-vendidos="4" data-preco="25"
-                        data-avaliacao="4.5">
-                        <div class="product-image bone"><img src="IMG/bone-patas.jpg" alt="Boné Patas Conscientes">
-                        </div>
-                        <h3 class="product-name">Boné Patas Conscientes</h3>
-                        <div class="product-price">R$ 25,00</div>
-                        <p class="product-description">Boné ajustável com logo bordado, perfeito para proteção solar com
-                            estilo.</p>
-                        <div class="product-stats">
-                            <span><i class="bi bi-cart"></i> 4 vendidos</span>
-                            <span><i class="bi bi-star-fill"></i> 4.5 (3 avaliações)</span>
-                        </div>
-                        <div class="donation-actions">
-                            <button class="primary-button small" onclick="editarProduto(4)">
-                                <i class="fas fa-edit"></i> Editar
-                            </button>
-                            <button class="danger-button small" onclick="excluirProduto(4)">
-                                <i class="fas fa-trash"></i> Excluir
-                            </button>
-                        </div>
-                    </div>
+                    <!-- Produtos serão carregados dinamicamente via JavaScript -->
                 </div>
 
                 <!-- Estado vazio (inicialmente oculto) -->
@@ -267,7 +185,60 @@
         </div>
     </footer>
 
-    <!-- Modal Editar Produto -->
+    <!-- Modal Adicionar Produto - Com Upload de Imagem -->
+    <div id="modalAdicionar" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Adicionar Novo Produto</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="formAdicionarProduto">
+                    <div class="form-group">
+                        <label for="novoNomeProduto">Nome do Produto *</label>
+                        <input type="text" id="novoNomeProduto" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="novoPrecoProduto">Preço (R$) *</label>
+                        <input type="number" id="novoPrecoProduto" min="0" step="0.01" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="novoCategoriaProduto">Categoria *</label>
+                        <select id="novoCategoriaProduto" required>
+                            <option value="roupas">Roupas</option>
+                            <option value="acessorios">Acessórios</option>
+                            <option value="casa">Produtos para Casa</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="novaDescricaoProduto">Descrição *</label>
+                        <textarea id="novaDescricaoProduto" rows="3" required></textarea>
+                    </div>
+
+                    <!-- Campo de Upload de Imagem -->
+                    <div class="form-group">
+                        <label for="novaImagemProduto">Imagem do Produto *</label>
+                        <input type="file" id="novaImagemProduto" accept="image/*" required>
+                        <small style="color: #666; font-size: 12px;">Formatos aceitos: JPG, PNG, GIF (Máx. 2MB)</small>
+                        <div class="image-preview" id="previewNovaImagem" style="display: none;">
+                            <img id="previewImgNova" src="" alt="Pré-visualização" style="max-width: 200px; max-height: 200px;">
+                        </div>
+                        <div class="error-message" id="erroImagem"></div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="secondary-button" onclick="fecharModal('modalAdicionar')">Cancelar</button>
+                        <button type="submit" class="primary-button">Adicionar Produto</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Editar Produto - Com Upload de Imagem -->
     <div id="modalEditar" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -279,17 +250,17 @@
                     <input type="hidden" id="produtoId">
 
                     <div class="form-group">
-                        <label for="nomeProduto">Nome do Produto</label>
+                        <label for="nomeProduto">Nome do Produto *</label>
                         <input type="text" id="nomeProduto" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="precoProduto">Preço (R$)</label>
+                        <label for="precoProduto">Preço (R$) *</label>
                         <input type="number" id="precoProduto" min="0" step="0.01" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="categoriaProduto">Categoria</label>
+                        <label for="categoriaProduto">Categoria *</label>
                         <select id="categoriaProduto" required>
                             <option value="roupas">Roupas</option>
                             <option value="acessorios">Acessórios</option>
@@ -298,65 +269,25 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="descricaoProduto">Descrição</label>
+                        <label for="descricaoProduto">Descrição *</label>
                         <textarea id="descricaoProduto" rows="3" required></textarea>
                     </div>
 
+                    <!-- Campo de Upload de Imagem -->
                     <div class="form-group">
-                        <label for="imagemProduto">URL da Imagem</label>
-                        <input type="text" id="imagemProduto">
+                        <label for="imagemProduto">Imagem do Produto</label>
+                        <input type="file" id="imagemProduto" accept="image/*">
+                        <small style="color: #666; font-size: 12px;">Deixe em branco para manter a imagem atual</small>
+                        <div class="image-preview" id="previewImagemAtual">
+                            <img id="previewImgAtual" src="" alt="Imagem atual" style="max-width: 200px; max-height: 200px;">
+                            <div style="font-size: 12px; color: #666; margin-top: 5px;">Imagem atual</div>
+                        </div>
+                        <div class="error-message" id="erroImagemEditar"></div>
                     </div>
 
                     <div class="form-actions">
-                        <button type="button" class="secondary-button" id="cancelarEdicao">Cancelar</button>
+                        <button type="button" class="secondary-button" onclick="fecharModal('modalEditar')">Cancelar</button>
                         <button type="submit" class="primary-button">Salvar Alterações</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Adicionar Produto -->
-    <div id="modalAdicionar" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Adicionar Novo Produto</h2>
-                <span class="close">&times;</span>
-            </div>
-            <div class="modal-body">
-                <form id="formAdicionarProduto">
-                    <div class="form-group">
-                        <label for="novoNomeProduto">Nome do Produto</label>
-                        <input type="text" id="novoNomeProduto" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="novoPrecoProduto">Preço (R$)</label>
-                        <input type="number" id="novoPrecoProduto" min="0" step="0.01" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="novoCategoriaProduto">Categoria</label>
-                        <select id="novoCategoriaProduto" required>
-                            <option value="roupas">Roupas</option>
-                            <option value="acessorios">Acessórios</option>
-                            <option value="casa">Produtos para Casa</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="novaDescricaoProduto">Descrição</label>
-                        <textarea id="novaDescricaoProduto" rows="3" required></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="novaImagemProduto">URL da Imagem</label>
-                        <input type="text" id="novaImagemProduto">
-                    </div>
-
-                    <div class="form-actions">
-                        <button type="button" class="secondary-button" id="cancelarAdicao">Cancelar</button>
-                        <button type="submit" class="primary-button">Adicionar Produto</button>
                     </div>
                 </form>
             </div>
@@ -375,8 +306,8 @@
                 <p class="warning-text">Esta ação não pode ser desfeita.</p>
 
                 <div class="form-actions">
-                    <button type="button" class="secondary-button" id="cancelarExclusao">Cancelar</button>
-                    <button type="button" class="danger-button" id="confirmarExclusao">Excluir</button>
+                    <button type="button" class="secondary-button" onclick="fecharModal('modalExcluir')">Cancelar</button>
+                    <button type="button" class="danger-button" onclick="confirmarExclusao()">Excluir Produto</button>
                 </div>
             </div>
         </div>
@@ -390,16 +321,22 @@
         </div>
     </div>
 
+    <!-- Scripts JavaScript -->
+    <script src="JS/menu-aside.js"></script>
+    <script src="JS/breadcrumbs-ong.js"></script>
+    <script src="JS/modo_noturno_ong.js"></script>
+    
+    <!-- Script principal atualizado para Patas Conscientes -->
     <script src="JS/ong_produto-2.js"></script>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q755SR73MY"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-Q755SR73MY');
-</script>
+        <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q755SR73MY"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-Q755SR73MY');
+      </script>
 </body>
 
 </html>
