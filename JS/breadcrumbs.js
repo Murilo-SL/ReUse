@@ -44,26 +44,17 @@ class SmartBreadcrumbs {
     // Mapeamento de ícones para páginas
     this.pageIcons = {
       // Páginas gerais
-      'cliente.html': '🏠',
-      'Login.html': '🔐',
-      'cadastro.html': '📝',
+      'cliente.html': '<i class="bi bi-house"></i> ',
+      'Login.html': '<i class="bi bi-door-open"></i> ',
+      'cadastro.html': '<i class="bi bi-door-open-fill"></i> ',
 
       // Páginas de produtos
-      'produto.html': '📦',
-      'categoria.html': '📁',
-      'ong_produto.html': '📦',
-
-      // Páginas de vendedor
-      'vendedor.html': '👨‍💼',
-      'cadastro_produto.html': '➕',
-      'estatisticas.html': '📊',
-      'avaliacoes.html': '⭐',
+      'produto.html': '<i class="bi bi-boxes"></i> ',
+      'categoria.html': '<i class="bi bi-inboxes"></i> ',
+      'ong_produto.html': '<i class="bi bi-box2-heart"></i> ',
 
       // Páginas de ONG
-      'ong.html': '🤝',
-      'adicionar_produto_ong.html': '➕',
-      'todas_doacoes.html': '📋',
-      'doacao_espesifico.html': '❤️',
+      'ong.html': '<i class="bi bi-house-heart"></i> ',
       'Produtos_Usuario_ONG.html': '📦',
 
       // Páginas Patas Conscientes

@@ -1610,3 +1610,149 @@
         gap: 1rem;
     }
 }
+
+
+
+/*========================================MODO NOTURNO========================================*/
+/* Modo Noturno para Index */
+body.dark-mode {
+    background: linear-gradient(135deg, #121212 0%, #1a1a2e 100%);
+    color: #e0e0e0;
+}
+
+body.dark-mode .unified-intro-section .intro-card,
+body.dark-mode .cta-section .benefit-item,
+body.dark-mode .auth-card {
+    background: #2d2d2d;
+    color: #e0e0e0;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .unified-intro-section .intro-card h3,
+body.dark-mode .unified-intro-section .intro-card p,
+body.dark-mode .cta-section .benefit-item span,
+body.dark-mode .auth-card .auth-title,
+body.dark-mode .auth-card .auth-description {
+    color: #e0e0e0;
+}
+
+body.dark-mode .value-item,
+body.dark-mode .auth-card {
+    background: #3a3a3a;
+}
+
+body.dark-mode .value-item:hover {
+    background: #4a4a4a;
+}
+
+body.dark-mode .cta-section {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+}
+
+body.dark-mode .cta-button.secondary {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+body.dark-mode .cta-button.secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Botão de Alternância de Modo */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+body.dark-mode .theme-toggle {
+    background: rgba(45, 45, 45, 0.9);
+    color: #e0e0e0;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+}
+
+.theme-toggle i {
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+/* Modo Noturno para a Seção de Impacto */
+body.dark-mode .impact-section {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode .impact-section .stat-item {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+body.dark-mode .impact-section .stat-item:hover {
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .impact-section .stat-icon {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+body.dark-mode .impact-section .stat-number {
+    background: linear-gradient(135deg, #00cc99, #00aaff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+body.dark-mode .impact-section .stat-label {
+    color: #e0e0e0;
+}
+
+body.dark-mode .impact-section .stat-description {
+    color: rgba(224, 224, 224, 0.8);
+}
+
+body.dark-mode .impact-section .stat-progress {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+body.dark-mode .impact-section .progress-bar {
+    background: linear-gradient(90deg, #00cc99, #00aaff);
+}
+
+body.dark-mode .impact-section .impact-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+body.dark-mode .impact-section .impact-btn {
+    background: rgba(255, 255, 255, 0.08);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    color: #e0e0e0;
+}
+
+body.dark-mode .impact-section .impact-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+body.dark-mode .impact-section .impact-quote p {
+    color: rgba(224, 224, 224, 0.9);
+}
+
+body.dark-mode .impact-section .impact-quote i {
+    color: rgba(224, 224, 224, 0.7);
+}

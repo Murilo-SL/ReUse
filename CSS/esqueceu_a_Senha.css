@@ -616,3 +616,193 @@
                 font-size: 1rem;
             }
         }
+
+        /* =========================================== MODO NOTURNO ================================================== */
+
+/* Modo Noturno para Esqueceu a Senha */
+body.dark-mode {
+    background: linear-gradient(135deg, #121212 0%, #1a1a2e 100%);
+    color: #e0e0e0;
+}
+
+body.dark-mode::before {
+    background: linear-gradient(125deg, 
+        rgba(255, 255, 255, 0.05) 0%, 
+        rgba(30, 40, 60, 0.15) 25%, 
+        rgba(25, 35, 55, 0.1) 50%, 
+        rgba(30, 45, 65, 0.15) 75%, 
+        rgba(255, 255, 255, 0.05) 100%);
+}
+
+body.dark-mode .Recuperar-form {
+    background: linear-gradient(145deg, rgba(45, 45, 45, 0.95), rgba(50, 50, 60, 0.98));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #e0e0e0;
+}
+
+body.dark-mode .form-title {
+    color: #00cc99;
+}
+
+body.dark-mode .form-title::after {
+    background: linear-gradient(90deg, #00cc99, #0066cc);
+}
+
+body.dark-mode .form-instruction {
+    color: #b0b0b0;
+}
+
+body.dark-mode .input-group label {
+    color: #e0e0e0;
+}
+
+body.dark-mode input {
+    background-color: #3a3a3a;
+    border-color: #555;
+    color: #e0e0e0;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2), 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode input:focus {
+    border-color: #00cc99;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2), 0 0 0 4px rgba(0, 204, 153, 0.15);
+    background-color: #444;
+}
+
+body.dark-mode .back-to-login a {
+    color: #00cc99;
+}
+
+body.dark-mode .back-to-login a:hover {
+    color: #00b386;
+    background-color: rgba(0, 204, 153, 0.1);
+}
+
+body.dark-mode .error-message {
+    color: #ff6b6b;
+}
+
+/* Modal no modo noturno */
+body.dark-mode .success-modal .modal-content {
+    background: linear-gradient(145deg, rgba(45, 45, 45, 0.98), rgba(50, 60, 50, 0.98));
+    color: #e0e0e0;
+}
+
+body.dark-mode .success-title {
+    color: #00cc99;
+}
+
+body.dark-mode .success-message {
+    color: #b0b0b0;
+}
+
+body.dark-mode .success-details {
+    background-color: rgba(0, 204, 153, 0.1);
+    border: 1px solid rgba(0, 204, 153, 0.2);
+}
+
+body.dark-mode .email-display {
+    color: #00cc99;
+}
+
+/* Botão de Alternância de Modo */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+body.dark-mode .theme-toggle {
+    background: rgba(45, 45, 45, 0.9);
+    color: #e0e0e0;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+}
+
+.theme-toggle i {
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+/* Logo no modo noturno */
+body.dark-mode .logo-container {
+    position: relative;
+    display: inline-block;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
+}
+
+body.dark-mode .logo-container:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .logo-container img {
+    transition: transform 0.3s ease;
+}
+
+body.dark-mode .logo-container:hover img {
+    transform: scale(1.1);
+}
+
+/* Partículas no modo noturno */
+body.dark-mode .particle:nth-child(1) { background: rgba(0, 204, 153, 0.3); }
+body.dark-mode .particle:nth-child(2) { background: rgba(0, 102, 204, 0.3); }
+body.dark-mode .particle:nth-child(3) { background: rgba(106, 90, 205, 0.2); }
+body.dark-mode .particle:nth-child(4) { background: rgba(255, 107, 107, 0.2); }
+body.dark-mode .particle:nth-child(5) { background: rgba(255, 180, 0, 0.2); }
+body.dark-mode .particle:nth-child(6) { background: rgba(0, 204, 153, 0.25); }
+body.dark-mode .particle:nth-child(7) { background: rgba(0, 102, 204, 0.25); }
+body.dark-mode .particle:nth-child(8) { background: rgba(106, 90, 205, 0.15); }
+body.dark-mode .particle:nth-child(9) { background: rgba(255, 107, 107, 0.15); }
+body.dark-mode .particle:nth-child(10) { background: rgba(255, 180, 0, 0.15); }
+body.dark-mode .particle:nth-child(11) { background: rgba(0, 204, 153, 0.2); }
+body.dark-mode .particle:nth-child(12) { background: rgba(0, 102, 204, 0.2); }
+body.dark-mode .particle:nth-child(13) { background: rgba(106, 90, 205, 0.1); }
+body.dark-mode .particle:nth-child(14) { background: rgba(255, 107, 107, 0.1); }
+body.dark-mode .particle:nth-child(15) { background: rgba(255, 180, 0, 0.1); }
+body.dark-mode .particle:nth-child(16) { background: rgba(0, 204, 153, 0.15); }
+body.dark-mode .particle:nth-child(17) { background: rgba(0, 102, 204, 0.15); }
+body.dark-mode .particle:nth-child(18) { background: rgba(106, 90, 205, 0.08); }
+body.dark-mode .particle:nth-child(19) { background: rgba(255, 107, 107, 0.08); }
+body.dark-mode .particle:nth-child(20) { background: rgba(255, 180, 0, 0.08); }
+
+/* Checkmark no modo noturno */
+body.dark-mode .checkmark__circle {
+    stroke: #00cc99;
+}
+
+body.dark-mode .checkmark__check {
+    stroke: #00cc99;
+}
+
+/* Botões no modo noturno */
+body.dark-mode .submit-btn,
+body.dark-mode .modal-close-btn {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode .submit-btn:hover,
+body.dark-mode .modal-close-btn:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}

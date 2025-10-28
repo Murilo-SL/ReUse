@@ -17,6 +17,11 @@
 </head>
 
 <body>
+    <!-- Botão de Alternância de Modo -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Alternar modo claro/escuro">
+        <i class="fas fa-moon"></i>
+    </button>
+
     <div class="particles-container">
         <div class="particle"></div>
         <div class="particle"></div>
@@ -38,7 +43,6 @@
         <div class="particle"></div>
         <div class="particle"></div>
         <div class="particle"></div>
-
     </div>
 
     <main class="container" role="main">
@@ -101,15 +105,45 @@
     </div>
 
     <script src="JS/esqueceu_a_senha.js"></script>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q755SR73MY"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    
+    <!-- Script do Modo Noturno -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggle = document.getElementById('themeToggle');
+            const icon = themeToggle.querySelector('i');
+            
+            // Verificar preferência salva
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                document.body.classList.add('dark-mode');
+                icon.className = 'fas fa-sun';
+                themeToggle.setAttribute('aria-label', 'Alternar para modo claro');
+            }
+            
+            // Alternar modo
+            themeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('dark-mode');
+                
+                if (document.body.classList.contains('dark-mode')) {
+                    localStorage.setItem('darkMode', 'enabled');
+                    icon.className = 'fas fa-sun';
+                    themeToggle.setAttribute('aria-label', 'Alternar para modo claro');
+                } else {
+                    localStorage.setItem('darkMode', 'disabled');
+                    icon.className = 'fas fa-moon';
+                    themeToggle.setAttribute('aria-label', 'Alternar para modo escuro');
+                }
+            });
+        });
+    </script>
 
-  gtag('config', 'G-Q755SR73MY');
-</script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q755SR73MY"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-Q755SR73MY');
+    </script>
 </body>
 
 </html>

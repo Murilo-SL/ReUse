@@ -462,3 +462,440 @@
                 justify-content: center;
             }
         }
+
+
+        /* Modo Noturno para Participar */
+body.dark-mode {
+    background: linear-gradient(135deg, #121212 0%, #1a1a2e 100%);
+    color: #e0e0e0;
+}
+
+body.dark-mode .container {
+    background: #2d2d2d;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode .options-side {
+    background: #2d2d2d;
+}
+
+body.dark-mode .options-side h2 {
+    color: #e0e0e0;
+}
+
+body.dark-mode .options-side > p {
+    color: #b0b0b0;
+}
+
+body.dark-mode .option-card {
+    background: #3a3a3a;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .option-description {
+    color: #b0b0b0;
+}
+
+body.dark-mode .back-section {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .back-link {
+    color: #b0b0b0;
+}
+
+body.dark-mode .back-link:hover {
+    color: #00cc99;
+    background: rgba(0, 204, 153, 0.1);
+}
+
+/* Botão de Alternância de Modo */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+body.dark-mode .theme-toggle {
+    background: rgba(45, 45, 45, 0.9);
+    color: #e0e0e0;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+}
+
+.theme-toggle i {
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+/* Animação de Fundo Melhorada */
+.animated-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    overflow: hidden;
+}
+
+.background-wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        rgba(0, 102, 204, 0.1) 0%, 
+        rgba(0, 204, 153, 0.15) 25%, 
+        rgba(0, 102, 204, 0.1) 50%,
+        rgba(0, 204, 153, 0.15) 75%,
+        rgba(0, 102, 204, 0.1) 100%);
+    animation: waveFlow 25s linear infinite;
+    border-radius: 40% 60% 0 0;
+    opacity: 0.6;
+}
+
+.background-wave:nth-child(2) {
+    animation-delay: -5s;
+    animation-duration: 30s;
+    background: linear-gradient(90deg, 
+        rgba(0, 90, 180, 0.08) 0%, 
+        rgba(0, 180, 135, 0.12) 25%, 
+        rgba(0, 90, 180, 0.08) 50%,
+        rgba(0, 180, 135, 0.12) 75%,
+        rgba(0, 90, 180, 0.08) 100%);
+    height: 90%;
+    opacity: 0.4;
+}
+
+.background-wave:nth-child(3) {
+    animation-delay: -10s;
+    animation-duration: 35s;
+    background: linear-gradient(90deg, 
+        rgba(0, 120, 240, 0.05) 0%, 
+        rgba(50, 230, 180, 0.08) 25%, 
+        rgba(0, 120, 240, 0.05) 50%,
+        rgba(50, 230, 180, 0.08) 75%,
+        rgba(0, 120, 240, 0.05) 100%);
+    height: 80%;
+    bottom: 5%;
+    opacity: 0.3;
+}
+
+@keyframes waveFlow {
+    0% {
+        transform: translateX(0) skewY(-2deg);
+    }
+    100% {
+        transform: translateX(-50%) skewY(-2deg);
+    }
+}
+
+/* Partículas Flutuantes */
+.floating-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.particle-item {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(0, 204, 153, 0.3);
+    animation: floatParticle 20s linear infinite;
+}
+
+.particle-item:nth-child(1) {
+    width: 8px;
+    height: 8px;
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+    animation-duration: 25s;
+}
+
+.particle-item:nth-child(2) {
+    width: 12px;
+    height: 12px;
+    top: 60%;
+    left: 80%;
+    animation-delay: 2s;
+    animation-duration: 30s;
+    background: rgba(0, 102, 204, 0.4);
+}
+
+.particle-item:nth-child(3) {
+    width: 6px;
+    height: 6px;
+    top: 80%;
+    left: 20%;
+    animation-delay: 4s;
+    animation-duration: 20s;
+    background: rgba(0, 204, 153, 0.25);
+}
+
+.particle-item:nth-child(4) {
+    width: 10px;
+    height: 10px;
+    top: 30%;
+    left: 70%;
+    animation-delay: 6s;
+    animation-duration: 28s;
+    background: rgba(0, 102, 204, 0.35);
+}
+
+.particle-item:nth-child(5) {
+    width: 7px;
+    height: 7px;
+    top: 70%;
+    left: 40%;
+    animation-delay: 8s;
+    animation-duration: 22s;
+    background: rgba(0, 204, 153, 0.3);
+}
+
+@keyframes floatParticle {
+    0% {
+        transform: translateY(100vh) translateX(0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.7;
+    }
+    90% {
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(-100px) translateX(100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Modo Noturno para Animação de Fundo */
+body.dark-mode .background-wave {
+    background: linear-gradient(90deg, 
+        rgba(0, 102, 204, 0.08) 0%, 
+        rgba(0, 204, 153, 0.12) 25%, 
+        rgba(0, 102, 204, 0.08) 50%,
+        rgba(0, 204, 153, 0.12) 75%,
+        rgba(0, 102, 204, 0.08) 100%);
+}
+
+body.dark-mode .background-wave:nth-child(2) {
+    background: linear-gradient(90deg, 
+        rgba(0, 90, 180, 0.06) 0%, 
+        rgba(0, 180, 135, 0.09) 25%, 
+        rgba(0, 90, 180, 0.06) 50%,
+        rgba(0, 180, 135, 0.09) 75%,
+        rgba(0, 90, 180, 0.06) 100%);
+}
+
+body.dark-mode .background-wave:nth-child(3) {
+    background: linear-gradient(90deg, 
+        rgba(0, 120, 240, 0.04) 0%, 
+        rgba(50, 230, 180, 0.06) 25%, 
+        rgba(0, 120, 240, 0.04) 50%,
+        rgba(50, 230, 180, 0.06) 75%,
+        rgba(0, 120, 240, 0.04) 100%);
+}
+
+body.dark-mode .particle-item {
+    background: rgba(0, 204, 153, 0.2);
+}
+
+body.dark-mode .particle-item:nth-child(2) {
+    background: rgba(0, 102, 204, 0.25);
+}
+
+body.dark-mode .particle-item:nth-child(3) {
+    background: rgba(0, 204, 153, 0.15);
+}
+
+body.dark-mode .particle-item:nth-child(4) {
+    background: rgba(0, 102, 204, 0.2);
+}
+
+body.dark-mode .particle-item:nth-child(5) {
+    background: rgba(0, 204, 153, 0.18);
+}
+
+/* Modo Noturno para Presentation Side - Versão Elaborada */
+body.dark-mode .presentation-side {
+    background: linear-gradient(145deg, #1a1a2e 0%, #16213e 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+body.dark-mode .presentation-side::before {
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><defs><pattern id="circles" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1.5" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23circles)"/></svg>');
+    opacity: 0.3;
+}
+
+body.dark-mode .presentation-side::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 20% 80%, rgba(0, 204, 153, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 102, 204, 0.1) 0%, transparent 50%);
+    z-index: 1;
+}
+
+body.dark-mode .presentation-side > * {
+    position: relative;
+    z-index: 2;
+}
+
+body.dark-mode .presentation-side h1 {
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .presentation-side p {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+body.dark-mode .feature h3 {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+body.dark-mode .feature p {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+body.dark-mode .feature-icon {
+    background: linear-gradient(135deg, rgba(0, 204, 153, 0.2) 0%, rgba(0, 102, 204, 0.2) 100%);
+    color: #00cc99;
+    border: 1px solid rgba(0, 204, 153, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+body.dark-mode .feature:hover .feature-icon {
+    background: linear-gradient(135deg, rgba(0, 204, 153, 0.3) 0%, rgba(0, 102, 204, 0.3) 100%);
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 5px 15px rgba(0, 204, 153, 0.2);
+}
+
+/* Container de features no modo escuro */
+body.dark-mode .presentation-side .features {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 25px;
+    margin-top: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+body.dark-mode .feature {
+    padding: 15px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+body.dark-mode .feature:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(0, 204, 153, 0.2);
+    transform: translateX(5px);
+}
+
+/* Logo com borda branca e efeitos especiais no modo noturno */
+body.dark-mode .logo-container {
+    position: relative;
+    display: inline-block;
+    padding: 15px;
+}
+
+body.dark-mode .logo-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.15) 0%, 
+        rgba(255, 255, 255, 0.1) 50%, 
+        rgba(255, 255, 255, 0.15) 100%);
+    border-radius: 16px;
+    z-index: -1;
+    opacity: 0.8;
+    transition: all 0.4s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+body.dark-mode .logo-container::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.3) 0%, 
+        transparent 30%, 
+        transparent 70%, 
+        rgba(255, 255, 255, 0.3) 100%);
+    border-radius: 18px;
+    z-index: -2;
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+body.dark-mode .logo-container:hover::before {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.2) 0%, 
+        rgba(255, 255, 255, 0.15) 50%, 
+        rgba(255, 255, 255, 0.2) 100%);
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.15);
+}
+
+body.dark-mode .logo-container:hover::after {
+    opacity: 1;
+    animation: logoGlow 2s ease-in-out infinite;
+}
+
+@keyframes logoGlow {
+    0%, 100% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 0.8;
+    }
+}
+
+body.dark-mode .logo-container img {
+
+    position: relative;
+    z-index: 1;
+    transition: all 0.4s ease;
+}
+
+body.dark-mode .logo-container:hover img {
+    transform: scale(1.08) rotate(2deg);
+
+}
