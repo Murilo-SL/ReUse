@@ -205,6 +205,13 @@
                     </button>
                 </div>
 
+                <!-- BOTÃO DENUNCIAR  -->
+                <div class="denunciar-produto">
+                    <button id="abrir-modal-denuncia">
+                        <i class="bi bi-flag"></i> Denunciar Produto
+                    </button>
+                </div>
+
                 <!-- CONDIÇÃO -->
                 <div class="condicao-produto">
                     <strong>Condição:</strong>
@@ -272,6 +279,66 @@
         </div>
     </footer>
 
+<div id="modal-denuncia" class="modal-denuncia">
+    <div class="modal-conteudo">
+        <div class="modal-cabecalho">
+            <h2>Denunciar Produto</h2>
+            <button class="fechar-modal">&times;</button>
+        </div>
+        <div class="modal-corpo">
+            <!-- Mensagem de sucesso -->
+            <div id="mensagem-sucesso" class="mensagem-sucesso">
+                <i class="bi bi-check-circle-fill icone-sucesso"></i>
+                <div>
+                    <strong>Denúncia enviada com sucesso!</strong>
+                    <div style="font-size: 12px; margin-top: 2px;">Nossa equipe irá analisar o caso em até 24 horas.</div>
+                </div>
+            </div>
+
+            <form id="form-denuncia">
+                <div class="campo-formulario">
+                    <label for="motivo-denuncia">Motivo da Denúncia:</label>
+                    <select id="motivo-denuncia" required>
+                        <option value="">Selecione um motivo</option>
+                        <option value="produto_ilegal">Produto Ilegal ou Proibido</option>
+                        <option value="informacoes_falsas">Informações Falsas</option>
+                        <option value="produto_usado_novo">Produto Usado Anunciado como Novo</option>
+                        <option value="conteudo_improprio">Conteúdo Impróprio</option>
+                        <option value="preco_abusivo">Preço Abusivo</option>
+                        <option value="outro">Outro</option>
+                    </select>
+                    <div id="erro-motivo" class="mensagem-erro">
+                        <i class="bi bi-exclamation-circle"></i> Por favor, selecione um motivo para a denúncia.
+                    </div>
+                </div>
+                
+                <div class="campo-formulario">
+                    <label for="descricao-denuncia">Descrição detalhada:</label>
+                    <textarea id="descricao-denuncia" placeholder="Descreva com detalhes o motivo da denúncia..." required></textarea>
+                    <div id="erro-descricao" class="mensagem-erro">
+                        <i class="bi bi-exclamation-circle"></i> Por favor, forneça uma descrição detalhada da denúncia.
+                    </div>
+                </div>
+                
+                <div class="campo-formulario">
+                    <label for="email-denuncia">Seu e-mail (opcional):</label>
+                    <input type="email" id="email-denuncia" placeholder="seu@email.com">
+                    <div id="erro-email" class="mensagem-erro">
+                        <i class="bi bi-exclamation-circle"></i> Por favor, insira um e-mail válido.
+                    </div>
+                </div>
+                
+                <div class="acoes-modal">
+                    <button type="button" class="btn-cancelar">Cancelar</button>
+                    <button type="submit" class="btn-enviar" id="btn-enviar-denuncia">
+                        <i class="bi bi-send"></i> Enviar Denúncia
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
     <!-- Widget VLibras -->
     <div vw class="enabled">
         <div vw-access-button class="active"></div>
@@ -286,15 +353,16 @@
     <script src="JS/breadcrumbs.js"></script>
     <script src="JS/modo_noturno.js"></script>
     <script src="JS/menu.js"></script>
+    <script src="JS/modal_denuncia.js"></script>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q755SR73MY"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q755SR73MY"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-  gtag('config', 'G-Q755SR73MY');
-</script>
+        gtag('config', 'G-Q755SR73MY');
+    </script>
 </body>
 
 </html>

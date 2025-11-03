@@ -286,6 +286,14 @@
     text-align: center;
 }
 
+/* Ações do vendedor */
+.vendedor-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
 .btn-contato {
     background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
     color: white;
@@ -298,7 +306,6 @@
     align-items: center;
     gap: 10px;
     transition: all 0.3s ease;
-    margin-top: 10px;
     box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);
 }
 
@@ -306,6 +313,27 @@
     transform: translateY(-3px);
     box-shadow: 0 8px 20px rgba(33, 150, 243, 0.4);
     background: linear-gradient(135deg, #1976D2 0%, #1565C0 100%);
+}
+
+.btn-denuncia {
+    background: linear-gradient(135deg, #ff6b6b 0%, #d32f2f 100%);
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+}
+
+.btn-denuncia:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
+    background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
 }
 
 .section-title {
@@ -395,6 +423,16 @@
     
     .section-title {
         font-size: 1.5rem;
+    }
+    
+    .vendedor-actions {
+        flex-direction: column;
+    }
+    
+    .btn-contato,
+    .btn-denuncia {
+        width: 100%;
+        justify-content: center;
     }
 }
 
@@ -656,11 +694,34 @@
     }
 }
 
-
 .no-products {
     text-align: center;
     padding: 40px;
     color: #666;
     font-style: italic;
     grid-column: 1 / -1;
+}
+
+/* Modal de denúncia específico para perfil */
+.modal-denuncia-perfil {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-denuncia-perfil .modal-conteudo {
+    background-color: white;
+    margin: 5% auto;
+    padding: 0;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    animation: slideIn 0.3s ease;
 }

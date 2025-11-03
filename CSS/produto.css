@@ -511,6 +511,210 @@ h3 {
     background-color: #0b7dda;
 }
 
+/* Estilos para o botão de denúncia */
+.denunciar-produto {
+    margin: 15px 0;
+}
+
+.denunciar-produto button {
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.denunciar-produto button:hover {
+    background-color: #ff5252;
+}
+
+/* Estilos do Modal de Denúncia */
+.modal-denuncia {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-conteudo {
+    background-color: white;
+    margin: 5% auto;
+    padding: 0;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+    background-color: #f8f9fa;
+    border-radius: 8px 8px 0 0;
+}
+
+.modal-cabecalho h2 {
+    margin: 0;
+    color: #333;
+    font-size: 1.5em;
+}
+
+.fechar-modal {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fechar-modal:hover {
+    color: #333;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+.modal-corpo {
+    padding: 20px;
+}
+
+.campo-formulario {
+    margin-bottom: 20px;
+}
+
+.campo-formulario label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333;
+}
+
+.campo-formulario select,
+.campo-formulario textarea,
+.campo-formulario input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+    box-sizing: border-box;
+}
+
+.campo-formulario select:focus,
+.campo-formulario textarea:focus,
+.campo-formulario input:focus {
+    outline: none;
+    border-color: #2196F3;
+    box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.1);
+}
+
+.campo-formulario textarea {
+    height: 100px;
+    resize: vertical;
+    font-family: inherit;
+}
+
+.acoes-modal {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.btn-cancelar {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.btn-cancelar:hover {
+    background-color: #5a6268;
+}
+
+.btn-enviar {
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.btn-enviar:hover {
+    background-color: #0b7dda;
+}
+
+.btn-enviar:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+/* Mensagem de sucesso */
+.mensagem-sucesso {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 12px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    border: 1px solid #c3e6cb;
+    display: none;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .modal-conteudo {
+        margin: 10% auto;
+        width: 95%;
+    }
+    
+    .acoes-modal {
+        flex-direction: column;
+    }
+    
+    .btn-cancelar,
+    .btn-enviar {
+        width: 100%;
+    }
+}
+
 .descricao-produto {
     margin: 40px 0;
     padding: 20px;
@@ -1072,4 +1276,94 @@ footer {
     color: #666;
 }
 
+/* Estilos para mensagens de erro */
+.mensagem-erro {
+    color: #dc3545;
+    font-size: 12px;
+    margin-top: 5px;
+    display: none;
+    animation: shake 0.5s ease-in-out;
+}
 
+.mensagem-erro.mostrar {
+    display: block;
+}
+
+.campo-invalido {
+    border-color: #dc3545 !important;
+    box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.1) !important;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* Estilos para mensagem de sucesso */
+.mensagem-sucesso {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 15px 0;
+    border: 1px solid #c3e6cb;
+    display: none;
+    align-items: center;
+    gap: 10px;
+    animation: slideDownSuccess 0.5s ease-out;
+}
+
+.mensagem-sucesso.mostrar {
+    display: flex;
+}
+
+@keyframes slideDownSuccess {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+        max-height: 0;
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        max-height: 100px;
+    }
+}
+
+.icone-sucesso {
+    color: #28a745;
+    font-size: 20px;
+    animation: pulseSuccess 1s infinite;
+}
+
+@keyframes pulseSuccess {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* Loading no botão de enviar */
+.btn-enviar.carregando {
+    position: relative;
+    color: transparent;
+}
+
+.btn-enviar.carregando::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 50%;
+    left: 50%;
+    margin-left: -8px;
+    margin-top: -8px;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    border-right-color: transparent;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
