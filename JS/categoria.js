@@ -1,3 +1,5 @@
+// JS/categoria.js - ATUALIZADO COM SISTEMA DE FAVORITOS
+
 // Dados dos produtos por categoria
 const productsData = {
     'masculino': {
@@ -79,6 +81,92 @@ let currentProducts = [];
 let filteredProducts = [];
 let currentPage = 1;
 const productsPerPage = 8;
+
+// FUNÇÕES DE FAVORITOS
+function getFavorites() {
+    const savedFavorites = localStorage.getItem('userFavorites');
+    return savedFavorites ? JSON.parse(savedFavorites) : [];
+}
+
+function saveFavorites(favorites) {
+    localStorage.setItem('userFavorites', JSON.stringify(favorites));
+}
+
+function showNotification(message, type = 'success') {
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.textContent = message;
+    
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: ${type === 'success' ? '#4CAF50' : '#e74c3c'};
+        color: white;
+        padding: 15px 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        z-index: 1000;
+        transition: all 0.3s ease;
+        max-width: 300px;
+        word-wrap: break-word;
+    `;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.style.opacity = '0';
+        notification.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+            if (document.body.contains(notification)) {
+                document.body.removeChild(notification);
+            }
+        }, 300);
+    }, 3000);
+}
+
+function toggleFavorite(productId, button) {
+    let favorites = getFavorites();
+    
+    if (favorites.includes(productId.toString())) {
+        // Remover dos favoritos
+        favorites = favorites.filter(id => id !== productId.toString());
+        button.classList.remove('active');
+        button.innerHTML = '<i class="bi bi-heart"></i>';
+        showNotification('Produto removido dos favoritos', 'info');
+    } else {
+        // Adicionar aos favoritos
+        favorites.push(productId.toString());
+        button.classList.add('active');
+        button.innerHTML = '<i class="bi bi-heart-fill"></i>';
+        showNotification('Produto adicionado aos favoritos');
+    }
+    
+    saveFavorites(favorites);
+}
+
+function setupFavoriteButtons() {
+    document.querySelectorAll('.favorite-btn').forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const productId = this.getAttribute('data-id');
+            toggleFavorite(productId, this);
+        });
+        
+        // Verificar estado inicial do favorito
+        const productId = button.getAttribute('data-id');
+        const favorites = getFavorites();
+        if (favorites.includes(productId)) {
+            button.classList.add('active');
+            button.innerHTML = '<i class="bi bi-heart-fill"></i>';
+        } else {
+            button.classList.remove('active');
+            button.innerHTML = '<i class="bi bi-heart"></i>';
+        }
+    });
+}
 
 // Inicialização da página
 document.addEventListener('DOMContentLoaded', function() {
@@ -228,6 +316,9 @@ function displayProducts() {
         productsGrid.appendChild(productCard);
     });
     
+    // Configurar botões de favorito
+    setupFavoriteButtons();
+    
     // Atualizar paginação
     updatePagination();
 }
@@ -238,13 +329,16 @@ function createProductCard(product) {
     productCard.className = 'product-card';
     productCard.setAttribute('data-id', product.id);
     
+    // Verificar se o produto está nos favoritos
+    const favorites = getFavorites();
+    const isFavorite = favorites.includes(product.id.toString());
+    const heartIcon = isFavorite ? 'bi-heart-fill' : 'bi-heart';
+    const favoriteClass = isFavorite ? 'active' : '';
+    
     productCard.innerHTML = `
         <a href="${product.link}">
             <div class="product-image">
                 <img src="${product.image}" alt="${product.name}">
-                <button class="favorite-btn" data-id="${product.id}" aria-label="Adicionar aos favoritos">
-                    <i class="bi bi-heart"></i>
-                </button>
             </div>
         </a>
         <div class="product-info">
@@ -252,8 +346,9 @@ function createProductCard(product) {
             <div class="product-price">R$ ${product.price.toFixed(2).replace('.', ',')}</div>
             <div class="product-category">${product.category}</div>
             <div class="product-condition">${getConditionText(product.condition)}</div>
-            <button class="favorite-btn-bottom" data-id="${product.id}">
-                <i class="bi bi-heart"></i> Favoritar
+            <!-- Botão de favorito -->
+            <button class="favorite-btn ${favoriteClass}" data-id="${product.id}">
+                <i class="bi ${heartIcon}"></i>
             </button>
         </div>
     `;

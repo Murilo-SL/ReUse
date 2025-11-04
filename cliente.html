@@ -151,31 +151,6 @@
 
     <main class="container">
 
-        <!-- Conteúdo específico para a página de favoritos -->
-        <div class="favorites-container" id="favoritesPage" style="display: none;">
-            <h1 class="page-title">Meus Favoritos</h1>
-
-            <!-- Grid para mostrar os favoritos -->
-            <div class="favorites-grid" id="favoritesGrid">
-                <!-- Os itens favoritos serão inseridos aqui via JavaScript -->
-            </div>
-
-            <!-- Estado vazio - aparece quando não há favoritos -->
-            <div class="empty-favorites" id="emptyFavorites">
-                <div class="empty-favorites-icon">
-                    <i class="bi bi-suit-heart-fill"></i>
-                </div>
-                <h2>Sua lista de favoritos está vazia</h2>
-                <p>Salve seus produtos preferidos para encontrá-los facilmente depois</p>
-
-                <div class="empty-favorites-actions">
-                    <a href="cliente.html" class="btn btn-primary">
-                        <i class="bi bi-bag"></i> Explorar Produtos
-                    </a>
-                </div>
-            </div>
-        </div>
-
         <!-- Conteúdo específico para a página principal (cliente) -->
         <div id="mainPage">
             <section class="main-actions">
@@ -197,85 +172,77 @@
 
             <h2 class="section-title">Itens Mais Comprados</h2>
             <div class="product-grid">
-                <!-- Produto 1 -->
-                <div class="product-card" data-id="1">
-                    <a href="produto.html?id=1">
-                        <div class="product-image">
-                            <img src="IMG/camiseta-polo.jpg" alt="Camiseta Polo">
-                            <button class="favorite-btn" data-id="1" aria-label="Adicionar aos favoritos">
-                                <i class="bi bi-heart"></i>
-                            </button>
-                        </div>
-                    </a>
-                    <div class="product-info">
-                        <div class="product-name">Camiseta Polo</div>
-                        <div class="product-price">R$ 39,90</div>
-                        <div class="product-category">Masculino</div>
-                        <button class="favorite-btn-bottom" data-id="1">
-                            <i class="bi bi-heart"></i> Favoritar
-                        </button>
-                    </div>
-                </div>
+<!-- Produto 1 -->
+<div class="product-card" data-id="1">
+    <a href="produto.html?id=1">
+        <div class="product-image">
+            <img src="IMG/camiseta-polo.jpg" alt="Camiseta Polo">
+        </div>
+    </a>
+    <div class="product-info">
+        <div class="product-name">Camiseta Polo</div>
+        <div class="product-price">R$ 39,90</div>
+        <div class="product-category">Masculino</div>
+        <!-- Botão de favorito -->
+        <button class="favorite-btn" data-id="1">
+            <i class="bi bi-heart"></i>
+        </button>
+    </div>
+</div>
 
-                <!-- Produto 2 -->
-                <div class="product-card" data-id="2">
-                    <a href="produto.html?id=2">
-                        <div class="product-image">
-                            <img src="IMG/liquidificador-phill.jpg" alt="Liquidificador Philips">
-                            <button class="favorite-btn" data-id="2" aria-label="Adicionar aos favoritos">
-                                <i class="bi bi-heart"></i>
-                            </button>
-                        </div>
-                    </a>
-                    <div class="product-info">
-                        <div class="product-name">Liquidificador Philips</div>
-                        <div class="product-price">R$ 89,90</div>
-                        <div class="product-category">Casa/Cozinha</div>
-                        <button class="favorite-btn-bottom" data-id="2">
-                            <i class="bi bi-heart"></i> Favoritar
-                        </button>
-                    </div>
-                </div>
+<!-- Produto 2 -->
+<div class="product-card" data-id="2">
+    <a href="produto.html?id=2">
+        <div class="product-image">
+            <img src="IMG/liquidificador-phill.jpg" alt="Liquidificador Philips">
+        </div>
+    </a>
+    <div class="product-info">
+        <div class="product-name">Liquidificador Philips</div>
+        <div class="product-price">R$ 89,90</div>
+        <div class="product-category">Casa/Cozinha</div>
+        <!-- Botão de favorito -->
+        <button class="favorite-btn" data-id="2">
+            <i class="bi bi-heart"></i>
+        </button>
+    </div>
+</div>
 
-                <!-- Produto 3 -->
-                <div class="product-card" data-id="3">
-                    <a href="produto.html?id=3">
-                        <div class="product-image">
-                            <img src="IMG/tenis-nike.avif" alt="Tênis Nike">
-                            <button class="favorite-btn" data-id="3" aria-label="Adicionar aos favoritos">
-                                <i class="bi bi-heart"></i>
-                            </button>
-                        </div>
-                    </a>
-                    <div class="product-info">
-                        <div class="product-name">Tênis Nike</div>
-                        <div class="product-price">R$ 199,99</div>
-                        <div class="product-category">Esportivo</div>
-                        <button class="favorite-btn-bottom" data-id="3">
-                            <i class="bi bi-heart"></i> Favoritar
-                        </button>
-                    </div>
-                </div>
+<!-- Produto 3 -->
+<div class="product-card" data-id="3">
+    <a href="produto.html?id=3">
+        <div class="product-image">
+            <img src="IMG/tenis-nike.avif" alt="Tênis Nike">
+        </div>
+    </a>
+    <div class="product-info">
+        <div class="product-name">Tênis Nike</div>
+        <div class="product-price">R$ 199,99</div>
+        <div class="product-category">Esportivo</div>
+        <!-- Botão de favorito -->
+        <button class="favorite-btn" data-id="3">
+            <i class="bi bi-heart"></i>
+        </button>
+    </div>
+</div>
 
-                <!-- Produto 4 -->
-                <div class="product-card" data-id="4">
-                    <a href="produto.html?id=4">
-                        <div class="product-image">
-                            <img src="IMG/vestido-floral.jpg" alt="Vestido Floral">
-                            <button class="favorite-btn" data-id="4" aria-label="Adicionar aos favoritos">
-                                <i class="bi bi-heart"></i>
-                            </button>
-                        </div>
-                    </a>
-                    <div class="product-info">
-                        <div class="product-name">Vestido Floral</div>
-                        <div class="product-price">R$ 65,00</div>
-                        <div class="product-category">Feminino</div>
-                        <button class="favorite-btn-bottom" data-id="4">
-                            <i class="bi bi-heart"></i> Favoritar
-                        </button>
-                    </div>
-                </div>
+<!-- Produto 4 -->
+<div class="product-card" data-id="4">
+    <a href="produto.html?id=4">
+        <div class="product-image">
+            <img src="IMG/vestido-floral.jpg" alt="Vestido Floral">
+        </div>
+    </a>
+    <div class="product-info">
+        <div class="product-name">Vestido Floral</div>
+        <div class="product-price">R$ 65,00</div>
+        <div class="product-category">Feminino</div>
+        <!-- Botão de favorito -->
+        <button class="favorite-btn" data-id="4">
+            <i class="bi bi-heart"></i>
+        </button>
+    </div>
+</div>
             </div>
 
             <!-- Seção de instituições mais doadas -->
@@ -559,315 +526,10 @@
         </div>
     </div>
 
-    <script>
-        // Detectar se estamos na página de favoritos
-        const isFavoritesPage = window.location.pathname.includes('favoritos.html') ||
-            window.location.search.includes('page=favorites');
-
-        // Mostrar a seção apropriada
-        if (isFavoritesPage) {
-            document.getElementById('favoritesPage').style.display = 'block';
-            document.getElementById('mainPage').style.display = 'none';
-            document.title = 'Meus Favoritos - ReUse';
-        } else {
-            document.getElementById('favoritesPage').style.display = 'none';
-            document.getElementById('mainPage').style.display = 'block';
-        }
-
-        // Sistema de favoritos integrado
-        document.addEventListener('DOMContentLoaded', function () {
-            // Carregar favoritos do localStorage
-            let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-
-            // Atualizar ícones com base nos favoritos existentes
-            updateFavoriteIcons(favorites);
-
-            // Se estamos na página de favoritos, carregar os itens
-            if (isFavoritesPage) {
-                loadFavoritesPage(favorites);
-            }
-
-            // Usar event delegation para evitar múltiplos listeners
-            document.addEventListener('click', function (e) {
-                // Verificar se o clique foi em um botão de favorito
-                const favoriteBtn = e.target.closest('.favorite-btn, .favorite-btn-bottom');
-                if (favoriteBtn) {
-                    e.preventDefault();
-                    e.stopPropagation();
-
-                    const productId = favoriteBtn.getAttribute('data-id');
-                    handleFavoriteClick(productId, favoriteBtn, favorites);
-                }
-            });
-
-            // Função para atualizar os ícones de favorito
-            function updateFavoriteIcons(favorites) {
-                document.querySelectorAll('.favorite-btn, .favorite-btn-bottom').forEach(btn => {
-                    const productId = btn.getAttribute('data-id');
-                    if (favorites.includes(productId)) {
-                        btn.classList.add('active');
-                        const icon = btn.querySelector('i');
-                        if (icon) {
-                            icon.classList.remove('bi-heart');
-                            icon.classList.add('bi-heart-fill');
-                        }
-                    } else {
-                        btn.classList.remove('active');
-                        const icon = btn.querySelector('i');
-                        if (icon) {
-                            icon.classList.remove('bi-heart-fill');
-                            icon.classList.add('bi-heart');
-                        }
-                    }
-                });
-            }
-
-            // Função para lidar com o clique no botão de favorito
-            function handleFavoriteClick(productId, button, favorites) {
-                // Verificar se o produto já está favoritado
-                const index = favorites.indexOf(productId);
-                const isActive = favorites.includes(productId);
-
-                if (isActive) {
-                    // Remover dos favoritos
-                    favorites.splice(index, 1);
-                    // Atualizar todos os botões para este produto
-                    document.querySelectorAll(`[data-id="${productId}"]`).forEach(btn => {
-                        btn.classList.remove('active');
-                        const icon = btn.querySelector('i');
-                        if (icon) {
-                            icon.classList.remove('bi-heart-fill');
-                            icon.classList.add('bi-heart');
-                        }
-                    });
-                } else {
-                    // Adicionar aos favoritos
-                    favorites.push(productId);
-                    // Atualizar todos os botões para este produto
-                    document.querySelectorAll(`[data-id="${productId}"]`).forEach(btn => {
-                        btn.classList.add('active');
-                        const icon = btn.querySelector('i');
-                        if (icon) {
-                            icon.classList.remove('bi-heart');
-                            icon.classList.add('bi-heart-fill');
-                        }
-                    });
-                }
-
-                // Salvar no localStorage
-                localStorage.setItem('favorites', JSON.stringify(favorites));
-
-                // Se estamos na página de favoritos, atualizar a lista
-                if (isFavoritesPage && !isActive) {
-                    // Se estamos adicionando um favorito da página de favoritos
-                    addFavoriteToPage(productId);
-                } else if (isFavoritesPage && isActive) {
-                    // Se estamos removendo um favorito da página de favoritos
-                    removeFavoriteFromPage(productId);
-                }
-
-                // Mostrar feedback visual
-                showFavoriteFeedback(!isActive);
-            }
-
-            // Função para carregar a página de favoritos
-            function loadFavoritesPage(favorites) {
-                const emptyFavoritesDiv = document.getElementById('emptyFavorites');
-                const favoritesGrid = document.getElementById('favoritesGrid');
-
-                // Verifica se há favoritos
-                if (favorites.length > 0) {
-                    // Esconde a mensagem de lista vazia
-                    if (emptyFavoritesDiv) emptyFavoritesDiv.style.display = 'none';
-
-                    // Mostra o grid de favoritos
-                    if (favoritesGrid) {
-                        favoritesGrid.style.display = 'grid';
-                        favoritesGrid.innerHTML = ''; // Limpa o grid existente
-                    }
-
-                    // Adiciona cada favorito ao grid
-                    favorites.forEach(productId => {
-                        addFavoriteToPage(productId);
-                    });
-                } else {
-                    // Mostra a mensagem de lista vazia
-                    if (emptyFavoritesDiv) emptyFavoritesDiv.style.display = 'block';
-                    if (favoritesGrid) favoritesGrid.style.display = 'none';
-                }
-            }
-
-            // Função para adicionar um favorito à página
-            function addFavoriteToPage(productId) {
-                const favoritesGrid = document.getElementById('favoritesGrid');
-                const emptyFavoritesDiv = document.getElementById('emptyFavorites');
-
-                if (!favoritesGrid) return;
-
-                // Obtém os dados do produto pelo ID
-                const productData = getProductDataById(productId);
-
-                if (!productData) {
-                    console.error('Produto não encontrado para ID:', productId);
-                    return;
-                }
-
-                // Esconde a mensagem de lista vazia
-                if (emptyFavoritesDiv) emptyFavoritesDiv.style.display = 'none';
-
-                // Mostra o grid de favoritos
-                favoritesGrid.style.display = 'grid';
-
-                // Cria o elemento do item de favorito
-                const favoriteItem = document.createElement('div');
-                favoriteItem.className = 'favorite-item';
-                favoriteItem.setAttribute('data-id', productId);
-
-                // HTML do item de favorito
-                favoriteItem.innerHTML = `
-                    <div class="favorite-image">
-                        <a href="${productData.link}">
-                            <img src="${productData.image}" alt="${productData.name}">
-                        </a>
-                        <button class="favorite-btn active" data-id="${productId}" aria-label="Remover dos favoritos">
-                            <i class="bi bi-heart-fill"></i>
-                        </button>
-                    </div>
-                    <div class="favorite-info">
-                        <div class="favorite-name">
-                            <a href="${productData.link}">${productData.name}</a>
-                        </div>
-                        <div class="favorite-price">${productData.price}</div>
-                        <div class="favorite-category">${productData.category}</div>
-                        <div class="favorite-actions">
-                            <a href="${productData.link}" class="btn btn-primary btn-small">Ver Detalhes</a>
-                            <a href="#" class="btn btn-secondary btn-small">Adicionar ao Carrinho</a>
-                        </div>
-                    </div>
-                `;
-
-                // Adiciona o item ao grid
-                favoritesGrid.appendChild(favoriteItem);
-            }
-
-            // Função para remover um favorito da página
-            function removeFavoriteFromPage(productId) {
-                const favoriteItem = document.querySelector(`.favorite-item[data-id="${productId}"]`);
-                if (favoriteItem) {
-                    favoriteItem.remove();
-                }
-
-                // Verifica se ainda há favoritos
-                const favoritesGrid = document.getElementById('favoritesGrid');
-                const emptyFavoritesDiv = document.getElementById('emptyFavorites');
-
-                if (favoritesGrid && favoritesGrid.children.length === 0) {
-                    // Mostra a mensagem de lista vazia
-                    if (emptyFavoritesDiv) emptyFavoritesDiv.style.display = 'block';
-                    favoritesGrid.style.display = 'none';
-                }
-            }
-
-            // Função para obter dados do produto pelo ID
-            function getProductDataById(productId) {
-                // Procura pelo produto na página
-                const productCard = document.querySelector(`.product-card[data-id="${productId}"]`);
-
-                if (!productCard) {
-                    // Se não encontrar na página, retorna dados padrão baseados no ID
-                    return getDefaultProductData(productId);
-                }
-
-                // Extrai os dados do produto
-                const name = productCard.querySelector('.product-name').textContent;
-                const price = productCard.querySelector('.product-price').textContent;
-                const category = productCard.querySelector('.product-category').textContent;
-                const image = productCard.querySelector('.product-image img').src;
-                const link = productCard.querySelector('a').href;
-
-                return {
-                    name,
-                    price,
-                    category,
-                    image,
-                    link
-                };
-            }
-
-            // Função para obter dados padrão de produto (caso não encontre na página)
-            function getDefaultProductData(productId) {
-                const products = {
-                    '1': {
-                        name: 'Camiseta Polo',
-                        price: 'R$ 39,90',
-                        category: 'Masculino',
-                        image: 'IMG/camiseta-polo.jpg',
-                        link: 'produto.html?id=1'
-                    },
-                    '2': {
-                        name: 'Liquidificador Philips',
-                        price: 'R$ 89,90',
-                        category: 'Casa/Cozinha',
-                        image: 'IMG/liquidificador-phill.jpg',
-                        link: 'produto.html?id=2'
-                    },
-                    '3': {
-                        name: 'Tênis Nike',
-                        price: 'R$ 199,99',
-                        category: 'Esportivo',
-                        image: 'IMG/tenis-nike.avif',
-                        link: 'produto.html?id=3'
-                    },
-                    '4': {
-                        name: 'Vestido Floral',
-                        price: 'R$ 65,00',
-                        category: 'Feminino',
-                        image: 'IMG/vestido-floral.jpg',
-                        link: 'produto.html?id=4'
-                    }
-                };
-
-                return products[productId] || null;
-            }
-
-            // Função para mostrar feedback visual ao favoritar/desfavoritar
-            function showFavoriteFeedback(isAdded) {
-                // Remove feedback anterior se existir
-                const existingFeedback = document.querySelector('.favorite-feedback');
-                if (existingFeedback) {
-                    existingFeedback.remove();
-                }
-
-                // Cria o elemento de feedback
-                const feedback = document.createElement('div');
-                feedback.className = `favorite-feedback ${isAdded ? 'added' : 'removed'}`;
-
-                // Define o conteúdo do feedback
-                feedback.innerHTML = `
-                    <i class="bi ${isAdded ? 'bi-heart-fill' : 'bi-heart'}"></i>
-                    ${isAdded ? 'Adicionado aos favoritos' : 'Removido dos favoritos'}
-                `;
-
-                // Adiciona ao corpo do documento
-                document.body.appendChild(feedback);
-
-                // Remove após 3 segundos
-                setTimeout(() => {
-                    feedback.style.animation = 'slideOut 0.3s ease';
-                    setTimeout(() => {
-                        if (feedback.parentNode) {
-                            feedback.parentNode.removeChild(feedback);
-                        }
-                    }, 300);
-                }, 3000);
-            }
-        });
-    </script>
     <script src="JS/menu.js"></script>
     <script src="JS/breadcrumbs.js"></script>
     <script src="JS/shared-navigation.js"></script>
     <script src="JS/cliente.js"></script>
-    <script src="JS/favoritos.js"></script>
     <script src="JS/modal_doação_inicial.js"></script>
     <script src="JS/modo_noturno.js"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q755SR73MY"></script>

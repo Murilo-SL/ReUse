@@ -1,4 +1,6 @@
-// Banco de dados de vendedores (SIMPLIFICADO)
+// JS/perfilvendedor.js - ATUALIZADO COM SISTEMA DE FAVORITOS
+
+// Banco de dados de vendedores
 const vendedores = {
     "Brechó Elegante": {
         nome: "Brechó Elegante",
@@ -62,7 +64,7 @@ const vendedores = {
     }
 };
 
-// Banco de dados de produtos (mesmo do produto.js)
+// Banco de dados de produtos
 const produtos = {
     "1": {
         id: "1",
@@ -561,6 +563,92 @@ const avaliacoes = {
     ]
 };
 
+// FUNÇÕES DE FAVORITOS
+function getFavorites() {
+    const savedFavorites = localStorage.getItem('userFavorites');
+    return savedFavorites ? JSON.parse(savedFavorites) : [];
+}
+
+function saveFavorites(favorites) {
+    localStorage.setItem('userFavorites', JSON.stringify(favorites));
+}
+
+function showNotification(message, type = 'success') {
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.textContent = message;
+    
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: ${type === 'success' ? '#4CAF50' : '#e74c3c'};
+        color: white;
+        padding: 15px 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        z-index: 1000;
+        transition: all 0.3s ease;
+        max-width: 300px;
+        word-wrap: break-word;
+    `;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.style.opacity = '0';
+        notification.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+            if (document.body.contains(notification)) {
+                document.body.removeChild(notification);
+            }
+        }, 300);
+    }, 3000);
+}
+
+function toggleFavorite(productId, button) {
+    let favorites = getFavorites();
+    
+    if (favorites.includes(productId.toString())) {
+        // Remover dos favoritos
+        favorites = favorites.filter(id => id !== productId.toString());
+        button.classList.remove('active');
+        button.innerHTML = '<i class="bi bi-heart"></i>';
+        showNotification('Produto removido dos favoritos', 'info');
+    } else {
+        // Adicionar aos favoritos
+        favorites.push(productId.toString());
+        button.classList.add('active');
+        button.innerHTML = '<i class="bi bi-heart-fill"></i>';
+        showNotification('Produto adicionado aos favoritos');
+    }
+    
+    saveFavorites(favorites);
+}
+
+function setupFavoriteButtons() {
+    document.querySelectorAll('.favorite-btn').forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const productId = this.getAttribute('data-id');
+            toggleFavorite(productId, this);
+        });
+        
+        // Verificar estado inicial do favorito
+        const productId = button.getAttribute('data-id');
+        const favorites = getFavorites();
+        if (favorites.includes(productId)) {
+            button.classList.add('active');
+            button.innerHTML = '<i class="bi bi-heart-fill"></i>';
+        } else {
+            button.classList.remove('active');
+            button.innerHTML = '<i class="bi bi-heart"></i>';
+        }
+    });
+}
+
 // Função para carregar os dados do vendedor
 function carregarVendedor() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -598,9 +686,12 @@ function carregarVendedor() {
     const avatarImg = document.querySelector('.vendedor-avatar');
     avatarImg.src = vendedor.avatar;
     avatarImg.alt = `Avatar de ${vendedor.nome}`;
+    
+    // Configurar botões de favorito
+    setupFavoriteButtons();
 }
 
-// Função para carregar produtos do vendedor (ATUALIZADA)
+// Função para carregar produtos do vendedor (ATUALIZADA COM FAVORITOS)
 function carregarProdutosVendedor(produtosIds) {
     const produtosContainer = document.getElementById('produtos-vendedor');
     produtosContainer.innerHTML = '';
@@ -613,27 +704,32 @@ function carregarProdutosVendedor(produtosIds) {
     produtosIds.forEach(produtoId => {
         const produto = produtos[produtoId];
         if (produto) {
+            // Verificar se o produto está nos favoritos
+            const favorites = getFavorites();
+            const isFavorite = favorites.includes(produto.id.toString());
+            const heartIcon = isFavorite ? 'bi-heart-fill' : 'bi-heart';
+            const favoriteClass = isFavorite ? 'active' : '';
+            
             const produtoCard = document.createElement('div');
             produtoCard.className = 'product-card';
+            produtoCard.setAttribute('data-id', produto.id);
             produtoCard.innerHTML = `
                 <a href="produto.html?id=${produto.id}">
                     <div class="product-image">
                         <img src="${produto.imagem}" alt="${produto.nome}" onerror="this.src='IMG/placeholder.jpg'">
-                        <button class="favorite-btn" data-id="${produto.id}" aria-label="Adicionar aos favoritos">
-                            <i class="bi bi-heart"></i>
-                        </button>
-                    </div>
-                    <div class="product-info">
-                        <h3>${produto.nome}</h3>
-                        <div class="product-price">
-                            <span class="price">R$ ${produto.precoVista.toFixed(2)}</span>
-                        </div>
-                        <div class="product-category">${getProductCategory(produtoId)}</div>
-                        <button class="favorite-btn-bottom" data-id="${produto.id}">
-                            <i class="bi bi-heart"></i> Adicionar aos Favoritos
-                        </button>
                     </div>
                 </a>
+                <div class="product-info">
+                    <h3>${produto.nome}</h3>
+                    <div class="product-price">
+                        <span class="price">R$ ${produto.precoVista.toFixed(2)}</span>
+                    </div>
+                    <div class="product-category">${getProductCategory(produtoId)}</div>
+                    <!-- Botão de favorito -->
+                    <button class="favorite-btn ${favoriteClass}" data-id="${produto.id}">
+                        <i class="bi ${heartIcon}"></i>
+                    </button>
+                </div>
             `;
             produtosContainer.appendChild(produtoCard);
         }
@@ -728,18 +824,16 @@ function configurarChat() {
 
 // Função para criar/atualizar conversa quando clicado no perfil
 function criarConversaNoPerfil(nomeVendedor) {
-    // Obter conversas existentes do localStorage
     let conversas = JSON.parse(localStorage.getItem('conversas')) || [];
     
     // Verificar se já existe conversa com este vendedor
     const conversaExistente = conversas.find(conv => conv.vendedor === nomeVendedor);
     
     if (!conversaExistente) {
-        // Dados do vendedor (usando informações do banco de dados)
+        // Dados do vendedor
         const vendedorInfo = vendedores[nomeVendedor];
         const avatar = vendedorInfo ? vendedorInfo.avatar : 'IMG/placeholder-vendedor.jpg';
         
-        // Mensagem inicial personalizada baseada no tipo de vendedor
         let mensagemInicial = "Olá! Como posso ajudar?";
         if (vendedorInfo && vendedorInfo.sobre) {
             if (vendedorInfo.sobre.includes('roupas')) {
@@ -770,11 +864,7 @@ function criarConversaNoPerfil(nomeVendedor) {
         };
         
         conversas.unshift(novaConversa);
-        
-        // Salvar no localStorage
         localStorage.setItem('conversas', JSON.stringify(conversas));
-        
-        console.log(`Nova conversa criada com: ${nomeVendedor}`);
     } else {
         // Se já existe, apenas marcar como não lida e mover para o topo
         conversaExistente.naoLida = true;
@@ -785,8 +875,6 @@ function criarConversaNoPerfil(nomeVendedor) {
         conversas.unshift(conversaExistente);
         
         localStorage.setItem('conversas', JSON.stringify(conversas));
-        
-        console.log(`Conversa existente atualizada com: ${nomeVendedor}`);
     }
     
     // Disparar evento customizado para notificar outras abas/páginas

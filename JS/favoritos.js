@@ -1,6 +1,6 @@
-// ================ SISTEMA UNIFICADO DE FAVORITOS ================
+// JS/favoritos.js - VERSÃO COMPLETA ATUALIZADA
 
-// Banco de dados de produtos (comum a todas as páginas)
+// Dados dos produtos
 const produtos = {
     "1": {
         id: "1",
@@ -9,18 +9,9 @@ const produtos = {
         precoParcelado: 39.90,
         parcelas: 1,
         imagem: "IMG/camiseta-polo.jpg",
-        descricao: "Camiseta polo usada em bom estado, perfeita para o dia a dia.",
-        medidas: ["Tamanho: M"],
-        vendedor: "Brechó Elegante",
-        vendedorLink: "perfilvendedor.html?vendedor=Brechó Elegante",
-        informacoes: [
-            "Material: Algodão",
-            "Cor: Azul",
-            "Marca: Lacoste",
-            "Estado: Bom (pequenos sinais de uso)"
-        ],
-        condicao: "Usado - Bom estado",
-        categoria: "masculino"
+        link: "produto.html?id=1",
+        condicao: "semi-new",
+        categoria: "Masculino"
     },
     "2": {
         id: "2",
@@ -29,18 +20,9 @@ const produtos = {
         precoParcelado: 89.90 / 3,
         parcelas: 3,
         imagem: "IMG/liquidificador-phill.jpg",
-        descricao: "Liquidificador em perfeito estado, pouco uso.",
-        medidas: ["Altura: 30cm", "Largura: 15cm"],
-        vendedor: "Casa Usada",
-        vendedorLink: "perfilvendedor.html?vendedor=Casa Usada",
-        informacoes: [
-            "Potência: 500W",
-            "Cor: Vermelho",
-            "Acessórios: 2 copos medidores",
-            "Estado: Excelente"
-        ],
-        condicao: "Usado - Excelente estado",
-        categoria: "casa-cozinha"
+        link: "produto.html?id=2",
+        condicao: "semi-new",
+        categoria: "Casa/Cozinha"
     },
     "3": {
         id: "3",
@@ -49,17 +31,9 @@ const produtos = {
         precoParcelado: 199.99 / 10,
         parcelas: 10,
         imagem: "IMG/tenis-nike.avif",
-        descricao: "Tênis Nike usado em ótimo estado, ideal para quem busca qualidade e economia.",
-        medidas: ["Tamanho do Calçado: 42"],
-        vendedor: "Brechó Sustentável",
-        vendedorLink: "perfilvendedor.html?vendedor=Brechó Sustentável",
-        informacoes: [
-            "Material: mistura de couro, tecido, espuma e borracha",
-            "Cor: Azul marinho e Branco",
-            "Origem: EUA"
-        ],
-        condicao: "Usado - Excelente estado",
-        categoria: "esportivo"
+        link: "produto.html?id=3",
+        condicao: "new",
+        categoria: "Esportivo"
     },
     "4": {
         id: "4",
@@ -68,18 +42,9 @@ const produtos = {
         precoParcelado: 65.00 / 2,
         parcelas: 2,
         imagem: "IMG/vestido-floral.jpg",
-        descricao: "Vestido floral usado poucas vezes, em perfeito estado.",
-        medidas: ["Tamanho: 38", "Comprimento: 90cm"],
-        vendedor: "Moda Circular",
-        vendedorLink: "perfilvendedor.html?vendedor=Moda Circular",
-        informacoes: [
-            "Material: Viscose",
-            "Cor: Floral (rosa, verde e branco)",
-            "Estação: Verão",
-            "Estado: Como novo"
-        ],
-        condicao: "Usado - Como novo",
-        categoria: "feminino"
+        link: "produto.html?id=4",
+        condicao: "new",
+        categoria: "Feminino"
     },
     "5": {
         id: "5",
@@ -88,18 +53,9 @@ const produtos = {
         precoParcelado: 79.90 / 2,
         parcelas: 2,
         imagem: "IMG/calca_j.jpg",
-        descricao: "Calça jeans masculina em ótimo estado, perfeita para o dia a dia.",
-        medidas: ["Tamanho: 42", "Comprimento: 100cm"],
-        vendedor: "Brechó Elegante",
-        vendedorLink: "perfilvendedor.html?vendedor=Brechó Elegante",
-        informacoes: [
-            "Material: Jeans",
-            "Cor: Azul escuro",
-            "Marca: Levi's",
-            "Estado: Usado - Bom estado"
-        ],
-        condicao: "Usado - Bom estado",
-        categoria: "masculino"
+        link: "produto.html?id=5",
+        condicao: "used",
+        categoria: "Masculino"
     },
     "6": {
         id: "6",
@@ -108,18 +64,9 @@ const produtos = {
         precoParcelado: 129.90 / 3,
         parcelas: 3,
         imagem: "IMG/tenis_c.jpg",
-        descricao: "Tênis casual novo, ideal para looks despojados.",
-        medidas: ["Tamanho: 41"],
-        vendedor: "Brechó Sustentável",
-        vendedorLink: "perfilvendedor.html?vendedor=Brechó Sustentável",
-        informacoes: [
-            "Material: Couro sintético",
-            "Cor: Preto",
-            "Marca: Olympikus",
-            "Estado: Novo"
-        ],
-        condicao: "Novo",
-        categoria: "esportivo"
+        link: "produto.html?id=6",
+        condicao: "new",
+        categoria: "Masculino"
     },
     "7": {
         id: "7",
@@ -128,18 +75,9 @@ const produtos = {
         precoParcelado: 89.90 / 2,
         parcelas: 2,
         imagem: "IMG/relogio_s_n.jpg",
-        descricao: "Relógio esportivo semi-novo com cronômetro e resistente à água.",
-        medidas: ["Pulseira: 22cm"],
-        vendedor: "Moda Circular",
-        vendedorLink: "perfilvendedor.html?vendedor=Moda Circular",
-        informacoes: [
-            "Material: Silicone",
-            "Cor: Preto e vermelho",
-            "Funções: Cronômetro, calendário",
-            "Estado: Semi-novo"
-        ],
-        condicao: "Semi-novo",
-        categoria: "feminino"
+        link: "produto.html?id=7",
+        condicao: "semi-new",
+        categoria: "Feminino"
     },
     "8": {
         id: "8",
@@ -148,18 +86,9 @@ const produtos = {
         precoParcelado: 199.90 / 4,
         parcelas: 4,
         imagem: "IMG/jaqueta_c_u.jpg",
-        descricao: "Jaqueta de couro legítimo, usada mas em bom estado.",
-        medidas: ["Tamanho: G", "Comprimento: 70cm"],
-        vendedor: "Brechó Elegante",
-        vendedorLink: "perfilvendedor.html?vendedor=Brechó Elegante",
-        informacoes: [
-            "Material: Couro legítimo",
-            "Cor: Marrom",
-            "Forro: Algodão",
-            "Estado: Usado - Bom estado"
-        ],
-        condicao: "Usado - Bom estado",
-        categoria: "masculino"
+        link: "produto.html?id=8",
+        condicao: "used",
+        categoria: "Masculino"
     },
     "9": {
         id: "9",
@@ -168,18 +97,9 @@ const produtos = {
         precoParcelado: 45.00,
         parcelas: 1,
         imagem: "IMG/blusa_s_s.jpg",
-        descricao: "Blusa de seda semi-nova, muito elegante e confortável.",
-        medidas: ["Tamanho: P", "Comprimento: 60cm"],
-        vendedor: "Moda Circular",
-        vendedorLink: "perfilvendedor.html?vendedor=Moda Circular",
-        informacoes: [
-            "Material: Seda 100%",
-            "Cor: Verde água",
-            "Lavagem: Limpeza a seco",
-            "Estado: Semi-novo"
-        ],
-        condicao: "Semi-novo",
-        categoria: "feminino"
+        link: "produto.html?id=9",
+        condicao: "semi-new",
+        categoria: "Feminino"
     },
     "10": {
         id: "10",
@@ -188,18 +108,9 @@ const produtos = {
         precoParcelado: 89.90 / 2,
         parcelas: 2,
         imagem: "IMG/salto_a_u.jpg",
-        descricao: "Salto alto usado, ainda em bom estado para ocasiões especiais.",
-        medidas: ["Tamanho: 36", "Altura do salto: 10cm"],
-        vendedor: "Moda Circular",
-        vendedorLink: "perfilvendedor.html?vendedor=Moda Circular",
-        informacoes: [
-            "Material: Couro sintético",
-            "Cor: Preto",
-            "Altura do salto: 10cm",
-            "Estado: Usado - Bom estado"
-        ],
-        condicao: "Usado - Bom estado",
-        categoria: "feminino"
+        link: "produto.html?id=10",
+        condicao: "used",
+        categoria: "Feminino"
     },
     "11": {
         id: "11",
@@ -208,18 +119,9 @@ const produtos = {
         precoParcelado: 120.00 / 3,
         parcelas: 3,
         imagem: "IMG/bolsa_c_s.jpg",
-        descricao: "Bolsa de couro semi-nova, espaçosa e elegante.",
-        medidas: ["Largura: 35cm", "Altura: 25cm"],
-        vendedor: "Moda Circular",
-        vendedorLink: "perfilvendedor.html?vendedor=Moda Circular",
-        informacoes: [
-            "Material: Couro legítimo",
-            "Cor: Marrom",
-            "Compartimentos: 3",
-            "Estado: Semi-novo"
-        ],
-        condicao: "Semi-novo",
-        categoria: "feminino"
+        link: "produto.html?id=11",
+        condicao: "semi-new",
+        categoria: "Feminino"
     },
     "12": {
         id: "12",
@@ -228,18 +130,9 @@ const produtos = {
         precoParcelado: 55.00,
         parcelas: 1,
         imagem: "IMG/saia_m_n.jpg",
-        descricao: "Saia midi nova, perfeita para o trabalho ou eventos.",
-        medidas: ["Tamanho: M", "Comprimento: 75cm"],
-        vendedor: "Moda Circular",
-        vendedorLink: "perfilvendedor.html?vendedor=Moda Circular",
-        informacoes: [
-            "Material: Viscose",
-            "Cor: Azul marinho",
-            "Estilo: Midi",
-            "Estado: Novo"
-        ],
-        condicao: "Novo",
-        categoria: "feminino"
+        link: "produto.html?id=12",
+        condicao: "new",
+        categoria: "Feminino"
     },
     "13": {
         id: "13",
@@ -248,18 +141,9 @@ const produtos = {
         precoParcelado: 49.90,
         parcelas: 1,
         imagem: "IMG/conjunto_i_s.jpg",
-        descricao: "Conjunto infantil semi-novo, muito fofo e confortável.",
-        medidas: ["Tamanho: 6 anos"],
-        vendedor: "Brechó Sustentável",
-        vendedorLink: "perfilvendedor.html?vendedor=Brechó Sustentável",
-        informacoes: [
-            "Material: Algodão",
-            "Cor: Rosa e branco",
-            "Idade: 5-7 anos",
-            "Estado: Semi-novo"
-        ],
-        condicao: "Semi-novo",
-        categoria: "infantil"
+        link: "produto.html?id=13",
+        condicao: "semi-new",
+        categoria: "Infantil"
     },
     "14": {
         id: "14",
@@ -268,18 +152,9 @@ const produtos = {
         precoParcelado: 39.90,
         parcelas: 1,
         imagem: "IMG/tenis_i_n.jpg",
-        descricao: "Tênis infantil novo, com luzes LED divertidas.",
-        medidas: ["Tamanho: 28"],
-        vendedor: "Brechó Sustentável",
-        vendedorLink: "perfilvendedor.html?vendedor=Brechó Sustentável",
-        informacoes: [
-            "Material: Têxtil e sintético",
-            "Cor: Azul e verde",
-            "Luzes LED: Sim",
-            "Estado: Novo"
-        ],
-        condicao: "Novo",
-        categoria: "infantil"
+        link: "produto.html?id=14",
+        condicao: "new",
+        categoria: "Infantil"
     },
     "15": {
         id: "15",
@@ -288,18 +163,9 @@ const produtos = {
         precoParcelado: 25.00,
         parcelas: 1,
         imagem: "IMG/carrinho_b_u.jpg",
-        descricao: "Carrinho de brinquedo usado, mas ainda funcional e divertido.",
-        medidas: ["Comprimento: 20cm", "Largura: 10cm"],
-        vendedor: "Brechó Sustentável",
-        vendedorLink: "perfilvendedor.html?vendedor=Brechó Sustentável",
-        informacoes: [
-            "Material: Plástico",
-            "Cor: Vermelho",
-            "Idade: 3+ anos",
-            "Estado: Usado"
-        ],
-        condicao: "Usado",
-        categoria: "infantil"
+        link: "produto.html?id=15",
+        condicao: "used",
+        categoria: "Infantil"
     },
     "16": {
         id: "16",
@@ -308,18 +174,9 @@ const produtos = {
         precoParcelado: 35.00,
         parcelas: 1,
         imagem: "IMG/vestido_i_s.jpg",
-        descricao: "Vestido infantil semi-novo, perfeito para festas.",
-        medidas: ["Tamanho: 4 anos"],
-        vendedor: "Brechó Sustentável",
-        vendedorLink: "perfilvendedor.html?vendedor=Brechó Sustentável",
-        informacoes: [
-            "Material: Tule e algodão",
-            "Cor: Rosa",
-            "Detalhes: Laços e rendas",
-            "Estado: Semi-novo"
-        ],
-        condicao: "Semi-novo",
-        categoria: "infantil"
+        link: "produto.html?id=16",
+        condicao: "semi-new",
+        categoria: "Infantil"
     },
     "17": {
         id: "17",
@@ -328,18 +185,9 @@ const produtos = {
         precoParcelado: 49.90,
         parcelas: 1,
         imagem: "IMG/camiseta_d_f_s.jpg",
-        descricao: "Camiseta dry fit semi-nova, ideal para atividades físicas.",
-        medidas: ["Tamanho: G"],
-        vendedor: "Brechó Sustentável",
-        vendedorLink: "perfilvendedor.html?vendedor=Brechó Sustentável",
-        informacoes: [
-            "Material: Dry Fit",
-            "Cor: Cinza",
-            "Tecnologia: Secagem rápida",
-            "Estado: Semi-novo"
-        ],
-        condicao: "Semi-novo",
-        categoria: "esportivo"
+        link: "produto.html?id=17",
+        condicao: "semi-new",
+        categoria: "Esportivo"
     },
     "18": {
         id: "18",
@@ -348,18 +196,9 @@ const produtos = {
         precoParcelado: 35.00,
         parcelas: 1,
         imagem: "IMG/short_c_u.jpg",
-        descricao: "Shorts de corrida usado, ainda em bom estado.",
-        medidas: ["Tamanho: M"],
-        vendedor: "Brechó Sustentável",
-        vendedorLink: "perfilvendedor.html?vendedor=Brechó Sustentável",
-        informacoes: [
-            "Material: Poliéster",
-            "Cor: Preto",
-            "Bolsos: 2",
-            "Estado: Usado - Bom estado"
-        ],
-        condicao: "Usado - Bom estado",
-        categoria: "esportivo"
+        link: "produto.html?id=18",
+        condicao: "used",
+        categoria: "Esportivo"
     },
     "19": {
         id: "19",
@@ -368,18 +207,9 @@ const produtos = {
         precoParcelado: 29.90,
         parcelas: 1,
         imagem: "IMG/garrafa_t_n.jpg",
-        descricao: "Garrafa térmica nova, mantém líquidos quentes ou frios por horas.",
-        medidas: ["Capacidade: 750ml"],
-        vendedor: "Casa Usada",
-        vendedorLink: "perfilvendedor.html?vendedor=Casa Usada",
-        informacoes: [
-            "Material: Aço inoxidável",
-            "Cor: Azul",
-            "Manutenção de temperatura: 12h",
-            "Estado: Novo"
-        ],
-        condicao: "Novo",
-        categoria: "casa-cozinha"
+        link: "produto.html?id=19",
+        condicao: "new",
+        categoria: "Casa/Cozinha"
     },
     "20": {
         id: "20",
@@ -388,18 +218,9 @@ const produtos = {
         precoParcelado: 65.00,
         parcelas: 1,
         imagem: "IMG/panela_p_u.jpg",
-        descricao: "Panela de pressão usada, ainda funcional e segura.",
-        medidas: ["Capacidade: 4,5L"],
-        vendedor: "Casa Usada",
-        vendedorLink: "perfilvendedor.html?vendedor=Casa Usada",
-        informacoes: [
-            "Material: Alumínio",
-            "Cor: Prata",
-            "Válvula de segurança: Sim",
-            "Estado: Usado - Bom estado"
-        ],
-        condicao: "Usado - Bom estado",
-        categoria: "casa-cozinha"
+        link: "produto.html?id=20",
+        condicao: "used",
+        categoria: "Casa/Cozinha"
     },
     "21": {
         id: "21",
@@ -408,18 +229,9 @@ const produtos = {
         precoParcelado: 150.00 / 3,
         parcelas: 3,
         imagem: "IMG/cadeira_e_s.jpg",
-        descricao: "Cadeira de escritório semi-nova, ergonômica e confortável.",
-        medidas: ["Altura: 80-100cm", "Largura: 60cm"],
-        vendedor: "Casa Usada",
-        vendedorLink: "perfilvendedor.html?vendedor=Casa Usada",
-        informacoes: [
-            "Material: Couro sintético",
-            "Cor: Preto",
-            "Ajustes: Altura e inclinação",
-            "Estado: Semi-novo"
-        ],
-        condicao: "Semi-novo",
-        categoria: "casa-cozinha"
+        link: "produto.html?id=21",
+        condicao: "semi-new",
+        categoria: "Casa/Cozinha"
     },
     "22": {
         id: "22",
@@ -428,167 +240,578 @@ const produtos = {
         precoParcelado: 120.00 / 3,
         parcelas: 3,
         imagem: "IMG/panela_n.jpg",
-        descricao: "Jogo de panelas novo, antiaderente e durável.",
-        medidas: ["5 peças"],
-        vendedor: "Casa Usada",
-        vendedorLink: "perfilvendedor.html?vendedor=Casa Usada",
-        informacoes: [
-            "Material: Alumínio com antiaderente",
-            "Cor: Preto",
-            "Peças: 5",
-            "Estado: Novo"
-        ],
-        condicao: "Novo",
-        categoria: "casa-cozinha"
+        link: "produto.html?id=22",
+        condicao: "new",
+        categoria: "Casa/Cozinha"
     }
 };
 
-// Função para obter favoritos do localStorage
-function getFavorites() {
-    return JSON.parse(localStorage.getItem('favorites')) || [];
-}
+// Variáveis globais
+let favoritos = [];
+let filteredFavoritos = [];
+let currentPage = 1;
+const productsPerPage = 8;
+let notificationQueue = [];
+let isShowingNotification = false;
 
-// Função para salvar favoritos no localStorage
-function saveFavorites(favorites) {
-    localStorage.setItem('favorites', JSON.stringify(favorites));
-}
-
-// Função para verificar se um produto é favorito
-function isFavorite(productId) {
-    const favorites = getFavorites();
-    return favorites.includes(productId);
-}
-
-// Função para adicionar produto aos favoritos
-function addToFavorites(productId) {
-    const favorites = getFavorites();
-    if (!favorites.includes(productId)) {
-        favorites.push(productId);
-        saveFavorites(favorites);
-        return true;
-    }
-    return false;
-}
-
-// Função para remover produto dos favoritos
-function removeFromFavorites(productId) {
-    let favorites = getFavorites();
-    const index = favorites.indexOf(productId);
-    if (index > -1) {
-        favorites.splice(index, 1);
-        saveFavorites(favorites);
-        return true;
-    }
-    return false;
-}
-
-// Função para alternar estado de favorito
-function toggleFavorite(productId, button) {
-    const wasFavorite = isFavorite(productId);
-    let success;
+// Inicialização da página
+document.addEventListener('DOMContentLoaded', function() {
+    // Injetar estilos das notificações
+    injectNotificationStyles();
     
-    if (wasFavorite) {
-        success = removeFromFavorites(productId);
-        if (success) {
-            updateFavoriteButtonState(productId, false);
-            showFavoriteFeedback(false);
-        }
-    } else {
-        success = addToFavorites(productId);
-        if (success) {
-            updateFavoriteButtonState(productId, true);
-            showFavoriteFeedback(true);
-        }
+    // Carregar favoritos do localStorage
+    loadFavorites();
+    
+    // Configurar eventos dos filtros
+    setupFilters();
+    
+    // Configurar evento do botão limpar todos
+    setupClearAllButton();
+    
+    // Configurar eventos de paginação
+    setupPaginationEvents();
+});
+
+// Carregar favoritos do localStorage
+function loadFavorites() {
+    const savedFavorites = localStorage.getItem('userFavorites');
+    if (savedFavorites) {
+        favoritos = JSON.parse(savedFavorites);
     }
     
-    return success;
+    // Aplicar filtros iniciais
+    applyFilters();
 }
 
-// Função para atualizar o estado visual dos botões de favorito
-function updateFavoriteButtonState(productId, isFavorite) {
-    document.querySelectorAll(`[data-id="${productId}"]`).forEach(btn => {
-        if (isFavorite) {
-            btn.classList.add('active');
-            const icon = btn.querySelector('i');
-            if (icon) {
-                icon.classList.remove('bi-heart');
-                icon.classList.add('bi-heart-fill');
+// Configurar eventos dos filtros
+function setupFilters() {
+    const sortSelect = document.getElementById('sort-favoritos');
+    const categoryFilter = document.getElementById('category-favoritos');
+    
+    if (sortSelect) {
+        sortSelect.addEventListener('change', applyFilters);
+    }
+    
+    if (categoryFilter) {
+        categoryFilter.addEventListener('change', applyFilters);
+    }
+}
+
+// Configurar evento do botão limpar todos
+function setupClearAllButton() {
+    const clearAllBtn = document.getElementById('btn-clear-all');
+    if (clearAllBtn) {
+        clearAllBtn.addEventListener('click', function() {
+            if (favoritos.length > 0) {
+                if (confirm('Tem certeza que deseja remover todos os produtos dos favoritos?')) {
+                    favoritos = [];
+                    localStorage.setItem('userFavorites', JSON.stringify(favoritos));
+                    applyFilters();
+                    
+                    // Mostrar notificação de sucesso
+                    showNotification('Todos os produtos removidos dos favoritos', 'success');
+                }
+            } else {
+                showNotification('Não há produtos para remover', 'info');
             }
-        } else {
-            btn.classList.remove('active');
-            const icon = btn.querySelector('i');
-            if (icon) {
-                icon.classList.remove('bi-heart-fill');
-                icon.classList.add('bi-heart');
-            }
+        });
+    }
+}
+
+// Configurar eventos de paginação
+function setupPaginationEvents() {
+    const prevButton = document.getElementById('prev-page');
+    const nextButton = document.getElementById('next-page');
+    
+    if (prevButton) {
+        prevButton.addEventListener('click', goToPreviousPage);
+    }
+    
+    if (nextButton) {
+        nextButton.addEventListener('click', goToNextPage);
+    }
+}
+
+// Aplicar filtros aos favoritos
+function applyFilters() {
+    const sortSelect = document.getElementById('sort-favoritos');
+    const categoryFilter = document.getElementById('category-favoritos');
+    
+    // Filtrar por categoria
+    let tempFavoritos = [...favoritos];
+    
+    if (categoryFilter && categoryFilter.value !== 'all') {
+        tempFavoritos = tempFavoritos.filter(productId => {
+            const produto = produtos[productId];
+            return produto && produto.categoria.toLowerCase().includes(categoryFilter.value.toLowerCase());
+        });
+    }
+    
+    // Ordenar favoritos
+    if (sortSelect) {
+        switch(sortSelect.value) {
+            case 'price-low':
+                tempFavoritos.sort((a, b) => {
+                    const produtoA = produtos[a];
+                    const produtoB = produtos[b];
+                    return (produtoA?.precoVista || 0) - (produtoB?.precoVista || 0);
+                });
+                break;
+            case 'price-high':
+                tempFavoritos.sort((a, b) => {
+                    const produtoA = produtos[a];
+                    const produtoB = produtos[b];
+                    return (produtoB?.precoVista || 0) - (produtoA?.precoVista || 0);
+                });
+                break;
+            case 'category':
+                tempFavoritos.sort((a, b) => {
+                    const produtoA = produtos[a];
+                    const produtoB = produtos[b];
+                    return (produtoA?.categoria || '').localeCompare(produtoB?.categoria || '');
+                });
+                break;
+            case 'recent':
+            default:
+                // Manter ordenação original (mais recentes primeiro)
+                break;
+        }
+    }
+    
+    filteredFavoritos = tempFavoritos;
+    currentPage = 1;
+    renderFavorites();
+}
+
+// Renderizar favoritos na página
+function renderFavorites() {
+    const favoritosGrid = document.getElementById('favoritos-grid');
+    const emptyFavoritos = document.getElementById('emptyFavoritos');
+    const favoritosCount = document.getElementById('favoritos-count');
+    const pagination = document.getElementById('pagination');
+    
+    // Atualizar contador
+    if (favoritosCount) {
+        favoritosCount.textContent = filteredFavoritos.length;
+    }
+    
+    // Verificar se há favoritos
+    if (filteredFavoritos.length === 0) {
+        if (favoritosGrid) favoritosGrid.style.display = 'none';
+        if (emptyFavoritos) emptyFavoritos.style.display = 'block';
+        if (pagination) pagination.style.display = 'none';
+        return;
+    }
+    
+    // Mostrar grade de produtos
+    if (favoritosGrid) {
+        favoritosGrid.style.display = 'grid';
+        favoritosGrid.innerHTML = '';
+    }
+    if (emptyFavoritos) emptyFavoritos.style.display = 'none';
+    if (pagination) pagination.style.display = 'flex';
+    
+    // Calcular produtos para a página atual
+    const startIndex = (currentPage - 1) * productsPerPage;
+    const endIndex = Math.min(startIndex + productsPerPage, filteredFavoritos.length);
+    const currentProducts = filteredFavoritos.slice(startIndex, endIndex);
+    
+    // Adicionar produtos à grade
+    currentProducts.forEach(productId => {
+        const produto = produtos[productId];
+        if (produto && favoritosGrid) {
+            const productCard = createProductCard(produto);
+            favoritosGrid.appendChild(productCard);
         }
     });
+    
+    // Atualizar paginação
+    updatePagination();
 }
 
-// Função para mostrar feedback visual
-function showFavoriteFeedback(isAdded) {
-    // Remover feedback anterior se existir
-    const existingFeedback = document.querySelector('.favorite-feedback');
-    if (existingFeedback) {
-        existingFeedback.remove();
-    }
-    
-    // Criar o elemento de feedback
-    const feedback = document.createElement('div');
-    feedback.className = `favorite-feedback ${isAdded ? 'added' : 'removed'}`;
-    
-    // Definir o conteúdo do feedback
-    feedback.innerHTML = `
-        <i class="bi ${isAdded ? 'bi-heart-fill' : 'bi-heart'}"></i>
-        ${isAdded ? 'Adicionado aos favoritos' : 'Removido dos favoritos'}
+// Criar card de produto
+function createProductCard(produto) {
+    const productCard = document.createElement('div');
+    productCard.className = 'product-card';
+    productCard.innerHTML = `
+        <div class="product-image">
+            <img src="${produto.imagem}" alt="${produto.nome}" loading="lazy">
+            <button class="remove-favorite" data-id="${produto.id}" aria-label="Remover dos favoritos">
+                <i class="bi bi-heart-fill"></i>
+            </button>
+            ${produto.condicao === 'new' ? '<span class="condition-badge new">Novo</span>' : 
+              produto.condicao === 'semi-new' ? '<span class="condition-badge semi-new">Semi-novo</span>' : 
+              '<span class="condition-badge used">Usado</span>'}
+        </div>
+        <div class="product-info">
+            <h3 class="product-name">${produto.nome}</h3>
+            <p class="product-category">${produto.categoria}</p>
+            <div class="product-prices">
+                <span class="price-vista">R$ ${produto.precoVista.toFixed(2)}</span>
+                <span class="price-parcelado">ou ${produto.parcelas}x de R$ ${produto.precoParcelado.toFixed(2)}</span>
+            </div>
+            <div class="product-actions">
+                <a href="${produto.link}" class="btn btn-primary">Ver Produto</a>
+                <button class="btn btn-secondary add-to-cart" data-id="${produto.id}">
+                    <i class="bi bi-cart-plus"></i>
+                </button>
+            </div>
+        </div>
     `;
     
-    // Adicionar ao corpo do documento
-    document.body.appendChild(feedback);
-    
-    // Remover após 3 segundos
-    setTimeout(() => {
-        feedback.style.animation = 'slideOut 0.3s ease';
-        setTimeout(() => {
-            if (feedback.parentNode) {
-                feedback.parentNode.removeChild(feedback);
-            }
-        }, 300);
-    }, 3000);
-}
-
-// Função para inicializar o sistema de favoritos em uma página
-function initializeFavorites() {
-    // Usar event delegation para todos os botões de favorito
-    document.addEventListener('click', function(e) {
-        const favoriteBtn = e.target.closest('.favorite-btn, .favorite-btn-bottom');
-        if (favoriteBtn) {
+    // Adicionar evento para remover dos favoritos
+    const removeButton = productCard.querySelector('.remove-favorite');
+    if (removeButton) {
+        removeButton.addEventListener('click', function(e) {
             e.preventDefault();
-            e.stopPropagation();
-            
-            const productId = favoriteBtn.getAttribute('data-id');
-            toggleFavorite(productId, favoriteBtn);
-        }
-    });
+            removeFromFavorites(produto.id);
+        });
+    }
     
-    // Inicializar estado dos botões
-    const favorites = getFavorites();
-    document.querySelectorAll('.favorite-btn, .favorite-btn-bottom').forEach(btn => {
-        const productId = btn.getAttribute('data-id');
-        if (favorites.includes(productId)) {
-            btn.classList.add('active');
-            const icon = btn.querySelector('i');
-            if (icon) {
-                icon.classList.remove('bi-heart');
-                icon.classList.add('bi-heart-fill');
-            }
-        }
-    });
+    // Adicionar evento para adicionar ao carrinho
+    const addToCartButton = productCard.querySelector('.add-to-cart');
+    if (addToCartButton) {
+        addToCartButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            addToCart(produto.id);
+        });
+    }
+    
+    return productCard;
 }
 
-// Inicializar quando o DOM estiver carregado
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initializeFavorites);
-} else {
-    initializeFavorites();
+// Remover produto dos favoritos
+function removeFromFavorites(productId) {
+    const index = favoritos.indexOf(productId);
+    if (index !== -1) {
+        const produto = produtos[productId];
+        favoritos.splice(index, 1);
+        localStorage.setItem('userFavorites', JSON.stringify(favoritos));
+        applyFilters();
+        
+        // Mostrar notificação com nome do produto
+        showNotification(`"${produto.nome}" removido dos favoritos`, 'success');
+    }
 }
+
+// Adicionar produto ao carrinho
+function addToCart(productId) {
+    const produto = produtos[productId];
+    
+    // Simular adição ao carrinho
+    showNotification(`"${produto.nome}" adicionado ao carrinho`, 'success');
+    
+    // Atualizar contador do carrinho
+    updateCartCount();
+}
+
+// Atualizar contador do carrinho
+function updateCartCount() {
+    // Implementar lógica para atualizar contador do carrinho
+    const cartCount = document.querySelector('.cart-count');
+    if (cartCount) {
+        const currentCount = parseInt(cartCount.textContent) || 0;
+        cartCount.textContent = currentCount + 1;
+    }
+}
+
+// Atualizar paginação
+function updatePagination() {
+    const totalPages = Math.ceil(filteredFavoritos.length / productsPerPage);
+    const prevButton = document.getElementById('prev-page');
+    const nextButton = document.getElementById('next-page');
+    const paginationNumbers = document.getElementById('pagination-numbers');
+    
+    // Atualizar estado dos botões
+    if (prevButton) {
+        prevButton.disabled = currentPage === 1;
+    }
+    if (nextButton) {
+        nextButton.disabled = currentPage === totalPages;
+    }
+    
+    // Atualizar números da paginação
+    if (paginationNumbers) {
+        paginationNumbers.innerHTML = '';
+        
+        // Mostrar até 5 números de página
+        let startPage = Math.max(1, currentPage - 2);
+        let endPage = Math.min(totalPages, startPage + 4);
+        
+        // Ajustar se não houver páginas suficientes no início
+        if (endPage - startPage < 4) {
+            startPage = Math.max(1, endPage - 4);
+        }
+        
+        for (let i = startPage; i <= endPage; i++) {
+            const pageNumber = document.createElement('button');
+            pageNumber.className = `pagination-number ${i === currentPage ? 'active' : ''}`;
+            pageNumber.textContent = i;
+            pageNumber.addEventListener('click', () => {
+                currentPage = i;
+                renderFavorites();
+            });
+            paginationNumbers.appendChild(pageNumber);
+        }
+    }
+}
+
+// Navegação entre páginas
+function goToPreviousPage() {
+    if (currentPage > 1) {
+        currentPage--;
+        renderFavorites();
+    }
+}
+
+function goToNextPage() {
+    const totalPages = Math.ceil(filteredFavoritos.length / productsPerPage);
+    if (currentPage < totalPages) {
+        currentPage++;
+        renderFavorites();
+    }
+}
+
+// SISTEMA DE NOTIFICAÇÕES EM LINHA
+function showNotification(message, type = 'success') {
+    notificationQueue.push({ message, type });
+    
+    if (!isShowingNotification) {
+        processNotificationQueue();
+    }
+}
+
+function processNotificationQueue() {
+    if (notificationQueue.length === 0) {
+        isShowingNotification = false;
+        return;
+    }
+    
+    isShowingNotification = true;
+    const { message, type } = notificationQueue.shift();
+    showSingleNotification(message, type);
+}
+
+function showSingleNotification(message, type = 'success') {
+    // Criar elemento de notificação em linha
+    const notification = document.createElement('div');
+    notification.className = `notification-line notification-${type}`;
+    
+    // Ícones para diferentes tipos de notificação
+    const icons = {
+        success: 'bi bi-check-circle',
+        error: 'bi bi-x-circle',
+        warning: 'bi bi-exclamation-circle',
+        info: 'bi bi-info-circle'
+    };
+    
+    notification.innerHTML = `
+        <div class="notification-line-content">
+            <i class="${icons[type]}"></i>
+            <span class="notification-line-text">${message}</span>
+        </div>
+        <button class="notification-line-close" aria-label="Fechar notificação">
+            <i class="bi bi-x"></i>
+        </button>
+        <div class="notification-line-progress"></div>
+    `;
+    
+    // Estilização da notificação em linha
+    notification.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: ${getNotificationColor(type)};
+        color: white;
+        padding: 12px 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        z-index: 10000;
+        transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        transform: translateX(400px) translateY(100px);
+        opacity: 0;
+        max-width: 400px;
+        width: auto;
+        min-width: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+        font-family: inherit;
+        border-left: 4px solid ${getNotificationBorderColor(type)};
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Animação de entrada
+    setTimeout(() => {
+        notification.style.transform = 'translateX(0) translateY(0)';
+        notification.style.opacity = '1';
+    }, 100);
+    
+    // Configurar botão de fechar
+    const closeButton = notification.querySelector('.notification-line-close');
+    if (closeButton) {
+        closeButton.addEventListener('click', () => {
+            closeNotification(notification);
+        });
+    }
+    
+    // Fechar automaticamente após 4 segundos
+    const autoClose = setTimeout(() => {
+        closeNotification(notification);
+    }, 4000);
+    
+    // Pausar progresso ao passar o mouse
+    notification.addEventListener('mouseenter', () => {
+        const progress = notification.querySelector('.notification-line-progress');
+        if (progress) progress.style.animationPlayState = 'paused';
+    });
+    
+    notification.addEventListener('mouseleave', () => {
+        const progress = notification.querySelector('.notification-line-progress');
+        if (progress) progress.style.animationPlayState = 'running';
+    });
+    
+    function closeNotification(notif) {
+        clearTimeout(autoClose);
+        notif.style.transform = 'translateX(400px) translateY(100px)';
+        notif.style.opacity = '0';
+        setTimeout(() => {
+            if (notif.parentNode) {
+                document.body.removeChild(notif);
+            }
+            // Processar próxima notificação na fila
+            setTimeout(processNotificationQueue, 300);
+        }, 300);
+    }
+}
+
+// Cores para diferentes tipos de notificação
+function getNotificationColor(type) {
+    const colors = {
+        success: 'linear-gradient(135deg, #4CAF50 0%, #45a049 100%)',
+        error: 'linear-gradient(135deg, #e74c3c 0%, #c0392b 100%)',
+        warning: 'linear-gradient(135deg, #FF9800 0%, #F57C00 100%)',
+        info: 'linear-gradient(135deg, #2196F3 0%, #1976D2 100%)'
+    };
+    return colors[type] || colors.success;
+}
+
+function getNotificationBorderColor(type) {
+    const colors = {
+        success: '#2E7D32',
+        error: '#C62828',
+        warning: '#EF6C00',
+        info: '#1565C0'
+    };
+    return colors[type] || colors.success;
+}
+
+// Injetar estilos para notificações em linha
+function injectNotificationStyles() {
+    const style = document.createElement('style');
+    style.textContent = `
+        .notification-line {
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .notification-line-content {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .notification-line-content i {
+            font-size: 16px;
+            opacity: 0.9;
+            flex-shrink: 0;
+        }
+        
+        .notification-line-text {
+            line-height: 1.4;
+            flex: 1;
+        }
+        
+        .notification-line-close {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 4px;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: white;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        
+        .notification-line-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+        
+        .notification-line-progress {
+            position: absolute;
+            bottom: 0;
+            left: 4px;
+            right: 4px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 1px;
+            transform-origin: left;
+            animation: line-progress 4s linear forwards;
+        }
+        
+        @keyframes line-progress {
+            from { transform: scaleX(1); }
+            to { transform: scaleX(0); }
+        }
+        
+        /* Efeito de brilho sutil na parte superior */
+        .notification-line::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+        }
+        
+        /* Responsividade */
+        @media (max-width: 480px) {
+            .notification-line {
+                bottom: 15px;
+                right: 15px;
+                left: 15px;
+                max-width: none;
+                min-width: auto;
+                transform: translateY(100px);
+            }
+            
+            .notification-line-content {
+                font-size: 13px;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+}
+
+// Função para demonstrar diferentes tipos de notificação (para testes)
+function demoNotifications() {
+    showNotification('Produto adicionado aos favoritos', 'success');
+    setTimeout(() => showNotification('Erro ao processar solicitação', 'error'), 1500);
+    setTimeout(() => showNotification('Carrinho atualizado com sucesso', 'success'), 3000);
+    setTimeout(() => showNotification('Promoção termina em 2 horas', 'warning'), 4500);
+}
+
+// Descomente a linha abaixo para testar as notificações
+// demoNotifications();

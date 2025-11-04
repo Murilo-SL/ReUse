@@ -1470,3 +1470,101 @@ footer {
         justify-content: center;
     }
 }
+
+/* Adicione ao CSS/cliente.css */
+
+/* Estilos para o botão de favoritar */
+.favorite-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+}
+
+.favorite-btn:hover {
+    background: #fff;
+    transform: scale(1.1);
+}
+
+.favorite-btn i {
+    font-size: 18px;
+    color: #666;
+    transition: all 0.3s ease;
+}
+
+.favorite-btn.active i {
+    color: #e74c3c;
+}
+
+.favorite-btn:hover i {
+    color: #e74c3c;
+}
+
+/* Ajuste na posição do product-info para acomodar o botão */
+.product-info {
+    padding: 15px;
+    position: relative;
+    min-height: 120px; /* Garante espaço para o botão */
+}
+
+/* Notificações */
+.notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.notification.fade-out {
+    opacity: 0;
+}
+
+/* Adicione ao CSS/cliente.css */
+
+/* Contador de favoritos no menu */
+.favorites {
+    position: relative;
+}
+
+.favorites-icon {
+    color: white;
+    font-size: 20px;
+}
+
+.favorites:hover .favorites-icon {
+    color: #e74c3c;
+}
+
+.favorites-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: #e74c3c;
+    color: white;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+}
