@@ -7,19 +7,17 @@
     <title>Meus Favoritos - ReUse</title>
     <link rel="stylesheet" href="CSS/cliente.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="CSS/favoritos.css">
     <link rel="stylesheet" href="CSS/breadcrumbs.css">
+    <link rel="stylesheet" href="CSS/favoritar.css">
     <link rel="stylesheet" href="CSS/modo_noturno.css">
     <!-- VLibras -->
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <script>
         new window.VLibras.Widget('https://vlibras.gov.br/app');
     </script>
-
 </head>
 
 <body>
-    <!-- CABEÇALHO -->
     <header>
         <div class="container">
             <div class="header-container">
@@ -53,7 +51,6 @@
 
                 <!-- Elementos do usuário à direita -->
                 <div class="user-section">
-                    <!-- Estrutura atual (sem alterações) -->
                     <button class="botaoMenu" id="botaoMenu">
                         <i class="bi bi-list"></i>
                     </button>
@@ -79,8 +76,6 @@
                         </a>
                     </nav>
                 </div>
-
-
 
                 <!-- Categorias abaixo -->
                 <div class="categories-section">
@@ -151,19 +146,52 @@
         </div>
     </header>
 
-
-    <!-- CONTEÚDO PRINCIPAL - PÁGINA DE FAVORITOS -->
     <main class="container">
+        <!-- Conteúdo da página de favoritos -->
         <div class="favorites-container">
             <h1 class="page-title">Meus Favoritos</h1>
+            
+            <!-- Filtros e ordenação -->
+            <div class="favorites-filters">
+                <div class="filter-section">
+                    <label for="sort-favorites">Ordenar por:</label>
+                    <select id="sort-favorites" class="filter-select">
+                        <option value="recent">Mais recentes</option>
+                        <option value="price-low">Menor preço</option>
+                        <option value="price-high">Maior preço</option>
+                        <option value="category">Categoria</option>
+                    </select>
+                </div>
+                
+                <div class="filter-section">
+                    <label for="category-favorites">Filtrar por categoria:</label>
+                    <select id="category-favorites" class="filter-select">
+                        <option value="all">Todas as categorias</option>
+                        <option value="masculino">Masculino</option>
+                        <option value="feminino">Feminino</option>
+                        <option value="infantil">Infantil</option>
+                        <option value="esportivo">Esportivo</option>
+                        <option value="casa-cozinha">Casa/Cozinha</option>
+                    </select>
+                </div>
+                
+                <button id="clear-favorites" class="btn-clear">
+                    <i class="bi bi-trash"></i> Limpar Favoritos
+                </button>
+            </div>
+
+            <!-- Contador de favoritos -->
+            <div class="favorites-count">
+                <span id="favorites-count">0</span> produtos favoritados
+            </div>
 
             <!-- Grid para mostrar os favoritos -->
-            <div class="favorites-grid" style="display: none;">
+            <div class="favorites-grid" id="favoritesGrid">
                 <!-- Os itens favoritos serão inseridos aqui via JavaScript -->
             </div>
 
             <!-- Estado vazio - aparece quando não há favoritos -->
-            <div class="empty-favorites">
+            <div class="empty-favorites" id="emptyFavorites">
                 <div class="empty-favorites-icon">
                     <i class="bi bi-suit-heart-fill"></i>
                 </div>
@@ -179,6 +207,7 @@
         </div>
     </main>
 
+    <!-- RODAPÉ -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -246,21 +275,160 @@
         </div>
     </div>
 
-    <script src="JS/cliente.js"></script>
-    <script src="JS/breadcrumbs.js"></script>
-    <script src="JS/favoritar.js"></script>
     <script src="JS/favoritos.js"></script>
-    <script src="JS/modo_noturno.js"></script>
-    <script src="JS/menu.js"></script>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q755SR73MY"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    // Função para carregar e exibir os favoritos
+    function loadFavorites() {
+        const favorites = getFavorites();
+        const favoritesGrid = document.getElementById('favoritesGrid');
+        const emptyFavorites = document.getElementById('emptyFavorites');
+        const favoritesCount = document.getElementById('favorites-count');
+        
+        // Atualizar contador
+        favoritesCount.textContent = favorites.length;
+        
+        // Verificar se há favoritos
+        if (favorites.length === 0) {
+            favoritesGrid.style.display = 'none';
+            emptyFavorites.style.display = 'block';
+            return;
+        }
+        
+        // Mostrar grid e esconder mensagem de vazio
+        favoritesGrid.style.display = 'grid';
+        emptyFavorites.style.display = 'none';
+        
+        // Limpar grid
+        favoritesGrid.innerHTML = '';
+        
+        // Aplicar filtros
+        let filteredFavorites = [...favorites];
+        const sortSelect = document.getElementById('sort-favorites');
+        const categoryFilter = document.getElementById('category-favorites');
+        
+        // Filtrar por categoria
+        if (categoryFilter.value !== 'all') {
+            filteredFavorites = filteredFavorites.filter(productId => {
+                const product = produtos[productId];
+                return product && product.categoria === categoryFilter.value;
+            });
+        }
+        
+        // Ordenar
+        filteredFavorites.sort((a, b) => {
+            const productA = produtos[a];
+            const productB = produtos[b];
+            
+            switch(sortSelect.value) {
+                case 'price-low':
+                    return productA.precoVista - productB.precoVista;
+                case 'price-high':
+                    return productB.precoVista - productA.precoVista;
+                case 'category':
+                    return productA.categoria.localeCompare(productB.categoria);
+                case 'recent':
+                default:
+                    // Ordem de adição (mais recentes primeiro)
+                    return favorites.indexOf(b) - favorites.indexOf(a);
+            }
+        });
+        
+        // Adicionar produtos ao grid
+        filteredFavorites.forEach(productId => {
+            const product = produtos[productId];
+            if (product) {
+                const favoriteItem = createFavoriteItem(product);
+                favoritesGrid.appendChild(favoriteItem);
+            }
+        });
+    }
 
-  gtag('config', 'G-Q755SR73MY');
+    // Função para criar um item de favorito
+    function createFavoriteItem(product) {
+        const favoriteItem = document.createElement('div');
+        favoriteItem.className = 'favorite-item';
+        favoriteItem.setAttribute('data-id', product.id);
+        
+        // Formatar preço
+        const precoVistaFormatado = product.precoVista.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        const precoParceladoFormatado = product.precoParcelado.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        
+        favoriteItem.innerHTML = `
+            <div class="favorite-item-image">
+                <img src="${product.imagem}" alt="${product.nome}" loading="lazy">
+                <button class="remove-favorite" data-id="${product.id}" aria-label="Remover dos favoritos">
+                    <i class="bi bi-heart-fill"></i>
+                </button>
+            </div>
+            <div class="favorite-item-info">
+                <h3 class="favorite-item-title">${product.nome}</h3>
+                <p class="favorite-item-description">${product.descricao}</p>
+                <div class="favorite-item-price">
+                    <span class="price-vista">${precoVistaFormatado} à vista</span>
+                    <span class="price-parcelado">ou ${product.parcelas}x de ${precoParceladoFormatado}</span>
+                </div>
+                <div class="favorite-item-actions">
+                    <a href="produto.html?id=${product.id}" class="btn btn-primary">Ver Produto</a>
+                    <button class="btn btn-secondary add-to-cart" data-id="${product.id}">Adicionar ao Carrinho</button>
+                </div>
+            </div>
+        `;
+        
+        return favoriteItem;
+    }
+
+    // Função para remover um item dos favoritos
+    function removeFromFavorites(productId) {
+        let favorites = getFavorites();
+        favorites = favorites.filter(id => id !== productId);
+        saveFavorites(favorites);
+        loadFavorites();
+    }
+
+    // Função para limpar todos os favoritos
+    function clearAllFavorites() {
+        if (confirm('Tem certeza que deseja remover todos os itens dos seus favoritos?')) {
+            saveFavorites([]);
+            loadFavorites();
+        }
+    }
+
+    // Event listeners quando o DOM estiver carregado
+    document.addEventListener('DOMContentLoaded', function() {
+        // Carregar favoritos
+        loadFavorites();
+        
+        // Event listener para remover favoritos
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.remove-favorite')) {
+                const productId = e.target.closest('.remove-favorite').getAttribute('data-id');
+                removeFromFavorites(productId);
+            }
+        });
+        
+        // Event listener para limpar todos os favoritos
+        document.getElementById('clear-favorites').addEventListener('click', clearAllFavorites);
+        
+        // Event listeners para filtros
+        document.getElementById('sort-favorites').addEventListener('change', loadFavorites);
+        document.getElementById('category-favorites').addEventListener('change', loadFavorites);
+        
+        // Event listener para adicionar ao carrinho
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.add-to-cart')) {
+                const productId = e.target.closest('.add-to-cart').getAttribute('data-id');
+                addToCart(productId);
+            }
+        });
+        
+        // Função para adicionar ao carrinho (simulação)
+        function addToCart(productId) {
+            alert(`Produto ${productId} adicionado ao carrinho!`);
+            // Aqui você implementaria a lógica real de adicionar ao carrinho
+        }
+    });
 </script>
+
 </body>
 
 </html>

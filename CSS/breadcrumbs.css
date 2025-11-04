@@ -1,32 +1,17 @@
-/* breadcrumbs.css - Design Aprimorado */
+/* breadcrumbs-unified.css - Design com Suporte a Categorias */
 .smart-breadcrumbs {
   font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
   padding: 16px 24px;
   border-radius: 12px;
   margin: 20px 0;
   font-size: 15px;
-  box-shadow: 
-    0 2px 8px rgba(0,0,0,0.08),
-    0 1px 3px rgba(0,0,0,0.1),
-    inset 0 1px 0 rgba(255,255,255,0.7);
-  border-left: 5px solid #4a6fa5;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.1);
   position: relative;
   overflow: hidden;
+  transition: all 0.3s ease;
+  border-left: 5px solid #6c757d;
 }
 
-/* Efeito de brilho sutil no topo */
-.smart-breadcrumbs::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
-}
-
-/* Container flex para melhor alinhamento */
 .smart-breadcrumbs-inner {
   display: flex;
   align-items: center;
@@ -34,9 +19,8 @@
   gap: 4px;
 }
 
-/* Links com design mais refinado */
 .smart-breadcrumbs a {
-  color: #4a6fa5;
+  color: #495057;
   text-decoration: none;
   font-weight: 500;
   padding: 6px 12px;
@@ -45,67 +29,34 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  position: relative;
   background: rgba(255,255,255,0.7);
   border: 1px solid transparent;
 }
 
 .smart-breadcrumbs a:hover {
-  color: #3a5a78;
-  background: rgba(232, 240, 254, 0.9);
-  border-color: #4a6fa5;
+  background: rgba(248, 249, 250, 0.9);
+  border-color: #dee2e6;
   transform: translateY(-1px);
-  box-shadow: 0 2px 5px rgba(74, 111, 165, 0.2);
 }
 
-/* Página atual com destaque melhorado */
 .smart-breadcrumbs .current-page {
-  color: #2d3748;
+  color: white;
   font-weight: 600;
   padding: 6px 12px;
   border-radius: 6px;
-  background: linear-gradient(135deg, #4a6fa5, #3a5a78);
-  color: white;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   position: relative;
   overflow: hidden;
 }
 
-/* Efeito de brilho na página atual */
-.smart-breadcrumbs .current-page::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-  animation: shimmer 3s infinite;
-}
-
-@keyframes shimmer {
-  0% { left: -100%; }
-  100% { left: 100%; }
-}
-
-/* Separadores mais elegantes */
 .smart-breadcrumbs .separator {
-  color: #a0aec0;
+  color: #adb5bd;
   margin: 0 8px;
   font-weight: bold;
-  display: flex;
-  align-items: center;
-  transition: transform 0.2s ease;
 }
 
-.smart-breadcrumbs a:hover + .separator {
-  transform: translateX(2px);
-}
-
-/* Barra de progresso visual */
 .breadcrumb-progress {
   height: 3px;
-  background: linear-gradient(90deg, #4a6fa5, #3a5a78);
   border-radius: 0 0 12px 12px;
   position: absolute;
   bottom: 0;
@@ -113,75 +64,121 @@
   transition: width 0.5s ease;
 }
 
-/* Indicador de posição atual */
-.current-indicator {
-  position: absolute;
-  bottom: -5px;
-  height: 10px;
-  width: 10px;
+.breadcrumb-context {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 10px;
+  margin-left: 8px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: white;
+}
+
+/* ===== CATEGORIAS ===== */
+
+/* Página Inicial */
+.smart-breadcrumbs.context-inicial {
+  border-left-color: #20c997;
+  background: linear-gradient(135deg, #e8f7f2 0%, #d1f2eb 100%);
+}
+
+.smart-breadcrumbs.context-inicial .current-page {
+  background: linear-gradient(135deg, #20c997, #199d76);
+}
+
+.smart-breadcrumbs.context-inicial .breadcrumb-progress {
+  background: linear-gradient(90deg, #20c997, #199d76);
+}
+
+.smart-breadcrumbs.context-inicial .breadcrumb-context {
+  background: #20c997;
+}
+
+/* Cliente */
+.smart-breadcrumbs.context-cliente {
+  border-left-color: #4a6fa5;
+  background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
+}
+
+.smart-breadcrumbs.context-cliente .current-page {
+  background: linear-gradient(135deg, #4a6fa5, #3a5a78);
+}
+
+.smart-breadcrumbs.context-cliente .breadcrumb-progress {
+  background: linear-gradient(90deg, #4a6fa5, #3a5a78);
+}
+
+.smart-breadcrumbs.context-cliente .breadcrumb-context {
   background: #4a6fa5;
-  border-radius: 50%;
-  box-shadow: 0 0 0 3px #f8f9fa;
-  transition: left 0.5s ease;
 }
 
-/* Temas específicos com gradientes */
-.smart-breadcrumbs[class*="ong"] {
-  border-left-color: #4b9bff;
-  background: linear-gradient(135deg, #f0f8ff 0%, #e1f0ff 100%);
-}
-
-.smart-breadcrumbs[class*="ong"] .current-page {
-  background: linear-gradient(135deg, #4b9bff, #3a7bd5);
-}
-
-.smart-breadcrumbs[class*="patas"] {
-  border-left-color: #ff7e5f;
-  background: linear-gradient(135deg, #fff5f0 0%, #ffe8e1 100%);
-}
-
-.smart-breadcrumbs[class*="patas"] .current-page {
-  background: linear-gradient(135deg, #ff7e5f, #e8694a);
-}
-
-.smart-breadcrumbs[class*="vendedor"] {
+/* Vendedor */
+.smart-breadcrumbs.context-vendedor {
   border-left-color: #6f42c1;
   background: linear-gradient(135deg, #f8f5ff 0%, #ede7ff 100%);
 }
 
-.smart-breadcrumbs[class*="vendedor"] .current-page {
+.smart-breadcrumbs.context-vendedor .current-page {
   background: linear-gradient(135deg, #6f42c1, #5a32a3);
 }
 
-/* Estados de foco para acessibilidade */
-.smart-breadcrumbs a:focus {
-  outline: 2px solid #4a6fa5;
-  outline-offset: 2px;
+.smart-breadcrumbs.context-vendedor .breadcrumb-progress {
+  background: linear-gradient(90deg, #6f42c1, #5a32a3);
 }
 
-/* Responsividade aprimorada */
+.smart-breadcrumbs.context-vendedor .breadcrumb-context {
+  background: #6f42c1;
+}
+
+/* ONG */
+.smart-breadcrumbs.context-ong {
+  border-left-color: #4b9bff;
+  background: linear-gradient(135deg, #f0f8ff 0%, #e1f0ff 100%);
+}
+
+.smart-breadcrumbs.context-ong .current-page {
+  background: linear-gradient(135deg, #4b9bff, #3a7bd5);
+}
+
+.smart-breadcrumbs.context-ong .breadcrumb-progress {
+  background: linear-gradient(90deg, #4b9bff, #3a7bd5);
+}
+
+.smart-breadcrumbs.context-ong .breadcrumb-context {
+  background: #4b9bff;
+}
+
+/* Compartilhadas */
+.smart-breadcrumbs.context-compartilhadas {
+  border-left-color: #fd7e14;
+  background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+}
+
+.smart-breadcrumbs.context-compartilhadas .current-page {
+  background: linear-gradient(135deg, #fd7e14, #e56a00);
+}
+
+.smart-breadcrumbs.context-compartilhadas .breadcrumb-progress {
+  background: linear-gradient(90deg, #fd7e14, #e56a00);
+}
+
+.smart-breadcrumbs.context-compartilhadas .breadcrumb-context {
+  background: #fd7e14;
+}
+
+/* Responsividade */
 @media (max-width: 768px) {
   .smart-breadcrumbs {
     padding: 14px 18px;
     font-size: 14px;
-    border-radius: 10px;
     margin: 15px 0;
   }
   
   .smart-breadcrumbs-inner {
     overflow-x: auto;
     white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
     padding-bottom: 5px;
-  }
-  
-  .smart-breadcrumbs::-webkit-scrollbar {
-    height: 4px;
-  }
-  
-  .smart-breadcrumbs::-webkit-scrollbar-thumb {
-    background: linear-gradient(90deg, #4a6fa5, #3a5a78);
-    border-radius: 2px;
   }
   
   .smart-breadcrumbs a {
@@ -189,51 +186,16 @@
     font-size: 13.5px;
   }
   
-  .smart-breadcrumbs .separator {
-    margin: 0 6px;
-  }
-  
-  /* Esconde alguns itens em telas muito pequenas */
-  @media (max-width: 480px) {
-    .smart-breadcrumbs .breadcrumb-text {
-      max-width: 120px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+  .breadcrumb-context {
+    display: none;
   }
 }
 
-/* Animações de entrada */
 @keyframes breadcrumbFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .smart-breadcrumbs {
   animation: breadcrumbFadeIn 0.4s ease-out;
-}
-
-/* Estados de loading */
-.smart-breadcrumbs.loading .current-page::after {
-  content: '';
-  display: inline-block;
-  width: 12px;
-  height: 12px;
-  border: 2px solid transparent;
-  border-top: 2px solid white;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  margin-left: 8px;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
 }
