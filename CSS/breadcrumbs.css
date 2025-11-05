@@ -199,3 +199,104 @@
 .smart-breadcrumbs {
   animation: breadcrumbFadeIn 0.4s ease-out;
 }
+
+/* ===== MODO NOTURNO PARA BREADCRUMBS ===== */
+body.dark-mode .smart-breadcrumbs {
+    background: #2d2d44 !important;
+    border-left-color: #4da6ff !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.4) !important;
+}
+
+body.dark-mode .smart-breadcrumbs a {
+    color: #8bb4ff !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+body.dark-mode .smart-breadcrumbs a:hover {
+    color: #4da6ff !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+body.dark-mode .smart-breadcrumbs .current-page {
+    color: #e0e0e0 !important;
+    background: linear-gradient(135deg, #4da6ff, #0066cc) !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
+body.dark-mode .smart-breadcrumbs .separator {
+    color: #8b9bb4 !important;
+}
+
+body.dark-mode .breadcrumb-progress {
+    background: linear-gradient(90deg, #4da6ff, #0066cc) !important;
+}
+
+body.dark-mode .breadcrumb-context {
+    color: #e0e0e0 !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Modo noturno para categorias específicas */
+body.dark-mode .smart-breadcrumbs.context-inicial {
+    background: linear-gradient(135deg, #1a2a2a 0%, #1a3a3a 100%) !important;
+    border-left-color: #20c997 !important;
+}
+
+body.dark-mode .smart-breadcrumbs.context-cliente {
+    background: linear-gradient(135deg, #1a1a2a 0%, #1a2a3a 100%) !important;
+    border-left-color: #4a6fa5 !important;
+}
+
+body.dark-mode .smart-breadcrumbs.context-vendedor {
+    background: linear-gradient(135deg, #2a1a3a 0%, #3a1a4a 100%) !important;
+    border-left-color: #6f42c1 !important;
+}
+
+body.dark-mode .smart-breadcrumbs.context-ong {
+    background: linear-gradient(135deg, #1a2a3a 0%, #1a3a4a 100%) !important;
+    border-left-color: #4b9bff !important;
+}
+
+body.dark-mode .smart-breadcrumbs.context-compartilhadas {
+    background: linear-gradient(135deg, #3a2a1a 0%, #4a3a1a 100%) !important;
+    border-left-color: #fd7e14 !important;
+}
+
+/* Cores dos context badges no modo noturno */
+body.dark-mode .smart-breadcrumbs.context-inicial .breadcrumb-context {
+    background: #20c997 !important;
+}
+
+body.dark-mode .smart-breadcrumbs.context-cliente .breadcrumb-context {
+    background: #4a6fa5 !important;
+}
+
+body.dark-mode .smart-breadcrumbs.context-vendedor .breadcrumb-context {
+    background: #6f42c1 !important;
+}
+
+body.dark-mode .smart-breadcrumbs.context-ong .breadcrumb-context {
+    background: #4b9bff !important;
+}
+
+body.dark-mode .smart-breadcrumbs.context-compartilhadas .breadcrumb-context {
+    background: #fd7e14 !important;
+}
+
+/* Animações no modo noturno */
+body.dark-mode .smart-breadcrumbs {
+    animation: breadcrumbFadeIn 0.4s ease-out;
+}
+
+/* Responsividade no modo noturno */
+@media (max-width: 768px) {
+    body.dark-mode .smart-breadcrumbs {
+        background: #2d2d44 !important;
+    }
+    
+    body.dark-mode .smart-breadcrumbs a {
+        background: rgba(255, 255, 255, 0.08) !important;
+    }
+}

@@ -36,12 +36,37 @@ header {
     justify-content: space-between;
 }
 
-.logo-section {
-    flex: 0 0 auto;
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0; /* Removido o margin-bottom */
+    width: auto; /* Alterado para auto */
+    animation: fadeInDown 1s ease;
+    gap: 0;
 }
 
-.logo img {
-    width: 200px;
+.logo-container a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    gap: 0;
+}
+
+.logo-container span {
+    font-size: 2.5rem; /* Tamanho reduzido para caber melhor no header */
+    font-weight: 800;
+    background: linear-gradient(135deg, #002244 0%, #0088ff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    line-height: 1;
+    margin-left: 0;
+}
+
+.logo-container img {
+    width: 80px; /* Tamanho reduzido para caber melhor no header */
     height: auto;
 }
 

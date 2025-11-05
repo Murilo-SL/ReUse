@@ -289,7 +289,25 @@ body {
 }
 
 .logo-container {
-    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    width: 100%;
+    animation: fadeInDown 1s ease;
+    gap: 0;
+}
+
+.logo-container span {
+    font-size: 3.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #002244 0%, #0088ff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    line-height: 1;
+    margin-left: 0;
 }
 
 .logo-container img {
@@ -1160,25 +1178,15 @@ body.dark-mode .login-particle:nth-child(5) {
 
 /* Logo no modo noturno */
 body.dark-mode .logo-container {
-    position: relative;
-    display: inline-block;
     padding: 10px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(8px);
     transition: all 0.3s ease;
 }
 
 body.dark-mode .logo-container:hover {
-    background: rgba(255, 255, 255, 0.15);
-    border-color: rgba(255, 255, 255, 0.4);
     transform: scale(1.05);
-    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
 }
 
 body.dark-mode .logo-container img {
-
     transition: transform 0.3s ease;
 }
 
@@ -1320,4 +1328,61 @@ body.dark-mode .type-button:not(.active):hover {
 body.dark-mode .card-header > * {
     position: relative;
     z-index: 3;
+}
+
+/* ================ BREADCRUMBS NO MODO NOTURNO ================ */
+body.night-mode .smart-breadcrumbs {
+    background-color: #2d2d44;
+    border-left-color: #4da6ff;
+    color: #e6e6e6;
+}
+
+body.night-mode .smart-breadcrumbs a {
+    color: #8bb4ff;
+    background-color: transparent;
+}
+
+body.night-mode .smart-breadcrumbs a:hover {
+    color: #4da6ff;
+    background-color: rgba(77, 166, 255, 0.15);
+}
+
+body.night-mode .smart-breadcrumbs .current-page {
+    color: #e6e6e6;
+}
+
+body.night-mode .smart-breadcrumbs .separator {
+    color: #8b9bb4;
+}
+
+/* Breadcrumbs específicos para páginas */
+body.night-mode .privacy-breadcrumbs {
+    background-color: #2d2d44;
+    border-left: 3px solid #4da6ff;
+}
+
+body.night-mode .privacy-breadcrumbs a {
+    color: #8bb4ff;
+}
+
+body.night-mode .privacy-breadcrumbs a:hover {
+    color: #4da6ff;
+    background-color: rgba(77, 166, 255, 0.15);
+}
+
+body.night-mode .privacy-breadcrumbs span {
+    color: #e6e6e6;
+}
+
+/* Breadcrumbs do perfil */
+body.night-mode .profile-breadcrumbs {
+    color: #b8b8cc;
+}
+
+body.night-mode .profile-breadcrumbs a {
+    color: #8bb4ff;
+}
+
+body.night-mode .profile-breadcrumbs a:hover {
+    color: #4da6ff;
 }

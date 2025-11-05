@@ -37,8 +37,80 @@ header {
     align-items: center;
 }
 
-.logo img {
-    height: 90px;
+/* ================ LOGO ATUALIZADA ================ */
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeInDown 1s ease;
+}
+
+.logo-container a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    gap: 10px;
+}
+
+.logo-container span {
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #002244 0%, #0088ff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    line-height: 1;
+}
+
+.logo-container img {
+    width: 80px;
+    height: auto;
+}
+
+/* Ajuste no top-header para acomodar a nova logo */
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+/* Animação para a logo */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsividade para a nova logo */
+@media (max-width: 768px) {
+    .logo-container span {
+        font-size: 2rem;
+    }
+    
+    .logo-container img {
+        width: 60px;
+    }
+    
+    .top-header {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .logo-container {
+        order: 1;
+    }
+    
+    .user-actions {
+        order: 2;
+    }
 }
 
 .user-actions a {
@@ -1160,4 +1232,61 @@ footer {
     height: 6px;
     background-color: #4CAF50;
     border-radius: 50%;
+}
+
+/* ================ BREADCRUMBS NO MODO NOTURNO ================ */
+body.night-mode .smart-breadcrumbs {
+    background-color: #2d2d44;
+    border-left-color: #4da6ff;
+    color: #e6e6e6;
+}
+
+body.night-mode .smart-breadcrumbs a {
+    color: #8bb4ff;
+    background-color: transparent;
+}
+
+body.night-mode .smart-breadcrumbs a:hover {
+    color: #4da6ff;
+    background-color: rgba(77, 166, 255, 0.15);
+}
+
+body.night-mode .smart-breadcrumbs .current-page {
+    color: #e6e6e6;
+}
+
+body.night-mode .smart-breadcrumbs .separator {
+    color: #8b9bb4;
+}
+
+/* Breadcrumbs específicos para páginas */
+body.night-mode .privacy-breadcrumbs {
+    background-color: #2d2d44;
+    border-left: 3px solid #4da6ff;
+}
+
+body.night-mode .privacy-breadcrumbs a {
+    color: #8bb4ff;
+}
+
+body.night-mode .privacy-breadcrumbs a:hover {
+    color: #4da6ff;
+    background-color: rgba(77, 166, 255, 0.15);
+}
+
+body.night-mode .privacy-breadcrumbs span {
+    color: #e6e6e6;
+}
+
+/* Breadcrumbs do perfil */
+body.night-mode .profile-breadcrumbs {
+    color: #b8b8cc;
+}
+
+body.night-mode .profile-breadcrumbs a {
+    color: #8bb4ff;
+}
+
+body.night-mode .profile-breadcrumbs a:hover {
+    color: #4da6ff;
 }

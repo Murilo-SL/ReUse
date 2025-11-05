@@ -125,18 +125,32 @@
             text-align: center;
         }
 
-        .logo-container {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 1rem;
-            width: 100%;
-            animation: fadeInDown 1s ease;
-        }
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    width: 100%;
+    animation: fadeInDown 1s ease;
+    gap: 0;
+}
 
-        .logo-container img {
-            width: 180px;
-            height: auto;
-        }
+.logo-container span {
+    font-size: 3.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #002244 0%, #0088ff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    line-height: 1;
+    margin-left: 0;
+}
+
+.logo-container img {
+    width: 180px;
+    height: auto;
+}
 
         /* Mensagem de boas-vindas */
         .welcome-message {
@@ -1755,4 +1769,172 @@ body.dark-mode .impact-section .impact-quote p {
 
 body.dark-mode .impact-section .impact-quote i {
     color: rgba(224, 224, 224, 0.7);
+}
+
+/* ================ BREADCRUMBS NO MODO NOTURNO ================ */
+body.dark-mode .smart-breadcrumbs {
+    background-color: #2d2d44;
+    border-left-color: #4da6ff;
+    color: #e6e6e6;
+}
+
+body.dark-mode .smart-breadcrumbs a {
+    color: #8bb4ff;
+    background-color: transparent;
+}
+
+body.dark-mode .smart-breadcrumbs a:hover {
+    color: #4da6ff;
+    background-color: rgba(77, 166, 255, 0.15);
+}
+
+body.dark-mode .smart-breadcrumbs .current-page {
+    color: #e6e6e6;
+}
+
+body.dark-mode .smart-breadcrumbs .separator {
+    color: #8b9bb4;
+}
+
+/* Breadcrumbs específicos para páginas */
+body.dark-mode .privacy-breadcrumbs {
+    background-color: #2d2d44;
+    border-left: 3px solid #4da6ff;
+}
+
+body.dark-mode .privacy-breadcrumbs a {
+    color: #8bb4ff;
+}
+
+body.dark-mode .privacy-breadcrumbs a:hover {
+    color: #4da6ff;
+    background-color: rgba(77, 166, 255, 0.15);
+}
+
+body.dark-mode .privacy-breadcrumbs span {
+    color: #e6e6e6;
+}
+
+/* Breadcrumbs do perfil */
+body.dark-mode .profile-breadcrumbs {
+    color: #b8b8cc;
+}
+
+body.dark-mode .profile-breadcrumbs a {
+    color: #8bb4ff;
+}
+
+body.dark-mode .profile-breadcrumbs a:hover {
+    color: #4da6ff;
+}
+
+/* Breadcrumbs gerais - estilos adicionais para garantir compatibilidade */
+body.dark-mode .breadcrumb,
+body.dark-mode .breadcrumbs,
+body.dark-mode .breadcrumb-nav {
+    background-color: #2d2d44;
+    color: #e6e6e6;
+}
+
+body.dark-mode .breadcrumb a,
+body.dark-mode .breadcrumbs a,
+body.dark-mode .breadcrumb-nav a {
+    color: #8bb4ff;
+}
+
+body.dark-mode .breadcrumb a:hover,
+body.dark-mode .breadcrumbs a:hover,
+body.dark-mode .breadcrumb-nav a:hover {
+    color: #4da6ff;
+    background-color: rgba(77, 166, 255, 0.15);
+}
+
+body.dark-mode .breadcrumb .active,
+body.dark-mode .breadcrumbs .active,
+body.dark-mode .breadcrumb-nav .active {
+    color: #e6e6e6;
+}
+
+/* ================ BREADCRUMBS NO MODO NOTURNO ================ */
+body.dark-mode .smart-breadcrumbs {
+    background-color: #2d2d44;
+    border-left-color: #4da6ff;
+    color: #e6e6e6;
+}
+
+body.dark-mode .smart-breadcrumbs a {
+    color: #8bb4ff;
+    background-color: transparent;
+}
+
+body.dark-mode .smart-breadcrumbs a:hover {
+    color: #4da6ff;
+    background-color: rgba(77, 166, 255, 0.15);
+}
+
+body.dark-mode .smart-breadcrumbs .current-page {
+    color: #e6e6e6;
+}
+
+body.dark-mode .smart-breadcrumbs .separator {
+    color: #8b9bb4;
+}
+
+/* Breadcrumbs específicos para páginas */
+body.dark-mode .privacy-breadcrumbs {
+    background-color: #2d2d44;
+    border-left: 3px solid #4da6ff;
+}
+
+body.dark-mode .privacy-breadcrumbs a {
+    color: #8bb4ff;
+}
+
+body.dark-mode .privacy-breadcrumbs a:hover {
+    color: #4da6ff;
+    background-color: rgba(77, 166, 255, 0.15);
+}
+
+body.dark-mode .privacy-breadcrumbs span {
+    color: #e6e6e6;
+}
+
+/* Breadcrumbs do perfil */
+body.dark-mode .profile-breadcrumbs {
+    color: #b8b8cc;
+}
+
+body.dark-mode .profile-breadcrumbs a {
+    color: #8bb4ff;
+}
+
+body.dark-mode .profile-breadcrumbs a:hover {
+    color: #4da6ff;
+}
+
+/* Breadcrumbs gerais - estilos adicionais para garantir compatibilidade */
+body.dark-mode .breadcrumb,
+body.dark-mode .breadcrumbs,
+body.dark-mode .breadcrumb-nav {
+    background-color: #2d2d44;
+    color: #e6e6e6;
+}
+
+body.dark-mode .breadcrumb a,
+body.dark-mode .breadcrumbs a,
+body.dark-mode .breadcrumb-nav a {
+    color: #8bb4ff;
+}
+
+body.dark-mode .breadcrumb a:hover,
+body.dark-mode .breadcrumbs a:hover,
+body.dark-mode .breadcrumb-nav a:hover {
+    color: #4da6ff;
+    background-color: rgba(77, 166, 255, 0.15);
+}
+
+body.dark-mode .breadcrumb .active,
+body.dark-mode .breadcrumbs .active,
+body.dark-mode .breadcrumb-nav .active {
+    color: #e6e6e6;
 }
