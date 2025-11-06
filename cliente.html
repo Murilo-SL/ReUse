@@ -50,7 +50,6 @@
 
                 <!-- Elementos do usuário à direita -->
                 <div class="user-section">
-                    <!-- Estrutura atual (sem alterações) -->
                     <button class="botaoMenu" id="botaoMenu">
                         <i class="bi bi-list"></i>
                     </button>
@@ -378,13 +377,13 @@
                 <div class="form-field">
                     <label for="item-name" class="field-label">Nome do Item *</label>
                     <input type="text" id="item-name" name="item-name" class="input-field" 
-                           placeholder="Ex: Tênis Nike Preto, Livro de Matemática..." required>
+                           placeholder="Ex: Tênis Nike Preto, Livro de Matemática...">
                 </div>
 
                 <!-- Categoria do Item -->
                 <div class="form-field">
                     <label for="category" class="field-label">Categoria *</label>
-                    <select id="category" name="category" class="select-field" required>
+                    <select id="category" name="category" class="select-field">
                         <option value="" selected disabled>Selecione uma categoria</option>
                         <option value="clothes">Roupas</option>
                         <option value="shoes">Calçados</option>
@@ -402,7 +401,7 @@
                     <label class="field-label">Qualidade do Item *</label>
                     <div class="radio-group">
                         <label class="radio-option">
-                            <input type="radio" name="quality" value="low" required>
+                            <input type="radio" name="quality" value="low">
                             <span class="radio-custom"></span>
                             Baixa
                         </label>
@@ -424,7 +423,7 @@
                     <label class="field-label">Estado do Item *</label>
                     <div class="radio-group">
                         <label class="radio-option">
-                            <input type="radio" name="condition" value="used" required>
+                            <input type="radio" name="condition" value="used">
                             <span class="radio-custom"></span>
                             Usado
                         </label>
@@ -446,7 +445,7 @@
                     <label for="description" class="field-label">Descrição do Produto *</label>
                     <textarea id="description" name="description" class="textarea-field" 
                               placeholder="Descreva detalhes sobre o item (cor, tamanho, marca, estado de conservação, etc.)"
-                              rows="4" required></textarea>
+                              rows="4"></textarea>
                 </div>
 
                 <!-- Upload de Fotos -->
@@ -458,7 +457,7 @@
                             <span class="upload-text">Clique ou arraste as fotos aqui</span>
                             <span class="upload-hint">Máximo: 5 fotos (JPG, PNG - até 5MB cada)</span>
                         </div>
-                        <input type="file" id="photos" name="photos" accept="image/*" multiple required>
+                        <input type="file" id="photos" name="photos" accept="image/*" multiple>
                     </label>
                     <div id="selected-files" class="selected-files"></div>
                 </div>
@@ -466,7 +465,7 @@
                 <!-- Escolha da ONG -->
                 <div class="form-field">
                     <label for="ngo" class="field-label">Escolha para quem deseja doar *</label>
-                    <select id="ngo" name="ngo" class="select-field" required>
+                    <select id="ngo" name="ngo" class="select-field">
                         <option value="" selected disabled>Selecione uma instituição</option>
                         <option value="conscious-paws">Patas Conscientes</option>
                         <option value="new-tomorrow">Centro Educacional Novo Amanhã</option>

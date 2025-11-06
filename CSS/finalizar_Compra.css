@@ -36,23 +36,14 @@
 }
 
 
-.invalid {
-    border: 1px solid var(--error-color) !important;
-    background-color: rgba(231, 76, 60, 0.05);
-}
-
-.btn-disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-}
-
-/* Mensagens de feedback */
+/* Mensagens de feedback - CORRIGIDO */
 .error-message {
     position: fixed;
     top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: var(--error-color);
+    right: 20px;
+    left: auto;
+    transform: none;
+    background-color: #e74c3c;
     color: white;
     padding: 15px 25px;
     border-radius: var(--radius-md);
@@ -61,13 +52,55 @@
     display: none;
     align-items: center;
     gap: 10px;
-    max-width: 90%;
+    max-width: 400px;
     animation: slideDown 0.3s ease-out;
     cursor: pointer;
+    border-left: 4px solid #c0392b;
 }
 
 .error-message i {
     font-size: 1.5rem;
+    color: white;
+}
+
+/* Garantir que o texto seja visível */
+#error-text {
+    color: white;
+    font-weight: 500;
+}
+
+/* Animações corrigidas */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Classes de validação visual melhoradas */
+.valid {
+    border: 2px solid var(--success-color) !important;
+    background-color: rgba(46, 204, 113, 0.05) !important;
+}
+
+.invalid {
+    border: 2px solid var(--error-color) !important;
+    background-color: rgba(231, 76, 60, 0.05) !important;
+}
+
+/* Feedback visual nos campos */
+.form-row input:invalid,
+.form-row select:invalid {
+    border-color: var(--error-color);
+}
+
+.form-row input:valid,
+.form-row select:valid {
+    border-color: var(--success-color);
 }
 
 .success-message {
