@@ -30,9 +30,16 @@ function fecharModalDenuncia() {
 // Função para mostrar erro em um campo específico
 function mostrarErro(campoId, mensagemId, mostrar) {
     const campo = document.getElementById(campoId);
-    const mensagemErro = document.getElementById(mensagemId);
+    let mensagemErro = document.getElementById(mensagemId);
     
-    if (campo && mensagemErro) {
+    if (campo) {
+        if (!mensagemErro) {
+            // Criar elemento de erro se não existir
+            mensagemErro = document.createElement('div');
+            mensagemErro.id = mensagemId;
+            mensagemErro.className = 'error-message';
+            campo.parentNode.insertBefore(mensagemErro, campo.nextSibling);
+        }
         if (mostrar) {
             campo.classList.add('campo-invalido');
             mensagemErro.classList.add('mostrar');
@@ -262,6 +269,45 @@ function inicializarModalDenuncia() {
     const fecharModalBtn = document.querySelector('.fechar-modal');
     const btnCancelar = document.querySelector('.btn-cancelar');
     const formDenuncia = document.getElementById('form-denuncia');
+    
+    // Adicionar validação em tempo real
+    const motivoDenuncia = document.getElementById('motivo-denuncia');
+    const descricaoDenuncia = document.getElementById('descricao-denuncia');
+    const emailDenuncia = document.getElementById('email-denuncia');
+    
+    if (motivoDenuncia) {
+        motivoDenuncia.addEventListener('change', function() {
+            if (this.value) {
+                mostrarErro('motivo-denuncia', 'motivo-erro', '');
+            }
+        });
+    }
+    
+    if (descricaoDenuncia) {
+        descricaoDenuncia.addEventListener('input', function() {
+            const descricao = this.value.trim();
+            if (descricao.length === 0) {
+                mostrarErro('descricao-denuncia', 'descricao-erro', '* Por favor, descreva o motivo da denúncia');
+            } else if (descricao.length < 20) {
+                mostrarErro('descricao-denuncia', 'descricao-erro', '* A descrição deve ter pelo menos 20 caracteres');
+            } else if (descricao.length > 500) {
+                mostrarErro('descricao-denuncia', 'descricao-erro', '* A descrição não pode ter mais de 500 caracteres');
+            } else {
+                mostrarErro('descricao-denuncia', 'descricao-erro', '');
+            }
+        });
+    }
+    
+    if (emailDenuncia) {
+        emailDenuncia.addEventListener('input', function() {
+            const email = this.value.trim();
+            if (email && !validarEmail(email)) {
+                mostrarErro('email-denuncia', 'email-erro', '* Por favor, insira um email válido');
+            } else {
+                mostrarErro('email-denuncia', 'email-erro', '');
+            }
+        });
+    }
     
     // Verificar se os elementos existem
     if (!abrirModalBtn || !modal) {

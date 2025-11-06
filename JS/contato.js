@@ -7,25 +7,103 @@
         });
 
         // Form submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
+        const contactForm = document.getElementById('contactForm');
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const messageInput = document.getElementById('message');
+
+        // Criar elementos para mensagens de erro
+        const nameError = document.createElement('div');
+        nameError.className = 'error-message';
+        nameInput.parentNode.appendChild(nameError);
+
+        const emailError = document.createElement('div');
+        emailError.className = 'error-message';
+        emailInput.parentNode.appendChild(emailError);
+
+        const messageError = document.createElement('div');
+        messageError.className = 'error-message';
+        messageInput.parentNode.appendChild(messageError);
+
+        // Validação em tempo real para o campo de nome
+        nameInput.addEventListener('input', function() {
+            if (this.value.trim()) {
+                nameError.textContent = '';
+                this.style.borderColor = '#e1e5e9';
+            }
+        });
+
+        // Validação em tempo real para o campo de email
+        emailInput.addEventListener('input', function() {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (this.value.trim() && emailRegex.test(this.value)) {
+                emailError.textContent = '';
+                this.style.borderColor = '#e1e5e9';
+            }
+        });
+
+        // Validação em tempo real para a mensagem
+        messageInput.addEventListener('input', function() {
+            if (this.value.trim()) {
+                messageError.textContent = '';
+                this.style.borderColor = '#e1e5e9';
+            }
+        });
+
+        contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
+            let isValid = true;
             
-            // Validação simples
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-            
-            if (!name || !email || !message) {
-                alert('Por favor, preencha todos os campos antes de enviar.');
-                return;
+            // Validação do nome
+            if (!nameInput.value.trim()) {
+                nameError.textContent = '* O nome é obrigatório';
+                nameInput.style.borderColor = '#e74c3c';
+                isValid = false;
+            } else {
+                nameError.textContent = '';
+                nameInput.style.borderColor = '#e1e5e9';
             }
             
-            // Mostrar overlay e mensagem de sucesso
-            document.getElementById('overlay').classList.add('active');
-            document.getElementById('successMessage').classList.add('active');
+            // Validação do email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailInput.value.trim()) {
+                emailError.textContent = '* O email é obrigatório';
+                emailInput.style.borderColor = '#e74c3c';
+                isValid = false;
+            } else if (!emailRegex.test(emailInput.value)) {
+                emailError.textContent = '* Digite um email válido';
+                emailInput.style.borderColor = '#e74c3c';
+                isValid = false;
+            } else {
+                emailError.textContent = '';
+                emailInput.style.borderColor = '#e1e5e9';
+            }
             
-            // Criar efeito de confete
-            createConfetti();
+            // Validação da mensagem
+            if (!messageInput.value.trim()) {
+                messageError.textContent = '* A mensagem é obrigatória';
+                messageInput.style.borderColor = '#e74c3c';
+                isValid = false;
+            } else if (messageInput.value.trim().length < 10) {
+                messageError.textContent = '* A mensagem deve ter pelo menos 10 caracteres';
+                messageInput.style.borderColor = '#e74c3c';
+                isValid = false;
+            } else {
+                messageError.textContent = '';
+                messageInput.style.borderColor = '#e1e5e9';
+            }
+            
+            if (isValid) {
+                // Mostrar overlay e mensagem de sucesso
+                document.getElementById('overlay').classList.add('active');
+                document.getElementById('successMessage').classList.add('active');
+                
+                // Criar efeito de confete
+                createConfetti();
+                
+                // Limpar formulário
+                contactForm.reset();
+            }
         });
         
         document.getElementById('closeSuccess').addEventListener('click', function() {
