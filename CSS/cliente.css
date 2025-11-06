@@ -880,8 +880,6 @@ footer {
     outline-offset: 2px;
 }
 
-/* CSS - Apenas adicionar estas regras */
-
 .botaoMenu {
     background-color: #007bff;
     color: white;
@@ -1502,9 +1500,7 @@ footer {
     }
 }
 
-/* Adicione ao CSS/cliente.css */
-
-/* Estilos para o botão de favoritar */
+/* ================= ORGANIZAÇÃO E AJUSTES ================= */
 .favorite-btn {
     position: absolute;
     top: 10px;
@@ -1522,31 +1518,25 @@ footer {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     z-index: 2;
 }
-
 .favorite-btn:hover {
     background: #fff;
     transform: scale(1.1);
 }
-
 .favorite-btn i {
     font-size: 18px;
     color: #666;
     transition: all 0.3s ease;
 }
-
-.favorite-btn.active i {
-    color: #e74c3c;
-}
-
+.favorite-btn.active i,
 .favorite-btn:hover i {
     color: #e74c3c;
 }
 
-/* Ajuste na posição do product-info para acomodar o botão */
+
 .product-info {
     padding: 15px;
     position: relative;
-    min-height: 120px; /* Garante espaço para o botão */
+    min-height: 120px; 
 }
 
 /* Notificações */
@@ -1563,27 +1553,21 @@ footer {
     opacity: 1;
     transition: opacity 0.5s ease;
 }
-
 .notification.fade-out {
     opacity: 0;
 }
-
-/* Adicione ao CSS/cliente.css */
 
 /* Contador de favoritos no menu */
 .favorites {
     position: relative;
 }
-
 .favorites-icon {
     color: white;
     font-size: 20px;
 }
-
 .favorites:hover .favorites-icon {
     color: #e74c3c;
 }
-
 .favorites-count {
     position: absolute;
     top: -8px;
