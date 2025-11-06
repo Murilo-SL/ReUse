@@ -131,7 +131,33 @@ body.dark-mode .presentation-side::before {
     transition: transform 0.5s ease;
 }
 
+.logo-container img {
+    transition: all 0.3s ease;
+}
+
+.logo-container span {
+    transition: all 0.3s ease;
+}
+
+.logo-container img.loading {
+    opacity: 0.5;
+}
+
 /* Modo noturno para a logo */
+/* Estilos para a transição da logo */
+.logo-container img {
+    transition: all 0.3s ease;
+}
+
+.logo-container span {
+    transition: all 0.3s ease;
+}
+
+.logo-container img.loading {
+    opacity: 0.5;
+}
+
+/* Garantir que a logo no modo noturno tenha as cores corretas */
 body.dark-mode .logo-container span {
     background: linear-gradient(135deg, #ffffff 0%, #00cc99 100%);
     -webkit-background-clip: text;

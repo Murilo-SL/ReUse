@@ -817,3 +817,60 @@ body.dark-mode .submit-btn:hover,
 body.dark-mode .modal-close-btn:hover {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
 }
+
+/* Estilos específicos para a logo na página de recuperação de senha */
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeInDown 1s ease;
+    margin: 5% 5%;
+}
+
+.logo-container a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    gap: 10px;
+}
+
+.logo-container span {
+    font-size: 4rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #002244 0%, #0088ff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    line-height: 1;
+    transition: all 0.3s ease;
+}
+
+.logo-container img {
+    width: 150px;
+    height: auto;
+    transition: all 0.3s ease;
+}
+
+/* Modo noturno para a logo */
+body.dark-mode .logo-container span {
+    background: linear-gradient(135deg, #5AC8FA 0%, #66FF99 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+/* Efeitos de hover */
+.logo-container:hover img {
+    transform: scale(1.05);
+}
+
+.logo-container:hover span {
+    transform: scale(1.02);
+}
+
+/* Loading state para transição suave */
+.logo-container img.loading {
+    opacity: 0.5;
+}

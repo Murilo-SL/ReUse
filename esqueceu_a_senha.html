@@ -49,9 +49,11 @@
     <main class="container" role="main">
         <div class="form-container active">
             <div class="logo-container">
-                <img class="logo" src="IMG/reuse-logo-(2).svg"
-                    alt="Logo ReUse - Plataforma de reutilização sustentável">
-                <span>Reuse</span>
+                <a href="index.html">
+                    <img id="siteLogo" class="logo" src="IMG/reuse-logo-(2).svg" 
+                         alt="Logo ReUse - Plataforma de reutilização sustentável">
+                    <span id="siteLogoText">Reuse</span>
+                </a>
             </div>
             <div class="Recuperar-form">
                 <form id="recoveryForm" novalidate>
@@ -109,35 +111,8 @@
     <script src="JS/esqueceu_a_senha.js"></script>
     <script src="JS/shared-navigation.js"></script>
     
-    <!-- Script do Modo Noturno -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const themeToggle = document.getElementById('themeToggle');
-            const icon = themeToggle.querySelector('i');
-            
-            // Verificar preferência salva
-            if (localStorage.getItem('darkMode') === 'enabled') {
-                document.body.classList.add('dark-mode');
-                icon.className = 'fas fa-sun';
-                themeToggle.setAttribute('aria-label', 'Alternar para modo claro');
-            }
-            
-            // Alternar modo
-            themeToggle.addEventListener('click', function() {
-                document.body.classList.toggle('dark-mode');
-                
-                if (document.body.classList.contains('dark-mode')) {
-                    localStorage.setItem('darkMode', 'enabled');
-                    icon.className = 'fas fa-sun';
-                    themeToggle.setAttribute('aria-label', 'Alternar para modo claro');
-                } else {
-                    localStorage.setItem('darkMode', 'disabled');
-                    icon.className = 'fas fa-moon';
-                    themeToggle.setAttribute('aria-label', 'Alternar para modo escuro');
-                }
-            });
-        });
-    </script>
+    <!-- Script do Modo Noturno Universal -->
+    <script src="JS/modo_noturno_inicial.js"></script>
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q755SR73MY"></script>

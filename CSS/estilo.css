@@ -1650,6 +1650,96 @@ body.dark-mode .auth-card .auth-description {
     color: #e0e0e0;
 }
 
+/* Estilos para a logo no modo noturno */
+body.dark-mode .logo-container span {
+    background: linear-gradient(135deg, #5AC8FA 0%, #66FF99 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+/* Transição suave para a mudança de logo */
+.logo-container img {
+    transition: all 0.3s ease;
+}
+
+.logo-container span {
+    transition: all 0.3s ease;
+}
+
+/* Melhorias para as animações */
+.stat-item, .intro-card, .cta-button {
+    transition: all 0.3s ease;
+}
+
+/* Efeito de brilho nos botões */
+.cta-button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.cta-button:hover::after {
+    left: 100%;
+}
+
+/* Animações melhoradas para as estatísticas */
+@keyframes countUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.stat-item {
+    animation: countUp 0.8s ease-out forwards;
+}
+
+/* Efeito de pulso para ícones */
+@keyframes iconPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.stat-item:hover .stat-icon {
+    animation: iconPulse 0.6s ease;
+}
+
+/* Melhorias de responsividade */
+@media (max-width: 768px) {
+    .logo-container span {
+        font-size: 2.5rem;
+    }
+    
+    .logo-container img {
+        width: 120px;
+    }
+}
+
+/* Efeito de loading para as imagens */
+.logo-container img {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.logo-container img.loading {
+    opacity: 0.5;
+}
+
 body.dark-mode .value-item,
 body.dark-mode .auth-card {
     background: #3a3a3a;
