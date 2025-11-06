@@ -74,37 +74,41 @@
 
                         <div class="form-group">
                             <label for="nome-produto">Nome do Produto *</label>
-                            <input type="text" id="nome-produto" name="nome-produto" required
+                            <input type="text" id="nome-produto" name="nome-produto" 
                                 placeholder="Ex: Liquidificador Philips">
+                            <div class="error-message" id="nome-produto-error"></div>
                         </div>
 
                         <div class="form-group">
                             <label for="descricao-produto">Descrição *</label>
-                            <textarea id="descricao-produto" name="descricao-produto" rows="4" required
+                            <textarea id="descricao-produto" name="descricao-produto" rows="4"
                                 placeholder="Descreva o produto em detalhes..."></textarea>
+                            <div class="error-message" id="descricao-produto-error"></div>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="categoria-produto">Categoria *</label>
-                                <select id="categoria-produto" name="categoria-produto" required>
+                                <select id="categoria-produto" name="categoria-produto">
                                     <option value="">Selecione uma categoria</option>
                                     <option value="Eletrodomésticos">Eletrodomésticos</option>
                                     <option value="Utensílios">Utensílios</option>
                                     <option value="Móveis">Móveis</option>
                                     <option value="Casa e Cozinha">Casa e Cozinha</option>
                                 </select>
+                                <div class="error-message" id="categoria-produto-error"></div>
                             </div>
 
                             <div class="form-group">
                                 <label for="condicao-produto">Condição *</label>
-                                <select id="condicao-produto" name="condicao-produto" required>
+                                <select id="condicao-produto" name="condicao-produto">
                                     <option value="">Selecione a condição</option>
                                     <option value="Novo">Novo</option>
                                     <option value="Semi-novo">Semi-novo</option>
                                     <option value="Usado - Excelente estado">Usado - Excelente estado</option>
                                     <option value="Usado - Bom estado">Usado - Bom estado</option>
                                 </select>
+                                <div class="error-message" id="condicao-produto-error"></div>
                             </div>
                         </div>
                     </div>
@@ -116,13 +120,15 @@
                             <div class="form-group">
                                 <label for="preco-produto">Preço (R$) *</label>
                                 <input type="number" id="preco-produto" name="preco-produto" min="0" step="0.01"
-                                    required placeholder="0,00">
+                                    placeholder="0,00">
+                                <div class="error-message" id="preco-produto-error"></div>
                             </div>
 
                             <div class="form-group">
                                 <label for="quantidade-produto">Quantidade *</label>
-                                <input type="number" id="quantidade-produto" name="quantidade-produto" min="1" required
+                                <input type="number" id="quantidade-produto" name="quantidade-produto" min="1"
                                     placeholder="1">
+                                <div class="error-message" id="quantidade-produto-error"></div>
                             </div>
                         </div>
 
@@ -147,8 +153,8 @@
                             <div class="image-upload-box" id="main-image-upload">
                                 <i class="bi bi-camera-fill"></i>
                                 <p>Imagem Principal</p>
-                                <input type="file" id="imagem-principal" name="imagem-principal" accept="image/*"
-                                    required>
+                                <input type="file" id="imagem-principal" name="imagem-principal" accept="image/*">
+                                <div class="error-message" id="imagem-principal-error"></div>
                             </div>
 
                             <div class="image-upload-box">
@@ -339,19 +345,173 @@
 
         // ============ VALIDAÇÃO E PROCESSAMENTO DO FORMULÁRIO ============
 
+        // Função para exibir mensagem de erro abaixo do campo
+        function mostrarErro(campoId, mensagem) {
+            const errorElement = document.getElementById(`${campoId}-error`);
+            if (errorElement) {
+                errorElement.textContent = mensagem;
+                errorElement.style.display = 'block';
+                
+                // Adicionar classe de erro ao campo
+                const campo = document.getElementById(campoId);
+                if (campo) {
+                    campo.classList.add('campo-erro');
+                }
+            }
+        }
+
+        // Função para limpar mensagem de erro
+        function limparErro(campoId) {
+            const errorElement = document.getElementById(`${campoId}-error`);
+            if (errorElement) {
+                errorElement.textContent = '';
+                errorElement.style.display = 'none';
+                
+                // Remover classe de erro do campo
+                const campo = document.getElementById(campoId);
+                if (campo) {
+                    campo.classList.remove('campo-erro');
+                }
+            }
+        }
+
+        // Função para validar um campo específico
+        function validarCampo(campoId, tipoValidacao) {
+            const campo = document.getElementById(campoId);
+            const valor = campo.value.trim();
+            
+            // Limpar erro anterior
+            limparErro(campoId);
+            
+            // Validações específicas por tipo
+            switch(tipoValidacao) {
+                case 'obrigatorio':
+                    if (!valor) {
+                        mostrarErro(campoId, 'Este campo é obrigatório');
+                        return false;
+                    }
+                    break;
+                    
+                case 'numero':
+                    if (!valor) {
+                        mostrarErro(campoId, 'Este campo é obrigatório');
+                        return false;
+                    }
+                    if (isNaN(valor) || parseFloat(valor) <= 0) {
+                        mostrarErro(campoId, 'Digite um valor válido maior que zero');
+                        return false;
+                    }
+                    break;
+                    
+                case 'quantidade':
+                    if (!valor) {
+                        mostrarErro(campoId, 'Este campo é obrigatório');
+                        return false;
+                    }
+                    if (isNaN(valor) || parseInt(valor) < 1) {
+                        mostrarErro(campoId, 'Digite uma quantidade válida (mínimo 1)');
+                        return false;
+                    }
+                    break;
+                    
+                case 'select':
+                    if (!valor) {
+                        mostrarErro(campoId, 'Selecione uma opção');
+                        return false;
+                    }
+                    break;
+                    
+                case 'imagem':
+                    const arquivo = campo.files[0];
+                    if (!arquivo) {
+                        mostrarErro(campoId, 'A imagem principal é obrigatória');
+                        return false;
+                    }
+                    // Validar tipo de arquivo
+                    const tiposPermitidos = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+                    if (!tiposPermitidos.includes(arquivo.type)) {
+                        mostrarErro(campoId, 'Formato de imagem não suportado. Use JPG, PNG, GIF ou WebP');
+                        return false;
+                    }
+                    // Validar tamanho do arquivo (máximo 5MB)
+                    if (arquivo.size > 5 * 1024 * 1024) {
+                        mostrarErro(campoId, 'A imagem deve ter no máximo 5MB');
+                        return false;
+                    }
+                    break;
+            }
+            
+            return true;
+        }
+
+        // Função para validar todo o formulário
+        function validarFormulario() {
+            let valido = true;
+            
+            // Validar campos obrigatórios
+            const camposObrigatorios = [
+                { id: 'nome-produto', tipo: 'obrigatorio' },
+                { id: 'descricao-produto', tipo: 'obrigatorio' },
+                { id: 'categoria-produto', tipo: 'select' },
+                { id: 'condicao-produto', tipo: 'select' },
+                { id: 'preco-produto', tipo: 'numero' },
+                { id: 'quantidade-produto', tipo: 'quantidade' },
+                { id: 'imagem-principal', tipo: 'imagem' }
+            ];
+            
+            camposObrigatorios.forEach(campo => {
+                if (!validarCampo(campo.id, campo.tipo)) {
+                    valido = false;
+                }
+            });
+            
+            return valido;
+        }
+
+        // Validação em tempo real para campos obrigatórios
+        document.addEventListener('DOMContentLoaded', function() {
+            // Adicionar eventos de validação em tempo real
+            const camposValidacao = [
+                'nome-produto', 'descricao-produto', 'categoria-produto', 
+                'condicao-produto', 'preco-produto', 'quantidade-produto'
+            ];
+            
+            camposValidacao.forEach(campoId => {
+                const campo = document.getElementById(campoId);
+                if (campo) {
+                    campo.addEventListener('blur', function() {
+                        // Determinar tipo de validação baseado no campo
+                        let tipo = 'obrigatorio';
+                        if (campoId === 'preco-produto') tipo = 'numero';
+                        if (campoId === 'quantidade-produto') tipo = 'quantidade';
+                        if (campoId.includes('categoria') || campoId.includes('condicao')) tipo = 'select';
+                        
+                        validarCampo(campoId, tipo);
+                    });
+                    
+                    // Limpar erro ao começar a digitar
+                    campo.addEventListener('input', function() {
+                        limparErro(campoId);
+                    });
+                }
+            });
+            
+            // Validação especial para imagem
+            const imagemPrincipal = document.getElementById('imagem-principal');
+            if (imagemPrincipal) {
+                imagemPrincipal.addEventListener('change', function() {
+                    validarCampo('imagem-principal', 'imagem');
+                });
+            }
+        });
+
         // Validação do formulário
         document.getElementById('produto-form').addEventListener('submit', function (e) {
             e.preventDefault();
 
-            // Validações básicas
-            const nome = document.getElementById('nome-produto').value;
-            const preco = document.getElementById('preco-produto').value;
-            const categoria = document.getElementById('categoria-produto').value;
-            const quantidade = document.getElementById('quantidade-produto').value;
-            const condicao = document.getElementById('condicao-produto').value;
-
-            if (!nome || !preco || !categoria || !quantidade || !condicao) {
-                mostrarNotificacao('Por favor, preencha todos os campos obrigatórios.', 'error');
+            // Validar formulário
+            if (!validarFormulario()) {
+                mostrarNotificacao('Por favor, corrija os erros no formulário.', 'error');
                 return;
             }
 
@@ -365,19 +525,19 @@
 
             // Calcular preço parcelado
             const parcelas = parseInt(document.getElementById('parcelas-produto').value);
-            const precoParcelado = parcelas > 1 ? parseFloat(preco) / parcelas : parseFloat(preco);
+            const precoParcelado = parcelas > 1 ? parseFloat(document.getElementById('preco-produto').value) / parcelas : parseFloat(document.getElementById('preco-produto').value);
 
             // Criar objeto do produto com estrutura compatível
             const novoProduto = {
                 id: gerarIdUnico(),
-                nome: nome,
+                nome: document.getElementById('nome-produto').value,
                 descricao: document.getElementById('descricao-produto').value,
-                categoria: categoria,
-                condicao: condicao,
-                precoVista: parseFloat(preco),
+                categoria: document.getElementById('categoria-produto').value,
+                condicao: document.getElementById('condicao-produto').value,
+                precoVista: parseFloat(document.getElementById('preco-produto').value),
                 precoParcelado: precoParcelado,
                 parcelas: parcelas,
-                quantidade: parseInt(quantidade),
+                quantidade: parseInt(document.getElementById('quantidade-produto').value),
                 marca: document.getElementById('marca-produto').value || 'Sem marca',
                 medidas: medidasArray,
                 informacoes: informacoesArray,

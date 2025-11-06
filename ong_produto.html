@@ -146,90 +146,7 @@
             <!-- Grid de Produtos -->
             <div class="products-section">
                 <div class="products-grid" id="products-grid">
-                    <!-- Produto 1: Camisa -->
-                    <div class="product-card" data-categoria="roupas" data-vendidos="15" data-preco="35"
-                        data-avaliacao="4.9">
-                        <div class="product-image camisa"><img src="IMG/camiseta.sos.jpg" alt="Camisa"></div>
-                        <h3 class="product-name">Camisa SOS Felino</h3>
-                        <div class="product-price">R$ 35,00</div>
-                        <p class="product-description">Camisa casual de algodão, confortável e com estampa da
-                            instituição.</p>
-                        <div class="product-stats">
-                            <span><i class="bi bi-cart"></i> 15 vendidos</span>
-                            <span><i class="bi bi-star-fill"></i> 4.9 (12 avaliações)</span>
-                        </div>
-                        <div class="donation-actions">
-                            <button class="primary-button small" onclick="editarProduto(1)">
-                                <i class="fas fa-edit"></i> Editar
-                            </button>
-                            <button class="danger-button small" onclick="excluirProduto(1)">
-                                <i class="fas fa-trash"></i> Excluir
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Produto 2: Broche -->
-                    <div class="product-card" data-categoria="acessorios" data-vendidos="10" data-preco="15"
-                        data-avaliacao="4.7">
-                        <div class="product-image broche"><img src="IMG/broche.sos.jpg" alt="broche"></div>
-                        <h3 class="product-name">Broche SOS Felino</h3>
-                        <div class="product-price">R$ 15,00</div>
-                        <p class="product-description">Broche metálico com logo da instituição.</p>
-                        <div class="product-stats">
-                            <span><i class="bi bi-cart"></i> 10 vendidos</span>
-                            <span><i class="bi bi-star-fill"></i> 4.7 (8 avaliações)</span>
-                        </div>
-                        <div class="donation-actions">
-                            <button class="primary-button small" onclick="editarProduto(2)">
-                                <i class="fas fa-edit"></i> Editar
-                            </button>
-                            <button class="danger-button small" onclick="excluirProduto(2)">
-                                <i class="fas fa-trash"></i> Excluir
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Produto 3: Bolsa -->
-                    <div class="product-card" data-categoria="acessorios" data-vendidos="6" data-preco="45"
-                        data-avaliacao="4.5">
-                        <div class="product-image bolsa"><img src="IMG/bolsa.sos.jpg" alt="bolsa"></div>
-                        <h3 class="product-name">Bolsa SOS Felino</h3>
-                        <div class="product-price">R$ 45,00</div>
-                        <p class="product-description">Bolsa de algodão ecologicamente correta.</p>
-                        <div class="product-stats">
-                            <span><i class="bi bi-cart"></i> 6 vendidos</span>
-                            <span><i class="bi bi-star-fill"></i> 4.5 (5 avaliações)</span>
-                        </div>
-                        <div class="donation-actions">
-                            <button class="primary-button small" onclick="editarProduto(3)">
-                                <i class="fas fa-edit"></i> Editar
-                            </button>
-                            <button class="danger-button small" onclick="excluirProduto(3)">
-                                <i class="fas fa-trash"></i> Excluir
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Produto 4: Caneca -->
-                    <div class="product-card" data-categoria="casa" data-vendidos="20" data-preco="20"
-                        data-avaliacao="4.8">
-                        <div class="product-image caneca"><img src="IMG/caneca.sos.jpg" alt="caneca"></div>
-                        <h3 class="product-name">Caneca SOS Felino</h3>
-                        <div class="product-price">R$ 20,00</div>
-                        <p class="product-description">Caneca em cerâmica com estampa personalizada.</p>
-                        <div class="product-stats">
-                            <span><i class="bi bi-cart"></i> 20 vendidos</span>
-                            <span><i class="bi bi-star-fill"></i> 4.8 (15 avaliações)</span>
-                        </div>
-                        <div class="donation-actions">
-                            <button class="primary-button small" onclick="editarProduto(4)">
-                                <i class="fas fa-edit"></i> Editar
-                            </button>
-                            <button class="danger-button small" onclick="excluirProduto(4)">
-                                <i class="fas fa-trash"></i> Excluir
-                            </button>
-                        </div>
-                    </div>
+                    <!-- Produtos serão carregados dinamicamente pelo JavaScript -->
                 </div>
 
                 <!-- Estado vazio (inicialmente oculto) -->
@@ -265,8 +182,7 @@
         </div>
     </footer>
 
-
-<!-- Modal Adicionar Produto - Substituir o campo URL por Upload -->
+<!-- Modal Adicionar Produto -->
 <div id="modalAdicionar" class="modal">
     <div class="modal-content">
         <div class="modal-header">
@@ -276,33 +192,37 @@
         <div class="modal-body">
             <form id="formAdicionarProduto">
                 <div class="form-group">
-                    <label for="novoNomeProduto">Nome do Produto *</label>
-                    <input type="text" id="novoNomeProduto" required>
+                    <label for="novoNomeProduto">Nome do Produto</label>
+                    <input type="text" id="novoNomeProduto" placeholder="Digite o nome do produto">
+                    <div class="error-message" id="erroNomeProduto"></div>
                 </div>
 
                 <div class="form-group">
-                    <label for="novoPrecoProduto">Preço (R$) *</label>
-                    <input type="number" id="novoPrecoProduto" min="0" step="0.01" required>
+                    <label for="novoPrecoProduto">Preço (R$)</label>
+                    <input type="number" id="novoPrecoProduto" min="0" step="0.01" placeholder="0.00">
+                    <div class="error-message" id="erroPrecoProduto"></div>
                 </div>
 
                 <div class="form-group">
-                    <label for="novoCategoriaProduto">Categoria *</label>
-                    <select id="novoCategoriaProduto" required>
+                    <label for="novoCategoriaProduto">Categoria</label>
+                    <select id="novoCategoriaProduto">
+                        <option value="">Selecione uma categoria</option>
                         <option value="roupas">Roupas</option>
                         <option value="acessorios">Acessórios</option>
                         <option value="casa">Produtos para Casa</option>
                     </select>
+                    <div class="error-message" id="erroCategoriaProduto"></div>
                 </div>
 
                 <div class="form-group">
-                    <label for="novaDescricaoProduto">Descrição *</label>
-                    <textarea id="novaDescricaoProduto" rows="3" required></textarea>
+                    <label for="novaDescricaoProduto">Descrição</label>
+                    <textarea id="novaDescricaoProduto" rows="3" placeholder="Descreva o produto"></textarea>
+                    <div class="error-message" id="erroDescricaoProduto"></div>
                 </div>
 
-                <!-- SUBSTITUIR: Campo de URL por Upload de Imagem -->
                 <div class="form-group">
-                    <label for="novaImagemProduto">Imagem do Produto *</label>
-                    <input type="file" id="novaImagemProduto" accept="image/*" required>
+                    <label for="novaImagemProduto">Imagem do Produto</label>
+                    <input type="file" id="novaImagemProduto" accept="image/*">
                     <small style="color: #666; font-size: 12px;">Formatos aceitos: JPG, PNG, GIF (Máx. 2MB)</small>
                     <div class="image-preview" id="previewNovaImagem" style="display: none;">
                         <img id="previewImgNova" src="" alt="Pré-visualização" style="max-width: 200px; max-height: 200px;">
@@ -319,7 +239,7 @@
     </div>
 </div>
 
-<!-- Modal Editar Produto - Também substituir por upload -->
+<!-- Modal Editar Produto -->
 <div id="modalEditar" class="modal">
     <div class="modal-content">
         <div class="modal-header">
@@ -331,30 +251,34 @@
                 <input type="hidden" id="produtoId">
 
                 <div class="form-group">
-                    <label for="nomeProduto">Nome do Produto *</label>
-                    <input type="text" id="nomeProduto" required>
+                    <label for="nomeProduto">Nome do Produto</label>
+                    <input type="text" id="nomeProduto" placeholder="Digite o nome do produto">
+                    <div class="error-message" id="erroNomeProdutoEditar"></div>
                 </div>
 
                 <div class="form-group">
-                    <label for="precoProduto">Preço (R$) *</label>
-                    <input type="number" id="precoProduto" min="0" step="0.01" required>
+                    <label for="precoProduto">Preço (R$)</label>
+                    <input type="number" id="precoProduto" min="0" step="0.01" placeholder="0.00">
+                    <div class="error-message" id="erroPrecoProdutoEditar"></div>
                 </div>
 
                 <div class="form-group">
-                    <label for="categoriaProduto">Categoria *</label>
-                    <select id="categoriaProduto" required>
+                    <label for="categoriaProduto">Categoria</label>
+                    <select id="categoriaProduto">
+                        <option value="">Selecione uma categoria</option>
                         <option value="roupas">Roupas</option>
                         <option value="acessorios">Acessórios</option>
                         <option value="casa">Produtos para Casa</option>
                     </select>
+                    <div class="error-message" id="erroCategoriaProdutoEditar"></div>
                 </div>
 
                 <div class="form-group">
-                    <label for="descricaoProduto">Descrição *</label>
-                    <textarea id="descricaoProduto" rows="3" required></textarea>
+                    <label for="descricaoProduto">Descrição</label>
+                    <textarea id="descricaoProduto" rows="3" placeholder="Descreva o produto"></textarea>
+                    <div class="error-message" id="erroDescricaoProdutoEditar"></div>
                 </div>
 
-                <!-- SUBSTITUIR: Campo de URL por Upload de Imagem -->
                 <div class="form-group">
                     <label for="imagemProduto">Imagem do Produto</label>
                     <input type="file" id="imagemProduto" accept="image/*">
@@ -391,54 +315,6 @@
                         onclick="fecharModal('modalExcluir')">Cancelar</button>
                     <button type="button" class="danger-button" onclick="confirmarExclusao()">Excluir Produto</button>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Adicionar Produto -->
-    <div id="modalAdicionar" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Adicionar Novo Produto</h2>
-                <span class="close">&times;</span>
-            </div>
-            <div class="modal-body">
-                <form id="formAdicionarProduto">
-                    <div class="form-group">
-                        <label for="novoNomeProduto">Nome do Produto</label>
-                        <input type="text" id="novoNomeProduto" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="novoPrecoProduto">Preço (R$)</label>
-                        <input type="number" id="novoPrecoProduto" min="0" step="0.01" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="novoCategoriaProduto">Categoria</label>
-                        <select id="novoCategoriaProduto" required>
-                            <option value="roupas">Roupas</option>
-                            <option value="acessorios">Acessórios</option>
-                            <option value="casa">Produtos para Casa</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="novaDescricaoProduto">Descrição</label>
-                        <textarea id="novaDescricaoProduto" rows="3" required></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="novaImagemProduto">URL da Imagem</label>
-                        <input type="text" id="novaImagemProduto">
-                    </div>
-
-                    <div class="form-actions">
-                        <button type="button" class="secondary-button"
-                            onclick="fecharModal('modalAdicionar')">Cancelar</button>
-                        <button type="submit" class="primary-button">Adicionar Produto</button>
-                    </div>
-                </form>
             </div>
         </div>
     </div>

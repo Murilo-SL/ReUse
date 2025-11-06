@@ -1,4 +1,4 @@
-// ong_doacoes_necessarias.js - Sistema completo e sincronizado
+// ong_doacoes_necessarias.js - Sistema completo e sincronizado com validação customizada
 
 // ============ SISTEMA DE ARMAZENAMENTO ============
 
@@ -135,7 +135,7 @@ function carregarDoacoes() {
     container.innerHTML = `
         <div class="loading-state">
             <div class="loading-spinner">
-                <i class="fas fa-spinner"></i>
+                <i class="fas fa-spinner fa-spin"></i>
             </div>
             <span>Carregando doações...</span>
         </div>
@@ -249,10 +249,10 @@ function criarCardDoacao(doacao) {
 
 // Função para filtrar doações
 function filtrarDoacoes(doacoesArray) {
-    const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-    const categoriaSelecionada = document.getElementById('categoryFilter').value;
-    const prioridadeSelecionada = document.getElementById('priorityFilter').value;
-    const statusSelecionado = document.getElementById('statusFilter').value;
+    const searchTerm = document.getElementById('searchInput')?.value.toLowerCase() || '';
+    const categoriaSelecionada = document.getElementById('categoryFilter')?.value || '';
+    const prioridadeSelecionada = document.getElementById('priorityFilter')?.value || '';
+    const statusSelecionado = document.getElementById('statusFilter')?.value || '';
     
     return doacoesArray.filter(doacao => {
         const correspondeBusca = doacao.name.toLowerCase().includes(searchTerm) || 
@@ -353,12 +353,12 @@ function salvarEdicaoDoacao(id) {
         
         if (!doacao) {
             mostrarNotificacao('Doação não encontrada', 'error');
-            return;
+            return false;
         }
         
         // Atualizar dados
-        doacao.name = document.getElementById('itemName').value;
-        doacao.description = document.getElementById('itemDescription').value;
+        doacao.name = document.getElementById('itemName').value.trim();
+        doacao.description = document.getElementById('itemDescription').value.trim();
         doacao.category = document.getElementById('itemCategory').value;
         doacao.priority = document.getElementById('itemPriority').value;
         doacao.target = parseInt(document.getElementById('itemQuantity').value);
@@ -372,10 +372,12 @@ function salvarEdicaoDoacao(id) {
         
         // Mostrar notificação
         mostrarNotificacao('Doação atualizada com sucesso!', 'success');
+        return true;
         
     } catch (error) {
         console.error('Erro ao salvar edição:', error);
         mostrarNotificacao('Erro ao salvar alterações', 'error');
+        return false;
     }
 }
 
@@ -596,18 +598,35 @@ function mostrarNotificacao(mensagem, tipo = 'info') {
             ${mensagem}
         `;
         
+        // Estilos da notificação
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: ${tipo === 'success' ? '#4CAF50' : tipo === 'error' ? '#f44336' : '#2196F3'};
+            color: white;
+            padding: 15px 20px;
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+            max-width: 400px;
+        `;
+        
         document.body.appendChild(notification);
         
         // Animação de entrada
         setTimeout(() => {
             notification.style.transform = 'translateX(0)';
-            notification.style.opacity = '1';
         }, 100);
         
         // Remover após 3 segundos
         setTimeout(() => {
-            notification.style.transform = 'translateX(100%)';
-            notification.style.opacity = '0';
+            notification.style.transform = 'translateX(400px)';
             setTimeout(() => {
                 if (notification.parentNode) {
                     notification.remove();
@@ -693,13 +712,13 @@ function handleImageUpload(event) {
     const maxFileSize = 5 * 1024 * 1024; // 5MB
 
     if (!allowedFileTypes.includes(file.type)) {
-        showError(errorElement, 'Selecione uma imagem válida (JPG, PNG, GIF ou WebP).');
+        showError('itemImageError', 'Selecione uma imagem válida (JPG, PNG, GIF ou WebP).');
         removeImage();
         return;
     }
 
     if (file.size > maxFileSize) {
-        showError(errorElement, 'A imagem deve ter no máximo 5MB.');
+        showError('itemImageError', 'A imagem deve ter no máximo 5MB.');
         removeImage();
         return;
     }
@@ -710,7 +729,7 @@ function handleImageUpload(event) {
     };
     
     reader.onerror = function() {
-        showError(errorElement, 'Erro ao carregar a imagem. Tente novamente.');
+        showError('itemImageError', 'Erro ao carregar a imagem. Tente novamente.');
     };
     
     reader.readAsDataURL(file);
@@ -727,8 +746,8 @@ function updateImagePreview(imageData, fileName) {
     removeBtn.style.display = 'block';
 
     if (fileNameDisplay) {
-        fileNameDisplay.textContent = fileName;
-        fileNameDisplay.style.display = 'block';
+        fileNameDisplay.querySelector('span').textContent = fileName;
+        fileNameDisplay.style.display = 'flex';
     }
 
     // Salvar temporariamente
@@ -754,7 +773,7 @@ function removeImage() {
     fileInput.value = '';
 
     if (fileNameDisplay) {
-        fileNameDisplay.textContent = '';
+        fileNameDisplay.querySelector('span').textContent = '';
         fileNameDisplay.style.display = 'none';
     }
 
@@ -785,14 +804,14 @@ function loadExistingImage(imageUrl, doacaoId) {
             const fileNameKey = doacaoId ? `tempFileName_${doacaoId}` : 'tempFileName_new';
             const fileName = localStorage.getItem(fileNameKey);
             if (fileName && fileNameDisplay) {
-                fileNameDisplay.textContent = fileName;
-                fileNameDisplay.style.display = 'block';
+                fileNameDisplay.querySelector('span').textContent = fileName;
+                fileNameDisplay.style.display = 'flex';
             }
         } else {
             preview.classList.remove('has-image');
             if (fileNameDisplay) {
-                fileNameDisplay.textContent = imageUrl;
-                fileNameDisplay.style.display = 'block';
+                fileNameDisplay.querySelector('span').textContent = imageUrl;
+                fileNameDisplay.style.display = 'flex';
             }
         }
         document.getElementById('currentImage').value = imageUrl;
@@ -824,56 +843,241 @@ function validateForm() {
     const name = document.getElementById('itemName').value.trim();
     if (!name) {
         showError('itemNameError', 'Informe o nome do item.');
+        highlightField('itemName', true);
         isValid = false;
     } else if (name.length < 3) {
         showError('itemNameError', 'O nome deve ter pelo menos 3 caracteres.');
+        highlightField('itemName', true);
         isValid = false;
+    } else {
+        highlightField('itemName', false);
     }
 
     // Descrição
     const description = document.getElementById('itemDescription').value.trim();
     if (!description) {
         showError('itemDescriptionError', 'Informe a descrição do item.');
+        highlightField('itemDescription', true);
         isValid = false;
     } else if (description.length < 10) {
         showError('itemDescriptionError', 'A descrição deve ter pelo menos 10 caracteres.');
+        highlightField('itemDescription', true);
         isValid = false;
+    } else {
+        highlightField('itemDescription', false);
     }
 
     // Categoria
     const category = document.getElementById('itemCategory').value;
     if (!category) {
         showError('itemCategoryError', 'Selecione uma categoria.');
+        highlightField('itemCategory', true);
         isValid = false;
+    } else {
+        highlightField('itemCategory', false);
     }
 
     // Prioridade
     const priority = document.getElementById('itemPriority').value;
     if (!priority) {
         showError('itemPriorityError', 'Selecione uma prioridade.');
+        highlightField('itemPriority', true);
         isValid = false;
+    } else {
+        highlightField('itemPriority', false);
     }
 
     // Quantidade
     const quantity = parseInt(document.getElementById('itemQuantity').value);
     if (!quantity || quantity <= 0) {
         showError('itemQuantityError', 'Informe uma quantidade válida (maior que zero).');
+        highlightField('itemQuantity', true);
         isValid = false;
+    } else {
+        highlightField('itemQuantity', false);
     }
 
     // Quantidade arrecadada
     const collected = parseInt(document.getElementById('itemCollected').value) || 0;
     if (collected < 0) {
         showError('itemCollectedError', 'A quantidade arrecadada não pode ser negativa.');
+        highlightField('itemCollected', true);
         isValid = false;
+    } else if (collected > quantity) {
+        showError('itemCollectedError', 'A quantidade arrecadada não pode ser maior que a necessária.');
+        highlightField('itemCollected', true);
+        isValid = false;
+    } else {
+        highlightField('itemCollected', false);
     }
 
-    if (collected > quantity) {
-        showError('itemCollectedError', 'A quantidade arrecadada não pode ser maior que a necessária.');
+    // Status
+    const status = document.getElementById('itemStatus').value;
+    if (!status) {
+        showError('itemStatusError', 'Selecione um status.');
+        highlightField('itemStatus', true);
         isValid = false;
+    } else {
+        highlightField('itemStatus', false);
     }
 
     return isValid;
+}
+
+// Função para destacar campo com erro
+function highlightField(fieldId, hasError) {
+    const field = document.getElementById(fieldId);
+    if (field) {
+        if (hasError) {
+            field.style.borderColor = '#f44336';
+            field.style.boxShadow = '0 0 0 2px rgba(244, 67, 54, 0.1)';
+        } else {
+            field.style.borderColor = '#4CAF50';
+            field.style.boxShadow = '0 0 0 2px rgba(76, 175, 80, 0.1)';
+        }
+    }
+}
+
+// Função para remover destaque dos campos
+function clearFieldHighlights() {
+    const fields = [
+        'itemName', 'itemDescription', 'itemCategory', 'itemPriority',
+        'itemQuantity', 'itemCollected', 'itemStatus'
+    ];
+    
+    fields.forEach(fieldId => {
+        const field = document.getElementById(fieldId);
+        if (field) {
+            field.style.borderColor = '';
+            field.style.boxShadow = '';
+        }
+    });
+}
+
+function showError(elementId, message) {
+    const element = document.getElementById(elementId);
+    if (element) {
+        element.textContent = message;
+        element.style.display = 'block';
+        element.style.color = '#f44336';
+        element.style.fontSize = '12px';
+        element.style.marginTop = '5px';
+        element.style.fontWeight = '500';
+    }
+}
+
+function clearError(element) {
+    if (element) {
+        element.textContent = '';
+        element.style.display = 'none';
+    }
+}
+
+function clearAllErrors() {
+    document.querySelectorAll('.error-message').forEach(clearError);
+    clearFieldHighlights();
+}
+
+// Adicionar eventos de validação em tempo real
+function initializeRealTimeValidation() {
+    const fields = [
+        'itemName', 'itemDescription', 'itemCategory', 'itemPriority',
+        'itemQuantity', 'itemCollected', 'itemStatus'
+    ];
+    
+    fields.forEach(fieldId => {
+        const field = document.getElementById(fieldId);
+        if (field) {
+            field.addEventListener('blur', function() {
+                validateField(fieldId);
+            });
+            
+            field.addEventListener('input', function() {
+                // Limpar erro quando o usuário começar a digitar
+                const errorElement = document.getElementById(fieldId + 'Error');
+                if (errorElement && errorElement.style.display !== 'none') {
+                    clearError(errorElement);
+                    highlightField(fieldId, false);
+                }
+            });
+        }
+    });
+}
+
+// Validar campo individual
+function validateField(fieldId) {
+    const field = document.getElementById(fieldId);
+    const value = field.value.trim();
+    const errorElement = document.getElementById(fieldId + 'Error');
+    
+    if (!errorElement) return;
+    
+    clearError(errorElement);
+    highlightField(fieldId, false);
+    
+    switch (fieldId) {
+        case 'itemName':
+            if (!value) {
+                showError('itemNameError', 'Informe o nome do item.');
+                highlightField(fieldId, true);
+            } else if (value.length < 3) {
+                showError('itemNameError', 'O nome deve ter pelo menos 3 caracteres.');
+                highlightField(fieldId, true);
+            }
+            break;
+            
+        case 'itemDescription':
+            if (!value) {
+                showError('itemDescriptionError', 'Informe a descrição do item.');
+                highlightField(fieldId, true);
+            } else if (value.length < 10) {
+                showError('itemDescriptionError', 'A descrição deve ter pelo menos 10 caracteres.');
+                highlightField(fieldId, true);
+            }
+            break;
+            
+        case 'itemCategory':
+            if (!value) {
+                showError('itemCategoryError', 'Selecione uma categoria.');
+                highlightField(fieldId, true);
+            }
+            break;
+            
+        case 'itemPriority':
+            if (!value) {
+                showError('itemPriorityError', 'Selecione uma prioridade.');
+                highlightField(fieldId, true);
+            }
+            break;
+            
+        case 'itemQuantity':
+            const quantity = parseInt(value);
+            if (!quantity || quantity <= 0) {
+                showError('itemQuantityError', 'Informe uma quantidade válida (maior que zero).');
+                highlightField(fieldId, true);
+            }
+            break;
+            
+        case 'itemCollected':
+            const collected = parseInt(value) || 0;
+            const targetQuantity = parseInt(document.getElementById('itemQuantity').value) || 0;
+            
+            if (collected < 0) {
+                showError('itemCollectedError', 'A quantidade arrecadada não pode ser negativa.');
+                highlightField(fieldId, true);
+            } else if (targetQuantity > 0 && collected > targetQuantity) {
+                showError('itemCollectedError', 'A quantidade arrecadada não pode ser maior que a necessária.');
+                highlightField(fieldId, true);
+            }
+            break;
+            
+        case 'itemStatus':
+            if (!value) {
+                showError('itemStatusError', 'Selecione um status.');
+                highlightField(fieldId, true);
+            }
+            break;
+    }
 }
 
 function getFormData() {
@@ -898,23 +1102,6 @@ function gerarIdUnico() {
     return Date.now().toString();
 }
 
-function showError(elementId, message) {
-    const element = document.getElementById(elementId);
-    element.textContent = message;
-    element.style.display = 'block';
-}
-
-function clearError(element) {
-    if (element) {
-        element.textContent = '';
-        element.style.display = 'none';
-    }
-}
-
-function clearAllErrors() {
-    document.querySelectorAll('.error-message').forEach(clearError);
-}
-
 // ============ INICIALIZAÇÃO ============
 
 // Inicializar quando o DOM estiver carregado
@@ -935,6 +1122,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Inicializar eventos
     inicializarEventosFiltro();
     inicializarEventosDoacoes();
+    initializeRealTimeValidation(); // Nova função de validação em tempo real
     
     // Configurar eventos do modal
     document.getElementById('addDonationBtn').addEventListener('click', openAddModal);
@@ -942,7 +1130,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // Configurar formulário
     document.getElementById('donationForm').addEventListener('submit', function(e) {
         e.preventDefault();
-        if (!validateForm()) return;
+        if (!validateForm()) {
+            // Rolagem para o primeiro erro
+            const firstError = document.querySelector('.error-message[style*="display: block"]');
+            if (firstError) {
+                firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            return;
+        }
 
         const doacaoId = document.getElementById('donationId').value;
         let sucesso = false;
@@ -987,4 +1182,7 @@ function closeAllModals() {
 
     const doacaoId = document.getElementById('donationId').value;
     cleanupTempStorage(doacaoId);
+    
+    // Limpar erros ao fechar modal
+    clearAllErrors();
 }

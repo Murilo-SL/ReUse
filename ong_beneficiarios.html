@@ -7,7 +7,7 @@
     
     <!-- Folhas de estilo -->
     <link rel="stylesheet" href="CSS/ong.css">
-    <link rel="stylesheet" href="CSS/ONG_Beneficiarios.css">
+    <link rel="stylesheet" href="CSS/ong_beneficiarios.css">
     <link rel="stylesheet" href="CSS/breadcrumbs.css">
     <link rel="stylesheet" href="CSS/modo_noturno_ong.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -157,7 +157,7 @@
                 </div>
                 <div class="form-actions">
                     <button type="button" class="secondary-button" onclick="clearAdvancedFilters()">Limpar</button>
-                    <button type="button" class="primary-button" onclick="applyAdvancedFilters()">Aplicar Filtros</button>
+                    <button type="button" class="primary-button" onclick="aplicarFiltros()">Aplicar Filtros</button>
                 </div>
             </div>
             
@@ -183,7 +183,7 @@
         </main>
     </div>
 
-    <!-- Modal para Adicionar/Editar Beneficiário -->
+    <!-- Modal para Adicionar Beneficiário -->
     <div id="beneficiary-modal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -195,55 +195,55 @@
                     <input type="hidden" id="beneficiary-id">
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="beneficiary-name">Nome *</label>
-                            <input type="text" id="beneficiary-name" maxlength="100" required>
+                            <label for="beneficiary-name">Nome</label>
+                            <input type="text" id="beneficiary-name" maxlength="100">
                             <div class="char-counter" id="name-counter">0/100</div>
-                            <div class="error-message" id="name-error">Nome é obrigatório</div>
+                            <div class="error-message" id="beneficiary-name-error"></div>
                         </div>
                         <div class="form-group">
-                            <label for="beneficiary-type">Tipo *</label>
-                            <select id="beneficiary-type" required>
+                            <label for="beneficiary-type">Tipo</label>
+                            <select id="beneficiary-type">
                                 <option value="">Selecione o tipo</option>
                                 <option value="individual">Indivíduo</option>
                                 <option value="family">Família</option>
                                 <option value="institution">Instituição</option>
                             </select>
-                            <div class="error-message" id="type-error">Tipo é obrigatório</div>
+                            <div class="error-message" id="beneficiary-type-error"></div>
                         </div>
                     </div>
                     
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="beneficiary-email">E-mail *</label>
-                            <input type="email" id="beneficiary-email" maxlength="150" required>
+                            <label for="beneficiary-email">E-mail</label>
+                            <input type="email" id="beneficiary-email" maxlength="150">
                             <div class="char-counter" id="email-counter">0/150</div>
-                            <div class="error-message" id="email-error">E-mail válido é obrigatório</div>
+                            <div class="error-message" id="beneficiary-email-error"></div>
                         </div>
                         <div class="form-group">
-                            <label for="beneficiary-phone">Telefone *</label>
-                            <input type="tel" id="beneficiary-phone" maxlength="15" required>
+                            <label for="beneficiary-phone">Telefone</label>
+                            <input type="tel" id="beneficiary-phone" maxlength="15">
                             <div class="char-counter" id="phone-counter">0/15</div>
-                            <div class="error-message" id="phone-error">Telefone válido é obrigatório</div>
+                            <div class="error-message" id="beneficiary-phone-error"></div>
                         </div>
                     </div>
                     
                     <div class="form-group">
-                        <label for="beneficiary-address">Endereço *</label>
-                        <input type="text" id="beneficiary-address" maxlength="200" required>
+                        <label for="beneficiary-address">Endereço</label>
+                        <input type="text" id="beneficiary-address" maxlength="200">
                         <div class="char-counter" id="address-counter">0/200</div>
-                        <div class="error-message" id="address-error">Endereço é obrigatório</div>
+                        <div class="error-message" id="beneficiary-address-error"></div>
                     </div>
                     
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="beneficiary-city">Cidade *</label>
-                            <input type="text" id="beneficiary-city" maxlength="50" required>
+                            <label for="beneficiary-city">Cidade</label>
+                            <input type="text" id="beneficiary-city" maxlength="50">
                             <div class="char-counter" id="city-counter">0/50</div>
-                            <div class="error-message" id="city-error">Cidade é obrigatória</div>
+                            <div class="error-message" id="beneficiary-city-error"></div>
                         </div>
                         <div class="form-group">
-                            <label for="beneficiary-state">Estado *</label>
-                            <select id="beneficiary-state" required>
+                            <label for="beneficiary-state">Estado</label>
+                            <select id="beneficiary-state">
                                 <option value="">Selecione o estado</option>
                                 <option value="AC">Acre</option>
                                 <option value="AL">Alagoas</option>
@@ -273,23 +273,23 @@
                                 <option value="SE">Sergipe</option>
                                 <option value="TO">Tocantins</option>
                             </select>
-                            <div class="error-message" id="state-error">Estado é obrigatório</div>
+                            <div class="error-message" id="beneficiary-state-error"></div>
                         </div>
                     </div>
                     
                     <div class="form-group">
-                        <label for="beneficiary-animals">Número de animais resgatados *</label>
-                        <input type="number" id="beneficiary-animals" min="1" max="999" required>
-                        <div class="error-message" id="animals-error">Número válido de animais é obrigatório</div>
+                        <label for="beneficiary-animals">Número de animais resgatados</label>
+                        <input type="number" id="beneficiary-animals" min="1" max="999">
+                        <div class="error-message" id="beneficiary-animals-error"></div>
                     </div>
                     
                     <div class="form-group">
-                        <label for="beneficiary-status">Status *</label>
-                        <select id="beneficiary-status" required>
+                        <label for="beneficiary-status">Status</label>
+                        <select id="beneficiary-status">
                             <option value="active">Ativo</option>
                             <option value="inactive">Inativo</option>
                         </select>
-                        <div class="error-message" id="status-error">Status é obrigatório</div>
+                        <div class="error-message" id="beneficiary-status-error"></div>
                     </div>
                     
                     <div class="form-actions">
@@ -346,55 +346,55 @@
                     <input type="hidden" id="edit-beneficiary-id">
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="edit-beneficiary-name">Nome *</label>
-                            <input type="text" id="edit-beneficiary-name" maxlength="100" required>
+                            <label for="edit-beneficiary-name">Nome</label>
+                            <input type="text" id="edit-beneficiary-name" maxlength="100">
                             <div class="char-counter" id="edit-name-counter">0/100</div>
-                            <div class="error-message" id="edit-name-error">Nome é obrigatório</div>
+                            <div class="error-message" id="edit-beneficiary-name-error"></div>
                         </div>
                         <div class="form-group">
-                            <label for="edit-beneficiary-type">Tipo *</label>
-                            <select id="edit-beneficiary-type" required>
+                            <label for="edit-beneficiary-type">Tipo</label>
+                            <select id="edit-beneficiary-type">
                                 <option value="">Selecione o tipo</option>
                                 <option value="individual">Indivíduo</option>
                                 <option value="family">Família</option>
                                 <option value="institution">Instituição</option>
                             </select>
-                            <div class="error-message" id="edit-type-error">Tipo é obrigatório</div>
+                            <div class="error-message" id="edit-beneficiary-type-error"></div>
                         </div>
                     </div>
                     
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="edit-beneficiary-email">E-mail *</label>
-                            <input type="email" id="edit-beneficiary-email" maxlength="150" required>
+                            <label for="edit-beneficiary-email">E-mail</label>
+                            <input type="email" id="edit-beneficiary-email" maxlength="150">
                             <div class="char-counter" id="edit-email-counter">0/150</div>
-                            <div class="error-message" id="edit-email-error">E-mail válido é obrigatório</div>
+                            <div class="error-message" id="edit-beneficiary-email-error"></div>
                         </div>
                         <div class="form-group">
-                            <label for="edit-beneficiary-phone">Telefone *</label>
-                            <input type="tel" id="edit-beneficiary-phone" maxlength="15" required>
+                            <label for="edit-beneficiary-phone">Telefone</label>
+                            <input type="tel" id="edit-beneficiary-phone" maxlength="15">
                             <div class="char-counter" id="edit-phone-counter">0/15</div>
-                            <div class="error-message" id="edit-phone-error">Telefone válido é obrigatório</div>
+                            <div class="error-message" id="edit-beneficiary-phone-error"></div>
                         </div>
                     </div>
                     
                     <div class="form-group">
-                        <label for="edit-beneficiary-address">Endereço *</label>
-                        <input type="text" id="edit-beneficiary-address" maxlength="200" required>
+                        <label for="edit-beneficiary-address">Endereço</label>
+                        <input type="text" id="edit-beneficiary-address" maxlength="200">
                         <div class="char-counter" id="edit-address-counter">0/200</div>
-                        <div class="error-message" id="edit-address-error">Endereço é obrigatório</div>
+                        <div class="error-message" id="edit-beneficiary-address-error"></div>
                     </div>
                     
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="edit-beneficiary-city">Cidade *</label>
-                            <input type="text" id="edit-beneficiary-city" maxlength="50" required>
+                            <label for="edit-beneficiary-city">Cidade</label>
+                            <input type="text" id="edit-beneficiary-city" maxlength="50">
                             <div class="char-counter" id="edit-city-counter">0/50</div>
-                            <div class="error-message" id="edit-city-error">Cidade é obrigatória</div>
+                            <div class="error-message" id="edit-beneficiary-city-error"></div>
                         </div>
                         <div class="form-group">
-                            <label for="edit-beneficiary-state">Estado *</label>
-                            <select id="edit-beneficiary-state" required>
+                            <label for="edit-beneficiary-state">Estado</label>
+                            <select id="edit-beneficiary-state">
                                 <option value="">Selecione o estado</option>
                                 <option value="AC">Acre</option>
                                 <option value="AL">Alagoas</option>
@@ -424,23 +424,23 @@
                                 <option value="SE">Sergipe</option>
                                 <option value="TO">Tocantins</option>
                             </select>
-                            <div class="error-message" id="edit-state-error">Estado é obrigatório</div>
+                            <div class="error-message" id="edit-beneficiary-state-error"></div>
                         </div>
                     </div>
                     
                     <div class="form-group">
-                        <label for="edit-beneficiary-animals">Número de animais resgatados *</label>
-                        <input type="number" id="edit-beneficiary-animals" min="1" max="999" required>
-                        <div class="error-message" id="edit-animals-error">Número válido de animais é obrigatório</div>
+                        <label for="edit-beneficiary-animals">Número de animais resgatados</label>
+                        <input type="number" id="edit-beneficiary-animals" min="1" max="999">
+                        <div class="error-message" id="edit-beneficiary-animals-error"></div>
                     </div>
                     
                     <div class="form-group">
-                        <label for="edit-beneficiary-status">Status *</label>
-                        <select id="edit-beneficiary-status" required>
+                        <label for="edit-beneficiary-status">Status</label>
+                        <select id="edit-beneficiary-status">
                             <option value="active">Ativo</option>
                             <option value="inactive">Inativo</option>
                         </select>
-                        <div class="error-message" id="edit-status-error">Status é obrigatório</div>
+                        <div class="error-message" id="edit-beneficiary-status-error"></div>
                     </div>
                     
                     <div class="form-actions">
@@ -450,12 +450,6 @@
                 </form>
             </div>
         </div>
-    </div>
-
-    <!-- Mensagem de Sucesso -->
-    <div id="success-message" class="success-message">
-        <i class="fas fa-check-circle"></i>
-        <span id="success-text">Operação realizada com sucesso!</span>
     </div>
 
     <!-- RODAPÉ -->

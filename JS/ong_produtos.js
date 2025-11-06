@@ -1,4 +1,4 @@
-// ong_produtos.js - Sistema completo com upload de fotos e modais funcionais
+// ong_produtos.js - Sistema completo com validação personalizada
 
 // ============ SISTEMA DE ARMAZENAMENTO ============
 
@@ -18,6 +18,174 @@ let produtos = [];
 let produtoAtualId = null;
 let produtosFiltrados = [];
 let proximoId = 5;
+
+// ============ SISTEMA DE VALIDAÇÃO ============
+
+function mostrarErro(elementoId, mensagem) {
+    const elemento = document.getElementById(elementoId);
+    if (elemento) {
+        elemento.textContent = mensagem;
+        elemento.style.display = 'block';
+        
+        // Adicionar classe de erro ao input
+        const input = elemento.previousElementSibling;
+        if (input && (input.tagName === 'INPUT' || input.tagName === 'SELECT' || input.tagName === 'TEXTAREA')) {
+            input.classList.add('input-error');
+        }
+    }
+}
+
+function limparErro(elementoId) {
+    const elemento = document.getElementById(elementoId);
+    if (elemento) {
+        elemento.textContent = '';
+        elemento.style.display = 'none';
+        
+        // Remover classe de erro do input
+        const input = elemento.previousElementSibling;
+        if (input && (input.tagName === 'INPUT' || input.tagName === 'SELECT' || input.tagName === 'TEXTAREA')) {
+            input.classList.remove('input-error');
+        }
+    }
+}
+
+function limparErrosFormulario(tipo) {
+    if (tipo === 'adicionar') {
+        limparErro('erroNomeProduto');
+        limparErro('erroPrecoProduto');
+        limparErro('erroCategoriaProduto');
+        limparErro('erroDescricaoProduto');
+        limparErro('erroImagem');
+    } else if (tipo === 'editar') {
+        limparErro('erroNomeProdutoEditar');
+        limparErro('erroPrecoProdutoEditar');
+        limparErro('erroCategoriaProdutoEditar');
+        limparErro('erroDescricaoProdutoEditar');
+        limparErro('erroImagemEditar');
+    }
+}
+
+function validarFormularioAdicionar() {
+    let valido = true;
+    
+    // Limpar erros anteriores
+    limparErrosFormulario('adicionar');
+    
+    // Validar nome
+    const nome = document.getElementById('novoNomeProduto').value.trim();
+    if (!nome) {
+        mostrarErro('erroNomeProduto', 'O nome do produto é obrigatório');
+        valido = false;
+    } else if (nome.length < 2) {
+        mostrarErro('erroNomeProduto', 'O nome deve ter pelo menos 2 caracteres');
+        valido = false;
+    }
+    
+    // Validar preço
+    const preco = parseFloat(document.getElementById('novoPrecoProduto').value);
+    if (isNaN(preco) || preco <= 0) {
+        mostrarErro('erroPrecoProduto', 'Digite um preço válido maior que zero');
+        valido = false;
+    }
+    
+    // Validar categoria
+    const categoria = document.getElementById('novoCategoriaProduto').value;
+    if (!categoria) {
+        mostrarErro('erroCategoriaProduto', 'Selecione uma categoria');
+        valido = false;
+    }
+    
+    // Validar descrição
+    const descricao = document.getElementById('novaDescricaoProduto').value.trim();
+    if (!descricao) {
+        mostrarErro('erroDescricaoProduto', 'A descrição é obrigatória');
+        valido = false;
+    } else if (descricao.length < 10) {
+        mostrarErro('erroDescricaoProduto', 'A descrição deve ter pelo menos 10 caracteres');
+        valido = false;
+    }
+    
+    // Validar imagem
+    const inputImagem = document.getElementById('novaImagemProduto');
+    if (!inputImagem.files[0]) {
+        mostrarErro('erroImagem', 'Selecione uma imagem para o produto');
+        valido = false;
+    } else {
+        // Validar tipo e tamanho da imagem
+        const file = inputImagem.files[0];
+        const tiposPermitidos = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+        const tamanhoMaximo = 2 * 1024 * 1024; // 2MB
+        
+        if (!tiposPermitidos.includes(file.type)) {
+            mostrarErro('erroImagem', 'Formato não suportado. Use JPG, PNG, GIF ou WebP.');
+            valido = false;
+        } else if (file.size > tamanhoMaximo) {
+            mostrarErro('erroImagem', 'Imagem muito grande. Tamanho máximo: 2MB.');
+            valido = false;
+        }
+    }
+    
+    return valido;
+}
+
+function validarFormularioEditar() {
+    let valido = true;
+    
+    // Limpar erros anteriores
+    limparErrosFormulario('editar');
+    
+    // Validar nome
+    const nome = document.getElementById('nomeProduto').value.trim();
+    if (!nome) {
+        mostrarErro('erroNomeProdutoEditar', 'O nome do produto é obrigatório');
+        valido = false;
+    } else if (nome.length < 2) {
+        mostrarErro('erroNomeProdutoEditar', 'O nome deve ter pelo menos 2 caracteres');
+        valido = false;
+    }
+    
+    // Validar preço
+    const preco = parseFloat(document.getElementById('precoProduto').value);
+    if (isNaN(preco) || preco <= 0) {
+        mostrarErro('erroPrecoProdutoEditar', 'Digite um preço válido maior que zero');
+        valido = false;
+    }
+    
+    // Validar categoria
+    const categoria = document.getElementById('categoriaProduto').value;
+    if (!categoria) {
+        mostrarErro('erroCategoriaProdutoEditar', 'Selecione uma categoria');
+        valido = false;
+    }
+    
+    // Validar descrição
+    const descricao = document.getElementById('descricaoProduto').value.trim();
+    if (!descricao) {
+        mostrarErro('erroDescricaoProdutoEditar', 'A descrição é obrigatória');
+        valido = false;
+    } else if (descricao.length < 10) {
+        mostrarErro('erroDescricaoProdutoEditar', 'A descrição deve ter pelo menos 10 caracteres');
+        valido = false;
+    }
+    
+    // Validar imagem (opcional na edição)
+    const inputImagem = document.getElementById('imagemProduto');
+    if (inputImagem.files[0]) {
+        const file = inputImagem.files[0];
+        const tiposPermitidos = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+        const tamanhoMaximo = 2 * 1024 * 1024;
+        
+        if (!tiposPermitidos.includes(file.type)) {
+            mostrarErro('erroImagemEditar', 'Formato não suportado. Use JPG, PNG, GIF ou WebP.');
+            valido = false;
+        } else if (file.size > tamanhoMaximo) {
+            mostrarErro('erroImagemEditar', 'Imagem muito grande. Tamanho máximo: 2MB.');
+            valido = false;
+        }
+    }
+    
+    return valido;
+}
 
 // ============ INICIALIZAÇÃO ============
 
@@ -147,6 +315,12 @@ function adicionarCSSPersonalizado() {
                 font-size: 0.875rem;
                 margin-top: 5px;
                 display: none;
+                padding: 5px 0;
+            }
+            
+            .input-error {
+                border-color: #dc3545 !important;
+                background-color: #fff5f5 !important;
             }
             
             .loading-spinner {
@@ -345,8 +519,7 @@ function abrirModalAdicionar() {
     if (previewNova) previewNova.style.display = 'none';
     
     // Limpar erros
-    const erroImagem = document.getElementById('erroImagem');
-    if (erroImagem) erroImagem.style.display = 'none';
+    limparErrosFormulario('adicionar');
     
     abrirModal('modalAdicionar');
 }
@@ -374,11 +547,13 @@ function fecharModal(modalId) {
                 if (formAdd) formAdd.reset();
                 const previewAdd = document.getElementById('previewNovaImagem');
                 if (previewAdd) previewAdd.style.display = 'none';
+                limparErrosFormulario('adicionar');
                 break;
                 
             case 'modalEditar':
                 const inputImg = document.getElementById('imagemProduto');
                 if (inputImg) inputImg.value = '';
+                limparErrosFormulario('editar');
                 break;
         }
     }
@@ -397,6 +572,7 @@ function inicializarUploadImagens() {
 
     if (inputNovaImagem && previewImgNova) {
         inputNovaImagem.addEventListener('change', function(e) {
+            limparErro('erroImagem');
             validarEExibirPreview(this, previewImgNova, previewNova, erroImagem);
         });
     }
@@ -409,6 +585,7 @@ function inicializarUploadImagens() {
 
     if (inputImagemEditar && previewImgAtual) {
         inputImagemEditar.addEventListener('change', function(e) {
+            limparErro('erroImagemEditar');
             validarEExibirPreview(this, previewImgAtual, previewAtual, erroImagemEditar);
         });
     }
@@ -672,8 +849,7 @@ function editarProduto(id) {
         const inputImagem = document.getElementById('imagemProduto');
         if (inputImagem) inputImagem.value = '';
         
-        const erroImagemEditar = document.getElementById('erroImagemEditar');
-        if (erroImagemEditar) erroImagemEditar.style.display = 'none';
+        limparErro('erroImagemEditar');
         
         abrirModal('modalEditar');
     }
@@ -692,18 +868,14 @@ function excluirProduto(id) {
 function adicionarNovoProduto(e) {
     e.preventDefault();
     
-    const inputImagem = document.getElementById('novaImagemProduto');
-    const erroImagem = document.getElementById('erroImagem');
-    
-    // Validar imagem
-    if (!inputImagem || !inputImagem.files[0]) {
-        if (erroImagem) {
-            erroImagem.textContent = 'Selecione uma imagem para o produto.';
-            erroImagem.style.display = 'block';
-        }
+    // Validar formulário
+    if (!validarFormularioAdicionar()) {
+        mostrarNotificacao('❌ Por favor, corrija os erros no formulário', 'error');
         return;
     }
 
+    const inputImagem = document.getElementById('novaImagemProduto');
+    
     // Converter imagem
     imagemParaBase64(inputImagem.files[0], function(imagemBase64) {
         if (!imagemBase64) {
@@ -713,10 +885,10 @@ function adicionarNovoProduto(e) {
 
         const novoProduto = {
             id: proximoId++,
-            nome: document.getElementById('novoNomeProduto').value,
+            nome: document.getElementById('novoNomeProduto').value.trim(),
             preco: parseFloat(document.getElementById('novoPrecoProduto').value),
             categoria: document.getElementById('novoCategoriaProduto').value,
-            descricao: document.getElementById('novaDescricaoProduto').value,
+            descricao: document.getElementById('novaDescricaoProduto').value.trim(),
             imagem: imagemBase64,
             vendidos: 0,
             avaliacao: 0,
@@ -733,6 +905,12 @@ function adicionarNovoProduto(e) {
 
 function salvarEdicaoProduto(e) {
     e.preventDefault();
+    
+    // Validar formulário
+    if (!validarFormularioEditar()) {
+        mostrarNotificacao('❌ Por favor, corrija os erros no formulário', 'error');
+        return;
+    }
     
     const produtoIndex = produtos.findIndex(p => p.id === produtoAtualId);
     const inputImagem = document.getElementById('imagemProduto');
@@ -756,10 +934,10 @@ function salvarEdicaoProduto(e) {
 }
 
 function atualizarProdutoComImagem(produtoIndex, imagem) {
-    produtos[produtoIndex].nome = document.getElementById('nomeProduto').value;
+    produtos[produtoIndex].nome = document.getElementById('nomeProduto').value.trim();
     produtos[produtoIndex].preco = parseFloat(document.getElementById('precoProduto').value);
     produtos[produtoIndex].categoria = document.getElementById('categoriaProduto').value;
-    produtos[produtoIndex].descricao = document.getElementById('descricaoProduto').value;
+    produtos[produtoIndex].descricao = document.getElementById('descricaoProduto').value.trim();
     produtos[produtoIndex].imagem = imagem;
     
     salvarProdutos(produtos);

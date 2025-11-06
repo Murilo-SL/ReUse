@@ -87,10 +87,11 @@
                 <form id="donationForm" class="donation-form">
                     <div class="form-group full-width">
                         <label for="product">Selecionar Produto para Doação</label>
-                        <select id="product" required>
+                        <select id="product">
                             <option value="">Selecione um produto</option>
                             <!-- Os produtos serão preenchidos via JavaScript -->
                         </select>
+                        <div class="error-message" id="product-error"></div>
                         <div id="product-details" class="product-details" style="display: none; margin-top: 10px; padding: 10px; background: #f8f9fa; border-radius: 6px;">
                             <p><strong>Detalhes do Produto:</strong></p>
                             <p id="product-name"></p>
@@ -101,7 +102,7 @@
 
                     <div class="form-group">
                         <label for="ong">ONG Beneficiada</label>
-                        <select id="ong" required>
+                        <select id="ong">
                             <option value="">Selecione uma ONG</option>
                             <option value="ong1">SOS felino</option>
                             <option value="ong2">Patas Concientes</option>
@@ -109,11 +110,13 @@
                             <option value="ong4">Centro Educacional Novo Amanhã</option>
                             <option value="ong5">Greenpeace</option>
                         </select>
+                        <div class="error-message" id="ong-error"></div>
                     </div>
 
                     <div class="form-group">
                         <label for="date">Data de Retirada</label>
-                        <input type="date" id="date" required>
+                        <input type="date" id="date">
+                        <div class="error-message" id="date-error"></div>
                     </div>
 
                     <div class="form-group">
@@ -218,8 +221,6 @@
         </div>
     </div>
 
-    <script src="JS/doacao_vendedor.js"></script>
-    
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q755SR73MY"></script>
     <script>
@@ -228,6 +229,7 @@
         gtag('js', new Date());
         gtag('config', 'G-Q755SR73MY');
     </script>
+    <script src="JS/doacao_vendedor.js"></script>
     <script src="JS/breadcrumbs.js"></script>
     <script src="JS/shared-navigation.js"></script>
     <script src="JS/modo_noturno_vendedor.js"></script>

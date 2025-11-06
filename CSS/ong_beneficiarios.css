@@ -625,3 +625,27 @@
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
+
+        /* Estilos para campos com erro */
+.form-group.error input,
+.form-group.error select {
+    border-color: #f44336;
+    box-shadow: 0 0 0 2px rgba(244, 67, 54, 0.1);
+}
+
+.error-message {
+    color: #f44336;
+    font-size: 12px;
+    margin-top: 5px;
+    display: none;
+}
+
+.form-group.error .error-message {
+    display: block;
+}
+
+/* Estilo para inputs com erro */
+input.error,
+select.error {
+    border-color: #f44336 !important;
+}

@@ -2073,4 +2073,26 @@
             display: none;
         }
 
+
+        /* Estilos para mensagens de erro */
+.error-message {
+    color: #dc3545;
+    font-size: 12px;
+    margin-top: 5px;
+    display: none;
+    font-weight: 500;
+}
+
+.campo-erro {
+    border-color: #dc3545 !important;
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25) !important;
+}
+
+/* Melhorar a aparência dos campos com erro */
+.form-group input.campo-erro,
+.form-group select.campo-erro,
+.form-group textarea.campo-erro {
+    border-color: #dc3545;
+    background-color: #fff5f5;
+}
         
