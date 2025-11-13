@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.body.appendChild(waveContainer);
 
-    // Resto do código permanece igual...
     const statNumbers = document.querySelectorAll('.stat-number');
     
     const options = {

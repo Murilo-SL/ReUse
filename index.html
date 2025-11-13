@@ -24,9 +24,39 @@
         </div>
 
         <!-- Botão de Alternância de Modo -->
-<button class="theme-toggle" id="themeToggle" aria-label="Alternar modo claro/escuro">
-    <i class="bi bi-moon"></i>
-</button>
+        <button class="theme-toggle" id="themeToggle" aria-label="Alternar modo claro/escuro">
+            <i class="bi bi-moon"></i>
+        </button>
+
+        <!-- Seletor de Idioma -->
+        <div class="language-selector" id="languageSelector">
+            <button class="language-btn" aria-label="Selecionar idioma">
+                <i class="bi bi-translate"></i>
+                <span>Português</span>
+                <i class="bi bi-chevron-down"></i>
+            </button>
+            <div class="language-dropdown">
+                <div class="language-option" data-lang="pt">
+                    <i class="bi bi-check-lg"></i>
+                    <span>Português</span>
+                </div>
+                <div class="language-option" data-lang="en">
+                    <i class="bi bi-check-lg"></i>
+                    <span>English</span>
+                </div>
+                <div class="language-option" data-lang="es">
+                    <i class="bi bi-check-lg"></i>
+                    <span>Español</span>
+                </div>
+                <div class="language-option" data-lang="fr">
+                    <i class="bi bi-check-lg"></i>
+                    <span>Français</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resto do conteúdo permanece igual -->
+        <!-- ... -->
 
         <!--  Seção Unificada -->
         <section class="unified-intro-section">
@@ -261,12 +291,12 @@
             gtag('js', new Date());
             gtag('config', 'G-Q755SR73MY');
         </script>
-
-        <script src="JS/inicial.js"></script>
-        <script src="JS/breadcrumbs.js"></script>
-        <script src="JS/shared-navigation.js"></script>
     </div>
-        <script src="JS/modo_noturno_inicial.js"></script>
+    <script src="JS/modo_noturno_inicial.js"></script>
+    <script src="JS/language-selector.js"></script>
+    <script src="JS/inicial.js"></script>
+    <script src="JS/breadcrumbs.js"></script>
+    <script src="JS/shared-navigation.js"></script>
 </body>
 
 </html>

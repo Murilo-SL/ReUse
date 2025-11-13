@@ -512,7 +512,7 @@ function carregarProduto() {
         medidasList.appendChild(li);
     });
     
-    // ATUALIZAÇÃO AQUI: Link para a página de perfil do vendedor
+    // : Link para a página de perfil do vendedor
     document.getElementById('produto-vendedor').textContent = produto.vendedor;
     document.getElementById('produto-vendedor-link').href = `perfilvendedor.html?vendedor=${encodeURIComponent(produto.vendedor)}`;
     
