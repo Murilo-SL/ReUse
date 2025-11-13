@@ -11,6 +11,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="CSS/breadcrumbs.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+  
       <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <script>
         new window.VLibras.Widget('https://vlibras.gov.br/app');
@@ -39,6 +41,68 @@
       <h1 class="page-title">Conheça a ReUse</h1>
       <p class="page-subtitle">Descubra nossa missão, valores e como estamos transformando o consumo através da economia circular</p>
     </div>
+
+
+    <!-- Seção: Projeto Acadêmico -->
+    <section class="content-section">
+      <h2 class="section-title"><i class="bi bi-mortarboard"></i> Projeto Acadêmico</h2>
+      <div class="section-content">
+        <div class="academic-project-container">
+          <div class="project-info">
+            <div class="project-badge">
+              <span class="badge-icon"><i class="bi bi-feather"></i></span>
+              <span class="badge-text">Em Desenvolvimento</span>
+            </div>
+            
+            <div class="project-description">
+              <p>Este projeto foi desenvolvido como parte integrante do curso de <strong>Sistemas para Internet</strong> da <strong>Fatec Taquaritinga</strong>, representando um trabalho acadêmico focado no desenvolvimento de soluções web inovadoras com impacto social positivo.</p>
+              
+              <div class="project-details">
+                <div class="detail-item">
+                  <i class="bi bi-code-slash"></i>
+                  <div>
+                    <h4>Desenvolvimento Contínuo</h4>
+                    <p>Esta é uma versão beta em constante evolução, com melhorias sendo implementadas regularmente.</p>
+                  </div>
+                </div>
+                
+                <div class="detail-item">
+                  <i class="bi bi-lightbulb"></i>
+                  <div>
+                    <h4>Objetivo Educacional</h4>
+                    <p>Projeto desenvolvido para aplicar conhecimentos acadêmicos em um contexto real de desenvolvimento web.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="institution-card">
+            <div class="institution-logo">
+              <img src="IMG/fatec_taquaritinga.svg" alt="Fatec Taquaritinga" class="fatec-logo">
+            </div>
+            <div class="institution-info">
+              <h3>Fatec Taquaritinga</h3>
+              <p>Faculdade de Tecnologia de Taquaritinga</p>
+              <div class="institution-details">
+                <div class="detail">
+                  <i class="bi bi-book"></i>
+                  <span>Curso: Sistemas para Internet</span>
+                </div>
+                <div class="detail">
+                  <i class="bi bi-building"></i>
+                  <span>Centro Paula Souza</span>
+                </div>
+                <div class="detail">
+                  <i class="bi bi-geo-alt"></i>
+                  <span>Taquaritinga - SP</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- Seção: Sobre a ReUse -->
     <section class="content-section">
@@ -209,117 +273,7 @@
 <script src="JS/shared-navigation.js"></script>
   <!-- Script para partículas -->
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      particlesJS('particles-js', {
-        "particles": {
-          "number": {
-            "value": 30,
-            "density": {
-              "enable": true,
-              "value_area": 800
-            }
-          },
-          "color": {
-            "value": "#8ecd90"
-          },
-          "shape": {
-            "type": "circle",
-            "stroke": {
-              "width": 0,
-              "color": "#000000"
-            }
-          },
-          "opacity": {
-            "value": 0.5,
-            "random": true,
-            "anim": {
-              "enable": true,
-              "speed": 1,
-              "opacity_min": 0.1,
-              "sync": false
-            }
-          },
-          "size": {
-            "value": 3,
-            "random": true,
-            "anim": {
-              "enable": true,
-              "speed": 2,
-              "size_min": 0.3,
-              "sync": false
-            }
-          },
-          "line_linked": {
-            "enable": true,
-            "distance": 150,
-            "color": "#52b69a",
-            "opacity": 0.4,
-            "width": 1
-          },
-          "move": {
-            "enable": true,
-            "speed": 1,
-            "direction": "none",
-            "random": true,
-            "straight": false,
-            "out_mode": "out",
-            "bounce": false,
-            "attract": {
-              "enable": false,
-              "rotateX": 600,
-              "rotateY": 1200
-            }
-          }
-        },
-        "interactivity": {
-          "detect_on": "canvas",
-          "events": {
-            "onhover": {
-              "enable": true,
-              "mode": "grab"
-            },
-            "onclick": {
-              "enable": true,
-              "mode": "push"
-            },
-            "resize": true
-          },
-          "modes": {
-            "grab": {
-              "distance": 140,
-              "line_linked": {
-                "opacity": 1
-              }
-            },
-            "push": {
-              "particles_nb": 4
-            }
-          }
-        },
-        "retina_detect": true
-      });
-
-      // Script para FAQ interativo
-      const faqItems = document.querySelectorAll('.faq-item');
-      
-      faqItems.forEach(item => {
-        const question = item.querySelector('.faq-question');
-        
-        question.addEventListener('click', () => {
-          // Fecha todos os outros itens
-          faqItems.forEach(otherItem => {
-            if (otherItem !== item) {
-              otherItem.classList.remove('active');
-            }
-          });
-          
-          // Abre/fecha o item clicado
-          item.classList.toggle('active');
-        });
-      });
-    });
-  </script>
+  <script src="JS/saiba-mais.js"></script>
 </body>
 
 </html>

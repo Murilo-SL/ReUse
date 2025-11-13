@@ -296,3 +296,167 @@
         display: none;
       }
     }
+
+        /* Estilos para a seção de Projeto Acadêmico */
+    .academic-project-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-lg);
+      align-items: start;
+    }
+
+    .project-info {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-md);
+    }
+
+    .project-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      padding: var(--spacing-sm) var(--spacing-md);
+      background: linear-gradient(135deg, #ff6b35, #ff8e53);
+      color: white;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .badge-icon {
+      font-size: 1.2rem;
+    }
+
+    .project-description {
+      line-height: 1.7;
+    }
+
+    .project-details {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-md);
+      margin-top: var(--spacing-md);
+    }
+
+    .detail-item {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--spacing-md);
+      padding: var(--spacing-md);
+      background: rgba(16, 94, 78, 0.1);
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(82, 182, 154, 0.2);
+      transition: var(--transition);
+    }
+
+    .detail-item:hover {
+      transform: translateY(-3px);
+      border-color: var(--primary-color);
+    }
+
+    .detail-item i {
+      font-size: 1.5rem;
+      color: var(--primary-color);
+      margin-top: 2px;
+    }
+
+    .detail-item h4 {
+      color: var(--primary-color);
+      margin-bottom: var(--spacing-xs);
+      font-size: 1.1rem;
+    }
+
+    .detail-item p {
+      margin: 0;
+      font-size: 0.95rem;
+      color: var(--text-light);
+    }
+
+    .institution-card {
+      background: linear-gradient(135deg, rgba(16, 94, 78, 0.2), rgba(82, 182, 154, 0.1));
+      border: 1px solid rgba(82, 182, 154, 0.3);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      text-align: center;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      transition: var(--transition);
+    }
+
+    .institution-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .institution-logo {
+      margin-bottom: var(--spacing-md);
+    }
+
+    .fatec-logo {
+      max-width: 180px;
+      height: auto;
+      filter: brightness(0) invert(1);
+    }
+
+    .institution-info h3 {
+      color: var(--primary-color);
+      margin-bottom: var(--spacing-sm);
+      font-size: 1.4rem;
+    }
+
+    .institution-info > p {
+      color: var(--text-light);
+      margin-bottom: var(--spacing-md);
+      font-size: 1rem;
+    }
+
+    .institution-details {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-sm);
+      margin-top: var(--spacing-md);
+    }
+
+    .detail {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      justify-content: center;
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+
+    .detail i {
+      color: var(--primary-color);
+    }
+
+    /* Responsividade */
+    @media (max-width: 968px) {
+      .academic-project-container {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+      }
+      
+      .institution-card {
+        order: -1;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .detail-item {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--spacing-sm);
+      }
+      
+      .project-badge {
+        align-self: center;
+      }
+    }
