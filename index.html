@@ -22,41 +22,68 @@
         <div class="logo-container">
             <img src="IMG/reuse-logo-(2).svg" alt="ReUse Logo"><span>ReUse</span>
         </div>
+<!-- Botões de Controle - ORDEM CORRIGIDA -->
+<div class="control-buttons">
+    <!-- Botão de Acessibilidade (Modo Daltônico) - PRIMEIRO -->
+    <button class="accessibility-toggle" id="accessibilityToggle" aria-label="Opções de acessibilidade">
+        <i class="bi bi-universal-access"></i>
+    </button>
 
-        <!-- Botão de Alternância de Modo -->
-        <button class="theme-toggle" id="themeToggle" aria-label="Alternar modo claro/escuro">
-            <i class="bi bi-moon"></i>
+    <!-- Seletor de Idioma - SEGUNDO -->
+    <div class="language-selector" id="languageSelector">
+        <button class="language-btn" aria-label="Selecionar idioma">
+            <i class="bi bi-translate"></i>
+            <span>Português</span>
+            <i class="bi bi-chevron-down"></i>
         </button>
-
-        <!-- Seletor de Idioma -->
-        <div class="language-selector" id="languageSelector">
-            <button class="language-btn" aria-label="Selecionar idioma">
-                <i class="bi bi-translate"></i>
+        <div class="language-dropdown">
+            <div class="language-option" data-lang="pt">
+                <i class="bi bi-check-lg"></i>
                 <span>Português</span>
-                <i class="bi bi-chevron-down"></i>
-            </button>
-            <div class="language-dropdown">
-                <div class="language-option" data-lang="pt">
-                    <i class="bi bi-check-lg"></i>
-                    <span>Português</span>
-                </div>
-                <div class="language-option" data-lang="en">
-                    <i class="bi bi-check-lg"></i>
-                    <span>English</span>
-                </div>
-                <div class="language-option" data-lang="es">
-                    <i class="bi bi-check-lg"></i>
-                    <span>Español</span>
-                </div>
-                <div class="language-option" data-lang="fr">
-                    <i class="bi bi-check-lg"></i>
-                    <span>Français</span>
-                </div>
+            </div>
+            <div class="language-option" data-lang="en">
+                <i class="bi bi-check-lg"></i>
+                <span>English</span>
+            </div>
+            <div class="language-option" data-lang="es">
+                <i class="bi bi-check-lg"></i>
+                <span>Español</span>
+            </div>
+            <div class="language-option" data-lang="fr">
+                <i class="bi bi-check-lg"></i>
+                <span>Français</span>
             </div>
         </div>
+    </div>
 
-        <!-- Resto do conteúdo permanece igual -->
-        <!-- ... -->
+    <!-- Botão de Alternância de Modo - TERCEIRO -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Alternar modo claro/escuro">
+        <i class="bi bi-moon"></i>
+    </button>
+</div>
+
+<!-- Menu de Acessibilidade -->
+<div class="accessibility-menu" id="accessibilityMenu">
+    <h3>Acessibilidade</h3>
+    <div class="accessibility-options">
+        <button class="accessibility-option" data-mode="normal">
+            <i class="bi bi-check-lg"></i>
+            <span>Visão Normal</span>
+        </button>
+        <button class="accessibility-option" data-mode="protanopia">
+            <i class="bi bi-circle-fill" style="color: #FF6B6B"></i>
+            <span>Protanopia (Vermelho)</span>
+        </button>
+        <button class="accessibility-option" data-mode="deuteranopia">
+            <i class="bi bi-circle-fill" style="color: #4ECDC4"></i>
+            <span>Deuteranopia (Verde)</span>
+        </button>
+        <button class="accessibility-option" data-mode="tritanopia">
+            <i class="bi bi-circle-fill" style="color: #45B7D1"></i>
+            <span>Tritanopia (Azul)</span>
+        </button>
+    </div>
+</div>
 
         <!--  Seção Unificada -->
         <section class="unified-intro-section">
@@ -294,6 +321,7 @@
     </div>
     <script src="JS/modo_noturno_inicial.js"></script>
     <script src="JS/language-selector.js"></script>
+    <script src="JS/colorblind-mode.js"></script>
     <script src="JS/inicial.js"></script>
     <script src="JS/breadcrumbs.js"></script>
     <script src="JS/shared-navigation.js"></script>
