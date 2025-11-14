@@ -4,11 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="CSS/pagina_ong_usuario.css">
     <link rel="stylesheet" href="CSS/pagina_ong_usuario-2.css">
+    <link rel="stylesheet" href="CSS/pagina_ong_usuario.css">
+    <link rel="stylesheet" href="CSS/cliente.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="CSS/breadcrumbs.css">
     <link rel="stylesheet" href="CSS/modo_noturno.css">
+    
     <!-- VLibras -->
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <script>
@@ -23,7 +25,7 @@
         <div class="container">
             <div class="header-container">
                 <div class="logo-container">
-                        <a href="cliente.html"><img src="IMG/reuse-logo-(2).svg" > <span>ReUse</span> </a>
+                    <a href="cliente.html"><img src="IMG/reuse-logo-(2).svg"> <span>ReUse</span> </a>
                 </div>
 
                 <!-- Barra de pesquisa e filtros no meio -->
@@ -49,7 +51,6 @@
                 </div>
 
                 <div class="user-section">
-                    <!-- Estrutura atual (sem alterações) -->
                     <button class="botaoMenu" id="botaoMenu">
                         <i class="bi bi-list"></i>
                     </button>
@@ -75,8 +76,6 @@
                         </a>
                     </nav>
                 </div>
-
-
 
                 <!-- Categorias abaixo -->
                 <div class="categories-section">
@@ -161,11 +160,10 @@
                     <p class="institution-description">
                         Dedicada ao Acolhimento, Resgate e cuidados de animais
                     </p>
-                    <button type="button" class="donate-button" onclick="window.location.href='#'">Quero Doar</button>
+                    <button type="button" class="donate-button" id="donateButton">Quero Doar</button>
                     <button type="button" class="buy-button"
                         onclick="window.location.href='produtos_usuarios_ong-2.html'">Comprar Produtos</button>
-                    <button type="button" class="Voluntário-button" onclick="window.location.href='#'">Quero ser
-                        Voluntário</button>
+                    <button type="button" class="volunteer-button" id="volunteerButton">Quero ser Voluntário</button>
                 </div>
             </div>
         </div>
@@ -357,8 +355,8 @@
                             placeholder="Digite o endereço completo">
                     </div>
                 </div>
-
-
+            </div>
+        </div>
     </main>
 
     <!-- RODAPÉ -->
@@ -421,287 +419,278 @@
         </div>
     </footer>
 
-<!-- Modal de Doação para Patas Conscientes -->
-<div class="modal-overlay" id="donation-modal">
-    <div class="modal-donation">
-        <div class="modal-header">
-            <h2><i class="bi bi-gift-fill"></i> Doação para Patas Conscientes</h2>
-            <button class="close-modal" id="close-donation-modal">
-                <i class="bi bi-x-lg"></i>
-            </button>
-        </div>
-
-        <div class="modal-content">
-            <form id="donation-form" class="donation-form">
-                <!-- Nome do Item -->
-                <div class="form-field">
-                    <label for="item-name" class="field-label">Nome do Item *</label>
-                    <input type="text" id="item-name" name="item-name" class="input-field" 
-                           placeholder="Ex: Ração para cães, Cobertores, Brinquedos..." required>
-                </div>
-
-                <!-- Categoria do Item (adaptada para Patas Conscientes) -->
-                <div class="form-field">
-                    <label for="category" class="field-label">Categoria *</label>
-                    <select id="category" name="category" class="select-field" required>
-                        <option value="" selected disabled>Selecione uma categoria</option>
-                        <option value="racao">Ração para animais</option>
-                        <option value="cobertores">Cobertores</option>
-                        <option value="brinquedos">Brinquedos</option>
-                        <option value="medicamentos">Medicamentos</option>
-                        <option value="higiene">Produtos de higiene</option>
-                        <option value="outros">Outros</option>
-                    </select>
-                </div>
-
-                <!-- Qualidade do Item -->
-                <div class="form-field">
-                    <label class="field-label">Qualidade do Item *</label>
-                    <div class="radio-group">
-                        <label class="radio-option">
-                            <input type="radio" name="quality" value="low" required>
-                            <span class="radio-custom"></span>
-                            Baixa
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="quality" value="medium">
-                            <span class="radio-custom"></span>
-                            Média
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="quality" value="high">
-                            <span class="radio-custom"></span>
-                            Alta
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Estado do Item -->
-                <div class="form-field">
-                    <label class="field-label">Estado do Item *</label>
-                    <div class="radio-group">
-                        <label class="radio-option">
-                            <input type="radio" name="condition" value="used" required>
-                            <span class="radio-custom"></span>
-                            Usado
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="condition" value="semi-new">
-                            <span class="radio-custom"></span>
-                            Semi-novo
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="condition" value="new">
-                            <span class="radio-custom"></span>
-                            Novo
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Descrição do Produto -->
-                <div class="form-field">
-                    <label for="description" class="field-label">Descrição do Produto *</label>
-                    <textarea id="description" name="description" class="textarea-field" 
-                              placeholder="Descreva detalhes sobre o item (marca, quantidade, validade, etc.)"
-                              rows="4" required></textarea>
-                </div>
-
-                <!-- Upload de Fotos -->
-                <div class="form-field">
-                    <label class="field-label">Fotos do Item *</label>
-                    <label for="photos" class="file-upload-area">
-                        <div class="upload-content">
-                            <i class="bi bi-cloud-upload upload-icon"></i>
-                            <span class="upload-text">Clique ou arraste as fotos aqui</span>
-                            <span class="upload-hint">Máximo: 5 fotos (JPG, PNG - até 5MB cada)</span>
-                        </div>
-                        <input type="file" id="photos" name="photos" accept="image/*" multiple required>
-                    </label>
-                    <div id="selected-files" class="selected-files"></div>
-                </div>
-
-                <!-- Instituição fixa (Patas Conscientes) -->
-                <div class="form-field">
-                    <label class="field-label">Instituição Beneficiada *</label>
-                    <div class="institution-display">
-                        <div class="institution-info-small">
-                            <img src="IMG/patas-concientes.jpg" alt="Patas Conscientes" style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px;">
-                            <span style="font-weight: 600; color: #333;">Patas Conscientes</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Botão de Envio -->
-                <div class="form-actions">
-                    <button type="submit" class="submit-button">
-                        <i class="bi bi-heart-fill"></i> Confirmar Doação
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<!-- Modal de Voluntário para Patas Conscientes -->
-<div class="modal-overlay" id="volunteer-modal">
-    <div class="modal-donation volunteer-modal">
-        <div class="modal-header">
-            <h2><i class="bi bi-people-fill"></i> Cadastro de Voluntário</h2>
-            <button class="close-modal" id="close-volunteer-modal">
-                <i class="bi bi-x-lg"></i>
-            </button>
-        </div>
-
-        <div class="modal-content">
-            <!-- Cabeçalho da ONG -->
-            <div class="volunteer-header">
-                <img src="IMG/patas-concientes.jpg" alt="Patas Conscientes">
-                <h1>Patas Conscientes</h1>
-                <p>Junte-se à nossa equipe de voluntários</p>
+    <!-- Modal de Doação para Patas Conscientes -->
+    <div class="modal-overlay" id="donation-modal">
+        <div class="modal-donation">
+            <div class="modal-header">
+                <h2><i class="bi bi-gift-fill"></i> Doação para Patas Conscientes</h2>
+                <button class="close-modal" id="close-donation-modal">
+                    <i class="bi bi-x-lg"></i>
+                </button>
             </div>
 
-            <form id="volunteer-form" class="volunteer-form">
-                <!-- Dados pessoais -->
-                <div class="form-row">
+            <div class="modal-content">
+                <form id="donation-form" class="donation-form">
+                    <!-- Nome do Item -->
                     <div class="form-field">
-                        <label for="fullName" class="field-label">Nome completo *</label>
-                        <input type="text" id="fullName" name="fullName" class="input-field" required>
+                        <label for="item-name" class="field-label">Nome do Item</label>
+                        <input type="text" id="item-name" name="item-name" class="input-field"
+                            placeholder="Ex: Ração para cães, Cobertores, Brinquedos...">
                     </div>
-                </div>
 
-                <div class="form-row">
+                    <!-- Categoria do Item -->
                     <div class="form-field">
-                        <label for="birthDate" class="field-label">Data de nascimento *</label>
-                        <input type="date" id="birthDate" name="birthDate" class="input-field" required>
+                        <label for="category" class="field-label">Categoria</label>
+                        <select id="category" name="category" class="select-field">
+                            <option value="" selected>Selecione uma categoria</option>
+                            <option value="racao">Ração para animais</option>
+                            <option value="cobertores">Cobertores</option>
+                            <option value="brinquedos">Brinquedos</option>
+                            <option value="medicamentos">Medicamentos</option>
+                            <option value="higiene">Produtos de higiene</option>
+                            <option value="outros">Outros</option>
+                        </select>
                     </div>
-                    <div class="form-field">
-                        <label for="age" class="field-label">Idade *</label>
-                        <input type="number" id="age" name="age" class="input-field" min="16" required>
-                    </div>
-                </div>
 
-                <div class="form-field">
-                    <label for="gender" class="field-label">Gênero</label>
-                    <select id="gender" name="gender" class="select-field">
-                        <option value="">Selecione</option>
-                        <option value="feminino">Feminino</option>
-                        <option value="masculino">Masculino</option>
-                        <option value="outro">Outro</option>
-                        <option value="prefiro-nao-dizer">Prefiro não dizer</option>
-                    </select>
-                </div>
-
-                <!-- Endereço -->
-                <div class="form-field">
-                    <label for="cep" class="field-label">CEP *</label>
-                    <div class="cep-search">
-                        <input type="text" id="cep" name="cep" class="input-field" placeholder="00000-000" required maxlength="9">
-                        <button type="button" id="cep-button" class="cep-button">Buscar</button>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-field" style="flex: 2;">
-                        <label for="address" class="field-label">Endereço *</label>
-                        <input type="text" id="address" name="address" class="input-field" required>
-                    </div>
-                    <div class="form-field" style="flex: 1;">
-                        <label for="complement" class="field-label">Complemento</label>
-                        <input type="text" id="complement" name="complement" class="input-field">
-                    </div>
-                </div>
-
-                <div class="form-row">
+                    <!-- Qualidade do Item -->
                     <div class="form-field">
-                        <label for="neighborhood" class="field-label">Bairro *</label>
-                        <input type="text" id="neighborhood" name="neighborhood" class="input-field" required>
+                        <label class="field-label">Qualidade do Item</label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="quality" value="low">
+                                <span class="radio-custom"></span>
+                                Baixa
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="quality" value="medium">
+                                <span class="radio-custom"></span>
+                                Média
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="quality" value="high">
+                                <span class="radio-custom"></span>
+                                Alta
+                            </label>
+                        </div>
                     </div>
-                    <div class="form-field">
-                        <label for="city" class="field-label">Cidade *</label>
-                        <input type="text" id="city" name="city" class="input-field" required>
-                    </div>
-                    <div class="form-field">
-                        <label for="state" class="field-label">Estado *</label>
-                        <input type="text" id="state" name="state" class="input-field" required>
-                    </div>
-                </div>
 
-                <!-- Contato -->
-                <div class="form-row">
+                    <!-- Estado do Item -->
                     <div class="form-field">
-                        <label for="phone" class="field-label">Telefone *</label>
-                        <input type="tel" id="phone" name="phone" class="input-field" placeholder="(00) 00000-0000" required>
+                        <label class="field-label">Estado do Item</label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="condition" value="used">
+                                <span class="radio-custom"></span>
+                                Usado
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="condition" value="semi-new">
+                                <span class="radio-custom"></span>
+                                Semi-novo
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="condition" value="new">
+                                <span class="radio-custom"></span>
+                                Novo
+                            </label>
+                        </div>
                     </div>
-                    <div class="form-field">
-                        <label for="email" class="field-label">E-mail *</label>
-                        <input type="email" id="email" name="email" class="input-field" required>
-                    </div>
-                </div>
 
-                <!-- Experiência -->
-                <div class="form-field">
-                    <label class="field-label">Já participou de trabalhos voluntários antes? *</label>
-                    <div class="radio-group">
-                        <label class="radio-option">
-                            <input type="radio" name="volunteerBefore" value="sim" required>
-                            <span class="radio-custom"></span>
-                            Sim
+                    <!-- Descrição do Produto -->
+                    <div class="form-field">
+                        <label for="description" class="field-label">Descrição do Produto</label>
+                        <textarea id="description" name="description" class="textarea-field"
+                            placeholder="Descreva detalhes sobre o item (marca, quantidade, validade, etc.)"
+                            rows="4"></textarea>
+                    </div>
+
+                    <!-- Upload de Fotos -->
+                    <div class="form-field">
+                        <label class="field-label">Fotos do Item</label>
+                        <label for="photos" class="file-upload-area">
+                            <div class="upload-content">
+                                <i class="bi bi-cloud-upload upload-icon"></i>
+                                <span class="upload-text">Clique ou arraste as fotos aqui</span>
+                                <span class="upload-hint">Máximo: 5 fotos (JPG, PNG - até 5MB cada)</span>
+                            </div>
+                            <input type="file" id="photos" name="photos" accept="image/*" multiple>
                         </label>
-                        <label class="radio-option">
-                            <input type="radio" name="volunteerBefore" value="nao">
-                            <span class="radio-custom"></span>
-                            Não
-                        </label>
+                        <div id="selected-files" class="selected-files"></div>
                     </div>
-                </div>
 
-                <div class="form-field" id="experienceGroup" style="display: none;">
-                    <label for="experience" class="field-label">Descreva sua experiência</label>
-                    <textarea id="experience" name="experience" class="textarea-field" rows="3"></textarea>
-                </div>
-
-                <!-- Disponibilidade -->
-                <div class="form-row">
-                    <div class="form-field">
-                        <label for="availableDays" class="field-label">Dias disponíveis *</label>
-                        <input type="text" id="availableDays" name="availableDays" class="input-field" 
-                               placeholder="Ex: Segunda, Quarta, Sexta" required>
+                    <!-- Botão de Envio -->
+                    <div class="form-actions">
+                        <button type="submit" class="submit-button">
+                            <i class="bi bi-heart-fill"></i> Confirmar Doação
+                        </button>
                     </div>
-                    <div class="form-field">
-                        <label for="availableHours" class="field-label">Horários disponíveis *</label>
-                        <input type="text" id="availableHours" name="availableHours" class="input-field" 
-                               placeholder="Ex: Manhã, Tarde" required>
-                    </div>
-                </div>
-
-                <!-- Botão de Envio -->
-                <div class="form-actions">
-                    <button type="submit" class="submit-button">
-                        <i class="bi bi-person-plus-fill"></i> Enviar Cadastro
-                    </button>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 
-<!-- Modal de Sucesso -->
-<div class="modal-overlay success-overlay" id="success-overlay">
-    <div class="modal-success">
-        <div class="success-icon">
-            <i class="bi bi-check-circle-fill"></i>
-        </div>
-        <h3 class="success-title">Cadastro Realizado com Sucesso!</h3>
-        <p class="success-text">
-            Obrigado por seu interesse em fazer a diferença! Entraremos em contato em breve.
-        </p>
-        <div class="success-actions">
-            <button class="btn-success" id="close-success-modal">
-                <i class="bi bi-house-fill"></i> Fechar
-            </button>
+    <!-- Modal de Voluntário para Patas Conscientes -->
+    <div class="modal-overlay" id="volunteer-modal">
+        <div class="modal-donation volunteer-modal">
+            <div class="modal-header">
+                <h2><i class="bi bi-people-fill"></i> Cadastro de Voluntário</h2>
+                <button class="close-modal" id="close-volunteer-modal">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+
+            <div class="modal-content">
+                <!-- Cabeçalho da ONG -->
+                <div class="volunteer-header">
+                    <img src="IMG/patas-concientes.jpg" alt="Patas Conscientes">
+                    <h1>Patas Conscientes</h1>
+                    <p>Junte-se à nossa equipe de voluntários</p>
+                </div>
+
+                <form id="volunteer-form" class="volunteer-form">
+                    <!-- Dados pessoais -->
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="fullName" class="field-label">Nome completo</label>
+                            <input type="text" id="fullName" name="fullName" class="input-field">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="birthDate" class="field-label">Data de nascimento</label>
+                            <input type="date" id="birthDate" name="birthDate" class="input-field">
+                        </div>
+                        <div class="form-field">
+                            <label for="age" class="field-label">Idade</label>
+                            <input type="number" id="age" name="age" class="input-field" min="16">
+                        </div>
+                    </div>
+
+                    <!-- Gênero -->
+                    <div class="form-field">
+                        <label for="gender" class="field-label">Gênero</label>
+                        <select id="gender" name="gender" class="select-field">
+                            <option value="">Selecione</option>
+                            <option value="feminino">Feminino</option>
+                            <option value="masculino">Masculino</option>
+                            <option value="outro">Outro</option>
+                            <option value="prefiro-nao-informar">Prefiro não informar</option>
+                        </select>
+                    </div>
+
+                    <!-- Endereço -->
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="cep" class="field-label">CEP</label>
+                            <input type="text" id="cep" name="cep" class="input-field" maxlength="9">
+                        </div>
+                        <div class="form-field">
+                            <label for="phone" class="field-label">Telefone</label>
+                            <input type="tel" id="phone" name="phone" class="input-field">
+                        </div>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="address" class="field-label">Endereço</label>
+                        <input type="text" id="address" name="address" class="input-field">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="neighborhood" class="field-label">Bairro</label>
+                            <input type="text" id="neighborhood" name="neighborhood" class="input-field">
+                        </div>
+                        <div class="form-field">
+                            <label for="city" class="field-label">Cidade</label>
+                            <input type="text" id="city" name="city" class="input-field">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="state" class="field-label">Estado</label>
+                            <input type="text" id="state" name="state" class="input-field">
+                        </div>
+                        <div class="form-field">
+                            <label for="complement" class="field-label">Complemento</label>
+                            <input type="text" id="complement" name="complement" class="input-field">
+                        </div>
+                    </div>
+
+                    <!-- Contato -->
+                    <div class="form-field">
+                        <label for="email" class="field-label">E-mail</label>
+                        <input type="email" id="email" name="email" class="input-field">
+                    </div>
+
+                    <!-- Experiência -->
+                    <div class="form-field">
+                        <label class="field-label">Já participou de trabalhos voluntários antes?</label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="volunteerBefore" value="sim">
+                                <span class="radio-custom"></span>
+                                Sim
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="volunteerBefore" value="nao">
+                                <span class="radio-custom"></span>
+                                Não
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Campo de experiência (aparece apenas se responder "Sim") -->
+                    <div class="form-field" id="experienceGroup" style="display: none;">
+                        <label for="experience" class="field-label">Conte sobre sua experiência anterior</label>
+                        <textarea id="experience" name="experience" class="textarea-field"
+                            placeholder="Descreva suas experiências anteriores como voluntário..."
+                            rows="3"></textarea>
+                    </div>
+
+                    <!-- Disponibilidade -->
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="availableDays" class="field-label">Dias disponíveis</label>
+                            <input type="text" id="availableDays" name="availableDays" class="input-field"
+                                placeholder="Ex: Segunda, Quarta, Sexta">
+                        </div>
+                        <div class="form-field">
+                            <label for="availableHours" class="field-label">Horários disponíveis</label>
+                            <input type="text" id="availableHours" name="availableHours" class="input-field"
+                                placeholder="Ex: Manhã, Tarde">
+                        </div>
+                    </div>
+
+                    <!-- Botão de Envio -->
+                    <div class="form-actions">
+                        <button type="submit" class="submit-button">
+                            <i class="bi bi-person-plus-fill"></i> Enviar Cadastro
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
+
+    <!-- Modal de Sucesso -->
+    <div class="modal-overlay success-overlay" id="success-overlay">
+        <div class="modal-success">
+            <div class="success-icon">
+                <i class="bi bi-check-circle-fill"></i>
+            </div>
+            <h3 class="success-title">Cadastro Realizado com Sucesso!</h3>
+            <p class="success-text">
+                Obrigado por seu interesse em fazer a diferença! Entraremos em contato em breve.
+            </p>
+            <div class="success-actions">
+                <button class="btn-success" id="close-success-modal">
+                    <i class="bi bi-house-fill"></i> Fechar
+                </button>
+            </div>
+        </div>
+    </div>
 
     <!-- Widget VLibras -->
     <div vw class="enabled">
@@ -712,6 +701,7 @@
     </div>
 
     <script>
+        // Sistema de Tabs
         document.addEventListener('DOMContentLoaded', function () {
             const tabs = document.querySelectorAll('.institution-tab');
             const tabContents = document.querySelectorAll('.tab-content');
@@ -731,129 +721,31 @@
                 });
             });
         });
-    </script>
 
-    <script>
-        // Variável para controlar se o mapa já foi carregado
-        let mapLoaded = false;
-
-        // Função para carregar o mapa quando a aba de Contato for ativada
-        function setupMapTab() {
-            const tabs = document.querySelectorAll('.institution-tab');
-            const tabContents = document.querySelectorAll('.tab-content');
-
-            tabs.forEach((tab, index) => {
-                tab.addEventListener('click', () => {
-                    // Se for a aba de Contato (índice 3) e o mapa ainda não foi carregado
-                    if (index === 3 && !mapLoaded) {
-                        loadMap();
-                        mapLoaded = true;
-                    }
-                });
-            });
-        }
-
-        // Carrega a biblioteca Leaflet para o mapa
-        function loadMap() {
-            if (window.L) {
-                initMap();
-                return;
-            }
-
-            const leafletCSS = document.createElement('link');
-            leafletCSS.rel = 'stylesheet';
-            leafletCSS.href = 'https://unpkg.com/leaflet@1.7.1/dist/leaflet.css';
-            document.head.appendChild(leafletCSS);
-
-            const leafletJS = document.createElement('script');
-            leafletJS.src = 'https://unpkg.com/leaflet@1.7.1/dist/leaflet.js';
-            leafletJS.onload = initMap;
-            document.head.appendChild(leafletJS);
-        }
-
-        function initMap() {
-            // Coordenadas da Fatec Taquaritinga: -21.4064, -48.5047
-            const map = L.map('map').setView([-21.4064, -48.5047], 15);
-
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(map);
-
-            L.marker([-21.4064, -48.5047]).addTo(map)
-                .bindPopup('<b>Patas Concientes</b><br>Av. Dr. Flávio Henrique Lemos, 585 - Taquaritinga/SP')
-                .openPopup();
-        }
-        // Configura o mapa quando a página carregar
-        document.addEventListener('DOMContentLoaded', function () {
-            setupMapTab();
-        });
-    </script>
-
-    <script>
-        // Variáveis para dados de pesquisa
+        // Sistema de Pesquisa
         let allProducts = [];
         let allInstitutions = [];
-        let currentLanguage = 'pt-br'; // Definindo um valor padrão
 
-        // Função para configurar os dados de pesquisa
         function setupSearchData() {
             allProducts = [
-                {
-                    id: 1,
-                    name: 'Camiseta Polo',
-                    category: 'Masculino',
-                    price: 'R$ 39,90'
-                },
-                {
-                    id: 2,
-                    name: 'Liquidificador Philips',
-                    category: 'Casa/Cozinha',
-                    price: 'R$ 89,90'
-                },
-                {
-                    id: 3,
-                    name: 'Tênis Nike',
-                    category: 'Esportivo',
-                    price: 'R$ 199,99'
-                },
-                {
-                    id: 4,
-                    name: 'Vestido Floral',
-                    category: 'Feminino',
-                    price: 'R$ 65,00'
-                }
+                { id: 1, name: 'Camiseta Polo', category: 'Masculino', price: 'R$ 39,90' },
+                { id: 2, name: 'Liquidificador Philips', category: 'Casa/Cozinha', price: 'R$ 89,90' },
+                { id: 3, name: 'Tênis Nike', category: 'Esportivo', price: 'R$ 199,99' },
+                { id: 4, name: 'Vestido Floral', category: 'Feminino', price: 'R$ 65,00' }
             ];
 
             allInstitutions = [
-                {
-                    id: 101,
-                    name: 'Patas Conscientes',
-                    category: 'Resgate Animal'
-                },
-                {
-                    id: 102,
-                    name: 'Centro Educacional Novo Amanhã',
-                    category: 'Educação'
-                },
-                {
-                    id: 103,
-                    name: 'Lar dos Idosos São Vicente',
-                    category: 'Assistência ao Idoso'
-                },
-                {
-                    id: 104,
-                    name: 'SOS Felino',
-                    category: 'Resgate Animal'
-                }
+                { id: 101, name: 'Patas Conscientes', category: 'Resgate Animal' },
+                { id: 102, name: 'Centro Educacional Novo Amanhã', category: 'Educação' },
+                { id: 103, name: 'Lar dos Idosos São Vicente', category: 'Assistência ao Idoso' },
+                { id: 104, name: 'SOS Felino', category: 'Resgate Animal' }
             ];
         }
 
-        // Função principal para configurar a barra de pesquisa
         function setupSearchBar() {
             const searchInput = document.getElementById('searchInput');
             const searchButton = document.getElementById('searchButton');
 
-            // Criar elemento de sugestões se não existir
             if (!document.getElementById('searchSuggestions')) {
                 const suggestionsDiv = document.createElement('div');
                 suggestionsDiv.id = 'searchSuggestions';
@@ -866,7 +758,6 @@
                 }
             }
 
-            // Evento de input na barra de pesquisa
             searchInput.addEventListener('input', function () {
                 const searchTerm = this.value.trim().toLowerCase();
 
@@ -888,34 +779,29 @@
                 displaySuggestions(matchedProducts, matchedInstitutions);
             });
 
-            // Evento de foco
             searchInput.addEventListener('focus', function () {
                 if (this.value.trim().length > 0) {
                     document.getElementById('searchSuggestions').style.display = 'block';
                 }
             });
 
-            // Evento de blur
             searchInput.addEventListener('blur', function () {
                 setTimeout(() => {
                     document.getElementById('searchSuggestions').style.display = 'none';
                 }, 200);
             });
 
-            // Evento do botão de pesquisa
             searchButton.addEventListener('click', function (e) {
                 e.preventDefault();
                 performSearch();
             });
 
-            // Evento de tecla Enter
             searchInput.addEventListener('keypress', function (e) {
                 if (e.key === 'Enter') {
                     performSearch();
                 }
             });
 
-            // Função para exibir sugestões
             function displaySuggestions(products, institutions) {
                 const searchSuggestions = document.getElementById('searchSuggestions');
                 if (products.length === 0 && institutions.length === 0) {
@@ -992,7 +878,6 @@
                 searchSuggestions.style.display = 'block';
             }
 
-            // Função para executar a pesquisa
             function performSearch() {
                 const searchTerm = searchInput.value.trim();
                 if (searchTerm.length === 0) return;
@@ -1032,22 +917,22 @@
             setupSearchData();
             setupSearchBar();
         });
-
     </script>
-    <script src="JS/breadcrumbs.js"></script>
+
     <script src="JS/modal_patas.js"></script>
+    <script src="JS/breadcrumbs.js"></script>
     <script src="JS/modo_noturno.js"></script>
     <script src="JS/menu.js"></script>
     <script src="JS/shared-navigation.js"></script>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q755SR73MY"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-Q755SR73MY');
-</script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q755SR73MY"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-Q755SR73MY');
+    </script>
 </body>
 
 </html>

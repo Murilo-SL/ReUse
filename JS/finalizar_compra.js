@@ -590,15 +590,13 @@ document.addEventListener('DOMContentLoaded', function() {
         field.classList.remove('valid', 'invalid');
         field.classList.add(isValid ? 'valid' : 'invalid');
         
-        const existingError = formGroup?.querySelector('.field-error');
+        const existingError = formGroup?.querySelector('.field-error-message');
         if (existingError) existingError.remove();
-        
+
         if (!isValid && formGroup && errorMessage) {
             const errorElement = document.createElement('div');
-            errorElement.className = 'field-error';
-            errorElement.style.color = 'var(--error-color)';
-            errorElement.style.fontSize = '0.8rem';
-            errorElement.style.marginTop = '5px';
+            // Use the centralized message class name to avoid conflicting with field styling
+            errorElement.className = 'field-error-message';
             errorElement.textContent = errorMessage;
             formGroup.appendChild(errorElement);
         }
@@ -739,7 +737,6 @@ document.addEventListener('DOMContentLoaded', function() {
     style.textContent = `
         .spin { animation: spin 1s linear infinite; }
         @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        .field-error { color: var(--error-color) !important; font-size: 0.8rem !important; margin-top: 5px !important; }
         input.valid { border-color: var(--success-color) !important; background-color: rgba(46, 204, 113, 0.05) !important; }
         input.invalid { border-color: var(--error-color) !important; background-color: rgba(231, 76, 60, 0.05) !important; }
         .character-counter { font-size: 0.75rem !important; color: var(--text-light) !important; text-align: right !important; margin-top: 5px !important; }

@@ -17,7 +17,6 @@ body {
     padding: 0 15px;
 }
 
-
 /* ================ CABEÇALHO ================ */
 header {
     background: linear-gradient(135deg, #8ecd90 0%, #0066cc 50%, #000 100%);
@@ -42,7 +41,7 @@ header {
 }
 
 .logo-container span {
-    font-size: 2.5rem; /* Tamanho reduzido para caber melhor no header */
+    font-size: 2.5rem;
     font-weight: 800;
     background: linear-gradient(135deg, #002244 0%, #0088ff 100%);
     -webkit-background-clip: text;
@@ -54,7 +53,7 @@ header {
 }
 
 .logo-container img {
-    width: 80px; /* Tamanho reduzido para caber melhor no header */
+    width: 80px;
     height: auto;
 }
 
@@ -80,7 +79,7 @@ header {
 
 /* ================ÍCONES NO CABEÇALHO ================ */
 .user-section a {
-    color: white ;
+    color: white;
     text-decoration: none;
     font-weight: 500;
     transition: color 0.3s;
@@ -90,32 +89,32 @@ header {
 }
 
 .user-section a:hover {
-    color: #4CAF50 ;
+    color: #4CAF50;
 }
 
 .user-section a i {
-    color: white ;
+    color: white;
 }
 
 .user-section a:hover i {
-    color: #4CAF50 ;
+    color: #4CAF50;
 }
 
 .cart a {
-    color: white ;
+    color: white;
 }
 
 .cart a:hover {
-    color: #4CAF50 ;
+    color: #4CAF50;
 }
 
 .cart-icon {
-    color: white ;
+    color: white;
     font-size: 20px;
 }
 
 .cart:hover .cart-icon {
-    color: #4CAF50 ;
+    color: #4CAF50;
 }
 
 /* Barra de pesquisa combinada com filtros */
@@ -256,22 +255,6 @@ header {
     animation: slideDown 0.2s ease-out;
 }
 
-/* Estilo para dispositivos móveis */
-@media (max-width: 768px) {
-    .search-suggestions-container {
-        position: fixed;
-        top: auto;
-        left: 15px;
-        right: 15px;
-        width: auto;
-        z-index: 1001;
-    }
-    
-    .search-input:focus-within input {
-        border-radius: 8px 8px 0 0;
-    }
-}
-
 /* Elementos do usuário */
 .icone-user img {
     width: 50px;
@@ -365,15 +348,6 @@ header {
     margin-bottom: 5px;
 }
 
-/* Garantir que os ícones de seta dos dropdowns também fiquem com cores adequadas */
-.dropdown-content a i {
-    color: #333 ;
-}
-
-.dropdown-content a:hover i {
-    color: #2196F3 ;
-}
-
 /* Notificações */
 .notification {
     position: fixed;
@@ -398,7 +372,6 @@ header {
     align-items: center;
     justify-content: center;
 }
-
 
 /* ================ PERFIL DA INSTITUIÇÃO ================ */
 .institution-profile {
@@ -484,7 +457,6 @@ header {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-
 /* Botão de Compra */
 .buy-button {
     background-color: #81D4FA;
@@ -505,9 +477,8 @@ header {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-
 /*Botão de voluntario*/
-.Voluntário-button {
+.volunteer-button {
     background-color: blue;
     color: white;
     border: none;
@@ -520,7 +491,7 @@ header {
     margin-top: 15px;
 }
 
-.Voluntário-button:hover {
+.volunteer-button:hover {
     background-color: #1976D2;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -682,47 +653,6 @@ footer {
 
 .social-links img {
     width: 60px;
-}
-
-/* ================ RESPONSIVIDADE ================ */
-@media (max-width: 768px) {
-    .top-header {
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .search-bar {
-        flex-direction: column;
-    }
-
-    .categories {
-        flex-wrap: wrap;
-        gap: 10px;
-        justify-content: center;
-    }
-
-    .ong-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .institution-header {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .institution-logo {
-        width: 100%;
-        margin-right: 0;
-        margin-bottom: 20px;
-    }
-
-    .institution-stats {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .donations-grid {
-        grid-template-columns: 1fr;
-    }
 }
 
 /* Seção de Doações */
@@ -1035,1874 +965,294 @@ footer {
     margin-bottom: 20px;
 }
 
+/* Estilos do formulário de doação */
+.donation-form {
+    margin-top: 20px;
+}
 
-/* Estilos para a barra de pesquisa */
-.search-bar {
-    position: relative;
-    display: flex;
-    gap: 10px;
+.form-title {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+.form-control, .form-select {
     width: 100%;
-    max-width: 100%;
-    margin-bottom: 15px;
-}
-
-.search-input {
-    position: relative;
-    flex: 1;
-}
-
-.search-input input {
-    width: 100%;
-    padding: 12px 16px;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    font-size: 14px;
-    transition: border-color 0.3s;
-    box-sizing: border-box;
-    padding-right: 40px; /* Espaço para o ícone */
-}
-
-.search-input input:focus {
-    border-color: #4CAF50;
-    outline: none;
-    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
-}
-
-.search-button {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    color: #666;
-    cursor: pointer;
-    font-size: 16px;
-    padding: 8px;
-    transition: color 0.3s;
-}
-
-.search-button:hover {
-    color: #2196F3;
-}
-
-.search-filters select {
-    padding: 12px;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    background-color: white;
-    cursor: pointer;
-    font-size: 14px;
-    transition: border-color 0.3s;
-}
-
-.search-filters select:focus {
-    border-color: #4CAF50;
-    outline: none;
-}
-
-/* Estilos para as sugestões de pesquisa */
-.search-suggestions-container {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    max-height: 400px;
-    overflow-y: auto;
-    background-color: white;
+    padding: 10px;
     border: 1px solid #ddd;
-    border-radius: 0 0 8px 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    z-index: 1000;
-    margin-top: 5px;
-    display: none;
+    border-radius: 4px;
+    font-size: 16px;
 }
 
-.search-suggestion-header {
-    padding: 12px 16px;
-    font-weight: 600;
-    background-color: #f8f9fa;
-    color: #2c3e50;
-    border-bottom: 1px solid #e9ecef;
-    font-size: 14px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+.form-textarea {
+    min-height: 100px;
+    resize: vertical;
 }
 
-.search-suggestion {
-    padding: 12px 16px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    border-bottom: 1px solid #f1f1f1;
+.form-check-group {
     display: flex;
-    flex-direction: column;
-    color: black;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
-.search-suggestion:hover {
-    background-color: #f0f8ff;
+.form-check {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-.search-suggestion.highlighted {
-    background-color: #e3f2fd;
+.file-upload {
+    display: block;
+    border: 2px dashed #ddd;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: border-color 0.3s;
 }
 
-.search-suggestion div:first-child {
-    font-weight: 500;
-    margin-bottom: 4px;
+.file-upload:hover {
+    border-color: #4CAF50;
 }
 
-.search-suggestion div:last-child {
+.upload-text {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.upload-hint {
+    display: block;
     font-size: 12px;
     color: #666;
 }
 
-/* Estilos para o Modal */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.modal-content {
-  background-color: #fefefe;
-  margin: 5% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 90%;
-  max-width: 600px;
-  border-radius: 8px;
-  position: relative;
-}
-
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  position: absolute;
-  right: 20px;
-  top: 10px;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-/* Estilos do formulário de doação */
-.donation-form {
-  margin-top: 20px;
-}
-
-.form-title {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #333;
-}
-
-.form-group {
-  margin-bottom: 20px;
-}
-
-.form-label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: bold;
-  color: #333;
-}
-
-.form-control, .form-select {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 16px;
-}
-
-.form-textarea {
-  min-height: 100px;
-  resize: vertical;
-}
-
-.form-check-group {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.form-check {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.file-upload {
-  display: block;
-  border: 2px dashed #ddd;
-  padding: 20px;
-  text-align: center;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: border-color 0.3s;
-}
-
-.file-upload:hover {
-  border-color: #4CAF50;
-}
-
-.upload-text {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.upload-hint {
-  display: block;
-  font-size: 12px;
-  color: #666;
-}
-
 .file-upload input[type="file"] {
-  display: none;
+    display: none;
 }
 
 .institution-info {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px;
-  background-color: #f9f9f9;
-  border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
 }
 
 .institution-logo-small {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  overflow: hidden;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
 }
 
 .institution-logo-small img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .submit-wrapper {
-  margin-top: 30px;
+    margin-top: 30px;
 }
 
 .btn-primary {
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  font-size: 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 .btn-primary:hover {
-  background-color: #45a049;
+    background-color: #45a049;
 }
 
 .text-center {
-  text-align: center;
+    text-align: center;
 }
 
 /* Estilos específicos para o modal de voluntário */
 .volunteer-modal-content {
-  max-width: 800px;
-  max-height: 90vh;
-  overflow-y: auto;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
 .volunteer-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-  padding-bottom: 15px;
-  border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
 }
 
 .volunteer-header img {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  margin-right: 15px;
-  object-fit: cover;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 15px;
+    object-fit: cover;
 }
 
 .volunteer-header h1 {
-  font-size: 1.5rem;
-  color: #333;
-  margin: 0;
+    font-size: 1.5rem;
+    color: #333;
+    margin: 0;
 }
 
 .volunteer-form-container {
-  padding: 10px;
+    padding: 10px;
 }
 
 .volunteer-form {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
 }
 
 .form-group {
-  margin-bottom: 15px;
+    margin-bottom: 15px;
 }
 
 .form-group label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: 600;
-  color: #333;
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #333;
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 14px;
-  box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
 }
 
 .form-group.full-width {
-  grid-column: 1 / -1;
+    grid-column: 1 / -1;
 }
 
 .birthdate-container {
-  display: flex;
-  gap: 10px;
+    display: flex;
+    gap: 10px;
 }
 
 .birthdate-select {
-  flex: 1;
+    flex: 1;
 }
 
 .cep-search {
-  display: flex;
-  gap: 10px;
+    display: flex;
+    gap: 10px;
 }
 
 .cep-search input {
-  flex: 1;
+    flex: 1;
 }
 
 .cep-button {
-  padding: 10px 15px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
+    padding: 10px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
 }
 
 .cep-button:hover {
-  background-color: #45a049;
+    background-color: #45a049;
 }
 
 .radio-group {
-  display: flex;
-  gap: 20px;
+    display: flex;
+    gap: 20px;
 }
 
 .radio-option {
-  display: flex;
-  align-items: center;
-  gap: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 .radio-option input[type="radio"] {
-  width: auto;
+    width: auto;
 }
 
 .submit-button {
-  grid-column: 1 / -1;
-  padding: 12px 20px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-size: 16px;
-  cursor: pointer;
-  margin-top: 10px;
+    grid-column: 1 / -1;
+    padding: 12px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
 }
 
 .submit-button:hover {
-  background-color: #45a049;
+    background-color: #45a049;
 }
 
 /* Estilos para mensagem de sucesso */
 .overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  z-index: 1001;
-  display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1001;
+    display: none;
 }
 
 .success-message-new {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  padding: 30px;
-  border-radius: 8px;
-  text-align: center;
-  z-index: 1002;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-  display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    text-align: center;
+    z-index: 1002;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    display: none;
 }
 
 .success-message-new i {
-  font-size: 48px;
-  color: #4CAF50;
-  margin-bottom: 15px;
-  display: block;
+    font-size: 48px;
+    color: #4CAF50;
+    margin-bottom: 15px;
+    display: block;
 }
 
 .success-message-new h3 {
-  margin: 0 0 10px 0;
-  color: #333;
+    margin: 0 0 10px 0;
+    color: #333;
 }
 
 .success-message-new p {
-  margin: 0;
-  color: #666;
+    margin: 0;
+    color: #666;
 }
-
-/* Responsividade */
-@media (max-width: 768px) {
-  .volunteer-form {
-    grid-template-columns: 1fr;
-  }
-  
-  .birthdate-container {
-    flex-direction: column;
-  }
-  
-  .cep-search {
-    flex-direction: column;
-  }
-}
-
-    /* Estilos anteriores mantidos */
-    .cart-message {
-        position: fixed;
-        top: 20px;
-        left: 50%;
-        transform: translateX(-50%) translateY(-20px);
-        background-color: #4CAF50;
-        color: white;
-        padding: 15px 25px;
-        border-radius: 4px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        z-index: 1000;
-        opacity: 0;
-        transition: all 0.3s ease;
-    }
-    
-    .cart-icon.animate {
-        animation: bounce 0.6s;
-    }
-    
-    @keyframes bounce {
-        0%, 100% { transform: scale(1); }
-        30% { transform: scale(1.2); }
-        50% { transform: scale(0.9); }
-        70% { transform: scale(1.1); }
-    }
-    
-    .back-notification {
-        position: fixed;
-        bottom: 20px;
-        left: 20px;
-        background: rgba(0,0,0,0.8);
-        color: white;
-        padding: 15px;
-        border-radius: 5px;
-        z-index: 1000;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-    
-    .removal-message {
-        position: fixed;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: #4CAF50;
-        color: white;
-        padding: 15px 25px;
-        border-radius: 5px;
-        display: none;
-        align-items: center;
-        gap: 10px;
-        z-index: 1000;
-    }
-    
-    .removal-message.show {
-        display: flex;
-        animation: fadeInOut 3s forwards;
-    }
-    
-    @keyframes fadeInOut {
-        0% { opacity: 0; }
-        20% { opacity: 1; }
-        80% { opacity: 1; }
-        100% { opacity: 0; }
-    }
-    
-    /* NOVOS ESTILOS PARA O MAIN */
-    main {
-        min-height: 60vh;
-        padding: 20px 0;
-        background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
-        border-radius: 12px;
-        margin: 20px 0;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    }
-    
-    .main-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 15px;
-    }
-    
-    .page-header {
-        text-align: center;
-        margin-bottom: 30px;
-        padding: 20px 0;
-        border-bottom: 2px solid #e0e6ed;
-    }
-    
-    .page-title {
-        font-size: 2.5rem;
-        color: #2196F3;
-        margin-bottom: 10px;
-        font-weight: 700;
-    }
-    
-    .page-subtitle {
-        font-size: 1.1rem;
-        color: #666;
-        max-width: 800px;
-        margin: 0 auto;
-        line-height: 1.6;
-    }
-    
-    .products-section {
-        background-color: white;
-        border-radius: 12px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        padding: 30px;
-        margin: 30px 0;
-    }
-    
-    .filter-section {
-        background-color: white;
-        border-radius: 12px;
-        padding: 20px;
-        margin-bottom: 25px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    }
-    
-    .filter-options {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 15px;
-        align-items: center;
-    }
-    
-    .filter-group {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-    
-    .filter-group label {
-        font-weight: 500;
-        color: #555;
-    }
-    
-    .filter-group select {
-        padding: 8px 12px;
-        border: 1px solid #ddd;
-        border-radius: 6px;
-        background-color: #f9f9f9;
-    }
-    
-    .view-options {
-        display: flex;
-        gap: 10px;
-        margin-left: auto;
-    }
-    
-    .view-btn {
-        background: #f0f4f8;
-        border: none;
-        width: 40px;
-        height: 40px;
-        border-radius: 6px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition: all 0.2s;
-    }
-    
-    .view-btn:hover, .view-btn.active {
-        background: #2196F3;
-        color: white;
-    }
-
-    .botaoMenu {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 12px 16px;
-    font-size: 18px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.botaoMenu:hover {
-    background-color: #0056b3;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
-}
-
-.botaoMenu:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 6px rgba(0, 123, 255, 0.2);
-}
-
-.botaoMenu:focus {
-    outline: 3px solid rgba(0, 123, 255, 0.5);
-    outline-offset: 2px;
-}
-
-/* CSS - Apenas adicionar estas regras */
-
-.botaoMenu {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 10px 14px;
-    font-size: 18px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: none;
-    align-items: center;
-    justify-content: center;
-}
-
-.botaoMenu:hover {
-    background-color: #0056b3;
-}
-
-/* Menu normal (acima de 950px) */
-.nav-menu {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    transition: all 0.3s ease;
-}
-
-/* Responsividade - 950px */
-@media (max-width: 950px) {
-    .botaoMenu {
-        display: flex; /* Mostra o botão */
-    }
-    
-    .nav-menu {
-        display: none; /* Esconde o menu */
-        position: absolute;
-        top: 60px;
-        right: 20px;
-        background-color: gray;
-        flex-direction: column;
-        padding: 15px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        border-radius: 8px;
-        min-width: 200px;
-        z-index: 1000;
-        gap: 10px;
-    }
-    
-    .nav-menu.mostrar {
-        display: flex; /* Mostra quando tem a classe */
-    }
-    
-    .nav-menu > * {
-        padding: 10px;
-        border-bottom: 1px solid #f0f0f0;
-    }
-    
-    .nav-menu > *:last-child {
-        border-bottom: none;
-    }
-}
-
-/* ================ MELHORIAS DE RESPONSIVIDADE ================ */
-
-/* Ajustes gerais para telas menores */
-@media (max-width: 950px) {
-    /* Header responsivo */
-    .header-container {
-        flex-direction: column;
-        gap: 15px;
-    }
-    
-    .logo-section, .search-section, .user-section {
-        width: 100%;
-    }
-    
-    .logo img {
-        width: 150px;
-        margin: 0 auto;
-        display: block;
-    }
-    
-    .search-combined {
-        flex-direction: column;
-        gap: 10px;
-    }
-    
-    .search-filters select {
-        width: 100%;
-    }
-    
-    /* Menu responsivo */
-    .nav-menu {
-        flex-direction: column;
-        width: 100%;
-        background-color: rgba(0, 0, 0, 0.9);
-        position: absolute;
-        top: 100%;
-        left: 0;
-        padding: 15px;
-        border-radius: 0 0 8px 8px;
-        z-index: 1000;
-        display: none;
-    }
-    
-    .nav-menu.mostrar {
-        display: flex;
-    }
-    
-    .nav-menu > * {
-        margin: 5px 0;
-        padding: 10px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    
-    .nav-menu > *:last-child {
-        border-bottom: none;
-    }
-    
-    .botaoMenu {
-        display: flex;
-    }
-    
-    /* Categorias responsivas */
-    .categories {
-        flex-direction: column;
-        gap: 5px;
-    }
-    
-    .dropdown {
-        width: 100%;
-        text-align: center;
-    }
-    
-    .dropdown-content {
-        position: static;
-        transform: none;
-        width: 100%;
-        box-shadow: none;
-        margin-top: 5px;
-    }
-    
-    /* Perfil da instituição responsivo */
-    .institution-header {
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    .institution-logo {
-        width: 100%;
-        max-width: 300px;
-        height: 150px;
-        margin: 0 auto 20px;
-    }
-    
-    .institution-info h1 {
-        font-size: 24px;
-    }
-    
-    /* Botões de ação responsivos */
-    .donate-button, .buy-button, .Voluntário-button {
-        width: 100%;
-        margin: 5px 0;
-    }
-    
-    /* Estatísticas responsivas */
-    .institution-stats {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-    
-    /* Tabs responsivas */
-    .institution-tabs {
-        flex-direction: column;
-    }
-    
-    .institution-tab {
-        text-align: center;
-        border-right: none;
-        border-bottom: 1px solid #e0e0e0;
-    }
-    
-    .institution-tab.active {
-        border-bottom: 3px solid #2196F3;
-        margin-bottom: 0;
-    }
-    
-    /* Grid de doações responsivo */
-    .donations-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    /* Depoimentos responsivos */
-    .testimonials-section {
-        grid-template-columns: 1fr;
-    }
-    
-    /* Footer responsivo */
-    .footer-content {
-        flex-direction: column;
-        gap: 20px;
-    }
-    
-    .footer-links {
-        width: 100%;
-    }
-    
-    /* Modal responsivo */
-    .modal-content {
-        width: 95%;
-        margin: 10% auto;
-        padding: 15px;
-    }
-    
-    .volunteer-form {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* Ajustes para telas muito pequenas (até 480px) */
-@media (max-width: 480px) {
-    .container {
-        padding: 0 10px;
-    }
-    
-    .institution-profile, .donations-section, .products-section {
-        padding: 20px 15px;
-        margin: 20px 0;
-    }
-    
-    .institution-logo {
-        height: 120px;
-    }
-    
-    .page-title {
-        font-size: 1.8rem;
-    }
-    
-    .stat-number {
-        font-size: 24px;
-    }
-    
-    .testimonial-header {
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    .testimonial-header img {
-        margin: 0 auto 10px;
-    }
-    
-    .contact-display {
-        flex-direction: column;
-        text-align: center;
-        gap: 5px;
-    }
-    
-    /* Ajustes no formulário de voluntário para mobile */
-    .birthdate-container, .cep-search {
-        flex-direction: column;
-    }
-    
-    .radio-group {
-        flex-direction: column;
-        gap: 10px;
-    }
-}
-
-/* Melhorias de acessibilidade e usabilidade em mobile */
-@media (max-width: 768px) {
-    /* Aumentar área de toque para botões */
-    button, .donate-btn, .view-btn, .search-button {
-        min-height: 44px;
-        min-width: 44px;
-    }
-    
-    /* Ajustar inputs para facilitar toque */
-    input, select, textarea {
-        font-size: 16px; /* Evita zoom no iOS */
-    }
-    
-    /* Melhorar legibilidade do texto */
-    body {
-        font-size: 16px;
-        line-height: 1.5;
-    }
-    
-    /* Ajustar espaçamentos */
-    .institution-profile, .donations-section, .tab-content {
-        margin: 20px 0;
-        padding: 20px;
-    }
-    
-    /* Otimizar visualização do mapa */
-    .map-container iframe {
-        height: 250px;
-    }
-}
-
-/* Correção para evitar quebra de layout em orientação paisagem */
-@media (max-height: 500px) and (orientation: landscape) {
-    .header-container {
-        flex-wrap: nowrap;
-    }
-    
-    .categories-section {
-        order: 0;
-        margin-top: 0;
-    }
-    
-    .institution-header {
-        flex-direction: row;
-        align-items: flex-start;
-    }
-    
-    .institution-logo {
-        width: 120px;
-        height: 80px;
-        margin-right: 15px;
-    }
-}
-
-/* Melhorias para tablets (768px - 1024px) */
-@media (min-width: 768px) and (max-width: 1024px) {
-    .donations-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .testimonials-section {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .institution-stats {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .footer-content {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-/* Prevenir overflow horizontal */
-html, body {
-    max-width: 100%;
-    overflow-x: hidden;
-}
-
-/* Melhorar a visualização das imagens em mobile */
-img {
-    max-width: 100%;
-    height: auto;
-}
-
-/* Ajustes específicos para o menu mobile */
-@media (max-width: 950px) {
-    .user-section {
-        position: relative;
-    }
-    
-    .cart-count {
-        top: -5px;
-        right: -5px;
-    }
-}
-
-/* Melhorar a experiência de toque nos dropdowns */
-@media (max-width: 950px) {
-    .dropdown:hover .dropdown-content {
-        display: none;
-    }
-    
-    .dropdown:active .dropdown-content,
-    .dropdown:focus .dropdown-content {
-        display: block;
-    }
-}
-
-/* ================ AJUSTES ESPECÍFICOS PARA 600px ================ */
-@media (max-width: 600px) {
-    /* Container principal */
-    .container {
-        padding: 0 12px;
-    }
-    
-    /* Header compacto */
-    .header-container {
-        gap: 12px;
-        padding: 10px 0;
-    }
-    
-    .logo img {
-        width: 140px;
-    }
-    
-    /* Barra de pesquisa otimizada */
-    .search-section {
-        min-width: 100%;
-        order: 3;
-        margin-top: 10px;
-    }
-    
-    .search-combined {
-        flex-direction: column;
-        gap: 8px;
-    }
-    
-    .search-input input {
-        padding: 14px 16px;
-        font-size: 16px; /* Previne zoom no iOS */
-    }
-    
-    .search-filters select {
-        width: 100%;
-        padding: 14px;
-    }
-    
-    /* Seção do usuário reorganizada */
-    .user-section {
-        width: 100%;
-        justify-content: space-between;
-        order: 2;
-    }
-    
-    .botaoMenu {
-        display: flex;
-        margin-left: auto;
-    }
-    
-    .nav-menu {
-        right: 12px;
-        left: 12px;
-        width: auto;
-    }
-    
-    /* Categorias em layout vertical */
-    .categories {
-        flex-direction: column;
-        gap: 8px;
-        padding: 12px 0;
-    }
-    
-    .categories a {
-        padding: 12px 15px;
-        text-align: center;
-        background-color: rgba(255, 255, 255, 0.1);
-        border-radius: 6px;
-    }
-    
-    .dropdown-content {
-        position: static;
-        transform: none;
-        width: 100%;
-        box-shadow: none;
-        margin-top: 8px;
-        background-color: rgba(255, 255, 255, 0.95);
-    }
-    
-    /* Título da página */
-    .title {
-        font-size: 1.5rem;
-        padding: 15px 0;
-        margin: 10px 0;
-    }
-    
-    /* Perfil da instituição compacto */
-    .institution-profile {
-        padding: 20px;
-        margin: 20px 0;
-    }
-    
-    .institution-header {
-        flex-direction: column;
-        text-align: center;
-        gap: 15px;
-    }
-    
-    .institution-logo {
-        width: 100%;
-        max-width: 280px;
-        height: 140px;
-        margin: 0 auto;
-    }
-    
-    .institution-info h1 {
-        font-size: 1.5rem;
-        margin-bottom: 5px;
-    }
-    
-    .institution-category {
-        font-size: 0.85rem;
-        padding: 4px 12px;
-    }
-    
-    .institution-description {
-        font-size: 0.9rem;
-        line-height: 1.4;
-    }
-    
-    /* Botões de ação em coluna */
-    .donate-button, .buy-button, .Voluntário-button {
-        width: 100%;
-        margin: 8px 0;
-        padding: 14px 20px;
-        font-size: 15px;
-    }
-    
-    /* Estatísticas em grid 2x2 */
-    .institution-stats {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-        margin: 20px 0;
-    }
-    
-    .stat-card {
-        padding: 15px;
-    }
-    
-    .stat-number {
-        font-size: 1.5rem;
-    }
-    
-    .stat-label {
-        font-size: 0.8rem;
-    }
-    
-    /* Tabs verticais */
-    .institution-tabs {
-        flex-direction: column;
-        border-bottom: none;
-        border-radius: 8px;
-        overflow: hidden;
-    }
-    
-    .institution-tab {
-        padding: 15px 20px;
-        border-right: none;
-        border-bottom: 1px solid #e0e0e0;
-        text-align: center;
-        background-color: #f8f9fa;
-    }
-    
-    .institution-tab:last-child {
-        border-bottom: none;
-    }
-    
-    .institution-tab.active {
-        background-color: white;
-        color: #2196F3;
-        border-bottom: 3px solid #2196F3;
-        margin-bottom: 0;
-    }
-    
-    /* Conteúdo das tabs */
-    .tab-content {
-        padding: 20px;
-        margin: 15px 0;
-        border-radius: 8px;
-    }
-    
-    .section-title {
-        font-size: 1.3rem;
-        margin-bottom: 15px;
-    }
-    
-    /* Grid de doações em coluna única */
-    .donations-section {
-        padding: 20px;
-        margin: 20px 0;
-    }
-    
-    .donations-grid {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-    
-    .donation-item {
-        padding: 15px;
-    }
-    
-    .donation-image img {
-        width: 80px;
-        height: 80px;
-    }
-    
-    .progress-bar {
-        height: 16px;
-        margin: 8px 0;
-    }
-    
-    .progress-bar span {
-        font-size: 10px;
-    }
-    
-    .donate-btn {
-        padding: 12px 20px;
-        width: 100%;
-    }
-    
-    /* Depoimentos em coluna única */
-    .testimonials-section {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-    
-    .testimonial-card {
-        padding: 15px;
-    }
-    
-    .testimonial-header {
-        flex-direction: column;
-        text-align: center;
-        gap: 10px;
-    }
-    
-    .testimonial-header img {
-        width: 50px;
-        height: 50px;
-    }
-    
-    .testimonial-header h3 {
-        font-size: 1rem;
-    }
-    
-    /* Informações de contato */
-    .contact-info-container {
-        padding: 20px;
-    }
-    
-    .contact-display {
-        flex-direction: column;
-        text-align: center;
-        gap: 5px;
-        padding: 12px;
-    }
-    
-    .form-group h3 {
-        font-size: 1rem;
-    }
-    
-    /* Mapa */
-    .map-container {
-        padding: 15px;
-    }
-    
-    .map-container iframe {
-        height: 200px;
-    }
-    
-    /* Footer reorganizado */
-    footer {
-        padding: 30px 0 15px;
-    }
-    
-    .footer-content {
-        flex-direction: column;
-        gap: 25px;
-    }
-    
-    .footer-links {
-        text-align: center;
-    }
-    
-    .social-links {
-        justify-content: center;
-        margin-top: 10px;
-    }
-    
-    /* Modais responsivos */
-    .modal-content {
-        width: 95%;
-        margin: 5% auto;
-        padding: 20px 15px;
-    }
-    
-    .volunteer-modal-content {
-        max-height: 85vh;
-        overflow-y: auto;
-    }
-    
-    .volunteer-form {
-        grid-template-columns: 1fr;
-        gap: 12px;
-    }
-    
-    .form-group.full-width {
-        grid-column: 1;
-    }
-    
-    .birthdate-container {
-        flex-direction: column;
-        gap: 8px;
-    }
-    
-    .cep-search {
-        flex-direction: column;
-        gap: 8px;
-    }
-    
-    .radio-group {
-        flex-direction: column;
-        gap: 8px;
-    }
-    
-    /* Melhorias de usabilidade */
-    button, a, input, select {
-        min-height: 44px;
-        min-width: 44px;
-    }
-    
-    /* Ajustes de tipografia */
-    body {
-        font-size: 15px;
-        line-height: 1.4;
-    }
-    
-    h1 {
-        font-size: 1.6rem;
-    }
-    
-    h2 {
-        font-size: 1.4rem;
-    }
-    
-    h3 {
-        font-size: 1.2rem;
-    }
-    
-    /* Espaçamentos reduzidos */
-    main {
-        padding: 15px 0;
-    }
-    
-    .page-header {
-        margin-bottom: 20px;
-        padding: 15px 0;
-    }
-    
-    .page-title {
-        font-size: 1.8rem;
-    }
-    
-    .page-subtitle {
-        font-size: 1rem;
-    }
-}
-
-/* Ajustes extras para orientação paisagem em 600px */
-@media (max-width: 600px) and (orientation: landscape) {
-    .header-container {
-        flex-wrap: wrap;
-    }
-    
-    .logo-section {
-        flex: 0 0 30%;
-    }
-    
-    .user-section {
-        flex: 0 0 60%;
-        justify-content: flex-end;
-    }
-    
-    .search-section {
-        order: 3;
-        margin-top: 10px;
-    }
-    
-    .institution-header {
-        flex-direction: row;
-        align-items: flex-start;
-        text-align: left;
-    }
-    
-    .institution-logo {
-        width: 120px;
-        height: 80px;
-        margin-right: 15px;
-        margin-bottom: 0;
-    }
-    
-    .institution-info h1 {
-        font-size: 1.3rem;
-    }
-    
-    .donate-button, .buy-button, .Voluntário-button {
-        padding: 10px 15px;
-        font-size: 14px;
-    }
-    
-    .modal-content {
-        margin: 2% auto;
-    }
-}
-
-/* Prevenir problemas comuns em 600px */
-@media (max-width: 600px) {
-    /* Evitar overflow horizontal */
-    html, body {
-        overflow-x: hidden;
-        position: relative;
-    }
-    
-    /* Garantir que imagens não quebrem o layout */
-    img {
-        max-width: 100%;
-        height: auto;
-    }
-    
-    /* Melhorar legibilidade do texto */
-    p, li, span {
-        line-height: 1.5;
-    }
-    
-    /* Ajustar tabelas se houver */
-    table {
-        font-size: 14px;
-    }
-    
-    /* Otimizar formulários */
-    input, textarea, select {
-        font-size: 16px; /* Previne zoom no iOS */
-    }
-}
-
-/* ================ MELHORIA ESPECÍFICA PARA OS TRÊS BOTÕES ================ */
-@media (max-width: 600px) {
-    /* Container dos botões - layout vertical otimizado */
-    .institution-info {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        width: 100%;
-    }
-    
-    /* Estilo base para todos os botões */
-    .donate-button, 
-    .buy-button, 
-    .Voluntário-button {
-        width: 100%;
-        margin: 0;
-        padding: 16px 20px;
-        font-size: 15px;
-        font-weight: 600;
-        border-radius: 8px;
-        border: none;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        text-decoration: none;
-        text-align: center;
-        min-height: 52px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    }
-    
-    /* Botão Doar - Verde */
-    .donate-button {
-        background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
-        color: white;
-        order: 1; /* Primeiro na ordem */
-    }
-    
-    .donate-button:hover {
-        background: linear-gradient(135deg, #45a049 0%, #3d8b40 100%);
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
-    }
-    
-    .donate-button:active {
-        transform: translateY(0);
-        box-shadow: 0 2px 4px rgba(76, 175, 80, 0.3);
-    }
-    
-    /* Botão Comprar - Azul */
-    .buy-button {
-        background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
-        color: white;
-        order: 2; /* Segundo na ordem */
-    }
-    
-    .buy-button:hover {
-        background: linear-gradient(135deg, #1976D2 0%, #1565C0 100%);
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
-    }
-    
-    .buy-button:active {
-        transform: translateY(0);
-        box-shadow: 0 2px 4px rgba(33, 150, 243, 0.3);
-    }
-    
-    /* Botão Voluntário - Roxo/Azul escuro */
-    .Voluntário-button {
-        background: linear-gradient(135deg, #2196F3 0%, #000 100%);
-        color: white;
-        order: 3; /* Terceiro na ordem */
-    }
-    
-    .Voluntário-button:hover {
-        background: linear-gradient(135deg, #1976D2 0%, #000 100%);
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
-    }
-    
-    .Voluntário-button:active {
-        transform: translateY(0);
-        box-shadow: 0 2px 4px rgba(33, 150, 243, 0.3);
-    }
-    
-    /* Ícones nos botões */
-    .donate-button::before {
-        content: "❤️";
-        font-size: 18px;
-    }
-    
-    .buy-button::before {
-        content: "🛒";
-        font-size: 18px;
-    }
-    
-    .Voluntário-button::before {
-        content: "👥";
-        font-size: 18px;
-    }
-    
-    /* Estados de foco para acessibilidade */
-    .donate-button:focus,
-    .buy-button:focus,
-    .Voluntário-button:focus {
-        outline: 3px solid rgba(33, 150, 243, 0.5);
-        outline-offset: 2px;
-    }
-    
-    /* Efeito de loading nos botões */
-    .donate-button.loading,
-    .buy-button.loading,
-    .Voluntário-button.loading {
-        position: relative;
-        color: transparent;
-    }
-    
-    .donate-button.loading::after,
-    .buy-button.loading::after,
-    .Voluntário-button.loading::after {
-        content: "";
-        position: absolute;
-        width: 20px;
-        height: 20px;
-        border: 2px solid transparent;
-        border-top: 2px solid white;
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-    }
-    
-    @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-    }
-}
-
-/* ================ LAYOUT ALTERNATIVO PARA BOTÕES ================ */
-
-/* Opção 1: Botões em grid 2x2 (quando há espaço) */
-@media (max-width: 600px) and (min-height: 700px) {
-    .institution-info {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
-        align-items: start;
-    }
-    
-    .donate-button {
-        grid-column: 1 / 2;
-    }
-    
-    .buy-button {
-        grid-column: 2 / 3;
-    }
-    
-    .Voluntário-button {
-        grid-column: 1 / -1;
-        width: 100%;
-    }
-}
-
-/* Opção 2: Botões com ícones maiores e texto menor */
-@media (max-width: 500px) {
-    .donate-button, 
-    .buy-button, 
-    .Voluntário-button {
-        padding: 14px 16px;
-        font-size: 14px;
-        min-height: 48px;
-        gap: 8px;
-    }
-    
-    .donate-button::before,
-    .buy-button::before,
-    .Voluntário-button::before {
-        font-size: 16px;
-    }
-}
-
-/* Opção 3: Botões com estilo de cards */
-@media (max-width: 600px) {
-    .button-card-layout {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        margin: 20px 0;
-    }
-    
-    .button-card {
-        background: white;
-        border-radius: 12px;
-        padding: 20px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        border-left: 4px solid;
-        transition: all 0.3s ease;
-    }
-    
-    .button-card.doar {
-        border-left-color: #4CAF50;
-    }
-    
-    .button-card.comprar {
-        border-left-color: #2196F3;
-    }
-    
-    .button-card.voluntario {
-        border-left-color: #2196F3;
-    }
-    
-    .button-card:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-    }
-    
-    .button-card-content {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
-    
-    .button-card-icon {
-        font-size: 24px;
-        margin-bottom: 5px;
-    }
-    
-    .button-card-title {
-        font-size: 16px;
-        font-weight: 600;
-        color: #333;
-        margin: 0;
-    }
-    
-    .button-card-description {
-        font-size: 13px;
-        color: #666;
-        line-height: 1.4;
-        margin: 0;
-    }
-    
-    .button-card-action {
-        margin-top: 10px;
-    }
-    
-    .card-button {
-        width: 100%;
-        padding: 12px 20px;
-        border: none;
-        border-radius: 6px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-    
-    .card-button.doar {
-        background: #4CAF50;
-        color: white;
-    }
-    
-    .card-button.comprar {
-        background: #2196F3;
-        color: white;
-    }
-    
-    .card-button.voluntario {
-        background: linear-gradient(135deg, #2196F3 0%, #000 100%);
-        color: white;
-    }
-}
-
-/* ================ MELHORIAS DE ACESSIBILIDADE ================ */
-@media (max-width: 600px) {
-    /* Garantir contraste adequado */
-    .donate-button,
-    .buy-button,
-    .Voluntário-button {
-        color: white !important;
-    }
-    
-    /* Texto não deve quebrar */
-    .donate-button,
-    .buy-button,
-    .Voluntário-button {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-    
-    /* Feedback tátil melhorado */
-    @media (hover: none) {
-        .donate-button:active,
-        .buy-button:active,
-        .Voluntário-button:active {
-            transform: scale(0.98);
-            opacity: 0.9;
-        }
-    }
-}
-
-/* ================ ANIMAÇÕES ESPECIAIS ================ */
-@media (max-width: 600px) {
-    /* Animação de entrada dos botões */
-    .donate-button,
-    .buy-button,
-    .Voluntário-button {
-        animation: slideUp 0.5s ease-out;
-        animation-fill-mode: both;
-    }
-    
-    .buy-button {
-        animation-delay: 0.1s;
-    }
-    
-    .Voluntário-button {
-        animation-delay: 0.2s;
-    }
-    
-    @keyframes slideUp {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-    
-    /* Efeito de pulso para chamar atenção */
-    .donate-button.highlight {
-        animation: pulse 2s infinite;
-    }
-    
-    @keyframes pulse {
-        0% {
-            box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7);
-        }
-        70% {
-            box-shadow: 0 0 0 10px rgba(76, 175, 80, 0);
-        }
-        100% {
-            box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
-        }
-    }
-}
-
-/* Estilo para o título das redes sociais com gradiente */
-.socials-title {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 15px;
-    margin-bottom: 0px;
-    font-weight: 600;
-    font-size: 30px;
-    background: linear-gradient(135deg, #2196F3 0%, #4CAF50 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    color: transparent;
-}
-
-.socials-title i {
-    font-size: 30px;
-    background: linear-gradient(135deg, #2196F3 0%, #4CAF50 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    color: transparent;
-}
-
 
 /* ================ MODAIS ATUALIZADOS ================ */
 .modal-overlay {
@@ -3332,40 +1682,398 @@ img {
     font-weight: 500;
 }
 
-/* Responsividade */
-@media (max-width: 768px) {
-    .modal-donation {
-        width: 95%;
-        margin: 20px;
+/* ================ BOTÃO MENU ================ */
+
+.botaoMenu {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.botaoMenu:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+}
+
+.botaoMenu:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(0, 123, 255, 0.2);
+}
+
+.botaoMenu:focus {
+    outline: 3px solid rgba(0, 123, 255, 0.5);
+    outline-offset: 2px;
+}
+
+.botaoMenu {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.botaoMenu:hover {
+    background-color: #0056b3;
+}
+
+/* Menu normal (acima de 950px) */
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: all 0.3s ease;
+}
+
+/* Responsividade - 950px */
+@media (max-width: 950px) {
+    .botaoMenu {
+        display: flex; /* Mostra o botão */
     }
     
-    .modal-header {
-        padding: 20px;
+    .nav-menu {
+        display: none; /* Esconde o menu */
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        background-color: gray;
+        flex-direction: column;
+        padding: 15px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        border-radius: 8px;
+        min-width: 200px;
+        z-index: 1000;
+        gap: 10px;
     }
     
+    .nav-menu.mostrar {
+        display: flex; /* Mostra quando tem a classe */
+    }
+    
+    .nav-menu > * {
+        padding: 10px;
+        border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .nav-menu > *:last-child {
+        border-bottom: none;
+    }
+}
+
+/* ================ MELHORIAS DE RESPONSIVIDADE ================ */
+
+/* Ajustes gerais para telas menores */
+@media (max-width: 950px) {
+    /* Header responsivo */
+    .header-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .logo-section, .search-section, .user-section {
+        width: 100%;
+    }
+    
+    .logo img {
+        width: 150px;
+        margin: 0 auto;
+        display: block;
+    }
+    
+    .search-combined {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .search-filters select {
+        width: 100%;
+    }
+    
+    /* Menu responsivo */
+    .nav-menu {
+        flex-direction: column;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        position: absolute;
+        top: 100%;
+        left: 0;
+        padding: 15px;
+        border-radius: 0 0 8px 8px;
+        z-index: 1000;
+        display: none;
+    }
+    
+    .nav-menu.mostrar {
+        display: flex;
+    }
+    
+    .nav-menu > * {
+        margin: 5px 0;
+        padding: 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .nav-menu > *:last-child {
+        border-bottom: none;
+    }
+    
+    .botaoMenu {
+        display: flex;
+    }
+    
+    /* Categorias responsivas */
+    .categories {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .dropdown {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .dropdown-content {
+        position: static;
+        transform: none;
+        width: 100%;
+        box-shadow: none;
+        margin-top: 5px;
+    }
+    
+    /* Perfil da instituição responsivo */
+    .institution-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .institution-logo {
+        width: 100%;
+        max-width: 300px;
+        height: 150px;
+        margin: 0 auto 20px;
+    }
+    
+    .institution-info h1 {
+        font-size: 24px;
+    }
+    
+    /* Botões de ação responsivos */
+    .donate-button, .buy-button, .volunteer-button {
+        width: 100%;
+        margin: 5px 0;
+    }
+    
+    /* Estatísticas responsivas */
+    .institution-stats {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    /* Tabs responsivas */
+    .institution-tabs {
+        flex-direction: column;
+    }
+    
+    .institution-tab {
+        text-align: center;
+        border-right: none;
+        border-bottom: 1px solid #e0e0e0;
+    }
+    
+    .institution-tab.active {
+        border-bottom: 3px solid #2196F3;
+        margin-bottom: 0;
+    }
+    
+    /* Grid de doações responsivo */
+    .donations-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Depoimentos responsivos */
+    .testimonials-section {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Footer responsivo */
+    .footer-content {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .footer-links {
+        width: 100%;
+    }
+    
+    /* Modal responsivo */
     .modal-content {
-        padding: 20px;
+        width: 95%;
+        margin: 10% auto;
+        padding: 15px;
+    }
+    
+    .volunteer-form {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Ajustes para telas muito pequenas (até 480px) */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 10px;
+    }
+    
+    .institution-profile, .donations-section, .products-section {
+        padding: 20px 15px;
+        margin: 20px 0;
+    }
+    
+    .institution-logo {
+        height: 120px;
+    }
+    
+    .page-title {
+        font-size: 1.8rem;
+    }
+    
+    .stat-number {
+        font-size: 24px;
+    }
+    
+    .testimonial-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .testimonial-header img {
+        margin: 0 auto 10px;
+    }
+    
+    .contact-display {
+        flex-direction: column;
+        text-align: center;
+        gap: 5px;
+    }
+    
+    /* Ajustes no formulário de voluntário para mobile */
+    .birthdate-container, .cep-search {
+        flex-direction: column;
     }
     
     .radio-group {
         flex-direction: column;
         gap: 10px;
     }
-    
-    .form-row {
-        flex-direction: column;
-        gap: 15px;
+}
+
+/* Melhorias de acessibilidade e usabilidade em mobile */
+@media (max-width: 768px) {
+    /* Aumentar área de toque para botões */
+    button, .donate-btn, .view-btn, .search-button {
+        min-height: 44px;
+        min-width: 44px;
     }
     
-    .birthdate-container {
-        flex-direction: column;
+    /* Ajustar inputs para facilitar toque */
+    input, select, textarea {
+        font-size: 16px;
     }
     
-    .cep-search {
-        flex-direction: column;
+    /* Melhorar legibilidade do texto */
+    body {
+        font-size: 16px;
+        line-height: 1.5;
+    }
+    
+    /* Ajustar espaçamentos */
+    .institution-profile, .donations-section, .tab-content {
+        margin: 20px 0;
+        padding: 20px;
+    }
+    
+    /* Otimizar visualização do mapa */
+    .map-container iframe {
+        height: 250px;
     }
 }
 
+/* Prevenir overflow horizontal */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Melhorar a visualização das imagens em mobile */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Ajustes específicos para o menu mobile */
+@media (max-width: 950px) {
+    .user-section {
+        position: relative;
+    }
+    
+    .cart-count {
+        top: -5px;
+        right: -5px;
+    }
+}
+
+/* Melhorar a experiência de toque nos dropdowns */
+@media (max-width: 950px) {
+    .dropdown:hover .dropdown-content {
+        display: none;
+    }
+    
+    .dropdown:active .dropdown-content,
+    .dropdown:focus .dropdown-content {
+        display: block;
+    }
+}
+
+/* Estilo para o título das redes sociais com gradiente */
+.socials-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 15px;
+    margin-bottom: 0px;
+    font-weight: 600;
+    font-size: 30px;
+    background: linear-gradient(135deg, #2196F3 0%, #4CAF50 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+
+.socials-title i {
+    font-size: 30px;
+    background: linear-gradient(135deg, #2196F3 0%, #4CAF50 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Estilos para validação */
 .error-message {
     color: #e74c3c;
     font-size: 0.85em;
@@ -3388,4 +2096,63 @@ img {
     0%, 100% { transform: translateX(0); }
     25% { transform: translateX(-5px); }
     75% { transform: translateX(5px); }
+}
+
+/* Estilos para o modal de doação específica */
+.selected-item-info {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 25px;
+    border-left: 4px solid #4CAF50;
+}
+
+.item-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.item-header img {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    object-fit: cover;
+    border: 3px solid #4CAF50;
+}
+
+.item-details h3 {
+    color: #2c3e50;
+    margin-bottom: 8px;
+    font-size: 1.3rem;
+}
+
+.item-details p {
+    color: #666;
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+.progress-info {
+    margin-top: 10px;
+}
+
+.progress-info small {
+    color: #666;
+    font-size: 12px;
+    display: block;
+    margin-top: 5px;
+}
+
+/* Campos pré-preenchidos */
+.input-field[readonly],
+.select-field[disabled] {
+    background-color: #f8f9fa;
+    border-color: #e9ecef;
+    color: #666;
+    cursor: not-allowed;
+}
+
+.select-field[disabled] {
+    opacity: 0.7;
 }

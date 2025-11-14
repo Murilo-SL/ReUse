@@ -30,7 +30,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const birthDateInput = document.getElementById('birthDate');
     const ageInput = document.getElementById('age');
     const cepInput = document.getElementById('cep');
-    const cepButton = document.getElementById('cep-button');
 
     // ========== INICIALIZAÇÃO ==========
     initializeModals();
@@ -99,6 +98,21 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Fechar com tecla ESC
         document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                if (donationModal && donationModal.classList.contains('active')) closeModal(donationModal);
+                if (volunteerModal && volunteerModal.classList.contains('active')) closeModal(volunteerModal);
+                if (successOverlay && successOverlay.classList.contains('active')) closeSuccessMessage();
+            }
+        });
+
+        // Formulários
+        if (donationForm) {
+            donationForm.addEventListener('submit', handleDonationSubmit);
+        }
+        
+        if (volunteerForm) {
+            volunteerForm.addEventListener('submit', handleVolunteerSubmit);
+        }
             if (e.key === 'Escape') {
                 if (donationModal && donationModal.classList.contains('active')) closeModal(donationModal);
                 if (volunteerModal && volunteerModal.classList.contains('active')) closeModal(volunteerModal);
@@ -550,8 +564,10 @@ document.addEventListener('DOMContentLoaded', function() {
     function showFieldError(field, message) {
         clearFieldError(field);
         
+        // Adiciona classe de erro ao campo
         field.classList.add('field-error');
         
+        // Cria elemento de erro
         const errorElement = document.createElement('div');
         errorElement.className = 'field-error-message';
         errorElement.textContent = message;
@@ -564,6 +580,7 @@ document.addEventListener('DOMContentLoaded', function() {
             gap: 4px;
         `;
         
+        // Insere após o campo
         if (field.parentNode) {
             field.parentNode.appendChild(errorElement);
         }
@@ -572,18 +589,20 @@ document.addEventListener('DOMContentLoaded', function() {
     function clearFieldError(field) {
         field.classList.remove('field-error');
         
+        // Remove mensagem de erro existente
         const existingError = field.parentNode.querySelector('.field-error-message');
         if (existingError) {
             existingError.remove();
         }
     }
 
-    // ========== HANDLERS DE FORMULÁRIOS ==========
+    // ========== HANDLERS DE FORMULÁRIOS ATUALIZADOS ==========
     function handleDonationSubmit(e) {
         e.preventDefault();
         
         const validation = validateDonationForm();
         if (!validation.isValid) {
+            // Highlight first invalid field and focus it; do not show floating error notification
             const firstError = donationForm.querySelector('.field-error');
             if (firstError && typeof firstError.focus === 'function') firstError.focus();
             return;
@@ -597,6 +616,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const validation = validateVolunteerForm();
         if (!validation.isValid) {
+            // Highlight first invalid field and focus it; do not show floating error notification
             const firstError = volunteerForm.querySelector('.field-error');
             if (firstError && typeof firstError.focus === 'function') firstError.focus();
             return;
@@ -612,15 +632,18 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const originalText = submitButton.innerHTML;
         
+        // Mostrar estado de carregamento
         submitButton.innerHTML = '<i class="bi bi-arrow-repeat spin"></i> Processando...';
         submitButton.disabled = true;
         
+        // Simular processamento
         setTimeout(() => {
             closeModal(donationModal);
             showSuccessMessage();
             resetDonationForm();
             submitButton.innerHTML = originalText;
             submitButton.disabled = false;
+            showNotification('Doação enviada com sucesso!', 'success');
         }, 1500);
     }
     
@@ -630,80 +653,22 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const originalText = submitButton.innerHTML;
         
+        // Mostrar estado de carregamento
         submitButton.innerHTML = '<i class="bi bi-arrow-repeat spin"></i> Enviando...';
         submitButton.disabled = true;
         
+        // Simular processamento
         setTimeout(() => {
             closeModal(volunteerModal);
             showSuccessMessage();
             resetVolunteerForm();
             submitButton.innerHTML = originalText;
             submitButton.disabled = false;
+            showNotification('Cadastro de voluntário enviado com sucesso!', 'success');
         }, 1500);
     }
 
-    // ========== MENSAGEM DE SUCESSO ANIMADA ==========
-    function showSuccessMessage() {
-        if (successOverlay) {
-            successOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-            
-            createConfetti();
-        }
-    }
-    
-    function closeSuccessMessage() {
-        if (successOverlay) {
-            successOverlay.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-    }
-
-    // ========== ANIMAÇÃO DE CONFETES ==========
-    function createConfetti() {
-        const colors = ['#4CAF50', '#2196F3', '#FFC107', '#E91E63', '#9C27B0', '#00BCD4'];
-        const confettiCount = 100;
-        
-        for (let i = 0; i < confettiCount; i++) {
-            const confetti = document.createElement('div');
-            confetti.className = 'confetti';
-            confetti.style.cssText = `
-                position: fixed;
-                width: 10px;
-                height: 10px;
-                background-color: ${colors[Math.floor(Math.random() * colors.length)]};
-                top: -10px;
-                left: ${Math.random() * 100}%;
-                opacity: ${Math.random() * 0.5 + 0.5};
-                border-radius: ${Math.random() > 0.5 ? '50%' : '0'};
-                z-index: 10000;
-                pointer-events: none;
-            `;
-            
-            document.body.appendChild(confetti);
-            
-            const animation = confetti.animate([
-                { 
-                    transform: 'translateY(0) rotate(0deg)',
-                    opacity: 1
-                },
-                { 
-                    transform: `translateY(${window.innerHeight + 100}px) rotate(${Math.random() * 360}deg)`,
-                    opacity: 0
-                }
-            ], {
-                duration: Math.random() * 3000 + 2000,
-                easing: 'cubic-bezier(0.1, 0.8, 0.3, 1)',
-                delay: Math.random() * 500
-            });
-            
-            animation.onfinish = () => {
-                confetti.remove();
-            };
-        }
-    }
-
-    // ========== FUNÇÕES AUXILIARES ==========
+    // ========== RESTANTE DO CÓDIGO (mantido igual) ==========
     function setupFileUpload() {
         if (fileInput) {
             fileInput.addEventListener('change', updateSelectedFiles);
@@ -732,18 +697,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function setupCEPHandler() {
-        if (cepInput && cepButton) {
+        if (cepInput) {
             cepInput.addEventListener('input', function(e) {
                 this.value = formatarCEP(this.value);
-            });
-            
-            cepButton.addEventListener('click', function() {
-                const cep = cepInput.value.replace(/\D/g, '');
-                if (cep.length === 8) {
-                    buscarEnderecoPorCEP(cep);
-                } else {
-                    showNotification('CEP inválido. Digite um CEP com 8 dígitos.', 'error');
-                }
             });
         }
     }
@@ -773,6 +729,20 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
+    function showSuccessMessage() {
+        if (successOverlay) {
+            successOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+    }
+    
+    function closeSuccessMessage() {
+        if (successOverlay) {
+            successOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    }
+    
     function resetDonationForm() {
         if (donationForm) {
             donationForm.reset();
@@ -781,6 +751,7 @@ document.addEventListener('DOMContentLoaded', function() {
             selectedFiles.innerHTML = '';
         }
         
+        // Limpar erros
         const errorMessages = donationForm.querySelectorAll('.field-error-message');
         errorMessages.forEach(error => error.remove());
         
@@ -796,6 +767,7 @@ document.addEventListener('DOMContentLoaded', function() {
             experienceGroup.style.display = 'none';
         }
         
+        // Limpar erros
         const errorMessages = volunteerForm.querySelectorAll('.field-error-message');
         errorMessages.forEach(error => error.remove());
         
@@ -922,25 +894,6 @@ document.addEventListener('DOMContentLoaded', function() {
         return cep;
     }
     
-    function buscarEnderecoPorCEP(cep) {
-        fetch(`https://viacep.com.br/ws/${cep}/json/`)
-            .then(response => response.json())
-            .then(data => {
-                if (!data.erro) {
-                    document.getElementById('address').value = data.logradouro || '';
-                    document.getElementById('neighborhood').value = data.bairro || '';
-                    document.getElementById('city').value = data.localidade || '';
-                    document.getElementById('state').value = data.uf || '';
-                } else {
-                    showNotification('CEP não encontrado.', 'error');
-                }
-            })
-            .catch(error => {
-                console.error('Erro ao buscar CEP:', error);
-                showNotification('Erro ao buscar CEP. Tente novamente.', 'error');
-            });
-    }
-    
     function calcularIdade(dataNascimento) {
         if (!dataNascimento) return '';
         
@@ -968,6 +921,17 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function showNotification(message, type = 'info') {
+        // For success messages, use the single overlay/card success UI instead
+        if (type === 'success') {
+            // Prefer the in-page success overlay if present
+            try {
+                showSuccessMessage();
+            } catch (e) {
+                // fallback: continue to show a simple notification
+            }
+            return;
+        }
+
         const notification = document.createElement('div');
         const iconClass = getNotificationIcon(type);
         notification.className = `notification ${type}`;
@@ -976,6 +940,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <span>${message}</span>
         `;
 
+        // Build base style for notification (visuals only, position handled below)
         const baseStyle = `
             padding: 15px 20px;
             border-radius: 8px;
@@ -991,17 +956,60 @@ document.addEventListener('DOMContentLoaded', function() {
             ${getNotificationStyle(type)}
         `;
 
-        notification.style.cssText = baseStyle + 'position: fixed; top: 20px; right: 20px; transform: translateX(100%);';
-        document.body.appendChild(notification);
+        // If any modal is active, attach notification to that overlay and make it compact
+        const anyModalActive = document.querySelector('.modal-overlay.active');
+        if (anyModalActive) {
+            notification.classList.add('notification--compact');
+            // position will be absolute inside the overlay; we'll compute coordinates so
+            // the notification appears centered above the modal dialog (small height)
+            notification.style.cssText = baseStyle + 'position: absolute; z-index: 1101; padding: 6px 10px; font-size: 13px; line-height: 1;';
+            anyModalActive.appendChild(notification);
 
-        setTimeout(() => {
-            notification.style.opacity = '1';
-            notification.style.transform = 'translateX(0)';
-        }, 100);
+            // place the notification above the modal element if present
+            const modalElement = anyModalActive.querySelector('[role="dialog"], .modal, .modal-donation, .modal-content, .modal-box, .modal-dialog');
+            // wait a tick so element has layout and we can measure sizes
+            setTimeout(() => {
+                const overlayRect = anyModalActive.getBoundingClientRect();
+                const modalRect = modalElement ? modalElement.getBoundingClientRect() : overlayRect;
+                const nRect = notification.getBoundingClientRect();
+
+                const top = Math.max(8, modalRect.top - overlayRect.top - nRect.height - 8);
+                const left = modalRect.left - overlayRect.left + (modalRect.width - nRect.width) / 2;
+
+                notification.style.left = left + 'px';
+                notification.style.top = top + 'px';
+                // start slightly above and fade/slide down
+                notification.style.transform = 'translateY(-6px)';
+                notification.style.opacity = '0';
+                // animate in
+                requestAnimationFrame(() => {
+                    setTimeout(() => {
+                        notification.style.opacity = '1';
+                        notification.style.transform = 'translateY(0)';
+                    }, 20);
+                });
+            }, 0);
+        } else {
+            // default: fixed in the viewport top-right
+            notification.style.cssText = baseStyle + 'position: fixed; top: 20px; right: 20px; transform: translateX(100%);';
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.opacity = '1';
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+        }
         
+        // hide after a while
         setTimeout(() => {
-            notification.style.opacity = '0';
-            notification.style.transform = 'translateX(100%)';
+            if (notification.classList.contains('notification--compact') && notification.parentNode && notification.parentNode.classList.contains('modal-overlay')) {
+                // slide up and fade
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateY(-6px)';
+            } else {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateX(100%)';
+            }
             setTimeout(() => {
                 if (notification.parentNode) notification.parentNode.removeChild(notification);
             }, 300);
@@ -1029,7 +1037,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// ========== ESTILOS PARA ANIMAÇÕES E VALIDAÇÃO ==========
+// ========== ESTILOS ADICIONAIS COM VALIDAÇÃO ==========
 const modalStyles = document.createElement('style');
 modalStyles.textContent = `
     .spin {
@@ -1112,177 +1120,11 @@ modalStyles.textContent = `
         transform: none;
         box-shadow: none;
     }
-
-    /* Estilos para validação */
-    .field-error {
-        border-color: #e74c3c !important;
-        background-color: #fdf2f2;
-    }
     
-    .field-error-message {
-        color: #e74c3c;
-        font-size: 12px;
-        margin-top: 5px;
-        display: flex;
-        align-items: center;
-        gap: 4px;
-    }
-
-    /* Animações para o modal de sucesso */
-    .success-overlay.active {
-        display: flex;
-        animation: fadeIn 0.3s ease;
-    }
-
-    .modal-success {
-        background: white;
-        border-radius: 16px;
-        padding: 40px;
-        text-align: center;
-        max-width: 400px;
-        width: 90%;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        animation: bounceIn 0.6s ease;
-        position: relative;
-        z-index: 10001;
-    }
-    
-    .success-icon {
-        font-size: 64px;
-        color: #4CAF50;
-        margin-bottom: 20px;
-        animation: pulse 2s infinite;
-    }
-    
-    .success-title {
-        color: #2c3e50;
-        margin-bottom: 15px;
-        font-size: 1.5rem;
-        animation: slideInUp 0.5s ease 0.2s both;
-    }
-    
-    .success-text {
-        color: #666;
-        margin-bottom: 25px;
-        line-height: 1.5;
-        animation: slideInUp 0.5s ease 0.4s both;
-    }
-    
-    .btn-success {
-        background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
-        color: white;
-        border: none;
-        padding: 12px 30px;
-        border-radius: 8px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        margin: 0 auto;
-        animation: slideInUp 0.5s ease 0.6s both;
-    }
-    
-    .btn-success:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(76, 175, 80, 0.3);
-    }
-
-    /* Animações */
-    @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-    }
-
-    @keyframes bounceIn {
-        0% { 
-            transform: scale(0.3); 
-            opacity: 0; 
-        }
-        50% { 
-            transform: scale(1.05); 
-        }
-        70% { 
-            transform: scale(0.9); 
-        }
-        100% { 
-            transform: scale(1); 
-            opacity: 1; 
-        }
-    }
-    
-    @keyframes pulse {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.1); }
-        100% { transform: scale(1); }
-    }
-    
-    @keyframes slideInUp {
-        from {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    /* Confetti animation */
-    .confetti {
-        animation: confettiFall linear forwards;
-    }
-    
-    @keyframes confettiFall {
-        to {
-            transform: translateY(100vh) rotate(360deg);
-        }
-    }
-
-    /* Melhorias visuais para os modais */
-    .modal-overlay.active .modal-donation {
-        transform: scale(1);
-        opacity: 1;
-    }
-
-    .modal-donation {
-        transform: scale(0.9);
-        opacity: 0;
-        transition: all 0.3s ease;
-    }
-
-    .institution-info-small {
-        display: flex;
-        align-items: center;
-        padding: 12px;
-        background: #f8f9fa;
-        border-radius: 8px;
-        border: 2px solid #e9ecef;
-    }
-
-    /* Notifications */
     .notification {
         font-family: Arial, sans-serif;
-        font-size: 14px;
-        font-weight: 500;
     }
+    /* Note: validation / error styles are centralized in the CSS files.
+       Keep this injected stylesheet small to avoid overriding layout. */
 `;
 document.head.appendChild(modalStyles);
-
-// ========== FUNÇÕES GLOBAIS PARA ABRIR MODAIS ==========
-window.openDonationModal = function() {
-    const donationModal = document.getElementById('donation-modal');
-    if (donationModal) {
-        donationModal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-}
-
-window.openVolunteerModal = function() {
-    const volunteerModal = document.getElementById('volunteer-modal');
-    if (volunteerModal) {
-        volunteerModal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-}
