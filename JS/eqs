@@ -1,0 +1,122 @@
+        document.addEventListener('DOMContentLoaded', function() {
+            const forgotPasswordForm = document.getElementById('forgotPasswordForm');
+            const successOverlay = document.getElementById('successOverlay');
+            const successMessage = document.getElementById('successMessage');
+            const countdownElement = document.getElementById('countdown');
+            
+            // Máscara para telefone
+            const phoneInput = document.getElementById('recovery-phone');
+            if (phoneInput) {
+                phoneInput.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\D/g, '');
+                    if (value.length > 11) value = value.substring(0, 11);
+                    
+                    if (value.length > 0) {
+                        if (value.length <= 2) {
+                            value = `(${value}`;
+                        } else if (value.length <= 7) {
+                            value = `(${value.substring(0,2)}) ${value.substring(2)}`;
+                        } else {
+                            value = `(${value.substring(0,2)}) ${value.substring(2,7)}-${value.substring(7)}`;
+                        }
+                    }
+                    
+                    e.target.value = value;
+                });
+            }
+            
+            // Validação do formulário
+            forgotPasswordForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('recovery-email').value.trim();
+                const phone = document.getElementById('recovery-phone').value.trim();
+                
+                // Limpar mensagens de erro
+                document.getElementById('email-error').textContent = '';
+                document.getElementById('phone-error').textContent = '';
+                
+                let hasError = false;
+                
+                // Verificar se pelo menos um campo foi preenchido
+                if (!email && !phone) {
+                    document.getElementById('email-error').textContent = 'Informe pelo menos um email ou telefone';
+                    document.getElementById('phone-error').textContent = 'Informe pelo menos um email ou telefone';
+                    hasError = true;
+                }
+                
+                // Validar email se preenchido
+                if (email && !isValidEmail(email)) {
+                    document.getElementById('email-error').textContent = 'Por favor, insira um email válido';
+                    hasError = true;
+                }
+                
+                // Validar telefone se preenchido
+                if (phone && !isValidPhone(phone)) {
+                    document.getElementById('phone-error').textContent = 'Por favor, insira um telefone válido';
+                    hasError = true;
+                }
+                
+                if (!hasError) {
+                    // Simular envio de instruções
+                    simulateRecoveryRequest(email, phone);
+                }
+            });
+            
+            function isValidEmail(email) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            }
+            
+            function isValidPhone(phone) {
+                // Remove caracteres não numéricos e verifica se tem entre 10 e 11 dígitos
+                const phoneDigits = phone.replace(/\D/g, '');
+                return phoneDigits.length >= 10 && phoneDigits.length <= 11;
+            }
+            
+            function simulateRecoveryRequest(email, phone) {
+                // Alterar texto do botão para indicar processamento
+                const submitBtn = forgotPasswordForm.querySelector('.submit-btn');
+                const originalText = submitBtn.textContent;
+                submitBtn.textContent = 'Enviando...';
+                submitBtn.disabled = true;
+                
+                // Simular tempo de processamento
+                setTimeout(() => {
+                    // Determinar mensagem de sucesso baseada no método escolhido
+                    if (email) {
+                        successMessage.textContent = 'Enviamos um link de redefinição de senha para o seu email. Verifique sua caixa de entrada.';
+                    } else if (phone) {
+                        successMessage.textContent = 'Enviamos um código de verificação para o seu telefone. Use-o para redefinir sua senha.';
+                    }
+                    
+                    // Mostrar overlay de sucesso
+                    successOverlay.classList.add('active');
+                    
+                    // Iniciar contagem regressiva para redirecionamento
+                    let seconds = 5;
+                    countdownElement.textContent = `Redirecionando em ${seconds} segundos...`;
+                    
+                    const countdownInterval = setInterval(() => {
+                        seconds--;
+                        countdownElement.textContent = `Redirecionando em ${seconds} segundos...`;
+                        
+                        if (seconds <= 0) {
+                            clearInterval(countdownInterval);
+                            window.location.href = 'login.html';
+                        }
+                    }, 1000);
+                    
+                    // Restaurar botão
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                }, 1500);
+            }
+            
+            // Fechar modal ao clicar fora (opcional)
+            successOverlay.addEventListener('click', function(e) {
+                if (e.target === successOverlay) {
+                    window.location.href = 'login.html';
+                }
+            });
+        });

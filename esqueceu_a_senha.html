@@ -4,101 +4,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Recuperação de senha na plataforma ReUse">
+    <link rel="stylesheet" href="CSS/login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="CSS/esqueceu_a_Senha.css">
+    <link rel="stylesheet" href="CSS/xmbwave.css">
     <link rel="stylesheet" href="CSS/breadcrumbs.css">
-    
-    <!-- VLibras -->
+    <link rel="stylesheet" href="CSS/esqueceu_a_senha.css">
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <script>
         new window.VLibras.Widget('https://vlibras.gov.br/app');
     </script>
-
-    <!-- EmailJS -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <title>Recuperar Senha - ReUse</title>
+    <title>Esqueceu a Senha - ReUse</title>
 </head>
 
 <body>
-    <!-- Botão de Alternância de Modo -->
-    <button class="theme-toggle" id="themeToggle" aria-label="Alternar modo claro/escuro">
-        <i class="fas fa-moon"></i>
-    </button>
 
-    <div class="particles-container">
-        <!-- Partículas existentes -->
+    <!-- Botões de Controle - COM MENU HAMBURGUER -->
+    <div class="control-buttons">
+        <!-- Botão Menu Hamburguer para Mobile -->
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menu">
+            <i class="bi bi-list"></i>
+        </button>
+
+        <!-- Container dos botões que será escondido no mobile -->
+        <div class="control-buttons-container" id="controlButtonsContainer">
+            <!-- Botão de Acessibilidade -->
+            <button class="accessibility-toggle" id="accessibilityToggle" aria-label="Opções de acessibilidade">
+                <i class="bi bi-universal-access"></i>
+            </button>
+
+            <!-- Seletor de Idioma -->
+            <div class="language-selector" id="languageSelector">
+                <button class="language-btn" aria-label="Selecionar idioma">
+                    <i class="bi bi-translate"></i>
+                    <span>Português</span>
+                    <i class="bi bi-chevron-down"></i>
+                </button>
+                <div class="language-dropdown">
+                    <div class="language-option" data-lang="pt">
+                        <i class="bi bi-check-lg"></i>
+                        <span>Português</span>
+                    </div>
+                    <div class="language-option" data-lang="en">
+                        <i class="bi bi-check-lg"></i>
+                        <span>English</span>
+                    </div>
+                    <div class="language-option" data-lang="es">
+                        <i class="bi bi-check-lg"></i>
+                        <span>Español</span>
+                    </div>
+                    <div class="language-option" data-lang="fr">
+                        <i class="bi bi-check-lg"></i>
+                        <span>Français</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botão de Alternância de Modo -->
+            <button class="theme-toggle" id="themeToggle" aria-label="Alternar modo claro/escuro">
+                <i class="bi bi-moon"></i>
+            </button>
+        </div>
     </div>
 
-    <main class="container" role="main">
-        <div class="form-container active">
-            <div class="logo-container">
-                <a href="index.html">
-                    <img id="siteLogo" class="logo" src="IMG/reuse-logo-(2).svg" 
-                         alt="Logo ReUse - Plataforma de reutilização sustentável">
-                    <span id="siteLogoText">Reuse</span>
-                </a>
+    <!-- Menu de Acessibilidade -->
+    <div class="accessibility-menu" id="accessibilityMenu">
+        <h3>Acessibilidade</h3>
+        <div class="accessibility-options">
+            <button class="accessibility-option" data-mode="normal">
+                <i class="bi bi-check-lg"></i>
+                <span>Visão Normal</span>
+            </button>
+            <button class="accessibility-option" data-mode="protanopia">
+                <i class="bi bi-circle-fill" style="color: #FF6B6B"></i>
+                <span>Protanopia (Vermelho)</span>
+            </button>
+            <button class="accessibility-option" data-mode="protanomalia">
+                <i class="bi bi-circle-fill" style="color: #FF8E8E"></i>
+                <span>Protanomalia (Vermelho Leve)</span>
+            </button>
+            <button class="accessibility-option" data-mode="deuteranopia">
+                <i class="bi bi-circle-fill" style="color: #4ECDC4"></i>
+                <span>Deuteranopia (Verde)</span>
+            </button>
+            <button class="accessibility-option" data-mode="deuteranomalia">
+                <i class="bi bi-circle-fill" style="color: #6ED9D2"></i>
+                <span>Deuteranomalia (Verde Leve)</span>
+            </button>
+            <button class="accessibility-option" data-mode="tritanopia">
+                <i class="bi bi-circle-fill" style="color: #45B7D1"></i>
+                <span>Tritanopia (Azul)</span>
+            </button>
+            <button class="accessibility-option" data-mode="tritanomalia">
+                <i class="bi bi-circle-fill" style="color: #67C7E0"></i>
+                <span>Tritanomalia (Azul Leve)</span>
+            </button>
+            <button class="accessibility-option" data-mode="acromatomia">
+                <i class="bi bi-circle-fill" style="color: #666666"></i>
+                <span>Acromatomia (Monocromático)</span>
+            </button>
+            <button class="accessibility-option" data-mode="acromatopsia">
+                <i class="bi bi-circle-fill" style="color: #333333"></i>
+                <span>Acromatopsia (Total)</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="card">
+            <div class="card-header waves-animation">
+                <div class="logo-container">
+                    <img src="IMG/reuse-logo-(2).svg" alt="ReUse Logo" id="logoImage"> 
+                    <span id="logoText">ReUse</span>
+                </div>
+
+                <h2 class="form-title">Recuperar Senha</h2>
+                <p class="form-instruction">Escolha uma das opções abaixo para recuperar sua senha</p>
             </div>
-            <div class="Recuperar-form">
-                <form id="recoveryForm" novalidate>
-                    <div class="form-group">
-                        <h1 class="form-title">Recuperar Senha</h1>
-                        <p class="form-instruction">Insira o endereço de e-mail associado à sua conta ReUse. Enviaremos
-                            um link para redefinir sua senha.</p>
 
-                        <div class="input-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" placeholder="seu@email.com" required
-                                aria-required="true">
-                            <div class="error-message" id="email-error" role="alert"></div>
-                        </div>
-
-                        <button type="submit" class="submit-btn" id="submitBtn">
-                            <span id="btnText">Enviar Link de Recuperação</span>
-                            <div id="btnLoader" class="btn-loader" style="display: none;">
-                                <i class="fas fa-spinner fa-spin"></i> Enviando...
+            <div class="card-body">
+                <div class="form-container active" id="forgot-password-form">
+                    <div class="login-form">
+                        <form id="forgotPasswordForm" novalidate>
+                            <!-- Opção por Email -->
+                            <div class="form-group">
+                                <label for="recovery-email">Email</label>
+                                <input type="email" id="recovery-email" name="email" placeholder="seu@email.com">
+                                <div class="error-message" id="email-error"></div>
                             </div>
-                        </button>
 
-                        <div class="back-to-login">
-                            <a href="login.html"><i class="fas fa-arrow-left"></i> Voltar para o login</a>
+                            <div class="form-separator">
+                                <span>ou</span>
+                            </div>
+
+                            <!-- Opção por Telefone -->
+                            <div class="form-group">
+                                <label for="recovery-phone">Telefone</label>
+                                <input type="tel" id="recovery-phone" name="phone" placeholder="(11) 99999-9999">
+                                <div class="error-message" id="phone-error"></div>
+                            </div>
+
+                            <div class="form-hint">
+                                <p>Informe pelo menos um dos campos acima para receber instruções de recuperação.</p>
+                            </div>
+
+                            <button type="submit" class="submit-btn">Enviar Instruções</button>
+                        </form>
+
+                        <div class="signup-link">
+                            <a href="login.html" class="back-to-login">
+                                <i class="bi bi-arrow-left"></i>
+                                <span>Voltar para o Login</span>
+                            </a>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
-        </div>
-    </main>
-
-    <!-- Modal de Sucesso Personalizado -->
-    <div class="success-modal" id="successModal" style="display: none;">
-        <div class="modal-content">
-            <div class="success-animation">
-                <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-                    <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
-                    <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
-                </svg>
-            </div>
-            <h2 class="success-title">Email enviado com sucesso!</h2>
-            <p class="success-message">Enviamos um link de recuperação para seu email. Verifique sua caixa de entrada e
-                siga as instruções para criar uma nova senha.</p>
-            <div class="success-details">
-                <i class="fas fa-envelope success-icon"></i>
-                <span id="userEmail" class="email-display"></span>
-            </div>
-            <button class="modal-close-btn" onclick="closeSuccessModal()">Entendido</button>
         </div>
     </div>
 
-    <!-- Modal de Erro -->
-    <div class="success-modal" id="errorModal" style="display: none;">
-        <div class="modal-content">
-            <div class="error-animation">
-                <i class="fas fa-exclamation-triangle" style="font-size: 4rem; color: #e74c3c; margin-bottom: 1rem;"></i>
+    <!-- Modal de Sucesso -->
+    <div class="success-message-overlay" id="successOverlay">
+        <div class="success-message">
+            <div class="success-icon">
+                <i class="bi bi-check-lg"></i>
             </div>
-            <h2 class="success-title" style="color: #e74c3c;">Erro no envio</h2>
-            <p class="success-message" id="errorMessage">Ocorreu um erro ao enviar o email de recuperação. Tente novamente.</p>
-            <button class="modal-close-btn" onclick="closeErrorModal()">Tentar Novamente</button>
+            <h3 class="success-title">Instruções Enviadas!</h3>
+            <p class="success-text" id="successMessage">Enviamos um link de redefinição de senha para o seu email. Verifique sua caixa de entrada.</p>
+            <div class="success-countdown" id="countdown">Redirecionando em 5 segundos...</div>
         </div>
     </div>
 
@@ -109,13 +182,6 @@
             <div class="vw-plugin-top-wrapper"></div>
         </div>
     </div>
-    
-    <script src="JS/breadcrumbs.js"></script>
-    <script src="JS/esqueceu_a_senha.js"></script>
-    <script src="JS/shared-navigation.js"></script>
-    
-    <!-- Script do Modo Noturno Universal -->
-    <script src="JS/modo_noturno_inicial.js"></script>
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q755SR73MY"></script>
@@ -125,6 +191,12 @@
         gtag('js', new Date());
         gtag('config', 'G-Q755SR73MY');
     </script>
+
+    <script src="JS/shared-navigation.js"></script>
+    <script src="JS/breadcrumbs.js"></script>
+    <script src="JS/modo_noturno_inicial.js"></script>
+    <script src="JS/system-i18n-accessibility.js"></script>
+    <script src="JS/eqs"></script>
 </body>
 
 </html>
