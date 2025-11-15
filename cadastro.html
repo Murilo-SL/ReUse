@@ -25,12 +25,12 @@
 
         <!-- Container dos botões que será escondido no mobile -->
         <div class="control-buttons-container" id="controlButtonsContainer">
-            <!-- Botão de Acessibilidade -->
+            <!-- Botão de Acessibilidade (Modo Daltônico) - PRIMEIRO -->
             <button class="accessibility-toggle" id="accessibilityToggle" data-translate="accessibility" aria-label="Opções de acessibilidade">
                 <i class="bi bi-universal-access"></i>
             </button>
 
-            <!-- Seletor de Idioma -->
+            <!-- Seletor de Idioma - SEGUNDO -->
             <div class="language-selector" id="languageSelector">
                 <button class="language-btn" data-translate="select_language" aria-label="Selecionar idioma">
                     <i class="bi bi-translate"></i>
@@ -57,7 +57,7 @@
                 </div>
             </div>
 
-            <!-- Botão de Alternância de Modo -->
+            <!-- Botão de Alternância de Modo - TERCEIRO -->
             <button class="theme-toggle" id="themeToggle" data-translate="toggle_theme" aria-label="Alternar modo claro/escuro">
                 <i class="bi bi-moon"></i>
             </button>
@@ -368,6 +368,8 @@
     <script src="JS/cadastro.js"></script>
     <script src="JS/breadcrumbs.js"></script>
     <script src="JS/modo_noturno_inicial.js"></script>
-    <script src="JS/system-i18n-accessibility.js"></script>
+    <script src="JS/language-selector.js"></script>
+    <script src="JS/colorblind-mode.js"></script>
+    <script src="JS/mobile-menu.js"></script>
 </body>
 </html>

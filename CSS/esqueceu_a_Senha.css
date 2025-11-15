@@ -1,70 +1,359 @@
-       .form-separator {
+        /* Estilos específicos para a página de recuperação de senha */
+        .recovery-options {
             display: flex;
-            align-items: center;
-            margin: 1.5rem 0;
-            color: #666;
-        }
-        
-        .form-separator::before,
-        .form-separator::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: #e1e5e9;
-        }
-        
-        .form-separator span {
-            padding: 0 1rem;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-        
-        .form-hint {
-            background-color: #f8f9fa;
-            border-left: 4px solid #0066cc;
-            padding: 12px 16px;
-            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 4px;
+            backdrop-filter: blur(10px);
             margin-bottom: 1.5rem;
         }
-        
-        .form-hint p {
-            margin: 0;
-            font-size: 0.9rem;
-            color: #666;
-            line-height: 1.4;
+
+        .recovery-option {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            text-align: center;
+            background: transparent;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            position: relative;
+            overflow: hidden;
         }
-        
-        .back-to-login {
+
+        .recovery-option.active {
+            background: rgba(255, 255, 255, 0.9);
+            color: #0066cc;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .recovery-option:not(.active):hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .recovery-form {
+            display: none;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .recovery-form.active {
+            display: block;
+        }
+
+        /* Indicador de força da senha */
+        .password-strength {
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .strength-weak {
+            color: #e74c3c;
+        }
+
+        .strength-medium {
+            color: #f39c12;
+        }
+
+        .strength-strong {
+            color: #27ae60;
+        }
+
+        /* Mensagem de sucesso elaborada */
+        .success-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .success-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .success-card {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem 2.5rem;
+            text-align: center;
+            max-width: 450px;
+            width: 90%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transform: scale(0.7) translateY(50px);
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .success-overlay.active .success-card {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+        }
+
+        .success-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #00cc99, #0066cc);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            animation: successIcon 0.6s ease-out, pulse 2s infinite 1s;
+            position: relative;
+            z-index: 2;
+        }
+
+        .success-icon i {
+            color: white;
+            font-size: 3rem;
+        }
+
+        .success-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0066cc;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .success-text {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.5;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .success-details {
+            background: rgba(0, 102, 204, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            text-align: left;
+            position: relative;
+            z-index: 2;
+        }
+
+        .success-details p {
+            margin: 0.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        .success-details strong {
+            color: #0066cc;
+        }
+
+        .success-countdown {
+            font-size: 0.9rem;
+            color: #999;
+            margin-top: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .success-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(0, 204, 153, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 102, 204, 0.1) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #00cc99;
+            opacity: 0;
+            z-index: 1;
+        }
+
+        .code-inputs {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 1.5rem;
+        }
+
+        .code-input {
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            background-color: #f8f9fa;
+            transition: all 0.3s;
+        }
+
+        .code-input:focus {
+            border-color: #0066cc;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+            background-color: white;
+            transform: translateY(-2px);
+        }
+
+        .resend-link {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .resend-link a {
             color: #0066cc;
             text-decoration: none;
             font-weight: 600;
             transition: all 0.2s;
-            padding: 8px 0;
         }
-        
-        .back-to-login:hover {
+
+        .resend-link a:hover {
             color: #004d99;
-            transform: translateX(-3px);
+            text-decoration: underline;
         }
-        
-        body.dark-mode .form-hint {
+
+        .timer {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        /* Modo noturno para a página de recuperação */
+        body.dark-mode .recovery-options {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark-mode .recovery-option {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        body.dark-mode .recovery-option.active {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+            color: #1a1a2e;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        body.dark-mode .recovery-option:not(.active):hover {
+            background: rgba(255, 255, 255, 0.12);
+            color: white;
+        }
+
+        body.dark-mode .password-strength.strength-weak {
+            color: #ff6b6b;
+        }
+
+        body.dark-mode .password-strength.strength-medium {
+            color: #ffd93d;
+        }
+
+        body.dark-mode .password-strength.strength-strong {
+            color: #6bcf7f;
+        }
+
+        body.dark-mode .success-card {
+            background: #2d2d2d;
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .success-title {
+            color: #00cc99;
+        }
+
+        body.dark-mode .success-text {
+            color: #b0b0b0;
+        }
+
+        body.dark-mode .success-details {
+            background: rgba(0, 204, 153, 0.15);
+        }
+
+        body.dark-mode .success-details strong {
+            color: #00cc99;
+        }
+
+        body.dark-mode .success-countdown {
+            color: #999;
+        }
+
+        body.dark-mode .code-input {
             background-color: #3a3a3a;
-            border-left-color: #00cc99;
+            border-color: #555;
+            color: #e0e0e0;
         }
-        
-        body.dark-mode .form-hint p {
+
+        body.dark-mode .code-input:focus {
+            border-color: #00cc99;
+            box-shadow: 0 0 0 3px rgba(0, 204, 153, 0.2);
+            background-color: #444;
+        }
+
+        body.dark-mode .resend-link {
             color: #b0b0b0;
         }
-        
-        body.dark-mode .form-separator {
-            color: #b0b0b0;
+
+        body.dark-mode .resend-link a {
+            color: #00cc99;
         }
-        
-        body.dark-mode .form-separator::before,
-        body.dark-mode .form-separator::after {
-            background: #555;
+
+        body.dark-mode .resend-link a:hover {
+            color: #00b386;
+        }
+
+        @keyframes successIcon {
+            0% {
+                transform: scale(0) rotate(-180deg);
+                opacity: 0;
+            }
+            70% {
+                transform: scale(1.1) rotate(10deg);
+            }
+            100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 204, 153, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 20px rgba(0, 204, 153, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 204, 153, 0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
