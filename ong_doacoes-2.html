@@ -23,44 +23,124 @@
 
 <body>
     <!-- CABEÇALHO -->
-<header>
-    <div class="container">
-        <div class="top-header">
-            <div class="logo-container">
-                <a href="cliente.html">
-                    <img src="IMG/reuse-logo-(2).svg" alt="ReUse Logo">
-                    <span>ReUse</span>
-                </a>
-            </div>
-            <div class="user-actions">
-                <!-- Botão do Modo Noturno -->
-                <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
-                    <i class="bi bi-sun-fill" id="themeIcon"></i>
+    <header>
+        <div class="container">
+            <div class="top-header">
+                <!-- Menu Hamburguer -->
+                <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
+                    <i class="bi bi-list"></i>
                 </button>
-                <a href="login.html">
-                    <i class="fas fa-sign-out-alt"></i> Sair
-                </a>
+
+                <div class="logo-container">
+                    <a href="#">
+                        <img src="IMG/reuse-logo-(2).svg" alt="ReUse Logo">
+                        <span>ReUse</span>
+                    </a>
+                </div>
+
+                <div class="user-actions">
+                    <!-- Menu de Acessibilidade -->
+                    <div class="accessibility-menu">
+                        <button class="accessibility-btn" id="accessibilityBtn"
+                            aria-label="Configurações de acessibilidade">
+                            <i class="bi bi-eye-fill"></i>
+                        </button>
+
+                        <div class="accessibility-dropdown" id="accessibilityDropdown">
+                            <div class="accessibility-header">
+                                <h3>Configurações de Visão</h3>
+                                <p>Ajuste as cores para diferentes tipos de daltonismo</p>
+                            </div>
+
+                            <div class="accessibility-options">
+                                <button class="accessibility-option" data-filter="normal">
+                                    <span class="color-indicator normal"></span>
+                                    <span>Visão Normal</span>
+                                </button>
+
+                                <button class="accessibility-option" data-filter="protanopia">
+                                    <span class="color-indicator protanopia"></span>
+                                    <span>Protanopia</span>
+                                </button>
+
+                                <button class="accessibility-option" data-filter="protanomalia">
+                                    <span class="color-indicator protanomalia"></span>
+                                    <span>Protanomalia</span>
+                                </button>
+
+                                <button class="accessibility-option" data-filter="deuteranopia">
+                                    <span class="color-indicator deuteranopia"></span>
+                                    <span>Deuteranopia</span>
+                                </button>
+
+                                <button class="accessibility-option" data-filter="deuteranomalia">
+                                    <span class="color-indicator deuteranomalia"></span>
+                                    <span>Deuteranomalia</span>
+                                </button>
+
+                                <button class="accessibility-option" data-filter="tritanopia">
+                                    <span class="color-indicator tritanopia"></span>
+                                    <span>Tritanopia</span>
+                                </button>
+
+                                <button class="accessibility-option" data-filter="tritanomalia">
+                                    <span class="color-indicator tritanomalia"></span>
+                                    <span>Tritanomalia</span>
+                                </button>
+
+                                <button class="accessibility-option" data-filter="acromatopsia">
+                                    <span class="color-indicator acromatopsia"></span>
+                                    <span>Acromatopsia</span>
+                                </button>
+
+                                <button class="accessibility-option" data-filter="acromatomalia">
+                                    <span class="color-indicator acromatomalia"></span>
+                                    <span>Acromatomalia</span>
+                                </button>
+                            </div>
+
+                            <div class="accessibility-footer">
+                                <button class="reset-btn" id="resetAccessibility">
+                                    <i class="bi bi-arrow-clockwise"></i>
+                                    Restaurar Cores Padrão
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Botão do Modo Noturno -->
+                    <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+                        <i class="bi bi-sun-fill" id="themeIcon"></i>
+                    </button>
+
+                    <a href="login.html">
+                        <i class="fas fa-sign-out-alt"></i> Sair
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
-</header>
+    </header>
 
     <!-- DASHBOARD PRINCIPAL -->
     <div class="dashboard-container">
-<!-- Menu Lateral -->
-<aside class="sidebar">
-    <h2 class="sidebar-title">Patas Conscientes</h2>
-    <ul class="sidebar-nav">
-        <li><a href="ong-2.html"><i class="bi bi-house"></i> Início</a></li>
-        <li><a href="ong_doacoes-2.html" class="active"><i class="bi bi-handbag"></i> Doações</a></li>
-        <li><a href="ong_doacoes-2_necessarias.html"><i class="bi bi-clipboard-check"></i> Doações Necessárias</a></li>
-        <li><a href="ong_configuracoes-2.html"><i class="bi bi-people"></i> Beneficiários</a></li>
-        <li><a href="ong_relatorios-2.html"><i class="bi bi-bar-chart"></i> Relatórios</a></li>
-        <li><a href="ong_configuracoes-2.html"><i class="bi bi-gear"></i> Configurações</a></li>
-        <li><a href="ong_contato-2.html"><i class="bi bi-envelope"></i> Contato</a></li>
-        <li><a href="ong_produto-2.html"><i class="bi bi-box-seam"></i> Produtos</a></li>
-    </ul>
-</aside>
+        <!-- Menu Lateral -->
+        <aside class="sidebar" id="sidebar">
+                        <!-- Botão Fechar Menu -->
+            <button class="menu-close" id="menuClose" aria-label="Fechar menu">
+                <i class="bi bi-x-lg"></i>
+            </button>
+            <h2 class="sidebar-title">Patas Conscientes</h2>
+            <ul class="sidebar-nav">
+                <li><a href="ong-2.html" class="active"><i class="bi bi-house"></i> Início</a></li>
+                <li><a href="ong_doacoes-2.html"><i class="bi bi-handbag"></i> Doações</a></li>
+                <li><a href="ong_doacoes-2_necessarias.html"><i class="bi bi-clipboard-check"></i> Doações Necessárias</a></li>
+                <li><a href="ong_beneficiarios-2.html"><i class="bi bi-people"></i> Beneficiários</a></li>
+                <li><a href="ong_relatorios-2.html"><i class="bi bi-bar-chart"></i> Relatórios</a></li>
+                <li><a href="ong_configuracoes-2.html"><i class="bi bi-gear"></i> Configurações</a></li>
+                <li><a href="ong_contato-2.html"><i class="bi bi-envelope"></i> Contato</a></li>
+                <li><a href="ong_produto-2.html"><i class="bi bi-box-seam"></i> Produtos</a></li>
+            </ul>
+        </aside>
         <!-- Conteúdo Principal -->
         <main class="main-content">
 
@@ -155,320 +235,33 @@
         </div>
     </div>
 
+           <!-- Filtros SVG para simulação de daltonismo -->
+    <svg class="svg-filters" xmlns="http://www.w3.org/2000/svg">
+        <filter id="protanopia">
+            <feColorMatrix type="matrix" values="0.567, 0.433, 0, 0, 0  0.558, 0.442, 0, 0, 0  0, 0.242, 0.758, 0, 0  0, 0, 0, 1, 0" />
+        </filter>
+        <filter id="protanomalia">
+            <feColorMatrix type="matrix" values="0.817, 0.183, 0, 0, 0  0.333, 0.667, 0, 0, 0  0, 0.125, 0.875, 0, 0  0, 0, 0, 1, 0" />
+        </filter>
+        <filter id="deuteranopia">
+            <feColorMatrix type="matrix" values="0.625, 0.375, 0, 0, 0  0.7, 0.3, 0, 0, 0  0, 0.3, 0.7, 0, 0  0, 0, 0, 1, 0" />
+        </filter>
+        <filter id="deuteranomalia">
+            <feColorMatrix type="matrix" values="0.8, 0.2, 0, 0, 0  0.258, 0.742, 0, 0, 0  0, 0.142, 0.858, 0, 0  0, 0, 0, 1, 0" />
+        </filter>
+        <filter id="tritanopia">
+            <feColorMatrix type="matrix" values="0.95, 0.05, 0, 0, 0  0, 0.433, 0.567, 0, 0  0, 0.475, 0.525, 0, 0  0, 0, 0, 1, 0" />
+        </filter>
+        <filter id="tritanomalia">
+            <feColorMatrix type="matrix" values="0.967, 0.033, 0, 0, 0  0, 0.733, 0.267, 0, 0  0, 0.183, 0.817, 0, 0  0, 0, 0, 1, 0" />
+        </filter>
+    </svg>
+
     <!-- Scripts JavaScript -->
-    <script>
-        // Dados de exemplo para as doações
-        const donationsData = [
-            {
-                id: 1,
-                donor: "Maria Silva",
-                date: "15/03/2025",
-                items: [
-                    { name: "Ração para gatos", quantity: 2, category: "food" },
-                    { name: "Brinquedos para pets", quantity: 5, category: "toys" }
-                ],
-                status: "received",
-                notes: "Doação em perfeito estado. Agradecemos muito!"
-            },
-            {
-                id: 2,
-                donor: "João Santos",
-                date: "12/03/2025",
-                items: [
-                    { name: "Cobertores", quantity: 3, category: "blankets" },
-                    { name: "Produtos de higiene", quantity: 2, category: "hygiene" }
-                ],
-                status: "pending",
-                notes: "Precisa buscar até sexta-feira."
-            },
-            {
-                id: 3,
-                donor: "Ana Costa",
-                date: "10/03/2025",
-                items: [
-                    { name: "Roupas para pets", quantity: 4, category: "clothing" },
-                    { name: "Ração para cães", quantity: 1, category: "food" }
-                ],
-                status: "scheduled",
-                notes: "Agendado para retirada no dia 18/03."
-            },
-            {
-                id: 4,
-                donor: "Pedro Almeida",
-                date: "08/03/2025",
-                items: [
-                    { name: "Brinquedos para pets", quantity: 3, category: "toys" },
-                    { name: "Produtos de higiene", quantity: 2, category: "hygiene" }
-                ],
-                status: "received",
-                notes: "Muito obrigado pela contribuição!"
-            },
-            {
-                id: 5,
-                donor: "Carla Mendes",
-                date: "05/03/2025",
-                items: [
-                    { name: "Ração para gatos", quantity: 3, category: "food" },
-                    { name: "Cobertores", quantity: 2, category: "blankets" }
-                ],
-                status: "received",
-                notes: "Doação em ótimo estado."
-            },
-            {
-                id: 6,
-                donor: "Roberto Lima",
-                date: "02/03/2025",
-                items: [
-                    { name: "Roupas para pets", quantity: 5, category: "clothing" },
-                    { name: "Brinquedos para pets", quantity: 2, category: "toys" }
-                ],
-                status: "pending",
-                notes: "Aguardando confirmação de retirada."
-            }
-        ];
-
-        // Variáveis globais
-        let currentPage = 1;
-        const itemsPerPage = 4;
-        let filteredDonations = [...donationsData];
-
-        // Inicialização quando a página carrega
-        document.addEventListener('DOMContentLoaded', function () {
-            renderDonations();
-            setupEventListeners();
-        });
-
-        // Configurar event listeners
-        function setupEventListeners() {
-            // Filtros
-            document.getElementById('filter-button').addEventListener('click', applyFilters);
-
-            // Paginação
-            document.getElementById('prev-page').addEventListener('click', goToPrevPage);
-            document.getElementById('next-page').addEventListener('click', goToNextPage);
-
-            // Modal
-            document.querySelector('.close').addEventListener('click', closeModal);
-            window.addEventListener('click', function (event) {
-                const modal = document.getElementById('details-modal');
-                if (event.target === modal) {
-                    closeModal();
-                }
-            });
-        }
-
-        // Aplicar filtros
-        function applyFilters() {
-            const statusFilter = document.getElementById('status-filter').value;
-            const categoryFilter = document.getElementById('category-filter').value;
-
-            filteredDonations = donationsData.filter(donation => {
-                // Filtro por status
-                if (statusFilter !== 'all' && donation.status !== statusFilter) {
-                    return false;
-                }
-
-                // Filtro por categoria
-                if (categoryFilter !== 'all') {
-                    const hasCategory = donation.items.some(item => item.category === categoryFilter);
-                    if (!hasCategory) return false;
-                }
-
-                return true;
-            });
-
-            currentPage = 1;
-            renderDonations();
-        }
-
-        // Renderizar doações
-        function renderDonations() {
-            const container = document.getElementById('donations-container');
-            container.innerHTML = '';
-
-            const startIndex = (currentPage - 1) * itemsPerPage;
-            const endIndex = startIndex + itemsPerPage;
-            const donationsToShow = filteredDonations.slice(startIndex, endIndex);
-
-            if (donationsToShow.length === 0) {
-                container.innerHTML = '<p class="no-results">Nenhuma doação encontrada com os filtros aplicados.</p>';
-                setupPagination();
-                return;
-            }
-
-            donationsToShow.forEach(donation => {
-                const donationCard = document.createElement('div');
-                donationCard.className = 'donation-card';
-
-                // Determinar classe de status
-                let statusClass = '';
-                let statusText = '';
-
-                switch (donation.status) {
-                    case 'received':
-                        statusClass = 'status-received';
-                        statusText = 'Recebida';
-                        break;
-                    case 'pending':
-                        statusClass = 'status-pending';
-                        statusText = 'Pendente';
-                        break;
-                    case 'scheduled':
-                        statusClass = 'status-scheduled';
-                        statusText = 'Agendada';
-                        break;
-                }
-
-                donationCard.innerHTML = `
-                    <div class="donation-header">
-                        <div class="donation-donor">${donation.donor}</div>
-                        <div class="donation-status ${statusClass}">${statusText}</div>
-                    </div>
-                    <div class="donation-details">
-                        <div class="donation-item">
-                            <span>Data:</span>
-                            <span>${donation.date}</span>
-                        </div>
-                        <div class="donation-item">
-                            <span>Itens:</span>
-                            <span>${donation.items.length} tipos</span>
-                        </div>
-                    </div>
-                    <div class="donation-actions">
-                        <button class="primary-button small" onclick="viewDonationDetails(${donation.id})">
-                            <i class="fas fa-eye"></i> Ver Detalhes
-                        </button>
-                    </div>
-                `;
-
-                container.appendChild(donationCard);
-            });
-
-            setupPagination();
-        }
-
-        // Configurar paginação
-        function setupPagination() {
-            const totalPages = Math.ceil(filteredDonations.length / itemsPerPage);
-            const pageButtonsContainer = document.getElementById('page-buttons');
-            pageButtonsContainer.innerHTML = '';
-
-            // Botão anterior
-            document.getElementById('prev-page').disabled = currentPage === 1;
-
-            // Botões de página
-            for (let i = 1; i <= totalPages; i++) {
-                const button = document.createElement('button');
-                button.className = 'page-button';
-                if (i === currentPage) {
-                    button.classList.add('active');
-                }
-                button.textContent = i;
-                button.addEventListener('click', () => {
-                    currentPage = i;
-                    renderDonations();
-                });
-                pageButtonsContainer.appendChild(button);
-            }
-
-            // Botão próximo
-            document.getElementById('next-page').disabled = currentPage === totalPages || totalPages === 0;
-        }
-
-        // Navegar para página anterior
-        function goToPrevPage() {
-            if (currentPage > 1) {
-                currentPage--;
-                renderDonations();
-            }
-        }
-
-        // Navegar para próxima página
-        function goToNextPage() {
-            const totalPages = Math.ceil(filteredDonations.length / itemsPerPage);
-            if (currentPage < totalPages) {
-                currentPage++;
-                renderDonations();
-            }
-        }
-
-        // Visualizar detalhes da doação
-        function viewDonationDetails(id) {
-            const donation = donationsData.find(d => d.id === id);
-            if (!donation) return;
-
-            const modal = document.getElementById('details-modal');
-            const detailsContainer = document.getElementById('donation-details');
-
-            // Determinar texto de status
-            let statusText = '';
-            switch (donation.status) {
-                case 'received':
-                    statusText = 'Recebida';
-                    break;
-                case 'pending':
-                    statusText = 'Pendente';
-                    break;
-                case 'scheduled':
-                    statusText = 'Agendada';
-                    break;
-            }
-
-            // Gerar HTML dos itens
-            let itemsHTML = '';
-            donation.items.forEach(item => {
-                itemsHTML += `
-                    <div class="donation-item">
-                        <span>${item.name}:</span>
-                        <span>${item.quantity} unid.</span>
-                    </div>
-                `;
-            });
-
-            detailsContainer.innerHTML = `
-                <div class="donation-item">
-                    <span><strong>Doador:</strong></span>
-                    <span>${donation.donor}</span>
-                </div>
-                <div class="donation-item">
-                    <span><strong>Data:</strong></span>
-                    <span>${donation.date}</span>
-                </div>
-                <div class="donation-item">
-                    <span><strong>Status:</strong></span>
-                    <span>${statusText}</span>
-                </div>
-                <div style="margin-top: 15px;">
-                    <strong>Itens doados:</strong>
-                    ${itemsHTML}
-                </div>
-                <div style="margin-top: 15px;">
-                    <strong>Observações:</strong>
-                    <p>${donation.notes}</p>
-                </div>
-            `;
-
-            modal.style.display = 'block';
-        }
-
-        // Fechar modal
-        function closeModal() {
-            const modal = document.getElementById('details-modal');
-            modal.style.display = 'none';
-        }
-
-        // Mostrar toast de notificação
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            toast.textContent = message;
-            toast.className = 'toast show';
-
-            setTimeout(() => {
-                toast.className = toast.className.replace('show', '');
-            }, 3000);
-        }
-    </script>
-    <!-- <script src="JS/menu-aside.js"></script> -->
+    <script src="JS/acessibilidade_daltonismo.js"></script>
+    <script src="JS/menu_v.js"></script>
+    <script src="JS/sidebar.js"></script>
+    <script src="JS/ong_doacao-2.js"></script>
     <script src="JS/breadcrumbs.js"></script>
     <script src="JS/modo_noturno_ong.js"></script>
     <script src="JS/shared-navigation.js"></script>

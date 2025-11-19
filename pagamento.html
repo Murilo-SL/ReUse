@@ -25,30 +25,93 @@
         <div class="container">
             <div class="header-container">
                 <div class="logo-container">
-                        <a href="cliente.html"><img src="IMG/reuse-logo-(2).svg" > <span>ReUse</span> </a>
+                        <a href="#"><img src="IMG/reuse-logo-(2).svg" > <span>ReUse</span> </a>
                 </div>
-
                 <div class="user-section">
                     <!-- Estrutura atual (sem alterações) -->
                     <button class="botaoMenu" id="botaoMenu">
                         <i class="bi bi-list"></i>
                     </button>
-
-                    <nav class="nav-menu" id="navMenu">
+                   <nav class="nav-menu" id="navMenu">
                         <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
                             <i class="bi bi-sun-fill" id="themeIcon"></i>
                         </button>
+                    <!-- Menu de Acessibilidade para Daltonismo -->
+                    <div class="accessibility-menu">
+                        <button class="accessibility-btn" id="accessibilityBtn" aria-label="Configurações de acessibilidade">
+                            <i class="bi bi-eye-fill"></i>
+                        </button>
+                        
+                        <div class="accessibility-dropdown" id="accessibilityDropdown">
+                            <div class="accessibility-header">
+                                <h3>Configurações de Visão</h3>
+                                <p>Ajuste as cores para diferentes tipos de daltonismo</p>
+                            </div>
+                            
+                            <div class="accessibility-options">
+                                <button class="accessibility-option" data-filter="normal">
+                                    <span class="color-indicator normal"></span>
+                                    <span>Visão Normal</span>
+                                </button>
+                                
+                                <button class="accessibility-option" data-filter="protanopia">
+                                    <span class="color-indicator protanopia"></span>
+                                    <span>Protanopia</span>
+                                </button>
+                                
+                                <button class="accessibility-option" data-filter="protanomalia">
+                                    <span class="color-indicator protanomalia"></span>
+                                    <span>Protanomalia</span>
+                                </button>
+                                
+                                <button class="accessibility-option" data-filter="deuteranopia">
+                                    <span class="color-indicator deuteranopia"></span>
+                                    <span>Deuteranopia</span>
+                                </button>
+                                
+                                <button class="accessibility-option" data-filter="deuteranomalia">
+                                    <span class="color-indicator deuteranomalia"></span>
+                                    <span>Deuteranomalia</span>
+                                </button>
+                                
+                                <button class="accessibility-option" data-filter="tritanopia">
+                                    <span class="color-indicator tritanopia"></span>
+                                    <span>Tritanopia</span>
+                                </button>
+                                
+                                <button class="accessibility-option" data-filter="tritanomalia">
+                                    <span class="color-indicator tritanomalia"></span>
+                                    <span>Tritanomalia</span>
+                                </button>
+                                
+                                <button class="accessibility-option" data-filter="acromatopsia">
+                                    <span class="color-indicator acromatopsia"></span>
+                                    <span>Acromatopsia</span>
+                                </button>
+                                
+                                <button class="accessibility-option" data-filter="acromatomalia">
+                                    <span class="color-indicator acromatomalia"></span>
+                                    <span>Acromatomalia</span>
+                                </button>
+                            </div>
+                            
+                            <div class="accessibility-footer">
+                                <button class="reset-btn" id="resetAccessibility">
+                                    <i class="bi bi-arrow-clockwise"></i>
+                                    Restaurar Cores Padrão
+                                </button>
+                            </div>
+                        </div>
+                    </div>
 
                         <a href="login.html">
                             <i class="bi bi-box-arrow-right"></i> Sair da Conta
                         </a>
-
                     </nav>
                 </div>
             </div>
         </div>
     </header>
-
 
 
     <!-- CONTEÚDO PRINCIPAL DA PÁGINA DE PAGAMENTOS -->
@@ -415,6 +478,29 @@
         </div>
     </div>
 
+                <!-- Filtros SVG para simulação de daltonismo -->
+    <svg class="svg-filters" xmlns="http://www.w3.org/2000/svg">
+        <filter id="protanopia">
+            <feColorMatrix type="matrix" values="0.567, 0.433, 0, 0, 0  0.558, 0.442, 0, 0, 0  0, 0.242, 0.758, 0, 0  0, 0, 0, 1, 0" />
+        </filter>
+        <filter id="protanomalia">
+            <feColorMatrix type="matrix" values="0.817, 0.183, 0, 0, 0  0.333, 0.667, 0, 0, 0  0, 0.125, 0.875, 0, 0  0, 0, 0, 1, 0" />
+        </filter>
+        <filter id="deuteranopia">
+            <feColorMatrix type="matrix" values="0.625, 0.375, 0, 0, 0  0.7, 0.3, 0, 0, 0  0, 0.3, 0.7, 0, 0  0, 0, 0, 1, 0" />
+        </filter>
+        <filter id="deuteranomalia">
+            <feColorMatrix type="matrix" values="0.8, 0.2, 0, 0, 0  0.258, 0.742, 0, 0, 0  0, 0.142, 0.858, 0, 0  0, 0, 0, 1, 0" />
+        </filter>
+        <filter id="tritanopia">
+            <feColorMatrix type="matrix" values="0.95, 0.05, 0, 0, 0  0, 0.433, 0.567, 0, 0  0, 0.475, 0.525, 0, 0  0, 0, 0, 1, 0" />
+        </filter>
+        <filter id="tritanomalia">
+            <feColorMatrix type="matrix" values="0.967, 0.033, 0, 0, 0  0, 0.733, 0.267, 0, 0  0, 0.183, 0.817, 0, 0  0, 0, 0, 1, 0" />
+        </filter>
+    </svg>
+
+    <script src="JS/acessibilidade_daltonismo.js"></script>
     <script src="JS/breadcrumbs.js"></script>
     <script src="JS/shared-navigation.js"></script>
     <script src="JS/pagamento.js"></script>

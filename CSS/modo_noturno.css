@@ -441,10 +441,7 @@ body.night-mode .order-summary-badge {
     border-color: #4da6ff;
 }
 
-body.night-mode .form-progress {
-    background-color: #2d2d44;
-    border-color: #4b5563;
-}
+
 
 body.night-mode .progress-step {
     color: #a0aec0;
@@ -466,10 +463,6 @@ body.night-mode .progress-step.active .step-number {
     color: white;
 }
 
-body.night-mode .form-tab {
-    background-color: #2d2d44;
-    border-color: #4b5563;
-}
 
 body.night-mode .form-tab h3 {
     color: #e6e6e6;
@@ -804,7 +797,7 @@ body.night-mode .institution-info h1 {
 
 body.night-mode .institution-category {
     background-color: rgba(76, 175, 80, 0.2);
-    color: #4CAF50;
+    color: white;
 }
 
 body.night-mode .institution-description {
@@ -947,10 +940,6 @@ body.night-mode .upload-text {
 
 body.night-mode .upload-hint {
     color: #b8b8cc;
-}
-
-body.night-mode .institution-info {
-    background-color: #3d3d5c;
 }
 
 body.night-mode .volunteer-header {

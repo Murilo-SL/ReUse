@@ -16,13 +16,6 @@
   --transition: all 0.3s ease;
 }
 
-body {
-  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-  background-color: #F5F7FA;
-  color: #333;
-  line-height: 1.6;
-}
-
 /* Container and Layout */
 .orders-container {
   max-width: 1200px;
