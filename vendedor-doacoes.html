@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minhas Doações - Vendedor ReUse</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/init.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/vendedor-inicio.css">
+    <link rel="stylesheet" href="css/vendedor-doacoes.css">
+    <link rel="stylesheet" href="css/cliente-inicio.css">
+    <link rel="stylesheet" href="css/favorites-menu.css">
+    <link rel="stylesheet" href="css/cart-menu.css">
+    <link rel="stylesheet" href="css/profile-menu.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q755SR73MY"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+            gtag('config', 'G-Q755SR73MY');
+        </script>
+</head>
+
+<body class="vendedor-doacoes">
+    <!-- Background Animation Framework -->
+    <div class="background-framework">
+        <div class="eco-circle circle-1"></div>
+        <div class="eco-circle circle-2"></div>
+        <div class="eco-circle circle-3"></div>
+        <div class="eco-circle circle-4"></div>
+        <div class="particle particle-1"></div>
+        <div class="particle particle-2"></div>
+        <div class="particle particle-3"></div>
+        <div class="particle particle-4"></div>
+        <div class="particle particle-5"></div>
+    </div>
+
+    <!-- Header Principal -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo-section">
+                <a href="vendedor-inicio.html" class="logo-container">
+                    <img src="IMG/reuse-logo-(2).svg" alt="ReUse Logo">
+                    <span class="logo-text">ReUse</span>
+                </a>
+
+                <div class="search-container">
+                    <div class="search-bar">
+                        <i class="bi bi-search search-icon"></i>
+                        <input type="text" class="search-input" placeholder="Pesquisar doações, instituições...">
+                    </div>
+                </div>
+            </div>
+
+            <div class="user-actions">
+                <button class="action-btn" id="darkModeBtn" title="Modo Noturno">
+                    <i class="bi bi-moon"></i>
+                </button>
+
+                <button class="action-btn" id="colorblindBtn" title="Modo Daltonismo">
+                    <i class="bi bi-eye"></i>
+                </button>
+
+                <div class="profile-dropdown">
+                    <button class="dropdown-toggle" id="profileToggle">
+                        <div class="profile-avatar">
+                            <i class="bi bi-shop"></i>
+                        </div>
+                    </button>
+                    <div class="dropdown-menu" id="profileMenu">
+                        <div class="dropdown-header">
+                            <div class="user-info">
+                                <div class="profile-avatar">VL</div>
+                                <div class="user-details">
+                                    <h4>Vendedor Loja</h4>
+                                    <p>vendedor@email.com</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="dropdown-item">
+                            <i class="bi bi-person"></i>
+                            Meu Perfil
+                        </button>
+                        <button class="dropdown-item">
+                            <i class="bi bi-box-arrow-right"></i>
+                            Minhas Vendas
+                        </button>
+                        <button class="dropdown-item">
+                            <i class="bi bi-gear"></i>
+                            Configurações
+                        </button>
+                        <button class="dropdown-item logout" id="logoutBtn">
+                            <i class="bi bi-box-arrow-left"></i>
+                            Sair da Conta
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Menu do Vendedor -->
+    <nav class="seller-menu-bar">
+        <div class="seller-menu-container">
+            <button class="seller-menu-btn">
+                <i class="bi bi-grid"></i>
+                Dashboard
+            </button>
+            <button class="seller-menu-btn">
+                <i class="bi bi-box-seam"></i>
+                Meus Produtos
+            </button>
+            <button class="seller-menu-btn">
+                <i class="bi bi-graph-up"></i>
+                Estatísticas
+            </button>
+            <button class="seller-menu-btn active">
+                <i class="bi bi-heart"></i>
+                Doações
+            </button>
+            <button class="seller-menu-btn">
+                <i class="bi bi-gear"></i>
+                Configurações
+            </button>
+        </div>
+    </nav>
+
+    <!-- Conteúdo Principal -->
+    <main class="main-content">
+        <!-- Header da Página de Doações -->
+        <section class="donation-header">
+            <div class="welcome-section">
+                <h1 class="donation-title">
+                    <i class="bi bi-heart-fill"></i>
+                    Minhas Doações
+                </h1>
+                <p class="donation-subtitle">
+                    Faça a diferença! Contribua com instituições e acompanhe seu impacto social.
+                </p>
+            </div>
+            <div class="quick-actions">
+                <button class="btn btn-primary" id="btnFazerDoacao">
+                    <i class="bi bi-plus-circle"></i>
+                    Nova Doação
+                </button>
+                <button class="btn btn-secondary" id="btnExportarHistorico">
+                    <i class="bi bi-download"></i>
+                    Exportar Histórico
+                </button>
+            </div>
+        </section>
+
+        <!-- Cards de Impacto -->
+        <section class="impact-cards">
+            <div class="impact-grid">
+                <div class="impact-card">
+                    <div class="impact-icon total">
+                        <i class="bi bi-cash-stack"></i>
+                    </div>
+                    <div class="impact-content">
+                        <h3>Total Doado</h3>
+                        <div class="impact-value" id="totalDoado">R$ 1.280,00</div>
+                        <div class="impact-change positive">
+                            <i class="bi bi-arrow-up"></i>
+                            +15% este mês
+                        </div>
+                    </div>
+                </div>
+
+                <div class="impact-card">
+                    <div class="impact-icon count">
+                        <i class="bi bi-gift"></i>
+                    </div>
+                    <div class="impact-content">
+                        <h3>Doações Realizadas</h3>
+                        <div class="impact-value" id="totalDoacoes">24</div>
+                        <div class="impact-change neutral">
+                            <i class="bi bi-dash"></i>
+                            3 este mês
+                        </div>
+                    </div>
+                </div>
+
+                <div class="impact-card">
+                    <div class="impact-icon institutions">
+                        <i class="bi bi-building"></i>
+                    </div>
+                    <div class="impact-content">
+                        <h3>Instituições Apoiadas</h3>
+                        <div class="impact-value" id="totalInstituicoes">8</div>
+                        <div class="impact-change positive">
+                            <i class="bi bi-arrow-up"></i>
+                            +2 este ano
+                        </div>
+                    </div>
+                </div>
+
+                <div class="impact-card">
+                    <div class="impact-icon impact">
+                        <i class="bi bi-people"></i>
+                    </div>
+                    <div class="impact-content">
+                        <h3>Pessoas Impactadas</h3>
+                        <div class="impact-value" id="pessoasImpactadas">340+</div>
+                        <div class="impact-change neutral">
+                            <i class="bi bi-dash"></i>
+                            Estimativa
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Formulário de Doação (inicialmente oculto) -->
+        <section class="donation-form-section" id="donationFormSection" style="display: none;">
+            <div class="form-header">
+                <h2 class="form-title">
+                    <i class="bi bi-heart"></i>
+                    Fazer uma Doação
+                </h2>
+                <p class="form-subtitle">Escolha uma instituição e o valor que deseja doar</p>
+            </div>
+
+            <div class="donation-form-container">
+                <form id="donationForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="instituicao">
+                                <i class="bi bi-building"></i>
+                                Instituição
+                            </label>
+                            <select id="instituicao" name="instituicao" required>
+                                <option value="">Selecione uma instituição</option>
+                                <option value="1">Lar dos Idosos Esperança</option>
+                                <option value="2">Instituto Criança Feliz</option>
+                                <option value="3">ONG Animais Sem Lar</option>
+                                <option value="4">Projeto Meio Ambiente</option>
+                                <option value="5">Associação de Catadores</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="valor">
+                                <i class="bi bi-cash"></i>
+                                Valor da Doação (R$)
+                            </label>
+                            <div class="valor-input-group">
+                                <span class="valor-simbolo">R$</span>
+                                <input type="number" id="valor" name="valor" step="0.01" min="1" max="10000" placeholder="0,00" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="categoria">
+                                <i class="bi bi-tag"></i>
+                                Categoria (opcional)
+                            </label>
+                            <select id="categoria" name="categoria">
+                                <option value="">Selecione uma categoria</option>
+                                <option value="alimentos">Alimentos</option>
+                                <option value="educacao">Educação</option>
+                                <option value="saude">Saúde</option>
+                                <option value="animais">Animais</option>
+                                <option value="meio-ambiente">Meio Ambiente</option>
+                                <option value="assistencia-social">Assistência Social</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="mensagem">
+                                <i class="bi bi-chat"></i>
+                                Mensagem (opcional)
+                            </label>
+                            <textarea id="mensagem" name="mensagem" rows="2" placeholder="Deixe uma mensagem de apoio..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="forma_pagamento">
+                                <i class="bi bi-credit-card"></i>
+                                Forma de Pagamento
+                            </label>
+                            <select id="forma_pagamento" name="forma_pagamento" required>
+                                <option value="">Selecione</option>
+                                <option value="credito">Cartão de Crédito</option>
+                                <option value="debito">Cartão de Débito</option>
+                                <option value="pix">PIX</option>
+                                <option value="boleto">Boleto Bancário</option>
+                                <option value="saldo">Saldo em Conta ReUse</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="anonima">
+                                <i class="bi bi-incognito"></i>
+                                Doação Anônima?
+                            </label>
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" id="anonima" name="anonima">
+                                <label for="anonima">Não identificar meu nome</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" id="btnCancelarDoacao">
+                            <i class="bi bi-x-circle"></i>
+                            Cancelar
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-heart-fill"></i>
+                            Confirmar Doação
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Histórico de Doações -->
+        <section class="donations-history-section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="bi bi-clock-history"></i>
+                    Histórico de Doações
+                </h2>
+                <div class="filter-actions">
+                    <div class="filter-group">
+                        <label for="filtroPeriodo">Período:</label>
+                        <select id="filtroPeriodo" class="filter-select">
+                            <option value="todos">Todos</option>
+                            <option value="mes">Este mês</option>
+                            <option value="trimestre">Últimos 3 meses</option>
+                            <option value="ano">Este ano</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="filtroInstituicao">Instituição:</label>
+                        <select id="filtroInstituicao" class="filter-select">
+                            <option value="todas">Todas</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="donations-table-container">
+                <table class="donations-table">
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Instituição</th>
+                            <th>Categoria</th>
+                            <th>Valor</th>
+                            <th>Forma de Pagamento</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="donationsTableBody">
+                        <!-- Dados serão preenchidos via JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Mensagem quando não há doações -->
+            <div class="empty-state" id="emptyState" style="display: none;">
+                <div class="empty-icon">
+                    <i class="bi bi-heart"></i>
+                </div>
+                <h3>Você ainda não fez nenhuma doação</h3>
+                <p>Seja um agente de transformação! Faça sua primeira doação agora mesmo.</p>
+                <button class="btn btn-primary" id="btnPrimeiraDoacao">
+                    <i class="bi bi-plus-circle"></i>
+                    Fazer Primeira Doação
+                </button>
+            </div>
+        </section>
+
+        <!-- Modal de Confirmação de Doação -->
+        <div class="modal" id="confirmDonationModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">
+                        <i class="bi bi-check-circle-fill"></i>
+                        Confirmar Doação
+                    </h3>
+                    <button class="modal-close" id="closeConfirmModal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>Você está prestes a doar <strong id="confirmValor">R$ 0,00</strong> para:</p>
+                    <div class="donation-details">
+                        <p><strong>Instituição:</strong> <span id="confirmInstituicao"></span></p>
+                        <p><strong>Categoria:</strong> <span id="confirmCategoria">Não especificada</span></p>
+                        <p><strong>Forma de Pagamento:</strong> <span id="confirmPagamento"></span></p>
+                        <p><strong>Mensagem:</strong> <span id="confirmMensagem">-</span></p>
+                    </div>
+                    <p class="confirm-warning">Esta ação não poderá ser desfeita.</p>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn btn-secondary" id="cancelConfirmModal">Cancelar</button>
+                    <button class="btn btn-success" id="confirmDonationBtn">
+                        <i class="bi bi-check-circle"></i>
+                        Confirmar Doação
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de Detalhes da Doação -->
+        <div class="modal" id="donationDetailsModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">
+                        <i class="bi bi-info-circle"></i>
+                        Detalhes da Doação
+                    </h3>
+                    <button class="modal-close" id="closeDetailsModal">&times;</button>
+                </div>
+                <div class="modal-body" id="donationDetailsBody">
+                    <!-- Conteúdo preenchido via JS -->
+                </div>
+                <div class="modal-actions">
+                    <button class="btn btn-primary" id="closeDetailsBtn">Fechar</button>
+                    <button class="btn btn-outline" id="reciboDoacaoBtn">
+                        <i class="bi bi-file-pdf"></i>
+                        Gerar Recibo
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="main-content">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h4>Vendedor ReUse</h4>
+                    <ul class="footer-links">
+                        <li><a href="vendedor-reuse.html"><i class="bi bi-info-circle"></i> Central do Vendedor</a></li>
+                        <li><a href="vendedor-reuse.html"><i class="bi bi-book"></i> Guia de Vendas</a></li>
+                        <li><a href="vendedor-reuse.html"><i class="bi bi-headset"></i> Suporte Vendedor</a></li>
+                        <li><a href="vendedor-reuse.html"><i class="bi bi-newspaper"></i> Novidades</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Ferramentas</h4>
+                    <ul class="footer-links">
+                        <li><a href="ferramentas.html"><i class="bi bi-graph-up"></i> Análises</a></li>
+                        <li><a href="ferramentas.html"><i class="bi bi-megaphone"></i> Promoções</a></li>
+                        <li><a href="ferramentas.html"><i class="bi bi-truck"></i> Logística</a></li>
+                        <li><a href="ferramentas.html"><i class="bi bi-cash"></i> Financeiro</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="legal-vendedor.html"><i class="bi bi-shield-check"></i> Política de Vendas</a></li>
+                        <li><a href="legal-vendedor.html"><i class="bi bi-file-text"></i> Termos Comerciais</a></li>
+                        <li><a href="legal-vendedor.html"><i class="bi bi-credit-card"></i> Taxas e Comissões</a></li>
+                        <li><a href="legal-vendedor.html"><i class="bi bi-lock"></i> Segurança</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Conecte-se</h4>
+                    <p>Siga-nos nas redes sociais</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" title="Facebook">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+                        <a href="#" class="social-link" title="Instagram">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link" title="Twitter">
+                            <i class="bi bi-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link" title="LinkedIn">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2025 ReUse - Todos os direitos reservados. Consumo consciente, futuro sustentável.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal de Confirmação de Logout -->
+    <div class="modal" id="logoutModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Sair da Conta</h3>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Tem certeza que deseja sair da sua conta de vendedor? Você precisará fazer login novamente para acessar seus dados.</p>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="cancelLogout">Cancelar</button>
+                <button class="btn btn-danger" id="confirmLogout">Sair</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Menu de Perfil Expandido -->
+    <div class="profile-menu-expanded" id="profileMenuExpanded">
+        <div class="profile-overlay"></div>
+        <div class="profile-sidebar">
+            <div class="profile-header">
+                <div class="profile-user-info">
+                    <div class="profile-avatar-large">
+                        <i class="bi bi-shop"></i>
+                    </div>
+                    <div class="profile-user-details">
+                        <h3>Vendedor Loja</h3>
+                        <p>vendedor@email.com</p>
+                        <span class="profile-badge">Vendedor Verificado</span>
+                    </div>
+                </div>
+                <button class="close-profile" id="closeProfile">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+
+            <div class="profile-body">
+                <nav class="profile-nav">
+                    <button class="profile-nav-item">
+                        <i class="bi bi-person"></i>
+                        <span>Meu Perfil Vendedor</span>
+                    </button>
+
+                    <button class="profile-nav-item">
+                        <i class="bi bi-box-seam"></i>
+                        <span>Meus Produtos</span>
+                        <span class="nav-badge">48</span>
+                    </button>
+
+                    <button class="profile-nav-item">
+                        <i class="bi bi-bar-chart"></i>
+                        <span>Estatísticas de Vendas</span>
+                    </button>
+
+                    <button class="profile-nav-item">
+                        <i class="bi bi-cash-coin"></i>
+                        <span>Financeiro</span>
+                    </button>
+
+                    <div class="profile-nav-divider"></div>
+
+                    <button class="profile-nav-item">
+                        <i class="bi bi-gear"></i>
+                        <span>Configurações da Loja</span>
+                    </button>
+
+                    <button class="profile-nav-item logout">
+                        <i class="bi bi-box-arrow-left"></i>
+                        <span>Sair da Conta</span>
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <script src="JS/auth.js"></script>
+    <script src="js/dark-mode.js"></script>
+    <script src="js/vendedor-inicio.js"></script>
+    <script src="js/vendedor-doacoes.js"></script>
+    <script src="js/profile-menu-vendedor.js"></script>
+    <script src="js/accessibility-menu.js"></script>
+
+        <!-- Widget VLibras -->
+        <div vw class="enabled">
+            <div vw-access-button class="active"></div>
+            <div vw-plugin-wrapper>
+                <div class="vw-plugin-top-wrapper"></div>
+            </div>
+        </div>
+</body>
+
+</html>

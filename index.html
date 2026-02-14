@@ -5,340 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ReUse - Compre, Venda e Doe Itens Usados de Forma Sustentável</title>
-    <meta name="description" content="Plataforma sustentável para compra, venda e doação de itens usados. Economize dinheiro, ajude o meio ambiente e faça parte da economia circular.">
+    <meta name="description"
+        content="Plataforma sustentável para compra, venda e doação de itens usados. Economize dinheiro, ajude o meio ambiente e faça parte da economia circular.">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <link rel="stylesheet" href="CSS/estilo.css">
-    <link rel="stylesheet" href="CSS/breadcrumbs.css">
-    <!-- VLibras -->
+    <link rel="stylesheet" href="css/init.css">
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <script>
         new window.VLibras.Widget('https://vlibras.gov.br/app');
     </script>
-</head>
-
-<body>
-    <div class="entry-container">
-        <div class="logo-container">
-            <img src="IMG/reuse-logo-(2).svg" alt="ReUse Logo"><span>ReUse</span>
-        </div>
-
-        <!-- Botões de Controle - COM MENU HAMBURGUER -->
-        <div class="control-buttons">
-            <!-- Botão Menu Hamburguer para Mobile - NOVO -->
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menu">
-                <i class="bi bi-list"></i>
-            </button>
-
-            <!-- Container dos botões que será escondido no mobile -->
-            <div class="control-buttons-container" id="controlButtonsContainer">
-                <!-- Botão de Acessibilidade (Modo Daltônico) - PRIMEIRO -->
-                <button class="accessibility-toggle" id="accessibilityToggle" aria-label="Opções de acessibilidade">
-                    <i class="bi bi-universal-access"></i>
-                </button>
-
-                <!-- Seletor de Idioma - SEGUNDO -->
-                <div class="language-selector" id="languageSelector">
-                    <button class="language-btn" aria-label="Selecionar idioma">
-                        <i class="bi bi-translate"></i>
-                        <span>Português</span>
-                        <i class="bi bi-chevron-down"></i>
-                    </button>
-                    <div class="language-dropdown">
-                        <div class="language-option" data-lang="pt">
-                            <i class="bi bi-check-lg"></i>
-                            <span>Português</span>
-                        </div>
-                        <div class="language-option" data-lang="en">
-                            <i class="bi bi-check-lg"></i>
-                            <span>English</span>
-                        </div>
-                        <div class="language-option" data-lang="es">
-                            <i class="bi bi-check-lg"></i>
-                            <span>Español</span>
-                        </div>
-                        <div class="language-option" data-lang="fr">
-                            <i class="bi bi-check-lg"></i>
-                            <span>Français</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Botão de Alternância de Modo - TERCEIRO -->
-                <button class="theme-toggle" id="themeToggle" aria-label="Alternar modo claro/escuro">
-                    <i class="bi bi-moon"></i>
-                </button>
-            </div>
-        </div>
-
-        <!-- Menu de Acessibilidade -->
-        <div class="accessibility-menu" id="accessibilityMenu">
-            <h3>Acessibilidade</h3>
-            <div class="accessibility-options">
-                <button class="accessibility-option" data-mode="normal">
-                    <i class="bi bi-check-lg"></i>
-                    <span>Visão Normal</span>
-                </button>
-                <button class="accessibility-option" data-mode="protanopia">
-                    <i class="bi bi-circle-fill" style="color: #FF6B6B"></i>
-                    <span>Protanopia (Vermelho)</span>
-                </button>
-                <button class="accessibility-option" data-mode="protanomalia">
-                    <i class="bi bi-circle-fill" style="color: #FF8E8E"></i>
-                    <span>Protanomalia (Vermelho Leve)</span>
-                </button>
-                <button class="accessibility-option" data-mode="deuteranopia">
-                    <i class="bi bi-circle-fill" style="color: #4ECDC4"></i>
-                    <span>Deuteranopia (Verde)</span>
-                </button>
-                <button class="accessibility-option" data-mode="deuteranomalia">
-                    <i class="bi bi-circle-fill" style="color: #6ED9D2"></i>
-                    <span>Deuteranomalia (Verde Leve)</span>
-                </button>
-                <button class="accessibility-option" data-mode="tritanopia">
-                    <i class="bi bi-circle-fill" style="color: #45B7D1"></i>
-                    <span>Tritanopia (Azul)</span>
-                </button>
-                <button class="accessibility-option" data-mode="tritanomalia">
-                    <i class="bi bi-circle-fill" style="color: #67C7E0"></i>
-                    <span>Tritanomalia (Azul Leve)</span>
-                </button>
-                <button class="accessibility-option" data-mode="acromatomia">
-                    <i class="bi bi-circle-fill" style="color: #666666"></i>
-                    <span>Acromatomia (Monocromático)</span>
-                </button>
-                <button class="accessibility-option" data-mode="acromatopsia">
-                    <i class="bi bi-circle-fill" style="color: #333333"></i>
-                    <span>Acromatopsia (Total)</span>
-                </button>
-            </div>
-        </div>
-
-        <!-- Seção Unificada -->
-        <section class="unified-intro-section">
-            <div class="intro-content">
-                <h1>Dê uma nova vida aos itens que você não usa mais</h1>
-                <p class="intro-subtitle">Junte-se à <span class="highlight">ReUse</span> e faça parte da economia circular que transforma o consumo em uma experiência sustentável</p>
-                
-                <div class="intro-grid">
-                    <!-- Benefícios para Compradores -->
-                    <div class="intro-card buyer-card">
-                        <div class="card-icon">
-                            <i class="bi bi-wallet2"></i>
-                        </div>
-                        <h3>Para Compradores</h3>
-                        <p>Encontre produtos de qualidade com preços acessíveis, economizando até 70% em comparação com produtos novos.</p>
-                        <div class="card-values">
-                            <div class="value-item">
-                                <i class="bi bi-currency-dollar"></i>
-                                <span>Economize Dinheiro</span>
-                            </div>
-                            <div class="value-item">
-                                <i class="bi bi-recycle"></i>
-                                <span>Consumo Sustentável</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Benefícios para Vendedores -->
-                    <div class="intro-card seller-card">
-                        <div class="card-icon">
-                            <i class="bi bi-cash-coin"></i>
-                        </div>
-                        <h3>Para Vendedores</h3>
-                        <p>Transforme itens parados em dinheiro extra, com uma plataforma simples e segura para suas vendas.</p>
-                        <div class="card-values">
-                            <div class="value-item">
-                                <i class="bi bi-currency-exchange"></i>
-                                <span>Economia Circular</span>
-                            </div>
-                            <div class="value-item">
-                                <i class="bi bi-people-fill"></i>
-                                <span>Comunidade Ativa</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Benefícios para Doadores -->
-                    <div class="intro-card donor-card">
-                        <div class="card-icon">
-                            <i class="bi bi-gift-fill"></i>
-                        </div>
-                        <h3>Para Doadores</h3>
-                        <p>Faça a diferença na vida de pessoas e instituições, doando itens que não usa mais para quem precisa.</p>
-                        <div class="card-values">
-                            <div class="value-item">
-                                <i class="bi bi-heart-fill"></i>
-                                <span>Solidariedade</span>
-                            </div>
-                            <div class="value-item">
-                                <i class="bi bi-tree"></i>
-                                <span>Impacto Ambiental</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Seção: Impacto -->
-        <section class="impact-section">
-            <div class="impact-background">
-                <div class="impact-pattern"></div>
-            </div>
-            
-            <div class="impact-content">
-                <h2 class="impact-title">Juntos Estamos Fazendo a Diferença</h2>
-                <p class="impact-subtitle">Nossa comunidade já alcançou resultados incríveis que impactam positivamente o planeta e a sociedade</p>
-                
-                <div class="impact-stats">
-                    <div class="stat-item" data-aos="fade-up">
-                        <div class="stat-icon">
-                            <i class="bi bi-arrow-repeat"></i>
-                        </div>
-                        <div class="stat-content">
-                            <div class="stat-number" data-target="10000">0</div>
-                            <div class="stat-label">Itens Reutilizados</div>
-                            <div class="stat-description">Evitando que produtos úteis se tornem resíduos</div>
-                        </div>
-                        <div class="stat-progress">
-                            <div class="progress-bar" style="width: 85%"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
-                        <div class="stat-icon">
-                            <i class="bi bi-heart-handshake"></i>
-                        </div>
-                        <div class="stat-content">
-                            <div class="stat-number" data-target="2500">0</div>
-                            <div class="stat-label">Doações Realizadas</div>
-                            <div class="stat-description">Apoiando pessoas e instituições que precisam</div>
-                        </div>
-                        <div class="stat-progress">
-                            <div class="progress-bar" style="width: 70%"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
-                        <div class="stat-icon">
-                            <i class="bi bi-cloud-check"></i>
-                        </div>
-                        <div class="stat-content">
-                            <div class="stat-number" data-target="50">0</div>
-                            <div class="stat-label">Toneladas de CO² Economizadas</div>
-                            <div class="stat-description">Equivalente ao plantio de 1.250 árvores</div>
-                        </div>
-                        <div class="stat-progress">
-                            <div class="progress-bar" style="width: 60%"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
-                        <div class="stat-icon">
-                            <i class="bi bi-people"></i>
-                        </div>
-                        <div class="stat-content">
-                            <div class="stat-number" data-target="5000">0</div>
-                            <div class="stat-label">Membros Ativos</div>
-                            <div class="stat-description">Pessoas engajadas na economia circular</div>
-                        </div>
-                        <div class="stat-progress">
-                            <div class="progress-bar" style="width: 75%"></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="impact-footer">
-                    <div class="impact-quote">
-                        <i class="bi bi-quote"></i>
-                        <p>Cada item reutilizado é uma vitória para o nosso planeta</p>
-                    </div>
-                    <div class="impact-actions">
-                        <button class="impact-btn share-btn">
-                            <i class="bi bi-share"></i> Compartilhar Impacto
-                        </button>
-                        <button class="impact-btn story-btn">
-                            <i class="bi bi-journal-text"></i> Ver Histórias
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Seção: Chamada -->
-        <section class="cta-section">
-            <div class="cta-background">
-                <div class="cta-pattern"></div>
-                <div class="cta-floating-elements">
-                    <div class="floating-element eco-1"></div>
-                    <div class="floating-element eco-2"></div>
-                    <div class="floating-element eco-3"></div>
-                    <div class="floating-element eco-4"></div>
-                </div>
-            </div>
-            
-            <div class="cta-content">
-                <div class="cta-icon">
-                    <i class="bi bi-arrow-repeat"></i>
-                </div>
-                
-                <h2>Pronto para Fazer Parte Dessa Mudança?</h2>
-                <p class="cta-subtitle">Junte-se a milhares de pessoas que já estão transformando o consumo e fazendo a diferença no planeta</p>
-                
-                <div class="cta-benefits">
-                    <div class="benefit-item">
-                        <i class="bi bi-check-circle-fill"></i>
-                        <span>Economize até 70% em produtos de qualidade</span>
-                    </div>
-                    <div class="benefit-item">
-                        <i class="bi bi-check-circle-fill"></i>
-                        <span>Ganhe dinheiro extra com itens que não usa mais</span>
-                    </div>
-                    <div class="benefit-item">
-                        <i class="bi bi-check-circle-fill"></i>
-                        <span>Ajude o meio ambiente e pessoas que precisam</span>
-                    </div>
-                </div>
-                
-                <div class="cta-buttons">
-                    <a href="participar.html" class="cta-button primary">
-                        <span>Quero Participar Agora</span>
-                        <i class="bi bi-arrow-right"></i>
-                    </a>
-                    <a href="saiba-mais.html" class="cta-button secondary">
-                        <span>Saiba Mais</span>
-                        <i class="bi bi-info-circle"></i>
-                    </a>
-                </div>
-                
-                <div class="cta-footer">
-                    <div class="trust-badges">
-                        <div class="badge">
-                            <i class="bi bi-shield-check"></i>
-                            <span>Plataforma Segura</span>
-                        </div>
-                        <div class="badge">
-                            <i class="bi bi-lightning-charge"></i>
-                            <span>Cadastro Rápido</span>
-                        </div>
-                        <div class="badge">
-                            <i class="bi bi-person-check"></i>
-                            <span>+5.000 Membros</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Widget VLibras -->
-        <div vw class="enabled">
-            <div vw-access-button class="active"></div>
-            <div vw-plugin-wrapper>
-                <div class="vw-plugin-top-wrapper"></div>
-            </div>
-        </div>
-
         <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q755SR73MY"></script>
         <script>
@@ -347,14 +21,425 @@
             gtag('js', new Date());
             gtag('config', 'G-Q755SR73MY');
         </script>
+</head>
+
+<body>
+    <!-- Background Animation Framework -->
+    <div class="background-framework">
+        <div class="eco-circle circle-1"></div>
+        <div class="eco-circle circle-2"></div>
+        <div class="eco-circle circle-3"></div>
+        <div class="eco-circle circle-4"></div>
+        <div class="floating-leaf leaf-1">🍃</div>
+        <div class="floating-leaf leaf-2">🌿</div>
+        <div class="floating-leaf leaf-3">🍂</div>
+        <div class="floating-leaf leaf-4">🥬</div>
+        <div class="recycle-symbol">♻️</div>
+        <div class="particle particle-1"></div>
+        <div class="particle particle-2"></div>
+        <div class="particle particle-3"></div>
+        <div class="particle particle-4"></div>
+        <div class="particle particle-5"></div>
     </div>
-    <script src="JS/modo_noturno_inicial.js"></script>
-    <script src="JS/language-selector.js"></script>
-    <script src="JS/colorblind-mode.js"></script>
-    <script src="JS/inicial.js"></script>
-    <script src="JS/breadcrumbs.js"></script>
-    <script src="JS/shared-navigation.js"></script>
-    <script src="JS/mobile-menu.js"></script>
+
+    <div class="container">
+        <!-- Cabeçalho com Logo -->
+        <header class="header">
+            <div class="logo-container">
+                <img src="IMG/reuse-logo-(2).svg" alt="ReUse Logo">
+                <span class="logo-text">ReUse</span>
+            </div>
+        </header>
+
+        <!-- Seção Principal -->
+        <main class="main-content">
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        <span class="title-line">Dê uma nova vida aos</span>
+                        <span class="title-line highlight">itens que você não usa mais</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Junte-se à <span class="highlight-text">ReUse</span> e faça parte da <span
+                            class="eco-text">economia circular</span> que transforma o consumo em uma experiência
+                        sustentável
+                    </p>
+                    <div class="hero-stats">
+                        <div class="mini-stat">
+                            <div class="mini-number">+5K</div>
+                            <div class="mini-label">Membros</div>
+                        </div>
+                        <div class="mini-stat">
+                            <div class="mini-number">+10K</div>
+                            <div class="mini-label">Itens Reutilizados</div>
+                        </div>
+                        <div class="mini-stat">
+                            <div class="mini-number">+2.5K</div>
+                            <div class="mini-label">Doações</div>
+                        </div>
+                    </div>
+                    <div class="hero-actions">
+                        <a href="saiba-mais.html" class="learn-more-btn">
+                            <span>Saiba Mais</span>
+                            <i class="bi bi-arrow-down"></i>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Cards de Opções -->
+            <section class="options-section">
+                <div class="section-header">
+                    <h2 class="section-title">Escolha Sua Jornada Sustentável</h2>
+                    <p class="section-subtitle">Participe da comunidade de formas diferentes e faça a diferença</p>
+                </div>
+
+                <div class="options-grid">
+                    <!-- Card Cliente -->
+                    <div class="option-card client-card">
+                        <div class="card-glow"></div>
+                        <div class="card-badge">Mais Popular</div>
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="bi bi-person-check-fill"></i>
+                            </div>
+                            <h3 class="card-title">Para Clientes</h3>
+                            <div class="card-subtitle">Compre com Consciência, Doe com Propósito</div>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-description">
+                                Encontre produtos de qualidade com preços acessíveis e faça doações para causas que você
+                                apoia.
+                            </p>
+                            <ul class="benefits-list">
+                                <li class="benefit-item">
+                                    <div class="benefit-icon">
+                                        <i class="bi bi-currency-dollar"></i>
+                                    </div>
+                                    <span class="benefit-text">Economize até 70% em compras sustentáveis</span>
+                                </li>
+                                <li class="benefit-item">
+                                    <div class="benefit-icon">
+                                        <i class="bi bi-heart-fill"></i>
+                                    </div>
+                                    <span class="benefit-text">Doe para instituições verificadas e confiáveis</span>
+                                </li>
+                                <li class="benefit-item">
+                                    <div class="benefit-icon">
+                                        <i class="bi bi-shield-check"></i>
+                                    </div>
+                                    <span class="benefit-text">Compras 100% seguras com garantia ReUse</span>
+                                </li>
+                                <li class="benefit-item">
+                                    <div class="benefit-icon">
+                                        <i class="bi bi-truck"></i>
+                                    </div>
+                                    <span class="benefit-text">Entregas sustentáveis em toda região</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-footer">
+                            <!-- LINK ADICIONADO AQUI -->
+                            <a href="cadastro-cliente.html" class="action-btn client-btn">
+                                <span>Entrar como Cliente</span>
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                            <div class="card-note">Grátis • Cadastro em 2 minutos</div>
+                        </div>
+                    </div>
+
+                    <!-- Card Vendedor -->
+                    <div class="option-card seller-card">
+                        <div class="card-glow"></div>
+                        <div class="card-badge">Para Empreendedores</div>
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="bi bi-shop"></i>
+                            </div>
+                            <h3 class="card-title">Para Vendedores</h3>
+                            <div class="card-subtitle">Transforme Itens em Oportunidades</div>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-description">
+                                Venda seus itens usados ou produtos de brechó. Ideal para vendedores autônomos e
+                                pequenos negócios.
+                            </p>
+                            <ul class="benefits-list">
+                                <li class="benefit-item">
+                                    <div class="benefit-icon">
+                                        <i class="bi bi-cash-coin"></i>
+                                    </div>
+                                    <span class="benefit-text">Ganhe dinheiro extra com itens parados</span>
+                                </li>
+                                <li class="benefit-item">
+                                    <div class="benefit-icon">
+                                        <i class="bi bi-people-fill"></i>
+                                    </div>
+                                    <span class="benefit-text">Alcance milhares de clientes conscientes</span>
+                                </li>
+                                <li class="benefit-item">
+                                    <div class="benefit-icon">
+                                        <i class="bi bi-graph-up"></i>
+                                    </div>
+                                    <span class="benefit-text">Baixo custo operacional e alta rentabilidade</span>
+                                </li>
+                                <li class="benefit-item">
+                                    <div class="benefit-icon">
+                                        <i class="bi bi-star-fill"></i>
+                                    </div>
+                                    <span class="benefit-text">Sistema de reputação e avaliações</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-footer">
+                            <!-- LINK ADICIONADO AQUI -->
+                            <a href="cadastro-vendedor.html" class="action-btn seller-btn">
+                                <span>Começar a Vender</span>
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                            <div class="card-note">Taxa de apenas 10% • Suporte gratuito</div>
+                        </div>
+                    </div>
+
+                    <!-- Card Instituição -->
+                    <!-- Card Instituição - LINHA 164 -->
+                    <div class="option-card institution-card">
+                        <div class="card-glow"></div>
+                        <div class="card-badge">Para Causas Sociais</div>
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="bi bi-building"></i>
+                            </div>
+                            <h3 class="card-title">Para Instituições</h3>
+                            <div class="card-subtitle">Amplie Seu Impacto Social</div>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-description">
+                                Cadastre sua instituição para receber doações e vender produtos, aumentando sua
+                                arrecadação.
+                            </p>
+                            <ul class="benefits-list">
+                                <li class="benefit-item">
+                                    <div class="benefit-icon">
+                                        <i class="bi bi-handbag-fill"></i>
+                                    </div>
+                                    <span class="benefit-text">Receba doações diretas da comunidade</span>
+                                </li>
+                                <li class="benefit-item">
+                                    <div class="benefit-icon">
+                                        <i class="bi bi-cart-check"></i>
+                                    </div>
+                                    <span class="benefit-text">Venda produtos para arrecadar fundos</span>
+                                </li>
+                                <li class="benefit-item">
+                                    <div class="benefit-icon">
+                                        <i class="bi bi-megaphone"></i>
+                                    </div>
+                                    <span class="benefit-text">Divulgue sua causa para milhares de pessoas</span>
+                                </li>
+                                <li class="benefit-item">
+                                    <div class="benefit-icon">
+                                        <i class="bi bi-award-fill"></i>
+                                    </div>
+                                    <span class="benefit-text">Certificado de instituição verificada</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-footer">
+                            <!-- LINK ADICIONADO AQUI -->
+                            <a href="cadastro-instituicao.html" class="action-btn institution-btn">
+                                <span>Cadastrar Instituição</span>
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                            <div class="card-note">Verificação gratuita • Sem taxas</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Seção de Impacto -->
+            <section class="impact-section">
+                <div class="impact-pattern"></div>
+                <div class="impact-content">
+                    <div class="section-header">
+                        <h2 class="section-title">Juntos Estamos Fazendo a Diferença</h2>
+                        <p class="section-subtitle">Nossa comunidade já alcançou resultados incríveis que impactam
+                            positivamente o planeta e a sociedade</p>
+                    </div>
+
+                    <div class="impact-stats">
+                        <div class="stat-card">
+                            <div class="stat-glow"></div>
+                            <div class="stat-icon">
+                                <i class="bi bi-arrow-repeat"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-number" data-count="10000">0</div>
+                                <div class="stat-label">Itens Reutilizados</div>
+                                <div class="stat-description">Evitando que produtos úteis se tornem resíduos</div>
+                            </div>
+                            <div class="stat-progress">
+                                <div class="progress-bar" style="width: 85%"></div>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-glow"></div>
+                            <div class="stat-icon">
+                                <i class="bi bi-gift"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-number" data-count="2500">0</div>
+                                <div class="stat-label">Doações Realizadas</div>
+                                <div class="stat-description">Apoiando pessoas e instituições que precisam</div>
+                            </div>
+                            <div class="stat-progress">
+                                <div class="progress-bar" style="width: 70%"></div>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-glow"></div>
+                            <div class="stat-icon">
+                                <i class="bi bi-cloud-check"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-number" data-count="50">0</div>
+                                <div class="stat-label">Toneladas de CO² Economizadas</div>
+                                <div class="stat-description">Equivalente ao plantio de 1.250 árvores</div>
+                            </div>
+                            <div class="stat-progress">
+                                <div class="progress-bar" style="width: 60%"></div>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-glow"></div>
+                            <div class="stat-icon">
+                                <i class="bi bi-people"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-number" data-count="5000">0</div>
+                                <div class="stat-label">Membros Ativos</div>
+                                <div class="stat-description">Pessoas engajadas na economia circular</div>
+                            </div>
+                            <div class="stat-progress">
+                                <div class="progress-bar" style="width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="impact-footer">
+                        <div class="impact-quote">
+                            <div class="quote-icon">
+                                <i class="bi bi-quote"></i>
+                            </div>
+                            <div class="quote-content">
+                                <p class="quote-text">"Cada item reutilizado é uma vitória para o nosso planeta. Juntos,
+                                    estamos construindo um futuro mais sustentável."</p>
+                                <div class="quote-author">— Comunidade ReUse</div>
+                            </div>
+                        </div>
+                        <div class="impact-actions">
+                            <button class="impact-btn share-impact">
+                                <i class="bi bi-share-fill"></i>
+                                Compartilhar Impacto
+                            </button>
+                            <button class="impact-btn see-stories">
+                                <i class="bi bi-journal-text"></i>
+                                Ver Histórias
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Controles de Acessibilidade -->
+    <div class="accessibility-controls">
+        <button class="accessibility-btn" id="darkModeToggle" title="Modo Noturno">
+            <i class="bi bi-moon"></i>
+        </button>
+
+        <div class="colorblind-menu">
+            <button class="accessibility-btn" id="colorblindToggle" title="Modo Daltonismo">
+                <i class="bi bi-palette"></i>
+            </button>
+            <div class="colorblind-dropdown" id="colorblindDropdown">
+                <button class="colorblind-option" data-mode="protanopia">
+                    <div class="colorblind-preview protanopia"></div>
+                    <div class="option-info">
+                        <span class="option-name">Protanopia</span>
+                        <span class="option-desc">Vermelho/Verde</span>
+                    </div>
+                </button>
+
+                <button class="colorblind-option" data-mode="deuteranopia">
+                    <div class="colorblind-preview deuteranopia"></div>
+                    <div class="option-info">
+                        <span class="option-name">Deuteranopia</span>
+                        <span class="option-desc">Vermelho/Verde</span>
+                    </div>
+                </button>
+
+                <button class="colorblind-option" data-mode="tritanopia">
+                    <div class="colorblind-preview tritanopia"></div>
+                    <div class="option-info">
+                        <span class="option-name">Tritanopia</span>
+                        <span class="option-desc">Azul/Amarelo</span>
+                    </div>
+                </button>
+
+                <button class="colorblind-option" data-mode="achromatopsia">
+                    <div class="colorblind-preview achromatopsia"></div>
+                    <div class="option-info">
+                        <span class="option-name">Acromatopsia</span>
+                        <span class="option-desc">Preto e Branco</span>
+                    </div>
+                </button>
+
+                <button class="colorblind-reset" id="colorblindReset">
+                    <i class="bi bi-x-circle"></i>
+                    Remover Filtro
+                </button>
+            </div>
+        </div>
+
+        <div class="language-menu">
+            <button class="accessibility-btn" id="languageToggle" title="Idioma">
+                <i class="bi bi-translate"></i>
+            </button>
+            <div class="language-dropdown" id="languageDropdown">
+                <button class="language-option" data-lang="pt">
+                    <i class="bi bi-flag"></i>
+                    Português
+                </button>
+                <button class="language-option" data-lang="en">
+                    <i class="bi bi-flag"></i>
+                    English
+                </button>
+                <button class="language-option" data-lang="es">
+                    <i class="bi bi-flag"></i>
+                    Español
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Indicador de Modo -->
+    <div class="mode-indicator" id="modeIndicator"></div>
+
+    <script src="JS/init.js"></script>
+
+        <!-- Widget VLibras -->
+        <div vw class="enabled">
+            <div vw-access-button class="active"></div>
+            <div vw-plugin-wrapper>
+                <div class="vw-plugin-top-wrapper"></div>
+            </div>
+        </div>
 </body>
 
 </html>

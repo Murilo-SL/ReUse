@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal - Políticas e Termos | ReUse</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/init.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/cliente-inicio.css">
+    <link rel="stylesheet" href="css/favorites-menu.css">
+    <link rel="stylesheet" href="css/cart-menu.css">
+    <link rel="stylesheet" href="css/profile-menu.css">
+    <link rel="stylesheet" href="css/legal.css">
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q755SR73MY"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+            gtag('config', 'G-Q755SR73MY');
+        </script>
+</head>
+
+<body class="cliente-inicio">
+    <!-- Background Animation Framework -->
+    <div class="background-framework">
+        <div class="eco-circle circle-1"></div>
+        <div class="eco-circle circle-2"></div>
+        <div class="eco-circle circle-3"></div>
+        <div class="eco-circle circle-4"></div>
+        <div class="particle particle-1"></div>
+        <div class="particle particle-2"></div>
+        <div class="particle particle-3"></div>
+        <div class="particle particle-4"></div>
+        <div class="particle particle-5"></div>
+    </div>
+
+    <!-- Header Principal -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo-section">
+                <a href="cliente-inicio.html" class="logo-container">
+                    <img src="IMG/reuse-logo-(2).svg" alt="ReUse Logo">
+                    <span class="logo-text">ReUse</span>
+                </a>
+
+                <div class="search-container">
+                    <div class="search-bar">
+                        <i class="bi bi-search search-icon"></i>
+                        <input type="text" class="search-input" placeholder="Pesquisar termos legais...">
+                    </div>
+                </div>
+            </div>
+
+            <div class="user-actions">
+                <button class="action-btn" id="favoritesBtn" title="Favoritos">
+                    <i class="bi bi-heart"></i>
+                </button>
+
+                <button class="action-btn cart-btn" id="cartBtn" title="Carrinho">
+                    <i class="bi bi-cart3"></i>
+                </button>
+
+                <button class="action-btn" id="darkModeBtn" title="Modo Noturno">
+                    <i class="bi bi-moon"></i>
+                </button>
+
+                <button class="action-btn" id="colorblindBtn" title="Modo Daltonismo">
+                    <i class="bi bi-eye"></i>
+                </button>
+
+                <div class="profile-dropdown">
+                    <button class="dropdown-toggle" id="profileToggle">
+                        <div class="profile-avatar"><i class="bi bi-person-fill"></i></div>
+                    </button>
+                    <div class="dropdown-menu" id="profileMenu">
+                        <div class="dropdown-header">
+                            <div class="user-info">
+                                <div class="profile-avatar">JC</div>
+                                <div class="user-details">
+                                    <h4>João Cliente</h4>
+                                    <p>joao@email.com</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="dropdown-item">
+                            <i class="bi bi-person"></i>
+                            Meu Perfil
+                        </button>
+                        <button class="dropdown-item">
+                            <i class="bi bi-gear"></i>
+                            Configurações
+                        </button>
+                        <button class="dropdown-item">
+                            <i class="bi bi-box-arrow-right"></i>
+                            Meus Pedidos
+                        </button>
+                        <button class="dropdown-item">
+                            <i class="bi bi-heart"></i>
+                            Favoritos
+                        </button>
+                        <button class="dropdown-item logout" id="logoutBtn">
+                            <i class="bi bi-box-arrow-left"></i>
+                            Sair da Conta
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <!-- Categorias Legais (Estilo igual à página inicial) -->
+    <nav class="legal-categories-bar">
+        <div class="legal-categories-container">
+            <button class="legal-category-btn active" data-section="privacidade">
+                <i class="bi bi-shield-check"></i>
+                Privacidade
+            </button>
+            <button class="legal-category-btn" data-section="termos">
+                <i class="bi bi-file-text"></i>
+                Termos de Uso
+            </button>
+            <button class="legal-category-btn" data-section="cookies">
+                <i class="bi bi-cookie"></i>
+                Política de Cookies
+            </button>
+            <button class="legal-category-btn" data-section="seguranca">
+                <i class="bi bi-credit-card"></i>
+                Segurança
+            </button>
+            <button class="legal-category-btn" data-section="faq">
+                <i class="bi bi-question-circle"></i>
+                Dúvidas Frequentes
+            </button>
+            <button class="legal-category-btn" data-section="contato">
+                <i class="bi bi-envelope"></i>
+                Contato Jurídico
+            </button>
+        </div>
+    </nav>
+
+    </header>
+
+    <!-- Header da Página Legal -->
+    <section class="legal-header">
+        <div class="main-content">
+            <h1>Informações Legais</h1>
+            <p>Transparência e confiança são fundamentais para nós. Conheça nossas políticas, termos e práticas de segurança.</p>
+        </div>
+    </section>
+
+
+    <!-- Indicador visual de seções -->
+    <div class="section-indicator" id="sectionIndicator">
+        <div class="section-dot active" data-section="Privacidade" onclick="scrollToSection('privacidade')"></div>
+        <div class="section-dot" data-section="Termos" onclick="scrollToSection('termos')"></div>
+        <div class="section-dot" data-section="Cookies" onclick="scrollToSection('cookies')"></div>
+        <div class="section-dot" data-section="Segurança" onclick="scrollToSection('seguranca')"></div>
+    </div>
+
+    <!-- Conteúdo Principal -->
+    <main class="legal-container">
+        <!-- Conteúdo das Políticas -->
+        <div class="legal-content">
+            <!-- Seção: Política de Privacidade -->
+            <section id="privacidade" class="legal-section">
+                <h2><i class="bi bi-shield-check"></i> Política de Privacidade</h2>
+                
+                <div class="last-updated">
+                    <strong>Última atualização:</strong> 15 de Janeiro de 2025
+                </div>
+
+                <p>Na ReUse, levamos a sua privacidade muito a sério. Esta política descreve como coletamos, usamos, armazenamos e protegemos suas informações pessoais.</p>
+
+                <h3>1. Informações que Coletamos</h3>
+                <p>Coletamos diferentes tipos de informações para fornecer e melhorar nossos serviços:</p>
+                <ul>
+                    <li><strong>Informações de cadastro:</strong> Nome, e-mail, CPF, endereço</li>
+                    <li><strong>Dados de transação:</strong> Histórico de compras, vendas e doações</li>
+                    <li><strong>Informações de navegação:</strong> IP, tipo de navegador, páginas visitadas</li>
+                    <li><strong>Dados de dispositivo:</strong> Tipo de dispositivo, sistema operacional</li>
+                    <li><strong>Informações de pagamento:</strong> Processadas por gateways seguros (não armazenamos dados completos de cartão)</li>
+                </ul>
+
+                <h3>2. Como Usamos Suas Informações</h3>
+                <p>Utilizamos suas informações para:</p>
+                <ul>
+                    <li>Processar transações e entregas</li>
+                    <li>Personalizar sua experiência na plataforma</li>
+                    <li>Enviar comunicações importantes sobre sua conta</li>
+                    <li>Melhorar nossos serviços e desenvolver novos recursos</li>
+                    <li>Prevenir fraudes e garantir a segurança da plataforma</li>
+                    <li>Cumprir obrigações legais</li>
+                </ul>
+
+                <h3>3. Compartilhamento de Informações</h3>
+                <p>Não vendemos suas informações pessoais. Compartilhamos dados apenas quando necessário:</p>
+                <ul>
+                    <li><strong>Parceiros logísticos:</strong> Para entrega de produtos</li>
+                    <li><strong>Processadores de pagamento:</strong> Para transações financeiras</li>
+                    <li><strong>ONGs parceiras:</strong> Para doações registradas (com sua autorização)</li>
+                    <li><strong>Autoridades legais:</strong> Quando exigido por lei</li>
+                </ul>
+
+                <h3>4. Seus Direitos</h3>
+                <p>Você tem direito a:</p>
+                <ul>
+                    <li>Acessar suas informações pessoais</li>
+                    <li>Corrigir dados imprecisos</li>
+                    <li>Solicitar a exclusão de seus dados</li>
+                    <li>Revogar consentimentos</li>
+                    <li>Exportar seus dados em formato legível</li>
+                </ul>
+                <p>Para exercer esses direitos, entre em contato através do nosso <a href="ajuda.html">canal de suporte</a>.</p>
+
+                <h3>5. Retenção de Dados</h3>
+                <p>Mantemos suas informações apenas pelo tempo necessário para cumprir os propósitos descritos nesta política ou conforme exigido por lei. Após esse período, os dados são excluídos ou anonimizados.</p>
+
+                <h3>6. Alterações nesta Política</h3>
+                <p>Podemos atualizar esta política periódicamente. Notificaremos você sobre mudanças significativas através do e-mail cadastrado ou por notificações na plataforma.</p>
+            </section>
+
+            <!-- Seção: Termos de Uso -->
+            <section id="termos" class="legal-section">
+                <h2><i class="bi bi-file-text"></i> Termos de Uso</h2>
+                
+                <div class="last-updated">
+                    <strong>Última atualização:</strong> 15 de Janeiro de 2025
+                </div>
+
+                <p>Ao usar a plataforma ReUse, você concorda com estes Termos de Uso. Leia-os cuidadosamente antes de utilizar nossos serviços.</p>
+
+                <h3>1. Aceitação dos Termos</h3>
+                <p>Ao criar uma conta ou usar nossos serviços, você declara que:</p>
+                <ul>
+                    <li>Tem capacidade legal para celebrar contratos</li>
+                    <li>Forneceu informações verdadeiras e completas</li>
+                    <li>Concorda em cumprir todos os termos aqui estabelecidos</li>
+                    <li>É responsável por manter a segurança de sua conta</li>
+                </ul>
+
+                <h3>2. Uso da Plataforma</h3>
+                <p>Você concorda em usar a ReUse apenas para fins legítimos e de acordo com estes termos:</p>
+                
+                <h4>Permitido:</h4>
+                <ul>
+                    <li>Comprar produtos em bom estado de conservação</li>
+                    <li>Vender itens próprios, com descrição precisa</li>
+                    <li>Fazer doações para ONGs verificadas</li>
+                    <li>Avaliar transações concluídas</li>
+                </ul>
+
+                <h4>Proibido:</h4>
+                <ul>
+                    <li>Vender produtos falsificados ou roubados</li>
+                    <li>Fornecer informações falsas sobre produtos</li>
+                    <li>Praticar preços abusivos ou especulativos</li>
+                    <li>Usar a plataforma para atividades ilegais</li>
+                    <li>Violar direitos de propriedade intelectual</li>
+                    <li>Criar contas múltiplas para burlar sistemas</li>
+                </ul>
+
+                <h3>3. Responsabilidades do Vendedor</h3>
+                <p>Ao listar um produto, você se compromete a:</p>
+                <ul>
+                    <li>Fornecer descrição precisa e fotos reais do item</li>
+                    <li>Informar claramente sobre defeitos ou desgastes</li>
+                    <li>Manter o produto disponível até a confirmação da venda</li>
+                    <li>Enviar o produto no prazo combinado</li>
+                    <li>Garantir que a embalagem proteja o produto durante o transporte</li>
+                </ul>
+
+                <h3>4. Responsabilidades do Comprador</h3>
+                <p>Ao comprar um produto, você se compromete a:</p>
+                <ul>
+                    <li>Realizar pagamento no prazo estipulado</li>
+                    <li>Verificar o produto ao recebê-lo</li>
+                    <li>Comunicar problemas dentro do prazo de 7 dias</li>
+                    <li>Fornecer endereço de entrega correto e atualizado</li>
+                </ul>
+
+                <h3>5. Sistema de Avaliações</h3>
+                <p>A ReUse possui um sistema de avaliações para promover transparência:</p>
+                <ul>
+                    <li>Avaliações devem ser baseadas em experiências reais</li>
+                    <li>É proibido manipular avaliações próprias ou de terceiros</li>
+                    <li>Avaliações falsas ou caluniosas serão removidas</li>
+                    <li>Ambas as partes podem responder às avaliações</li>
+                </ul>
+
+                <h3>6. Moderação e Suspensão</h3>
+                <p>Reservamo-nos o direito de:</p>
+                <ul>
+                    <li>Remover listagens que violem nossos termos</li>
+                    <li>Suspender contas que pratiquem atividades suspeitas</li>
+                    <li>Recusar serviço a qualquer pessoa, por qualquer motivo</li>
+                    <li>Modificar ou descontinuar serviços a qualquer momento</li>
+                </ul>
+
+                <h3>7. Limitação de Responsabilidade</h3>
+                <p>A ReUse atua como intermediária nas transações. Não somos responsáveis por:</p>
+                <ul>
+                    <li>Descrições imprecisas fornecidas por vendedores</li>
+                    <li>Danos durante o transporte (responsabilidade da transportadora)</li>
+                    <li>Problemas em produtos após o prazo de garantia</li>
+                    <li>Disputas entre compradores e vendedores</li>
+                </ul>
+                <p>Oferecemos, no entanto, um <a href="ajuda.html">sistema de mediação</a> para ajudar na resolução de conflitos.</p>
+            </section>
+
+            <!-- Seção: Política de Cookies -->
+            <section id="cookies" class="legal-section">
+                <h2><i class="bi bi-cookie"></i> Política de Cookies</h2>
+                
+                <div class="last-updated">
+                    <strong>Última atualização:</strong> 15 de Janeiro de 2025
+                </div>
+
+                <p>Esta política explica como usamos cookies e tecnologias similares na plataforma ReUse.</p>
+
+                <h3>1. O que são Cookies?</h3>
+                <p>Cookies são pequenos arquivos de texto armazenados no seu dispositivo quando você visita um website. Eles são amplamente usados para fazer sites funcionarem de forma mais eficiente, além de fornecer informações aos proprietários do site.</p>
+
+                <h3>2. Tipos de Cookies que Utilizamos</h3>
+                
+                <h4>Cookies Essenciais</h4>
+                <p>São necessários para o funcionamento básico do site:</p>
+                <ul>
+                    <li>Manter você conectado durante a navegação</li>
+                    <li>Lembrar itens no carrinho de compras</li>
+                    <li>Garantir a segurança da sua conta</li>
+                    <li>Permitir transações de pagamento</li>
+                </ul>
+
+                <h4>Cookies de Desempenho</h4>
+                <p>Ajudam a melhorar a experiência do usuário:</p>
+                <ul>
+                    <li>Analisar como os usuários navegam no site</li>
+                    <li>Identificar páginas mais populares</li>
+                    <li>Detectar e resolver problemas técnicos</li>
+                    <li>Medir a eficácia de nossas campanhas</li>
+                </ul>
+
+                <h4>Cookies de Funcionalidade</h4>
+                <p>Lembram suas preferências:</p>
+                <ul>
+                    <li>Configurações de idioma</li>
+                    <li>Preferências de região</li>
+                    <li>Modo de exibição (claro/escuro)</li>
+                    <li>Configurações de acessibilidade</li>
+                </ul>
+
+                <h4>Cookies de Publicidade</h4>
+                <p>Usados para mostrar anúncios relevantes:</p>
+                <ul>
+                    <li>Exibir produtos que podem te interessar</li>
+                    <li>Limitar a quantidade de vezes que um anúncio é exibido</li>
+                    <li>Avaliar a eficácia de campanhas publicitárias</li>
+                </ul>
+
+                <h3>3. Como Gerenciar Cookies</h3>
+                <p>Você pode controlar e/ou excluir cookies conforme desejar:</p>
+                
+                <h4>Configurações do Navegador</h4>
+                <p>A maioria dos navegadores permite:</p>
+                <ul>
+                    <li>Ver quais cookies estão armazenados</li>
+                    <li>Excluir cookies individualmente ou todos de uma vez</li>
+                    <li>Bloquear cookies de terceiros</li>
+                    <li>Bloquear todos os cookies</li>
+                </ul>
+                <p>Consulte o menu de ajuda do seu navegador para instruções específicas.</p>
+
+                <h4>Ferramenta de Consentimento</h4>
+                <p>Em seu primeiro acesso, apresentamos uma ferramenta de consentimento onde você pode:</p>
+                <ul>
+                    <li>Aceitar todos os cookies</li>
+                    <li>Aceitar apenas cookies essenciais</li>
+                    <li>Personalizar suas preferências por categoria</li>
+                    <li>Recusar todos os cookies não essenciais</li>
+                </ul>
+
+                <h3>4. Tecnologias Similares</h3>
+                <p>Além de cookies, utilizamos outras tecnologias:</p>
+                <ul>
+                    <li><strong>Local Storage:</strong> Armazena dados localmente no navegador</li>
+                    <li><strong>Session Storage:</strong> Armazena dados apenas durante a sessão</li>
+                    <li><strong>Web Beacons:</strong> Pequenas imagens invisíveis para rastreamento</li>
+                    <li><strong>Pixel Tags:</strong> Usados em emails para verificar abertura</li>
+                </ul>
+
+                <h3>5. Cookies de Terceiros</h3>
+                <p>Alguns cookies são definidos por serviços de terceiros que usamos:</p>
+                <ul>
+                    <li><strong>Google Analytics:</strong> Para análise de uso do site</li>
+                    <li><strong>Facebook Pixel:</strong> Para publicidade direcionada</li>
+                    <li><strong>Stripe/PagSeguro:</strong> Para processamento de pagamentos</li>
+                    <li><strong>Cloudflare:</strong> Para segurança e desempenho</li>
+                </ul>
+                <p>Consulte as políticas de privacidade desses serviços para mais informações.</p>
+
+                <h3>6. Impacto ao Recusar Cookies</h3>
+                <p>Ao desativar cookies, algumas funcionalidades podem não funcionar corretamente:</p>
+                <ul>
+                    <li>Não será possível manter o login ativo</li>
+                    <li>Preferências pessoais não serão salvas</li>
+                    <li>Carrinho de compras pode ser esvaziado</li>
+                    <li>Recomendações personalizadas não estarão disponíveis</li>
+                </ul>
+            </section>
+
+            <!-- Seção: Segurança -->
+            <section id="seguranca" class="legal-section">
+                <h2><i class="bi bi-credit-card"></i> Segurança</h2>
+                
+                <div class="last-updated">
+                    <strong>Última atualização:</strong> 15 de Janeiro de 2025
+                </div>
+
+                <p>A segurança dos seus dados e transações é nossa prioridade máxima. Implementamos múltiplas camadas de proteção para garantir uma experiência segura na ReUse.</p>
+
+                <h3>1. Segurança de Dados</h3>
+                
+                <h4>Criptografia</h4>
+                <p>Todas as comunicações entre seu dispositivo e nossos servidores são criptografadas usando TLS 1.3 (Transport Layer Security). Você pode identificar conexões seguras pelo ícone de cadeado na barra de endereços do navegador.</p>
+
+                <h4>Armazenamento Seguro</h4>
+                <p>Seus dados são armazenados em servidores com:</p>
+                <ul>
+                    <li>Criptografia em repouso (AES-256)</li>
+                    <li>Firewalls de última geração</li>
+                    <li>Sistemas de detecção de intrusão</li>
+                    <li>Backups diários e redundância geográfica</li>
+                </ul>
+
+                <h4>Dados de Pagamento</h4>
+                <p>Não armazenamos dados completos de cartão de crédito em nossos servidores. Todas as transações financeiras são processadas por gateways de pagamento PCI-DSS certificados:</p>
+                <ul>
+                    <li>Stripe</li>
+                    <li>PagSeguro</li>
+                    <li>Mercado Pago</li>
+                </ul>
+
+                <h3>2. Segurança da Conta</h3>
+                
+                <h4>Autenticação Forte</h4>
+                <p>Oferecemos múltiplas opções para proteger sua conta:</p>
+                <ul>
+                    <li><strong>Senhas Fortes:</strong> Exigimos senhas complexas com mínimo de 8 caracteres</li>
+                    <li><strong>Autenticação em Dois Fatores (2FA):</strong> Opcional para maior segurança</li>
+                    <li><strong>Verificação por E-mail:</strong> Para ações sensíveis como alteração de senha</li>
+                    <li><strong>Sessões:</strong> Sessões são invalidadas após períodos de inatividade</li>
+                </ul>
+
+                <h4>Monitoramento de Conta</h4>
+                <p>Monitoramos continuamente atividades suspeitas:</p>
+                <ul>
+                    <li>Tentativas de login de locais incomuns</li>
+                    <li>Múltiplas tentativas de acesso falhas</li>
+                    <li>Alterações suspeitas nas informações da conta</li>
+                    <li>Padrões incomuns de transação</li>
+                </ul>
+
+                <h3>3. Segurança nas Transações</h3>
+                
+                <h4>Sistema de Reputação</h4>
+                <p>Todos os usuários possuem um perfil de reputação baseado em:</p>
+                <ul>
+                    <li>Avaliações de transações anteriores</li>
+                    <li>Tempo na plataforma</li>
+                    <li>Taxa de conclusão de transações</li>
+                    <li>Histórico de disputas</li>
+                </ul>
+
+                <h4>Proteção ao Comprador</h4>
+                <p>Para compradores, oferecemos:</p>
+                <ul>
+                    <li><strong>Garantia de Entrega:</strong> Reembolso se o produto não for entregue</li>
+                    <li><strong>Política de Devolução:</strong> 7 dias para produtos não conformes</li>
+                    <li><strong>Mediação:</strong> Suporte na resolução de problemas</li>
+                    <li><strong>Pagamento Seguro:</strong> O valor só é liberado após confirmação do recebimento</li>
+                </ul>
+
+                <h4>Proteção ao Vendedor</h4>
+                <p>Para vendedores, oferecemos:</p>
+                <ul>
+                    <li><strong>Proteção contra Chargeback:</strong> Defesa em disputas não fundamentadas</li>
+                    <li><strong>Segurança de Dados:</strong> Informações pessoais protegidas</li>
+                    <li><strong>Avaliações Justas:</strong> Sistema para contestar avaliações injustas</li>
+                </ul>
+
+                <h3>4. Prevenção à Fraude</h3>
+                <p>Utilizamos sistemas avançados para prevenir fraudes:</p>
+                <ul>
+                    <li><strong>Machine Learning:</strong> Para detectar padrões suspeitos</li>
+                    <li><strong>Verificação de Identidade:</strong> Para usuários com alto volume</li>
+                    <li><strong>Análise de IP:</strong> Para identificar conexões suspeitas</li>
+                    <li><strong>Monitoramento em Tempo Real:</strong> Para bloquear atividades fraudulentas</li>
+                </ul>
+
+                <h3>5. Conformidade e Certificações</h3>
+                <p>A ReUse está em conformidade com:</p>
+                <ul>
+                    <li><strong>LGPD (Lei Geral de Proteção de Dados):</strong> Políticas alinhadas com a legislação brasileira</li>
+                    <li><strong>Padrões de Segurança:</strong> Seguimos as melhores práticas da indústria</li>
+                    <li><strong>Auditorias Regulares:</strong> Realizamos auditorias de segurança periodicamente</li>
+                </ul>
+
+                <h3>6. Responsabilidade do Usuário</h3>
+                <p>Você também tem um papel importante na segurança:</p>
+                <ul>
+                    <li>Use senhas fortes e únicas</li>
+                    <li>Não compartilhe suas credenciais de login</li>
+                    <li>Verifique sempre o vendedor e o produto antes de comprar</li>
+                    <li>Use nossos canais oficiais para comunicação</li>
+                    <li>Reporte atividades suspeitas imediatamente</li>
+                </ul>
+
+                <h3>7. Como Reportar Problemas de Segurança</h3>
+                <p>Se você identificar uma vulnerabilidade ou problema de segurança:</p>
+                <ol>
+                    <li>Não explore a vulnerabilidade além do necessário para demonstrá-la</li>
+                    <li>Não acesse ou modifique dados de outros usuários</li>
+                    <li>Reporte imediatamente para: <strong>seguranca@reuse.com.br</strong></li>
+                    <li>Inclua detalhes suficientes para que possamos reproduzir o problema</li>
+                </ol>
+                <p>Respondemos a todos os reports dentro de 48 horas e mantemos os reporters informados sobre o progresso.</p>
+            </section>
+
+            <!-- Seção: Dúvidas Frequentes -->
+            <section id="faq" class="legal-section">
+                <h2><i class="bi bi-question-circle"></i> Dúvidas Frequentes</h2>
+                
+                <div class="last-updated">
+                    <strong>Última atualização:</strong> 15 de Janeiro de 2025
+                </div>
+
+                <h3>Perguntas Gerais</h3>
+                
+                <h4>1. Como faço para exercer meus direitos de privacidade?</h4>
+                <p>Você pode exercer seus direitos através do nosso portal de privacidade na sua conta ou enviando um e-mail para privacidade@reuse.com.br.</p>
+                
+                <h4>2. A ReUse vende meus dados pessoais?</h4>
+                <p>Não, nunca vendemos dados pessoais dos nossos usuários. Compartilhamos informações apenas quando necessário para fornecer nossos serviços ou conforme exigido por lei.</p>
+                
+                <h4>3. Posso usar a plataforma sem aceitar cookies?</h4>
+                <p>Alguns cookies essenciais são necessários para o funcionamento básico da plataforma. Você pode recusar cookies não essenciais, mas algumas funcionalidades podem ficar limitadas.</p>
+                
+                <h4>4. Como funciona a proteção ao comprador?</h4>
+                <p>Oferecemos garantia de entrega, política de devolução de 7 dias e um sistema de mediação para ajudar na resolução de problemas entre compradores e vendedores.</p>
+                
+                <h4>5. O que acontece se eu violar os Termos de Uso?</h4>
+                <p>Dependendo da gravidade da violação, podemos remover conteúdo, suspender sua conta temporariamente ou banir permanentemente, sempre com notificação prévia.</p>
+            </section>
+
+            <!-- Seção: Contato Jurídico -->
+            <section id="contato" class="legal-section">
+                <h2><i class="bi bi-envelope"></i> Contato Jurídico</h2>
+                
+                <div class="last-updated">
+                    <strong>Última atualização:</strong> 15 de Janeiro de 2025
+                </div>
+
+                <p>Para questões legais, solicitações de dados ou outras questões relacionadas às nossas políticas:</p>
+                
+                <h3>Contato Principal</h3>
+                <p><strong>E-mail:</strong> juridico@reuse.com.br</p>
+                <p><strong>Telefone:</strong> (11) 4004-1234 (atendimento de segunda a sexta, 9h às 18h)</p>
+                <p><strong>Endereço:</strong> Av. Paulista, 1000 - Bela Vista, São Paulo - SP, 01310-100</p>
+                
+                <h3>Encarregado de Proteção de Dados (DPO)</h3>
+                <p><strong>E-mail:</strong> dpo@reuse.com.br</p>
+                <p>Nosso DPO está disponível para questões específicas sobre proteção de dados e privacidade.</p>
+                
+                <h3>Notificações Legais</h3>
+                <p>Todas as notificações legais devem ser enviadas por escrito para o endereço acima ou para o e-mail jurídico. Responderemos dentro do prazo legal estabelecido pela legislação brasileira.</p>
+            </section>
+
+            <!-- Ações Finais -->
+            <div class="legal-actions">
+                <a href="cliente-inicio.html" class="btn-legal">
+                    <i class="bi bi-arrow-left"></i>
+                    Voltar para a Página Inicial
+                </a>
+                <a href="ajuda.html" class="btn-legal primary">
+                    <i class="bi bi-question-circle"></i>
+                    Precisa de Ajuda? Fale Conosco
+                </a>
+                <a href="#" class="btn-legal" onclick="window.print()">
+                    <i class="bi bi-printer"></i>
+                    Imprimir estas Políticas
+                </a>
+                <a href="#" class="btn-legal" id="downloadPDF">
+                    <i class="bi bi-download"></i>
+                    Baixar em PDF
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Botão para voltar ao topo -->
+    <button class="back-to-top" id="backToTop" aria-label="Voltar ao topo">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="main-content">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h4>Sobre a ReUse</h4>
+                    <ul class="footer-links">
+                        <li><a href="sobre-a-reUse.html"><i class="bi bi-info-circle"></i> Nossa História</a></li>
+                        <li><a href="sobre-a-reUse.html"><i class="bi bi-award"></i> Sustentabilidade</a></li>
+                        <li><a href="sobre-a-reUse.html"><i class="bi bi-newspaper"></i> Blog</a></li>
+                        <li><a href="sobre-a-reUse.html"><i class="bi bi-briefcase"></i> Trabalhe Conosco</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Ajuda</h4>
+                    <ul class="footer-links">
+                        <li><a href="ajuda.html"><i class="bi bi-question-circle"></i> Central de Ajuda</a></li>
+                        <li><a href="ajuda.html"><i class="bi bi-chat-dots"></i> Fale Conosco</a></li>
+                        <li><a href="ajuda.html"><i class="bi bi-truck"></i> Entregas</a></li>
+                        <li><a href="ajuda.html"><i class="bi bi-arrow-left-right"></i> Trocas e Devoluções</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="legal.html" class="active"><i class="bi bi-shield-check"></i> Política de Privacidade</a></li>
+                        <li><a href="legal.html"><i class="bi bi-file-text"></i> Termos de Uso</a></li>
+                        <li><a href="legal.html"><i class="bi bi-cookie"></i> Política de Cookies</a></li>
+                        <li><a href="legal.html"><i class="bi bi-credit-card"></i> Segurança</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Conecte-se</h4>
+                    <p>Siga-nos nas redes sociais</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" title="Facebook">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+                        <a href="#" class="social-link" title="Instagram">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link" title="Twitter">
+                            <i class="bi bi-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link" title="LinkedIn">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2025 ReUse - Todos os direitos reservados. Consumo consciente, futuro sustentável.</p>
+            </div>
+        </div>
+    </footer>
+
+        <!-- Modal de Confirmação de Logout -->
+    <div class="modal" id="logoutModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Sair da Conta</h3>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Tem certeza que deseja sair da sua conta? Você precisará fazer login novamente para acessar seus
+                    dados.</p>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="cancelLogout">Cancelar</button>
+                <button class="btn btn-danger" id="confirmLogout">Sair</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Menu de Favoritos -->
+<div class="favorites-menu" id="favoritesMenu">
+    <div class="favorites-overlay"></div>
+    <div class="favorites-sidebar">
+        <div class="favorites-header">
+            <h3><i class="bi bi-heart-fill"></i> Meus Favoritos</h3>
+            <button class="close-favorites" id="closeFavorites">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
+        <div class="favorites-body" id="favoritesBody">
+            <!-- Os itens favoritos serão carregados aqui via JavaScript -->
+            <div class="empty-favorites">
+                <div class="empty-icon">
+                    <i class="bi bi-heart"></i>
+                </div>
+                <h4>Nenhum favorito ainda</h4>
+                <p>Adicione produtos aos favoritos para vê-los aqui</p>
+            </div>
+        </div>
+        <div class="favorites-footer">
+            <button class="btn btn-secondary" id="clearFavorites">
+                <i class="bi bi-trash"></i> Limpar Favoritos
+            </button>
+   
+        </div>
+    </div>
+</div>
+
+<!-- Menu do Carrinho -->
+<div class="cart-menu" id="cartMenu">
+    <div class="cart-overlay"></div>
+    <div class="cart-sidebar">
+        <div class="cart-header">
+            <h3><i class="bi bi-cart3"></i> Meu Carrinho</h3>
+            <button class="close-cart" id="closeCart">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
+        <div class="cart-body" id="cartBody">
+            <!-- Os itens do carrinho serão carregados aqui via JavaScript -->
+            <div class="empty-cart">
+                <div class="empty-icon">
+                    <i class="bi bi-cart"></i>
+                </div>
+                <h4>Carrinho vazio</h4>
+                <p>Adicione produtos ao carrinho para vê-los aqui</p>
+            </div>
+        </div>
+        <div class="cart-summary">
+            <div class="summary-row">
+                <span>Subtotal</span>
+                <span class="subtotal-price" id="cartSubtotal">R$ 0,00</span>
+            </div>
+            <div class="summary-row">
+                <span>Frete</span>
+                <span class="shipping-price">Grátis</span>
+            </div>
+            <div class="summary-divider"></div>
+            <div class="summary-row total">
+                <span>Total</span>
+                <span class="total-price" id="cartTotal">R$ 0,00</span>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <button class="btn btn-secondary" id="clearCart">
+                <i class="bi bi-trash"></i> Limpar Carrinho
+            </button>
+            <button class="btn btn-primary" id="checkoutBtn">
+                <i class="bi bi-bag-check"></i> Finalizar Compra
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Menu de Perfil Expandido -->
+<div class="profile-menu-expanded" id="profileMenuExpanded">
+    <div class="profile-overlay"></div>
+    <div class="profile-sidebar">
+        <div class="profile-header">
+            <div class="profile-user-info">
+                <div class="profile-avatar-large">
+                    <i class="bi bi-person-fill"></i>
+                </div>
+                <div class="profile-user-details">
+                    <h3>João Cliente</h3>
+                    <p>joao@email.com</p>
+                </div>
+            </div>
+            <button class="close-profile" id="closeProfile">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
+        
+        <div class="profile-body">
+            <nav class="profile-nav">
+                <button class="profile-nav-item" id="profileMyProfile">
+                    <i class="bi bi-person"></i> 
+                    <span>Meu Perfil / Configurações</span>
+                </button>
+                            
+                <button class="profile-nav-item" id="profileMyOrders">
+                    <i class="bi bi-box-seam"></i>
+                    <span>Meus Pedidos</span>
+                </button>
+                
+                <div class="profile-nav-divider"></div>
+                
+                <button class="profile-nav-item logout" id="profileLogout">
+                    <i class="bi bi-box-arrow-left"></i>
+                    <span>Sair da Conta</span>
+                </button>
+            </nav>
+        </div>
+    </div>
+</div>
+
+    <!-- Scripts existentes -->
+    <script src="JS/auth.js"></script>
+    <script src="js/cliente-inicio.js"></script>
+    <script src="js/favorites-menu.js"></script>
+    <script src="js/cart-menu.js"></script>
+    <script src="js/profile-menu.js"></script>
+    <script src="js/accessibility-menu.js"></script>
+    <script src="js/legal.js"></script>
+
+        <!-- Widget VLibras -->
+        <div vw class="enabled">
+            <div vw-access-button class="active"></div>
+            <div vw-plugin-wrapper>
+                <div class="vw-plugin-top-wrapper"></div>
+            </div>
+        </div>
+</body>
+
+</html>

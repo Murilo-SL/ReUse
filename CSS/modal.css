@@ -1,0 +1,739 @@
+/* donation-modal.css - Modal personalizado para sistema de doação */
+
+/* ===== MODAL DE DOAÇÃO ===== */
+.donation-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 3000;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease;
+    padding: 1rem;
+}
+
+.donation-modal.active {
+    display: flex;
+}
+
+.donation-modal-content {
+    background: var(--card-bg);
+    border-radius: var(--border-radius-xl);
+    width: 100%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-xl);
+    animation: donationModalSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border: 1px solid var(--light-gray-2);
+}
+
+@keyframes donationModalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-40px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.donation-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.75rem 2rem;
+    border-bottom: 1px solid var(--light-gray-2);
+    background: linear-gradient(135deg, 
+        rgba(0, 204, 153, 0.05), 
+        rgba(0, 102, 204, 0.05));
+    border-radius: var(--border-radius-xl) var(--border-radius-xl) 0 0;
+}
+
+body.dark-mode .donation-modal-header {
+    background: linear-gradient(135deg, 
+        rgba(0, 204, 153, 0.1), 
+        rgba(0, 102, 204, 0.1));
+}
+
+.donation-modal-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-green);
+    margin: 0;
+}
+
+.donation-modal-title i {
+    font-size: 1.8rem;
+}
+
+.donation-close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--text-lighter);
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: var(--border-radius-md);
+    transition: all var(--transition-fast);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--light-gray-2);
+}
+
+.donation-close-btn:hover {
+    color: var(--primary-red);
+    background: rgba(255, 71, 87, 0.1);
+    transform: rotate(90deg);
+}
+
+body.dark-mode .donation-close-btn {
+    background: var(--light-gray-3);
+}
+
+/* Corpo do Modal */
+.donation-modal-body {
+    padding: 2rem;
+}
+
+.donation-description {
+    color: var(--text-light);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+    text-align: center;
+    background: var(--light-gray);
+    padding: 1.25rem;
+    border-radius: var(--border-radius-lg);
+    border-left: 4px solid var(--primary-green);
+}
+
+.donation-description strong {
+    color: var(--primary-green);
+    font-weight: 700;
+}
+
+/* Formulário */
+.donation-form .form-group {
+    margin-bottom: 1.75rem;
+}
+
+.donation-form label {
+    display: block;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.donation-form label i {
+    color: var(--primary-green);
+    font-size: 1.1rem;
+}
+
+.donation-form .required {
+    color: var(--primary-red);
+    margin-left: 4px;
+}
+
+.donation-form .form-control {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    border: 2px solid var(--light-gray-2);
+    border-radius: var(--border-radius-lg);
+    font-size: 1rem;
+    background: var(--card-bg);
+    color: var(--text-dark);
+    transition: all var(--transition-normal);
+    font-family: inherit;
+    box-shadow: var(--shadow-sm);
+}
+
+.donation-form .form-control:focus {
+    outline: none;
+    border-color: var(--primary-green);
+    box-shadow: 
+        0 0 0 3px rgba(0, 204, 153, 0.15),
+        var(--shadow-sm);
+    transform: translateY(-1px);
+}
+
+body.dark-mode .donation-form .form-control {
+    background: var(--light-gray-2);
+    border-color: var(--light-gray-3);
+}
+
+.donation-form textarea.form-control {
+    min-height: 140px;
+    resize: vertical;
+    line-height: 1.5;
+}
+
+.donation-form select.form-control {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%2300cc99' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 16px;
+    padding-right: 3rem;
+}
+
+/* Mensagens de Erro */
+.donation-form .error-message {
+    color: var(--primary-red);
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    display: none;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+}
+
+.donation-form .error-message i {
+    font-size: 1rem;
+}
+
+.donation-form .form-control.error {
+    border-color: var(--primary-red);
+    background: rgba(255, 71, 87, 0.03);
+}
+
+.donation-form .form-control.error:focus {
+    box-shadow: 
+        0 0 0 3px rgba(255, 71, 87, 0.1),
+        var(--shadow-sm);
+}
+
+.donation-form .form-control.success {
+    border-color: var(--primary-green);
+    background: rgba(0, 204, 153, 0.03);
+}
+
+/* Contador de Caracteres */
+.char-counter {
+    text-align: right;
+    font-size: 0.8rem;
+    color: var(--text-lighter);
+    margin-top: 0.25rem;
+}
+
+.char-counter.near-limit {
+    color: var(--primary-orange);
+}
+
+.char-counter.over-limit {
+    color: var(--primary-red);
+    font-weight: 600;
+}
+
+/* Checkbox de Aceite */
+.donation-form .form-check {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+}
+
+.donation-form .form-check-input {
+    width: 20px;
+    height: 20px;
+    margin-top: 0.25rem;
+    border: 2px solid var(--light-gray-2);
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    flex-shrink: 0;
+}
+
+.donation-form .form-check-input:checked {
+    background-color: var(--primary-green);
+    border-color: var(--primary-green);
+}
+
+.donation-form .form-check-label {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    line-height: 1.5;
+    margin: 0;
+    font-weight: normal;
+}
+
+.donation-form .form-check-label a {
+    color: var(--primary-green);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.donation-form .form-check-label a:hover {
+    text-decoration: underline;
+}
+
+/* Rodapé do Modal */
+.donation-modal-footer {
+    display: flex;
+    gap: 1rem;
+    padding: 1.75rem 2rem;
+    border-top: 1px solid var(--light-gray-2);
+    background: var(--light-gray);
+    border-radius: 0 0 var(--border-radius-xl) var(--border-radius-xl);
+}
+
+body.dark-mode .donation-modal-footer {
+    background: var(--light-gray-2);
+}
+
+.donation-btn {
+    flex: 1;
+    padding: 1rem 1.5rem;
+    border: none;
+    border-radius: var(--border-radius-lg);
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    font-family: inherit;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.donation-btn-primary {
+    background: var(--primary-green);
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 204, 153, 0.3);
+}
+
+.donation-btn-primary:hover:not(:disabled) {
+    background: var(--primary-green-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 204, 153, 0.4);
+}
+
+.donation-btn-primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+.donation-btn-secondary {
+    background: transparent;
+    color: var(--text-medium);
+    border: 2px solid var(--light-gray-2);
+}
+
+.donation-btn-secondary:hover {
+    background: var(--light-gray-2);
+    color: var(--text-dark);
+    border-color: var(--light-gray-3);
+}
+
+/* Estado de Sucesso */
+.donation-success-state {
+    text-align: center;
+    padding: 3rem 2rem;
+    display: none;
+}
+
+.donation-success-icon {
+    width: 80px;
+    height: 80px;
+    background: var(--gradient-green);
+    border-radius: var(--border-radius-round);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    color: white;
+    margin: 0 auto 1.5rem;
+    box-shadow: var(--shadow-lg);
+    animation: successPulse 2s ease-in-out;
+}
+
+@keyframes successPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.donation-success-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--primary-green);
+    margin-bottom: 1rem;
+}
+
+.donation-success-message {
+    color: var(--text-light);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+}
+
+.donation-success-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+/* Seletor de ONGs */
+.ong-selector {
+    background: var(--light-gray);
+    border-radius: var(--border-radius-lg);
+    padding: 1.5rem;
+    margin-bottom: 1.75rem;
+    border: 2px solid transparent;
+    transition: all var(--transition-normal);
+    cursor: pointer;
+}
+
+.ong-selector:hover {
+    background: var(--light-gray-2);
+    transform: translateY(-2px);
+    border-color: rgba(0, 204, 153, 0.2);
+}
+
+.ong-selector.selected {
+    background: rgba(0, 204, 153, 0.1);
+    border-color: var(--primary-green);
+    box-shadow: 0 4px 12px rgba(0, 204, 153, 0.15);
+}
+
+.ong-selector-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.ong-selector-logo {
+    width: 50px;
+    height: 50px;
+    border-radius: var(--border-radius-round);
+    background: var(--light-gray-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-green);
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.ong-selector-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ong-selector-info h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin: 0 0 0.25rem;
+}
+
+.ong-selector-info p {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin: 0;
+    line-height: 1.4;
+}
+
+.ong-selector-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.ong-selector-tag {
+    background: rgba(0, 204, 153, 0.15);
+    color: var(--primary-green);
+    padding: 0.3rem 0.75rem;
+    border-radius: var(--border-radius-round);
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.ong-selector.selected .ong-selector-tag {
+    background: rgba(0, 204, 153, 0.25);
+}
+
+/* Upload de Imagens */
+.image-upload-area {
+    border: 2px dashed var(--light-gray-2);
+    border-radius: var(--border-radius-lg);
+    padding: 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    margin-bottom: 1rem;
+}
+
+.image-upload-area:hover {
+    border-color: var(--primary-green);
+    background: rgba(0, 204, 153, 0.05);
+}
+
+.image-upload-area.drag-over {
+    border-color: var(--primary-green);
+    background: rgba(0, 204, 153, 0.1);
+    transform: scale(1.02);
+}
+
+.image-upload-icon {
+    font-size: 3rem;
+    color: var(--primary-green);
+    margin-bottom: 1rem;
+}
+
+.image-upload-text h4 {
+    font-size: 1.2rem;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+}
+
+.image-upload-text p {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+
+.image-upload-btn {
+    background: var(--primary-green);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius-md);
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: all var(--transition-fast);
+}
+
+.image-upload-btn:hover {
+    background: var(--primary-green-dark);
+    transform: translateY(-2px);
+}
+
+.image-preview-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.image-preview {
+    position: relative;
+    aspect-ratio: 1;
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+    background: var(--light-gray-2);
+}
+
+.image-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image-preview-remove {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background: rgba(255, 71, 87, 0.9);
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: var(--border-radius-round);
+    border: none;
+    cursor: pointer;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
+}
+
+.image-preview-remove:hover {
+    background: var(--primary-red);
+    transform: scale(1.1);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .donation-modal-content {
+        max-width: 95%;
+        max-height: 95vh;
+    }
+    
+    .donation-modal-header {
+        padding: 1.25rem 1.5rem;
+    }
+    
+    .donation-modal-body {
+        padding: 1.5rem;
+    }
+    
+    .donation-modal-footer {
+        padding: 1.25rem 1.5rem;
+        flex-direction: column;
+    }
+    
+    .donation-btn {
+        width: 100%;
+    }
+    
+    .donation-success-actions {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 576px) {
+    .donation-modal-title {
+        font-size: 1.3rem;
+    }
+    
+    .donation-form label {
+        font-size: 0.9rem;
+    }
+    
+    .donation-form .form-control {
+        padding: 0.875rem 1rem;
+        font-size: 0.95rem;
+    }
+    
+    .ong-selector {
+        padding: 1rem;
+    }
+    
+    .ong-selector-header {
+        gap: 0.75rem;
+    }
+    
+    .ong-selector-logo {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+}
+
+/* Animações Especiais */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.shake {
+    animation: shake 0.6s ease;
+}
+
+/* Loading State */
+.donation-loading {
+    position: relative;
+    pointer-events: none;
+}
+
+.donation-loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-green);
+    font-size: 1.5rem;
+    border-radius: var(--border-radius-xl);
+    z-index: 1;
+}
+
+body.dark-mode .donation-loading::after {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.donation-loading::before {
+    content: '\f4d1';
+    font-family: 'bootstrap-icons';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: spin 1s linear infinite;
+    z-index: 2;
+    font-size: 2rem;
+    color: var(--primary-green);
+}
+
+@keyframes spin {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Estilo para campos desabilitados */
+.form-control.disabled {
+    background-color: var(--light-gray);
+    border-color: var(--light-gray-2);
+    color: var(--text-lighter);
+    cursor: not-allowed;
+}
+
+.form-control.disabled::placeholder {
+    color: var(--text-lighter);
+}
+
+/* Estilo para botão desabilitado */
+.btn.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Loading do CEP */
+.cep-loading {
+    position: relative;
+}
+
+.cep-loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--light-gray-2);
+    border-top: 2px solid var(--primary-green);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Opção de entrega pessoal */
+.form-check-label strong {
+    color: var(--primary-green);
+}
+
+.form-check-input:checked + .form-check-label strong {
+    color: var(--primary-green-dark);
+}

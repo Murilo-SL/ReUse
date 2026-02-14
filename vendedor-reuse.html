@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Central do Vendedor - ReUse</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/init.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/cliente-inicio.css">
+    <link rel="stylesheet" href="css/vendedor-inicio.css">
+    <link rel="stylesheet" href="css/vendedor-reuse.css">
+    <link rel="stylesheet" href="css/profile-menu.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q755SR73MY"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+            gtag('config', 'G-Q755SR73MY');
+        </script>
+</head>
+
+<body class="vendedor-reuse">
+    <!-- Background Animation Framework -->
+    <div class="background-framework">
+        <div class="eco-circle circle-1"></div>
+        <div class="eco-circle circle-2"></div>
+        <div class="eco-circle circle-3"></div>
+        <div class="eco-circle circle-4"></div>
+        <div class="particle particle-1"></div>
+        <div class="particle particle-2"></div>
+        <div class="particle particle-3"></div>
+        <div class="particle particle-4"></div>
+        <div class="particle particle-5"></div>
+    </div>
+
+    <!-- Header Principal -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo-section">
+                <a href="#" class="logo-container">
+                    <img src="IMG/reuse-logo-(2).svg" alt="ReUse Logo">
+                    <span class="logo-text">ReUse</span>
+                </a>
+
+                <div class="search-container">
+                    <div class="search-bar">
+                        <i class="bi bi-search search-icon"></i>
+                        <input type="text" class="search-input" placeholder="Pesquisar produtos, categorias...">
+                    </div>
+                </div>
+            </div>
+
+            <div class="user-actions">
+                <button class="action-btn" id="darkModeBtn" title="Modo Noturno">
+                    <i class="bi bi-moon"></i>
+                </button>
+
+                <button class="action-btn" id="colorblindBtn" title="Modo Daltonismo">
+                    <i class="bi bi-eye"></i>
+                </button>
+
+                <div class="profile-dropdown">
+                    <button class="dropdown-toggle" id="profileToggle">
+                        <div class="profile-avatar">
+                            <i class="bi bi-shop"></i>
+                        </div>
+                    </button>
+                    <div class="dropdown-menu" id="profileMenu">
+                        <div class="dropdown-header">
+                            <div class="user-info">
+                                <div class="profile-avatar">VL</div>
+                                <div class="user-details">
+                                    <h4>Vendedor Loja</h4>
+                                    <p>vendedor@email.com</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="dropdown-item">
+                            <i class="bi bi-person"></i>
+                            Meu Perfil
+                        </button>
+                        <button class="dropdown-item">
+                            <i class="bi bi-box-arrow-right"></i>
+                            Minhas Vendas
+                        </button>
+                        <button class="dropdown-item">
+                            <i class="bi bi-gear"></i>
+                            Configurações
+                        </button>
+                        <button class="dropdown-item logout" id="logoutBtn">
+                            <i class="bi bi-box-arrow-left"></i>
+                            Sair da Conta
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb-nav">
+        <div class="breadcrumb-container">
+            <a href="vendedor-inicio.html" class="breadcrumb-item">
+                <i class="bi bi-house"></i>
+                Dashboard
+            </a>
+            <i class="bi bi-chevron-right breadcrumb-separator"></i>
+            <span class="breadcrumb-item active">
+                <i class="bi bi-info-circle"></i>
+                Central do Vendedor
+            </span>
+        </div>
+    </nav>
+
+    <!-- Menu do Vendedor -->
+    <nav class="seller-menu-bar">
+        <div class="seller-menu-container">
+            <a href="vendedor-inicio.html" class="seller-menu-btn">
+                <i class="bi bi-grid"></i>
+                Dashboard
+            </a>
+            <a href="vendedor-reuse.html" class="seller-menu-btn active">
+                <i class="bi bi-info-circle"></i>
+                Central do Vendedor
+            </a>
+            <a href="#guia-vendas" class="seller-menu-btn scroll-to">
+                <i class="bi bi-book"></i>
+                Guia de Vendas
+            </a>
+            <a href="#suporte-vendedor" class="seller-menu-btn scroll-to">
+                <i class="bi bi-headset"></i>
+                Suporte
+            </a>
+            <a href="#novidades" class="seller-menu-btn scroll-to">
+                <i class="bi bi-newspaper"></i>
+                Novidades
+            </a>
+        </div>
+    </nav>
+
+    <!-- Conteúdo Principal -->
+    <main class="main-content">
+        <!-- Header da Central -->
+        <section class="central-header">
+            <div class="central-intro">
+                <div class="welcome-badge">
+                    <i class="bi bi-star-fill"></i>
+                    <span>Vendedor Premium</span>
+                </div>
+                <h1 class="central-title">
+                    <i class="bi bi-info-circle"></i>
+                    Central do Vendedor ReUse
+                </h1>
+                <p class="central-subtitle">
+                    Encontre tudo o que você precisa para gerenciar sua loja, aumentar suas vendas e 
+                    aproveitar ao máximo a plataforma ReUse.
+                </p>
+                <div class="central-stats">
+                    <div class="stat-item">
+                        <i class="bi bi-shop"></i>
+                        <span>+5.000 Vendedores Ativos</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="bi bi-currency-dollar"></i>
+                        <span>+R$ 10M em Vendas Mensais</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="bi bi-star"></i>
+                        <span>4.8 Avaliação Média</span>
+                    </div>
+                </div>
+            </div>
+            <div class="central-illustration">
+                <i class="bi bi-shop-window"></i>
+                <div class="illustration-badge">
+                    <i class="bi bi-lightning"></i>
+                    <span>Ferramentas Premium</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 1: Central do Vendedor -->
+        <section class="central-section" id="central-vendedor">
+            <div class="section-header">
+                <div class="section-header-left">
+                    <h2 class="section-title">
+                        <i class="bi bi-gear"></i>
+                        Central do Vendedor
+                    </h2>
+                    <p class="section-description">
+                        Ferramentas essenciais para gerenciar seu negócio na plataforma ReUse
+                    </p>
+                </div>
+                <div class="section-header-right">
+                    <button class="btn btn-outline" id="tourBtn">
+                        <i class="bi bi-play-circle"></i>
+                        Tour Virtual
+                    </button>
+                </div>
+            </div>
+
+            <div class="resources-grid">
+                <!-- Ferramenta 1 -->
+                <div class="resource-card" data-tool="analytics">
+                    <div class="resource-icon">
+                        <i class="bi bi-bar-chart"></i>
+                    </div>
+                    <h3 class="resource-title">Análises de Desempenho</h3>
+                    <p class="resource-description">
+                        Acompanhe métricas detalhadas de vendas, visitas, conversão e engajamento com relatórios em tempo real.
+                    </p>
+                    <div class="resource-features">
+                        <span class="feature-tag">Dashboard Interativo</span>
+                        <span class="feature-tag">Relatórios PDF</span>
+                        <span class="feature-tag">Exportar Dados</span>
+                    </div>
+                    <div class="resource-stats">
+                        <div class="stat">
+                            <i class="bi bi-eye"></i>
+                            <span>+15% Visibilidade</span>
+                        </div>
+                        <div class="stat">
+                            <i class="bi bi-arrow-up-right"></i>
+                            <span>+28% Conversões</span>
+                        </div>
+                    </div>
+                    <a href="#" class="btn btn-primary resource-btn">
+                        <i class="bi bi-arrow-right"></i>
+                        Acessar Ferramenta
+                    </a>
+                </div>
+
+                <!-- Ferramenta 2 -->
+                <div class="resource-card" data-tool="products">
+                    <div class="resource-icon">
+                        <i class="bi bi-box-seam"></i>
+                    </div>
+                    <h3 class="resource-title">Gestão de Produtos</h3>
+                    <p class="resource-description">
+                        Gerencie seu catálogo, estoque, preços e categorias de forma centralizada com edição em massa.
+                    </p>
+                    <div class="resource-features">
+                        <span class="feature-tag">Edição em Massa</span>
+                        <span class="feature-tag">Controle de Estoque</span>
+                        <span class="feature-tag">Categorias Inteligentes</span>
+                    </div>
+                    <div class="resource-stats">
+                        <div class="stat">
+                            <i class="bi bi-box"></i>
+                            <span>48 Produtos Ativos</span>
+                        </div>
+                        <div class="stat">
+                            <i class="bi bi-alarm"></i>
+                            <span>2 Baixo Estoque</span>
+                        </div>
+                    </div>
+                    <a href="#" class="btn btn-primary resource-btn">
+                        <i class="bi bi-arrow-right"></i>
+                        Gerenciar Produtos
+                    </a>
+                </div>
+
+                <!-- Ferramenta 3 -->
+                <div class="resource-card" data-tool="finance">
+                    <div class="resource-icon">
+                        <i class="bi bi-credit-card"></i>
+                    </div>
+                    <h3 class="resource-title">Financeiro</h3>
+                    <p class="resource-description">
+                        Controle suas finanças, saques, comissões, taxas e tenha previsão de recebimentos futuros.
+                    </p>
+                    <div class="resource-features">
+                        <span class="feature-tag">Saldo em Tempo Real</span>
+                        <span class="feature-tag">Histórico Completo</span>
+                        <span class="feature-tag">Previsão de Recebimento</span>
+                    </div>
+                    <div class="resource-stats">
+                        <div class="stat">
+                            <i class="bi bi-cash"></i>
+                            <span>R$ 3.250,50 Disponível</span>
+                        </div>
+                        <div class="stat">
+                            <i class="bi bi-calendar-check"></i>
+                            <span>Próximo Saque: 05/02</span>
+                        </div>
+                    </div>
+                    <a href="#" class="btn btn-primary resource-btn">
+                        <i class="bi bi-arrow-right"></i>
+                        Ver Financeiro
+                    </a>
+                </div>
+
+                <!-- Ferramenta 4 -->
+                <div class="resource-card" data-tool="logistics">
+                    <div class="resource-icon">
+                        <i class="bi bi-truck"></i>
+                    </div>
+                    <h3 class="resource-title">Logística</h3>
+                    <p class="resource-description">
+                        Gerencie envios, fretes, acompanhe pedidos em tempo real e imprima etiquetas automaticamente.
+                    </p>
+                    <div class="resource-features">
+                        <span class="feature-tag">Rastreio Automático</span>
+                        <span class="feature-tag">Etiquetas Pré-Pagas</span>
+                        <span class="feature-tag">Múltiplas Transportadoras</span>
+                    </div>
+                    <div class="resource-stats">
+                        <div class="stat">
+                            <i class="bi bi-truck"></i>
+                            <span>7 Pedidos em Trânsito</span>
+                        </div>
+                        <div class="stat">
+                            <i class="bi bi-clock"></i>
+                            <span>1 Pedido Atrasado</span>
+                        </div>
+                    </div>
+                    <a href="#" class="btn btn-primary resource-btn">
+                        <i class="bi bi-arrow-right"></i>
+                        Gerenciar Logística
+                    </a>
+                </div>
+            </div>
+
+            <div class="section-footer">
+                <div class="quick-tips">
+                    <h4><i class="bi bi-lightbulb"></i> Dica Rápida</h4>
+                    <p>Use a ferramenta de Análises para identificar seus produtos mais vendidos e focar neles.</p>
+                </div>
+                <button class="btn btn-outline" id="showAllTools">
+                    <i class="bi bi-grid-3x3-gap"></i>
+                    Ver Todas as Ferramentas
+                </button>
+            </div>
+        </section>
+
+        <!-- Seção 2: Guia de Vendas -->
+        <section class="central-section bg-light" id="guia-vendas">
+            <div class="section-header">
+                <div class="section-header-left">
+                    <h2 class="section-title">
+                        <i class="bi bi-book"></i>
+                        Guia de Vendas
+                    </h2>
+                    <p class="section-description">
+                        Aprenda as melhores práticas para aumentar suas vendas na plataforma
+                    </p>
+                </div>
+                <div class="section-header-right">
+                    <div class="progress-indicator">
+                        <i class="bi bi-check-circle"></i>
+                        <span>3/10 guias completados</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="guide-categories">
+                <div class="category-tabs">
+                    <button class="category-tab active" data-category="all">Todos</button>
+                    <button class="category-tab" data-category="beginner">Para Iniciantes</button>
+                    <button class="category-tab" data-category="photography">Fotografia</button>
+                    <button class="category-tab" data-category="descriptions">Descrições</button>
+                    <button class="category-tab" data-category="pricing">Precificação</button>
+                    <button class="category-tab" data-category="promotion">Promoção</button>
+                    <button class="category-tab" data-category="advanced">Avançado</button>
+                </div>
+
+                <div class="guides-container">
+                    <div class="guides-filter">
+                        <div class="filter-search">
+                            <i class="bi bi-search"></i>
+                            <input type="text" id="guideSearch" placeholder="Buscar em guias...">
+                        </div>
+                        <div class="filter-sort">
+                            <select id="sortGuides">
+                                <option value="recent">Mais Recentes</option>
+                                <option value="popular">Mais Populares</option>
+                                <option value="duration">Duração</option>
+                                <option value="difficulty">Dificuldade</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="guides-grid">
+                        <!-- Guia 1 -->
+                        <div class="guide-card" data-category="photography beginner" data-duration="15" data-difficulty="beginner">
+                            <div class="guide-thumbnail">
+                                <i class="bi bi-camera"></i>
+                                <div class="guide-completed">
+                                    <i class="bi bi-check-circle-fill"></i>
+                                </div>
+                            </div>
+                            <div class="guide-content">
+                                <span class="guide-category">Fotografia</span>
+                                <h3 class="guide-title">Como tirar fotos profissionais do seu produto</h3>
+                                <p class="guide-excerpt">
+                                    Aprenda técnicas simples para fotografar seus produtos com qualidade usando apenas 
+                                    seu smartphone. Iluminação, composição e edição básica.
+                                </p>
+                                <div class="guide-meta">
+                                    <span class="guide-time">
+                                        <i class="bi bi-clock"></i>
+                                        15 min
+                                    </span>
+                                    <span class="guide-level beginner">Iniciante</span>
+                                    <span class="guide-views">
+                                        <i class="bi bi-eye"></i>
+                                        2.4k
+                                    </span>
+                                </div>
+                                <div class="guide-actions">
+                                    <a href="#" class="guide-link">
+                                        <i class="bi bi-play-circle"></i>
+                                        Assistir Vídeo
+                                    </a>
+                                    <button class="guide-save" title="Salvar para depois">
+                                        <i class="bi bi-bookmark"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Guia 2 -->
+                        <div class="guide-card" data-category="descriptions intermediate" data-duration="10" data-difficulty="intermediate">
+                            <div class="guide-thumbnail">
+                                <i class="bi bi-pencil-square"></i>
+                            </div>
+                            <div class="guide-content">
+                                <span class="guide-category">Descrições</span>
+                                <h3 class="guide-title">Escrevendo descrições que convertem</h3>
+                                <p class="guide-excerpt">
+                                    Técnicas de copywriting para criar descrições de produtos que aumentam as vendas em até 40%.
+                                </p>
+                                <div class="guide-meta">
+                                    <span class="guide-time">
+                                        <i class="bi bi-clock"></i>
+                                        10 min
+                                    </span>
+                                    <span class="guide-level intermediate">Intermediário</span>
+                                    <span class="guide-views">
+                                        <i class="bi bi-eye"></i>
+                                        1.8k
+                                    </span>
+                                </div>
+                                <div class="guide-actions">
+                                    <a href="#" class="guide-link">
+                                        <i class="bi bi-book"></i>
+                                        Ler Guia Completo
+                                    </a>
+                                    <button class="guide-save" title="Salvar para depois">
+                                        <i class="bi bi-bookmark"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Guia 3 -->
+                        <div class="guide-card" data-category="pricing beginner" data-duration="12" data-difficulty="beginner">
+                            <div class="guide-thumbnail">
+                                <i class="bi bi-tag"></i>
+                                <div class="guide-completed">
+                                    <i class="bi bi-check-circle-fill"></i>
+                                </div>
+                            </div>
+                            <div class="guide-content">
+                                <span class="guide-category">Precificação</span>
+                                <h3 class="guide-title">Estratégias de precificação para produtos usados</h3>
+                                <p class="guide-excerpt">
+                                    Como definir o preço ideal considerando estado do produto, demanda, concorrência e sazonalidade.
+                                </p>
+                                <div class="guide-meta">
+                                    <span class="guide-time">
+                                        <i class="bi bi-clock"></i>
+                                        12 min
+                                    </span>
+                                    <span class="guide-level beginner">Iniciante</span>
+                                    <span class="guide-views">
+                                        <i class="bi bi-eye"></i>
+                                        3.2k
+                                    </span>
+                                </div>
+                                <div class="guide-actions">
+                                    <a href="#" class="guide-link">
+                                        <i class="bi bi-calculator"></i>
+                                        Usar Calculadora
+                                    </a>
+                                    <button class="guide-save" title="Salvar para depois">
+                                        <i class="bi bi-bookmark"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Guia 4 -->
+                        <div class="guide-card" data-category="promotion intermediate" data-duration="18" data-difficulty="intermediate">
+                            <div class="guide-thumbnail">
+                                <i class="bi bi-megaphone"></i>
+                                <div class="guide-completed">
+                                    <i class="bi bi-check-circle-fill"></i>
+                                </div>
+                            </div>
+                            <div class="guide-content">
+                                <span class="guide-category">Promoção</span>
+                                <h3 class="guide-title">Como promover sua loja nas redes sociais</h3>
+                                <p class="guide-excerpt">
+                                    Dicas práticas para usar Instagram, Facebook e TikTok para atrair mais clientes sem gastar muito.
+                                </p>
+                                <div class="guide-meta">
+                                    <span class="guide-time">
+                                        <i class="bi bi-clock"></i>
+                                        18 min
+                                    </span>
+                                    <span class="guide-level intermediate">Intermediário</span>
+                                    <span class="guide-views">
+                                        <i class="bi bi-eye"></i>
+                                        4.1k
+                                    </span>
+                                </div>
+                                <div class="guide-actions">
+                                    <a href="#" class="guide-link">
+                                        <i class="bi bi-play-circle"></i>
+                                        Assistir Tutorial
+                                    </a>
+                                    <button class="guide-save" title="Salvar para depois">
+                                        <i class="bi bi-bookmark"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Guia 5 -->
+                        <div class="guide-card" data-category="advanced" data-duration="25" data-difficulty="advanced">
+                            <div class="guide-thumbnail">
+                                <i class="bi bi-graph-up"></i>
+                            </div>
+                            <div class="guide-content">
+                                <span class="guide-category">Análise Avançada</span>
+                                <h3 class="guide-title">Otimização de anúncios com Google Analytics</h3>
+                                <p class="guide-excerpt">
+                                    Integre sua loja com Google Analytics e use dados para otimizar seus anúncios e aumentar conversões.
+                                </p>
+                                <div class="guide-meta">
+                                    <span class="guide-time">
+                                        <i class="bi bi-clock"></i>
+                                        25 min
+                                    </span>
+                                    <span class="guide-level advanced">Avançado</span>
+                                    <span class="guide-views">
+                                        <i class="bi bi-eye"></i>
+                                        890
+                                    </span>
+                                </div>
+                                <div class="guide-actions">
+                                    <a href="#" class="guide-link">
+                                        <i class="bi bi-download"></i>
+                                        Baixar Templates
+                                    </a>
+                                    <button class="guide-save" title="Salvar para depois">
+                                        <i class="bi bi-bookmark"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Guia 6 -->
+                        <div class="guide-card" data-category="beginner" data-duration="8" data-difficulty="beginner">
+                            <div class="guide-thumbnail">
+                                <i class="bi bi-shield-check"></i>
+                            </div>
+                            <div class="guide-content">
+                                <span class="guide-category">Segurança</span>
+                                <h3 class="guide-title">Protegendo sua conta e transações</h3>
+                                <p class="guide-excerpt">
+                                    Medidas essenciais de segurança para proteger sua conta, dados e transações financeiras.
+                                </p>
+                                <div class="guide-meta">
+                                    <span class="guide-time">
+                                        <i class="bi bi-clock"></i>
+                                        8 min
+                                    </span>
+                                    <span class="guide-level beginner">Iniciante</span>
+                                    <span class="guide-views">
+                                        <i class="bi bi-eye"></i>
+                                        1.5k
+                                    </span>
+                                </div>
+                                <div class="guide-actions">
+                                    <a href="#" class="guide-link">
+                                        <i class="bi bi-shield-check"></i>
+                                        Ver Checklist
+                                    </a>
+                                    <button class="guide-save" title="Salvar para depois">
+                                        <i class="bi bi-bookmark"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-footer">
+                <div class="learning-progress">
+                    <h4><i class="bi bi-trophy"></i> Seu Progresso de Aprendizado</h4>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 30%"></div>
+                    </div>
+                    <p>30% completo • 3 de 10 guias finalizados</p>
+                </div>
+                <button class="btn btn-primary" id="startLearningPath">
+                    <i class="bi bi-mortarboard"></i>
+                    Iniciar Trilha de Aprendizado
+                </button>
+            </div>
+        </section>
+
+        <!-- Seção 3: Suporte do Vendedor -->
+        <section class="central-section" id="suporte-vendedor">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="bi bi-headset"></i>
+                    Suporte do Vendedor
+                </h2>
+                <p class="section-description">
+                    Estamos aqui para ajudar você com qualquer dúvida ou problema. Escolha o melhor canal para você.
+                </p>
+            </div>
+
+            <div class="support-options">
+                <!-- Chat Online -->
+                <div class="support-card urgent">
+                    <div class="support-icon">
+                        <i class="bi bi-chat-dots"></i>
+                        <div class="support-badge">Rápido</div>
+                    </div>
+                    <h3 class="support-title">Chat Online</h3>
+                    <p class="support-description">
+                        Atendimento imediato com nossos especialistas. Respostas em tempo real.
+                    </p>
+                    <div class="support-info">
+                        <div class="support-status">
+                            <span class="status-indicator online"></span>
+                            <span class="status-text">Disponível agora</span>
+                        </div>
+                        <div class="support-wait">
+                            <i class="bi bi-clock"></i>
+                            <span>Tempo médio: <strong>2 minutos</strong></span>
+                        </div>
+                    </div>
+                    <div class="support-hours">
+                        <i class="bi bi-calendar"></i>
+                        <span>Seg-Sex: 8h-20h • Sáb: 9h-14h</span>
+                    </div>
+                    <button class="btn btn-primary support-btn" data-support="chat">
+                        <i class="bi bi-chat-left-text"></i>
+                        Iniciar Conversa
+                    </button>
+                </div>
+
+                <!-- E-mail -->
+                <div class="support-card">
+                    <div class="support-icon">
+                        <i class="bi bi-envelope"></i>
+                    </div>
+                    <h3 class="support-title">E-mail</h3>
+                    <p class="support-description">
+                        Para questões detalhadas que exigem documentação ou arquivos anexos.
+                    </p>
+                    <div class="support-info">
+                        <div class="support-detail">
+                            <i class="bi bi-clock-history"></i>
+                            <span>Resposta em até 6 horas úteis</span>
+                        </div>
+                        <div class="support-email">
+                            <i class="bi bi-envelope-at"></i>
+                            <span>vendedores@reuse.com</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline support-btn" data-support="email">
+                        <i class="bi bi-envelope"></i>
+                        Enviar E-mail
+                    </button>
+                </div>
+
+                <!-- FAQ -->
+                <div class="support-card">
+                    <div class="support-icon">
+                        <i class="bi bi-question-circle"></i>
+                    </div>
+                    <h3 class="support-title">Central de Ajuda</h3>
+                    <p class="support-description">
+                        Encontre respostas instantâneas para suas perguntas mais frequentes.
+                    </p>
+                    <div class="support-info">
+                        <div class="support-detail">
+                            <i class="bi bi-search"></i>
+                            <span>+250 artigos disponíveis</span>
+                        </div>
+                        <div class="support-detail">
+                            <i class="bi bi-check-circle"></i>
+                            <span>85% resolvem aqui</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline support-btn" data-support="faq" id="openFaq">
+                        <i class="bi bi-search"></i>
+                        Buscar Soluções
+                    </button>
+                </div>
+
+                <!-- Telefone -->
+                <div class="support-card">
+                    <div class="support-icon">
+                        <i class="bi bi-telephone"></i>
+                    </div>
+                    <h3 class="support-title">Telefone</h3>
+                    <p class="support-description">
+                        Atendimento telefônico especializado para questões urgentes.
+                    </p>
+                    <div class="support-info">
+                        <div class="support-detail">
+                            <i class="bi bi-telephone-outbound"></i>
+                            <span>(11) 4004-5588</span>
+                        </div>
+                        <div class="support-detail">
+                            <i class="bi bi-headphones"></i>
+                            <span>Atendimento 24/7 para emergências</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline support-btn" data-support="phone">
+                        <i class="bi bi-telephone"></i>
+                        Ligar Agora
+                    </button>
+                </div>
+            </div>
+
+            <!-- Problemas Comuns -->
+            <div class="common-issues">
+                <div class="issues-header">
+                    <h3 class="issues-title">
+                        <i class="bi bi-question-circle"></i>
+                        Problemas Comuns
+                    </h3>
+                    <button class="btn btn-sm btn-outline" id="reportIssue">
+                        <i class="bi bi-flag"></i>
+                        Reportar Problema
+                    </button>
+                </div>
+                <div class="issues-grid">
+                    <a href="#" class="issue-item">
+                        <div class="issue-icon">
+                            <i class="bi bi-credit-card"></i>
+                        </div>
+                        <div class="issue-content">
+                            <h4>Como alterar meu método de pagamento?</h4>
+                            <p>Atualize suas informações de pagamento e saque</p>
+                        </div>
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                    <a href="#" class="issue-item">
+                        <div class="issue-icon">
+                            <i class="bi bi-search"></i>
+                        </div>
+                        <div class="issue-content">
+                            <h4>Meu produto não está aparecendo nas buscas</h4>
+                            <p>Otimize suas listagens para melhor visibilidade</p>
+                        </div>
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                    <a href="#" class="issue-item">
+                        <div class="issue-icon">
+                            <i class="bi bi-truck"></i>
+                        </div>
+                        <div class="issue-content">
+                            <h4>Problemas com cálculo de frete</h4>
+                            <p>Configure corretamente suas opções de envio</p>
+                        </div>
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                    <a href="#" class="issue-item">
+                        <div class="issue-icon">
+                            <i class="bi bi-gift"></i>
+                        </div>
+                        <div class="issue-content">
+                            <h4>Como funciona o programa de fidelidade?</h4>
+                            <p>Benefícios exclusivos para vendedores premium</p>
+                        </div>
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                    <a href="#" class="issue-item">
+                        <div class="issue-icon">
+                            <i class="bi bi-file-text"></i>
+                        </div>
+                        <div class="issue-content">
+                            <h4>Alterações nas políticas da plataforma</h4>
+                            <p>Fique por dentro das últimas atualizações</p>
+                        </div>
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                    <a href="#" class="issue-item">
+                        <div class="issue-icon">
+                            <i class="bi bi-image"></i>
+                        </div>
+                        <div class="issue-content">
+                            <h4>Problemas técnicos no upload de imagens</h4>
+                            <p>Soluções para erros comuns de upload</p>
+                        </div>
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Status do Sistema -->
+            <div class="system-status">
+                <div class="status-header">
+                    <h3><i class="bi bi-server"></i> Status do Sistema</h3>
+                    <div class="status-indicator operational">
+                        <span class="status-dot"></span>
+                        Todos os sistemas operacionais
+                    </div>
+                </div>
+                <div class="status-grid">
+                    <div class="status-item">
+                        <i class="bi bi-check-circle-fill"></i>
+                        <span>Plataforma Principal</span>
+                        <small>Operacional</small>
+                    </div>
+                    <div class="status-item">
+                        <i class="bi bi-check-circle-fill"></i>
+                        <span>Pagamentos</span>
+                        <small>Operacional</small>
+                    </div>
+                    <div class="status-item">
+                        <i class="bi bi-exclamation-triangle-fill"></i>
+                        <span>Upload de Imagens</span>
+                        <small>Manutenção programada</small>
+                    </div>
+                    <div class="status-item">
+                        <i class="bi bi-check-circle-fill"></i>
+                        <span>API de Integração</span>
+                        <small>Operacional</small>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 4: Novidades -->
+        <section class="central-section bg-light" id="novidades">
+            <div class="section-header">
+                <div class="section-header-left">
+                    <h2 class="section-title">
+                        <i class="bi bi-newspaper"></i>
+                        Novidades e Atualizações
+                    </h2>
+                    <p class="section-description">
+                        Fique por dentro das últimas atualizações da plataforma e novidades para vendedores
+                    </p>
+                </div>
+                <div class="section-header-right">
+                    <button class="btn btn-outline" id="subscribeNews">
+                        <i class="bi bi-bell"></i>
+                        Inscrever-se
+                    </button>
+                </div>
+            </div>
+
+            <div class="news-controls">
+                <div class="news-filters">
+                    <button class="news-filter active" data-filter="all">Todas</button>
+                    <button class="news-filter" data-filter="updates">Atualizações</button>
+                    <button class="news-filter" data-filter="tips">Dicas</button>
+                    <button class="news-filter" data-filter="events">Eventos</button>
+                    <button class="news-filter" data-filter="partnerships">Parcerias</button>
+                    <button class="news-filter" data-filter="policy">Políticas</button>
+                </div>
+                <div class="news-view">
+                    <button class="view-btn active" data-view="grid">
+                        <i class="bi bi-grid"></i>
+                    </button>
+                    <button class="view-btn" data-view="list">
+                        <i class="bi bi-list"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="news-grid" id="newsContainer">
+                <!-- Notícia Destaque -->
+                <article class="news-card featured" data-category="updates">
+                    <div class="news-badge">Destaque</div>
+                    <div class="news-image">
+                        <i class="bi bi-megaphone"></i>
+                        <div class="news-date-overlay">
+                            <span class="day">15</span>
+                            <span class="month">Jan</span>
+                        </div>
+                    </div>
+                    <div class="news-content">
+                        <div class="news-meta">
+                            <span class="news-category">Atualização</span>
+                            <span class="news-read-time">5 min de leitura</span>
+                        </div>
+                        <h3 class="news-title">Nova Ferramenta de Análise de Mercado</h3>
+                        <p class="news-excerpt">
+                            Lançamos uma ferramenta inovadora que analisa tendências de mercado e sugere preços 
+                            ideais para seus produtos com base na concorrência e demanda em tempo real.
+                        </p>
+                        <div class="news-tags">
+                            <span class="news-tag">Ferramenta</span>
+                            <span class="news-tag">Inovação</span>
+                            <span class="news-tag">Precificação</span>
+                        </div>
+                        <div class="news-footer">
+                            <a href="#" class="news-link">
+                                Ler Artigo Completo
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                            <div class="news-actions">
+                                <button class="news-action" title="Compartilhar">
+                                    <i class="bi bi-share"></i>
+                                </button>
+                                <button class="news-action" title="Salvar">
+                                    <i class="bi bi-bookmark"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Notícia 2 -->
+                <article class="news-card" data-category="policy">
+                    <div class="news-image">
+                        <i class="bi bi-graph-up-arrow"></i>
+                        <div class="news-date-overlay">
+                            <span class="day">10</span>
+                            <span class="month">Jan</span>
+                        </div>
+                    </div>
+                    <div class="news-content">
+                        <div class="news-meta">
+                            <span class="news-category">Financeiro</span>
+                            <span class="news-read-time">3 min de leitura</span>
+                        </div>
+                        <h3 class="news-title">Comissões Reduzidas para Vendedores Premium</h3>
+                        <p class="news-excerpt">
+                            A partir de fevereiro, vendedores premium terão comissões reduzidas em 20%. 
+                            Saiba como se qualificar para o programa.
+                        </p>
+                        <div class="news-tags">
+                            <span class="news-tag">Benefício</span>
+                            <span class="news-tag">Premium</span>
+                            <span class="news-tag">Financeiro</span>
+                        </div>
+                        <div class="news-footer">
+                            <a href="#" class="news-link">
+                                Ver Detalhes
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                            <div class="news-actions">
+                                <button class="news-action" title="Compartilhar">
+                                    <i class="bi bi-share"></i>
+                                </button>
+                                <button class="news-action" title="Salvar">
+                                    <i class="bi bi-bookmark"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Notícia 3 -->
+                <article class="news-card" data-category="events">
+                    <div class="news-image">
+                        <i class="bi bi-calendar-event"></i>
+                        <div class="news-date-overlay">
+                            <span class="day">05</span>
+                            <span class="month">Jan</span>
+                        </div>
+                    </div>
+                    <div class="news-content">
+                        <div class="news-meta">
+                            <span class="news-category">Evento</span>
+                            <span class="news-read-time">2 min de leitura</span>
+                        </div>
+                        <h3 class="news-title">Workshop Online: Otimização de Listagens</h3>
+                        <p class="news-excerpt">
+                            Participe do nosso workshop gratuito e aprenda como otimizar suas listagens 
+                            para aparecer em primeiro nas buscas.
+                        </p>
+                        <div class="news-tags">
+                            <span class="news-tag">Workshop</span>
+                            <span class="news-tag">Educação</span>
+                            <span class="news-tag">Gratuito</span>
+                        </div>
+                        <div class="news-footer">
+                            <a href="#" class="news-link">
+                                Inscrever-se
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                            <div class="news-actions">
+                                <button class="news-action" title="Compartilhar">
+                                    <i class="bi bi-share"></i>
+                                </button>
+                                <button class="news-action" title="Salvar">
+                                    <i class="bi bi-bookmark"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Notícia 4 -->
+                <article class="news-card" data-category="partnerships">
+                    <div class="news-image">
+                        <i class="bi bi-truck"></i>
+                        <div class="news-date-overlay">
+                            <span class="day">02</span>
+                            <span class="month">Jan</span>
+                        </div>
+                    </div>
+                    <div class="news-content">
+                        <div class="news-meta">
+                            <span class="news-category">Parceria</span>
+                            <span class="news-read-time">4 min de leitura</span>
+                        </div>
+                        <h3 class="news-title">Nova Parceria com Correios: Frete Mais Barato</h3>
+                        <p class="news-excerpt">
+                            Fechamos uma nova parceria que reduz em até 30% o custo de frete para todo o Brasil.
+                            Começa a valer a partir do próximo mês.
+                        </p>
+                        <div class="news-tags">
+                            <span class="news-tag">Logística</span>
+                            <span class="news-tag">Parceria</span>
+                            <span class="news-tag">Economia</span>
+                        </div>
+                        <div class="news-footer">
+                            <a href="#" class="news-link">
+                                Ver Detalhes
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                            <div class="news-actions">
+                                <button class="news-action" title="Compartilhar">
+                                    <i class="bi bi-share"></i>
+                                </button>
+                                <button class="news-action" title="Salvar">
+                                    <i class="bi bi-bookmark"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Notícia 5 -->
+                <article class="news-card" data-category="tips">
+                    <div class="news-image">
+                        <i class="bi bi-lightbulb"></i>
+                        <div class="news-date-overlay">
+                            <span class="day">28</span>
+                            <span class="month">Dez</span>
+                        </div>
+                    </div>
+                    <div class="news-content">
+                        <div class="news-meta">
+                            <span class="news-category">Dica</span>
+                            <span class="news-read-time">4 min de leitura</span>
+                        </div>
+                        <h3 class="news-title">5 Dicas para Vender Mais em Janeiro</h3>
+                        <p class="news-excerpt">
+                            Aproveite a temporada de começo de ano com estratégias comprovadas para aumentar 
+                            suas vendas no primeiro mês do ano.
+                        </p>
+                        <div class="news-tags">
+                            <span class="news-tag">Dicas</span>
+                            <span class="news-tag">Vendas</span>
+                            <span class="news-tag">Estratégia</span>
+                        </div>
+                        <div class="news-footer">
+                            <a href="#" class="news-link">
+                                Ler Dicas
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                            <div class="news-actions">
+                                <button class="news-action" title="Compartilhar">
+                                    <i class="bi bi-share"></i>
+                                </button>
+                                <button class="news-action" title="Salvar">
+                                    <i class="bi bi-bookmark"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Notícia 6 -->
+                <article class="news-card" data-category="updates">
+                    <div class="news-image">
+                        <i class="bi bi-shield-check"></i>
+                        <div class="news-date-overlay">
+                            <span class="day">20</span>
+                            <span class="month">Dez</span>
+                        </div>
+                    </div>
+                    <div class="news-content">
+                        <div class="news-meta">
+                            <span class="news-category">Segurança</span>
+                            <span class="news-read-time">6 min de leitura</span>
+                        </div>
+                        <h3 class="news-title">Novas Medidas de Segurança Implementadas</h3>
+                        <p class="news-excerpt">
+                            Implementamos novas camadas de segurança para proteger suas transações e dados. 
+                            Saiba o que mudou.
+                        </p>
+                        <div class="news-tags">
+                            <span class="news-tag">Segurança</span>
+                            <span class="news-tag">Atualização</span>
+                            <span class="news-tag">Proteção</span>
+                        </div>
+                        <div class="news-footer">
+                            <a href="#" class="news-link">
+                                Ler Mais
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                            <div class="news-actions">
+                                <button class="news-action" title="Compartilhar">
+                                    <i class="bi bi-share"></i>
+                                </button>
+                                <button class="news-action" title="Salvar">
+                                    <i class="bi bi-bookmark"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <div class="news-pagination">
+                <button class="pagination-btn" disabled>
+                    <i class="bi bi-chevron-left"></i>
+                    Anterior
+                </button>
+                <div class="pagination-numbers">
+                    <button class="pagination-number active">1</button>
+                    <button class="pagination-number">2</button>
+                    <button class="pagination-number">3</button>
+                    <span class="pagination-dots">...</span>
+                    <button class="pagination-number">8</button>
+                </div>
+                <button class="pagination-btn">
+                    Próxima
+                    <i class="bi bi-chevron-right"></i>
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="main-content">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h4>Central do Vendedor</h4>
+                    <ul class="footer-links">
+                        <li><a href="#central-vendedor"><i class="bi bi-gear"></i> Ferramentas</a></li>
+                        <li><a href="#guia-vendas"><i class="bi bi-book"></i> Guias</a></li>
+                        <li><a href="#suporte-vendedor"><i class="bi bi-headset"></i> Suporte</a></li>
+                        <li><a href="#novidades"><i class="bi bi-newspaper"></i> Novidades</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Ferramentas</h4>
+                    <ul class="footer-links">
+                        <li><a href="ferramentas.html"><i class="bi bi-graph-up"></i> Análises</a></li>
+                        <li><a href="ferramentas.html"><i class="bi bi-megaphone"></i> Promoções</a></li>
+                        <li><a href="ferramentas.html"><i class="bi bi-truck"></i> Logística</a></li>
+                        <li><a href="ferramentas.html"><i class="bi bi-cash"></i> Financeiro</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="legal-vendedor.html"><i class="bi bi-shield-check"></i> Política de Vendas</a></li>
+                        <li><a href="legal-vendedor.html"><i class="bi bi-file-text"></i> Termos Comerciais</a></li>
+                        <li><a href="legal-vendedor.html"><i class="bi bi-credit-card"></i> Taxas e Comissões</a></li>
+                        <li><a href="legal-vendedor.html"><i class="bi bi-lock"></i> Segurança</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Conecte-se</h4>
+                    <p>Siga-nos nas redes sociais</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" title="Facebook">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+                        <a href="#" class="social-link" title="Instagram">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link" title="Twitter">
+                            <i class="bi bi-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link" title="LinkedIn">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2025 ReUse - Todos os direitos reservados. Consumo consciente, futuro sustentável.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal FAQ -->
+    <div class="modal" id="faqModal">
+        <div class="modal-content modal-lg">
+            <div class="modal-header">
+                <h3 class="modal-title">Central de Ajuda</h3>
+                <button class="modal-close" id="closeFaqModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="faq-search-container">
+                    <div class="faq-search">
+                        <i class="bi bi-search"></i>
+                        <input type="text" id="faqSearch" placeholder="Como posso...">
+                        <button class="search-btn">Buscar</button>
+                    </div>
+                </div>
+                
+                <div class="faq-categories">
+                    <button class="faq-category active" data-category="all">Todas as Categorias</button>
+                    <button class="faq-category" data-category="sales">Vendas</button>
+                    <button class="faq-category" data-category="finance">Financeiro</button>
+                    <button class="faq-category" data-category="products">Produtos</button>
+                    <button class="faq-category" data-category="technical">Técnico</button>
+                    <button class="faq-category" data-category="account">Conta</button>
+                </div>
+                
+                <div class="faq-content">
+                    <div class="faq-section" data-category="sales">
+                        <h4>Vendas e Pedidos</h4>
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                Como alterar o status de um pedido?
+                                <i class="bi bi-chevron-down"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Para alterar o status de um pedido:</p>
+                                <ol>
+                                    <li>Acesse a seção "Pedidos" no seu dashboard</li>
+                                    <li>Clique no pedido desejado</li>
+                                    <li>No canto superior direito, clique em "Alterar Status"</li>
+                                    <li>Selecione o novo status e confirme</li>
+                                </ol>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                Como emitir uma nota fiscal?
+                                <i class="bi bi-chevron-down"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>A emissão de nota fiscal é automática para pedidos acima de R$ 79,90.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-section" data-category="finance">
+                        <h4>Financeiro</h4>
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                Quando recebo o dinheiro das minhas vendas?
+                                <i class="bi bi-chevron-down"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>O pagamento é realizado em até 14 dias úteis após a confirmação de entrega.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-section" data-category="products">
+                        <h4>Produtos</h4>
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                Quantas imagens posso adicionar por produto?
+                                <i class="bi bi-chevron-down"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Você pode adicionar até 10 imagens por produto.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-footer">
+                    <p>Não encontrou o que procurava?</p>
+                    <button class="btn btn-primary" id="contactSupport">
+                        <i class="bi bi-headset"></i>
+                        Falar com Suporte
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Reportar Problema -->
+    <div class="modal" id="reportModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Reportar Problema</h3>
+                <button class="modal-close" id="closeReportModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="reportForm">
+                    <div class="form-group">
+                        <label for="issueType">Tipo de Problema</label>
+                        <select id="issueType" required>
+                            <option value="">Selecione...</option>
+                            <option value="technical">Problema Técnico</option>
+                            <option value="payment">Problema com Pagamento</option>
+                            <option value="product">Problema com Produto</option>
+                            <option value="account">Problema com Conta</option>
+                            <option value="other">Outro</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="issueDescription">Descrição do Problema</label>
+                        <textarea id="issueDescription" rows="4" placeholder="Descreva detalhadamente o problema encontrado..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="issueScreenshot">Captura de Tela (Opcional)</label>
+                        <input type="file" id="issueScreenshot" accept="image/*">
+                    </div>
+                    <div class="form-group">
+                        <label for="contactEmail">E-mail para Contato</label>
+                        <input type="email" id="contactEmail" value="vendedor@email.com" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="cancelReport">Cancelar</button>
+                <button class="btn btn-primary" id="submitReport">Enviar Relatório</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="JS/auth.js"></script>
+    <script src="js/vendedor-inicio.js"></script>
+    <script src="js/profile-menu-vendedor.js"></script>
+    <script src="js/vendedor-reuse.js"></script>
+    <script src="js/accessibility-menu.js"></script>
+
+        <!-- Widget VLibras -->
+        <div vw class="enabled">
+            <div vw-access-button class="active"></div>
+            <div vw-plugin-wrapper>
+                <div class="vw-plugin-top-wrapper"></div>
+            </div>
+        </div>
+</body>
+
+</html>

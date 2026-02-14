@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal do Vendedor - Informações Legais</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/init.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/cliente-inicio.css">
+    <link rel="stylesheet" href="css/vendedor-inicio.css">
+    <link rel="stylesheet" href="css/profile-menu.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="css/legal-vendedor.css">
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q755SR73MY"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+            gtag('config', 'G-Q755SR73MY');
+        </script>
+</head>
+<body class="vendedor-inicio">
+    <!-- Background Animation Framework -->
+    <div class="background-framework">
+        <div class="eco-circle circle-1"></div>
+        <div class="eco-circle circle-2"></div>
+        <div class="eco-circle circle-3"></div>
+        <div class="eco-circle circle-4"></div>
+        <div class="particle particle-1"></div>
+        <div class="particle particle-2"></div>
+        <div class="particle particle-3"></div>
+        <div class="particle particle-4"></div>
+        <div class="particle particle-5"></div>
+    </div>
+
+    <!-- Header Principal -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo-section">
+                <a href="vendedor-inicio.html" class="logo-container">
+                    <img src="IMG/reuse-logo-(2).svg" alt="ReUse Logo">
+                    <span class="logo-text">ReUse</span>
+                </a>
+
+                <div class="search-container">
+                    <div class="search-bar">
+                        <i class="bi bi-search search-icon"></i>
+                        <input type="text" class="search-input" placeholder="Pesquisar nos documentos...">
+                    </div>
+                </div>
+            </div>
+
+            <div class="user-actions">
+                <button class="action-btn" id="darkModeBtn" title="Modo Noturno">
+                    <i class="bi bi-moon"></i>
+                </button>
+
+                <div class="profile-dropdown">
+                    <button class="dropdown-toggle" id="profileToggle">
+                        <div class="profile-avatar">
+                            <i class="bi bi-shop"></i>
+                        </div>
+                    </button>
+                    <div class="dropdown-menu" id="profileMenu">
+                        <div class="dropdown-header">
+                            <div class="user-info">
+                                <div class="profile-avatar">VL</div>
+                                <div class="user-details">
+                                    <h4>Vendedor Loja</h4>
+                                    <p>vendedor@email.com</p>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="vendedor-inicio.html" class="dropdown-item">
+                            <i class="bi bi-grid"></i>
+                            Dashboard
+                        </a>
+                        <a href="#" class="dropdown-item active">
+                            <i class="bi bi-file-earmark-text"></i>
+                            Documentos Legais
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <i class="bi bi-gear"></i>
+                            Configurações
+                        </a>
+                        <button class="dropdown-item logout" id="logoutBtn">
+                            <i class="bi bi-box-arrow-left"></i>
+                            Sair da Conta
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Menu do Vendedor -->
+    <nav class="seller-menu-bar">
+        <div class="seller-menu-container">
+            <a href="vendedor-inicio.html" class="seller-menu-btn">
+                <i class="bi bi-grid"></i>
+                Dashboard
+            </a>
+            <a href="#" class="seller-menu-btn">
+                <i class="bi bi-box-seam"></i>
+                Meus Produtos
+            </a>
+            <a href="#" class="seller-menu-btn">
+                <i class="bi bi-graph-up"></i>
+                Estatísticas
+            </a>
+            <a href="#" class="seller-menu-btn active">
+                <i class="bi bi-file-earmark-text"></i>
+                Legal
+            </a>
+            <a href="#" class="seller-menu-btn">
+                <i class="bi bi-gear"></i>
+                Configurações
+            </a>
+        </div>
+    </nav>
+
+    <!-- Conteúdo Principal -->
+    <main class="legal-main-content">
+        <div class="legal-container">
+            <!-- Cabeçalho da Página Legal -->
+            <div class="legal-header">
+                <h1 class="legal-title">
+                    <i class="bi bi-gavel"></i>
+                    Documentação Legal para Vendedores
+                </h1>
+                <p class="legal-subtitle">Informações importantes sobre políticas, termos comerciais, taxas e segurança</p>
+                
+                <div class="legal-meta">
+                    <div class="meta-item">
+                        <i class="bi bi-calendar-check"></i>
+                        <span>Última atualização: <strong>15 de outubro de 2023</strong></span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="bi bi-clock-history"></i>
+                        <span>Próxima revisão: <strong>15 de janeiro de 2024</strong></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Menu de Navegação Lateral -->
+            <div class="legal-sidebar">
+                <div class="sidebar-sticky">
+                    <h3 class="sidebar-title">
+                        <i class="bi bi-list"></i>
+                        Navegação
+                    </h3>
+                    <nav class="legal-nav">
+                        <a href="#politicas-vendas" class="nav-item active" data-section="politicas-vendas">
+                            <i class="bi bi-cart-check"></i>
+                            <span>Políticas de Vendas</span>
+                        </a>
+                        <a href="#termos-comerciais" class="nav-item" data-section="termos-comerciais">
+                            <i class="bi bi-handshake"></i>
+                            <span>Termos Comerciais</span>
+                        </a>
+                        <a href="#taxas-comissoes" class="nav-item" data-section="taxas-comissoes">
+                            <i class="bi bi-percent"></i>
+                            <span>Taxas & Comissões</span>
+                        </a>
+                        <a href="#seguranca" class="nav-item" data-section="seguranca">
+                            <i class="bi bi-shield-check"></i>
+                            <span>Segurança</span>
+                        </a>
+                    </nav>
+
+                    <div class="sidebar-help">
+                        <h4 class="help-title">
+                            <i class="bi bi-question-circle"></i>
+                            Precisa de ajuda?
+                        </h4>
+                        <p class="help-text">Entre em contato com nosso suporte jurídico</p>
+                        <div class="help-contacts">
+                            <a href="mailto:juridico@reuse.com" class="help-link">
+                                <i class="bi bi-envelope"></i>
+                                juridico@reuse.com
+                            </a>
+                            <a href="tel:+5511999999999" class="help-link">
+                                <i class="bi bi-telephone"></i>
+                                (11) 99999-9999
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conteúdo das Seções Legais -->
+            <div class="legal-content">
+                <!-- Seção 1: Políticas de Vendas -->
+                <section id="politicas-vendas" class="legal-section active">
+                    <div class="section-header">
+                        <h2 class="section-title">
+                            <i class="bi bi-cart-check"></i>
+                            Políticas de Vendas
+                        </h2>
+                        <span class="section-badge">Atualizado recentemente</span>
+                    </div>
+
+                    <div class="section-content">
+                        <div class="policy-card">
+                            <div class="policy-header">
+                                <h3 class="policy-title">
+                                    <i class="bi bi-check-circle"></i>
+                                    Política de Publicação de Produtos
+                                </h3>
+                                <span class="policy-status active">Vigente</span>
+                            </div>
+                            <div class="policy-body">
+                                <p>Todos os produtos anunciados na plataforma ReUse devem seguir nossas diretrizes de publicação para garantir uma experiência segura e confiável para compradores e vendedores.</p>
+                                
+                                <div class="policy-list">
+                                    <h4>Requisitos para Publicação:</h4>
+                                    <ul>
+                                        <li>Fotos reais e de qualidade do produto</li>
+                                        <li>Descrição detalhada e honesta do estado do produto</li>
+                                        <li>Preço justo de mercado</li>
+                                        <li>Informações completas sobre garantia (quando aplicável)</li>
+                                        <li>Classificação correta da categoria</li>
+                                    </ul>
+                                </div>
+
+                                <div class="policy-list">
+                                    <h4>Produtos Proibidos:</h4>
+                                    <ul>
+                                        <li>Produtos falsificados ou pirateados</li>
+                                        <li>Itens perigosos ou ilegais</li>
+                                        <li>Produtos que infringem direitos autorais</li>
+                                        <li>Animais vivos</li>
+                                        <li>Produtos que promovem discriminação</li>
+                                    </ul>
+                                </div>
+
+                                <div class="policy-warning">
+                                    <i class="bi bi-exclamation-triangle"></i>
+                                    <p><strong>Atenção:</strong> O descumprimento desta política pode resultar na suspensão da conta e remoção dos produtos.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="policy-card">
+                            <div class="policy-header">
+                                <h3 class="policy-title">
+                                    <i class="bi bi-truck"></i>
+                                    Política de Envio e Entrega
+                                </h3>
+                                <span class="policy-status active">Vigente</span>
+                            </div>
+                            <div class="policy-body">
+                                <p>Estabelecemos diretrizes claras para envio e entrega de produtos, garantindo transparência e confiabilidade nas transações.</p>
+                                
+                                <div class="policy-table">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Tipo de Envio</th>
+                                                <th>Prazo Máximo</th>
+                                                <th>Responsabilidade</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Padrão</td>
+                                                <td>3 dias úteis</td>
+                                                <td>Vendedor</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Expresso</td>
+                                                <td>1 dia útil</td>
+                                                <td>Vendedor</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Retirada</td>
+                                                <td>7 dias</td>
+                                                <td>Comprador</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="policy-note">
+                                    <i class="bi bi-info-circle"></i>
+                                    <p>É obrigatório informar o código de rastreamento assim que o produto for postado.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="policy-card">
+                            <div class="policy-header">
+                                <h3 class="policy-title">
+                                    <i class="bi bi-arrow-left-right"></i>
+                                    Política de Devoluções e Reembolsos
+                                </h3>
+                                <span class="policy-status active">Vigente</span>
+                            </div>
+                            <div class="policy-body">
+                                <p>Garantimos transparência nas políticas de devolução para proteger tanto compradores quanto vendedores.</p>
+                                
+                                <div class="policy-timeline">
+                                    <div class="timeline-item">
+                                        <div class="timeline-marker"></div>
+                                        <div class="timeline-content">
+                                            <h4>7 Dias de Arrependimento</h4>
+                                            <p>O comprador tem até 7 dias para solicitar devolução por arrependimento.</p>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-marker"></div>
+                                        <div class="timeline-content">
+                                            <h4>30 Dias para Defeitos</h4>
+                                            <p>Produtos com defeitos podem ser devolvidos em até 30 dias após o recebimento.</p>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-marker"></div>
+                                        <div class="timeline-content">
+                                            <h4>Processamento do Reembolso</h4>
+                                            <p>Reembolsos são processados em até 14 dias úteis após recebimento do produto.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Seção 2: Termos Comerciais -->
+                <section id="termos-comerciais" class="legal-section">
+                    <div class="section-header">
+                        <h2 class="section-title">
+                            <i class="bi bi-handshake"></i>
+                            Termos Comerciais
+                        </h2>
+                        <span class="section-badge">Contrato vigente</span>
+                    </div>
+
+                    <div class="section-content">
+                        <div class="policy-card">
+                            <div class="policy-header">
+                                <h3 class="policy-title">
+                                    <i class="bi bi-file-text"></i>
+                                    Contrato de Vendedor
+                                </h3>
+                                <span class="policy-status active">Em vigor</span>
+                            </div>
+                            <div class="policy-body">
+                                <p>Ao se cadastrar como vendedor na ReUse, você concorda com os seguintes termos e condições comerciais.</p>
+                                
+                                <div class="terms-list">
+                                    <div class="term-item">
+                                        <h4>1. Responsabilidades do Vendedor</h4>
+                                        <p>Você é responsável pela veracidade das informações dos produtos, qualidade dos itens vendidos e cumprimento dos prazos de envio.</p>
+                                    </div>
+                                    <div class="term-item">
+                                        <h4>2. Direitos da Plataforma</h4>
+                                        <p>A ReUse reserva-se o direito de moderar anúncios, suspender contas que violem os termos e ajustar políticas conforme necessário.</p>
+                                    </div>
+                                    <div class="term-item">
+                                        <h4>3. Propriedade Intelectual</h4>
+                                        <p>Você garante que possui direitos sobre as imagens e descrições utilizadas nos anúncios.</p>
+                                    </div>
+                                    <div class="term-item">
+                                        <h4>4. Resolução de Conflitos</h4>
+                                        <p>Disputas serão resolvidas preferencialmente por meio de mediação, com jurisdição na cidade de São Paulo.</p>
+                                    </div>
+                                </div>
+
+                                <div class="policy-actions">
+                                    <button class="btn btn-primary">
+                                        <i class="bi bi-download"></i>
+                                        Baixar Contrato Completo
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="policy-card">
+                            <div class="policy-header">
+                                <h3 class="policy-title">
+                                    <i class="bi bi-shield-check"></i>
+                                    Garantias e Responsabilidades
+                                </h3>
+                                <span class="policy-status active">Vigente</span>
+                            </div>
+                            <div class="policy-body">
+                                <p>Entenda suas responsabilidades legais e as garantias oferecidas pela plataforma.</p>
+                                
+                                <div class="guarantee-grid">
+                                    <div class="guarantee-item">
+                                        <div class="guarantee-icon success">
+                                            <i class="bi bi-check-lg"></i>
+                                        </div>
+                                        <h4>Garantia ReUse</h4>
+                                        <p>Proteção contra pagamentos não autorizados</p>
+                                    </div>
+                                    <div class="guarantee-item">
+                                        <div class="guarantee-icon warning">
+                                            <i class="bi bi-exclamation-lg"></i>
+                                        </div>
+                                        <h4>Responsabilidade do Vendedor</h4>
+                                        <p>Garantia de autenticidade dos produtos</p>
+                                    </div>
+                                    <div class="guarantee-item">
+                                        <div class="guarantee-icon info">
+                                            <i class="bi bi-info-lg"></i>
+                                        </div>
+                                        <h4>Mediação de Conflitos</h4>
+                                        <p>Assistência na resolução de disputas</p>
+                                    </div>
+                                    <div class="guarantee-item">
+                                        <div class="guarantee-icon primary">
+                                            <i class="bi bi-shield"></i>
+                                        </div>
+                                        <h4>Proteção de Dados</h4>
+                                        <p>Seus dados protegidos por criptografia</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Seção 3: Taxas & Comissões -->
+                <section id="taxas-comissoes" class="legal-section">
+                    <div class="section-header">
+                        <h2 class="section-title">
+                            <i class="bi bi-percent"></i>
+                            Taxas & Comissões
+                        </h2>
+                        <span class="section-badge">Atualizado 2023</span>
+                    </div>
+
+                    <div class="section-content">
+                        <div class="policy-card">
+                            <div class="policy-header">
+                                <h3 class="policy-title">
+                                    <i class="bi bi-cash-stack"></i>
+                                    Estrutura de Comissões
+                                </h3>
+                                <span class="policy-status active">Vigente</span>
+                            </div>
+                            <div class="policy-body">
+                                <p>A ReUse cobra uma comissão sobre cada venda realizada na plataforma. Esta comissão cobre os custos de processamento de pagamento, segurança da transação e manutenção da plataforma.</p>
+                                
+                                <div class="commission-structure">
+                                    <div class="commission-category">
+                                        <h4>Comissões por Categoria</h4>
+                                        <div class="commission-table">
+                                            <table>
+                                                <thead>
+                                                    <tr>
+                                                        <th>Categoria</th>
+                                                        <th>Comissão</th>
+                                                        <th>Taxa Fixa</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Eletrônicos</td>
+                                                        <td>10%</td>
+                                                        <td>R$ 2,90</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Roupas e Acessórios</td>
+                                                        <td>12%</td>
+                                                        <td>R$ 1,90</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Livros e Mídia</td>
+                                                        <td>8%</td>
+                                                        <td>R$ 1,50</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Móveis e Decoração</td>
+                                                        <td>9%</td>
+                                                        <td>R$ 3,90</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Outros</td>
+                                                        <td>11%</td>
+                                                        <td>R$ 2,50</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="commission-example">
+                                    <h4>Exemplo de Cálculo:</h4>
+                                    <div class="example-card">
+                                        <div class="example-step">
+                                            <span class="step-label">Valor da Venda:</span>
+                                            <span class="step-value">R$ 200,00</span>
+                                        </div>
+                                        <div class="example-step">
+                                            <span class="step-label">Comissão (10%):</span>
+                                            <span class="step-value negative">- R$ 20,00</span>
+                                        </div>
+                                        <div class="example-step">
+                                            <span class="step-label">Taxa Fixa:</span>
+                                            <span class="step-value negative">- R$ 2,90</span>
+                                        </div>
+                                        <div class="example-step total">
+                                            <span class="step-label">Valor a Receber:</span>
+                                            <span class="step-value positive">R$ 177,10</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="policy-card">
+                            <div class="policy-header">
+                                <h3 class="policy-title">
+                                    <i class="bi bi-calendar-week"></i>
+                                    Cronograma de Pagamentos
+                                </h3>
+                                <span class="policy-status active">Vigente</span>
+                            </div>
+                            <div class="policy-body">
+                                <p>Entenda como e quando você receberá pelos produtos vendidos na ReUse.</p>
+                                
+                                <div class="payment-timeline">
+                                    <div class="timeline">
+                                        <div class="timeline-item">
+                                            <div class="timeline-date">Dia 0</div>
+                                            <div class="timeline-content">
+                                                <h4>Venda Realizada</h4>
+                                                <p>O valor é reservado em sua conta ReUse</p>
+                                            </div>
+                                        </div>
+                                        <div class="timeline-item">
+                                            <div class="timeline-date">Dia 3-5</div>
+                                            <div class="timeline-content">
+                                                <h4>Confirmação de Entrega</h4>
+                                                <p>Após confirmação do comprador</p>
+                                            </div>
+                                        </div>
+                                        <div class="timeline-item">
+                                            <div class="timeline-date">Dia 7</div>
+                                            <div class="timeline-content">
+                                                <h4>Disponível para Saque</h4>
+                                                <p>Valor líquido disponível em sua conta</p>
+                                            </div>
+                                        </div>
+                                        <div class="timeline-item">
+                                            <div class="timeline-date">Dia 7+</div>
+                                            <div class="timeline-content">
+                                                <h4>Saque Realizado</h4>
+                                                <p>Transferência para sua conta bancária em até 2 dias úteis</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="payment-methods">
+                                    <h4>Métodos de Pagamento Aceitos:</h4>
+                                    <div class="methods-grid">
+                                        <div class="method-item">
+                                            <i class="bi bi-credit-card"></i>
+                                            <span>Cartão de Crédito</span>
+                                        </div>
+                                        <div class="method-item">
+                                            <i class="bi bi-bank"></i>
+                                            <span>Transferência Bancária</span>
+                                        </div>
+                                        <div class="method-item">
+                                            <i class="bi bi-qr-code"></i>
+                                            <span>PIX</span>
+                                        </div>
+                                        <div class="method-item">
+                                            <i class="bi bi-wallet2"></i>
+                                            <span>Carteira Digital</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Seção 4: Segurança -->
+                <section id="seguranca" class="legal-section">
+                    <div class="section-header">
+                        <h2 class="section-title">
+                            <i class="bi bi-shield-check"></i>
+                            Segurança
+                        </h2>
+                        <span class="section-badge">Prioridade máxima</span>
+                    </div>
+
+                    <div class="section-content">
+                        <div class="policy-card">
+                            <div class="policy-header">
+                                <h3 class="policy-title">
+                                    <i class="bi bi-lock"></i>
+                                    Proteção de Dados e Privacidade
+                                </h3>
+                                <span class="policy-status active">LGPD Compliant</span>
+                            </div>
+                            <div class="policy-body">
+                                <p>Sua segurança e privacidade são nossas maiores prioridades. Implementamos medidas robustas para proteger suas informações.</p>
+                                
+                                <div class="security-features">
+                                    <div class="feature-item">
+                                        <div class="feature-icon">
+                                            <i class="bi bi-shield-lock"></i>
+                                        </div>
+                                        <div class="feature-content">
+                                            <h4>Criptografia de Ponta a Ponta</h4>
+                                            <p>Todas as transações são protegidas com criptografia SSL de 256-bit</p>
+                                        </div>
+                                    </div>
+                                    <div class="feature-item">
+                                        <div class="feature-icon">
+                                            <i class="bi bi-fingerprint"></i>
+                                        </div>
+                                        <div class="feature-content">
+                                            <h4>Autenticação de Dois Fatores</h4>
+                                            <p>Proteção adicional para sua conta com 2FA</p>
+                                        </div>
+                                    </div>
+                                    <div class="feature-item">
+                                        <div class="feature-icon">
+                                            <i class="bi bi-eye-slash"></i>
+                                        </div>
+                                        <div class="feature-content">
+                                            <h4>Privacidade de Dados</h4>
+                                            <p>Seus dados nunca são compartilhados com terceiros sem consentimento</p>
+                                        </div>
+                                    </div>
+                                    <div class="feature-item">
+                                        <div class="feature-icon">
+                                            <i class="bi bi-bell"></i>
+                                        </div>
+                                        <div class="feature-content">
+                                            <h4>Monitoramento 24/7</h4>
+                                            <p>Sistemas de detecção de fraudes em tempo real</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="compliance-badges">
+                                    <div class="badge-item">
+                                        <i class="bi bi-shield-check"></i>
+                                        <span>LGPD</span>
+                                    </div>
+                                    <div class="badge-item">
+                                        <i class="bi bi-globe"></i>
+                                        <span>SSL Secure</span>
+                                    </div>
+                                    <div class="badge-item">
+                                        <i class="bi bi-pci-card"></i>
+                                        <span>PCI DSS</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="policy-card">
+                            <div class="policy-header">
+                                <h3 class="policy-title">
+                                    <i class="bi bi-exclamation-triangle"></i>
+                                    Prevenção a Fraudes
+                                </h3>
+                                <span class="policy-status active">Ativo</span>
+                            </div>
+                            <div class="policy-body">
+                                <p>Orientações para identificar e prevenir tentativas de fraude na plataforma.</p>
+                                
+                                <div class="alert alert-warning">
+                                    <i class="bi bi-exclamation-octagon"></i>
+                                    <div class="alert-content">
+                                        <h4>Sinais de Alerta</h4>
+                                        <p>Fique atento a compradores que solicitam pagamento fora da plataforma ou informações pessoais desnecessárias.</p>
+                                    </div>
+                                </div>
+
+                                <div class="fraud-prevention">
+                                    <h4>Medidas de Prevenção:</h4>
+                                    <ol>
+                                        <li><strong>Nunca compartilhe dados pessoais</strong> como CPF, senhas ou códigos de segurança</li>
+                                        <li><strong>Só realize transações</strong> dentro da plataforma ReUse</li>
+                                        <li><strong>Verifique o perfil do comprador</strong> antes de enviar produtos de alto valor</li>
+                                        <li><strong>Desconfie de propostas</strong> muito vantajosas ou urgentes</li>
+                                        <li><strong>Reporte imediatamente</strong> qualquer atividade suspeita</li>
+                                    </ol>
+                                </div>
+
+                                <div class="report-section">
+                                    <h4>Como Reportar Problemas:</h4>
+                                    <div class="report-options">
+                                        <button class="btn btn-outline">
+                                            <i class="bi bi-flag"></i>
+                                            Denunciar Anúncio
+                                        </button>
+                                        <button class="btn btn-outline">
+                                            <i class="bi bi-person-x"></i>
+                                            Denunciar Usuário
+                                        </button>
+                                        <button class="btn btn-danger">
+                                            <i class="bi bi-telephone"></i>
+                                            Emergência
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="policy-card">
+                            <div class="policy-header">
+                                <h3 class="policy-title">
+                                    <i class="bi bi-download"></i>
+                                    Backup e Recuperação
+                                </h3>
+                                <span class="policy-status active">Disponível</span>
+                            </div>
+                            <div class="policy-body">
+                                <p>Sua conta e dados são regularmente armazenados em backup para garantir a continuidade do seu negócio.</p>
+                                
+                                <div class="backup-info">
+                                    <div class="backup-item">
+                                        <h4>Frequência de Backup</h4>
+                                        <p>Diariamente para dados críticos</p>
+                                    </div>
+                                    <div class="backup-item">
+                                        <h4>Retenção de Dados</h4>
+                                        <p>7 anos para informações fiscais</p>
+                                    </div>
+                                    <div class="backup-item">
+                                        <h4>Recuperação de Conta</h4>
+                                        <p>Processo simplificado via email e telefone</p>
+                                    </div>
+                                </div>
+
+                                <div class="backup-actions">
+                                    <button class="btn btn-primary">
+                                        <i class="bi bi-cloud-arrow-down"></i>
+                                        Exportar Meus Dados
+                                    </button>
+                                    <button class="btn btn-outline">
+                                        <i class="bi bi-key"></i>
+                                        Alterar Senha
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="main-content">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h4>Vendedor ReUse</h4>
+                    <ul class="footer-links">
+                        <li><a href="vendedor-reuse.html"><i class="bi bi-info-circle"></i> Central do Vendedor</a></li>
+                        <li><a href="vendedor-reuse.html"><i class="bi bi-book"></i> Guia de Vendas</a></li>
+                        <li><a href="vendedor-reuse.html"><i class="bi bi-headset"></i> Suporte Vendedor</a></li>
+                        <li><a href="vendedor-reuse.html"><i class="bi bi-newspaper"></i> Novidades</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Ferramentas</h4>
+                    <ul class="footer-links">
+                        <li><a href="ferramentas.html"><i class="bi bi-graph-up"></i> Análises</a></li>
+                        <li><a href="ferramentas.html"><i class="bi bi-megaphone"></i> Promoções</a></li>
+                        <li><a href="ferramentas.html"><i class="bi bi-truck"></i> Logística</a></li>
+                        <li><a href="ferramentas.html"><i class="bi bi-cash"></i> Financeiro</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="#politicas-vendas" class="active"><i class="bi bi-shield-check"></i> Política de Vendas</a></li>
+                        <li><a href="#termos-comerciais"><i class="bi bi-file-text"></i> Termos Comerciais</a></li>
+                        <li><a href="#taxas-comissoes"><i class="bi bi-credit-card"></i> Taxas e Comissões</a></li>
+                        <li><a href="#seguranca"><i class="bi bi-lock"></i> Segurança</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Conecte-se</h4>
+                    <p>Siga-nos nas redes sociais</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" title="Facebook">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+                        <a href="#" class="social-link" title="Instagram">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link" title="Twitter">
+                            <i class="bi bi-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link" title="LinkedIn">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2025 ReUse - Todos os direitos reservados. Consumo consciente, futuro sustentável.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal de Confirmação de Logout -->
+    <div class="modal" id="logoutModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Sair da Conta</h3>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Tem certeza que deseja sair da sua conta de vendedor? Você precisará fazer login novamente para
+                    acessar seus dados.</p>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="cancelLogout">Cancelar</button>
+                <button class="btn btn-danger" id="confirmLogout">Sair</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/dark-mode.js"></script>
+    <script src="JS/auth.js"></script>
+    <script src="js/vendedor-inicio.js"></script>
+    <script src="js/profile-menu-vendedor.js"></script>
+    <script src="js/legal-vendedor.js"></script>
+    <script src="js/accessibility-menu.js"></script>
+
+        <!-- Widget VLibras -->
+        <div vw class="enabled">
+            <div vw-access-button class="active"></div>
+            <div vw-plugin-wrapper>
+                <div class="vw-plugin-top-wrapper"></div>
+            </div>
+        </div>
+</body>
+</html>

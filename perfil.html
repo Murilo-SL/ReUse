@@ -1,690 +1,1100 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ReUse - Perfil do Usuário</title>
-    <link rel="stylesheet" href="CSS/cliente.css">
-    <link rel="stylesheet" href="CSS/perfil.css">
+    <title>Meu Perfil - ReUse</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="CSS/breadcrumbs.css">
-    <link rel="stylesheet" href="CSS/modo_noturno.css">
-    <!-- VLibras -->
+    <link rel="stylesheet" href="css/cliente-inicio.css">
+    <link rel="stylesheet" href="css/perfil-cliente.css">
+    <link rel="stylesheet" href="css/favorites-menu.css">
+    <link rel="stylesheet" href="css/cart-menu.css">
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <script>
         new window.VLibras.Widget('https://vlibras.gov.br/app');
     </script>
-
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q755SR73MY"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+            gtag('config', 'G-Q755SR73MY');
+        </script>
 </head>
-
-<body>
-    <!-- CABEÇALHO -->
-    <header>
-        <div class="container">
-            <div class="header-container">
-                <div class="logo-container">
-                    <a href="cliente.html"><img src="IMG/reuse-logo-(2).svg"> <span>ReUse</span> </a>
-                </div>
-
-                <!-- Barra de pesquisa e filtros no meio -->
-                <div class="search-section">
-                    <div class="search-combined">
-                        <div class="search-input">
-                            <input type="text" id="searchInput" placeholder="O que você está procurando?">
-                            <button id="searchButton" class="search-button" aria-label="Pesquisar">
-                                <i class="bi bi-search"></i>
-                            </button>
-                        </div>
-                        <div class="search-filters">
-                            <select>
-                                <option>Todos os filtros</option>
-                                <option>Roupas</option>
-                                <option>Eletrodomésticos</option>
-                                <option>Melhores preços</option>
-                                <option>Recém adicionados</option>
-                                <option>Itens para doação</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="user-section">
-                    <button class="botaoMenu" id="botaoMenu">
-                        <i class="bi bi-list"></i>
-                    </button>
-
-                    <nav class="nav-menu" id="navMenu">
-                        <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
-                            <i class="bi bi-sun-fill" id="themeIcon"></i>
+<body class="cliente-inicio">
+    <!-- Header Principal -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo-section">
+                <a href="cliente-inicio.html" class="logo-container">
+                    <img src="IMG/reuse-logo-(2).svg" alt="ReUse Logo">
+                    <span class="logo-text">ReUse</span>
+                </a>
+                
+                <nav class="categories-bar">
+                    <div class="categories-container">
+                        <button class="category-btn">
+                            <i class="bi bi-house"></i>
+                            Início
                         </button>
-
-                    <!-- Menu de Acessibilidade para Daltonismo -->
-                    <div class="accessibility-menu">
-                        <button class="accessibility-btn" id="accessibilityBtn" aria-label="Configurações de acessibilidade">
-                            <i class="bi bi-eye-fill"></i>
+                        <button class="category-btn">
+                            <i class="bi bi-tag"></i>
+                            Ofertas
                         </button>
-                        
-                        <div class="accessibility-dropdown" id="accessibilityDropdown">
-                            <div class="accessibility-header">
-                                <h3>Configurações de Visão</h3>
-                                <p>Ajuste as cores para diferentes tipos de daltonismo</p>
-                            </div>
-                            
-                            <div class="accessibility-options">
-                                <button class="accessibility-option" data-filter="normal">
-                                    <span class="color-indicator normal"></span>
-                                    <span>Visão Normal</span>
-                                </button>
-                                
-                                <button class="accessibility-option" data-filter="protanopia">
-                                    <span class="color-indicator protanopia"></span>
-                                    <span>Protanopia</span>
-                                </button>
-                                
-                                <button class="accessibility-option" data-filter="protanomalia">
-                                    <span class="color-indicator protanomalia"></span>
-                                    <span>Protanomalia</span>
-                                </button>
-                                
-                                <button class="accessibility-option" data-filter="deuteranopia">
-                                    <span class="color-indicator deuteranopia"></span>
-                                    <span>Deuteranopia</span>
-                                </button>
-                                
-                                <button class="accessibility-option" data-filter="deuteranomalia">
-                                    <span class="color-indicator deuteranomalia"></span>
-                                    <span>Deuteranomalia</span>
-                                </button>
-                                
-                                <button class="accessibility-option" data-filter="tritanopia">
-                                    <span class="color-indicator tritanopia"></span>
-                                    <span>Tritanopia</span>
-                                </button>
-                                
-                                <button class="accessibility-option" data-filter="tritanomalia">
-                                    <span class="color-indicator tritanomalia"></span>
-                                    <span>Tritanomalia</span>
-                                </button>
-                                
-                                <button class="accessibility-option" data-filter="acromatopsia">
-                                    <span class="color-indicator acromatopsia"></span>
-                                    <span>Acromatopsia</span>
-                                </button>
-                                
-                                <button class="accessibility-option" data-filter="acromatomalia">
-                                    <span class="color-indicator acromatomalia"></span>
-                                    <span>Acromatomalia</span>
-                                </button>
-                            </div>
-                            
-                            <div class="accessibility-footer">
-                                <button class="reset-btn" id="resetAccessibility">
-                                    <i class="bi bi-arrow-clockwise"></i>
-                                    Restaurar Cores Padrão
-                                </button>
-                            </div>
-                        </div>
+                        <button class="category-btn">
+                            <i class="bi bi-arrow-repeat"></i>
+                            Trocas
+                        </button>
+                        <button class="category-btn">
+                            <i class="bi bi-heart"></i>
+                            Doações
+                        </button>
+                        <button class="category-btn">
+                            <i class="bi bi-chat"></i>
+                            Suporte
+                        </button>
                     </div>
+                </nav>
+            </div>
+            
+            <div class="user-actions">
+                <button class="action-btn" id="colorblindBtn" title="Acessibilidade Visual">
+                    <i class="bi bi-universal-access"></i>
+                </button>
 
-                        <div class="cart">
-                            <a href="carrinho.html">
-                                <span class="cart-icon"><i class="bi bi-cart3"></i></span>
-                            </a>
-                            <span class="cart-count">1</span>
-                        </div>
-
-                        <a href="login.html">
-                            <i class="bi bi-box-arrow-right"></i> Sair da Conta
-                        </a>
-
-                        <a href="perfil.html">
-                            <i class="bi bi-person-fill"></i> Minha Conta
-                        </a>
-                    </nav>
-                </div>
-
-                <!-- Categorias abaixo -->
-                <div class="categories-section">
-                    <section class="categories">
-                        <div class="dropdown">
-                            <a href="categoria.html?cat=masculino">Masculino</a>
-                            <div class="dropdown-content">
-                                <div class="dropdown-category"><a
-                                        href="categoria.html?cat=masculino&sub=roupas">Roupas</a></div>
-                                <div class="dropdown-category"><a
-                                        href="categoria.html?cat=masculino&sub=calcados">Calçados</a></div>
-                                <div class="dropdown-category"><a
-                                        href="categoria.html?cat=masculino&sub=acessorios">Acessórios</a></div>
-                            </div>
-                        </div>
-
-                        <div class="dropdown">
-                            <a href="categoria.html?cat=feminino">Feminino</a>
-                            <div class="dropdown-content">
-                                <div class="dropdown-category"><a
-                                        href="categoria.html?cat=feminino&sub=roupas">Roupas</a></div>
-                                <div class="dropdown-category"><a
-                                        href="categoria.html?cat=feminino&sub=calcados">Calçados</a></div>
-                                <div class="dropdown-category"><a
-                                        href="categoria.html?cat=feminino&sub=acessorios">Acessórios</a></div>
-                            </div>
-                        </div>
-
-                        <div class="dropdown">
-                            <a href="categoria.html?cat=infantil">Infantil</a>
-                            <div class="dropdown-content">
-                                <div class="dropdown-category"><a
-                                        href="categoria.html?cat=infantil&sub=roupas">Roupas</a></div>
-                                <div class="dropdown-category"><a
-                                        href="categoria.html?cat=infantil&sub=calcados">Calçados</a></div>
-                                <div class="dropdown-category"><a
-                                        href="categoria.html?cat=infantil&sub=outros">Outros</a></div>
-                            </div>
-                        </div>
-
-                        <div class="dropdown">
-                            <a href="categoria.html?cat=esportivo">Esportivo</a>
-                            <div class="dropdown-content">
-                                <div class="dropdown-category"><a
-                                        href="categoria.html?cat=esportivo&sub=roupas">Roupas</a></div>
-                                <div class="dropdown-category"><a
-                                        href="categoria.html?cat=esportivo&sub=calcados">Calçados</a></div>
-                                <div class="dropdown-category"><a
-                                        href="categoria.html?cat=esportivo&sub=outros">Outros</a></div>
-                            </div>
-                        </div>
-
-                        <div class="dropdown">
-                            <a href="categoria.html?cat=casa-cozinha">Casa/Cozinha</a>
-                            <div class="dropdown-content">
-                                <div class="dropdown-category"><a
-                                        href="categoria.html?cat=casa-cozinha&sub=eletrodomesticos">Eletrodomésticos</a>
-                                </div>
-                                <div class="dropdown-category"><a
-                                        href="categoria.html?cat=casa-cozinha&sub=moveis">Movéis</a></div>
-                                <div class="dropdown-category"><a
-                                        href="categoria.html?cat=casa-cozinha&sub=utensilios">Utensílios</a></div>
-                            </div>
-                        </div>
-                    </section>
-                </div>
+                <button class="action-btn" id="darkModeBtn" title="Modo Noturno">
+                    <i class="bi bi-moon"></i>
+                </button>
+                
+                <button class="action-btn favorites-btn" id="favoritesBtn" title="Favoritos">
+                    <i class="bi bi-heart"></i>
+                </button>
+                
+                <button class="action-btn cart-btn" id="cartBtn" title="Carrinho" data-count="2">
+                    <i class="bi bi-cart"></i>
+                </button>
             </div>
         </div>
     </header>
-    <!-- CONTEÚDO PRINCIPAL - PERFIL DO USUÁRIO -->
-    <main class="container">
-        <div class="profile-header">
-            <h1>Meu Perfil</h1>
-            <div class="profile-breadcrumbs">
-                <a href="cliente.html">Home</a> / <span>Meu Perfil</span>
-            </div>
-        </div>
 
-        <div class="profile-card">
+    <!-- Conteúdo Principal -->
+    <main class="main-content profile-content">
+        <div class="profile-container">
+            <!-- Cabeçalho do Perfil -->
+            <div class="profile-header-section">
+                <div class="profile-cover">
+                    <div class="cover-image"></div>
+                    <div class="profile-info-overlay">
+                        <div class="profile-avatar-large">
+                            <span>JS</span>
+                            <button class="avatar-edit-btn" id="editAvatarBtn" title="Alterar foto">
+                                <i class="bi bi-camera"></i>
+                            </button>
+                        </div>
+                        <div class="profile-details">
+                            <h1 class="profile-name">João Silva</h1>
+                            <p class="profile-email">joao.silva@email.com</p>
+                            <div class="profile-badges">
+                                <span class="badge premium">
+                                    <i class="bi bi-star-fill"></i>
+                                    Cliente Premium
+                                </span>
+                                <span class="badge eco">
+                                    <i class="bi bi-recycle"></i>
+                                    42 Doações
+                                </span>
+                                <span class="badge member">
+                                    <i class="bi bi-calendar"></i>
+                                    Membro desde 2022
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Menu Lateral -->
             <div class="profile-sidebar">
-                <div class="profile-picture-container">
-                    <label for="profile-picture-input" class="profile-picture-label">
-                        <img id="profile-picture" src="IMG/usuario.svg" alt="Foto de perfil">
-                        <span class="edit-icon"><i class="bi bi-pencil"></i></span>
-                    </label>
-                    <input type="file" id="profile-picture-input" accept="image/*" style="display: none;">
-                    <div class="user-name">William Wallace do Carmo</div>
-                    <div class="user-email">William@gmail.com</div>
+                <nav class="profile-nav" id="profileNav">
+                    <button class="nav-item active" data-section="dados-pessoais">
+                        <i class="bi bi-person-circle"></i>
+                        <span>Dados Pessoais</span>
+                    </button>
+                    <button class="nav-item" data-section="seguranca">
+                        <i class="bi bi-shield-lock"></i>
+                        <span>Segurança</span>
+                    </button>
+                    <button class="nav-item" data-section="cartoes">
+                        <i class="bi bi-credit-card"></i>
+                        <span>Cartões</span>
+                    </button>
+                    <button class="nav-item" data-section="enderecos">
+                        <i class="bi bi-geo-alt"></i>
+                        <span>Endereços</span>
+                    </button>
+                    <button class="nav-item" data-section="privacidade">
+                        <i class="bi bi-eye-slash"></i>
+                        <span>Privacidade</span>
+                    </button>
+                    <button class="nav-item" data-section="notificacoes">
+                        <i class="bi bi-bell"></i>
+                        <span>Notificações</span>
+                    </button>
+                    <button class="nav-item" data-section="preferencias">
+                        <i class="bi bi-sliders"></i>
+                        <span>Preferências</span>
+                    </button>
+                </nav>
+                
+                <div class="sidebar-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="bi bi-cart-check"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h4>15</h4>
+                            <p>Compras</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="bi bi-heart"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h4>8</h4>
+                            <p>Favoritos</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="bi bi-recycle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h4>42</h4>
+                            <p>Doações</p>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="profile-menu">
-                    <a href="#" class="active" data-section="personal-info"><i class="bi bi-person"></i> Informações
-                        Pessoais</a>
-                    <a href="#" data-section="addresses"><i class="bi bi-geo-alt"></i> Endereços</a>
-                    <a href="#" data-section="security"><i class="bi bi-lock"></i> Segurança</a>
-                    <a href="#" data-section="payments"><i class="bi bi-credit-card"></i> Métodos de Pagamento</a>
+                
+                <div class="sidebar-help">
+                    <h4><i class="bi bi-question-circle"></i> Precisa de ajuda?</h4>
+                    <p>Entre em contato com nosso suporte</p>
+                    <button class="help-btn" id="helpBtn">
+                        <i class="bi bi-chat"></i>
+                        Falar com Suporte
+                    </button>
                 </div>
             </div>
 
-            <div class="profile-content">
-                <!-- Seção de Informações Pessoais -->
-                <div id="personal-info-section" class="profile-section active">
-                    <h2><i class="bi bi-person"></i> Informações Pessoais</h2>
-
-                    <div class="info-section">
-                        <div class="info-item">
-                            <label>Nome Completo:</label>
-                            <span class="info-value">William Wallace do Carmo</span>
-                            <button class="edit-btn"><i class="bi bi-pencil"></i> Editar</button>
-                        </div>
-
-                        <div class="info-item">
-                            <label>Telefone:</label>
-                            <span class="info-value">(16) 99713-9654</span>
-                            <button class="edit-btn"><i class="bi bi-pencil"></i> Editar</button>
-                        </div>
-
-                        <div class="info-item">
-                            <label>Email:</label>
-                            <span class="info-value">William@gmail.com</span>
-                            <button class="edit-btn"><i class="bi bi-pencil"></i> Editar</button>
-                        </div>
-
-                        <div class="info-item">
-                            <label>Senha:</label>
-                            <div class="password-container">
-                                <input type="password" id="user-password-input" value="••••••••" disabled
-                                    class="password-input">
-                                <button type="button" class="toggle-password"><i class="bi bi-eye"></i></button>
-                            </div>
-                            <button class="edit-btn" id="edit-password-btn"><i class="bi bi-pencil"></i>
-                                Alterar</button>
-                        </div>
-
-                        <div class="info-actions">
-                            <button class="btn-save"><i class="bi bi-save"></i> Salvar Alterações</button>
-                            <button class="btn-cancel"><i class="bi bi-x"></i> Cancelar</button>
-                        </div>
+            <!-- Conteúdo das Seções -->
+            <div class="profile-sections">
+                <!-- Dados Pessoais -->
+                <section class="profile-section active" id="dados-pessoais">
+                    <div class="section-header">
+                        <h2><i class="bi bi-person-circle"></i> Dados Pessoais</h2>
+                        <p>Gerencie suas informações pessoais e de contato</p>
                     </div>
-                </div>
-
-                <!-- Seção de Endereços -->
-                <div id="addresses-section" class="profile-section">
-                    <h2><i class="bi bi-geo-alt"></i> Endereços</h2>
-
-                    <div class="address-list">
-                        <div class="address-card">
-                            <div class="address-header">
-                                <h3>Endereço Principal</h3>
-                                <div class="address-actions">
-                                    <button class="edit-btn"><i class="bi bi-pencil"></i> Editar</button>
-                                    <button class="delete-btn"><i class="bi bi-trash"></i> Remover</button>
-                                </div>
-                            </div>
-                            <div class="address-details">
-                                <p>William Wallace do Carmo</p>
-                                <p>Rua das Flores, 123 - Centro</p>
-                                <p>Araraquara - SP, 14800-000</p>
-                                <p>Brasil</p>
-                                <p>Telefone: (16) 99713-9654</p>
-                            </div>
-                        </div>
-
-                        <button class="btn-add-address"><i class="bi bi-plus"></i> Adicionar Novo Endereço</button>
-                    </div>
-
-                    <div class="address-form" style="display: none;">
-                        <div class="form-group">
-                            <label for="address-name">Apelido do Endereço:</label>
-                            <input type="text" id="address-name" placeholder="Ex: Casa, Trabalho">
-                        </div>
-
-                        <div class="form-row">
+                    
+                    <form class="profile-form" id="personalDataForm">
+                        <div class="form-grid">
                             <div class="form-group">
-                                <label for="address-cep">CEP:</label>
-                                <input type="text" id="address-cep" placeholder="00000-000">
+                                <label for="nomeCompleto">
+                                    <i class="bi bi-person"></i>
+                                    Nome Completo
+                                </label>
+                                <input type="text" id="nomeCompleto" value="João Silva Santos" >
                             </div>
+                            
                             <div class="form-group">
-                                <label for="address-number">Número:</label>
-                                <input type="text" id="address-number" placeholder="123">
+                                <label for="cpf">
+                                    <i class="bi bi-card-text"></i>
+                                    CPF
+                                </label>
+                                <input type="text" id="cpf" value="123.456.789-00" readonly>
                             </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="address-street">Rua:</label>
-                            <input type="text" id="address-street" placeholder="Rua, Avenida, etc.">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="address-complement">Complemento:</label>
-                            <input type="text" id="address-complement" placeholder="Apartamento, bloco, etc.">
-                        </div>
-
-                        <div class="form-row">
+                            
                             <div class="form-group">
-                                <label for="address-city">Cidade:</label>
-                                <input type="text" id="address-city" placeholder="Cidade">
+                                <label for="dataNascimento">
+                                    <i class="bi bi-calendar"></i>
+                                    Data de Nascimento
+                                </label>
+                                <input type="date" id="dataNascimento" value="1990-05-15" >
                             </div>
+                            
                             <div class="form-group">
-                                <label for="address-state">Estado:</label>
-                                <select id="address-state">
-                                    <option value="">Selecione</option>
-                                    <option value="AC">Acre</option>
-                                    <option value="AL">Alagoas</option>
-                                    <option value="AP">Amapá</option>
-                                    <option value="AM">Amazonas</option>
-                                    <option value="BA">Bahia</option>
-                                    <option value="CE">Ceará</option>
-                                    <option value="DF">Distrito Federal</option>
-                                    <option value="ES">Espírito Santo</option>
-                                    <option value="GO">Goiás</option>
-                                    <option value="MA">Maranhão</option>
-                                    <option value="MT">Mato Grosso</option>
-                                    <option value="MS">Mato Grosso do Sul</option>
-                                    <option value="MG">Minas Gerais</option>
-                                    <option value="PA">Pará</option>
-                                    <option value="PB">Paraíba</option>
-                                    <option value="PR">Paraná</option>
-                                    <option value="PE">Pernambuco</option>
-                                    <option value="PI">Piauí</option>
-                                    <option value="RJ">Rio de Janeiro</option>
-                                    <option value="RN">Rio Grande do Norte</option>
-                                    <option value="RS">Rio Grande do Sul</option>
-                                    <option value="RO">Rondônia</option>
-                                    <option value="RR">Roraima</option>
-                                    <option value="SC">Santa Catarina</option>
-                                    <option value="SP">São Paulo</option>
-                                    <option value="SE">Sergipe</option>
-                                    <option value="TO">Tocantins</option>
+                                <label for="telefone">
+                                    <i class="bi bi-telephone"></i>
+                                    Telefone
+                                </label>
+                                <input type="tel" id="telefone" value="(11) 99999-8888" >
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <label for="email">
+                                    <i class="bi bi-envelope"></i>
+                                    E-mail
+                                </label>
+                                <input type="email" id="email" value="joao.silva@email.com" >
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="genero">
+                                    <i class="bi bi-gender-ambiguous"></i>
+                                    Gênero
+                                </label>
+                                <select id="genero" >
+                                    <option value="masculino">Masculino</option>
+                                    <option value="feminino">Feminino</option>
+                                    <option value="outro">Outro</option>
+                                    <option value="prefiro-nao-dizer">Prefiro não dizer</option>
                                 </select>
                             </div>
                         </div>
-
-                        <div class="form-group">
-                            <label for="address-country">País:</label>
-                            <input type="text" id="address-country" value="Brasil" disabled>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="address-phone">Telefone:</label>
-                            <input type="text" id="address-phone" placeholder="(00) 00000-0000">
-                        </div>
-
+                        
                         <div class="form-actions">
-                            <button class="btn-save"><i class="bi bi-save"></i> Salvar Endereço</button>
-                            <button class="btn-cancel"><i class="bi bi-x"></i> Cancelar</button>
+                            <button type="button" class="btn-secondary" id="cancelPersonalBtn">
+                                Cancelar
+                            </button>
+                            <button type="submit" class="btn-primary">
+                                <i class="bi bi-check-lg"></i>
+                                Salvar Alterações
+                            </button>
                         </div>
+                    </form>
+                </section>
+
+                <!-- Segurança -->
+                <section class="profile-section" id="seguranca">
+                    <div class="section-header">
+                        <h2><i class="bi bi-shield-lock"></i> Segurança</h2>
+                        <p>Proteja sua conta e gerencie acesso</p>
                     </div>
-                </div>
-
-                <!-- Seção de Segurança -->
-                <div id="security-section" class="profile-section">
-                    <h2><i class="bi bi-lock"></i> Segurança</h2>
-
-                    <div class="security-section">
-                        <h3><i class="bi bi-shield-check"></i> Segurança da Conta</h3>
-                        <div class="security-item">
-                            <div class="security-info">
-                                <h4>Senha</h4>
-                                <p>Última alteração: 10/08/2025</p>
+                    
+                    <div class="security-cards">
+                        <div class="security-card">
+                            <div class="security-icon">
+                                <i class="bi bi-key"></i>
                             </div>
-                            <button class="btn-change-password"><i class="bi bi-pencil"></i> Alterar Senha</button>
-                        </div>
-
-                        <div class="security-item">
-                            <div class="security-info">
-                                <h4>Autenticação de Dois Fatores</h4>
-                                <p>Proteja sua conta com uma camada extra de segurança</p>
-                            </div>
-                            <div class="toggle-switch">
-                                <input type="checkbox" id="two-factor-toggle" class="toggle-input">
-                                <label for="two-factor-toggle" class="toggle-label"></label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="security-section">
-                        <h3><i class="bi bi-laptop"></i> Dispositivos Conectados</h3>
-                        <div class="device-list">
-                            <div class="device-item">
-                                <div class="device-icon">
-                                    <i class="bi bi-laptop"></i>
-                                </div>
-                                <div class="device-info">
-                                    <h4>MacBook Pro</h4>
-                                    <p>Sistema: macOS</p>
-                                    <p>Último acesso: Hoje, 14:30</p>
-                                    <p>Local: Araraquara, SP</p>
-                                </div>
-                                <button class="btn-logout-device"><i class="bi bi-box-arrow-right"></i>
-                                    Desconectar</button>
-                            </div>
-
-                            <div class="device-item">
-                                <div class="device-icon">
-                                    <i class="bi bi-phone"></i>
-                                </div>
-                                <div class="device-info">
-                                    <h4>iPhone 13</h4>
-                                    <p>Sistema: iOS</p>
-                                    <p>Último acesso: Ontem, 22:15</p>
-                                    <p>Local: Araraquara, SP</p>
-                                </div>
-                                <button class="btn-logout-device"><i class="bi bi-box-arrow-right"></i>
-                                    Desconectar</button>
+                            <div class="security-content">
+                                <h3>Senha de Acesso</h3>
+                                <p>Altere sua senha regularmente para manter sua conta segura</p>
+                                <button class="security-action" data-action="change-password">
+                                    <i class="bi bi-arrow-right"></i>
+                                    Alterar Senha
+                                </button>
                             </div>
                         </div>
+                        
+                        <div class="security-card">
+                            <div class="security-icon">
+                                <i class="bi bi-shield-check"></i>
+                            </div>
+                            <div class="security-content">
+                                <h3>Autenticação de Dois Fatores</h3>
+                                <p>Adicione uma camada extra de segurança à sua conta</p>
+                                <div class="toggle-switch">
+                                    <span>2FA Ativado</span>
+                                    <label class="switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="security-card">
+                            <div class="security-icon">
+                                <i class="bi bi-device-phone"></i>
+                            </div>
+                            <div class="security-content">
+                                <h3>Sessões Ativas</h3>
+                                <p>Gerencie dispositivos conectados à sua conta</p>
+                                <button class="security-action" data-action="manage-sessions">
+                                    <i class="bi bi-list"></i>
+                                    Ver Dispositivos
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="security-card">
+                            <div class="security-icon">
+                                <i class="bi bi-clock-history"></i>
+                            </div>
+                            <div class="security-content">
+                                <h3>Histórico de Login</h3>
+                                <p>Veja quando e de onde sua conta foi acessada</p>
+                                <button class="security-action" data-action="view-login-history">
+                                    <i class="bi bi-clock"></i>
+                                    Ver Histórico
+                                </button>
+                            </div>
+                        </div>
                     </div>
-
-                    <div class="security-section">
-                        <h3><i class="bi bi-exclamation-triangle"></i> Ações de Segurança</h3>
-                        <button class="btn-logout-all"><i class="bi bi-box-arrow-right"></i> Desconectar Todos os
-                            Dispositivos</button>
-                        <button class="btn-delete-account"><i class="bi bi-trash"></i> Excluir Conta
-                            Permanentemente</button>
+                    
+                    <!-- Alterar Senha (inicialmente oculto) -->
+                    <div class="change-password-form" id="changePasswordForm" style="display: none;">
+                        <h3><i class="bi bi-key"></i> Alterar Senha</h3>
+                        <form id="passwordForm">
+                            <div class="form-group">
+                                <label for="currentPassword">Senha Atual</label>
+                                <input type="password" id="currentPassword" placeholder="Digite sua senha atual" >
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="newPassword">Nova Senha</label>
+                                <input type="password" id="newPassword" placeholder="Digite a nova senha" >
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirmar Nova Senha</label>
+                                <input type="password" id="confirmPassword" placeholder="Confirme a nova senha" >
+                            </div>
+                            
+                            <div class="password-strength">
+                                <div class="strength-bar"></div>
+                                <span class="strength-text">Força da senha: <strong>Média</strong></span>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="button" class="btn-secondary cancel-password">
+                                    Cancelar
+                                </button>
+                                <button type="submit" class="btn-primary">
+                                    <i class="bi bi-check-lg"></i>
+                                    Atualizar Senha
+                                </button>
+                            </div>
+                        </form>
                     </div>
-                </div>
+                </section>
 
-                <!-- Seção de Pagamentos -->
-                <div id="payments-section" class="profile-section">
-                    <h2><i class="bi bi-credit-card"></i> Métodos de Pagamento</h2>
-
+                <!-- Cartões -->
+                <section class="profile-section" id="cartoes">
+                    <div class="section-header">
+                        <h2><i class="bi bi-credit-card"></i> Cartões</h2>
+                        <p>Gerencie seus métodos de pagamento</p>
+                    </div>
+                    
                     <div class="payment-methods">
-                        <div class="payment-method">
-                            <div class="payment-card">
-                                <div class="card-logo">
+                        <div class="cards-list">
+                            <div class="card-item primary">
+                                <div class="card-icon">
+                                    <i class="bi bi-credit-card-2-front"></i>
+                                </div>
+                                <div class="card-details">
+                                    <h3>Cartão Principal</h3>
+                                    <p class="card-number">**** **** **** 4321</p>
+                                    <p class="card-info">Visa • Válido até 12/2025</p>
+                                </div>
+                                <div class="card-actions">
+                                    <button class="card-action" title="Editar">
+                                        <i class="bi bi-pencil"></i>
+                                    </button>
+                                    <button class="card-action" title="Remover">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="card-item">
+                                <div class="card-icon">
                                     <i class="bi bi-credit-card"></i>
                                 </div>
-                                <div class="card-info">
-                                    <h4>Cartão de Crédito</h4>
-                                    <p>Visa **** **** **** 4242</p>
-                                    <p>Válido até: 12/2026</p>
+                                <div class="card-details">
+                                    <h3>Cartão Secundário</h3>
+                                    <p class="card-number">**** **** **** 8765</p>
+                                    <p class="card-info">Mastercard • Válido até 08/2024</p>
                                 </div>
                                 <div class="card-actions">
-                                    <button class="edit-btn"><i class="bi bi-pencil"></i> Editar</button>
-                                    <button class="delete-btn"><i class="bi bi-trash"></i> Remover</button>
+                                    <button class="card-action" title="Editar">
+                                        <i class="bi bi-pencil"></i>
+                                    </button>
+                                    <button class="card-action" title="Remover">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
                                 </div>
                             </div>
                         </div>
+                        
+                        <button class="add-card-btn" id="addCardBtn">
+                            <i class="bi bi-plus-lg"></i>
+                            Adicionar Novo Cartão
+                        </button>
+                        
+                        <!-- Formulário para Adicionar Cartão -->
+                        <div class="add-card-form" id="addCardForm" style="display: none;">
+                            <h3><i class="bi bi-plus-circle"></i> Adicionar Cartão</h3>
+                            <form id="newCardForm">
+                                <div class="form-grid">
+                                    <div class="form-group full-width">
+                                        <label for="cardNumber">Número do Cartão</label>
+                                        <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" >
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="cardHolder">Nome no Cartão</label>
+                                        <input type="text" id="cardHolder" placeholder="JOÃO SILVA" >
+                                    </div>
+                                    
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="expiryDate">Validade</label>
+                                            <input type="text" id="expiryDate" placeholder="MM/AA" >
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="cvv">CVV</label>
+                                            <input type="text" id="cvv" placeholder="123" >
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="cardType">Bandeira</label>
+                                        <select id="cardType" >
+                                            <option value="visa">Visa</option>
+                                            <option value="mastercard">Mastercard</option>
+                                            <option value="amex">American Express</option>
+                                            <option value="elo">Elo</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="form-group full-width">
+                                        <div class="checkbox-group">
+                                            <input type="checkbox" id="setAsPrimary" checked>
+                                            <label for="setAsPrimary">Definir como cartão principal</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-actions">
+                                    <button type="button" class="btn-secondary cancel-add-card">
+                                        Cancelar
+                                    </button>
+                                    <button type="submit" class="btn-primary">
+                                        <i class="bi bi-check-lg"></i>
+                                        Adicionar Cartão
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </section>
 
-                        <div class="payment-method">
-                            <div class="payment-card">
-                                <div class="card-logo">
-                                    <i class="bi bi-upc"></i>
+                <!-- Endereços -->
+                <section class="profile-section" id="enderecos">
+                    <div class="section-header">
+                        <h2><i class="bi bi-geo-alt"></i> Endereços</h2>
+                        <p>Gerencie seus endereços de entrega</p>
+                    </div>
+                    
+                    <div class="addresses-list">
+                        <div class="address-card primary">
+                            <div class="address-header">
+                                <h3><i class="bi bi-house-check"></i> Endereço Principal</h3>
+                                <span class="address-tag">Principal</span>
+                            </div>
+                            <div class="address-body">
+                                <p class="address-line">Rua das Flores, 123</p>
+                                <p class="address-line">Apto 45 - Centro</p>
+                                <p class="address-line">São Paulo - SP</p>
+                                <p class="address-line">CEP: 01234-567</p>
+                                <p class="address-contact">Telefone: (11) 99999-8888</p>
+                            </div>
+                            <div class="address-actions">
+                                <button class="address-action" data-action="edit">
+                                    <i class="bi bi-pencil"></i>
+                                    Editar
+                                </button>
+                                <button class="address-action" data-action="remove">
+                                    <i class="bi bi-trash"></i>
+                                    Remover
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="address-card">
+                            <div class="address-header">
+                                <h3><i class="bi bi-building"></i> Trabalho</h3>
+                            </div>
+                            <div class="address-body">
+                                <p class="address-line">Av. Paulista, 1000</p>
+                                <p class="address-line">10º andar - Bela Vista</p>
+                                <p class="address-line">São Paulo - SP</p>
+                                <p class="address-line">CEP: 01310-100</p>
+                                <p class="address-contact">Telefone: (11) 3333-4444</p>
+                            </div>
+                            <div class="address-actions">
+                                <button class="address-action" data-action="set-primary">
+                                    <i class="bi bi-star"></i>
+                                    Tornar Principal
+                                </button>
+                                <button class="address-action" data-action="edit">
+                                    <i class="bi bi-pencil"></i>
+                                    Editar
+                                </button>
+                                <button class="address-action" data-action="remove">
+                                    <i class="bi bi-trash"></i>
+                                    Remover
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="add-address-btn" id="addAddressBtn">
+                        <i class="bi bi-plus-lg"></i>
+                        Adicionar Novo Endereço
+                    </button>
+                    
+                    <!-- Formulário para Adicionar/Editar Endereço -->
+                    <div class="address-form-container" id="addressFormContainer" style="display: none;">
+                        <form class="address-form" id="addressForm">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="addressName">Apelido do Endereço</label>
+                                    <input type="text" id="addressName" placeholder="Casa, Trabalho, etc." >
                                 </div>
-                                <div class="card-info">
-                                    <h4>Boleto Bancário</h4>
-                                    <p>Enviado para seu e-mail</p>
+                                
+                                <div class="form-group full-width">
+                                    <label for="street">Rua/Avenida</label>
+                                    <input type="text" id="street" placeholder="Rua das Flores" >
                                 </div>
-                                <div class="card-actions">
-                                    <button class="edit-btn"><i class="bi bi-pencil"></i> Editar</button>
-                                    <button class="delete-btn"><i class="bi bi-trash"></i> Remover</button>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="number">Número</label>
+                                        <input type="text" id="number" placeholder="123" >
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="complement">Complemento</label>
+                                        <input type="text" id="complement" placeholder="Apto 45" >
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="neighborhood">Bairro</label>
+                                    <input type="text" id="neighborhood" placeholder="Centro" >
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="city">Cidade</label>
+                                        <input type="text" id="city" placeholder="São Paulo" >
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="state">Estado</label>
+                                        <select id="state" >
+                                            <option value="SP">São Paulo</option>
+                                            <option value="RJ">Rio de Janeiro</option>
+                                            <option value="MG">Minas Gerais</option>
+                                            <!-- Adicione outros estados -->
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="zipCode">CEP</label>
+                                    <input type="text" id="zipCode" placeholder="01234-567" >
+                                </div>
+                                
+                                <div class="form-group full-width">
+                                    <label for="addressPhone">Telefone para Contato</label>
+                                    <input type="tel" id="addressPhone" placeholder="(11) 99999-8888" >
+                                </div>
+                                
+                                <div class="form-group full-width">
+                                    <div class="checkbox-group">
+                                        <input type="checkbox" id="setAsPrimaryAddress">
+                                        <label for="setAsPrimaryAddress">Definir como endereço principal</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="button" class="btn-secondary cancel-address">
+                                    Cancelar
+                                </button>
+                                <button type="submit" class="btn-primary">
+                                    <i class="bi bi-check-lg"></i>
+                                    Salvar Endereço
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+
+                <!-- Privacidade -->
+                <section class="profile-section" id="privacidade">
+                    <div class="section-header">
+                        <h2><i class="bi bi-eye-slash"></i> Privacidade</h2>
+                        <p>Controle suas configurações de privacidade</p>
+                    </div>
+                    
+                    <div class="privacy-settings">
+                        <div class="privacy-setting">
+                            <div class="setting-info">
+                                <h3>Perfil Público</h3>
+                                <p>Permitir que outros usuários vejam seu perfil e atividades</p>
+                            </div>
+                            <div class="toggle-switch">
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="privacy-setting">
+                            <div class="setting-info">
+                                <h3>Mostrar Histórico de Compras</h3>
+                                <p>Exibir produtos que você comprou em seu perfil público</p>
+                            </div>
+                            <div class="toggle-switch">
+                                <label class="switch">
+                                    <input type="checkbox">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="privacy-setting">
+                            <div class="setting-info">
+                                <h3>Mostrar Doações Realizadas</h3>
+                                <p>Compartilhar suas doações para inspirar outros usuários</p>
+                            </div>
+                            <div class="toggle-switch">
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="privacy-setting">
+                            <div class="setting-info">
+                                <h3>Permitir Mensagens de Estranhos</h3>
+                                <p>Receber mensagens de outros usuários não conectados</p>
+                            </div>
+                            <div class="toggle-switch">
+                                <label class="switch">
+                                    <input type="checkbox">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="privacy-setting">
+                            <div class="setting-info">
+                                <h3>Mostrar Localização</h3>
+                                <p>Compartilhar sua localização aproximada em anúncios</p>
+                            </div>
+                            <div class="toggle-switch">
+                                <label class="switch">
+                                    <input type="checkbox">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="privacy-setting">
+                            <div class="setting-info">
+                                <h3>Recomendações Personalizadas</h3>
+                                <p>Usar seus dados para recomendar produtos relevantes</p>
+                            </div>
+                            <div class="toggle-switch">
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="privacy-actions">
+                        <button class="btn-secondary" id="exportDataBtn">
+                            <i class="bi bi-download"></i>
+                            Exportar Meus Dados
+                        </button>
+                        <button class="btn-secondary" id="deleteAccountBtn">
+                            <i class="bi bi-trash"></i>
+                            Solicitar Exclusão de Conta
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Notificações -->
+                <section class="profile-section" id="notificacoes">
+                    <div class="section-header">
+                        <h2><i class="bi bi-bell"></i> Notificações</h2>
+                        <p>Configure como você deseja receber notificações</p>
+                    </div>
+                    
+                    <div class="notification-settings">
+                        <div class="notification-category">
+                            <h3><i class="bi bi-envelope"></i> E-mail</h3>
+                            <div class="notification-options">
+                                <div class="notification-option">
+                                    <span>Ofertas e Promoções</span>
+                                    <label class="switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="notification-option">
+                                    <span>Atualizações de Pedidos</span>
+                                    <label class="switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="notification-option">
+                                    <span>Notícias e Novidades</span>
+                                    <label class="switch">
+                                        <input type="checkbox">
+                                        <span class="slider"></span>
+                                    </label>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="payment-method">
-                            <div class="payment-card">
-                                <div class="card-logo">
-                                    <i class="bi bi-bank"></i>
+                        
+                        <div class="notification-category">
+                            <h3><i class="bi bi-phone"></i> Push & SMS</h3>
+                            <div class="notification-options">
+                                <div class="notification-option">
+                                    <span>Lembretes de Doação</span>
+                                    <label class="switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
                                 </div>
-                                <div class="card-info">
-                                    <h4>Transferência Bancária</h4>
-                                    <p>Banco: Itaú (341)</p>
-                                    <p>Conta: ****1234-5</p>
+                                <div class="notification-option">
+                                    <span>Alertas de Segurança</span>
+                                    <label class="switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
                                 </div>
-                                <div class="card-actions">
-                                    <button class="edit-btn"><i class="bi bi-pencil"></i> Editar</button>
-                                    <button class="delete-btn"><i class="bi bi-trash"></i> Remover</button>
+                                <div class="notification-option">
+                                    <span>Mensagens de Vendedores</span>
+                                    <label class="switch">
+                                        <input type="checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="notification-category">
+                            <h3><i class="bi bi-chat"></i> Comunicação</h3>
+                            <div class="notification-options">
+                                <div class="notification-option">
+                                    <span>Novas Mensagens</span>
+                                    <label class="switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="notification-option">
+                                    <span>Atualizações de Anúncios</span>
+                                    <label class="switch">
+                                        <input type="checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="notification-option">
+                                    <span>Feedback e Avaliações</span>
+                                    <label class="switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </section>
 
-                    <button class="btn-add-payment"><i class="bi bi-plus"></i> Adicionar Novo Método de
-                        Pagamento</button>
-
-                    <div class="payment-form" style="display: none;">
-                        <div class="form-group">
-                            <label>Tipo de Pagamento:</label>
-                            <div class="payment-types">
-                                <button class="payment-type active" data-type="credit"><i class="bi bi-credit-card"></i>
-                                    Cartão de Crédito</button>
-                                <button class="payment-type" data-type="debit"><i class="bi bi-credit-card"></i> Cartão
-                                    de Débito</button>
-                                <button class="payment-type" data-type="boleto"><i class="bi bi-upc"></i>
-                                    Boleto</button>
-                                <button class="payment-type" data-type="pix"><i class="bi bi-qr-code"></i> Pix</button>
-                            </div>
-                        </div>
-
-                        <div id="credit-card-form">
-                            <div class="form-group">
-                                <label for="card-number">Número do Cartão:</label>
-                                <input type="text" id="card-number" placeholder="0000 0000 0000 0000">
-                            </div>
-
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="card-name">Nome no Cartão:</label>
-                                    <input type="text" id="card-name" placeholder="Como no cartão">
+                <!-- Preferências -->
+                <section class="profile-section" id="preferencias">
+                    <div class="section-header">
+                        <h2><i class="bi bi-sliders"></i> Preferências</h2>
+                        <p>Personalize sua experiência na plataforma</p>
+                    </div>
+                    
+                    <div class="preferences-settings">
+                        <div class="preference-group">
+                            <h3><i class="bi bi-globe"></i> Idioma e Região</h3>
+                            <div class="preference-options">
+                                <div class="preference-option">
+                                    <label for="language">Idioma</label>
+                                    <select id="language" >
+                                        <option value="pt-br" selected>Português (Brasil)</option>
+                                        <option value="en">English</option>
+                                        <option value="es">Español</option>
+                                    </select>
                                 </div>
-                                <div class="form-group">
-                                    <label for="card-cvv">CVV:</label>
-                                    <input type="text" id="card-cvv" placeholder="000">
+                                
+                                <div class="preference-option">
+                                    <label for="currency">Moeda</label>
+                                    <select id="currency" >
+                                        <option value="BRL" selected>Real (R$)</option>
+                                        <option value="USD">Dólar (US$)</option>
+                                        <option value="EUR">Euro (€)</option>
+                                    </select>
                                 </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="card-expiry">Validade:</label>
-                                    <input type="text" id="card-expiry" placeholder="MM/AA">
-                                </div>
-                                <div class="form-group">
-                                    <label for="card-installments">Parcelas:</label>
-                                    <select id="card-installments">
-                                        <option value="1">1x sem juros</option>
-                                        <option value="2">2x sem juros</option>
-                                        <option value="3">3x sem juros</option>
-                                        <option value="4">4x sem juros</option>
-                                        <option value="5">5x sem juros</option>
-                                        <option value="6">6x sem juros</option>
+                                
+                                <div class="preference-option">
+                                    <label for="timezone">Fuso Horário</label>
+                                    <select id="timezone" >
+                                        <option value="America/Sao_Paulo" selected>Brasília (UTC-3)</option>
+                                        <option value="America/New_York">Nova York (UTC-5)</option>
+                                        <option value="Europe/London">Londres (UTC+0)</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="form-actions">
-                            <button class="btn-save"><i class="bi bi-save"></i> Salvar Método de Pagamento</button>
-                            <button class="btn-cancel"><i class="bi bi-x"></i> Cancelar</button>
+                        
+                        <div class="preference-group">
+                            <h3><i class="bi bi-palette"></i> Aparência</h3>
+                            <div class="theme-options">
+                                <div class="theme-option" data-theme="light">
+                                    <div class="theme-preview light">
+                                        <i class="bi bi-sun"></i>
+                                    </div>
+                                    <span>Claro</span>
+                                </div>
+                                
+                                <div class="theme-option" data-theme="dark">
+                                    <div class="theme-preview dark">
+                                        <i class="bi bi-moon"></i>
+                                    </div>
+                                    <span>Escuro</span>
+                                </div>
+                                
+                                <div class="theme-option active" data-theme="auto">
+                                    <div class="theme-preview auto">
+                                        <i class="bi bi-circle-half"></i>
+                                    </div>
+                                    <span>Automático</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="preference-group">
+                            <h3><i class="bi bi-filter"></i> Filtros e Exibição</h3>
+                            <div class="preference-options">
+                                <div class="preference-option">
+                                    <label for="itemsPerPage">Itens por página</label>
+                                    <select id="itemsPerPage" >
+                                        <option value="12">12 itens</option>
+                                        <option value="24" selected>24 itens</option>
+                                        <option value="36">36 itens</option>
+                                        <option value="48">48 itens</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="preference-option">
+                                    <label for="sortPreference">Ordenação padrão</label>
+                                    <select id="sortPreference" >
+                                        <option value="relevance">Relevância</option>
+                                        <option value="price_asc">Preço: menor primeiro</option>
+                                        <option value="price_desc" selected>Preço: maior primeiro</option>
+                                        <option value="newest">Mais recentes</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="preference-group">
+                            <h3><i class="bi bi-shield-check"></i> Acessibilidade</h3>
+                            <div class="accessibility-options">
+                                <div class="accessibility-option">
+                                    <div class="accessibility-info">
+                                        <h4>Modo Daltonismo</h4>
+                                        <p>Adapta cores para diferentes tipos de daltonismo</p>
+                                    </div>
+                                    <button class="btn-secondary" id="configureColorblind">
+                                        Configurar
+                                    </button>
+                                </div>
+                                
+                                <div class="accessibility-option">
+                                    <div class="accessibility-info">
+                                        <h4>Leitor de Tela</h4>
+                                        <p>Otimização para tecnologias assistivas</p>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                
+                                <div class="accessibility-option">
+                                    <div class="accessibility-info">
+                                        <h4>Reduzir Animações</h4>
+                                        <p>Minimiza movimentos e transições</p>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </section>
             </div>
         </div>
     </main>
 
-    <!-- RODAPÉ -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <!-- Seção Minha Conta -->
-                <div class="footer-links">
-                    <h3>Minha Conta</h3>
-                    <a href="perfil.html"><i class="bi bi-person-fill"></i> <span>Perfil</span></a>
-                    <a href="pedidos.html"><i class="bi bi-box-seam"></i> <span>Pedidos</span></a>
-                    <a href="favoritos.html"><i class="bi bi-heart-fill"></i> <span>Favoritos</span></a>
-                </div>
-
-                <!-- Seção Minha Loja -->
-                <div class="footer-links">
-                    <h3>Minha Loja</h3>
-                    <a href="login.html"><i class="bi bi-grid-3x3-gap-fill"></i> <span>Produtos</span></a>
-                    <a href="login.html"><i class="bi bi-bar-chart-line-fill"></i> <span>Estatísticas</span></a>
-                    <a href="login.html"><i class="bi bi-star-fill"></i> <span>Avaliações</span></a>
-                </div>
-
-                <!-- Seção Configurações -->
-                <div class="footer-links">
-                    <h3>Configurações</h3>
-                    <a href="configuracoes_cliente.html"><i class="bi bi-gear-fill"></i> <span>Configurações</span></a>
-                    <a href="privacidade.html"><i class="bi bi-shield-lock-fill"></i> <span>Privacidade</span></a>
-                    <a href="notificacao.html"><i class="bi bi-bell-fill"></i> <span>Notificações</span></a>
-                    <a href="pagamento.html"><i class="bi bi-credit-card-fill"></i> <span>Pagamentos</span></a>
-                </div>
-
-                <!-- Seção Sobre Nós -->
-                <div class="footer-links">
-                    <h3>Sobre Nós</h3>
-                    <a href="missao.html"><i class="bi bi-info-circle-fill"></i> <span>Missão</span></a>
-                    <a href="equipe.html"><i class="bi bi-people-fill"></i> <span>Equipe</span></a>
-                    <a href="contato.html"><i class="bi bi-envelope-fill"></i><span>Contato</span></a>
-
-                    <div class="socials-title">
-                        <i class="bi bi-globe2"></i>
-                        <span>Redes Sociais</span>
-                    </div>
-
-                    <div class="social-links">
-                        <a href="https://www.facebook.com/profile.php?id=61582645355166&locale=pt_BR" target="_blank"
-                            title="Facebook"><i class="bi bi-facebook"></i></a>
-                        <a href="https://www.instagram.com/projeto_reuse/" target="_blank" title="Instagram"><i
-                                class="bi bi-instagram"></i></a>
-                        <a href="https://x.com/Re_Use_Projeto" target="_blank" title="Twitter"><i
-                                class="bi bi-twitter-x"></i></a>
-                        <a href="https://github.com/Murilo-SL/ReUse" target="_blank" title="GitHub"><i
-                                class="bi bi-github"></i></a>
-                    </div>
-                </div>
+    <!-- Modal de Logout -->
+    <div class="modal" id="logoutModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Sair da Conta</h3>
+                <button class="modal-close" id="closeModal">
+                    <i class="bi bi-x"></i>
+                </button>
             </div>
-
-            <div class="copyright">
-                &copy; 2025 ReUse - <span>Todos os direitos reservados</span>
+            <div class="modal-body">
+                <p>Tem certeza que deseja sair da sua conta? Você precisará fazer login novamente para acessar seus dados.</p>
             </div>
-        </div>
-    </footer>
-
-                <!-- Filtros SVG para simulação de daltonismo -->
-    <svg class="svg-filters" xmlns="http://www.w3.org/2000/svg">
-        <filter id="protanopia">
-            <feColorMatrix type="matrix" values="0.567, 0.433, 0, 0, 0  0.558, 0.442, 0, 0, 0  0, 0.242, 0.758, 0, 0  0, 0, 0, 1, 0" />
-        </filter>
-        <filter id="protanomalia">
-            <feColorMatrix type="matrix" values="0.817, 0.183, 0, 0, 0  0.333, 0.667, 0, 0, 0  0, 0.125, 0.875, 0, 0  0, 0, 0, 1, 0" />
-        </filter>
-        <filter id="deuteranopia">
-            <feColorMatrix type="matrix" values="0.625, 0.375, 0, 0, 0  0.7, 0.3, 0, 0, 0  0, 0.3, 0.7, 0, 0  0, 0, 0, 1, 0" />
-        </filter>
-        <filter id="deuteranomalia">
-            <feColorMatrix type="matrix" values="0.8, 0.2, 0, 0, 0  0.258, 0.742, 0, 0, 0  0, 0.142, 0.858, 0, 0  0, 0, 0, 1, 0" />
-        </filter>
-        <filter id="tritanopia">
-            <feColorMatrix type="matrix" values="0.95, 0.05, 0, 0, 0  0, 0.433, 0.567, 0, 0  0, 0.475, 0.525, 0, 0  0, 0, 0, 1, 0" />
-        </filter>
-        <filter id="tritanomalia">
-            <feColorMatrix type="matrix" values="0.967, 0.033, 0, 0, 0  0, 0.733, 0.267, 0, 0  0, 0.183, 0.817, 0, 0  0, 0, 0, 1, 0" />
-        </filter>
-    </svg>
-
-    <!-- Widget VLibras -->
-    <div vw class="enabled">
-        <div vw-access-button class="active"></div>
-        <div vw-plugin-wrapper>
-            <div class="vw-plugin-top-wrapper"></div>
+            <div class="modal-actions">
+                <button class="btn-secondary" id="cancelLogout">Cancelar</button>
+                <button class="btn-danger" id="confirmLogout">Sair</button>
+            </div>
         </div>
     </div>
 
-    <script src="JS/perfil.js"></script>
-    <script src="JS/breadcrumbs.js"></script>
-    <script src="JS/modo_noturno.js"></script>
-    <script src="JS/menu.js"></script>
-    <script src="JS/shared-navigation.js"></script>
-    <script src="JS/acessibilidade_daltonismo.js"></script>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q755SR73MY"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <!-- Modal de Confirmação Geral -->
+    <div class="modal" id="confirmationModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="confirmationTitle">Confirmação</h3>
+                <button class="modal-close" id="closeConfirmationModal">
+                    <i class="bi bi-x"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="confirmationMessage">
+                <!-- Mensagem será inserida via JavaScript -->
+            </div>
+            <div class="modal-actions">
+                <button class="btn-secondary" id="cancelAction">Cancelar</button>
+                <button class="btn-primary" id="confirmAction">Confirmar</button>
+            </div>
+        </div>
+    </div>
 
-  gtag('config', 'G-Q755SR73MY');
-</script>
+       <!-- Modal de Confirmação de Logout -->
+    <div class="modal" id="logoutModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Sair da Conta</h3>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Tem certeza que deseja sair da sua conta? Você precisará fazer login novamente para acessar seus
+                    dados.</p>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="cancelLogout">Cancelar</button>
+                <button class="btn btn-danger" id="confirmLogout">Sair</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Menu de Favoritos -->
+<div class="favorites-menu" id="favoritesMenu">
+    <div class="favorites-overlay"></div>
+    <div class="favorites-sidebar">
+        <div class="favorites-header">
+            <h3><i class="bi bi-heart-fill"></i> Meus Favoritos</h3>
+            <button class="close-favorites" id="closeFavorites">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
+        <div class="favorites-body" id="favoritesBody">
+            <!-- Os itens favoritos serão carregados aqui via JavaScript -->
+            <div class="empty-favorites">
+                <div class="empty-icon">
+                    <i class="bi bi-heart"></i>
+                </div>
+                <h4>Nenhum favorito ainda</h4>
+                <p>Adicione produtos aos favoritos para vê-los aqui</p>
+            </div>
+        </div>
+        <div class="favorites-footer">
+            <button class="btn btn-secondary" id="clearFavorites">
+                <i class="bi bi-trash"></i> Limpar Favoritos
+            </button>
+   
+        </div>
+    </div>
+</div>
+
+<!-- Menu do Carrinho -->
+<div class="cart-menu" id="cartMenu">
+    <div class="cart-overlay"></div>
+    <div class="cart-sidebar">
+        <div class="cart-header">
+            <h3><i class="bi bi-cart3"></i> Meu Carrinho</h3>
+            <button class="close-cart" id="closeCart">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
+        <div class="cart-body" id="cartBody">
+            <!-- Os itens do carrinho serão carregados aqui via JavaScript -->
+            <div class="empty-cart">
+                <div class="empty-icon">
+                    <i class="bi bi-cart"></i>
+                </div>
+                <h4>Carrinho vazio</h4>
+                <p>Adicione produtos ao carrinho para vê-los aqui</p>
+            </div>
+        </div>
+        <div class="cart-summary">
+            <div class="summary-row">
+                <span>Subtotal</span>
+                <span class="subtotal-price" id="cartSubtotal">R$ 0,00</span>
+            </div>
+            <div class="summary-row">
+                <span>Frete</span>
+                <span class="shipping-price">Grátis</span>
+            </div>
+            <div class="summary-divider"></div>
+            <div class="summary-row total">
+                <span>Total</span>
+                <span class="total-price" id="cartTotal">R$ 0,00</span>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <button class="btn btn-secondary" id="clearCart">
+                <i class="bi bi-trash"></i> Limpar Carrinho
+            </button>
+            <button class="btn btn-primary" id="checkoutBtn">
+                <i class="bi bi-bag-check"></i> Finalizar Compra
+            </button>
+        </div>
+    </div>
+</div>
+
+
+
+    <!-- Scripts -->
+    <script src="JS/cliente-inicio.js"></script>
+    <script src="JS/cart-menu.js"></script>
+    <script src="JS/favorites-menu.js"></script>
+    <script src="JS/profile-menu.js"></script>
+    <script src="JS/accessibility-menu.js"></script>
+    <script src="JS/perfil-cliente.js"></script>
+
+        <!-- Widget VLibras -->
+        <div vw class="enabled">
+            <div vw-access-button class="active"></div>
+            <div vw-plugin-wrapper>
+                <div class="vw-plugin-top-wrapper"></div>
+            </div>
+        </div>
 </body>
-
 </html>

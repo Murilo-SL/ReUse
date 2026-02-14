@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Início - ONG ReUse</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/init.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/ong-inicio.css">
+    <link rel="stylesheet" href="css/favorites-menu.css">
+    <link rel="stylesheet" href="css/cart-menu.css">
+    <link rel="stylesheet" href="css/ong-profile-menu.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q755SR73MY"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+            gtag('config', 'G-Q755SR73MY');
+        </script>
+</head>
+
+<body class="ong-inicio">
+    <!-- Background Animation Framework -->
+    <div class="background-framework">
+        <div class="eco-circle circle-1"></div>
+        <div class="eco-circle circle-2"></div>
+        <div class="eco-circle circle-3"></div>
+        <div class="eco-circle circle-4"></div>
+        <div class="particle particle-1"></div>
+        <div class="particle particle-2"></div>
+        <div class="particle particle-3"></div>
+        <div class="particle particle-4"></div>
+        <div class="particle particle-5"></div>
+    </div>
+
+    <!-- Header Principal -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo-section">
+                <a href="#" class="logo-container">
+                    <img src="IMG/reuse-logo-(2).svg" alt="ReUse Logo">
+                    <span class="logo-text">ReUse</span>
+                </a>
+
+                <div class="search-container">
+                    <div class="search-bar">
+                        <i class="bi bi-search search-icon"></i>
+                        <input type="text" class="search-input" placeholder="Pesquisar doações, campanhas...">
+                    </div>
+                </div>
+            </div>
+
+            <div class="user-actions">
+                <button class="action-btn" id="campanhasBtn" title="Minhas Campanhas">
+                    <i class="bi bi-megaphone"></i>
+                </button>
+
+                <button class="action-btn" id="doacoesBtn" title="Doações Recebidas" data-count="5">
+                    <i class="bi bi-gift"></i>
+                </button>
+
+                <button class="action-btn" id="darkModeBtn" title="Modo Noturno">
+                    <i class="bi bi-moon"></i>
+                </button>
+
+                <button class="action-btn" id="colorblindBtn" title="Modo Daltonismo">
+                    <i class="bi bi-eye"></i>
+                </button>
+
+                <div class="profile-dropdown">
+                    <button class="dropdown-toggle" id="profileToggle">
+                        <div class="profile-avatar"><i class="bi bi-building"></i></div>
+                    </button>
+                    <div class="dropdown-menu" id="profileMenu">
+                        <div class="dropdown-header">
+                            <div class="user-info">
+                                <div class="profile-avatar">SF</div>
+                                <div class="user-details">
+                                    <h4>SOS Felino</h4>
+                                    <p>contato@sosfelino.org</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="dropdown-item">
+                            <i class="bi bi-building"></i>
+                            Perfil da ONG
+                        </button>
+                        <button class="dropdown-item">
+                            <i class="bi bi-gear"></i>
+                            Configurações
+                        </button>
+                        <button class="dropdown-item">
+                            <i class="bi bi-megaphone"></i>
+                            Campanhas
+                        </button>
+                        <button class="dropdown-item">
+                            <i class="bi bi-gift"></i>
+                            Doações
+                        </button>
+                        <button class="dropdown-item">
+                            <i class="bi bi-bar-chart"></i>
+                            Relatórios
+                        </button>
+                        <button class="dropdown-item logout" id="logoutBtn">
+                            <i class="bi bi-box-arrow-left"></i>
+                            Sair da Conta
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main class="main-content">
+        <!-- Ações Rápidas da ONG -->
+        <section class="quick-actions-section">
+            <h2 class="section-title">O que você quer fazer hoje?</h2>
+            <div class="actions-grid">
+                <div class="action-card campanhas">
+                    <div class="action-icon">
+                        <i class="bi bi-megaphone"></i>
+                    </div>
+                    <h3>Criar Campanha</h3>
+                    <p>Crie campanhas de arrecadação para causas específicas</p>
+                </div>
+
+                <div class="action-card gerenciar-doacoes">
+                    <div class="action-icon">
+                        <i class="bi bi-gift"></i>
+                    </div>
+                    <h3>Gerenciar Doações</h3>
+                    <p>Visualize e gerencie doações recebidas</p>
+                </div>
+
+                <div class="action-card relatorios">
+                    <div class="action-icon">
+                        <i class="bi bi-bar-chart"></i>
+                    </div>
+                    <h3>Relatórios</h3>
+                    <p>Acompanhe métricas e impacto das doações</p>
+                </div>
+
+                <div class="action-card produtos-ong">
+                    <div class="action-icon">
+                        <i class="bi bi-boxes"></i>
+                    </div>
+                    <h3>Produtos</h3>
+                    <p>Vendas seus Produtos!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Campanhas Ativas -->
+        <section class="campanhas-section">
+            <div class="section-header">
+                <h2 class="section-title">Campanhas Ativas</h2>
+                <button class="btn btn-primary btn-criar-campanha">
+                    <i class="bi bi-plus-circle"></i>
+                    Nova Campanha
+                </button>
+            </div>
+
+            <div class="campanhas-grid">
+                <!-- Campanha 1 -->
+                <div class="campanha-card">
+                    <div class="campanha-header" style="background: linear-gradient(135deg, #0066cc, #00cc99);">
+                        <span class="campanha-status ativa">Ativa</span>
+                        <span class="campanha-dias">15 dias restantes</span>
+                    </div>
+                    <div class="campanha-body">
+                        <h3 class="campanha-titulo">Arrecadação de Rações</h3>
+                        <p class="campanha-descricao">Ajude-nos a alimentar os gatinhos resgatados. Precisamos de rações de todas as marcas.</p>
+                        
+                        <div class="campanha-meta">
+                            <div class="meta-item">
+                                <i class="bi bi-box"></i>
+                                <span><strong>120</strong> itens arrecadados</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="bi bi-people"></i>
+                                <span><strong>45</strong> doadores</span>
+                            </div>
+                        </div>
+
+                        <div class="progresso-container">
+                            <div class="progresso-label">
+                                <span>Meta: 500 itens</span>
+                                <span>24%</span>
+                            </div>
+                            <div class="progresso-bar">
+                                <div class="progresso-fill" style="width: 24%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="campanha-acoes">
+                            <button class="btn btn-outline">
+                                <i class="bi bi-pencil"></i>
+                                Editar
+                            </button>
+                            <button class="btn btn-primary">
+                                <i class="bi bi-share"></i>
+                                Compartilhar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Campanha 2 -->
+                <div class="campanha-card">
+                    <div class="campanha-header" style="background: linear-gradient(135deg, #9933cc, #cc66ff);">
+                        <span class="campanha-status ativa">Ativa</span>
+                        <span class="campanha-dias">30 dias restantes</span>
+                    </div>
+                    <div class="campanha-body">
+                        <h3 class="campanha-titulo">Medicamentos e Castração</h3>
+                        <p class="campanha-descricao">Campanha para arrecadar fundos para medicamentos e procedimentos de castração.</p>
+                        
+                        <div class="campanha-meta">
+                            <div class="meta-item">
+                                <i class="bi bi-cash-coin"></i>
+                                <span><strong>R$ 1.250</strong> arrecadados</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="bi bi-people"></i>
+                                <span><strong>28</strong> doadores</span>
+                            </div>
+                        </div>
+
+                        <div class="progresso-container">
+                            <div class="progresso-label">
+                                <span>Meta: R$ 3.000</span>
+                                <span>42%</span>
+                            </div>
+                            <div class="progresso-bar">
+                                <div class="progresso-fill" style="width: 42%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="campanha-acoes">
+                            <button class="btn btn-outline">
+                                <i class="bi bi-pencil"></i>
+                                Editar
+                            </button>
+                            <button class="btn btn-primary">
+                                <i class="bi bi-share"></i>
+                                Compartilhar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Campanha 3 - Pendente -->
+                <div class="campanha-card">
+                    <div class="campanha-header" style="background: linear-gradient(135deg, #ffa502, #ffd32a);">
+                        <span class="campanha-status pendente">Pendente</span>
+                        <span class="campanha-dias">Aguardando aprovação</span>
+                    </div>
+                    <div class="campanha-body">
+                        <h3 class="campanha-titulo">Feira de Adoção</h3>
+                        <p class="campanha-descricao">Organização de feira de adoção no Parque da Cidade. Precisamos de voluntários e materiais.</p>
+                        
+                        <div class="campanha-meta">
+                            <div class="meta-item">
+                                <i class="bi bi-calendar"></i>
+                                <span><strong>15/03</strong> data prevista</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="bi bi-person-workspace"></i>
+                                <span><strong>8</strong> voluntários</span>
+                            </div>
+                        </div>
+
+                        <div class="info-box">
+                            <i class="bi bi-info-circle"></i>
+                            <span>Aguardando análise da equipe ReUse</span>
+                        </div>
+
+                        <div class="campanha-acoes">
+                            <button class="btn btn-outline">
+                                <i class="bi bi-pencil"></i>
+                                Editar
+                            </button>
+                            <button class="btn btn-secondary">
+                                <i class="bi bi-clock-history"></i>
+                                Histórico
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Doações Recentes -->
+        <section class="doacoes-recentes-section">
+            <h2 class="section-title">Doações Recentes</h2>
+
+            <div class="doacoes-tabs">
+                <button class="tab-btn active" data-tab="pendentes">Pendentes (3)</button>
+                <button class="tab-btn" data-tab="agendadas">Agendadas (2)</button>
+                <button class="tab-btn" data-tab="concluidas">Concluídas (12)</button>
+            </div>
+
+            <div class="doacoes-list" id="doacoesPendentes">
+                <!-- Doação 1 -->
+                <div class="doacao-item">
+                    <div class="doacao-info">
+                        <div class="doador-info">
+                            <div class="doador-avatar">MC</div>
+                            <div>
+                                <h4>Maria Clara</h4>
+                                <p class="doador-contato">maria.c@email.com · (11) 98765-4321</p>
+                            </div>
+                        </div>
+                        <div class="doacao-status pendente">Aguardando Coleta</div>
+                    </div>
+
+                    <div class="doacao-produtos">
+                        <span class="produto-tag">Rações (5kg)</span>
+                        <span class="produto-tag">Cobertores (3)</span>
+                        <span class="produto-tag">Medicamentos (2)</span>
+                    </div>
+
+                    <div class="doacao-endereco">
+                        <i class="bi bi-geo-alt"></i>
+                        <span>Rua das Flores, 123 - Jardim América, São Paulo/SP</span>
+                    </div>
+
+                    <div class="doacao-acoes">
+                        <button class="btn btn-outline">
+                            <i class="bi bi-telephone"></i>
+                            Entrar em Contato
+                        </button>
+                        <button class="btn btn-primary">
+                            <i class="bi bi-check-circle"></i>
+                            Confirmar Coleta
+                        </button>
+                        <button class="btn btn-secondary">
+                            <i class="bi bi-calendar-check"></i>
+                            Reagendar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Doação 2 -->
+                <div class="doacao-item">
+                    <div class="doacao-info">
+                        <div class="doador-info">
+                            <div class="doador-avatar">JP</div>
+                            <div>
+                                <h4>João Pedro</h4>
+                                <p class="doador-contato">joao.p@email.com · (11) 97654-3210</p>
+                            </div>
+                        </div>
+                        <div class="doacao-status pendente">Aguardando Coleta</div>
+                    </div>
+
+                    <div class="doacao-produtos">
+                        <span class="produto-tag">Brinquedos (8)</span>
+                        <span class="produto-tag">Camas (2)</span>
+                        <span class="produto-tag">Roupinhas (5)</span>
+                    </div>
+
+                    <div class="doacao-endereco">
+                        <i class="bi bi-geo-alt"></i>
+                        <span>Av. Paulista, 1500 - Bela Vista, São Paulo/SP</span>
+                    </div>
+
+                    <div class="doacao-acoes">
+                        <button class="btn btn-outline">
+                            <i class="bi bi-telephone"></i>
+                            Entrar em Contato
+                        </button>
+                        <button class="btn btn-primary">
+                            <i class="bi bi-check-circle"></i>
+                            Confirmar Coleta
+                        </button>
+                        <button class="btn btn-secondary">
+                            <i class="bi bi-calendar-check"></i>
+                            Reagendar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Doação 3 -->
+                <div class="doacao-item">
+                    <div class="doacao-info">
+                        <div class="doador-info">
+                            <div class="doador-avatar">AS</div>
+                            <div>
+                                <h4>Ana Silva</h4>
+                                <p class="doador-contato">ana.s@email.com · (11) 99876-5432</p>
+                            </div>
+                        </div>
+                        <div class="doacao-status concluida">Coleta Realizada</div>
+                    </div>
+
+                    <div class="doacao-produtos">
+                        <span class="produto-tag">Livros (15)</span>
+                        <span class="produto-tag">Móveis (3)</span>
+                        <span class="produto-tag">Eletrônicos (2)</span>
+                    </div>
+
+                    <div class="doacao-data">
+                        <i class="bi bi-calendar"></i>
+                        <span>Coletado em: 10/02/2025</span>
+                    </div>
+
+                    <div class="doacao-acoes">
+                        <button class="btn btn-outline">
+                            <i class="bi bi-star"></i>
+                            Avaliar Doador
+                        </button>
+                        <button class="btn btn-secondary">
+                            <i class="bi bi-file-text"></i>
+                            Ver Detalhes
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ver-todas">
+                <a href="#" class="ver-todas-link">
+                    Ver todas as doações
+                    <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- Métricas e Impacto -->
+        <section class="impacto-section">
+            <h2 class="section-title">Seu Impacto na ReUse</h2>
+
+            <div class="metricas-grid">
+                <div class="metrica-card">
+                    <div class="metrica-icon" style="background: linear-gradient(135deg, #0066cc, #3399ff);">
+                        <i class="bi bi-gift"></i>
+                    </div>
+                    <div class="metrica-info">
+                        <h3>127</h3>
+                        <p>Doações Recebidas</p>
+                    </div>
+                    <span class="metrica-trend positiva">
+                        <i class="bi bi-arrow-up"></i>
+                        +12% este mês
+                    </span>
+                </div>
+
+                <div class="metrica-card">
+                    <div class="metrica-icon" style="background: linear-gradient(135deg, #00cc99, #33ffcc);">
+                        <i class="bi bi-people"></i>
+                    </div>
+                    <div class="metrica-info">
+                        <h3>89</h3>
+                        <p>Doadores Únicos</p>
+                    </div>
+                    <span class="metrica-trend positiva">
+                        <i class="bi bi-arrow-up"></i>
+                        +5% este mês
+                    </span>
+                </div>
+
+                <div class="metrica-card">
+                    <div class="metrica-icon" style="background: linear-gradient(135deg, #9933cc, #cc66ff);">
+                        <i class="bi bi-box"></i>
+                    </div>
+                    <div class="metrica-info">
+                        <h3>342</h3>
+                        <p>Itens Arrecadados</p>
+                    </div>
+                    <span class="metrica-trend positiva">
+                        <i class="bi bi-arrow-up"></i>
+                        +18% este mês
+                    </span>
+                </div>
+
+                <div class="metrica-card">
+                    <div class="metrica-icon" style="background: linear-gradient(135deg, #ff6b6b, #ff8e8e);">
+                        <i class="bi bi-heart-fill"></i>
+                    </div>
+                    <div class="metrica-info">
+                        <h3>56</h3>
+                        <p>Animais Ajudados</p>
+                    </div>
+                    <span class="metrica-trend positiva">
+                        <i class="bi bi-arrow-up"></i>
+                        +7 este mês
+                    </span>
+                </div>
+            </div>
+
+            <div class="grafico-container">
+                <h3>Doações por Categoria</h3>
+                <div class="barras-container">
+                    <div class="barra-item">
+                        <span class="barra-label">Rações</span>
+                        <div class="barra-wrapper">
+                            <div class="barra-fill" style="width: 75%;"></div>
+                        </div>
+                        <span class="barra-valor">75kg</span>
+                    </div>
+                    <div class="barra-item">
+                        <span class="barra-label">Medicamentos</span>
+                        <div class="barra-wrapper">
+                            <div class="barra-fill" style="width: 45%;"></div>
+                        </div>
+                        <span class="barra-valor">45 itens</span>
+                    </div>
+                    <div class="barra-item">
+                        <span class="barra-label">Roupas/Cobertores</span>
+                        <div class="barra-wrapper">
+                            <div class="barra-fill" style="width: 60%;"></div>
+                        </div>
+                        <span class="barra-valor">60 itens</span>
+                    </div>
+                    <div class="barra-item">
+                        <span class="barra-label">Brinquedos</span>
+                        <div class="barra-wrapper">
+                            <div class="barra-fill" style="width: 30%;"></div>
+                        </div>
+                        <span class="barra-valor">30 itens</span>
+                    </div>
+                    <div class="barra-item">
+                        <span class="barra-label">Outros</span>
+                        <div class="barra-wrapper">
+                            <div class="barra-fill" style="width: 25%;"></div>
+                        </div>
+                        <span class="barra-valor">25 itens</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="main-content">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h4>Ferramentas para ONGs</h4>
+                    <ul class="footer-links">
+                        <li><a href="ong-inicio.html"><i class="bi bi-house"></i> Dashboard</a></li>
+                        <li><a href="ong-produtos.html"><i class="bi bi-box"></i> Gerenciar Produtos</a></li>
+                        <li><a href="ong-relatorios.html"><i class="bi bi-bar-chart"></i> Relatórios</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Para ONGs</h4>
+                    <ul class="footer-links">
+                        <li><a href="para-ongs.html"><i class="bi bi-question-circle"></i> Central de Ajuda</a></li>
+                        <li><a href="para-ongs.html"><i class="bi bi-chat-dots"></i> Fale Conosco</a></li>
+                        <li><a href="para-ongs.html"><i class="bi bi-megaphone"></i> Guia de Campanhas</a></li>
+                        <li><a href="para-ongs.html"><i class="bi bi-file-text"></i> Documentação</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="legal-ong.html"><i class="bi bi-shield-check"></i> Política de Privacidade</a></li>
+                        <li><a href="legal-ong.html"><i class="bi bi-file-text"></i> Termos de Uso</a></li>
+                        <li><a href="legal-ong.html"><i class="bi bi-cookie"></i> Política de Cookies</a></li>
+                        <li><a href="legal-ong.html"><i class="bi bi-credit-card"></i> Segurança</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Conecte-se</h4>
+                    <p>Siga-nos nas redes sociais</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" title="Facebook">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+                        <a href="#" class="social-link" title="Instagram">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link" title="Twitter">
+                            <i class="bi bi-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link" title="LinkedIn">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2025 ReUse - Todos os direitos reservados. Consumo consciente, futuro sustentável.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal de Confirmação de Logout -->
+    <div class="modal" id="logoutModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Sair da Conta</h3>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Tem certeza que deseja sair da sua conta? Você precisará fazer login novamente para acessar seus dados.</p>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="cancelLogout">Cancelar</button>
+                <button class="btn btn-danger" id="confirmLogout">Sair</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Menu de Perfil Expandido -->
+    <div class="profile-menu-expanded" id="profileMenuExpanded">
+        <div class="profile-overlay"></div>
+        <div class="profile-sidebar">
+            <div class="profile-header">
+                <div class="profile-user-info">
+                    <div class="profile-avatar-large">
+                        <i class="bi bi-building"></i>
+                    </div>
+                    <div class="profile-user-details">
+                        <h3>SOS Felino</h3>
+                        <p>contato@sosfelino.org</p>
+                        <span class="ong-cnpj">CNPJ: 12.345.678/0001-90</span>
+                    </div>
+                </div>
+                <button class="close-profile" id="closeProfile">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+            
+            <div class="profile-body">
+                <nav class="profile-nav">
+                    <button class="profile-nav-item" id="profileMyProfile">
+                        <i class="bi bi-building"></i> 
+                        <span>Perfil da ONG</span>
+                    </button>
+                    
+                    <button class="profile-nav-item" id="profileCampanhas">
+                        <i class="bi bi-megaphone"></i>
+                        <span>Minhas Campanhas</span>
+                    </button>
+                    
+                    <button class="profile-nav-item" id="profileDoacoes">
+                        <i class="bi bi-gift"></i>
+                        <span>Doações Recebidas</span>
+                    </button>
+                    
+                    <button class="profile-nav-item" id="profileRelatorios">
+                        <i class="bi bi-bar-chart"></i>
+                        <span>Relatórios</span>
+                    </button>
+                    
+                    <button class="profile-nav-item" id="profileConfiguracoes">
+                        <i class="bi bi-gear"></i>
+                        <span>Configurações</span>
+                    </button>
+                    
+                    <div class="profile-nav-divider"></div>
+                    
+                    <button class="profile-nav-item logout" id="profileLogout">
+                        <i class="bi bi-box-arrow-left"></i>
+                        <span>Sair da Conta</span>
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Nova Campanha -->
+    <div class="modal" id="novaCampanhaModal">
+        <div class="modal-content modal-lg">
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    <i class="bi bi-megaphone"></i>
+                    Criar Nova Campanha
+                </h3>
+                <button class="modal-close" id="closeCampanhaModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="campanhaForm">
+                    <div class="form-group">
+                        <label for="campanhaTitulo">Título da Campanha</label>
+                        <input type="text" id="campanhaTitulo" class="form-control" placeholder="Ex: Arrecadação de Rações">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="campanhaDescricao">Descrição</label>
+                        <textarea id="campanhaDescricao" class="form-control" rows="4" placeholder="Descreva os objetivos da campanha..."></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="campanhaTipo">Tipo de Campanha</label>
+                            <select id="campanhaTipo" class="form-control">
+                                <option value="">Selecione</option>
+                                <option value="itens">Arrecadação de Itens</option>
+                                <option value="financeira">Arrecadação Financeira</option>
+                                <option value="voluntarios">Voluntários</option>
+                                <option value="evento">Evento</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="campanhaMeta">Meta</label>
+                            <input type="text" id="campanhaMeta" class="form-control" placeholder="Ex: 500 itens ou R$ 3.000">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="campanhaDataInicio">Data de Início</label>
+                            <input type="date" id="campanhaDataInicio" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="campanhaDataFim">Data de Término</label>
+                            <input type="date" id="campanhaDataFim" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="campanhaImagem">Imagem da Campanha</label>
+                        <div class="image-upload-area" id="campanhaImageUpload">
+                            <div class="image-upload-icon">
+                                <i class="bi bi-cloud-arrow-up"></i>
+                            </div>
+                            <div class="image-upload-text">
+                                <h4>Arraste uma imagem aqui</h4>
+                                <p>ou clique para selecionar</p>
+                            </div>
+                            <input type="file" id="campanhaImagem" accept="image/*" style="display: none;">
+                        </div>
+                    </div>
+
+                    <div class="form-check">
+                        <input type="checkbox" id="campanhaTermos" class="form-check-input">
+                        <label class="form-check-label" for="campanhaTermos">
+                            Declaro que as informações fornecidas são verdadeiras e estou de acordo com as políticas da ReUse para campanhas.
+                        </label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="cancelCampanha">Cancelar</button>
+                <button class="btn btn-primary" id="criarCampanha">
+                    <i class="bi bi-check-lg"></i>
+                    Criar Campanha
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Detalhes da Doação -->
+    <div class="modal" id="detalhesDoacaoModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    <i class="bi bi-gift"></i>
+                    Detalhes da Doação
+                </h3>
+                <button class="modal-close" id="closeDetalhesModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="detalhes-doador">
+                    <h4>Informações do Doador</h4>
+                    <p><strong>Nome:</strong> Maria Clara</p>
+                    <p><strong>Email:</strong> maria.c@email.com</p>
+                    <p><strong>Telefone:</strong> (11) 98765-4321</p>
+                </div>
+
+                <div class="detalhes-produtos">
+                    <h4>Itens Doados</h4>
+                    <ul>
+                        <li>Ração para gatos (5kg) - 2 pacotes</li>
+                        <li>Cobertores - 3 unidades</li>
+                        <li>Medicamentos vermífugos - 2 caixas</li>
+                        <li>Brinquedos - 4 unidades</li>
+                    </ul>
+                </div>
+
+                <div class="detalhes-endereco">
+                    <h4>Endereço para Coleta</h4>
+                    <p>Rua das Flores, 123 - Jardim América</p>
+                    <p>São Paulo/SP - CEP: 01234-567</p>
+                    <p><strong>Complemento:</strong> Apartamento 45, bloco B</p>
+                </div>
+
+                <div class="detalhes-observacoes">
+                    <h4>Observações</h4>
+                    <p>Doador prefere coleta no período da tarde. Entrar em contato com 24h de antecedência.</p>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-outline">
+                    <i class="bi bi-telephone"></i>
+                    Entrar em Contato
+                </button>
+                <button class="btn btn-primary">
+                    <i class="bi bi-check-circle"></i>
+                    Confirmar Coleta
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="JS/auth.js"></script>
+    <script src="js/ong-inicio.js"></script>
+    <script src="js/ong-profile-menu.js"></script>
+    <script src="js/accessibility-menu.js"></script>
+    <script src="js/modal.js"></script>
+    <script src="js/ong-campanhas-doacoes.js"></script>
+
+        <!-- Widget VLibras -->
+        <div vw class="enabled">
+            <div vw-access-button class="active"></div>
+            <div vw-plugin-wrapper>
+                <div class="vw-plugin-top-wrapper"></div>
+            </div>
+        </div>
+</body>
+
+</html>

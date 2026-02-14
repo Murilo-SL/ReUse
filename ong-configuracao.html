@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurações - ONG ReUse</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/init.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/ong-inicio.css">
+    <link rel="stylesheet" href="css/ong-configuracoes.css">
+    <link rel="stylesheet" href="css/favorites-menu.css">
+    <link rel="stylesheet" href="css/cart-menu.css">
+    <link rel="stylesheet" href="css/ong-profile-menu.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q755SR73MY"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+            gtag('config', 'G-Q755SR73MY');
+        </script>
+</head>
+
+<body class="ong-configuracoes">
+    <!-- Background Animation Framework -->
+    <div class="background-framework">
+        <div class="eco-circle circle-1"></div>
+        <div class="eco-circle circle-2"></div>
+        <div class="eco-circle circle-3"></div>
+        <div class="eco-circle circle-4"></div>
+        <div class="particle particle-1"></div>
+        <div class="particle particle-2"></div>
+        <div class="particle particle-3"></div>
+        <div class="particle particle-4"></div>
+        <div class="particle particle-5"></div>
+    </div>
+
+    <!-- Header Principal -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo-section">
+                <a href="ong-inicio.html" class="logo-container">
+                    <img src="IMG/reuse-logo-(2).svg" alt="ReUse Logo">
+                    <span class="logo-text">ReUse</span>
+                </a>
+
+                <div class="search-container">
+                    <div class="search-bar">
+                        <i class="bi bi-search search-icon"></i>
+                        <input type="text" class="search-input" placeholder="Pesquisar configurações...">
+                    </div>
+                </div>
+            </div>
+
+            <div class="user-actions">
+                <button class="action-btn" id="campanhasBtn" title="Minhas Campanhas">
+                    <i class="bi bi-megaphone"></i>
+                </button>
+
+                <button class="action-btn" id="doacoesBtn" title="Doações Recebidas" data-count="5">
+                    <i class="bi bi-gift"></i>
+                </button>
+
+                <button class="action-btn" id="darkModeBtn" title="Modo Noturno">
+                    <i class="bi bi-moon"></i>
+                </button>
+
+                <button class="action-btn" id="colorblindBtn" title="Modo Daltonismo">
+                    <i class="bi bi-eye"></i>
+                </button>
+
+                <div class="profile-dropdown">
+                    <button class="dropdown-toggle" id="profileToggle">
+                        <div class="profile-avatar"><i class="bi bi-building"></i></div>
+                    </button>
+                    <div class="dropdown-menu" id="profileMenu">
+                        <div class="dropdown-header">
+                            <div class="user-info">
+                                <div class="profile-avatar">SF</div>
+                                <div class="user-details">
+                                    <h4>SOS Felino</h4>
+                                    <p>contato@sosfelino.org</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="dropdown-item" onclick="window.location.href='ong-perfil.html'">
+                            <i class="bi bi-building"></i>
+                            Perfil da ONG
+                        </button>
+                        <button class="dropdown-item active" onclick="window.location.href='ong-configuracoes.html'">
+                            <i class="bi bi-gear"></i>
+                            Configurações
+                        </button>
+                        <button class="dropdown-item" onclick="window.location.href='ong-inicio.html#campanhas'">
+                            <i class="bi bi-megaphone"></i>
+                            Campanhas
+                        </button>
+                        <button class="dropdown-item" onclick="window.location.href='ong-inicio.html#doacoes'">
+                            <i class="bi bi-gift"></i>
+                            Doações
+                        </button>
+                        <button class="dropdown-item" onclick="window.location.href='ong-relatorios.html'">
+                            <i class="bi bi-bar-chart"></i>
+                            Relatórios
+                        </button>
+                        <button class="dropdown-item logout" id="logoutBtn">
+                            <i class="bi bi-box-arrow-left"></i>
+                            Sair da Conta
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main class="main-content">
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+            <a href="ong-inicio.html">Início</a>
+            <i class="bi bi-chevron-right"></i>
+            <span>Configurações</span>
+        </div>
+
+        <!-- Título da Página -->
+        <div class="page-header">
+            <h1>Configurações da ONG</h1>
+            <p>Gerencie as informações, preferências e segurança da sua organização</p>
+        </div>
+
+        <!-- Seção: Perfil da ONG -->
+        <section class="config-section" id="perfil">
+            <div class="config-section-header">
+                <i class="bi bi-building"></i>
+                <div>
+                    <h2>Perfil da ONG</h2>
+                    <p>Informações básicas e dados de contato da sua organização</p>
+                </div>
+            </div>
+
+            <div class="config-grid">
+                <!-- Card: Informações Básicas -->
+                <div class="config-card">
+                    <div class="config-card-header">
+                        <i class="bi bi-info-circle"></i>
+                        <div>
+                            <h3>Informações Básicas</h3>
+                            <p>Dados cadastrais da ONG</p>
+                        </div>
+                    </div>
+
+                    <div class="config-input-group">
+                        <label>Nome da ONG</label>
+                        <input type="text" class="config-input" id="ongNome" value="SOS Felino" placeholder="Nome da organização">
+                    </div>
+
+                    <div class="config-input-group">
+                        <label>CNPJ</label>
+                        <input type="text" class="config-input" id="ongCnpj" value="12.345.678/0001-90" placeholder="00.000.000/0000-00" disabled>
+                        <span class="help-text"><i class="bi bi-info-circle"></i> Para alterar o CNPJ, entre em contato com o suporte</span>
+                    </div>
+
+                    <div class="config-input-group">
+                        <label>Ano de Fundação</label>
+                        <input type="number" class="config-input" id="ongAno" value="2018" min="1900" max="2025">
+                    </div>
+
+                    <div class="config-input-group">
+                        <label>Descrição da ONG</label>
+                        <textarea class="config-input" id="ongDescricao" rows="4" placeholder="Descreva a missão e objetivos da sua ONG">Organização sem fins lucrativos dedicada ao resgate e cuidado de felinos em situação de rua. Atuamos com castração, adoção responsável e tratamento veterinário.</textarea>
+                    </div>
+                </div>
+
+                <!-- Card: Contato -->
+                <div class="config-card">
+                    <div class="config-card-header">
+                        <i class="bi bi-envelope"></i>
+                        <div>
+                            <h3>Contato</h3>
+                            <p>Informações para contato</p>
+                        </div>
+                    </div>
+
+                    <div class="config-input-group">
+                        <label>E-mail principal</label>
+                        <div class="input-with-icon">
+                            <i class="bi bi-envelope"></i>
+                            <input type="email" class="config-input" id="ongEmail" value="contato@sosfelino.org" placeholder="seu@email.com">
+                        </div>
+                    </div>
+
+                    <div class="config-input-group">
+                        <label>E-mail secundário</label>
+                        <div class="input-with-icon">
+                            <i class="bi bi-envelope"></i>
+                            <input type="email" class="config-input" id="ongEmail2" value="adm@sosfelino.org" placeholder="emailsecundario@email.com">
+                        </div>
+                    </div>
+
+                    <div class="config-input-group">
+                        <label>Telefone principal</label>
+                        <div class="input-with-icon">
+                            <i class="bi bi-telephone"></i>
+                            <input type="tel" class="config-input" id="ongTelefone" value="(11) 3456-7890" placeholder="(00) 0000-0000">
+                        </div>
+                    </div>
+
+                    <div class="config-input-group">
+                        <label>WhatsApp</label>
+                        <div class="input-with-icon">
+                            <i class="bi bi-whatsapp"></i>
+                            <input type="tel" class="config-input" id="ongWhatsapp" value="(11) 98765-4321" placeholder="(00) 00000-0000">
+                        </div>
+                    </div>
+
+                    <div class="config-input-group">
+                        <label>Site</label>
+                        <div class="input-with-icon">
+                            <i class="bi bi-globe"></i>
+                            <input type="url" class="config-input" id="ongSite" value="https://www.sosfelino.org" placeholder="https://seusite.com">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção: Endereço e Localização -->
+        <section class="config-section" id="endereco">
+            <div class="config-section-header">
+                <i class="bi bi-geo-alt"></i>
+                <div>
+                    <h2>Endereço e Localização</h2>
+                    <p>Dados de localização da sua sede</p>
+                </div>
+            </div>
+
+            <div class="config-grid">
+                <!-- Card: Endereço -->
+                <div class="config-card">
+                    <div class="config-card-header">
+                        <i class="bi bi-house-door"></i>
+                        <div>
+                            <h3>Endereço da Sede</h3>
+                            <p>Local principal da ONG</p>
+                        </div>
+                    </div>
+
+                    <div class="config-input-group">
+                        <label>CEP</label>
+                        <input type="text" class="config-input" id="ongCep" value="01234-567" placeholder="00000-000">
+                    </div>
+
+                    <div class="config-input-group">
+                        <label>Logradouro</label>
+                        <input type="text" class="config-input" id="ongLogradouro" value="Rua das Flores" placeholder="Rua, Avenida...">
+                    </div>
+
+                    <div class="endereco-grid">
+                        <div class="config-input-group">
+                            <label>Número</label>
+                            <input type="text" class="config-input" id="ongNumero" value="123" placeholder="123">
+                        </div>
+                        <div class="config-input-group">
+                            <label>Complemento</label>
+                            <input type="text" class="config-input" id="ongComplemento" value="Sala 45" placeholder="Apto, Sala...">
+                        </div>
+                    </div>
+
+                    <div class="config-input-group">
+                        <label>Bairro</label>
+                        <input type="text" class="config-input" id="ongBairro" value="Jardim América" placeholder="Bairro">
+                    </div>
+
+                    <div class="endereco-grid">
+                        <div class="config-input-group">
+                            <label>Cidade</label>
+                            <input type="text" class="config-input" id="ongCidade" value="São Paulo" placeholder="Cidade">
+                        </div>
+                        <div class="config-input-group">
+                            <label>UF</label>
+                            <select class="config-select" id="ongUf">
+                                <option value="AC">Acre</option>
+                                <option value="AL">Alagoas</option>
+                                <option value="AP">Amapá</option>
+                                <option value="AM">Amazonas</option>
+                                <option value="BA">Bahia</option>
+                                <option value="CE">Ceará</option>
+                                <option value="DF">Distrito Federal</option>
+                                <option value="ES">Espírito Santo</option>
+                                <option value="GO">Goiás</option>
+                                <option value="MA">Maranhão</option>
+                                <option value="MT">Mato Grosso</option>
+                                <option value="MS">Mato Grosso do Sul</option>
+                                <option value="MG">Minas Gerais</option>
+                                <option value="PA">Pará</option>
+                                <option value="PB">Paraíba</option>
+                                <option value="PR">Paraná</option>
+                                <option value="PE">Pernambuco</option>
+                                <option value="PI">Piauí</option>
+                                <option value="RJ">Rio de Janeiro</option>
+                                <option value="RN">Rio Grande do Norte</option>
+                                <option value="RS">Rio Grande do Sul</option>
+                                <option value="RO">Rondônia</option>
+                                <option value="RR">Roraima</option>
+                                <option value="SC">Santa Catarina</option>
+                                <option value="SP" selected>São Paulo</option>
+                                <option value="SE">Sergipe</option>
+                                <option value="TO">Tocantins</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card: Mapa e Coordenadas -->
+                <div class="config-card">
+                    <div class="config-card-header">
+                        <i class="bi bi-map"></i>
+                        <div>
+                            <h3>Localização no Mapa</h3>
+                            <p>Coordenadas para facilitar a localização</p>
+                        </div>
+                    </div>
+
+                    <div class="config-input-group">
+                        <label>Latitude</label>
+                        <input type="text" class="config-input" id="ongLatitude" value="-23.550520" placeholder="-23.550520">
+                    </div>
+
+                    <div class="config-input-group">
+                        <label>Longitude</label>
+                        <input type="text" class="config-input" id="ongLongitude" value="-46.633308" placeholder="-46.633308">
+                    </div>
+
+                    <div class="help-text">
+                        <i class="bi bi-info-circle"></i>
+                        As coordenadas são usadas para mostrar sua localização no mapa e facilitar a chegada de doadores.
+                    </div>
+
+                    <button class="btn-config btn-config-primary" style="margin-top: 1rem; width: 100%;" id="buscarCoordenadas">
+                        <i class="bi bi-search"></i>
+                        Buscar coordenadas pelo CEP
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção: Horário de Funcionamento -->
+        <section class="config-section" id="horarios">
+            <div class="config-section-header">
+                <i class="bi bi-clock"></i>
+                <div>
+                    <h2>Horário de Funcionamento</h2>
+                    <p>Defina os horários para coleta e atendimento</p>
+                </div>
+            </div>
+
+            <div class="config-card" style="margin-bottom: 0;">
+                <div class="config-card-header">
+                    <i class="bi bi-calendar-week"></i>
+                    <div>
+                        <h3>Dias e Horários</h3>
+                        <p>Configure os horários de funcionamento da ONG</p>
+                    </div>
+                </div>
+
+                <!-- Segunda-feira -->
+                <div class="horario-item">
+                    <span class="dia-semana">Segunda-feira</span>
+                    <div class="horario-inputs">
+                        <input type="time" id="horarioSegundaInicio" value="09:00">
+                        <span>às</span>
+                        <input type="time" id="horarioSegundaFim" value="18:00">
+                    </div>
+                    <div class="horario-toggle">
+                        <label class="switch">
+                            <input type="checkbox" id="segundaAtivo" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Terça-feira -->
+                <div class="horario-item">
+                    <span class="dia-semana">Terça-feira</span>
+                    <div class="horario-inputs">
+                        <input type="time" id="horarioTercaInicio" value="09:00">
+                        <span>às</span>
+                        <input type="time" id="horarioTercaFim" value="18:00">
+                    </div>
+                    <div class="horario-toggle">
+                        <label class="switch">
+                            <input type="checkbox" id="tercaAtivo" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Quarta-feira -->
+                <div class="horario-item">
+                    <span class="dia-semana">Quarta-feira</span>
+                    <div class="horario-inputs">
+                        <input type="time" id="horarioQuartaInicio" value="09:00">
+                        <span>às</span>
+                        <input type="time" id="horarioQuartaFim" value="18:00">
+                    </div>
+                    <div class="horario-toggle">
+                        <label class="switch">
+                            <input type="checkbox" id="quartaAtivo" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Quinta-feira -->
+                <div class="horario-item">
+                    <span class="dia-semana">Quinta-feira</span>
+                    <div class="horario-inputs">
+                        <input type="time" id="horarioQuintaInicio" value="09:00">
+                        <span>às</span>
+                        <input type="time" id="horarioQuintaFim" value="18:00">
+                    </div>
+                    <div class="horario-toggle">
+                        <label class="switch">
+                            <input type="checkbox" id="quintaAtivo" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Sexta-feira -->
+                <div class="horario-item">
+                    <span class="dia-semana">Sexta-feira</span>
+                    <div class="horario-inputs">
+                        <input type="time" id="horarioSextaInicio" value="09:00">
+                        <span>às</span>
+                        <input type="time" id="horarioSextaFim" value="18:00">
+                    </div>
+                    <div class="horario-toggle">
+                        <label class="switch">
+                            <input type="checkbox" id="sextaAtivo" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Sábado -->
+                <div class="horario-item">
+                    <span class="dia-semana">Sábado</span>
+                    <div class="horario-inputs">
+                        <input type="time" id="horarioSabadoInicio" value="09:00">
+                        <span>às</span>
+                        <input type="time" id="horarioSabadoFim" value="13:00">
+                    </div>
+                    <div class="horario-toggle">
+                        <label class="switch">
+                            <input type="checkbox" id="sabadoAtivo" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Domingo -->
+                <div class="horario-item">
+                    <span class="dia-semana">Domingo</span>
+                    <div class="horario-inputs">
+                        <input type="time" id="horarioDomingoInicio" value="09:00">
+                        <span>às</span>
+                        <input type="time" id="horarioDomingoFim" value="12:00">
+                    </div>
+                    <div class="horario-toggle">
+                        <label class="switch">
+                            <input type="checkbox" id="domingoAtivo">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="config-toggle" style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--light-gray-2);">
+                    <span class="config-toggle-label">
+                        <i class="bi bi-clock-history"></i>
+                        Funcionamento em feriados
+                    </span>
+                    <label class="switch">
+                        <input type="checkbox" id="feriadosAtivo">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção: Redes Sociais -->
+        <section class="config-section" id="redes-sociais">
+            <div class="config-section-header">
+                <i class="bi bi-share"></i>
+                <div>
+                    <h2>Redes Sociais</h2>
+                    <p>Conecte seus perfis sociais</p>
+                </div>
+            </div>
+
+            <div class="config-card">
+                <div class="social-input">
+                    <i class="bi bi-facebook"></i>
+                    <input type="url" class="config-input" id="socialFacebook" value="https://facebook.com/sosfelino" placeholder="https://facebook.com/suaong">
+                </div>
+
+                <div class="social-input">
+                    <i class="bi bi-instagram"></i>
+                    <input type="url" class="config-input" id="socialInstagram" value="https://instagram.com/sosfelino" placeholder="https://instagram.com/suaong">
+                </div>
+
+                <div class="social-input">
+                    <i class="bi bi-twitter"></i>
+                    <input type="url" class="config-input" id="socialTwitter" value="https://twitter.com/sosfelino" placeholder="https://twitter.com/suaong">
+                </div>
+
+                <div class="social-input">
+                    <i class="bi bi-linkedin"></i>
+                    <input type="url" class="config-input" id="socialLinkedin" value="https://linkedin.com/company/sosfelino" placeholder="https://linkedin.com/company/suaong">
+                </div>
+
+                <div class="social-input">
+                    <i class="bi bi-youtube"></i>
+                    <input type="url" class="config-input" id="socialYoutube" value="https://youtube.com/sosfelino" placeholder="https://youtube.com/suaong">
+                </div>
+
+                <div class="social-input">
+                    <i class="bi bi-tiktok"></i>
+                    <input type="url" class="config-input" id="socialTiktok" value="" placeholder="https://tiktok.com/@suaong">
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção: Notificações -->
+        <section class="config-section" id="notificacoes">
+            <div class="config-section-header">
+                <i class="bi bi-bell"></i>
+                <div>
+                    <h2>Notificações</h2>
+                    <p>Configure como deseja ser notificado</p>
+                </div>
+            </div>
+
+            <div class="config-grid">
+                <!-- Card: Notificações por Email -->
+                <div class="config-card">
+                    <div class="config-card-header">
+                        <i class="bi bi-envelope-check"></i>
+                        <div>
+                            <h3>Notificações por Email</h3>
+                            <p>Receba alertas no seu email</p>
+                        </div>
+                    </div>
+
+                    <div class="config-toggle">
+                        <span class="config-toggle-label">
+                            <i class="bi bi-gift"></i>
+                            Novas doações
+                        </span>
+                        <label class="switch">
+                            <input type="checkbox" id="emailNovasDoacoes" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="config-toggle">
+                        <span class="config-toggle-label">
+                            <i class="bi bi-megaphone"></i>
+                            Campanhas aprovadas
+                        </span>
+                        <label class="switch">
+                            <input type="checkbox" id="emailCampanhasAprovadas" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="config-toggle">
+                        <span class="config-toggle-label">
+                            <i class="bi bi-chat"></i>
+                            Mensagens de doadores
+                        </span>
+                        <label class="switch">
+                            <input type="checkbox" id="emailMensagens" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="config-toggle">
+                        <span class="config-toggle-label">
+                            <i class="bi bi-calendar-check"></i>
+                            Lembretes de coleta
+                        </span>
+                        <label class="switch">
+                            <input type="checkbox" id="emailLembretes" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="config-toggle">
+                        <span class="config-toggle-label">
+                            <i class="bi bi-newspaper"></i>
+                            Newsletter ReUse
+                        </span>
+                        <label class="switch">
+                            <input type="checkbox" id="emailNewsletter" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Card: Notificações Push -->
+                <div class="config-card">
+                    <div class="config-card-header">
+                        <i class="bi bi-phone"></i>
+                        <div>
+                            <h3>Notificações Push</h3>
+                            <p>Alertas no navegador</p>
+                        </div>
+                    </div>
+
+                    <div class="config-toggle">
+                        <span class="config-toggle-label">
+                            <i class="bi bi-gift"></i>
+                            Novas doações
+                        </span>
+                        <label class="switch">
+                            <input type="checkbox" id="pushNovasDoacoes" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="config-toggle">
+                        <span class="config-toggle-label">
+                            <i class="bi bi-check-circle"></i>
+                            Coletas confirmadas
+                        </span>
+                        <label class="switch">
+                            <input type="checkbox" id="pushColetasConfirmadas" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="config-toggle">
+                        <span class="config-toggle-label">
+                            <i class="bi bi-star"></i>
+                            Avaliações recebidas
+                        </span>
+                        <label class="switch">
+                            <input type="checkbox" id="pushAvaliacoes" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="config-toggle">
+                        <span class="config-toggle-label">
+                            <i class="bi bi-bar-chart"></i>
+                            Relatórios mensais
+                        </span>
+                        <label class="switch">
+                            <input type="checkbox" id="pushRelatorios">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção: Preferências de Doação -->
+        <section class="config-section" id="preferencias-doacao">
+            <div class="config-section-header">
+                <i class="bi bi-heart"></i>
+                <div>
+                    <h2>Preferências de Doação</h2>
+                    <p>Configure como sua ONG recebe doações</p>
+                </div>
+            </div>
+
+            <div class="config-grid">
+                <!-- Card: Tipos de Doação Aceitos -->
+                <div class="config-card">
+                    <div class="config-card-header">
+                        <i class="bi bi-box-seam"></i>
+                        <div>
+                            <h3>Tipos de Doação</h3>
+                            <p>Selecione o que sua ONG aceita</p>
+                        </div>
+                    </div>
+
+                    <div class="config-toggle">
+                        <span class="config-toggle-label">
+                            <i class="bi bi-box"></i>
+                            Itens físicos
+                        </span>
+                        <label class="switch">
+                            <input type="checkbox" id="aceitaItens" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="config-toggle">
+                        <span class="config-toggle-label">
+                            <i class="bi bi-cash-coin"></i>
+                            Doações financeiras
+                        </span>
+                        <label class="switch">
+                            <input type="checkbox" id="aceitaFinanceiro" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="config-toggle">
+                        <span class="config-toggle-label">
+                            <i class="bi bi-person-workspace"></i>
+                            Voluntariado
+                        </span>
+                        <label class="switch">
+                            <input type="checkbox" id="aceitaVoluntarios" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="config-input-group" style="margin-top: 1rem;">
+                        <label>Categorias de itens aceitos</label>
+                        <select class="config-select" id="categoriasItens" multiple size="3">
+                            <option value="racao" selected>Rações e Alimentos</option>
+                            <option value="medicamentos" selected>Medicamentos</option>
+                            <option value="roupas" selected>Roupas e Cobertores</option>
+                            <option value="brinquedos">Brinquedos</option>
+                            <option value="moveis">Móveis</option>
+                            <option value="eletronicos">Eletrônicos</option>
+                            <option value="livros">Livros</option>
+                            <option value="higiene">Produtos de Higiene</option>
+                        </select>
+                        <span class="help-text">Segure Ctrl para selecionar múltiplas opções</span>
+                    </div>
+                </div>
+
+                <!-- Card: Zonas de Coleta -->
+                <div class="config-card">
+                    <div class="config-card-header">
+                        <i class="bi bi-truck"></i>
+                        <div>
+                            <h3>Zonas de Coleta</h3>
+                            <p>Áreas onde realizamos coleta</p>
+                        </div>
+                    </div>
+
+                    <div id="zonasEntregaContainer">
+                        <!-- Zona 1 -->
+                        <div class="zona-entrega">
+                            <div class="zona-entrega-header">
+                                <h4>Zona 1</h4>
+                                <button class="btn-remove" onclick="removerZona(this)">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </div>
+                            <select class="config-select" style="margin-bottom: 0.5rem;">
+                                <option value="centro" selected>Centro</option>
+                                <option value="zona-norte">Zona Norte</option>
+                                <option value="zona-sul">Zona Sul</option>
+                                <option value="zona-leste">Zona Leste</option>
+                                <option value="zona-oeste">Zona Oeste</option>
+                            </select>
+                            <input type="text" class="config-input" placeholder="Bairros (separados por vírgula)" value="Jardim América, Bela Vista, Consolação">
+                        </div>
+
+                        <!-- Zona 2 -->
+                        <div class="zona-entrega">
+                            <div class="zona-entrega-header">
+                                <h4>Zona 2</h4>
+                                <button class="btn-remove" onclick="removerZona(this)">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </div>
+                            <select class="config-select" style="margin-bottom: 0.5rem;">
+                                <option value="centro">Centro</option>
+                                <option value="zona-norte" selected>Zona Norte</option>
+                                <option value="zona-sul">Zona Sul</option>
+                                <option value="zona-leste">Zona Leste</option>
+                                <option value="zona-oeste">Zona Oeste</option>
+                            </select>
+                            <input type="text" class="config-input" placeholder="Bairros (separados por vírgula)" value="Santana, Tucuruvi, Vila Guilherme">
+                        </div>
+                    </div>
+
+                    <button class="btn-add-zona" id="addZonaBtn">
+                        <i class="bi bi-plus-circle"></i>
+                        Adicionar nova zona de coleta
+                    </button>
+
+                    <div class="config-toggle" style="margin-top: 1rem;">
+                        <span class="config-toggle-label">
+                            <i class="bi bi-truck"></i>
+                            Oferece coleta gratuita
+                        </span>
+                        <label class="switch">
+                            <input type="checkbox" id="coletaGratuita" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="config-input-group" style="margin-top: 1rem;">
+                        <label>Raio máximo de coleta (km)</label>
+                        <input type="number" class="config-input" id="raioColeta" value="15" min="0" max="100">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção: Segurança -->
+        <section class="config-section" id="seguranca">
+            <div class="config-section-header">
+                <i class="bi bi-shield-lock"></i>
+                <div>
+                    <h2>Segurança</h2>
+                    <p>Gerencie sua senha e opções de segurança</p>
+                </div>
+            </div>
+
+            <div class="config-grid">
+                <!-- Card: Alterar Senha -->
+                <div class="config-card">
+                    <div class="config-card-header">
+                        <i class="bi bi-key"></i>
+                        <div>
+                            <h3>Alterar Senha</h3>
+                            <p>Atualize sua senha de acesso</p>
+                        </div>
+                    </div>
+
+                    <div class="config-input-group">
+                        <label>Senha atual</label>
+                        <input type="password" class="config-input" id="senhaAtual" placeholder="••••••••">
+                    </div>
+
+                    <div class="config-input-group">
+                        <label>Nova senha</label>
+                        <input type="password" class="config-input" id="novaSenha" placeholder="••••••••">
+                    </div>
+
+                    <div class="config-input-group">
+                        <label>Confirmar nova senha</label>
+                        <input type="password" class="config-input" id="confirmarSenha" placeholder="••••••••">
+                    </div>
+
+                    <div class="senha-requisitos">
+                        <p>Sua senha deve conter:</p>
+                        <ul>
+                            <li id="reqLength" class="invalid">✓ Mínimo 8 caracteres</li>
+                            <li id="reqNumber" class="invalid">✓ Pelo menos um número</li>
+                            <li id="reqUpper" class="invalid">✓ Pelo menos uma letra maiúscula</li>
+                            <li id="reqSpecial" class="invalid">✓ Pelo menos um caractere especial</li>
+                        </ul>
+                    </div>
+
+                    <button class="btn-config btn-config-primary" style="width: 100%;" id="alterarSenhaBtn">
+                        <i class="bi bi-check-circle"></i>
+                        Alterar Senha
+                    </button>
+                </div>
+
+                <!-- Card: Autenticação e Sessões -->
+                <div class="config-card">
+                    <div class="config-card-header">
+                        <i class="bi bi-shield-check"></i>
+                        <div>
+                            <h3>Autenticação</h3>
+                            <p>Opções avançadas de segurança</p>
+                        </div>
+                    </div>
+
+                    <div class="config-toggle">
+                        <span class="config-toggle-label">
+                            <i class="bi bi-phone"></i>
+                            Autenticação em dois fatores
+                        </span>
+                        <label class="switch">
+                            <input type="checkbox" id="authDoisFatores">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="help-text" style="margin-top: -0.5rem; margin-bottom: 1rem;">
+                        Receba um código no seu celular para maior segurança
+                    </div>
+
+                    <div class="config-toggle">
+                        <span class="config-toggle-label">
+                            <i class="bi bi-envelope"></i>
+                            Alertas de login
+                        </span>
+                        <label class="switch">
+                            <input type="checkbox" id="alertasLogin" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="config-divider"></div>
+
+                    <h4 style="margin: 1rem 0; font-size: 1rem;">Sessões ativas</h4>
+                    
+                    <div class="sessao-item" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--light-gray-2);">
+                        <div>
+                            <strong>Este dispositivo</strong>
+                            <div style="font-size: 0.8rem; color: var(--text-light);">Windows • Chrome • São Paulo</div>
+                        </div>
+                        <span class="config-badge success" style="background: rgba(0,204,153,0.1); color: var(--primary-green-dark);">Atual</span>
+                    </div>
+
+                    <div class="sessao-item" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--light-gray-2);">
+                        <div>
+                            <strong>Dispositivo móvel</strong>
+                            <div style="font-size: 0.8rem; color: var(--text-light);">iPhone • Safari • São Paulo</div>
+                        </div>
+                        <span class="config-badge" style="background: var(--light-gray-2);">10/02/2025</span>
+                    </div>
+
+                    <button class="btn-config btn-config-secondary" style="width: 100%; margin-top: 1rem;">
+                        <i class="bi bi-x-circle"></i>
+                        Encerrar todas as sessões
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção: Privacidade e Dados -->
+        <section class="config-section" id="privacidade">
+            <div class="config-section-header">
+                <i class="bi bi-shield"></i>
+                <div>
+                    <h2>Privacidade e Dados</h2>
+                    <p>Controle suas informações e privacidade</p>
+                </div>
+            </div>
+
+            <div class="config-card">
+                <div class="config-toggle">
+                    <span class="config-toggle-label">
+                        <i class="bi bi-eye-slash"></i>
+                        Perfil privado (não listado em buscas públicas)
+                    </span>
+                    <label class="switch">
+                        <input type="checkbox" id="perfilPrivado">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="config-toggle">
+                    <span class="config-toggle-label">
+                        <i class="bi bi-envelope"></i>
+                        Compartilhar dados com a ReUse para melhorias
+                    </span>
+                    <label class="switch">
+                        <input type="checkbox" id="compartilharDados" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="config-toggle">
+                    <span class="config-toggle-label">
+                        <i class="bi bi-graph-up"></i>
+                        Permitir uso de dados em relatórios anônimos
+                    </span>
+                    <label class="switch">
+                        <input type="checkbox" id="dadosRelatorios" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="config-divider"></div>
+
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <button class="btn-config btn-config-secondary">
+                        <i class="bi bi-download"></i>
+                        Exportar meus dados
+                    </button>
+                    <button class="btn-config btn-config-danger">
+                        <i class="bi bi-trash"></i>
+                        Solicitar exclusão da conta
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção: Preferências de Interface -->
+        <section class="config-section" id="interface">
+            <div class="config-section-header">
+                <i class="bi bi-palette"></i>
+                <div>
+                    <h2>Preferências de Interface</h2>
+                    <p>Personalize sua experiência</p>
+                </div>
+            </div>
+
+            <div class="config-grid">
+                <!-- Card: Aparência -->
+                <div class="config-card">
+                    <div class="config-card-header">
+                        <i class="bi bi-brush"></i>
+                        <div>
+                            <h3>Aparência</h3>
+                            <p>Personalize o visual</p>
+                        </div>
+                    </div>
+
+                    <div class="config-input-group">
+                        <label>Tema</label>
+                        <select class="config-select" id="temaInterface">
+                            <option value="auto" selected>Automático (seguir sistema)</option>
+                            <option value="light">Claro</option>
+                            <option value="dark">Escuro</option>
+                        </select>
+                    </div>
+
+                    <div class="config-input-group">
+                        <label>Idioma</label>
+                        <select class="config-select" id="idioma">
+                            <option value="pt-BR" selected>Português (Brasil)</option>
+                            <option value="en">English</option>
+                            <option value="es">Español</option>
+                        </select>
+                    </div>
+
+                    <div class="config-toggle">
+                        <span class="config-toggle-label">
+                            <i class="bi bi-type-bold"></i>
+                            Fonte maior (acessibilidade)
+                        </span>
+                        <label class="switch">
+                            <input type="checkbox" id="fonteMaior">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="config-toggle">
+                        <span class="config-toggle-label">
+                            <i class="bi bi-arrows-fullscreen"></i>
+                            Modo compacto
+                        </span>
+                        <label class="switch">
+                            <input type="checkbox" id="modoCompacto">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Card: Dashboard -->
+                <div class="config-card">
+                    <div class="config-card-header">
+                        <i class="bi bi-grid"></i>
+                        <div>
+                            <h3>Dashboard</h3>
+                            <p>Configure sua página inicial</p>
+                        </div>
+                    </div>
+
+                    <div class="config-toggle">
+                        <span class="config-toggle-label">
+                            <i class="bi bi-bar-chart"></i>
+                            Mostrar gráficos no dashboard
+                        </span>
+                        <label class="switch">
+                            <input type="checkbox" id="mostrarGraficos" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="config-toggle">
+                        <span class="config-toggle-label">
+                            <i class="bi bi-megaphone"></i>
+                            Destacar campanhas ativas
+                        </span>
+                        <label class="switch">
+                            <input type="checkbox" id="destacarCampanhas" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="config-input-group">
+                        <label>Itens por página</label>
+                        <select class="config-select" id="itensPorPagina">
+                            <option value="10">10 itens</option>
+                            <option value="20" selected>20 itens</option>
+                            <option value="50">50 itens</option>
+                            <option value="100">100 itens</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Botões de Ação -->
+        <div class="config-actions">
+            <button class="btn-config btn-config-secondary" id="cancelarBtn">
+                <i class="bi bi-x-lg"></i>
+                Cancelar
+            </button>
+            <button class="btn-config btn-config-primary" id="salvarBtn">
+                <i class="bi bi-check-lg"></i>
+                Salvar alterações
+            </button>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="main-content">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h4>Ferramentas para ONGs</h4>
+                    <ul class="footer-links">
+                        <li><a href="ong-inicio.html"><i class="bi bi-house"></i> Dashboard</a></li>
+                        <li><a href="ong-produtos.html"><i class="bi bi-box"></i> Gerenciar Produtos</a></li>
+                        <li><a href="ong-relatorios.html"><i class="bi bi-bar-chart"></i> Relatórios</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Para ONGs</h4>
+                    <ul class="footer-links">
+                        <li><a href="para-ongs.html"><i class="bi bi-question-circle"></i> Central de Ajuda</a></li>
+                        <li><a href="para-ongs.html"><i class="bi bi-chat-dots"></i> Fale Conosco</a></li>
+                        <li><a href="para-ongs.html"><i class="bi bi-megaphone"></i> Guia de Campanhas</a></li>
+                        <li><a href="para-ongs.html"><i class="bi bi-file-text"></i> Documentação</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="legal-ong.html"><i class="bi bi-shield-check"></i> Política de Privacidade</a></li>
+                        <li><a href="legal-ong.html"><i class="bi bi-file-text"></i> Termos de Uso</a></li>
+                        <li><a href="legal-ong.html"><i class="bi bi-cookie"></i> Política de Cookies</a></li>
+                        <li><a href="legal-ong.html"><i class="bi bi-credit-card"></i> Segurança</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Conecte-se</h4>
+                    <p>Siga-nos nas redes sociais</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" title="Facebook">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+                        <a href="#" class="social-link" title="Instagram">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link" title="Twitter">
+                            <i class="bi bi-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link" title="LinkedIn">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2025 ReUse - Todos os direitos reservados. Consumo consciente, futuro sustentável.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal de Confirmação de Logout -->
+    <div class="modal" id="logoutModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Sair da Conta</h3>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Tem certeza que deseja sair da sua conta? Você precisará fazer login novamente para acessar seus dados.</p>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="cancelLogout">Cancelar</button>
+                <button class="btn btn-danger" id="confirmLogout">Sair</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Sucesso -->
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    <i class="bi bi-check-circle" style="color: var(--primary-green);"></i>
+                    Sucesso!
+                </h3>
+                <button class="modal-close" id="closeSuccessModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="successMessage">Configurações salvas com sucesso!</p>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-primary" id="okSuccessBtn">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Menu de Perfil Expandido -->
+    <div class="profile-menu-expanded" id="profileMenuExpanded">
+        <div class="profile-overlay"></div>
+        <div class="profile-sidebar">
+            <div class="profile-header">
+                <div class="profile-user-info">
+                    <div class="profile-avatar-large">
+                        <i class="bi bi-building"></i>
+                    </div>
+                    <div class="profile-user-details">
+                        <h3>SOS Felino</h3>
+                        <p>contato@sosfelino.org</p>
+                        <span class="ong-cnpj">CNPJ: 12.345.678/0001-90</span>
+                    </div>
+                </div>
+                <button class="close-profile" id="closeProfile">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+            
+            <div class="profile-body">
+                <nav class="profile-nav">
+                    <button class="profile-nav-item" onclick="window.location.href='ong-perfil.html'">
+                        <i class="bi bi-building"></i> 
+                        <span>Perfil da ONG</span>
+                    </button>
+                    
+                    <button class="profile-nav-item active" onclick="window.location.href='ong-configuracoes.html'">
+                        <i class="bi bi-gear"></i>
+                        <span>Configurações</span>
+                    </button>
+                    
+                    <button class="profile-nav-item" onclick="window.location.href='ong-inicio.html#campanhas'">
+                        <i class="bi bi-megaphone"></i>
+                        <span>Minhas Campanhas</span>
+                    </button>
+                    
+                    <button class="profile-nav-item" onclick="window.location.href='ong-inicio.html#doacoes'">
+                        <i class="bi bi-gift"></i>
+                        <span>Doações Recebidas</span>
+                    </button>
+                    
+                    <button class="profile-nav-item" onclick="window.location.href='ong-relatorios.html'">
+                        <i class="bi bi-bar-chart"></i>
+                        <span>Relatórios</span>
+                    </button>
+                    
+                    <div class="profile-nav-divider"></div>
+                    
+                    <button class="profile-nav-item logout" id="profileLogout">
+                        <i class="bi bi-box-arrow-left"></i>
+                        <span>Sair da Conta</span>
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <script src="JS/auth.js"></script>
+    <script src="js/ong-inicio.js"></script>
+    <script src="js/ong-configuracoes.js"></script>
+    <script src="js/ong-profile-menu.js"></script>
+    <script src="js/accessibility-menu.js"></script>
+    <script src="js/modal.js"></script>
+
+        <!-- Widget VLibras -->
+        <div vw class="enabled">
+            <div vw-access-button class="active"></div>
+            <div vw-plugin-wrapper>
+                <div class="vw-plugin-top-wrapper"></div>
+            </div>
+        </div>
+</body>
+
+</html>

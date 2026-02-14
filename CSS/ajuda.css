@@ -1,0 +1,518 @@
+       /* Estilos específicos para a página de ajuda */
+        .ajuda-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .ajuda-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+            background: linear-gradient(135deg, 
+                rgba(0, 102, 204, 0.05), 
+                rgba(0, 204, 153, 0.05));
+            border-radius: var(--border-radius-lg);
+        }
+
+        .ajuda-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-blue);
+        }
+
+        .ajuda-header p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .secao-ajuda {
+            margin-bottom: 4rem;
+        }
+
+        .secao-titulo {
+            font-size: 1.8rem;
+            color: var(--primary-blue);
+            margin-bottom: 2rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid var(--primary-green);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .secao-titulo i {
+            color: var(--primary-green);
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .faq-item {
+            background: var(--card-bg);
+            border-radius: var(--border-radius-lg);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--light-gray-2);
+            transition: all var(--transition-normal);
+        }
+
+        .faq-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-blue);
+        }
+
+        .faq-pergunta {
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .faq-pergunta i {
+            color: var(--primary-blue);
+        }
+
+        .faq-resposta {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .contato-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .contato-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--light-gray-2);
+            transition: all var(--transition-normal);
+        }
+
+        .contato-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-green);
+        }
+
+        .contato-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 1.5rem;
+            background: var(--gradient-green);
+            border-radius: var(--border-radius-round);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+        }
+
+        .contato-card h3 {
+            color: var(--text-dark);
+            margin-bottom: 0.75rem;
+        }
+
+        .contato-card p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-contato {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius-md);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all var(--transition-normal);
+        }
+
+        .btn-contato:hover {
+            background: var(--primary-blue-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 102, 204, 0.2);
+        }
+
+        /* Formulário de contato */
+        .form-contato {
+            background: var(--card-bg);
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--light-gray-2);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 2px solid var(--light-gray-2);
+            border-radius: var(--border-radius-md);
+            background: var(--card-bg);
+            color: var(--text-dark);
+            font-family: inherit;
+            transition: all var(--transition-normal);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: none;
+        }
+
+        .btn-submit {
+            background: var(--primary-green);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius-md);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-submit:hover {
+            background: var(--primary-green-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 204, 153, 0.2);
+        }
+
+        /* Processos */
+        .processo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .processo-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--light-gray-2);
+            transition: all var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .processo-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-blue);
+        }
+
+        .processo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .processo-step {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .processo-number {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-blue);
+            color: white;
+            border-radius: var(--border-radius-round);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .processo-card h3 {
+            color: var(--text-dark);
+            margin-bottom: 0.75rem;
+        }
+
+        .processo-card p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .processo-detalhes {
+            background: rgba(0, 102, 204, 0.05);
+            padding: 1rem;
+            border-radius: var(--border-radius-md);
+            margin-top: 1rem;
+        }
+
+        .processo-detalhes h4 {
+            color: var(--primary-blue);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .processo-detalhes ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .processo-detalhes li {
+            color: var(--text-light);
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .processo-detalhes li i {
+            color: var(--primary-green);
+            font-size: 0.8rem;
+        }
+
+        /* Dark mode adjustments */
+        body.dark-mode .ajuda-header {
+            background: linear-gradient(135deg, 
+                rgba(0, 102, 204, 0.1), 
+                rgba(0, 204, 153, 0.1));
+        }
+
+        body.dark-mode .form-control {
+            background: var(--light-gray-2);
+            border-color: var(--light-gray-3);
+        }
+
+        body.dark-mode .processo-detalhes {
+            background: rgba(0, 102, 204, 0.1);
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .ajuda-container {
+                padding: 1rem;
+            }
+
+            .ajuda-header h1 {
+                font-size: 2rem;
+            }
+
+            .secao-titulo {
+                font-size: 1.5rem;
+            }
+
+            .faq-grid,
+            .contato-grid,
+            .processo-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .contato-card,
+            .form-contato,
+            .processo-card {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .ajuda-header {
+                padding: 1.5rem 1rem;
+            }
+
+            .ajuda-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .secao-titulo {
+                font-size: 1.3rem;
+            }
+
+            .faq-item,
+            .contato-card,
+            .form-contato,
+            .processo-card {
+                padding: 1.25rem;
+            }
+        }
+
+        /* Adicione estas regras ao final do arquivo ajuda.css */
+
+/* Estilos para mensagens de erro */
+.error-message {
+    color: var(--primary-red);
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    min-height: 1.25rem;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all var(--transition-normal);
+}
+
+.error-message.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Validação de campos */
+.form-control.error {
+    border-color: var(--primary-red);
+    background-color: rgba(255, 71, 87, 0.05);
+}
+
+.form-control.valid {
+    border-color: var(--primary-green);
+}
+
+/* Animações para notificações */
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+@keyframes successPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 204, 153, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(0, 204, 153, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 204, 153, 0);
+    }
+}
+
+/* Mensagem de sucesso no formulário */
+.form-success-message {
+    background: var(--primary-green);
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: var(--border-radius-md);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    animation: successPulse 2s infinite;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all var(--transition-normal);
+}
+
+.form-success-message.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.form-success-message i {
+    font-size: 1.2rem;
+}
+
+/* Estilo para o botão de envio quando está processando */
+.btn-submit.processing {
+    opacity: 0.7;
+    cursor: not-allowed;
+    position: relative;
+    padding-left: 3rem;
+}
+
+.btn-submit.processing::before {
+    content: '';
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: translateY(-50%) rotate(360deg);
+    }
+}
+
+/* Contador de caracteres */
+.char-counter {
+    font-size: 0.8rem;
+    color: var(--text-lighter);
+    text-align: right;
+    margin-top: 0.25rem;
+    transition: color var(--transition-fast);
+}
+
+.char-counter.warning {
+    color: var(--primary-orange);
+}
+
+.char-counter.error {
+    color: var(--primary-red);
+}
+
+/* Dark mode adjustments para mensagens de erro */
+body.dark-mode .form-control.error {
+    background-color: rgba(255, 71, 87, 0.1);
+}
+
+body.dark-mode .error-message {
+    color: var(--primary-red-light);
+}
