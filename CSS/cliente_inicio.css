@@ -861,7 +861,7 @@ body.dark-mode .categories-bar {
     border: 2px solid var(--light-gray-2);
     min-width: 44px;
     flex: 0;
-    padding: 0.875rem;
+    padding: 2rem;
 }
 
 .btn-outline:hover {
