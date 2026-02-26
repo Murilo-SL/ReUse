@@ -103,6 +103,10 @@
     gap: 0.75rem;
 }
 
+.btn-exp {
+    padding: 3rem;
+}
+
 .stats-actions .btn-outline {
     background: rgba(255,255,255,0.1);
     border: 1px solid rgba(255,255,255,0.3);

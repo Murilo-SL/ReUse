@@ -99,9 +99,6 @@ class GerenciadorProdutosVendas {
             <div class="product-image">
                 <img src="${produto.imagem}" alt="${produto.nome}" loading="lazy">
                 <div class="product-status ${statusClass}">${statusText}</div>
-                <button class="btn-favorito" title="Adicionar aos favoritos">
-                    <i class="bi bi-heart"></i>
-                </button>
             </div>
             <div class="product-info">
                 <h3 class="product-title">${produto.nome}</h3>
@@ -357,46 +354,8 @@ class GerenciadorProdutosVendas {
                 this.comunicarComprador(row);
             }
         });
-
-        // Botão "Ver Histórico"
-        const verHistorico = document.querySelector('.recent-sales-section .btn-outline');
-        if (verHistorico) {
-            verHistorico.addEventListener('click', () => {
-                this.showNotification('📋 Carregando histórico completo de vendas...', 'info');
-                setTimeout(() => {
-                    window.location.href = 'vendedor-vendas.html';
-                }, 800);
-            });
-        }
     }
 
-    adicionarAcoesRapidas() {
-        // Adicionar barra de ações rápidas na seção de produtos
-        const sectionHeader = document.querySelector('.recent-products-section .section-header');
-        if (sectionHeader) {
-            const acoesRapidas = document.createElement('div');
-            acoesRapidas.className = 'acoes-rapidas';
-            acoesRapidas.style.display = 'flex';
-            acoesRapidas.style.gap = '0.5rem';
-            acoesRapidas.innerHTML = `
-                <button class="btn btn-sm btn-outline btn-ordenar">
-                    <i class="bi bi-arrow-down-up"></i> Ordenar
-                </button>
-                <button class="btn btn-sm btn-outline btn-filtrar">
-                    <i class="bi bi-funnel"></i> Filtrar
-                </button>
-                <button class="btn btn-sm btn-success">
-                    <i class="bi bi-plus-circle"></i> Novo
-                </button>
-            `;
-            sectionHeader.appendChild(acoesRapidas);
-
-            // Event listener para ordenar
-            acoesRapidas.querySelector('.btn-ordenar').addEventListener('click', () => {
-                this.mostrarOpcoesOrdenacao();
-            });
-        }
-    }
 
     // ========== FUNÇÕES DOS PRODUTOS ==========
 
