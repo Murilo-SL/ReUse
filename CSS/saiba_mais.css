@@ -79,6 +79,15 @@ header {
     color: transparent;
 }
 
+a {
+    text-decoration: none;
+    transition: transform 0.2s ease;
+}
+
+a:hover {
+    transform: scale(110%);
+}
+
 .page-subtitle {
     font-size: 1.2rem;
     max-width: 800px;
