@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalhes do Produto | SeuSite</title>
+    <title>Perfil do Vendedor | ReUse</title>
     
     <!-- Links CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
@@ -15,25 +15,27 @@
     <link rel="stylesheet" href="CSS/profile_menu.css">
     <link rel="stylesheet" href="CSS/modal.css">
     <link rel="stylesheet" href="CSS/product_page.css">
+    <link rel="stylesheet" href="CSS/seller_profile.css">
+    
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <script>
         new window.VLibras.Widget('https://vlibras.gov.br/app');
     </script>
-        <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q755SR73MY"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag() { dataLayer.push(arguments); }
-            gtag('js', new Date());
-            gtag('config', 'G-Q755SR73MY');
-        </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q755SR73MY"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-Q755SR73MY');
+    </script>
 </head>
 <body>
     <!-- Header Principal -->
     <header class="main-header">
         <div class="header-container">
             <div class="logo-section">
-                <a href="#" class="logo-container">
+                <a href="cliente-inicio.html" class="logo-container">
                     <img src="IMG/reuse-logo-(2).svg" alt="ReUse Logo">
                     <span class="logo-text">ReUse</span>
                 </a>
@@ -104,131 +106,210 @@
     </header>
 
     <!-- Conteúdo Principal -->
-    <main class="main-content product-detail-page">
+    <main class="main-content seller-profile-page">
         <div class="container">
+            <!-- Breadcrumb -->
             <nav class="breadcrumb">
                 <a href="cliente-inicio.html">Início</a>
                 <i class="bi bi-chevron-right"></i>
-                <a href="#">Categoria</a>
-                <i class="bi bi-chevron-right"></i>
-                <span id="productTitleBreadcrumb">Produto</span>
+                <span id="sellerNameBreadcrumb">Perfil do Vendedor</span>
             </nav>
 
-            <div class="product-detail-container">
-                <div class="product-gallery">
-                    <div class="main-image">
-                        <img id="productMainImage" src="" alt="Imagem principal do produto">
+            <!-- Card do Perfil do Vendedor -->
+            <div class="seller-profile-card">
+                <!-- Capa do Vendedor -->
+                <div class="seller-cover-photo">
+                    <div class="seller-avatar-large">
+                        <i class="bi bi-shop"></i>
                     </div>
-                    <div class="image-thumbnails" id="imageThumbnails">
-                        <!-- Miniaturas serão geradas via JavaScript -->
-                    </div>
-
-                    <!-- Dentro da div product-gallery, após image-thumbnails -->
-<div class="seller-info-card">
-    <div class="seller-info">
-        <div class="seller-avatar">
-            <i class="bi bi-shop"></i>
-        </div>
-        <div class="seller-details">
-            <span class="seller-label">Vendido por</span>
-            <a href="perfil-vendedor.html" class="seller-name" id="sellerNameLink">
-                <!-- Nome do vendedor será preenchido via JS -->
-            </a>
-            <div class="seller-rating">
-                <i class="bi bi-star-fill"></i>
-                <span id="sellerRating">4.8</span>
-                <span class="seller-sales" id="sellerSales">(152 vendas)</span>
-            </div>
-        </div>
-    </div>
-    
                 </div>
-
-                <div class="product-info">
-                    <div class="product-header">
-                        <h1 id="productTitle" class="product-title"></h1>
-                        <div class="product-rating">
-                            <div class="stars">
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-half"></i>
+                
+                <div class="seller-profile-content">
+                    <!-- Cabeçalho com informações básicas -->
+                    <div class="seller-profile-header">
+                        <div class="seller-title-section">
+                            <h1 class="seller-name-large" id="sellerName">Carregando...</h1>
+                            <div class="seller-location" id="sellerLocation">
+                                <i class="bi bi-geo-alt"></i>
+                                <span>Carregando...</span>
                             </div>
-                            <span class="rating-text">4.5 (128 avaliações)</span>
+                            <div class="seller-badges">
+                                <span class="seller-badge verified">
+                                    <i class="bi bi-patch-check-fill"></i>
+                                    Vendedor Verificado
+                                </span>
+                                <span class="seller-badge since" id="sellerSince">
+                                    <i class="bi bi-calendar-check"></i>
+                                    Membro desde 2024
+                                </span>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="product-price-section">
-                        <div class="price-main" id="productPrice"></div>
-                        <div class="price-installment" id="productInstallment"></div>
-                    </div>
-
-                    <div class="product-description-section">
-                        <h3>Descrição do Produto</h3>
-                        <p id="productDescription" class="product-description-full"></p>
                         
-                        <div class="product-specs" id="productSpecs">
-                            <!-- Especificações serão geradas via JavaScript -->
-                        </div>
-                    </div>
-
-                    <div class="product-actions">
-                        <div class="quantity-selector">
-                            <button class="quantity-btn" id="decreaseQuantity">
-                                <i class="bi bi-dash"></i>
-                            </button>
-                            <input type="number" id="productQuantity" value="1" min="1" max="10">
-                            <button class="quantity-btn" id="increaseQuantity">
-                                <i class="bi bi-plus"></i>
-                            </button>
-                        </div>
-
-                        <div class="action-buttons">
-                            <button type="button" class="btn btn-primary btn-lg" id="addToCartBtn" onclick="(function(){const id=new URLSearchParams(window.location.search).get('id')||'1'; const qty = parseInt(document.getElementById('productQuantity')?.value) || 1; if(window.cartMenu && products && products[id]) { window.cartMenu.addItem({ ...products[id], quantity: qty }, qty); } else if (typeof addToCart === 'function') { addToCart(id, qty); } })()">
-                                <i class="bi bi-cart-plus"></i>
-                                Adicionar ao Carrinho
-                            </button>
-                            <button type="button" class="btn btn-outline btn-lg" id="addToFavoritesBtn" onclick="(function(){const id=new URLSearchParams(window.location.search).get('id')||'1'; if(window.favoritesMenu && products && products[id]) { window.favoritesMenu.addToFavorites(products[id]); window.favoritesMenu.updateHeartIcon(document.getElementById('addToFavoritesBtn'), true); } else if (typeof toggleFavorite === 'function') { toggleFavorite(id); } })()">
-                                <i class="bi bi-heart"></i>
-                                Favoritar
+                        <!-- Ações do cliente em relação ao vendedor -->
+                        <div class="seller-actions">
+                            <button class="btn btn-primary" id="followSellerBtn">
+                                <i class="bi bi-person-plus"></i>
+                                Seguir Vendedor
                             </button>
                         </div>
                     </div>
 
-                    <div class="product-meta">
-                        <div class="meta-item">
-                            <i class="bi bi-truck"></i>
-                            <div>
-                                <strong>Frete Grátis</strong>
-                                <p>Para todo o Brasil</p>
+                    <!-- Estatísticas do Vendedor -->
+                    <div class="seller-stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-value" id="sellerRating">4.5</div>
+                            <div class="stat-label">
+                                <i class="bi bi-star-fill"></i>
+                                Avaliação
                             </div>
                         </div>
-                        <div class="meta-item">
-                            <i class="bi bi-shield-check"></i>
-                            <div>
-                                <strong>Compra Segura</strong>
-                                <p>Seus dados protegidos</p>
+                        <div class="stat-item">
+                            <div class="stat-value" id="sellerTotalSales">0</div>
+                            <div class="stat-label">
+                                <i class="bi bi-bag-check"></i>
+                                Vendas realizadas
                             </div>
                         </div>
-                        <div class="meta-item">
-                            <i class="bi bi-arrow-clockwise"></i>
-                            <div>
-                                <strong>Devolução Gratuita</strong>
-                                <p>Até 30 dias após a compra</p>
+                        <div class="stat-item">
+                            <div class="stat-value" id="sellerProductsCount">0</div>
+                            <div class="stat-label">
+                                <i class="bi bi-box"></i>
+                                Produtos ativos
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sobre o vendedor -->
+                    <div class="seller-about-section">
+                        <h3 class="section-subtitle">
+                            <i class="bi bi-info-circle"></i>
+                            Sobre o vendedor
+                        </h3>
+                        <p class="seller-description" id="sellerDescription">
+                            Carregando descrição do vendedor...
+                        </p>
+                    </div>
+
+                    <!-- Selos e conquistas -->
+                    <div class="seller-achievements">
+                        <h3 class="section-subtitle">
+                            <i class="bi bi-trophy"></i>
+                            Selos e Conquistas
+                        </h3>
+                        <div class="achievements-grid" id="sellerAchievements">
+                            <div class="achievement-item">
+                                <i class="bi bi-shield-check"></i>
+                                <span>Identidade verificada</span>
+                            </div>
+                            <div class="achievement-item">
+                                <i class="bi bi-truck"></i>
+                                <span>Entrega rápida</span>
+                            </div>
+                            <div class="achievement-item">
+                                <i class="bi bi-chat-heart"></i>
+                                <span>Ótimo atendimento</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Abas de navegação -->
+                    <div class="seller-tabs">
+                        <button class="tab-btn active" data-tab="products">
+                            <i class="bi bi-grid"></i>
+                            Produtos
+                        </button>
+                        <button class="tab-btn" data-tab="reviews">
+                            <i class="bi bi-star"></i>
+                            Avaliações
+                        </button>
+                        <button class="tab-btn" data-tab="info">
+                            <i class="bi bi-shop"></i>
+                            Informações da loja
+                        </button>
+                    </div>
+
+                    <!-- Conteúdo das abas -->
+                    <div class="tab-content">
+                        <!-- Aba de Produtos -->
+                        <div class="tab-pane active" id="productsTab">
+                            <div class="products-grid" id="sellerProducts">
+                                <!-- Produtos serão carregados via JavaScript -->
+                                <div class="loading-spinner">
+                                    <i class="bi bi-arrow-repeat spinning"></i>
+                                    Carregando produtos...
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Aba de Avaliações -->
+                        <div class="tab-pane" id="reviewsTab">
+                            <div class="reviews-summary">
+                                <div class="average-rating-large">
+                                    <span class="average-number" id="averageRating">4.5</span>
+                                    <div class="average-stars" id="averageStars">
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-half"></i>
+                                    </div>
+                                    <span class="total-reviews" id="totalReviews">(128 avaliações)</span>
+                                </div>
+                                
+                                <div class="reviews-list" id="reviewsList">
+                                    <!-- Avaliações serão carregadas via JavaScript -->
+                                    <div class="loading-spinner">
+                                        <i class="bi bi-arrow-repeat spinning"></i>
+                                        Carregando avaliações...
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Aba de Informações da Loja -->
+                        <div class="tab-pane" id="infoTab">
+                            <div class="shop-info-grid">
+                                <div class="info-card">
+                                    <h4><i class="bi bi-building"></i> Dados da Loja</h4>
+                                    <div class="info-detail">
+                                        <span class="detail-label">Nome da loja:</span>
+                                        <span class="detail-value" id="shopName">Carregando...</span>
+                                    </div>
+                                    <div class="info-detail">
+                                        <span class="detail-label">Documento:</span>
+                                        <span class="detail-value" id="shopDocument">•••••••••</span>
+                                    </div>
+                                    <div class="info-detail">
+                                        <span class="detail-label">Localização:</span>
+                                        <span class="detail-value" id="shopLocation">Carregando...</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="info-card">
+                                    <h4><i class="bi bi-clock"></i> Horário de Atendimento</h4>
+                                    <div class="info-detail">
+                                        <span class="detail-label">Seg - Sex:</span>
+                                        <span class="detail-value" id="mondayFriday">09:00 - 18:00</span>
+                                    </div>
+                                    <div class="info-detail">
+                                        <span class="detail-label">Sábado:</span>
+                                        <span class="detail-value" id="saturday">09:00 - 13:00</span>
+                                    </div>
+                                    <div class="info-detail">
+                                        <span class="detail-label">Domingo:</span>
+                                        <span class="detail-value" id="sunday">Fechado</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="info-card">
+                                    <h4><i class="bi bi-truck"></i> Políticas de Entrega</h4>
+                                    <p id="deliveryPolicy">Entregas em todo Brasil. Consulte prazos no carrinho.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- Produtos Relacionados -->
-            <section class="related-products">
-                <h2 class="section-title">Produtos Relacionados</h2>
-                <div class="products-grid" id="relatedProducts">
-                    <!-- Produtos relacionados serão carregados via JavaScript -->
-                </div>
-            </section>
         </div>
     </main>
 
@@ -273,8 +354,7 @@
                         <a href="https://www.facebook.com/people/Reuse-Reuse/pfbid02xExfHdEPU3fRijLrJhCYfotfQCfwGakwLN7yDRMsYm8pWcHaaBJrrrP3zegNEDLGl/" class="social-link" title="Facebook">
                             <i class="bi bi-facebook"></i>
                         </a>
-                        <a href="https://www.instagram.com/projeto_reuse/
-" class="social-link" title="Instagram">
+                        <a href="https://www.instagram.com/projeto_reuse/" class="social-link" title="Instagram">
                             <i class="bi bi-instagram"></i>
                         </a>
                         <a href="https://x.com/Re_Use_Projeto" class="social-link" title="Twitter">
@@ -301,8 +381,7 @@
                 <button class="modal-close" id="closeModal">&times;</button>
             </div>
             <div class="modal-body">
-                <p>Tem certeza que deseja sair da sua conta? Você precisará fazer login novamente para acessar seus
-                    dados.</p>
+                <p>Tem certeza que deseja sair da sua conta? Você precisará fazer login novamente para acessar seus dados.</p>
             </div>
             <div class="modal-actions">
                 <button class="btn btn-secondary" id="cancelLogout">Cancelar</button>
@@ -322,7 +401,6 @@
                 </button>
             </div>
             <div class="favorites-body" id="favoritesBody">
-                <!-- Os itens favoritos serão carregados aqui via JavaScript -->
                 <div class="empty-favorites">
                     <div class="empty-icon">
                         <i class="bi bi-heart"></i>
@@ -350,7 +428,6 @@
                 </button>
             </div>
             <div class="cart-body" id="cartBody">
-                <!-- Os itens do carrinho serão carregados aqui via JavaScript -->
                 <div class="empty-cart">
                     <div class="empty-icon">
                         <i class="bi bi-cart"></i>
@@ -427,6 +504,14 @@
         </div>
     </div>
 
+    <!-- Widget VLibras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+
     <!-- Links JavaScript -->
     <script src="JS/auth.js"></script>
     <script src="JS/cliente_inicio.js"></script>
@@ -435,13 +520,6 @@
     <script src="JS/profile_menu.js"></script>
     <script src="JS/accessibility_menu.js"></script>
     <script src="JS/product_detail.js"></script>
-
-        <!-- Widget VLibras -->
-        <div vw class="enabled">
-            <div vw-access-button class="active"></div>
-            <div vw-plugin-wrapper>
-                <div class="vw-plugin-top-wrapper"></div>
-            </div>
-        </div>
+    <script src="JS/seller_profile.js"></script>
 </body>
 </html>

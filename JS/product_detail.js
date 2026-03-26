@@ -75,8 +75,7 @@ const products = {
         material: "Algodão penteado",
         rating: 4.0,
         reviews: 42
-    }
-    ,
+    },
     5: {
         id: 5,
         title: "Bolsa de couro",
@@ -142,8 +141,99 @@ const products = {
     }
 };
 
+// Dados dos vendedores
+const sellers = {
+    1: { // Vendedor do produto 1 (Tênis Nike)
+        name: "Loja Esportiva XYZ",
+        rating: 4.8,
+        totalSales: 152,
+        joined: "2023",
+        response_rate: "98%",
+        description: "Especializada em artigos esportivos novos e seminovos. Qualidade e confiança desde 2023.",
+        location: "São Paulo, SP",
+        products_count: 15
+    },
+    2: { // Vendedor do produto 2 (Vestido Floral)
+        name: "Moda Feminina",
+        rating: 4.7,
+        totalSales: 89,
+        joined: "2024",
+        response_rate: "95%",
+        description: "Moda feminina sustentável. Roupas seminovas em ótimo estado para todos os estilos.",
+        location: "Rio de Janeiro, RJ",
+        products_count: 23
+    },
+    3: { // Vendedor do produto 3 (Liquidificador)
+        name: "EletroHouse",
+        rating: 4.9,
+        totalSales: 234,
+        joined: "2022",
+        response_rate: "99%",
+        description: "Eletrodomésticos e eletrônicos revisados com garantia. Os melhores preços da categoria.",
+        location: "Belo Horizonte, MG",
+        products_count: 42
+    },
+    4: { // Vendedor do produto 4 (Camiseta Polo)
+        name: "Street Wear",
+        rating: 4.6,
+        totalSales: 67,
+        joined: "2024",
+        response_rate: "92%",
+        description: "Streetwear e moda casual. Roupas autênticas para o dia a dia.",
+        location: "Curitiba, PR",
+        products_count: 18
+    },
+    5: { // Vendedor do produto 5 (Bolsa)
+        name: "Acessórios & Cia",
+        rating: 4.8,
+        totalSales: 112,
+        joined: "2023",
+        response_rate: "97%",
+        description: "Bolsas, mochilas e acessórios de qualidade. Produtos revisados e prontos para uso.",
+        location: "Porto Alegre, RS",
+        products_count: 31
+    },
+    6: { // Vendedor do produto 6 (Relógio)
+        name: "Tech Sports",
+        rating: 4.5,
+        totalSales: 45,
+        joined: "2024",
+        response_rate: "90%",
+        description: "Tecnologia e esporte. Relógios e acessórios esportivos com garantia.",
+        location: "Brasília, DF",
+        products_count: 12
+    },
+    7: { // Vendedor do produto 7 (Fone)
+        name: "Digital Store",
+        rating: 4.7,
+        totalSales: 178,
+        joined: "2022",
+        response_rate: "96%",
+        description: "Eletrônicos e gadgets. Produtos revisados e testados por especialistas.",
+        location: "Salvador, BA",
+        products_count: 27
+    },
+    8: { // Vendedor do produto 8 (Caneca)
+        name: "Casa & Presentes",
+        rating: 4.9,
+        totalSales: 67,
+        joined: "2023",
+        response_rate: "100%",
+        description: "Artigos para casa e presentes exclusivos. Peças únicas e personalizadas.",
+        location: "Fortaleza, CE",
+        products_count: 34
+    }
+};
+
 // Tornar disponível globalmente para outras páginas/scripts
 window.products = products;
+window.sellers = sellers;
+
+// Carrinho global
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+// Favoritos global
+let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
 
 // Carregar produto baseado no ID da URL
 function loadProduct() {
@@ -192,6 +282,9 @@ function loadProduct() {
         thumbnailsContainer.appendChild(thumbnail);
     });
     
+    // Carregar informações do vendedor
+    loadSellerInfo(productId);
+    
     // Adicionar especificações
     const specsContainer = document.getElementById('productSpecs');
     specsContainer.innerHTML = '';
@@ -226,6 +319,46 @@ function loadProduct() {
     setupActionButtons(product);
 }
 
+// Carregar informações do vendedor
+function loadSellerInfo(productId) {
+    const seller = sellers[productId] || {
+        name: "Vendedor ReUse",
+        rating: 4.5,
+        totalSales: 50,
+        joined: "2024",
+        response_rate: "95%",
+        description: "Vendedor parceiro da plataforma ReUse. Produtos de qualidade e atendimento garantido.",
+        location: "Brasil",
+        products_count: 10
+    };
+    
+    const sellerNameLink = document.getElementById('sellerNameLink');
+    if (sellerNameLink) {
+        sellerNameLink.textContent = seller.name;
+        // Passar todos os dados do vendedor na URL
+        const sellerData = encodeURIComponent(JSON.stringify({
+            name: seller.name,
+            rating: seller.rating,
+            totalSales: seller.totalSales,
+            joined: seller.joined,
+            description: seller.description,
+            location: seller.location,
+            products_count: seller.products_count
+        }));
+        sellerNameLink.href = `perfil-vendedor.html?productId=${productId}&sellerData=${sellerData}`;
+    }
+    
+    const sellerRating = document.getElementById('sellerRating');
+    if (sellerRating) {
+        sellerRating.textContent = seller.rating;
+    }
+    
+    const sellerSales = document.getElementById('sellerSales');
+    if (sellerSales) {
+        sellerSales.textContent = `(${seller.totalSales} vendas)`;
+    }
+}
+
 // Carregar produtos relacionados
 function loadRelatedProducts(currentProductId) {
     const relatedProductsContainer = document.getElementById('relatedProducts');
@@ -237,6 +370,8 @@ function loadRelatedProducts(currentProductId) {
         .slice(0, 4);
     
     relatedProducts.forEach(product => {
+        const seller = sellers[product.id] || { name: "Vendedor ReUse" };
+        
         const productCard = document.createElement('div');
         productCard.className = 'product-card';
         productCard.innerHTML = `
@@ -248,6 +383,10 @@ function loadRelatedProducts(currentProductId) {
                 <h3 class="product-title">${product.title}</h3>
                 <p class="product-description">${product.description.substring(0, 60)}...</p>
                 <div class="product-price">${formatCurrency(product.price)}</div>
+                <div class="product-seller-small">
+                    <i class="bi bi-shop"></i>
+                    <span>${seller.name}</span>
+                </div>
                 <div class="product-actions">
                     <a href="produto.html?id=${product.id}" class="btn btn-primary">
                         <i class="bi bi-eye"></i>
@@ -268,36 +407,50 @@ function setupActionButtons(product) {
     const decreaseBtn = document.getElementById('decreaseQuantity');
     const quantityInput = document.getElementById('productQuantity');
     
+    // Remover event listeners antigos (se houver)
+    const newAddToCartBtn = addToCartBtn.cloneNode(true);
+    addToCartBtn.parentNode.replaceChild(newAddToCartBtn, addToCartBtn);
+    
+    const newAddToFavoritesBtn = addToFavoritesBtn.cloneNode(true);
+    addToFavoritesBtn.parentNode.replaceChild(newAddToFavoritesBtn, addToFavoritesBtn);
+    
     // Adicionar ao carrinho
-    addToCartBtn.addEventListener('click', () => {
+    newAddToCartBtn.addEventListener('click', () => {
         const quantity = parseInt(quantityInput.value);
-        addToCart(product.id, quantity);
+        addToCart(product, quantity);
         
         // Feedback visual
-        const originalText = addToCartBtn.innerHTML;
-        addToCartBtn.innerHTML = '<i class="bi bi-check-lg"></i> Adicionado!';
-        addToCartBtn.classList.add('btn-success');
+        const originalText = newAddToCartBtn.innerHTML;
+        newAddToCartBtn.innerHTML = '<i class="bi bi-check-lg"></i> Adicionado!';
+        newAddToCartBtn.style.background = '#28a745';
+        newAddToCartBtn.style.borderColor = '#28a745';
         
         setTimeout(() => {
-            addToCartBtn.innerHTML = originalText;
-            addToCartBtn.classList.remove('btn-success');
+            newAddToCartBtn.innerHTML = originalText;
+            newAddToCartBtn.style.background = '';
+            newAddToCartBtn.style.borderColor = '';
         }, 2000);
     });
     
     // Adicionar aos favoritos
-    addToFavoritesBtn.addEventListener('click', () => {
-        toggleFavorite(product.id);
+    newAddToFavoritesBtn.addEventListener('click', () => {
+        toggleFavorite(product);
         
-        // Feedback visual
-        if (addToFavoritesBtn.classList.contains('active')) {
-            addToFavoritesBtn.innerHTML = '<i class="bi bi-heart-fill"></i> Favoritado';
+        // Atualizar ícone e texto
+        if (isFavorite(product.id)) {
+            newAddToFavoritesBtn.innerHTML = '<i class="bi bi-heart-fill"></i> Favoritado';
+            newAddToFavoritesBtn.classList.add('active');
         } else {
-            addToFavoritesBtn.innerHTML = '<i class="bi bi-heart"></i> Favoritar';
+            newAddToFavoritesBtn.innerHTML = '<i class="bi bi-heart"></i> Favoritar';
+            newAddToFavoritesBtn.classList.remove('active');
         }
     });
     
     // Verificar se produto já está favoritado
-    updateFavoriteButton(product.id);
+    if (isFavorite(product.id)) {
+        newAddToFavoritesBtn.innerHTML = '<i class="bi bi-heart-fill"></i> Favoritado';
+        newAddToFavoritesBtn.classList.add('active');
+    }
     
     // Controle de quantidade
     increaseBtn.addEventListener('click', () => {
@@ -313,6 +466,75 @@ function setupActionButtons(product) {
             quantityInput.value = currentValue - 1;
         }
     });
+    
+    // Validar entrada manual
+    quantityInput.addEventListener('change', function() {
+        let value = parseInt(this.value);
+        if (isNaN(value) || value < 1) {
+            this.value = 1;
+        } else if (value > 10) {
+            this.value = 10;
+        }
+    });
+}
+
+// Funções do carrinho
+function addToCart(product, quantity = 1) {
+    const existingItem = cart.find(item => item.id === product.id);
+    
+    if (existingItem) {
+        existingItem.quantity = Math.min(existingItem.quantity + quantity, 10);
+    } else {
+        cart.push({
+            id: product.id,
+            title: product.title,
+            price: product.price,
+            image: product.images[0],
+            quantity: quantity,
+            seller: sellers[product.id]?.name || "Vendedor ReUse"
+        });
+    }
+    
+    // Salvar no localStorage
+    localStorage.setItem('cart', JSON.stringify(cart));
+    
+    // Atualizar contador do carrinho se a função existir
+    if (window.cartMenu && typeof window.cartMenu.updateCount === 'function') {
+        window.cartMenu.updateCount();
+    }
+    
+    console.log(`Adicionado ao carrinho: ${product.title}, Quantidade: ${quantity}`);
+}
+
+// Funções de favoritos
+function toggleFavorite(product) {
+    const index = favorites.findIndex(item => item.id === product.id);
+    
+    if (index === -1) {
+        favorites.push({
+            id: product.id,
+            title: product.title,
+            price: product.price,
+            image: product.images[0],
+            seller: sellers[product.id]?.name || "Vendedor ReUse"
+        });
+    } else {
+        favorites.splice(index, 1);
+    }
+    
+    // Salvar no localStorage
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+    
+    // Atualizar menu de favoritos se existir
+    if (window.favoritesMenu && typeof window.favoritesMenu.updateFavorites === 'function') {
+        window.favoritesMenu.updateFavorites();
+    }
+    
+    console.log(`Favoritos atualizados: ${favorites.length} itens`);
+}
+
+function isFavorite(productId) {
+    return favorites.some(item => item.id === productId);
 }
 
 // Funções auxiliares
@@ -320,30 +542,19 @@ function formatCurrency(value) {
     return `R$ ${value.toFixed(2).replace('.', ',')}`;
 }
 
-function addToCart(productId, quantity = 1) {
-    // Implementar lógica de carrinho
-    console.log(`Adicionado ao carrinho: Produto ${productId}, Quantidade: ${quantity}`);
-}
-
-function toggleFavorite(productId) {
-    // Implementar lógica de favoritos
-    const button = document.getElementById('addToFavoritesBtn');
-    button.classList.toggle('active');
-    console.log(`Favorito alterado: Produto ${productId}`);
-}
-
-function updateFavoriteButton(productId) {
-    // Verificar se produto está nos favoritos
-    const button = document.getElementById('addToFavoritesBtn');
-    // Aqui você implementaria a verificação real
-    const isFavorite = false; // Placeholder
-    if (isFavorite) {
-        button.classList.add('active');
-        button.innerHTML = '<i class="bi bi-heart-fill"></i> Favoritado';
-    }
-}
-
 // Inicializar quando a página carregar
 document.addEventListener('DOMContentLoaded', () => {
     loadProduct();
+    
+    // Verificar se o elemento do vendedor existe no HTML
+    const sellerSection = document.querySelector('.seller-info-card');
+    if (!sellerSection) {
+        console.warn('Elemento .seller-info-card não encontrado. Verifique se o HTML foi atualizado.');
+    }
 });
+
+// Exportar funções para uso global
+window.addToCart = addToCart;
+window.toggleFavorite = toggleFavorite;
+window.isFavorite = isFavorite;
+window.formatCurrency = formatCurrency;
