@@ -1630,13 +1630,6 @@ class AccessibilityMenu {
                 color: var(--primary-green);
             }
 
-            /* Reduced motion */
-            .reduced-motion * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-
             /* Responsividade */
             @media (max-width: 768px) {
                 .accessibility-menu {

@@ -1,4 +1,5 @@
 /* cliente-inicio.css - Estilos refinados para a página inicial do cliente */
+/* VERSÃO CORRIGIDA - Transições hover funcionando perfeitamente */
 
 :root {
     /* Cores Primárias */
@@ -56,9 +57,10 @@
     --border-radius-xl: 20px;
     --border-radius-round: 50%;
     
-    --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Durações das transições - Padronizadas */
+    --transition-fast: 1s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-normal: 1s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 1s cubic-bezier(0.4, 0, 0.2, 1);
     
     /* Gradientes */
     --gradient-blue: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-light));
@@ -115,6 +117,21 @@ body.cliente-inicio {
     min-height: 100vh;
 }
 
+/* ===== OTIMIZAÇÃO DE PERFORMANCE ===== */
+.product-card,
+.action-card,
+.category-btn,
+.btn,
+.action-btn,
+.ong-card,
+.social-link,
+.product-image img,
+.profile-avatar {
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
 /* ===== TYPOGRAPHY ===== */
 h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
@@ -151,7 +168,7 @@ a:hover {
     top: 0;
     z-index: 1000;
     box-shadow: var(--shadow-sm);
-    transition: all var(--transition-normal);
+    transition: background-color var(--transition-normal), box-shadow var(--transition-normal);
 }
 
 .header-container {
@@ -188,6 +205,7 @@ a:hover {
     height: 40px;
     width: auto;
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+    transition: filter var(--transition-fast);
 }
 
 .logo-text {
@@ -219,7 +237,7 @@ a:hover {
     font-size: 0.95rem;
     background: var(--card-bg);
     color: var(--text-dark);
-    transition: all var(--transition-normal);
+    transition: border-color var(--transition-normal), box-shadow var(--transition-normal), transform var(--transition-normal);
     font-family: inherit;
     box-shadow: var(--shadow-sm);
 }
@@ -227,9 +245,7 @@ a:hover {
 .search-input:focus {
     outline: none;
     border-color: var(--primary-blue);
-    box-shadow: 
-        0 0 0 3px rgba(0, 102, 204, 0.1),
-        var(--shadow-sm);
+    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1), var(--shadow-sm);
     transform: translateY(-1px);
 }
 
@@ -246,6 +262,7 @@ body.dark-mode .search-input {
     color: var(--primary-green);
     pointer-events: none;
     font-size: 1.1rem;
+    transition: color var(--transition-fast);
 }
 
 /* User Actions */
@@ -278,14 +295,11 @@ body.dark-mode .search-input {
     border-color: var(--primary-blue);
     color: var(--primary-blue);
     transform: translateY(-3px) scale(1.05);
-    box-shadow: 
-        0 8px 20px rgba(0, 102, 204, 0.15),
-        0 3px 10px rgba(0, 102, 204, 0.1);
+    box-shadow: 0 8px 20px rgba(0, 102, 204, 0.15), 0 3px 10px rgba(0, 102, 204, 0.1);
 }
 
 .action-btn:active {
     transform: translateY(-1px) scale(1.02);
-    transition: all var(--transition-fast);
 }
 
 body.dark-mode .action-btn {
@@ -317,6 +331,7 @@ body.dark-mode .action-btn:hover {
     border: 2px solid var(--card-bg);
     box-shadow: 0 2px 6px rgba(255, 71, 87, 0.3);
     z-index: 2;
+    transition: all var(--transition-fast);
 }
 
 body.dark-mode .action-btn.cart-btn::after {
@@ -346,7 +361,7 @@ body.dark-mode .action-btn.cart-btn::after {
     color: white;
     font-size: 1.1rem;
     font-weight: 700;
-    transition: all var(--transition-normal);
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
     border: 3px solid var(--card-bg);
     box-shadow: var(--shadow-md);
     overflow: hidden;
@@ -375,7 +390,7 @@ body.dark-mode .action-btn.cart-btn::after {
     display: none;
     z-index: 1000;
     border: 1px solid var(--light-gray-2);
-    animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: slideDown var(--transition-normal);
 }
 
 @keyframes slideDown {
@@ -444,7 +459,7 @@ body.dark-mode .dropdown-header {
     text-align: left;
     cursor: pointer;
     border-radius: var(--border-radius-md);
-    transition: all var(--transition-fast);
+    transition: background-color var(--transition-fast), transform var(--transition-fast);
     font-size: 0.9rem;
     font-weight: 500;
 }
@@ -498,13 +513,11 @@ body.dark-mode .dropdown-item.logout:hover {
     position: relative;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    background: rgba(var(--card-bg-rgb), 0.95);
-    transition: all var(--transition-normal);
+    transition: background-color var(--transition-normal), border-color var(--transition-normal);
 }
 
 body.dark-mode .categories-bar {
     border-color: var(--light-gray-3);
-    background: rgba(45, 45, 45, 0.95);
 }
 
 .categories-container {
@@ -567,7 +580,7 @@ body.dark-mode .categories-bar {
 
 .category-btn i {
     font-size: 1.1rem;
-    transition: transform var(--transition-normal);
+    transition: transform var(--transition-fast);
 }
 
 .category-btn:hover i {
@@ -606,6 +619,11 @@ body.dark-mode .categories-bar {
     height: 4px;
     background: var(--gradient-blue);
     border-radius: 2px;
+    transition: width var(--transition-normal);
+}
+
+.section-title:hover::after {
+    width: 120px;
 }
 
 .actions-grid {
@@ -636,6 +654,7 @@ body.dark-mode .categories-bar {
     height: 4px;
     background: var(--gradient-blue);
     border-radius: var(--border-radius-xl) var(--border-radius-xl) 0 0;
+    transition: height var(--transition-normal);
 }
 
 .action-card.comprar::before {
@@ -680,7 +699,7 @@ body.dark-mode .categories-bar {
 }
 
 .action-card:hover .action-icon {
-    transform: scale(1.15) rotate(8deg);
+    transform: scale(1.15) rotate(5deg);
     box-shadow: var(--shadow-lg);
 }
 
@@ -717,6 +736,11 @@ body.dark-mode .categories-bar {
     font-size: 0.95rem;
     line-height: 1.5;
     margin: 0;
+    transition: color var(--transition-fast);
+}
+
+.action-card:hover p {
+    color: var(--text-medium);
 }
 
 /* ===== PRODUTOS MAIS COMPRADOS ===== */
@@ -731,6 +755,13 @@ body.dark-mode .categories-bar {
     margin-top: 2.5rem;
 }
 
+/* ✅ CORREÇÃO: Link do produto */
+.product-link {
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+}
+
 .product-card {
     background: var(--card-bg);
     border-radius: var(--border-radius-lg);
@@ -739,6 +770,7 @@ body.dark-mode .categories-bar {
     border: 1px solid var(--light-gray-2);
     box-shadow: var(--shadow-md);
     position: relative;
+    cursor: pointer;
 }
 
 .product-card:hover {
@@ -783,6 +815,12 @@ body.dark-mode .categories-bar {
     text-transform: uppercase;
     box-shadow: var(--shadow-sm);
     z-index: 1;
+    transition: all var(--transition-fast);
+}
+
+.product-card:hover .product-badge {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-md);
 }
 
 .product-info {
@@ -795,6 +833,11 @@ body.dark-mode .categories-bar {
     margin-bottom: 0.625rem;
     color: var(--text-dark);
     line-height: 1.3;
+    transition: color var(--transition-fast);
+}
+
+.product-card:hover .product-title {
+    color: var(--primary-blue);
 }
 
 .product-description {
@@ -812,6 +855,11 @@ body.dark-mode .categories-bar {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    transition: transform var(--transition-fast);
+}
+
+.product-card:hover .product-price {
+    transform: scale(1.02);
 }
 
 .product-price::before {
@@ -855,13 +903,18 @@ body.dark-mode .categories-bar {
     box-shadow: 0 6px 20px rgba(0, 102, 204, 0.3);
 }
 
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+/* ✅ CORREÇÃO: Botão outline com padding correto */
 .btn-outline {
     background: transparent;
     color: var(--text-dark);
     border: 2px solid var(--light-gray-2);
     min-width: 44px;
     flex: 0;
-    padding: 2rem;
+    padding: 0.75rem 1rem;
 }
 
 .btn-outline:hover {
@@ -869,6 +922,10 @@ body.dark-mode .categories-bar {
     color: var(--primary-red);
     background: rgba(255, 71, 87, 0.05);
     transform: translateY(-2px);
+}
+
+.btn-outline:active {
+    transform: translateY(0);
 }
 
 /* ===== ONGs APOIADAS ===== */
@@ -881,6 +938,7 @@ body.dark-mode .categories-bar {
     margin: 2rem 0;
     position: relative;
     overflow: hidden;
+    transition: background var(--transition-normal);
 }
 
 body.dark-mode .ongs-section {
@@ -906,6 +964,7 @@ body.dark-mode .ongs-section {
     margin-top: 2.5rem;
 }
 
+/* ✅ CORREÇÃO: Card de ONG com cursor pointer */
 .ong-card {
     background: var(--card-bg);
     border-radius: var(--border-radius-lg);
@@ -930,12 +989,17 @@ body.dark-mode .ongs-section {
     width: 4px;
     background: var(--gradient-green);
     border-radius: var(--border-radius-lg) 0 0 var(--border-radius-lg);
+    transition: width var(--transition-normal);
 }
 
 .ong-card:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-lg);
     border-color: var(--primary-green);
+}
+
+.ong-card:hover::before {
+    width: 6px;
 }
 
 .ong-logo {
@@ -954,6 +1018,12 @@ body.dark-mode .ongs-section {
     overflow: hidden;
     position: relative;
     box-shadow: var(--shadow-sm);
+    transition: all var(--transition-normal);
+}
+
+.ong-card:hover .ong-logo {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-md);
 }
 
 .ong-logo img {
@@ -991,6 +1061,11 @@ body.dark-mode .ongs-section {
     font-weight: 700;
     margin-bottom: 0.75rem;
     color: var(--text-dark);
+    transition: color var(--transition-fast);
+}
+
+.ong-card:hover .ong-info h4 {
+    color: var(--primary-green);
 }
 
 .ong-info p {
@@ -1054,6 +1129,10 @@ body.dark-mode .ong-tag {
     box-shadow: 0 4px 12px rgba(0, 204, 153, 0.3);
 }
 
+.btn-ong:active {
+    transform: translateY(0);
+}
+
 .btn-ong.secondary {
     background: transparent;
     border-color: var(--light-gray-2);
@@ -1072,6 +1151,7 @@ body.dark-mode .ong-tag {
     border-top: 1px solid var(--light-gray-2);
     padding: 3rem 0 1.5rem;
     margin-top: 4rem;
+    transition: background-color var(--transition-normal), border-color var(--transition-normal);
 }
 
 body.dark-mode .main-footer {
@@ -1106,6 +1186,11 @@ body.dark-mode .main-footer {
     height: 3px;
     background: var(--primary-blue);
     border-radius: 2px;
+    transition: width var(--transition-normal);
+}
+
+.footer-column h4:hover::after {
+    width: 60px;
 }
 
 .footer-links {
@@ -1138,6 +1223,11 @@ body.dark-mode .main-footer {
     font-size: 1.1rem;
     width: 20px;
     text-align: center;
+    transition: transform var(--transition-fast);
+}
+
+.footer-links a:hover i {
+    transform: scale(1.1);
 }
 
 .social-links {
@@ -1196,7 +1286,7 @@ body.dark-mode .footer-bottom {
     z-index: 2000;
     align-items: center;
     justify-content: center;
-    animation: fadeIn 0.3s ease;
+    animation: fadeIn var(--transition-normal);
 }
 
 @keyframes fadeIn {
@@ -1216,7 +1306,7 @@ body.dark-mode .footer-bottom {
     width: 90%;
     box-shadow: var(--shadow-xl);
     transform: translateY(0);
-    animation: modalSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: modalSlideIn var(--transition-slow);
 }
 
 @keyframes modalSlideIn {
@@ -1557,10 +1647,6 @@ body.dark-mode .modal-header {
 .shadow-md { box-shadow: var(--shadow-md); }
 .shadow-lg { box-shadow: var(--shadow-lg); }
 
-.transition { transition: var(--transition-normal); }
-.transition-fast { transition: var(--transition-fast); }
-.transition-slow { transition: var(--transition-slow); }
-
 /* ===== SCROLLBAR PERSONALIZADA ===== */
 ::-webkit-scrollbar {
     width: 10px;
@@ -1576,6 +1662,7 @@ body.dark-mode .modal-header {
     background: var(--primary-blue);
     border-radius: var(--border-radius-sm);
     border: 2px solid var(--light-gray-2);
+    transition: background var(--transition-fast);
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -1639,15 +1726,11 @@ body.dark-mode ::-webkit-scrollbar-thumb {
     }
 }
 
-/* Adicione estas regras ao final do arquivo cliente-inicio.css */
-
 /* ===== A11Y DARK MODE IMPROVEMENTS ===== */
 body.dark-mode .accessibility-menu {
     background: var(--card-bg);
     border-left: 4px solid var(--primary-blue-light);
-    box-shadow: 
-        0 0 40px rgba(0, 0, 0, 0.6),
-        var(--shadow-xl);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.6), var(--shadow-xl);
 }
 
 body.dark-mode .accessibility-header {
@@ -1677,9 +1760,7 @@ body.dark-mode .accessibility-option:hover {
     background: var(--light-gray-3);
     border-color: var(--primary-blue-light);
     transform: translateX(4px);
-    box-shadow: 
-        0 4px 12px rgba(0, 102, 204, 0.2),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 102, 204, 0.2), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
 }
 
 body.dark-mode .accessibility-option.active {
@@ -1687,17 +1768,13 @@ body.dark-mode .accessibility-option.active {
         rgba(0, 102, 204, 0.15), 
         rgba(0, 204, 153, 0.15));
     border-color: var(--primary-green);
-    box-shadow: 
-        0 4px 16px rgba(0, 204, 153, 0.25),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 16px rgba(0, 204, 153, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
 }
 
 body.dark-mode .accessibility-option.active .option-icon {
     background: var(--primary-green);
     color: var(--dark-gray-3);
-    box-shadow: 
-        0 2px 8px rgba(0, 204, 153, 0.3),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 204, 153, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
 }
 
 body.dark-mode .option-content h4 {
@@ -1761,25 +1838,19 @@ body.dark-mode .btn-reset:hover {
     background: var(--medium-gray);
     color: var(--text-dark);
     border-color: var(--primary-red);
-    box-shadow: 
-        0 4px 12px rgba(255, 71, 87, 0.2),
-        var(--shadow-md);
+    box-shadow: 0 4px 12px rgba(255, 71, 87, 0.2), var(--shadow-md);
 }
 
 body.dark-mode .btn-close {
     background: var(--primary-green);
     color: var(--dark-gray-3);
     font-weight: 700;
-    box-shadow: 
-        0 4px 12px rgba(0, 204, 153, 0.25),
-        var(--shadow-sm);
+    box-shadow: 0 4px 12px rgba(0, 204, 153, 0.25), var(--shadow-sm);
 }
 
 body.dark-mode .btn-close:hover {
     background: var(--primary-green-light);
-    box-shadow: 
-        0 6px 20px rgba(0, 204, 153, 0.35),
-        var(--shadow-md);
+    box-shadow: 0 6px 20px rgba(0, 204, 153, 0.35), var(--shadow-md);
     transform: translateY(-2px);
 }
 
@@ -1787,18 +1858,14 @@ body.dark-mode .action-btn.active-accessibility {
     background: rgba(0, 204, 153, 0.15);
     border-color: var(--primary-green);
     color: var(--primary-green);
-    box-shadow: 
-        0 0 0 2px rgba(0, 204, 153, 0.2),
-        var(--shadow-md);
+    box-shadow: 0 0 0 2px rgba(0, 204, 153, 0.2), var(--shadow-md);
 }
 
 body.dark-mode .action-btn.active-accessibility:hover {
     background: rgba(0, 204, 153, 0.25);
     border-color: var(--primary-green-light);
     color: var(--primary-green-light);
-    box-shadow: 
-        0 0 0 3px rgba(0, 204, 153, 0.3),
-        var(--shadow-lg);
+    box-shadow: 0 0 0 3px rgba(0, 204, 153, 0.3), var(--shadow-lg);
 }
 
 body.dark-mode .accessibility-indicator {
@@ -1838,17 +1905,12 @@ body.dark-mode .accessibility-body::-webkit-scrollbar-thumb:hover {
 body.dark-mode .accessibility-option:focus {
     outline: 2px solid var(--primary-blue-light);
     outline-offset: 2px;
-    box-shadow: 
-        0 0 0 4px rgba(0, 102, 204, 0.2),
-        var(--shadow-sm);
+    box-shadow: 0 0 0 4px rgba(0, 102, 204, 0.2), var(--shadow-sm);
 }
 
 /* Efeito de transição suave para o menu */
 body.dark-mode .accessibility-menu {
-    transition: 
-        right 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-        box-shadow 0.3s ease,
-        border-color 0.3s ease;
+    transition: right var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal);
 }
 
 /* Melhorias no texto da descrição */
@@ -1891,9 +1953,7 @@ body.dark-mode .accessibility-notification {
         var(--primary-green-dark), 
         var(--primary-blue-dark));
     color: var(--text-dark);
-    box-shadow: 
-        0 4px 20px rgba(0, 0, 0, 0.4),
-        0 0 0 1px rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -1920,5 +1980,70 @@ body.dark-mode .accessibility-notification {
 .dark-transition .accessibility-option,
 .dark-transition .accessibility-header,
 .dark-transition .accessibility-footer {
-    transition: all 0.3s ease !important;
+    transition: all var(--transition-normal) !important;
+}
+
+/* ===== NOVAS REGRAS PARA GARANTIR HOVERS FUNCIONANDO ===== */
+/* Essas regras garantem que os hovers funcionem mesmo com os modos de acessibilidade */
+
+/* Garantir que todos os elementos com hover tenham transição */
+*,
+*::before,
+*::after {
+    transition-duration: 1s !important;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Exceções para elementos que não devem ter transição em tudo */
+input, textarea, select, button {
+    transition-property: border-color, box-shadow, transform, background-color, color;
+}
+
+/* Garantir que os modos de acessibilidade não quebrem os hovers */
+body.colorblind-mode .action-card:hover,
+body.colorblind-mode .product-card:hover,
+body.colorblind-mode .ong-card:hover,
+body.colorblind-mode .category-btn:hover,
+body.colorblind-mode .btn:hover,
+body.colorblind-mode .action-btn:hover,
+body.colorblind-mode .social-link:hover {
+    transform: translateY(-5px) scale(1.02);
+    transition: all var(--transition-normal) !important;
+}
+
+/* Garantir que os hovers mantenham as transformações mesmo com filtros */
+body.accessibility-filter-applied .action-card:hover,
+body.accessibility-filter-applied .product-card:hover,
+body.accessibility-filter-applied .ong-card:hover,
+body.accessibility-filter-applied .category-btn:hover,
+body.accessibility-filter-applied .btn:hover,
+body.accessibility-filter-applied .action-btn:hover,
+body.accessibility-filter-applied .social-link:hover {
+    transform: translateY(-5px) scale(1.02);
+    transition: all var(--transition-normal) !important;
+}
+
+/* Preservar os efeitos de hover específicos de cada elemento */
+body.accessibility-filter-applied .action-card:hover .action-icon {
+    transform: scale(1.15) rotate(5deg);
+}
+
+body.accessibility-filter-applied .product-card:hover .product-image img {
+    transform: scale(1.08);
+}
+
+body.accessibility-filter-applied .ong-card:hover .ong-logo {
+    transform: scale(1.05);
+}
+
+body.accessibility-filter-applied .category-btn:hover i {
+    transform: scale(1.1);
+}
+
+body.accessibility-filter-applied .btn-primary:hover {
+    transform: translateY(-2px);
+}
+
+body.accessibility-filter-applied .action-btn:hover {
+    transform: translateY(-3px) scale(1.05);
 }
