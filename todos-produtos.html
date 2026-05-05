@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -14,56 +13,48 @@
     <link rel="stylesheet" href="CSS/profile_menu.css">
     <link rel="stylesheet" href="CSS/modal.css">
     <link rel="stylesheet" href="CSS/todos_produtos.css">
-
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <script>
         new window.VLibras.Widget('https://vlibras.gov.br/app');
     </script>
-        <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q755SR73MY"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag() { dataLayer.push(arguments); }
-            gtag('js', new Date());
-            gtag('config', 'G-Q755SR73MY');
-        </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q755SR73MY"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-Q755SR73MY');
+    </script>
 </head>
 <body>
-    <!-- Header (reaproveitado) -->
-   <!-- Header Principal -->
+    <!-- Header Principal -->
     <header class="main-header">
         <div class="header-container">
             <div class="logo-section">
-                <a href="#" class="logo-container">
+                <a href="cliente-inicio.html" class="logo-container">
                     <img src="IMG/reuse-logo-(2).svg" alt="ReUse Logo">
                     <span class="logo-text">ReUse</span>
                 </a>
-
                 <div class="search-container">
                     <div class="search-bar">
                         <i class="bi bi-search search-icon"></i>
-                        <input type="text" class="search-input" placeholder="Pesquisar produtos, categorias...">
+                        <input type="text" class="search-input" id="searchInput" placeholder="Pesquisar produtos, categorias...">
                     </div>
                 </div>
             </div>
-
             <div class="user-actions">
                 <button class="action-btn" id="favoritesBtn" title="Favoritos">
                     <i class="bi bi-heart"></i>
                 </button>
-
-                <button class="action-btn cart-btn" id="cartBtn" title="Carrinho" data-count="3">
+                <button class="action-btn cart-btn" id="cartBtn" title="Carrinho" data-count="0">
                     <i class="bi bi-cart3"></i>
                 </button>
-
                 <button class="action-btn" id="darkModeBtn" title="Modo Noturno">
                     <i class="bi bi-moon"></i>
                 </button>
-
                 <button class="action-btn" id="colorblindBtn" title="Modo Daltonismo">
                     <i class="bi bi-eye"></i>
                 </button>
-
                 <div class="profile-dropdown">
                     <button class="dropdown-toggle" id="profileToggle">
                         <div class="profile-avatar"><i class="bi bi-person-fill"></i></div>
@@ -78,25 +69,20 @@
                                 </div>
                             </div>
                         </div>
-                        <button class="dropdown-item">
-                            <i class="bi bi-person"></i>
-                            Meu Perfil
+                        <button class="dropdown-item" data-action="profile">
+                            <i class="bi bi-person"></i> Meu Perfil
                         </button>
-                        <button class="dropdown-item">
-                            <i class="bi bi-gear"></i>
-                            Configurações
+                        <button class="dropdown-item" data-action="settings">
+                            <i class="bi bi-gear"></i> Configurações
                         </button>
-                        <button class="dropdown-item">
-                            <i class="bi bi-box-arrow-right"></i>
-                            Meus Pedidos
+                        <button class="dropdown-item" data-action="orders">
+                            <i class="bi bi-box-arrow-right"></i> Meus Pedidos
                         </button>
-                        <button class="dropdown-item">
-                            <i class="bi bi-heart"></i>
-                            Favoritos
+                        <button class="dropdown-item" data-action="favorites">
+                            <i class="bi bi-heart"></i> Favoritos
                         </button>
                         <button class="dropdown-item logout" id="logoutBtn">
-                            <i class="bi bi-box-arrow-left"></i>
-                            Sair da Conta
+                            <i class="bi bi-box-arrow-left"></i> Sair da Conta
                         </button>
                     </div>
                 </div>
@@ -106,11 +92,11 @@
 
     <main class="main-content products-page">
         <div class="container">
-            <h1 style="margin-bottom:18px;">Todos os Produtos</h1>
+            <h1 class="page-title">Todos os Produtos</h1>
 
             <div class="products-layout">
                 <aside class="filters-panel">
-                    <h4>Filtros</h4>
+                    <h4><i class="bi bi-funnel"></i> Filtros</h4>
                     <div class="filter-group">
                         <label>Categoria</label>
                         <select id="filterCategory" class="form-control">
@@ -133,59 +119,38 @@
                         </select>
                     </div>
                     <div class="filter-group">
-                        <label>Preço (máx)</label>
+                        <label>Preço máximo (R$)</label>
                         <input type="number" id="filterPriceMax" class="form-control" placeholder="0">
                     </div>
                     <div class="filter-group">
-                        <label>Ordenar</label>
+                        <label>Ordenar por</label>
                         <select id="sortBy" class="form-control">
                             <option value="default">Padrão</option>
-                            <option value="price-asc">Preço: menor → maior</option>
-                            <option value="price-desc">Preço: maior → menor</option>
-                            <option value="title-asc">A → Z</option>
+                            <option value="price-asc">Menor preço</option>
+                            <option value="price-desc">Maior preço</option>
+                            <option value="title-asc">A - Z</option>
                         </select>
                     </div>
-                    <div style="display:flex;gap:8px;margin-top:8px;">
+                    <div class="filter-actions">
                         <button id="applyFilters" class="btn btn-primary">Aplicar</button>
                         <button id="clearFilters" class="btn btn-secondary">Limpar</button>
                     </div>
                 </aside>
 
-                <section>
-                    <div id="productsGrid" class="products-grid--list"></div>
+                <section class="products-section">
+                    <div class="products-header">
+                        <span class="products-count" id="productsCount">Carregando...</span>
+                    </div>
+                    <div id="productsGrid" class="products-grid">
+                        <!-- Produtos serão carregados via JavaScript -->
+                    </div>
+                    <div id="loadingSpinner" class="loading-spinner" style="display: none;">
+                        <i class="bi bi-arrow-repeat spin"></i> Carregando...
+                    </div>
                 </section>
             </div>
         </div>
     </main>
-
-        <!-- Menu de Favoritos -->
-<div class="favorites-menu" id="favoritesMenu">
-    <div class="favorites-overlay"></div>
-    <div class="favorites-sidebar">
-        <div class="favorites-header">
-            <h3><i class="bi bi-heart-fill"></i> Meus Favoritos</h3>
-            <button class="close-favorites" id="closeFavorites">
-                <i class="bi bi-x-lg"></i>
-            </button>
-        </div>
-        <div class="favorites-body" id="favoritesBody">
-            <!-- Os itens favoritos serão carregados aqui via JavaScript -->
-            <div class="empty-favorites">
-                <div class="empty-icon">
-                    <i class="bi bi-heart"></i>
-                </div>
-                <h4>Nenhum favorito ainda</h4>
-                <p>Adicione produtos aos favoritos para vê-los aqui</p>
-            </div>
-        </div>
-        <div class="favorites-footer">
-            <button class="btn btn-secondary" id="clearFavorites">
-                <i class="bi bi-trash"></i> Limpar Favoritos
-            </button>
-   
-        </div>
-    </div>
-</div>
 
     <!-- Footer -->
     <footer class="main-footer">
@@ -200,7 +165,6 @@
                         <li><a href="sobre-a-reUse.html"><i class="bi bi-briefcase"></i> Trabalhe Conosco</a></li>
                     </ul>
                 </div>
-
                 <div class="footer-column">
                     <h4>Ajuda</h4>
                     <ul class="footer-links">
@@ -210,7 +174,6 @@
                         <li><a href="ajuda.html"><i class="bi bi-arrow-left-right"></i> Trocas e Devoluções</a></li>
                     </ul>
                 </div>
-
                 <div class="footer-column">
                     <h4>Legal</h4>
                     <ul class="footer-links">
@@ -220,140 +183,134 @@
                         <li><a href="legal.html"><i class="bi bi-credit-card"></i> Segurança</a></li>
                     </ul>
                 </div>
-
                 <div class="footer-column">
                     <h4>Conecte-se</h4>
                     <p>Siga-nos nas redes sociais</p>
                     <div class="social-links">
-                        <a href="https://www.facebook.com/people/Reuse-Reuse/pfbid02xExfHdEPU3fRijLrJhCYfotfQCfwGakwLN7yDRMsYm8pWcHaaBJrrrP3zegNEDLGl/" class="social-link" title="Facebook">
+                        <a href="https://www.facebook.com/people/Reuse-Reuse/pfbid02xExfHdEPU3fRijLrJhCYfotfQCfwGakwLN7yDRMsYm8pWcHaaBJrrrP3zegNEDLGl/" class="social-link" target="_blank">
                             <i class="bi bi-facebook"></i>
                         </a>
-                        <a href="https://www.instagram.com/projeto_reuse/
-" class="social-link" title="Instagram">
+                        <a href="https://www.instagram.com/projeto_reuse/" class="social-link" target="_blank">
                             <i class="bi bi-instagram"></i>
                         </a>
-                        <a href="https://x.com/Re_Use_Projeto" class="social-link" title="Twitter">
+                        <a href="https://x.com/Re_Use_Projeto" class="social-link" target="_blank">
                             <i class="bi bi-twitter"></i>
                         </a>
-                        <a href="https://github.com/Murilo-SL/ReUse" class="social-link" title="Github">
+                        <a href="https://github.com/Murilo-SL/ReUse" class="social-link" target="_blank">
                             <i class="bi bi-github"></i>
                         </a>
                     </div>
                 </div>
             </div>
-
             <div class="footer-bottom">
                 <p>© 2025 ReUse - Todos os direitos reservados. Consumo consciente, futuro sustentável.</p>
             </div>
         </div>
     </footer>
 
-<!-- Menu do Carrinho -->
-<div class="cart-menu" id="cartMenu">
-    <div class="cart-overlay"></div>
-    <div class="cart-sidebar">
-        <div class="cart-header">
-            <h3><i class="bi bi-cart3"></i> Meu Carrinho</h3>
-            <button class="close-cart" id="closeCart">
-                <i class="bi bi-x-lg"></i>
-            </button>
-        </div>
-        <div class="cart-body" id="cartBody">
-            <!-- Os itens do carrinho serão carregados aqui via JavaScript -->
-            <div class="empty-cart">
-                <div class="empty-icon">
-                    <i class="bi bi-cart"></i>
+    <!-- Menus e Modais -->
+    <div class="favorites-menu" id="favoritesMenu">
+        <div class="favorites-overlay"></div>
+        <div class="favorites-sidebar">
+            <div class="favorites-header">
+                <h3><i class="bi bi-heart-fill"></i> Meus Favoritos</h3>
+                <button class="close-favorites" id="closeFavorites"><i class="bi bi-x-lg"></i></button>
+            </div>
+            <div class="favorites-body" id="favoritesBody">
+                <div class="empty-favorites">
+                    <div class="empty-icon"><i class="bi bi-heart"></i></div>
+                    <h4>Nenhum favorito ainda</h4>
+                    <p>Adicione produtos aos favoritos para vê-los aqui</p>
                 </div>
-                <h4>Carrinho vazio</h4>
-                <p>Adicione produtos ao carrinho para vê-los aqui</p>
             </div>
-        </div>
-        <div class="cart-summary">
-            <div class="summary-row">
-                <span>Subtotal</span>
-                <span class="subtotal-price" id="cartSubtotal">R$ 0,00</span>
+            <div class="favorites-footer">
+                <button class="btn btn-secondary" id="clearFavorites"><i class="bi bi-trash"></i> Limpar Favoritos</button>
             </div>
-            <div class="summary-row">
-                <span>Frete</span>
-                <span class="shipping-price">Grátis</span>
-            </div>
-            <div class="summary-divider"></div>
-            <div class="summary-row total">
-                <span>Total</span>
-                <span class="total-price" id="cartTotal">R$ 0,00</span>
-            </div>
-        </div>
-        <div class="cart-footer">
-            <button class="btn btn-secondary" id="clearCart">
-                <i class="bi bi-trash"></i> Limpar Carrinho
-            </button>
-            <button class="btn btn-primary" id="checkoutBtn">
-                <i class="bi bi-bag-check"></i> Finalizar Compra
-            </button>
         </div>
     </div>
-</div>
 
-<!-- Menu de Perfil Expandido -->
-<div class="profile-menu-expanded" id="profileMenuExpanded">
-    <div class="profile-overlay"></div>
-    <div class="profile-sidebar">
-        <div class="profile-header">
-            <div class="profile-user-info">
-                <div class="profile-avatar-large">
-                    <i class="bi bi-person-fill"></i>
-                </div>
-                <div class="profile-user-details">
-                    <h3>João Cliente</h3>
-                    <p>joao@email.com</p>
+    <div class="cart-menu" id="cartMenu">
+        <div class="cart-overlay"></div>
+        <div class="cart-sidebar">
+            <div class="cart-header">
+                <h3><i class="bi bi-cart3"></i> Meu Carrinho</h3>
+                <button class="close-cart" id="closeCart"><i class="bi bi-x-lg"></i></button>
+            </div>
+            <div class="cart-body" id="cartBody">
+                <div class="empty-cart">
+                    <div class="empty-icon"><i class="bi bi-cart"></i></div>
+                    <h4>Carrinho vazio</h4>
+                    <p>Adicione produtos ao carrinho para vê-los aqui</p>
                 </div>
             </div>
-            <button class="close-profile" id="closeProfile">
-                <i class="bi bi-x-lg"></i>
-            </button>
-        </div>
-        
-        <div class="profile-body">
-            <nav class="profile-nav">
-                <button class="profile-nav-item" id="profileMyProfile">
-                    <i class="bi bi-person"></i> 
-                    <span>Meu Perfil / Configurações</span>
-                </button>
-                            
-                <button class="profile-nav-item" id="profileMyOrders">
-                    <i class="bi bi-box-seam"></i>
-                    <span>Meus Pedidos</span>
-                </button>
-                
-                <div class="profile-nav-divider"></div>
-                
-                <button class="profile-nav-item logout" id="profileLogout">
-                    <i class="bi bi-box-arrow-left"></i>
-                    <span>Sair da Conta</span>
-                </button>
-            </nav>
+            <div class="cart-summary">
+                <div class="summary-row"><span>Subtotal</span><span class="subtotal-price" id="cartSubtotal">R$ 0,00</span></div>
+                <div class="summary-row"><span>Frete</span><span class="shipping-price">Grátis</span></div>
+                <div class="summary-divider"></div>
+                <div class="summary-row total"><span>Total</span><span class="total-price" id="cartTotal">R$ 0,00</span></div>
+            </div>
+            <div class="cart-footer">
+                <button class="btn btn-secondary" id="clearCart"><i class="bi bi-trash"></i> Limpar Carrinho</button>
+                <button class="btn btn-primary" id="checkoutBtn"><i class="bi bi-bag-check"></i> Finalizar Compra</button>
+            </div>
         </div>
     </div>
-</div>
 
+    <div class="profile-menu-expanded" id="profileMenuExpanded">
+        <div class="profile-overlay"></div>
+        <div class="profile-sidebar">
+            <div class="profile-header">
+                <div class="profile-user-info">
+                    <div class="profile-avatar-large"><i class="bi bi-person-fill"></i></div>
+                    <div class="profile-user-details">
+                        <h3>João Cliente</h3>
+                        <p>joao@email.com</p>
+                    </div>
+                </div>
+                <button class="close-profile" id="closeProfile"><i class="bi bi-x-lg"></i></button>
+            </div>
+            <div class="profile-body">
+                <nav class="profile-nav">
+                    <button class="profile-nav-item" id="profileMyProfile"><i class="bi bi-person"></i> <span>Meu Perfil</span></button>
+                    <button class="profile-nav-item" id="profileMyOrders"><i class="bi bi-box-seam"></i> <span>Meus Pedidos</span></button>
+                    <div class="profile-nav-divider"></div>
+                    <button class="profile-nav-item logout" id="profileLogout"><i class="bi bi-box-arrow-left"></i> <span>Sair da Conta</span></button>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="logoutModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Sair da Conta</h3>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body"><p>Tem certeza que deseja sair da sua conta?</p></div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="cancelLogout">Cancelar</button>
+                <button class="btn btn-danger" id="confirmLogout">Sair</button>
+            </div>
+        </div>
+    </div>
 
     <!-- Scripts -->
-    <script src="js/product_detail.js"></script>
-    <script src="js/favorites_menu.js"></script>
-    <script src="js/cart_menu.js"></script>
-    <script src="js/cliente_inicio.js"></script>
-    <script src="js/todos_produtos.js"></script>
-    <script src="js/favorites_menu.js"></script>
-    <script src="js/cart_menu.js"></script>
-    <script src="js/profile_menu.js"></script>
-    <script src="js/accessibility_menu.js"></script>
+    <script src="JS/auth.js"></script>
+    <script src="JS/cliente_inicio.js"></script>
+    <script src="JS/favorites_menu.js"></script>
+    <script src="JS/cart_menu.js"></script>
+    <script src="JS/profile_menu.js"></script>
+    <script src="JS/accessibility_menu.js"></script>
+    <script src="JS/product_detail.js"></script>
+    <script src="JS/todos_produtos.js"></script>
+    <script src="JS/modal.js"></script>
 
-        <!-- Widget VLibras -->
-        <div vw class="enabled">
-            <div vw-access-button class="active"></div>
-            <div vw-plugin-wrapper>
-                <div class="vw-plugin-top-wrapper"></div>
-            </div>
+    <!-- Widget VLibras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
         </div>
+    </div>
 </body>
 </html>

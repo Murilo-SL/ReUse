@@ -1,4 +1,3 @@
-
 // cart-menu.js - Gerenciamento do menu do carrinho
 
 class CartMenu {
@@ -15,6 +14,7 @@ class CartMenu {
         this.setupEventListeners();
         this.loadCartFromStorage();
         this.updateCartCount();
+        this.setupExternalAddToCartButtons();
     }
 
     initializeComponents() {
@@ -65,14 +65,86 @@ class CartMenu {
 
         // Fechar menu com ESC
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && this.cartMenu.classList.contains('active')) {
+            if (e.key === 'Escape' && this.cartMenu && this.cartMenu.classList.contains('active')) {
                 this.closeMenu();
             }
         });
     }
 
-    // Resto dos métodos permanecem iguais...
-    // [Mantive os métodos principais iguais para economizar espaço]
+    setupExternalAddToCartButtons() {
+        // Usar delegação de eventos para capturar cliques em botões adicionados dinamicamente
+        document.addEventListener('click', (e) => {
+            // Verificar se o clique foi em um botão "Adicionar ao Carrinho" ou similar
+            const addToCartBtn = e.target.closest('.add-to-cart, #addToCartBtn');
+            
+            if (addToCartBtn) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // Tentar obter dados dos atributos data-* primeiro
+                let productData = {
+                    id: addToCartBtn.getAttribute('data-id'),
+                    title: addToCartBtn.getAttribute('data-name'),
+                    price: parseFloat(addToCartBtn.getAttribute('data-price')),
+                    image: addToCartBtn.getAttribute('data-image'),
+                    badge: addToCartBtn.getAttribute('data-badge') || ''
+                };
+                
+                // Se não tiver data-id, tenta obter do contêiner do produto
+                if (!productData.id) {
+                    const productCard = addToCartBtn.closest('.product-item, .product-card');
+                    if (productCard) {
+                        productData.id = productCard.getAttribute('data-product-id') || 
+                                        productCard.querySelector('[data-product-id]')?.getAttribute('data-product-id');
+                        
+                        // Tentar obter informações visíveis no card
+                        const titleEl = productCard.querySelector('.product-title, h3');
+                        const priceEl = productCard.querySelector('.product-price, .price-main');
+                        const imageEl = productCard.querySelector('img');
+                        const badgeEl = productCard.querySelector('.product-badge');
+                        
+                        if (titleEl) productData.title = titleEl.textContent.trim();
+                        if (priceEl) {
+                            const priceText = priceEl.textContent.replace('R$', '').replace(/\./g, '').replace(',', '.').trim();
+                            productData.price = parseFloat(priceText) || 0;
+                        }
+                        if (imageEl) productData.image = imageEl.getAttribute('src') || '';
+                        if (badgeEl) productData.badge = badgeEl.textContent.trim();
+                    }
+                }
+                
+                // Se for da página de detalhes do produto (product_detail.js)
+                if (!productData.id || !productData.title) {
+                    const mainImage = document.getElementById('productMainImage');
+                    const productTitle = document.getElementById('productTitle');
+                    const productPrice = document.getElementById('productPrice');
+                    
+                    // Obter ID da URL
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const urlId = urlParams.get('id');
+                    
+                    if (mainImage) productData.image = mainImage.getAttribute('src') || '';
+                    if (productTitle) productData.title = productTitle.textContent.trim();
+                    if (productPrice) {
+                        const priceText = productPrice.textContent.replace('R$', '').replace(/\./g, '').replace(',', '.').trim();
+                        productData.price = parseFloat(priceText) || 0;
+                    }
+                    if (urlId) productData.id = urlId;
+                }
+                
+                // Verificar se temos dados suficientes
+                if (productData.id && productData.title && productData.price) {
+                    // Obter quantidade se houver um seletor de quantidade
+                    const quantityInput = document.getElementById('productQuantity');
+                    const quantity = quantityInput ? parseInt(quantityInput.value) || 1 : 1;
+                    
+                    this.addItem(productData, quantity);
+                }
+            }
+        });
+        
+        this.isExternalEventsSetup = true;
+    }
     
     loadCartFromStorage() {
         this.cartItems = JSON.parse(localStorage.getItem('reuse_cart')) || [];
@@ -107,12 +179,14 @@ class CartMenu {
     }
 
     openMenu() {
+        if (!this.cartMenu) return;
         this.cartMenu.classList.add('active');
         document.body.style.overflow = 'hidden';
         this.renderCart();
     }
 
     closeMenu() {
+        if (!this.cartMenu) return;
         this.cartMenu.classList.add('closing');
         document.body.style.overflow = '';
         
@@ -122,6 +196,8 @@ class CartMenu {
     }
 
     renderCart() {
+        if (!this.cartBody) return;
+        
         if (this.cartItems.length === 0) {
             this.showEmptyCart();
             this.updateSummary();
@@ -131,8 +207,6 @@ class CartMenu {
         let html = '<div class="cart-items">';
         
         this.cartItems.forEach((item, index) => {
-            const itemTotal = item.price * item.quantity;
-            
             html += `
                 <div class="cart-item" data-id="${item.id}">
                     <div class="cart-item-image">
@@ -175,6 +249,8 @@ class CartMenu {
     }
 
     setupCartItemControls() {
+        if (!this.cartBody) return;
+        
         // Botões de aumentar quantidade
         this.cartBody.querySelectorAll('.quantity-btn.plus').forEach(btn => {
             btn.addEventListener('click', (e) => {
@@ -204,6 +280,7 @@ class CartMenu {
     }
 
     showEmptyCart() {
+        if (!this.cartBody) return;
         this.cartBody.innerHTML = `
             <div class="empty-cart">
                 <div class="empty-icon">
@@ -222,8 +299,12 @@ class CartMenu {
         
         const total = subtotal + this.SHIPPING_FEE;
         
-        this.cartSubtotal.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
-        this.cartTotal.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+        if (this.cartSubtotal) {
+            this.cartSubtotal.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+        }
+        if (this.cartTotal) {
+            this.cartTotal.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+        }
     }
 
     addItem(product, quantity = 1) {
@@ -280,7 +361,7 @@ class CartMenu {
             const removedItem = this.cartItems.splice(index, 1)[0];
             this.saveCart();
             
-            if (this.cartMenu.classList.contains('active')) {
+            if (this.cartMenu && this.cartMenu.classList.contains('active')) {
                 if (this.cartItems.length === 0) {
                     this.showEmptyCart();
                 } else {
@@ -299,7 +380,7 @@ class CartMenu {
             this.cartItems = [];
             this.saveCart();
             
-            if (this.cartMenu.classList.contains('active')) {
+            if (this.cartMenu && this.cartMenu.classList.contains('active')) {
                 this.showEmptyCart();
                 this.updateSummary();
             }
