@@ -1,5 +1,8 @@
 -- ========================================
 -- BANCO DE DADOS - ReUse (Economia Circular)
+CREATE DATABASE ReUse;
+
+USE ReUse;
 -- ========================================
 -- Sistema de compra, venda e doação de itens usados
 -- Plataforma com Clientes, Vendedores e ONGs
