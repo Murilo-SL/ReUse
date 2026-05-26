@@ -12,7 +12,6 @@ CREATE TABLE IF NOT EXISTS users (
     phone VARCHAR(32),
     cpf VARCHAR(20),
     birth_date DATE,
-    gender VARCHAR(32),
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
@@ -38,11 +37,14 @@ CREATE TABLE IF NOT EXISTS addresses (
 CREATE TABLE IF NOT EXISTS payment_methods (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER NOT NULL,
+    method_type VARCHAR(32) NOT NULL DEFAULT 'card',
+    provider VARCHAR(64),
     cardholder_name VARCHAR(128),
     card_brand VARCHAR(64),
     last4 VARCHAR(4),
     expiry_month INTEGER,
     expiry_year INTEGER,
+    details TEXT,
     is_primary BOOLEAN DEFAULT 0,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -72,6 +74,7 @@ CREATE TABLE IF NOT EXISTS institutions (
     name VARCHAR(255) NOT NULL,
     institution_type VARCHAR(64),
     cnpj VARCHAR(20),
+    phone VARCHAR(32),
     address VARCHAR(255),
     website VARCHAR(255),
     description TEXT,
@@ -80,6 +83,29 @@ CREATE TABLE IF NOT EXISTS institutions (
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS campaigns (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    institution_id INTEGER NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    description TEXT,
+    campaign_type VARCHAR(64),
+    goal_description TEXT,
+    goal_amount DECIMAL(10,2),
+    goal_units INTEGER,
+    goal_unit_type VARCHAR(32),
+    collected_amount DECIMAL(10,2) DEFAULT 0.0,
+    collected_units INTEGER DEFAULT 0,
+    contributors_count INTEGER DEFAULT 0,
+    start_date DATE,
+    end_date DATE,
+    status VARCHAR(32) DEFAULT 'pending',
+    image_url VARCHAR(255),
+    terms_accepted BOOLEAN DEFAULT 0,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (institution_id) REFERENCES institutions(id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS products (
@@ -96,6 +122,7 @@ CREATE TABLE IF NOT EXISTS products (
     material VARCHAR(128),
     power VARCHAR(64),
     capacity VARCHAR(64),
+    weight DECIMAL(10,2),
     price DECIMAL(10,2) NOT NULL DEFAULT 0.0,
     badge VARCHAR(64),
     rating DECIMAL(3,2) DEFAULT 0.0,
@@ -166,12 +193,17 @@ CREATE TABLE IF NOT EXISTS donations (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER,
     institution_id INTEGER,
-    item_name VARCHAR(255) NOT NULL,
+    campaign_id INTEGER,
+    donation_type VARCHAR(32) DEFAULT 'item',
+    item_name VARCHAR(255),
+    amount DECIMAL(10,2),
     category VARCHAR(128),
     item_condition VARCHAR(64),
     description TEXT,
-    donation_type VARCHAR(32) DEFAULT 'public',
-    delivery_option VARCHAR(32),
+    message TEXT,
+    payment_method VARCHAR(64),
+    anonymous BOOLEAN DEFAULT 0,
+    delivery_option VARCHAR(64),
     pickup_street VARCHAR(255),
     pickup_number VARCHAR(64),
     pickup_complement VARCHAR(128),
@@ -185,7 +217,8 @@ CREATE TABLE IF NOT EXISTS donations (
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL,
-    FOREIGN KEY (institution_id) REFERENCES institutions(id) ON DELETE SET NULL
+    FOREIGN KEY (institution_id) REFERENCES institutions(id) ON DELETE SET NULL,
+    FOREIGN KEY (campaign_id) REFERENCES campaigns(id) ON DELETE SET NULL
 );
 
 CREATE TABLE IF NOT EXISTS donation_images (
