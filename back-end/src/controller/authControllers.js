@@ -1,26 +1,56 @@
-const myModel = require("../model/authModel.js")
+const myModel = require("../model/authModel.js");
 
-async function Login(req, res ){
-    const { email, password} = req.body;
-    const result = await myModel.Login( email, password );
-    if ( result && result.data.length > 0) {
-        
-        const {password_hash} = result.data[0];
-        
-        if ( password_hash === password) {
-            return result
-        } else {
-            return {"message": "Error", "data":[] } 
+async function Login(req, res) {
+
+    try {
+
+        const { email, password } = req.body;
+
+        const result = await myModel.Login(email);
+
+        if (!result.success) {
+            return res.status(401).json({
+                success: false,
+                message: "Usuário não encontrado"
+            });
         }
-    } else {
-        return {"message": "Error", "data":[] } 
+
+        const usuario = result.data[0];
+
+        if (usuario.password_hash !== password) {
+            return res.status(401).json({
+                success: false,
+                message: "Senha incorreta"
+            });
+        }
+
+        return res.status(200).json({
+            success: true,
+            message: "Login realizado com sucesso",
+            data: {
+                id: usuario.id,
+                email: usuario.email,
+                user_type: usuario.user_type
+            }
+        });
+
+    } catch (error) {
+
+        console.error(error);
+
+        return res.status(500).json({
+            success: false,
+            message: "Erro interno do servidor"
+        });
+
     }
-    
-
 }
 
-function EndPointName(){
-  return myModel.EndPointName();
+function EndPointName() {
+    return myModel.EndPointName();
 }
 
-module.exports = {Login, EndPointName}
+module.exports = {
+    Login,
+    EndPointName
+};

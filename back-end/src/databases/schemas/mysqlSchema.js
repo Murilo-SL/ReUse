@@ -53,6 +53,43 @@ class DatabaseSchemaMysql {
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 )`,
 
+    `CREATE TABLE IF NOT EXISTS sellers (
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    user_id INTEGER NOT NULL,
+    seller_type VARCHAR(32) NOT NULL CHECK (seller_type IN ('efemero', 'brecho')),
+    shop_name VARCHAR(255) NOT NULL,
+    cnpj VARCHAR(20),
+    address VARCHAR(255),
+    rating DECIMAL(3,2) DEFAULT 0.0,
+    total_sales INTEGER DEFAULT 0,
+    response_rate VARCHAR(16),
+    location VARCHAR(255),
+    description TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+)`,
+
+    `CREATE TABLE IF NOT EXISTS institutions (
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    user_id INTEGER NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    institution_type VARCHAR(64),
+    cnpj VARCHAR(20),
+    phone VARCHAR(32),
+    address VARCHAR(255),
+    website VARCHAR(255),
+    description TEXT,
+    causes TEXT,
+    verified BOOLEAN DEFAULT 0,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+)`,
+
+
+
+
 
         ];
 

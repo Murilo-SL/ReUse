@@ -3,6 +3,10 @@ import { addPasswordToggle } from './utils.js';
 
 // Script para funcionalidades das páginas de autenticação
 document.addEventListener('DOMContentLoaded', function() {
+
+    let login = '';
+    let password = '';
+
     // Adicionar toggle de senha primeiro
     addPasswordToggle(document);
     
@@ -82,79 +86,204 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Validação de formulários
-    const forms = document.querySelectorAll('form');
-    forms.forEach(form => {
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Limpar erros anteriores
-            clearErrors(form);
-            
-            // Validar formulário
-            if (validateForm(form)) {
-                // Simulação de envio bem-sucedido
-                const formType = form.id === 'loginForm' ? 'Login' : 'Cadastro';
-                loginVendedor(formType);
-                return
-                //showNotification(`${formType} realizado com sucesso! /n ** * * ** *`, 'success');
-                
-                // Determinar tipo de usuário e redirecionar
-                const isClientPage = window.location.pathname.includes('cadastro-cliente') || 
-                                   window.location.pathname.includes('cliente');
-                const isSellerPage = window.location.pathname.includes('cadastro-vendedor') || 
-                                   window.location.pathname.includes('vendedor');
-                const isOngPage = window.location.pathname.includes('cadastro-instituicao') || 
-                                   window.location.pathname.includes('ong');
-                
-                // Redirecionar após sucesso
-                setTimeout(() => {
-                    if (form.id === 'loginForm') {
-                        // Login bem-sucedido
-                        if (isClientPage) {
-                            // Redirecionar para página inicial do cliente
-                            window.location.href = 'cliente-inicio.html';
-                        } else if (isOngPage) {
-                            // Redirecionar para página inicial da ONG
-                            window.location.href = 'ong-inicio.html';
-                        } else if (isSellerPage) {
-                            // Redirecionar para dashboard do vendedor
-                            window.location.href = 'vendedor-inicio.html';
-                        } else {
-                            // Página genérica - redirecionar baseado no contexto
-                            const userType = detectUserType(form);
-                            if (userType === 'client') {
-                                window.location.href = 'cliente-inicio.html';
-                            } else if (userType === 'ong') {
-                                window.location.href = 'ong-inicio.html';
-                            } else {
-                                window.location.href = 'vendedor-inicio.html';
-                            }
-                        }
+// Validação de formulários
+const forms = document.querySelectorAll('form');
+
+forms.forEach(form => {
+
+    form.addEventListener('submit', async function(e) {
+
+        e.preventDefault();
+
+        // Limpar erros anteriores
+        clearErrors(form);
+
+        // Validar formulário
+        if (validateForm(form)) {
+
+            const formType = form.id === 'loginForm'
+                ? 'Login'
+                : 'Cadastro';
+
+            // Determinar tipo de usuário e página
+            const isClientPage =
+                window.location.pathname.includes('cadastro-cliente') ||
+                window.location.pathname.includes('cliente');
+
+            const isSellerPage =
+                window.location.pathname.includes('cadastro-vendedor') ||
+                window.location.pathname.includes('vendedor');
+
+            const isOngPage =
+                window.location.pathname.includes('cadastro-instituicao') ||
+                window.location.pathname.includes('ong');
+
+            // LOGIN
+            if (form.id === 'loginForm') {
+
+                const loginValido = await loginVendedor();
+
+                // Se não existir no banco ou senha incorreta
+                if (!loginValido) {
+
+                    showNotification(
+                        'E-mail ou senha inválidos.',
+                        'error'
+                    );
+
+                    return;
+                }
+
+            } else {
+
+                // CADASTRO
+                let dados = {};
+
+                // Cliente
+                if (isClientPage) {
+
+                    dados = {
+                        user_type: "client",
+                        first_name: document.getElementById("nomeCliente").value,
+                        last_name: document.getElementById("sobrenomeCliente").value,
+                        email: document.getElementById("emailCliente").value,
+                        password_hash: document.getElementById("senhaCliente").value,
+                        phone: document.getElementById("telefoneCliente").value,
+                        cpf: document.getElementById("cpfCliente").value,
+                        birth_date: document.getElementById("dataNascimento").value
+                    };
+
+                }
+
+                // Vendedor
+                else if (isSellerPage) {
+
+                    dados = {
+                        user_type: "seller",
+                        first_name: document.getElementById("nomeLoja").value,
+                        email: document.getElementById("email").value,
+                        password_hash: document.getElementById("senha").value,
+                        phone: document.getElementById("telefone").value
+                    };
+
+                }
+
+                // Instituição
+                else if (isOngPage) {
+
+                    dados = {
+                        user_type: "institution",
+                        first_name: document.getElementById("nomeInstituicao").value,
+                        email: document.getElementById("email").value,
+                        password_hash: document.getElementById("cnpj").value,
+                        phone: document.getElementById("telefone").value
+                    };
+
+                }
+
+                const result = await cadastrarUsuario(dados);
+
+                console.log("Cadastro:", result);
+
+                if (
+                    result.message !== "Success" &&
+                    result.message !== "Sucess"
+                ) {
+
+                    showNotification(
+                        "Erro ao cadastrar usuário.",
+                        "error"
+                    );
+
+                    return;
+                }
+            }
+
+            // Redirecionar após sucesso
+            setTimeout(() => {
+
+                if (form.id === 'loginForm') {
+
+                    // Login bem-sucedido
+                    if (isClientPage) {
+
+                        window.location.href = 'cliente-inicio.html';
+
+                    } else if (isOngPage) {
+
+                        window.location.href = 'ong-inicio.html';
+
+                    } else if (isSellerPage) {
+
+                        window.location.href = 'vendedor-inicio.html';
+
                     } else {
-                        // Cadastro bem-sucedido
-                        if (isClientPage) {
-                            // Mostrar mensagem e voltar para login
-                            showNotification('Cadastro realizado! Faça login para acessar sua conta.', 'success');
-                            const activeTab = document.querySelector('.tab-btn.active');
-                            if (activeTab && activeTab.getAttribute('data-tab') === 'cadastro') {
-                                document.querySelector('[data-tab="login"]').click();
-                            }
-                        } else if (isSellerPage) {
-                            // Mostrar mensagem e voltar para login
-                            
-                            //
-                            showNotification('Cadastro realizado! Faça login para acessar seu painel.', 'success');
-                            const activeTab = document.querySelector('.tab-btn.active');
-                            if (activeTab && activeTab.getAttribute('data-tab') === 'cadastro') {
-                                document.querySelector('[data-tab="login"]').click();
-                            }
+
+                        const userType = detectUserType(form);
+
+                        if (userType === 'client') {
+
+                            window.location.href = 'cliente-inicio.html';
+
+                        } else if (userType === 'ong') {
+
+                            window.location.href = 'ong-inicio.html';
+
+                        } else {
+
+                            window.location.href = 'vendedor-inicio.html';
+
                         }
                     }
-                }, 1500);
-            }
-        });
+
+                } else {
+
+                    // Cadastro bem-sucedido
+                    if (isClientPage) {
+
+                        showNotification(
+                            'Cadastro realizado! Faça login para acessar sua conta.',
+                            'success'
+                        );
+
+                    } else if (isSellerPage) {
+
+                        showNotification(
+                            'Cadastro realizado! Faça login para acessar seu painel.',
+                            'success'
+                        );
+
+                    } else if (isOngPage) {
+
+                        showNotification(
+                            'Instituição cadastrada com sucesso! Faça login para acessar seu painel.',
+                            'success'
+                        );
+
+                    }
+
+                    const activeTab =
+                        document.querySelector('.tab-btn.active');
+
+                    if (
+                        activeTab &&
+                        activeTab.getAttribute('data-tab') === 'cadastro'
+                    ) {
+
+                        document
+                            .querySelector('[data-tab="login"]')
+                            .click();
+                    }
+
+                }
+
+            }, 1500);
+
+        }
+
     });
+
+});
     
     // Login social
     const socialButtons = document.querySelectorAll('.social-btn');
@@ -600,44 +729,128 @@ document.addEventListener('DOMContentLoaded', function() {
         changeLanguage(savedLanguage);
     }
 
-    async function loginVendedor(formType){
-        // const login  = "jose@gmail.com";
-        // const password  = "567";
-        
-        const url = "http://localhost:3600/auth/login"
-        // const response = await fetch( url );
-        const dados = {
-            password: password,
-            email: login
+// Substitua a função loginVendedor existente por esta:
+async function loginVendedor() {
+
+    try {
+
+        const email = document.getElementById("loginEmail").value.trim();
+        const password = document.getElementById("loginSenha").value.trim();
+
+        if (!email || !password) {
+
+            showNotification(
+                "Preencha e-mail e senha",
+                "error"
+            );
+
+            return false;
         }
 
-        const response = await fetch( url, {
-            method: 'POST', // Define o verbo HTTP
-            headers: {
-              'Content-Type': 'application/json' // Informa que os dados são JSON
-              },
-              body: JSON.stringify(dados) // Converte o objeto JavaScript para string
-            })
-        
-        const result = await response.json(); 
+        const response = await fetch(
+            "http://localhost:3600/auth/login",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    email,
+                    password
+                })
+            }
+        );
 
-        if ( result.data.length == 0) {
-            console.log( "usuario ou senha invalido")
-            showNotification(`${formType} falha , ops sem sucesso! /n ** * * ** *`, 'error');
-            return
-        }      
+        const result = await response.json();
 
-        const { email, password_hash } = result.data[0];
+        console.log("Resposta do servidor:", result);
 
-        if ( login === email && password === password_hash){
-            console.log( "usario valido");
-             showNotification(`${formType} realizado com sucesso! /n ** * * ** *`, 'success');
-        }else{
-            console.log( "usuario ou senha invalido")
-             showNotification(`${formType} falha , ops sem sucesso! /n ** * * ** *`, 'error');
+        // Usuário não encontrado ou senha incorreta
+        if (!result.success) {
+
+            showNotification(
+                result.message || "Usuário ou senha inválidos",
+                "error"
+            );
+
+            return false;
         }
+
+        // Login válido
+        localStorage.setItem(
+            "usuario",
+            JSON.stringify(result.data)
+        );
+
+        showNotification(
+            "Login realizado com sucesso!",
+            "success"
+        );
+
+        setTimeout(() => {
+
+            switch (result.data.user_type) {
+
+                case "seller":
+                    window.location.href = "vendedor-inicio.html";
+                    break;
+
+                case "client":
+                    window.location.href = "cliente-inicio.html";
+                    break;
+
+                case "institution":
+                    window.location.href = "instituicao-inicio.html";
+                    break;
+
+                default:
+                    window.location.href = "index.html";
+                    break;
+            }
+
+        }, 1000);
+
+        return true;
+
+    } catch (error) {
+
+        console.error(error);
+
+        showNotification(
+            "Erro ao conectar com o servidor",
+            "error"
+        );
+
+        return false;
     }
+}
 });
+
+async function cadastrarUsuario(dados) {
+    try {
+        const response = await fetch(
+            "http://localhost:3600/users",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(dados)
+            }
+        );
+
+        return await response.json();
+
+    } catch (error) {
+
+        console.error(error);
+
+        return {
+            message: "Error",
+            data: []
+        };
+    }
+}
 
 // Adicione este CSS para as notificações e mensagens de erro
 const notificationCSS = `
