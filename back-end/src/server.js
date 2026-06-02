@@ -1,30 +1,30 @@
 const express = require("express");
 const dotenv = require("dotenv");
-const cors = require("cors") ;
-const os = require("os");
+const cors = require("cors");
 const path = require("path");
-const { fileURLToPath } = require("url");
+
 // importações do projeto
 const uploads = require("./utils/upload.js");
 const routes = require("./view/routes");
 
-
 // instancia o dotenv para uso
 dotenv.config();
 
-const PROJETO_NAME = process.env.PROJETO_NAME || "Api NodeJs 2026 - DSI"
-// para mudar a porta do servidor
-const Port = process.env.API_PORT || 3000;
+const PROJETO_NAME =
+    process.env.PROJETO_NAME ||
+    "Api NodeJs 2026 - DSI";
 
-// instanciar o express no objeto app
+const Port =
+    process.env.API_PORT || 3000;
+
+// instancia express
 const app = express();
 
-// instancia o banco de dados que será utilizado
-const { db } = require('./databases/DatabaseContext.js');
+// banco de dados
+const { db } =
+    require('./databases/DatabaseContext.js');
 
-//
-// inejta o cord no express
-//app.use( cors())
+// cors
 app.use(cors({
     origin: [
         'http://127.0.0.1:5501',
@@ -32,43 +32,43 @@ app.use(cors({
     ]
 }));
 
-// informa ao express que iremos trabalhar com json
+// json
 app.use(express.json());
 
-// injeta como midlare routes no express
-app.use( routes );
+// rotas
+app.use(routes);
 
-// metodo para visualizar a imagem diretamente na rota da api
-// metodo-1 - Servindo arquivos estáticos da pasta "upload"
+// uploads
 app.use(
-  '/uploads',
-  express.static(path.resolve(__dirname, '..', 'uploads'))
+    '/uploads',
+    express.static(
+        path.resolve(__dirname, '..', 'uploads')
+    )
 );
 
-// // metodo para upload da imagem
-// app.post('/upload', uploads.single('avatar'), (req, res) => {
-//     if (!req.file) {
-//         res.send('Erro ao fazer upload do arquivo!');
-//     } else {
-//         res.send('Arquivo enviado com sucesso!') ;
-//     }
-// })
-
-// função para iniciar o servidor e o banco de dados
+// iniciar servidor
 async function startServer() {
 
-    console.log( `iniciando banco de dados: ${process.env.DB_TYPE}` )
+    console.log(
+        `iniciando banco de dados: ${process.env.DB_TYPE}`
+    );
+
     await db.init();
-    
-    // carrega a api , deixa a api monitorando a porta informada
-    app.listen( Port, ()=>{        
-        console.log(`Servidor rodando na porta: ${Port}\n Pressione CRTL+C cancelar servidor!`);
-        console.log(`Projeto Integrador 1º 2026 - Fatec Taquaritinga`);
-        console.log(`${PROJETO_NAME}`);
+
+    app.listen(Port, () => {
+
+        console.log(
+            `Servidor rodando na porta: ${Port}`
+        );
+
+        console.log(
+            `Projeto Integrador 1º 2026 - Fatec Taquaritinga`
+        );
+
+        console.log(PROJETO_NAME);
+
     });
-   
+
 }
 
-// chamada da função encarregade de subir o servidor
 startServer();
-

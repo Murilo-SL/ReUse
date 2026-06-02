@@ -134,151 +134,69 @@ forms.forEach(form => {
                     return;
                 }
 
-            } else {
+} else {
 
-                // CADASTRO
-                let dados = {};
+    const cadastroRealizado =
+        await cadastrarUsuario();
 
-                // Cliente
-                if (isClientPage) {
+    if (!cadastroRealizado) {
+        return;
+    }
 
-                    dados = {
-                        user_type: "client",
-                        first_name: document.getElementById("nomeCliente").value,
-                        last_name: document.getElementById("sobrenomeCliente").value,
-                        email: document.getElementById("emailCliente").value,
-                        password_hash: document.getElementById("senhaCliente").value,
-                        phone: document.getElementById("telefoneCliente").value,
-                        cpf: document.getElementById("cpfCliente").value,
-                        birth_date: document.getElementById("dataNascimento").value
-                    };
+    if (isClientPage) {
 
-                }
+        showNotification(
+            'Cadastro realizado! Faça login para acessar sua conta.',
+            'success'
+        );
 
-                // Vendedor
-                else if (isSellerPage) {
+        const activeTab =
+            document.querySelector('.tab-btn.active');
 
-                    dados = {
-                        user_type: "seller",
-                        first_name: document.getElementById("nomeLoja").value,
-                        email: document.getElementById("email").value,
-                        password_hash: document.getElementById("senha").value,
-                        phone: document.getElementById("telefone").value
-                    };
+        if (
+            activeTab &&
+            activeTab.getAttribute('data-tab') === 'cadastro'
+        ) {
+            document.querySelector('[data-tab="login"]').click();
+        }
 
-                }
+    } else if (isSellerPage) {
 
-                // Instituição
-                else if (isOngPage) {
+        showNotification(
+            'Cadastro realizado! Faça login para acessar seu painel.',
+            'success'
+        );
 
-                    dados = {
-                        user_type: "institution",
-                        first_name: document.getElementById("nomeInstituicao").value,
-                        email: document.getElementById("email").value,
-                        password_hash: document.getElementById("cnpj").value,
-                        phone: document.getElementById("telefone").value
-                    };
+        const activeTab =
+            document.querySelector('.tab-btn.active');
 
-                }
+        if (
+            activeTab &&
+            activeTab.getAttribute('data-tab') === 'cadastro'
+        ) {
+            document.querySelector('[data-tab="login"]').click();
+        }
 
-                const result = await cadastrarUsuario(dados);
+    } else if (isOngPage) {
 
-                console.log("Cadastro:", result);
+        showNotification(
+            'Instituição cadastrada com sucesso!',
+            'success'
+        );
 
-                if (
-                    result.message !== "Success" &&
-                    result.message !== "Sucess"
-                ) {
+        const activeTab =
+            document.querySelector('.tab-btn.active');
 
-                    showNotification(
-                        "Erro ao cadastrar usuário.",
-                        "error"
-                    );
+        if (
+            activeTab &&
+            activeTab.getAttribute('data-tab') === 'cadastro'
+        ) {
+            document.querySelector('[data-tab="login"]').click();
+        }
 
-                    return;
-                }
-            }
+    }
 
-            // Redirecionar após sucesso
-            setTimeout(() => {
-
-                if (form.id === 'loginForm') {
-
-                    // Login bem-sucedido
-                    if (isClientPage) {
-
-                        window.location.href = 'cliente-inicio.html';
-
-                    } else if (isOngPage) {
-
-                        window.location.href = 'ong-inicio.html';
-
-                    } else if (isSellerPage) {
-
-                        window.location.href = 'vendedor-inicio.html';
-
-                    } else {
-
-                        const userType = detectUserType(form);
-
-                        if (userType === 'client') {
-
-                            window.location.href = 'cliente-inicio.html';
-
-                        } else if (userType === 'ong') {
-
-                            window.location.href = 'ong-inicio.html';
-
-                        } else {
-
-                            window.location.href = 'vendedor-inicio.html';
-
-                        }
-                    }
-
-                } else {
-
-                    // Cadastro bem-sucedido
-                    if (isClientPage) {
-
-                        showNotification(
-                            'Cadastro realizado! Faça login para acessar sua conta.',
-                            'success'
-                        );
-
-                    } else if (isSellerPage) {
-
-                        showNotification(
-                            'Cadastro realizado! Faça login para acessar seu painel.',
-                            'success'
-                        );
-
-                    } else if (isOngPage) {
-
-                        showNotification(
-                            'Instituição cadastrada com sucesso! Faça login para acessar seu painel.',
-                            'success'
-                        );
-
-                    }
-
-                    const activeTab =
-                        document.querySelector('.tab-btn.active');
-
-                    if (
-                        activeTab &&
-                        activeTab.getAttribute('data-tab') === 'cadastro'
-                    ) {
-
-                        document
-                            .querySelector('[data-tab="login"]')
-                            .click();
-                    }
-
-                }
-
-            }, 1500);
-
+}
         }
 
     });
@@ -826,29 +744,184 @@ async function loginVendedor() {
 }
 });
 
-async function cadastrarUsuario(dados) {
+async function cadastrarUsuario() {
+
     try {
-        const response = await fetch(
+
+        const isClientPage =
+            window.location.pathname.includes('cadastro-cliente');
+
+        const isSellerPage =
+            window.location.pathname.includes('cadastro-vendedor');
+
+        const isInstitutionPage =
+            window.location.pathname.includes('cadastro-instituicao');
+
+        let dadosUser = {};
+
+        // =====================
+        // CLIENTE
+        // =====================
+        if (isClientPage) {
+
+            dadosUser = {
+                user_type: "client",
+                first_name: document.getElementById("nomeCliente").value,
+                last_name: document.getElementById("sobrenomeCliente").value,
+                email: document.getElementById("emailCliente").value,
+                password_hash: document.getElementById("senhaCliente").value,
+                phone: document.getElementById("telefoneCliente").value,
+                cpf: document.getElementById("cpfCliente").value,
+                birth_date: document.getElementById("dataNascimento").value
+            };
+
+        }
+
+        // =====================
+        // VENDEDOR
+        // =====================
+        if (isSellerPage) {
+
+            dadosUser = {
+                user_type: "seller",
+                email: document.getElementById("email").value,
+                password_hash: document.getElementById("senha").value,
+                phone: document.getElementById("telefone").value
+            };
+
+        }
+
+        // =====================
+        // INSTITUIÇÃO
+        // =====================
+        if (isInstitutionPage) {
+
+            dadosUser = {
+                user_type: "institution",
+                email: document.getElementById("email").value,
+                password_hash: document.getElementById("cnpj").value,
+                phone: document.getElementById("telefone").value
+            };
+
+        }
+
+        // =====================
+        // SALVA USER
+        // =====================
+
+        const responseUser = await fetch(
             "http://localhost:3600/users",
             {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify(dados)
+                body: JSON.stringify(dadosUser)
             }
         );
 
-        return await response.json();
+        const resultUser =
+            await responseUser.json();
+
+        if (resultUser.message !== "Success" &&
+            resultUser.message !== "Sucess") {
+
+            showNotification(
+                "Erro ao cadastrar usuário",
+                "error"
+            );
+
+            return false;
+        }
+
+        const user_id =
+            resultUser.data.insertId;
+
+        // =====================
+        // SALVA SELLER
+        // =====================
+
+        if (isSellerPage) {
+
+            await fetch(
+                "http://localhost:3600/sellers",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        user_id: user_id,
+                        seller_type:
+                            document.getElementById("tipoVendedor").value,
+                        shop_name:
+                            document.getElementById("nomeLoja").value,
+                        cnpj:
+                            document.getElementById("cnpj").value,
+                        address:
+                            document.getElementById("endereco").value
+                    })
+                }
+            );
+        }
+
+        // =====================
+        // SALVA INSTITUIÇÃO
+        // =====================
+
+        if (isInstitutionPage) {
+
+            const causasSelecionadas =
+                Array.from(
+                    document.querySelectorAll(
+                        'input[name="causas"]:checked'
+                    )
+                )
+                .map(item => item.value)
+                .join(",");
+
+            await fetch(
+                "http://localhost:3600/institutions",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        user_id: user_id,
+                        name:
+                            document.getElementById("nomeInstituicao").value,
+                        institution_type:
+                            document.getElementById("tipoInstituicao").value,
+                        cnpj:
+                            document.getElementById("cnpj").value,
+                        phone:
+                            document.getElementById("telefone").value,
+                        address:
+                            document.getElementById("localizacao").value,
+                        website:
+                            document.getElementById("site").value,
+                        description:
+                            document.getElementById("descricao").value,
+                        causes:
+                            causasSelecionadas
+                    })
+                }
+            );
+        }
+
+        return true;
 
     } catch (error) {
 
         console.error(error);
 
-        return {
-            message: "Error",
-            data: []
-        };
+        showNotification(
+            "Erro ao cadastrar usuário",
+            "error"
+        );
+
+        return false;
     }
 }
 
