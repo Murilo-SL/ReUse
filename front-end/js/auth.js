@@ -1,7 +1,10 @@
+// imports
+import { addPasswordToggle } from './utils.js';
+
 // Script para funcionalidades das páginas de autenticação
 document.addEventListener('DOMContentLoaded', function() {
     // Adicionar toggle de senha primeiro
-    addPasswordToggle();
+    addPasswordToggle(document);
     
     // Alternar entre login e cadastro
     const tabButtons = document.querySelectorAll('.tab-btn');
@@ -92,7 +95,9 @@ document.addEventListener('DOMContentLoaded', function() {
             if (validateForm(form)) {
                 // Simulação de envio bem-sucedido
                 const formType = form.id === 'loginForm' ? 'Login' : 'Cadastro';
-                showNotification(`${formType} realizado com sucesso!`, 'success');
+                loginVendedor(formType);
+                return
+                //showNotification(`${formType} realizado com sucesso! /n ** * * ** *`, 'success');
                 
                 // Determinar tipo de usuário e redirecionar
                 const isClientPage = window.location.pathname.includes('cadastro-cliente') || 
@@ -137,6 +142,8 @@ document.addEventListener('DOMContentLoaded', function() {
                             }
                         } else if (isSellerPage) {
                             // Mostrar mensagem e voltar para login
+                            
+                            //
                             showNotification('Cadastro realizado! Faça login para acessar seu painel.', 'success');
                             const activeTab = document.querySelector('.tab-btn.active');
                             if (activeTab && activeTab.getAttribute('data-tab') === 'cadastro') {
@@ -194,47 +201,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Padrão: cliente
         return 'client';
     }
-    
-    // Função para adicionar toggle de senha
-    function addPasswordToggle() {
-        const passwordInputs = document.querySelectorAll('input[type="password"]');
-        
-        passwordInputs.forEach(input => {
-            // Verificar se já existe um toggle button
-            if (input.parentNode.querySelector('.password-toggle')) {
-                return;
-            }
-            
-            // Criar wrapper se não existir
-            if (!input.parentNode.classList.contains('password-wrapper')) {
-                const wrapper = document.createElement('div');
-                wrapper.className = 'password-wrapper';
-                input.parentNode.insertBefore(wrapper, input);
-                wrapper.appendChild(input);
-            }
-            
-            // Criar botão de toggle
-            const toggleBtn = document.createElement('button');
-            toggleBtn.type = 'button';
-            toggleBtn.className = 'password-toggle';
-            toggleBtn.innerHTML = '<i class="bi bi-eye"></i>';
-            toggleBtn.setAttribute('aria-label', 'Mostrar senha');
-            
-            // Adicionar evento de clique
-            toggleBtn.addEventListener('click', function() {
-                const type = input.type === 'password' ? 'text' : 'password';
-                input.type = type;
-                
-                // Atualizar ícone
-                const icon = this.querySelector('i');
-                icon.className = type === 'password' ? 'bi bi-eye' : 'bi bi-eye-slash';
-                this.setAttribute('aria-label', type === 'password' ? 'Mostrar senha' : 'Ocultar senha');
-            });
-            
-            // Adicionar botão após o input
-            input.parentNode.appendChild(toggleBtn);
-        });
-    }
+       
     
     // Função para validar formulário
     function validateForm(form) {
@@ -256,7 +223,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (field.value.trim()) {
                         fieldValid = validateEmail(field.value);
                         errorMessage = 'Por favor, insira um e-mail válido';
+                        login = field.value;
                     }
+                    
                     break;
                     
                 case 'password':
@@ -269,6 +238,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             fieldValid = field.value === senha.value;
                             errorMessage = 'As senhas não coincidem';
                         }
+                        password = field.value;
                     }
                     break;
                     
@@ -628,6 +598,44 @@ document.addEventListener('DOMContentLoaded', function() {
     const savedLanguage = localStorage.getItem('preferredLanguage');
     if (savedLanguage) {
         changeLanguage(savedLanguage);
+    }
+
+    async function loginVendedor(formType){
+        // const login  = "jose@gmail.com";
+        // const password  = "567";
+        
+        const url = "http://localhost:3600/auth/login"
+        // const response = await fetch( url );
+        const dados = {
+            password: password,
+            email: login
+        }
+
+        const response = await fetch( url, {
+            method: 'POST', // Define o verbo HTTP
+            headers: {
+              'Content-Type': 'application/json' // Informa que os dados são JSON
+              },
+              body: JSON.stringify(dados) // Converte o objeto JavaScript para string
+            })
+        
+        const result = await response.json(); 
+
+        if ( result.data.length == 0) {
+            console.log( "usuario ou senha invalido")
+            showNotification(`${formType} falha , ops sem sucesso! /n ** * * ** *`, 'error');
+            return
+        }      
+
+        const { email, password_hash } = result.data[0];
+
+        if ( login === email && password === password_hash){
+            console.log( "usario valido");
+             showNotification(`${formType} realizado com sucesso! /n ** * * ** *`, 'success');
+        }else{
+            console.log( "usuario ou senha invalido")
+             showNotification(`${formType} falha , ops sem sucesso! /n ** * * ** *`, 'error');
+        }
     }
 });
 

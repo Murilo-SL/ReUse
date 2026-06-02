@@ -1,0 +1,54 @@
+# url ou dominio
+@URL = http://localhost
+# Porta do servidor
+@PORT = 3600
+# endpoint ou rota do teste
+@ENDPOINT = users
+# uri - rota final do teste
+@URI = {{URL}}:{{PORT}}/{{ENDPOINT}}
+
+GET {{URI}}
+###
+GET {{URI}}/1
+
+###
+POST {{URI}}/validaremail
+Content-Type: application/json; charset=utf-8
+
+  {    
+      "email": "jose@gmail.com"
+  }
+
+###
+POST {{URI}}
+Content-Type: application/json; charset=utf-8
+
+  {    
+      "email": "jose@gmail.com",
+      "password_hash": "567",
+      "user_type": "seller",
+      "first_name": "jose",
+      "last_name" : "Teste da Silva",
+      "phone" : "16 8-9999-9999",
+      "cpf" : "111.111.111-11",
+      "birth_date" : "1979-05-30 00:00:000"
+    }
+
+###
+PUT {{URI}}/1
+Content-Type: application/json; charset=utf-8
+
+  {
+      "email": "jose@gmail.com",
+      "password_hash": "123456789",
+      "user_type": "seller",
+      "first_name": "Jose",
+      "last_name" : "Teste da Silva",
+      "phone" : "16 8-9999-9999",
+      "cpf" : "111.111.111-11",
+      "birth_date" : "1979-05-30 00:00:000"
+    }
+
+
+###
+DELETE {{URI}}/3
