@@ -59,6 +59,73 @@ async function Put(payload, id){
  
 }
 
+async function UpdatePassword(id, currentPassword, newPassword) {
+
+    const sqlSelect = `
+        SELECT password_hash
+        FROM users
+        WHERE id = ?
+    `;
+
+    const [users] = await db.execute(sqlSelect, [id]);
+
+    if (users.length === 0) {
+        return {
+            success: false,
+            message: "Usuário não encontrado"
+        };
+    }
+
+    const usuario = users[0];
+
+    if (usuario.password_hash !== currentPassword) {
+        return {
+            success: false,
+            message: "Senha atual incorreta"
+        };
+    }
+
+    const sqlUpdate = `
+        UPDATE users
+        SET password_hash = ?
+        WHERE id = ?
+    `;
+
+    const [result] = await db.execute(
+        sqlUpdate,
+        [newPassword, id]
+    );
+
+    return {
+        success: true,
+        message: "Senha atualizada com sucesso",
+        data: result
+    };
+}
+
+async function UpdateProfileImage(
+    id,
+    profile_image
+) {
+
+    const sqlText = `
+        UPDATE users
+        SET profile_image = ?
+        WHERE id = ?
+    `;
+
+    const [result] =
+        await db.execute(
+            sqlText,
+            [profile_image, id]
+        );
+
+    return {
+        message: "Success",
+        data: result
+    };
+}
+
 // selecionar um registro pelo id
 async function Delete( id ){
   // instrucao sql para excluir um registro
@@ -71,4 +138,14 @@ function EndPointName(){
   return tableName;
 }
 
-module.exports = { Get, GetById, GetByEmail, Post, Put, Delete, EndPointName}
+module.exports = {
+    Get,
+    GetById,
+    GetByEmail,
+    Post,
+    UpdateProfileImage,
+    Put,
+    Delete,
+    UpdatePassword,
+    EndPointName
+}

@@ -63,37 +63,39 @@
                 </button>
 
                 <div class="profile-dropdown">
-                    <button class="dropdown-toggle" id="profileToggle">
-                        <div class="profile-avatar"><i class="bi bi-person-fill"></i></div>
+                    <button class="dropdown-toggle" id="profileToggle" aria-label="Menu do perfil" aria-expanded="false">
+                        <div class="profile-avatar" aria-hidden="true">
+                            <i class="bi bi-person-fill"></i>
+                        </div>
                     </button>
-                    <div class="dropdown-menu" id="profileMenu">
+                    <div class="dropdown-menu" id="profileMenu" role="menu" aria-label="Menu do usuário">
                         <div class="dropdown-header">
                             <div class="user-info">
-                                <div class="profile-avatar">JC</div>
+                               <div class="profile-avatar" id="userAvatar" aria-hidden="true">JC</div>
                                 <div class="user-details">
-                                    <h4>João Cliente</h4>
-                                    <p>joao@email.com</p>
+                                    <h4 id="userName">João Cliente</h4>
+                                    <p id="userEmail">joao@email.com</p>
                                 </div>
                             </div>
                         </div>
-                        <button class="dropdown-item">
-                            <i class="bi bi-person"></i>
+                        <button class="dropdown-item" role="menuitem" data-action="profile">
+                            <i class="bi bi-person" aria-hidden="true"></i>
                             Meu Perfil
                         </button>
-                        <button class="dropdown-item">
-                            <i class="bi bi-gear"></i>
+                        <button class="dropdown-item" role="menuitem" data-action="settings">
+                            <i class="bi bi-gear" aria-hidden="true"></i>
                             Configurações
                         </button>
-                        <button class="dropdown-item">
-                            <i class="bi bi-box-arrow-right"></i>
+                        <button class="dropdown-item" role="menuitem" data-action="orders">
+                            <i class="bi bi-box-arrow-right" aria-hidden="true"></i>
                             Meus Pedidos
                         </button>
-                        <button class="dropdown-item">
-                            <i class="bi bi-heart"></i>
+                        <button class="dropdown-item" role="menuitem" data-action="favorites">
+                            <i class="bi bi-heart" aria-hidden="true"></i>
                             Favoritos
                         </button>
-                        <button class="dropdown-item logout" id="logoutBtn">
-                            <i class="bi bi-box-arrow-left"></i>
+                        <button class="dropdown-item logout" id="logoutBtn" role="menuitem" data-action="logout">
+                            <i class="bi bi-box-arrow-left" aria-hidden="true"></i>
                             Sair da Conta
                         </button>
                     </div>
@@ -449,47 +451,47 @@
     </div>
 </div>
 
-<!-- Menu de Perfil Expandido -->
-<div class="profile-menu-expanded" id="profileMenuExpanded">
-    <div class="profile-overlay"></div>
-    <div class="profile-sidebar">
-        <div class="profile-header">
-            <div class="profile-user-info">
-                <div class="profile-avatar-large">
-                    <i class="bi bi-person-fill"></i>
+    <!-- Menu de Perfil Expandido -->
+    <div class="profile-menu-expanded" id="profileMenuExpanded" role="dialog" aria-modal="true" aria-labelledby="profileExpandedTitle">
+        <div class="profile-overlay"></div>
+        <div class="profile-sidebar">
+            <div class="profile-header">
+                <div class="profile-user-info">
+                    <div class="profile-avatar-large" aria-hidden="true">
+                        <i class="bi bi-person-fill"></i>
+                    </div>
+                    <div class="profile-user-details">
+<h3 id="profileExpandedTitle">João Cliente</h3>
+<p id="profileExpandedEmail">joao@email.com</p>
+                    </div>
                 </div>
-                <div class="profile-user-details">
-                    <h3>João Cliente</h3>
-                    <p>joao@email.com</p>
-                </div>
+                <button class="close-profile" id="closeProfile" aria-label="Fechar menu do perfil">
+                    <i class="bi bi-x-lg" aria-hidden="true"></i>
+                </button>
             </div>
-            <button class="close-profile" id="closeProfile">
-                <i class="bi bi-x-lg"></i>
-            </button>
-        </div>
-        
-        <div class="profile-body">
-            <nav class="profile-nav">
-                <button class="profile-nav-item" id="profileMyProfile">
-                    <i class="bi bi-person"></i> 
-                    <span>Meu Perfil / Configurações</span>
-                </button>
-                            
-                <button class="profile-nav-item" id="profileMyOrders">
-                    <i class="bi bi-box-seam"></i>
-                    <span>Meus Pedidos</span>
-                </button>
-                
-                <div class="profile-nav-divider"></div>
-                
-                <button class="profile-nav-item logout" id="profileLogout">
-                    <i class="bi bi-box-arrow-left"></i>
-                    <span>Sair da Conta</span>
-                </button>
-            </nav>
+            
+            <div class="profile-body">
+                <nav class="profile-nav" aria-label="Menu de navegação do perfil">
+                    <button class="profile-nav-item" id="profileMyProfile" data-action="profile">
+                        <i class="bi bi-person" aria-hidden="true"></i> 
+                        <span>Meu Perfil / Configurações</span>
+                    </button>
+                                
+                    <button class="profile-nav-item" id="profileMyOrders" data-action="orders">
+                        <i class="bi bi-box-seam" aria-hidden="true"></i>
+                        <span>Meus Pedidos</span>
+                    </button>
+                    
+                    <div class="profile-nav-divider" aria-hidden="true"></div>
+                    
+                    <button class="profile-nav-item logout" id="profileLogout" data-action="logout">
+                        <i class="bi bi-box-arrow-left" aria-hidden="true"></i>
+                        <span>Sair da Conta</span>
+                    </button>
+                </nav>
+            </div>
         </div>
     </div>
-</div>
 
 
     <!-- Scripts -->
@@ -498,6 +500,7 @@
     <script src="JS/favorites_menu.js"></script>
     <script src="JS/cart_menu.js"></script>
     <script src="JS/profile_menu.js"></script>
+    <script src="JS/usuarioLogado.js"></script>
     <script src="JS/accessibility_menu.js"></script>
     <script src="JS/sobre_a_reuse.js"></script>
 

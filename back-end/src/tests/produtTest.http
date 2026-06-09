@@ -1,0 +1,20 @@
+### Criar produto de teste
+POST http://localhost:3600/products
+Content-Type: application/json
+
+{
+    "user_id": 5,
+    "name": "Camiseta ReUse",
+    "description": "Camiseta usada em bom estado",
+    "price": 49.90,
+    "category": "Roupas",
+    "condition_status": "Bom",
+    "image_url": "",
+    "status": "ativo"
+}
+
+### Listar produtos
+GET http://localhost:3600/products
+
+### Listar produtos do usuário
+GET http://localhost:3600/products/user/5

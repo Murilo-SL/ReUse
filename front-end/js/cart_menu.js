@@ -5,6 +5,7 @@ class CartMenu {
         this.NOTIFICATION_DURATION = 3000; // 3 segundos
         this.SHIPPING_FEE = 0; // Frete grátis
         this.isExternalEventsSetup = false; // Flag para evitar duplicação
+        this.usuario = JSON.parse(localStorage.getItem("usuario"));
         
         this.init();
     }
@@ -12,8 +13,7 @@ class CartMenu {
     init() {
         this.initializeComponents();
         this.setupEventListeners();
-        this.loadCartFromStorage();
-        this.updateCartCount();
+        this.loadCartFromApi();
         this.setupExternalAddToCartButtons();
     }
 
@@ -29,7 +29,7 @@ class CartMenu {
         this.cartTotal = document.getElementById('cartTotal');
         
         // Estado do carrinho
-        this.cartItems = JSON.parse(localStorage.getItem('reuse_cart')) || [];
+        this.cartItems = [];
         this.cartCount = 0;
     }
 
@@ -146,15 +146,31 @@ class CartMenu {
         this.isExternalEventsSetup = true;
     }
     
-    loadCartFromStorage() {
-        this.cartItems = JSON.parse(localStorage.getItem('reuse_cart')) || [];
-        this.updateCartCount();
+async loadCartFromApi() {
+
+    if (!this.usuario || !this.usuario.id) {
+        return;
     }
 
-    saveCart() {
-        localStorage.setItem('reuse_cart', JSON.stringify(this.cartItems));
+    try {
+        const response = await fetch(
+            `http://localhost:3600/cart/user/${this.usuario.id}`
+        );
+
+        const result = await response.json();
+
+        this.cartItems = result.data || [];
+
         this.updateCartCount();
+
+        if (this.cartMenu && this.cartMenu.classList.contains("active")) {
+            this.renderCart();
+        }
+
+    } catch (error) {
+        console.error("Erro ao carregar carrinho:", error);
     }
+}
 
     updateCartCount() {
         this.cartCount = this.cartItems.reduce((total, item) => total + item.quantity, 0);
@@ -207,35 +223,54 @@ class CartMenu {
         let html = '<div class="cart-items">';
         
         this.cartItems.forEach((item, index) => {
-            html += `
-                <div class="cart-item" data-id="${item.id}">
-                    <div class="cart-item-image">
-                        <img src="${item.image}" alt="${item.title}" 
-                             onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiNlOWVjZWYiLz48cGF0aCBkPSJNMzUgNDBoMzB2MjBIMzV6IiBmaWxsPSIjYWRiNWJkIi8+PHBhdGggZD0iTTQwIDM1aDIwdjMwSDQweiIgZmlsbD0iIzZjNzU3ZCIvPjwvc3ZnPg=='">
-                        ${item.badge ? `<span class="cart-item-badge">${item.badge}</span>` : ''}
-                    </div>
-                    <div class="cart-item-info">
-                        <h3 class="cart-item-title">${item.title}</h3>
-                        <div class="cart-item-price">R$ ${item.price.toFixed(2).replace('.', ',')}</div>
-                        <div class="cart-item-controls">
-                            <div class="quantity-controls">
-                                <button class="quantity-btn minus" data-index="${index}" ${item.quantity <= 1 ? 'disabled' : ''}>
-                                    <i class="bi bi-dash"></i>
-                                </button>
-                                <span class="quantity-display">${item.quantity}</span>
-                                <button class="quantity-btn plus" data-index="${index}">
-                                    <i class="bi bi-plus"></i>
-                                </button>
-                            </div>
-                            <div class="cart-item-actions">
-                                <button class="cart-item-action-btn remove" data-index="${index}">
-                                    <i class="bi bi-trash"></i> Remover
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+html += `
+    <div class="cart-item" data-id="${item.id}">
+        <div class="cart-item-image">
+            <img
+                src="${item.image_url ? `http://localhost:3600/${item.image_url}` : 'IMG/no-image.png'}"
+                alt="${item.name}"
+            >
+        </div>
+
+        <div class="cart-item-info">
+            <h3 class="cart-item-title">${item.name}</h3>
+
+            <div class="cart-item-price">
+                R$ ${Number(item.price).toFixed(2).replace('.', ',')}
+            </div>
+
+            <div class="cart-item-controls">
+                <div class="quantity-controls">
+                    <button
+                        class="quantity-btn minus"
+                        data-index="${index}"
+                        ${item.quantity <= 1 ? 'disabled' : ''}
+                    >
+                        <i class="bi bi-dash"></i>
+                    </button>
+
+                    <span class="quantity-display">${item.quantity}</span>
+
+                    <button
+                        class="quantity-btn plus"
+                        data-index="${index}"
+                    >
+                        <i class="bi bi-plus"></i>
+                    </button>
                 </div>
-            `;
+
+                <div class="cart-item-actions">
+                    <button
+                        class="cart-item-action-btn remove"
+                        data-index="${index}"
+                    >
+                        <i class="bi bi-trash"></i> Remover
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+`;
         });
         
         html += '</div>';
@@ -294,7 +329,7 @@ class CartMenu {
 
     updateSummary() {
         const subtotal = this.cartItems.reduce((total, item) => {
-            return total + (item.price * item.quantity);
+            return total + (Number(item.price) * item.quantity);
         }, 0);
         
         const total = subtotal + this.SHIPPING_FEE;
@@ -307,87 +342,154 @@ class CartMenu {
         }
     }
 
-    addItem(product, quantity = 1) {
-        // Verificar se o produto já está no carrinho
-        const existingIndex = this.cartItems.findIndex(item => item.id === product.id);
-        
-        if (existingIndex !== -1) {
-            // Se já existe, aumenta a quantidade
-            this.cartItems[existingIndex].quantity += quantity;
-        } else {
-            // Se não existe, adiciona novo item
-            this.cartItems.push({
-                ...product,
-                quantity: quantity
-            });
+async addItem(product, quantity = 1) {
+
+    if (!this.usuario || !this.usuario.id) {
+        this.showNotification("Usuário não encontrado.", "error");
+        return false;
+    }
+
+    try {
+        const response = await fetch(
+            "http://localhost:3600/cart",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    user_id: this.usuario.id,
+                    product_id: product.id,
+                    quantity
+                })
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error("Erro ao adicionar ao carrinho");
         }
-        
-        this.saveCart();
-        this.showNotification(`${product.title} adicionado ao carrinho!`, 'success');
-        
-        // Animar botão do carrinho
+
+        await this.loadCartFromApi();
+
+        this.showNotification(
+            `${product.title || product.name} adicionado ao carrinho!`,
+            "success"
+        );
+
         if (this.cartBtn) {
-            this.cartBtn.classList.add('pulse');
+            this.cartBtn.classList.add("pulse");
             setTimeout(() => {
-                this.cartBtn.classList.remove('pulse');
+                this.cartBtn.classList.remove("pulse");
             }, 1000);
         }
-        
+
         return true;
+
+    } catch (error) {
+        console.error("Erro ao adicionar carrinho:", error);
+        this.showNotification("Erro ao adicionar ao carrinho.", "error");
+        return false;
+    }
+}
+
+async increaseQuantity(index) {
+
+    const item = this.cartItems[index];
+
+    if (!item) return;
+
+    const newQuantity = item.quantity + 1;
+
+    await fetch(`http://localhost:3600/cart/${item.id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            quantity: newQuantity
+        })
+    });
+
+    await this.loadCartFromApi();
+
+    this.showNotification(
+        `Quantidade aumentada para ${newQuantity}`,
+        "info"
+    );
+}
+
+async decreaseQuantity(index) {
+
+    const item = this.cartItems[index];
+
+    if (!item || item.quantity <= 1) return;
+
+    const newQuantity = item.quantity - 1;
+
+    await fetch(`http://localhost:3600/cart/${item.id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            quantity: newQuantity
+        })
+    });
+
+    await this.loadCartFromApi();
+
+    this.showNotification(
+        `Quantidade diminuída para ${newQuantity}`,
+        "info"
+    );
+}
+
+async removeItem(index) {
+
+    const item = this.cartItems[index];
+
+    if (!item || !this.usuario || !this.usuario.id) return;
+
+    await fetch(
+        `http://localhost:3600/cart/${this.usuario.id}/${item.product_id}`,
+        {
+            method: "DELETE"
+        }
+    );
+
+    await this.loadCartFromApi();
+
+    this.showNotification(
+        `${item.name} removido do carrinho`,
+        "info"
+    );
+}
+
+async clearAllItems() {
+
+    if (this.cartItems.length === 0) return;
+
+    if (!confirm("Tem certeza que deseja limpar todo o carrinho?")) {
+        return;
     }
 
-    increaseQuantity(index) {
-        if (index >= 0 && index < this.cartItems.length) {
-            this.cartItems[index].quantity += 1;
-            this.saveCart();
-            this.renderCart();
-            this.showNotification(`Quantidade aumentada para ${this.cartItems[index].quantity}`, 'info');
+    await fetch(
+        `http://localhost:3600/cart/user/${this.usuario.id}`,
+        {
+            method: "DELETE"
         }
-    }
+    );
 
-    decreaseQuantity(index) {
-        if (index >= 0 && index < this.cartItems.length) {
-            if (this.cartItems[index].quantity > 1) {
-                this.cartItems[index].quantity -= 1;
-                this.saveCart();
-                this.renderCart();
-                this.showNotification(`Quantidade diminuída para ${this.cartItems[index].quantity}`, 'info');
-            }
-        }
-    }
+    await this.loadCartFromApi();
 
-    removeItem(index) {
-        if (index >= 0 && index < this.cartItems.length) {
-            const removedItem = this.cartItems.splice(index, 1)[0];
-            this.saveCart();
-            
-            if (this.cartMenu && this.cartMenu.classList.contains('active')) {
-                if (this.cartItems.length === 0) {
-                    this.showEmptyCart();
-                } else {
-                    this.renderCart();
-                }
-            }
-            
-            this.showNotification(`${removedItem.title} removido do carrinho`, 'info');
-        }
-    }
+    this.showEmptyCart();
+    this.updateSummary();
 
-    clearAllItems() {
-        if (this.cartItems.length === 0) return;
-        
-        if (confirm('Tem certeza que deseja limpar todo o carrinho?')) {
-            this.cartItems = [];
-            this.saveCart();
-            
-            if (this.cartMenu && this.cartMenu.classList.contains('active')) {
-                this.showEmptyCart();
-                this.updateSummary();
-            }
-            
-            this.showNotification('Carrinho limpo com sucesso!', 'info');
-        }
-    }
+    this.showNotification(
+        "Carrinho limpo com sucesso!",
+        "info"
+    );
+}
 
     checkout() {
         if (this.cartItems.length === 0) {
@@ -395,7 +497,10 @@ class CartMenu {
             return;
         }
         
-        const total = this.cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        const total = this.cartItems.reduce(
+    (sum, item) => sum + (Number(item.price) * item.quantity),
+    0
+);
         
         this.showNotification(`Redirecionando para checkout - Total: R$ ${total.toFixed(2).replace('.', ',')}`, 'success');
         this.closeMenu();
@@ -403,7 +508,7 @@ class CartMenu {
 
     getCartTotal() {
         return this.cartItems.reduce((total, item) => {
-            return total + (item.price * item.quantity);
+            return total + (Number(item.price) * item.quantity);
         }, 0);
     }
 

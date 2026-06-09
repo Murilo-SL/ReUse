@@ -24,15 +24,18 @@ async function Login(req, res) {
             });
         }
 
-        return res.status(200).json({
-            success: true,
-            message: "Login realizado com sucesso",
-            data: {
-                id: usuario.id,
-                email: usuario.email,
-                user_type: usuario.user_type
-            }
-        });
+return res.status(200).json({
+    success: true,
+    message: "Login realizado com sucesso",
+    data: {
+        id: usuario.id,
+        first_name: usuario.first_name,
+        last_name: usuario.last_name,
+        nomeCompleto: `${usuario.first_name || ""} ${usuario.last_name || ""}`.trim(),
+        email: usuario.email,
+        user_type: usuario.user_type
+    }
+});
 
     } catch (error) {
 

@@ -1,0 +1,20 @@
+### Buscar endereço do vendedor
+GET http://localhost:3600/seller-addresses/user/9
+
+### Criar ou atualizar endereço do vendedor
+PUT http://localhost:3600/seller-addresses/user/9
+Content-Type: application/json
+
+{
+    "zipcode": "15990-000",
+    "street": "Rua Teste",
+    "number": "123",
+    "complement": "Sala 2",
+    "neighborhood": "Centro",
+    "city": "Matão",
+    "state": "SP"
+}
+
+### delete 
+
+DELETE http://localhost:3600/seller-addresses/user/9

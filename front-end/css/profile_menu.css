@@ -74,6 +74,14 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+.profile-avatar-large img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+}
+
 .profile-user-info {
     display: flex;
     align-items: center;
@@ -94,6 +102,8 @@
     flex-shrink: 0;
     border: 3px solid rgba(255, 255, 255, 0.3);
 }
+
+
 
 .profile-user-details {
     flex: 1;

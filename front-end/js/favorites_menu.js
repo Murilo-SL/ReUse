@@ -4,7 +4,8 @@
 class FavoritesMenu {
     constructor() {
         this.NOTIFICATION_DURATION = 3000; // 3 segundos
-        this.favorites = JSON.parse(localStorage.getItem('reuse_favorites')) || [];
+this.favorites = [];
+this.usuario = JSON.parse(localStorage.getItem("usuario"));
         this.isProcessing = false; // Flag para evitar processamento duplo
         
         this.init();
@@ -14,9 +15,7 @@ class FavoritesMenu {
         this.initializeComponents();
         this.setupEventListeners();
         this.setupFavoriteButtons();
-        this.checkAndLoadInitialFavorites();
-        this.updateFavoritesCount();
-        this.updateProductFavoriteIcons();
+this.loadFavoritesFromApi();
     }
 
     initializeComponents() {
@@ -123,20 +122,24 @@ class FavoritesMenu {
         const badge = productCard.querySelector('.product-badge')?.textContent || '';
         
         // Gerar ID único
-        const id = btoa(`${title.toLowerCase().replace(/\s+/g, '-')}-${price}`).substring(0, 20);
+       const id =
+    productCard
+        .closest(".product-item")
+        ?.dataset.productId ||
+    productCard.dataset.id;
         
-        return {
-            id: id,
-            title: title,
-            price: price,
-            image: image,
-            description: description,
-            badge: badge,
-            addedAt: new Date().toISOString()
-        };
+return {
+    id: Number(id),
+    title,
+    price,
+    image,
+    description,
+    badge,
+    addedAt: new Date().toISOString()
+};
     }
 
-    toggleProductFavorite(productCard, heartBtn) {
+async toggleProductFavorite(productCard, heartBtn) {
         // Prevenir múltiplos cliques rápidos
         if (this.isProcessing) return;
         this.isProcessing = true;
@@ -151,7 +154,7 @@ class FavoritesMenu {
         if (!isCurrentlyFavorited) {
             // Adicionar aos favoritos
             const product = this.extractProductInfo(productCard);
-            const added = this.addToFavorites(product);
+            const added = await this.addToFavorites(product);
             
             if (added) {
                 this.updateHeartIcon(heartBtn, true);
@@ -160,78 +163,147 @@ class FavoritesMenu {
         } else {
             // Remover dos favoritos
             const productId = this.extractProductInfo(productCard).id;
-            const index = this.favorites.findIndex(item => item.id === productId);
+            const index = this.favorites.findIndex(
+    item => Number(item.product_id) === Number(productId)
+);
             
             if (index !== -1) {
                 const removedItem = this.favorites[index];
-                this.removeFavorite(index);
+                await this.removeFavorite(index);
                 this.updateHeartIcon(heartBtn, false);
-                this.showNotification(`${removedItem.title} foi removido dos favoritos`, 'info');
+                this.showNotification(`${removedItem.name} foi removido dos favoritos`, 'info');
             }
         }
     }
 
-    addToFavorites(product) {
-        // Verificar se o produto já está nos favoritos
-        const exists = this.favorites.some(item => item.id === product.id);
-        
-        if (!exists) {
-            this.favorites.unshift(product); // Adiciona no início
-            this.saveFavorites();
-            this.updateFavoritesCount();
-            this.updateProductFavoriteIcons();
-            
-            // Se o menu estiver aberto, atualizar
-            if (this.favoritesMenu.classList.contains('active')) {
-                this.renderFavorites();
-            }
-            
-            return true;
-        }
+async addToFavorites(product) {
+
+    if (!this.usuario || !this.usuario.id) {
+        this.showNotification(
+            "Usuário não encontrado.",
+            "error"
+        );
         return false;
     }
 
-    removeFavorite(index) {
-        if (index >= 0 && index < this.favorites.length) {
-            this.favorites.splice(index, 1);
-            this.saveFavorites();
-            this.updateFavoritesCount();
-            this.updateProductFavoriteIcons();
-            
-            // Se o menu estiver aberto, atualizar
-            if (this.favoritesMenu.classList.contains('active')) {
-                if (this.favorites.length === 0) {
-                    this.showEmptyFavorites();
-                } else {
-                    this.renderFavorites();
-                }
+    try {
+
+        const response = await fetch(
+            "http://localhost:3600/favorites",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    user_id: this.usuario.id,
+                    product_id: product.id
+                })
             }
+        );
+
+        if (!response.ok) {
+            return false;
         }
+
+        await this.loadFavoritesFromApi();
+
+        if (this.favoritesMenu.classList.contains("active")) {
+            this.renderFavorites();
+        }
+
+        return true;
+
+    } catch (error) {
+
+        console.error(
+            "Erro ao adicionar favorito:",
+            error
+        );
+
+        return false;
+    }
+}
+
+async removeFavorite(index) {
+
+    const item = this.favorites[index];
+
+    if (!item || !this.usuario || !this.usuario.id) {
+        return;
     }
 
-    removeFavoriteItem(index) {
-        if (index >= 0 && index < this.favorites.length) {
-            const removedItem = this.favorites.splice(index, 1)[0];
-            this.saveFavorites();
-            this.updateFavoritesCount();
-            this.updateProductFavoriteIcons();
-            
-            // Se o menu estiver aberto, atualizar
-            if (this.favoritesMenu.classList.contains('active')) {
-                if (this.favorites.length === 0) {
-                    this.showEmptyFavorites();
-                } else {
-                    this.renderFavorites();
-                }
+    try {
+
+        await fetch(
+            `http://localhost:3600/favorites/${this.usuario.id}/${item.product_id}`,
+            {
+                method: "DELETE"
             }
-            
-            this.showNotification(`${removedItem.title} foi removido dos favoritos`, 'info');
+        );
+
+        await this.loadFavoritesFromApi();
+
+        if (this.favoritesMenu.classList.contains("active")) {
+            if (this.favorites.length === 0) {
+                this.showEmptyFavorites();
+            } else {
+                this.renderFavorites();
+            }
         }
+
+    } catch (error) {
+
+        console.error(
+            "Erro ao remover favorito:",
+            error
+        );
+    }
+}
+
+async loadFavoritesFromApi() {
+
+    if (!this.usuario || !this.usuario.id) {
+        return;
     }
 
-    saveFavorites() {
-        localStorage.setItem('reuse_favorites', JSON.stringify(this.favorites));
+    try {
+
+        const response = await fetch(
+            `http://localhost:3600/favorites/user/${this.usuario.id}`
+        );
+
+        const result = await response.json();
+
+        this.favorites = result.data || [];
+
+        this.updateFavoritesCount();
+        this.updateProductFavoriteIcons();
+
+    } catch (error) {
+
+        console.error(
+            "Erro ao carregar favoritos:",
+            error
+        );
     }
+}
+
+async removeFavoriteItem(index) {
+
+    const removedItem = this.favorites[index];
+
+    if (!removedItem) return;
+
+    await this.removeFavorite(index);
+
+    this.showNotification(
+        `${removedItem.name} foi removido dos favoritos`,
+        "info"
+    );
+}
+
+
 
     updateFavoritesCount() {
         const count = this.favorites.length;
@@ -277,17 +349,11 @@ class FavoritesMenu {
         }, 600);
     }
 
-    updateProductFavoriteIcons() {
-        // Atualizar ícones de favorito em todos os produtos da página
-        document.querySelectorAll('.product-card').forEach(productCard => {
-            const heartBtn = productCard.querySelector('.btn-outline');
-            if (heartBtn) {
-                const product = this.extractProductInfo(productCard);
-                const isFavorited = this.favorites.some(item => item.id === product.id);
-                this.updateHeartIcon(heartBtn, isFavorited);
-            }
-        });
-    }
+isProductFavorited(productId) {
+    return this.favorites.some(
+        item => Number(item.product_id) === Number(productId)
+    );
+}
 
     openMenu() {
         this.favoritesMenu.classList.add('active');
@@ -318,30 +384,48 @@ class FavoritesMenu {
         );
         
         sortedFavorites.forEach((item, index) => {
-            const originalIndex = this.favorites.findIndex(fav => fav.id === item.id);
+            const originalIndex = this.favorites.findIndex(
+    fav => Number(fav.product_id) === Number(item.product_id)
+);
             
-            html += `
-                <div class="favorite-item" data-id="${item.id}">
-                    <div class="favorite-item-image">
-                        <img src="${item.image}" alt="${item.title}" 
-                             onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiNlOWVjZWYiLz48cGF0aCBkPSJNMzUgNDBoMzB2MjBIMzV6IiBmaWxsPSIjYWRiNWJkIi8+PHBhdGggZD0iTTQwIDM1aDIwdjMwSDQweiIgZmlsbD0iIzZjNzU3ZCIvPjwvc3ZnPg=='">
-                        ${item.badge ? `<span class="favorite-badge">${item.badge}</span>` : ''}
-                    </div>
-                    <div class="favorite-item-info">
-                        <h3 class="favorite-item-title">${item.title}</h3>
-                        <p class="favorite-item-description">${item.description}</p>
-                        <div class="favorite-item-price">R$ ${item.price.toFixed(2).replace('.', ',')}</div>
-                        <div class="favorite-item-actions">
-                            <button class="favorite-item-action-btn buy" data-index="${originalIndex}">
-                                <i class="bi bi-cart-plus"></i> Comprar
-                            </button>
-                            <button class="favorite-item-action-btn remove" data-index="${originalIndex}">
-                                <i class="bi bi-trash"></i> Remover
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `;
+html += `
+    <div class="favorite-item" data-id="${item.product_id}">
+        <div class="favorite-item-image">
+            <img
+                src="${item.image_url ? `http://localhost:3600/${item.image_url}` : 'IMG/no-image.png'}"
+                alt="${item.name}"
+            >
+        </div>
+
+        <div class="favorite-item-info">
+            <h3 class="favorite-item-title">${item.name}</h3>
+
+            <p class="favorite-item-description">
+                ${item.description || ""}
+            </p>
+
+            <div class="favorite-item-price">
+                R$ ${Number(item.price).toFixed(2).replace(".", ",")}
+            </div>
+
+            <div class="favorite-item-actions">
+                <button
+                    class="favorite-item-action-btn buy"
+                    data-index="${originalIndex}"
+                >
+                    <i class="bi bi-cart-plus"></i> Comprar
+                </button>
+
+                <button
+                    class="favorite-item-action-btn remove"
+                    data-index="${originalIndex}"
+                >
+                    <i class="bi bi-trash"></i> Remover
+                </button>
+            </div>
+        </div>
+    </div>
+`;
         });
         
         html += '</div>';
@@ -367,29 +451,39 @@ class FavoritesMenu {
             // Usar o sistema de carrinho se disponível
             if (window.cartMenu) {
                 window.cartMenu.addItem(item, 1);
-                this.showNotification(`${item.title} foi adicionado ao carrinho!`, 'success');
+                this.showNotification(`${item.name} foi adicionado ao carrinho!`, 'success');
             } else {
-                this.showNotification(`Redirecionando para compra: ${item.title}`, 'info');
+                this.showNotification(`Redirecionando para compra: ${item.name}`, 'info');
             }
         }
     }
 
-    clearAllFavorites() {
-        if (this.favorites.length === 0) return;
-        
-        if (confirm('Tem certeza que deseja remover todos os itens dos favoritos?')) {
-            this.favorites = [];
-            this.saveFavorites();
-            this.updateFavoritesCount();
-            this.updateProductFavoriteIcons();
-            
-            if (this.favoritesMenu.classList.contains('active')) {
-                this.showEmptyFavorites();
-            }
-            
-            this.showNotification('Todos os favoritos foram removidos', 'info');
-        }
+async clearAllFavorites() {
+
+    if (this.favorites.length === 0) return;
+
+    if (!confirm("Tem certeza que deseja remover todos os favoritos?")) {
+        return;
     }
+
+    for (const item of this.favorites) {
+        await fetch(
+            `http://localhost:3600/favorites/${this.usuario.id}/${item.product_id}`,
+            {
+                method: "DELETE"
+            }
+        );
+    }
+
+    await this.loadFavoritesFromApi();
+
+    this.showEmptyFavorites();
+
+    this.showNotification(
+        "Todos os favoritos foram removidos",
+        "info"
+    );
+}
 
     viewAllFavoritesPage() {
         this.closeMenu();
@@ -397,39 +491,28 @@ class FavoritesMenu {
         // window.location.href = 'favoritos.html';
     }
 
-    checkAndLoadInitialFavorites() {
-        // Verificar se há dados iniciais, se não, carregar exemplos
-        if (this.favorites.length === 0 && !localStorage.getItem('reuse_favorites_initialized')) {
-            const initialFavorites = [
-                {
-                    id: 'dGVuaXMtbmlrZS1haXItbWF4LTE5OS45',
-                    title: "Tênis Nike Air Max",
-                    price: 199.90,
-                    image: "img/tenis-nike.avif",
-                    description: "Tênis esportivo em ótimo estado, tamanho 42",
-                    badge: "Mais Vendido",
-                    addedAt: new Date().toISOString()
-                },
-                {
-                    id: 'dmVzdGlkby1mbG9yYWwtODkuOQ==',
-                    title: "Vestido Floral",
-                    price: 89.90,
-                    image: "img/vestido-floral.jpg",
-                    description: "Vestido floral estampado, tamanho M",
-                    badge: "Novo",
-                    addedAt: new Date(Date.now() - 86400000).toISOString()
-                }
-            ];
-            
-            this.favorites = initialFavorites;
-            this.saveFavorites();
-            localStorage.setItem('reuse_favorites_initialized', 'true');
-        }
-    }
 
-    isProductFavorited(productId) {
-        return this.favorites.some(item => item.id === productId);
-    }
+updateProductFavoriteIcons() {
+
+    document.querySelectorAll(".product-card").forEach(productCard => {
+
+        const heartBtn =
+            productCard.querySelector(".btn-outline");
+
+        if (!heartBtn) return;
+
+        const productId =
+            heartBtn.dataset.id;
+
+        const isFavorited =
+            this.isProductFavorited(productId);
+
+        this.updateHeartIcon(
+            heartBtn,
+            isFavorited
+        );
+    });
+}
 
     getFavoritesCount() {
         return this.favorites.length;

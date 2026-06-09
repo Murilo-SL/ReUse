@@ -1,0 +1,28 @@
+### Adicionar produto ao carrinho
+POST http://localhost:3600/cart
+Content-Type: application/json
+
+{
+    "user_id": 5,
+    "product_id": 1,
+    "quantity": 1
+}
+
+
+### Listar carrinho do usuário
+GET http://localhost:3600/cart/user/5
+
+
+### Atualizar quantidade do item
+PUT http://localhost:3600/cart/1
+Content-Type: application/json
+
+{
+    "quantity": 3
+}
+
+### Remover produto do carrinho
+DELETE http://localhost:3600/cart/5/1
+
+### Limpar carrinho do usuário
+DELETE http://localhost:3600/cart/user/5

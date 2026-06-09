@@ -156,7 +156,7 @@
     position: relative !important;
     width: 150px;
     height: 150px;
-    border-radius: var(--border-radius-round);
+    border-radius: 5px;
     background: var(--gradient-green);
     display: flex !important;
     align-items: center;
@@ -174,6 +174,13 @@
     transform: none !important;
     margin: 0 !important;
     padding: 0 !important;
+}
+
+.profile-avatar-large img {
+    width: 10%;
+    object-fit: cover;
+    border-radius: var(--border-radius-round);
+    display: block;
 }
 
 /* Efeito de brilho no avatar */
@@ -2616,4 +2623,61 @@ body.dark-mode ::-webkit-scrollbar-thumb {
 
 body.dark-mode ::-webkit-scrollbar-thumb:hover {
     background: var(--medium-gray);
+}
+
+.password-wrapper {
+    position: relative;
+}
+
+.password-wrapper input {
+    width: 100%;
+    padding-right: 45px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: #666;
+}
+
+
+.custom-message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 14px 18px;
+    border-radius: 10px;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    z-index: 99999;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: 0.3s ease;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+.custom-message.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.custom-message.success {
+    background: #00cc99;
+}
+
+.custom-message.error {
+    background: #ff4757;
+}
+
+.custom-message.info {
+    background: #0066cc;
 }

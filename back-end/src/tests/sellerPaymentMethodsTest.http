@@ -1,0 +1,15 @@
+### Buscar métodos de pagamento
+GET http://localhost:3600/seller-payment-methods/user/9
+
+### Criar ou atualizar métodos de pagamento
+PUT http://localhost:3600/seller-payment-methods/user/9
+Content-Type: application/json
+
+{
+    "pix": true,
+    "credit_card": true,
+    "debit_card": true,
+    "boleto": false,
+    "cash": true,
+    "bank_transfer": false
+}

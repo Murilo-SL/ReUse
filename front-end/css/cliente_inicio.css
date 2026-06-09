@@ -2047,3 +2047,35 @@ body.accessibility-filter-applied .btn-primary:hover {
 body.accessibility-filter-applied .action-btn:hover {
     transform: translateY(-3px) scale(1.05);
 }
+
+.add-to-favorites {
+    width: 42px;
+    height: 42px;
+    border: 2px solid #dc3545;
+    border-radius: 50%;
+    background: #fff;
+    color: #dc3545;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: 0.3s ease;
+}
+
+.add-to-favorites:hover {
+    background: #dc3545;
+    color: #fff;
+    transform: scale(1.08);
+}
+
+.add-to-favorites .bi-heart-fill {
+    color: #dc3545;
+}
+
+.add-to-favorites:has(.bi-heart-fill) {
+    background: #dc3545;
+    color: #fff;
+}

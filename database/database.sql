@@ -51,6 +51,18 @@ CREATE TABLE IF NOT EXISTS payment_methods (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
+CREATE TABLE IF NOT EXISTS cards (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    card_holder VARCHAR(255) NOT NULL,
+    card_last_digits VARCHAR(4) NOT NULL,
+    card_brand VARCHAR(50),
+    expiry_date VARCHAR(10),
+    is_primary BOOLEAN DEFAULT false,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
 CREATE TABLE IF NOT EXISTS sellers (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER NOT NULL,
@@ -278,3 +290,4 @@ CREATE TABLE IF NOT EXISTS password_resets (
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
+ 

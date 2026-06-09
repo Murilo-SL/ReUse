@@ -1,0 +1,15 @@
+### Buscar métodos de entrega
+GET http://localhost:3600/seller-shipping-methods/user/9
+
+### Criar ou atualizar métodos de entrega
+PUT http://localhost:3600/seller-shipping-methods/user/9
+Content-Type: application/json
+
+{
+    "pickup": true,
+    "local_delivery": true,
+    "correios": false,
+    "carrier": true,
+    "free_shipping": true,
+    "free_shipping_min_value": 199.90
+}

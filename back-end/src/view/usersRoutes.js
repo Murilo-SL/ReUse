@@ -5,6 +5,9 @@ const routes = Routes();
 
 const endPoint = `/${myController.EndPointName()}`;
 
+const { uploadPerfil } =
+    require("../config/uploadConfig");
+
 routes.get(endPoint, async (req,res)=>{
    const responseData = await myController.Get(req,res);
    res.status(200).json(responseData);
@@ -31,6 +34,43 @@ routes.put(`${endPoint}/:id`, async (req,res)=>{
     const responseData = await myController.Put(req,res);
    res.status(201).json(responseData);
 });
+
+routes.put(
+    `${endPoint}/:id/password`,
+    async (req, res) => {
+
+        const responseData =
+            await myController.UpdatePassword(
+                req,
+                res
+            );
+
+        res.status(200).json(
+            responseData
+        );
+    }
+);
+
+routes.post(
+
+    `${endPoint}/:id/photo`,
+
+    uploadPerfil.single("photo"),
+
+    async (req, res) => {
+
+        const responseData =
+            await myController
+                .UpdateProfileImage(
+                    req,
+                    res
+                );
+
+        res.status(200)
+            .json(responseData);
+
+    }
+);
 
 routes.delete(`${endPoint}/:id`,async (req,res)=>{
    const responseData = await myController.Delete(req,res);

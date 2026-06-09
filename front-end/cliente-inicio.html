@@ -84,7 +84,7 @@
                     <div class="dropdown-menu" id="profileMenu" role="menu" aria-label="Menu do usuário">
                         <div class="dropdown-header">
                             <div class="user-info">
-                                <div class="profile-avatar" aria-hidden="true">JC</div>
+                               <div class="profile-avatar" id="userAvatar" aria-hidden="true">JC</div>
                                 <div class="user-details">
                                     <h4 id="userName">João Cliente</h4>
                                     <p id="userEmail">joao@email.com</p>
@@ -160,111 +160,9 @@
 <!-- Produtos Mais Comprados -->
 <section class="featured-section" aria-labelledby="featuredTitle">
     <h2 class="section-title" id="featuredTitle">Produtos Mais Comprados</h2>
-    <div class="products-grid">
-        <!-- Produto 1 -->
-        <div class="product-item" data-product-id="1">
-            <a href="produto.html?id=1" class="product-link" aria-label="Ver detalhes do Tênis Nike Air Max">
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="/img/tenis-nike.avif" alt="Tênis Nike Air Max - Produto em ótimo estado" loading="lazy" onerror="this.src='/img/placeholder-product.svg'">
-                        <div class="product-badge">Mais Vendido</div>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Tênis Nike Air Max</h3>
-                        <p class="product-description">Tênis esportivo em ótimo estado, tamanho 42</p>
-                        <div class="product-price">R$ 199,90</div>
-                        <div class="product-actions">
-                            <button class="btn btn-primary add-to-cart" data-id="1" data-name="Tênis Nike Air Max" data-price="199.90" data-image="/img/tenis-nike.avif" data-badge="Mais Vendido" aria-label="Adicionar Tênis Nike Air Max ao carrinho">
-                                <i class="bi bi-cart-plus" aria-hidden="true"></i>
-                                Comprar
-                            </button>
-                            <button class="btn btn-outline add-to-favorites" data-id="1" aria-label="Adicionar Tênis Nike Air Max aos favoritos">
-                                <i class="bi bi-heart" aria-hidden="true"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-
-        <!-- Produto 2 -->
-        <div class="product-item" data-product-id="2">
-            <a href="produto.html?id=2" class="product-link" aria-label="Ver detalhes do Vestido Floral">
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="/img/vestido-floral.jpg" alt="Vestido Floral estampado - tamanho M" loading="lazy" onerror="this.src='/img/placeholder-product.svg'">
-                        <div class="product-badge">Novo</div>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Vestido Floral</h3>
-                        <p class="product-description">Vestido floral estampado, tamanho M</p>
-                        <div class="product-price">R$ 89,90</div>
-                        <div class="product-actions">
-                            <button class="btn btn-primary add-to-cart" data-id="2" data-name="Vestido Floral" data-price="89.90" data-image="/img/vestido-floral.jpg" data-badge="Novo" aria-label="Adicionar Vestido Floral ao carrinho">
-                                <i class="bi bi-cart-plus" aria-hidden="true"></i>
-                                Comprar
-                            </button>
-                            <button class="btn btn-outline add-to-favorites" data-id="2" aria-label="Adicionar Vestido Floral aos favoritos">
-                                <i class="bi bi-heart" aria-hidden="true"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-
-        <!-- Produto 3 -->
-        <div class="product-item" data-product-id="3">
-            <a href="produto.html?id=3" class="product-link" aria-label="Ver detalhes do Liquidificador">
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="/img/liquidificador-phill.jpg" alt="Liquidificador 6 velocidades - pouco uso" loading="lazy" onerror="this.src='/img/placeholder-product.svg'">
-                        <div class="product-badge">Econômico</div>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Liquidificador</h3>
-                        <p class="product-description">Liquidificador 6 velocidades, pouco uso</p>
-                        <div class="product-price">R$ 129,90</div>
-                        <div class="product-actions">
-                            <button class="btn btn-primary add-to-cart" data-id="3" data-name="Liquidificador" data-price="129.90" data-image="/img/liquidificador-phill.jpg" data-badge="Econômico" aria-label="Adicionar Liquidificador ao carrinho">
-                                <i class="bi bi-cart-plus" aria-hidden="true"></i>
-                                Comprar
-                            </button>
-                            <button class="btn btn-outline add-to-favorites" data-id="3" aria-label="Adicionar Liquidificador aos favoritos">
-                                <i class="bi bi-heart" aria-hidden="true"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-
-        <!-- Produto 4 -->
-        <div class="product-item" data-product-id="4">
-            <a href="produto.html?id=4" class="product-link" aria-label="Ver detalhes da Camiseta Polo">
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="/img/camiseta-polo.jpg" alt="Camiseta Polo azul marinho - tamanho G" loading="lazy" onerror="this.src='/img/placeholder-product.svg'">
-                        <div class="product-badge">Popular</div>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Camiseta Polo</h3>
-                        <p class="product-description">Camiseta polo azul marinho, tamanho G</p>
-                        <div class="product-price">R$ 59,90</div>
-                        <div class="product-actions">
-                            <button class="btn btn-primary add-to-cart" data-id="4" data-name="Camiseta Polo" data-price="59.90" data-image="/img/camiseta-polo.jpg" data-badge="Popular" aria-label="Adicionar Camiseta Polo ao carrinho">
-                                <i class="bi bi-cart-plus" aria-hidden="true"></i>
-                                Comprar
-                            </button>
-                            <button class="btn btn-outline add-to-favorites" data-id="4" aria-label="Adicionar Camiseta Polo aos favoritos">
-                                <i class="bi bi-heart" aria-hidden="true"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
+<div class="products-grid" id="productsGrid">
+    <!-- Produtos carregados pelo banco -->
+</div>
 </section>
 
         <!-- ONGs Apoiadas -->
@@ -509,8 +407,8 @@
                         <i class="bi bi-person-fill"></i>
                     </div>
                     <div class="profile-user-details">
-                        <h3 id="profileExpandedTitle">João Cliente</h3>
-                        <p>joao@email.com</p>
+<h3 id="profileExpandedTitle">João Cliente</h3>
+<p id="profileExpandedEmail">joao@email.com</p>
                     </div>
                 </div>
                 <button class="close-profile" id="closeProfile" aria-label="Fechar menu do perfil">
@@ -894,9 +792,11 @@
     <script src="JS/favorites_menu.js"></script>
     <script src="JS/cart_menu.js"></script>
     <script src="JS/profile_menu.js"></script>
+    <script src="JS/usuarioLogado.js"></script>
     <script src="JS/accessibility_menu.js"></script>
     <script src="JS/cliente_ongs.js"></script>
     <script src="JS/modal.js"></script>
+    
 
     <!-- Widget VLibras -->
     <div vw class="enabled">

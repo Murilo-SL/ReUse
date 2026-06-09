@@ -1,0 +1,19 @@
+### Buscar horários do vendedor
+GET http://localhost:3600/seller-schedules/user/9
+
+### Criar ou atualizar horários do vendedor
+PUT http://localhost:3600/seller-schedules/user/9
+Content-Type: application/json
+
+{
+    "monday_friday_open": "08:00",
+    "monday_friday_close": "18:00",
+    "monday_friday_closed": false,
+
+    "saturday_open": "08:00",
+    "saturday_close": "12:00",
+    "saturday_closed": false,
+
+    "sunday_closed": true,
+    "holidays_closed": true
+}

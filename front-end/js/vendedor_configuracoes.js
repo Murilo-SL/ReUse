@@ -1,214 +1,124 @@
 // vendedor-configuracoes.js - Gerenciamento completo da página de configurações do vendedor
 
 class VendedorConfiguracoes {
-    constructor() {
-        this.NOTIFICATION_DURATION = 3000;
-        this.API_BASE_URL = 'https://api.reuse.com/v1'; // Simulado
-        this.STORAGE_KEYS = {
-            SETTINGS: 'reuse_seller_settings',
-            PROGRESS: 'reuse_seller_progress',
-            THEME: 'reuse_dark_mode'
-        };
-        
-        // Dados simulados do vendedor
-        this.sellerData = {
-            id: 'seller_123456',
-            name: 'Vendedor Loja',
-            email: 'vendedor@email.com',
-            storeName: 'ReUse Vendedor Oficial',
-            cnpj: '12.345.678/0001-90',
-            ie: '123.456.789.012',
-            phone: '(11) 99999-9999',
-            website: 'www.minhaloja.com',
-            since: '2024-01-15',
-            verificationLevel: 'verified'
-        };
+constructor() {
+    this.NOTIFICATION_DURATION = 3000;
+    this.usuario = JSON.parse(localStorage.getItem("usuario"));
+    this.sellerProfile = null;
+    this.sellerAddress = null;
+    this.sellerSchedule = null;
+    this.sellerPaymentMethods = null;
+    this.sellerShippingMethods = null;
+    this.sellerPickupLocations = [];
 
-        // Configurações padrão
-        this.defaultSettings = {
-            store: {
-                name: 'ReUse Vendedor Oficial',
-                cnpj: '12.345.678/0001-90',
-                ie: '123.456.789.012',
-                phone: '(11) 99999-9999',
-                email: 'contato@minhaloja.com',
-                website: 'www.minhaloja.com',
-                description: 'Loja especializada em produtos sustentáveis',
-                categories: ['Moda Feminina', 'Moda Masculina', 'Eletrônicos', 'Casa e Decoração', 'Esportes']
-            },
-            address: {
-                street: 'Rua das Flores, 123',
-                neighborhood: 'Centro',
-                city: 'São Paulo',
-                state: 'SP',
-                zipcode: '01234-567',
-                complement: 'Sala 45'
-            },
-            schedule: {
-                monday_friday: { open: '09:00', close: '18:00', closed: false },
-                saturday: { open: '09:00', close: '13:00', closed: false },
-                sunday: { closed: true },
-                holidays: { closed: true }
-            },
-            payments: {
-                methods: [
-                    { id: 'credit_card', name: 'Cartão de Crédito', active: true, brands: ['visa', 'mastercard', 'elo', 'amex'] },
-                    { id: 'boleto', name: 'Boleto Bancário', active: true, days: 3 },
-                    { id: 'pix', name: 'PIX', active: false, instant: true },
-                    { id: 'cash', name: 'Dinheiro', active: false }
-                ],
-                bank: {
-                    bank: 'Banco do Brasil',
-                    agency: '1234-5',
-                    account: '12345-6',
-                    holder: 'Vendedor Loja',
-                    document: '12.345.678/0001-90',
-                    verified: true
-                }
-            },
-            shipping: {
-                methods: [
-                    { id: 'pac', name: 'PAC', carrier: 'Correios', price: 25.90, days: '7-15', active: true },
-                    { id: 'sedex', name: 'Sedex', carrier: 'Correios', price: 45.90, days: '2-5', active: true },
-                    { id: 'local', name: 'Entrega Local', price: 15.90, days: '1', active: false },
-                    { id: 'pickup', name: 'Retirada no Local', price: 0, active: true }
-                ],
-                freeShipping: {
-                    enabled: false,
-                    minValue: 199.00,
-                    regions: ['SP', 'RJ']
-                },
-                pickupLocations: [
-                    {
-                        id: 'loc1',
-                        name: 'Loja Principal',
-                        address: 'Rua das Flores, 123 - Centro, São Paulo - SP',
-                        schedule: 'Segunda a Sexta: 09h às 18h | Sábado: 09h às 13h',
-                        active: true
-                    },
-                    {
-                        id: 'loc2',
-                        name: 'Ponto de Apoio',
-                        address: 'Av. Paulista, 1000 - Bela Vista, São Paulo - SP',
-                        schedule: 'Segunda a Sexta: 10h às 19h',
-                        active: true
-                    }
-                ]
-            },
-            notifications: {
-                email: {
-                    new_order: true,
-                    payment_confirmed: true,
-                    order_shipped: true,
-                    low_stock: true,
-                    new_review: false,
-                    weekly_report: false
-                },
-                push: {
-                    enabled: true,
-                    promotions: false,
-                    messages: true
-                },
-                limits: {
-                    low_stock_threshold: 5,
-                    report_frequency: 'weekly',
-                    quiet_hours_start: '22:00',
-                    quiet_hours_end: '09:00'
-                }
-            },
-            security: {
-                twoFactorEnabled: false,
-                trustedDevices: [
-                    {
-                        id: 'dev1',
-                        type: 'laptop',
-                        browser: 'Chrome',
-                        os: 'Windows',
-                        lastAccess: '2025-05-15T14:32:00',
-                        current: true
-                    },
-                    {
-                        id: 'dev2',
-                        type: 'phone',
-                        browser: 'Safari',
-                        os: 'iOS',
-                        lastAccess: '2025-05-14T09:15:00',
-                        current: false
-                    }
-                ],
-                activeSessions: [
-                    {
-                        id: 'sess1',
-                        device: 'Chrome - Windows',
-                        location: 'São Paulo, SP',
-                        lastActive: '2025-05-15T14:32:00',
-                        current: true
-                    },
-                    {
-                        id: 'sess2',
-                        device: 'Safari - iOS',
-                        location: 'Rio de Janeiro, RJ',
-                        lastActive: '2025-05-14T09:15:00',
-                        current: false
-                    }
-                ]
-            },
-            integrations: {
-                facebook: { connected: true, shopId: 'fb_123456', active: true },
-                instagram: { connected: false, pending: true },
-                google: { connected: true, merchantId: 'gmc_789012', active: true },
-                whatsapp: { connected: true, phone: '+5511999999999', active: true },
-                amazon: { connected: false },
-                shopify: { connected: false }
-            },
-            webhooks: [
-                {
-                    id: 'web1',
-                    name: 'Notificações de pedidos',
-                    url: 'https://api.minhaloja.com/webhooks/pedidos',
-                    events: ['order.created', 'order.paid', 'order.shipped'],
-                    active: true
-                },
-                {
-                    id: 'web2',
-                    name: 'Atualização de estoque',
-                    url: 'https://api.minhaloja.com/webhooks/estoque',
-                    events: ['product.updated', 'inventory.low'],
-                    active: true
-                }
-            ],
-            apiKeys: [
-                {
-                    id: 'key1',
-                    name: 'Chave de Produção',
-                    key: 'reuse_prod_••••••••••••••••••••••••',
-                    active: true,
-                    createdAt: '2025-01-15',
-                    lastUsed: '2025-05-14'
-                },
-                {
-                    id: 'key2',
-                    name: 'Chave de Teste',
-                    key: 'reuse_test_••••••••••••••••••••••••',
-                    active: false,
-                    createdAt: '2025-01-15',
-                    lastUsed: '2025-04-30'
-                }
-            ]
-        };
+    this.STORAGE_KEYS = {
+    PROGRESS: "reuse_seller_progress"
+};
 
-        this.settings = this.loadSettings();
-        this.init();
-    }
+        this.settings = {
+    store: {
+        name: "",
+        cnpj: "",
+        ie: "",
+        phone: "",
+        email: "",
+        website: "",
+        description: "",
+        categories: []
+    },
 
-    init() {
-        this.initializeComponents();
-        this.setupEventListeners();
-        this.loadSettingsData();
-        this.loadTabFromUrl();
-        this.checkSetupProgress();
-        this.initializeFormValidations();
-    }
+    address: {
+        street: "",
+        number: "",
+        neighborhood: "",
+        city: "",
+        state: "",
+        zipcode: "",
+        complement: ""
+    },
+
+    schedule: {
+        monday_friday: {
+            open: "09:00",
+            close: "18:00",
+            closed: false
+        },
+        saturday: {
+            open: "09:00",
+            close: "13:00",
+            closed: false
+        },
+        sunday: {
+            closed: true
+        },
+        holidays: {
+            closed: true
+        }
+    },
+
+    payments: {
+        methods: [],
+        bank: {
+            bank: "",
+            agency: "",
+            account: "",
+            holder: "",
+            document: "",
+            verified: false
+        }
+    },
+
+    shipping: {
+        methods: [],
+        freeShipping: {
+            enabled: false,
+            minValue: 0,
+            regions: []
+        },
+        pickupLocations: []
+    },
+
+    notifications: {
+        email: {},
+        push: {},
+        limits: {}
+    },
+
+    security: {
+        twoFactorEnabled: false,
+        trustedDevices: [],
+        activeSessions: []
+    },
+
+    integrations: {
+        facebook: {},
+        instagram: {},
+        google: {},
+        whatsapp: {},
+        amazon: {},
+        shopify: {}
+    },
+
+    webhooks: [],
+    apiKeys: []
+};
+
+
+    this.init();
+}
+init() {
+    this.initializeComponents();
+    this.setupEventListeners();
+    this.loadTabFromUrl();
+    this.checkSetupProgress();
+    this.initializeFormValidations();
+    this.carregarPerfilVendedor();
+    this.carregarEnderecoVendedor();
+    this.carregarHorarioVendedor();
+    this.carregarMetodosPagamento();
+    this.carregarMetodosEntrega();
+    this.carregarPontosRetirada();
+}
 
     initializeComponents() {
         // Elementos principais
@@ -237,6 +147,8 @@ class VendedorConfiguracoes {
         // Cache de elementos
         this.cacheElements();
     }
+
+    
 
     cacheElements() {
         // Cache de elementos frequentemente acessados
@@ -318,6 +230,8 @@ class VendedorConfiguracoes {
             }
         });
     }
+
+    
 
     initializeToggles() {
         this.toggleSwitches.forEach(toggle => {
@@ -436,46 +350,6 @@ class VendedorConfiguracoes {
         if (emailInput) {
             emailInput.addEventListener('blur', (e) => this.validateEmail(e));
         }
-    }
-
-    // ============= GERENCIAMENTO DE CONFIGURAÇÕES =============
-
-    loadSettings() {
-        try {
-            const saved = localStorage.getItem(this.STORAGE_KEYS.SETTINGS);
-            if (saved) {
-                return { ...this.defaultSettings, ...JSON.parse(saved) };
-            }
-        } catch (error) {
-            console.error('Erro ao carregar configurações:', error);
-        }
-        return this.defaultSettings;
-    }
-
-    saveSettings() {
-        try {
-            localStorage.setItem(this.STORAGE_KEYS.SETTINGS, JSON.stringify(this.settings));
-            this.updateProgress();
-            return true;
-        } catch (error) {
-            console.error('Erro ao salvar configurações:', error);
-            this.showNotification('Erro ao salvar configurações', 'error');
-            return false;
-        }
-    }
-
-    async saveToServer() {
-        // Simular salvamento no servidor
-        this.showNotification('Sincronizando com o servidor...', 'info');
-        
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                // Simular sucesso
-                this.showNotification('Configurações sincronizadas!', 'success');
-                this.unsavedChanges = false;
-                resolve(true);
-            }, 1500);
-        });
     }
 
     // ============= GERENCIAMENTO DE ABAS =============
@@ -602,6 +476,208 @@ class VendedorConfiguracoes {
 
     // ============= FUNÇÕES DE CARREGAMENTO =============
 
+async carregarPerfilVendedor() {
+
+    if (!this.usuario || !this.usuario.id) {
+        return;
+    }
+
+    try {
+
+        const response = await fetch(
+            `http://localhost:3600/seller-profiles/user/${this.usuario.id}`
+        );
+
+        const result = await response.json();
+
+        if (
+            result.data &&
+            result.data.length > 0
+        ) {
+
+            this.sellerProfile =
+                result.data[0];
+
+            this.preencherDadosLoja();
+        }
+
+    } catch (error) {
+
+        console.error(
+            "Erro ao carregar perfil:",
+            error
+        );
+    }
+}
+
+preencherDadosLoja() {
+
+    if (!this.sellerProfile) {
+        return;
+    }
+
+    this.settings.store.name =
+        this.sellerProfile.store_name || "";
+
+    this.settings.store.cnpj =
+        this.sellerProfile.cnpj || "";
+
+    this.settings.store.ie =
+        this.sellerProfile.state_registration || "";
+
+    this.settings.store.phone =
+        this.sellerProfile.phone || "";
+
+    this.settings.store.website =
+        this.sellerProfile.website || "";
+
+    this.settings.store.description =
+        this.sellerProfile.description || "";
+
+    this.loadStoreData();
+}
+
+async salvarPerfilVendedor() {
+
+    const payload = {
+        user_id: this.usuario.id,
+        store_name: this.settings.store.name,
+        cnpj: this.settings.store.cnpj,
+        state_registration: this.settings.store.ie,
+        phone: this.settings.store.phone,
+        website: this.settings.store.website,
+        description: this.settings.store.description
+    };
+
+    console.log("Usuário logado:", this.usuario);
+    console.log("Payload enviado:", payload);
+
+    const response = await fetch(
+        `http://localhost:3600/seller-profiles/user/${this.usuario.id}`,
+        {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload)
+        }
+    );
+
+    const result = await response.json();
+
+    console.log("Status:", response.status);
+    console.log("Resposta API:", result);
+
+    if (!response.ok) {
+        throw new Error("Erro ao salvar perfil do vendedor");
+    }
+
+    this.showNotification(
+        "Informações básicas atualizadas!",
+        "success"
+    );
+}
+
+async carregarEnderecoVendedor() {
+
+    if (!this.usuario || !this.usuario.id) {
+        return;
+    }
+
+    try {
+
+        const response = await fetch(
+            `http://localhost:3600/seller-addresses/user/${this.usuario.id}`
+        );
+
+        const result = await response.json();
+
+        if (
+            result.data &&
+            result.data.length > 0
+        ) {
+            this.sellerAddress = result.data[0];
+            this.preencherEndereco();
+        }
+
+    } catch (error) {
+
+        console.error(
+            "Erro ao carregar endereço do vendedor:",
+            error
+        );
+    }
+}
+
+preencherEndereco() {
+
+    if (!this.sellerAddress) {
+        return;
+    }
+
+    this.settings.address.zipcode =
+        this.sellerAddress.zipcode || "";
+
+    this.settings.address.street =
+        this.sellerAddress.street || "";
+
+    this.settings.address.number =
+        this.sellerAddress.number || "";
+
+    this.settings.address.complement =
+        this.sellerAddress.complement || "";
+
+    this.settings.address.neighborhood =
+        this.sellerAddress.neighborhood || "";
+
+    this.settings.address.city =
+        this.sellerAddress.city || "";
+
+    this.settings.address.state =
+        this.sellerAddress.state || "";
+
+    this.loadAddress();
+}
+
+async salvarEnderecoVendedor() {
+
+    const payload = {
+        zipcode: this.settings.address.zipcode,
+        street: this.settings.address.street,
+        number: this.settings.address.number,
+        complement: this.settings.address.complement,
+        neighborhood: this.settings.address.neighborhood,
+        city: this.settings.address.city,
+        state: this.settings.address.state
+    };
+
+    console.log("Endereço enviado:", payload);
+
+    const response = await fetch(
+        `http://localhost:3600/seller-addresses/user/${this.usuario.id}`,
+        {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload)
+        }
+    );
+
+    const result = await response.json();
+
+    console.log("Resposta endereço:", result);
+
+    if (!response.ok) {
+        throw new Error("Erro ao salvar endereço");
+    }
+
+    this.showNotification(
+        "Endereço atualizado com sucesso!",
+        "success"
+    );
+}
+
     loadCategories() {
         const container = this.elements.categoriesList;
         if (!container) return;
@@ -623,6 +699,152 @@ class VendedorConfiguracoes {
         this.updateElementText('.info-item:contains("Complemento") p', address.complement);
     }
 
+    async carregarHorarioVendedor() {
+
+    if (!this.usuario || !this.usuario.id) {
+        return;
+    }
+
+    try {
+
+        const response =
+            await fetch(
+                `http://localhost:3600/seller-schedules/user/${this.usuario.id}`
+            );
+
+        const result =
+            await response.json();
+
+        if (
+            result.data &&
+            result.data.length > 0
+        ) {
+
+            this.sellerSchedule =
+                result.data[0];
+
+            this.preencherHorario();
+        }
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+    }
+
+}
+
+preencherHorario() {
+
+    if (!this.sellerSchedule) {
+        return;
+    }
+
+    this.settings.schedule.monday_friday.open =
+        this.sellerSchedule.monday_friday_open || "09:00";
+
+    this.settings.schedule.monday_friday.close =
+        this.sellerSchedule.monday_friday_close || "18:00";
+
+    this.settings.schedule.monday_friday.closed =
+        Boolean(this.sellerSchedule.monday_friday_closed);
+
+    this.settings.schedule.saturday.open =
+        this.sellerSchedule.saturday_open || "09:00";
+
+    this.settings.schedule.saturday.close =
+        this.sellerSchedule.saturday_close || "13:00";
+
+    this.settings.schedule.saturday.closed =
+        Boolean(this.sellerSchedule.saturday_closed);
+
+    this.settings.schedule.sunday.closed =
+        Boolean(this.sellerSchedule.sunday_closed);
+
+    this.settings.schedule.holidays.closed =
+        Boolean(this.sellerSchedule.holidays_closed);
+
+    this.loadSchedule();
+
+}
+
+async salvarHorarioVendedor() {
+
+    const payload = {
+
+        monday_friday_open:
+            this.settings.schedule.monday_friday.open,
+
+        monday_friday_close:
+            this.settings.schedule.monday_friday.close,
+
+        monday_friday_closed:
+            this.settings.schedule.monday_friday.closed,
+
+        saturday_open:
+            this.settings.schedule.saturday.open,
+
+        saturday_close:
+            this.settings.schedule.saturday.close,
+
+        saturday_closed:
+            this.settings.schedule.saturday.closed,
+
+        sunday_closed:
+            this.settings.schedule.sunday.closed,
+
+        holidays_closed:
+            this.settings.schedule.holidays.closed
+
+    };
+
+    console.log(payload);
+
+    const response =
+        await fetch(
+
+            `http://localhost:3600/seller-schedules/user/${this.usuario.id}`,
+
+            {
+
+                method: "PUT",
+
+                headers: {
+
+                    "Content-Type":
+                        "application/json"
+
+                },
+
+                body:
+                    JSON.stringify(payload)
+
+            }
+
+        );
+
+    const result =
+        await response.json();
+
+    console.log(result);
+
+    if (!response.ok) {
+
+        throw new Error(
+            "Erro ao salvar horário"
+        );
+
+    }
+
+    this.showNotification(
+        "Horário atualizado com sucesso!",
+        "success"
+    );
+
+}
+
     loadSchedule() {
         const schedule = this.settings.schedule;
         const scheduleItems = document.querySelectorAll('.schedule-item');
@@ -640,14 +862,146 @@ class VendedorConfiguracoes {
                     `${schedule.saturday.open} - ${schedule.saturday.close}`;
                 hoursEl.classList.toggle('closed', schedule.saturday.closed);
             } else if (day.includes('Domingo')) {
-                hoursEl.textContent = schedule.sunday.closed ? 'Fechado' : 'Aberto';
-                hoursEl.classList.toggle('closed', schedule.sunday.closed);
+hoursEl.textContent =
+    schedule.sunday.closed ? "Fechado" : "Aberto";
+
+hoursEl.classList.toggle(
+    "closed",
+    schedule.sunday.closed
+);
             } else if (day.includes('Feriados')) {
-                hoursEl.textContent = schedule.holidays.closed ? 'Fechado' : 'Aberto';
-                hoursEl.classList.toggle('closed', schedule.holidays.closed);
+hoursEl.textContent =
+    schedule.holidays.closed ? "Fechado" : "Aberto";
+
+hoursEl.classList.toggle(
+    "closed",
+    schedule.holidays.closed
+);
             }
         });
     }
+
+async carregarMetodosPagamento() {
+
+    if (!this.usuario || !this.usuario.id) {
+        return;
+    }
+
+    try {
+
+        const response = await fetch(
+            `http://localhost:3600/seller-payment-methods/user/${this.usuario.id}`
+        );
+
+        const result = await response.json();
+
+        if (
+            result.data &&
+            result.data.length > 0
+        ) {
+            this.sellerPaymentMethods = result.data[0];
+
+            this.preencherMetodosPagamento();
+        }
+
+    } catch (error) {
+
+        console.error(
+            "Erro ao carregar métodos de pagamento:",
+            error
+        );
+    }
+}
+
+preencherMetodosPagamento() {
+
+    if (!this.sellerPaymentMethods) {
+        return;
+    }
+
+    this.settings.payments.methods = [
+        {
+            id: "pix",
+            name: "PIX",
+            active: Boolean(this.sellerPaymentMethods.pix)
+        },
+        {
+            id: "credit_card",
+            name: "Cartão de Crédito",
+            active: Boolean(this.sellerPaymentMethods.credit_card)
+        },
+        {
+            id: "debit_card",
+            name: "Cartão de Débito",
+            active: Boolean(this.sellerPaymentMethods.debit_card)
+        },
+        {
+            id: "boleto",
+            name: "Boleto",
+            active: Boolean(this.sellerPaymentMethods.boleto)
+        },
+        {
+            id: "cash",
+            name: "Dinheiro",
+            active: Boolean(this.sellerPaymentMethods.cash)
+        },
+        {
+            id: "bank_transfer",
+            name: "Transferência Bancária",
+            active: Boolean(this.sellerPaymentMethods.bank_transfer)
+        }
+    ];
+
+    this.loadPaymentMethods();
+}
+
+async salvarMetodosPagamento() {
+
+    const methods =
+        this.settings.payments.methods;
+
+    const getStatus = (id) => {
+        const method =
+            methods.find(m => m.id === id);
+
+        return method ? method.active : false;
+    };
+
+    const payload = {
+        pix: getStatus("pix"),
+        credit_card: getStatus("credit_card"),
+        debit_card: getStatus("debit_card"),
+        boleto: getStatus("boleto"),
+        cash: getStatus("cash"),
+        bank_transfer: getStatus("bank_transfer")
+    };
+
+    console.log("Métodos de pagamento enviados:", payload);
+
+    const response = await fetch(
+        `http://localhost:3600/seller-payment-methods/user/${this.usuario.id}`,
+        {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload)
+        }
+    );
+
+    const result = await response.json();
+
+    console.log("Resposta métodos pagamento:", result);
+
+    if (!response.ok) {
+        throw new Error("Erro ao salvar métodos de pagamento");
+    }
+
+    this.showNotification(
+        "Métodos de pagamento atualizados!",
+        "success"
+    );
+}
 
     loadPaymentMethods() {
         const container = this.elements.paymentMethods;
@@ -730,6 +1084,191 @@ class VendedorConfiguracoes {
             container.appendChild(methodEl);
         });
     }
+
+    async carregarMetodosEntrega() {
+
+    if (!this.usuario || !this.usuario.id) {
+        return;
+    }
+
+    try {
+
+        const response =
+            await fetch(
+                `http://localhost:3600/seller-shipping-methods/user/${this.usuario.id}`
+            );
+
+        const result =
+            await response.json();
+
+        if (
+            result.data &&
+            result.data.length > 0
+        ) {
+
+            this.sellerShippingMethods =
+                result.data[0];
+
+            this.preencherMetodosEntrega();
+
+        }
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+    }
+
+}
+
+preencherMetodosEntrega() {
+
+    if (!this.sellerShippingMethods) {
+        return;
+    }
+
+    this.settings.shipping.methods = [
+
+        {
+            id: "pickup",
+            name: "Retirada na Loja",
+            active:
+                Boolean(
+                    this.sellerShippingMethods.pickup
+                )
+        },
+
+        {
+            id: "local_delivery",
+            name: "Entrega Local",
+            active:
+                Boolean(
+                    this.sellerShippingMethods.local_delivery
+                )
+        },
+
+        {
+            id: "correios",
+            name: "Correios",
+            active:
+                Boolean(
+                    this.sellerShippingMethods.correios
+                )
+        },
+
+        {
+            id: "carrier",
+            name: "Transportadora",
+            active:
+                Boolean(
+                    this.sellerShippingMethods.carrier
+                )
+        }
+
+    ];
+
+    this.settings.shipping.freeShipping.enabled =
+        Boolean(
+            this.sellerShippingMethods.free_shipping
+        );
+
+    this.settings.shipping.freeShipping.minValue =
+        Number(
+            this.sellerShippingMethods.free_shipping_min_value
+        );
+
+    this.loadShippingData();
+
+}
+
+async salvarMetodosEntrega() {
+
+    const methods =
+        this.settings.shipping.methods;
+
+    const getStatus = (id) => {
+
+        const method =
+            methods.find(
+                m => m.id === id
+            );
+
+        return method
+            ? method.active
+            : false;
+
+    };
+
+    const payload = {
+
+        pickup:
+            getStatus("pickup"),
+
+        local_delivery:
+            getStatus("local_delivery"),
+
+        correios:
+            getStatus("correios"),
+
+        carrier:
+            getStatus("carrier"),
+
+        free_shipping:
+            this.settings.shipping.freeShipping.enabled,
+
+        free_shipping_min_value:
+            this.settings.shipping.freeShipping.minValue
+
+    };
+
+    console.log(payload);
+
+    const response =
+        await fetch(
+
+            `http://localhost:3600/seller-shipping-methods/user/${this.usuario.id}`,
+
+            {
+
+                method: "PUT",
+
+                headers: {
+
+                    "Content-Type":
+                        "application/json"
+
+                },
+
+                body:
+                    JSON.stringify(payload)
+
+            }
+
+        );
+
+    const result =
+        await response.json();
+
+    console.log(result);
+
+    if (!response.ok) {
+
+        throw new Error(
+            "Erro ao salvar métodos de entrega"
+        );
+
+    }
+
+    this.showNotification(
+        "Métodos de entrega atualizados!",
+        "success"
+    );
+
+}
+
+
 
     loadFreeShippingConfig() {
         const config = this.settings.shipping.freeShipping;
@@ -1022,7 +1561,9 @@ class VendedorConfiguracoes {
                 </div>
             </div>
             <div class="method-price">
-                <span>${method.price === 0 ? 'Grátis' : `R$ ${method.price.toFixed(2)}`}</span>
+<span>
+    ${method.price ? `R$ ${Number(method.price).toFixed(2)}` : "Configurar"}
+</span>
                 <div class="toggle-switch ${method.active ? 'active' : ''}" 
                      onclick="window.vendedorConfiguracoes.toggleShippingMethod('${method.id}')">
                 </div>
@@ -1228,6 +1769,9 @@ class VendedorConfiguracoes {
                 `Método de pagamento ${method.name} ${method.active ? 'ativado' : 'desativado'}`,
                 'success'
             );
+
+            this.salvarMetodosPagamento();
+
         }
     }
 
@@ -1252,45 +1796,108 @@ class VendedorConfiguracoes {
                 `Método de entrega ${method.name} ${method.active ? 'ativado' : 'desativado'}`,
                 'success'
             );
+
+            this.salvarMetodosEntrega();
+
         }
     }
 
-    togglePickupLocation(locationId) {
-        const location = this.settings.shipping.pickupLocations.find(l => l.id === locationId);
-        if (location) {
-            location.active = !location.active;
-            this.loadPickupLocations();
-            
-            this.unsavedChanges = true;
-            this.debounceAutoSave();
-            
-            this.showNotification(
-                `Ponto de retirada ${location.name} ${location.active ? 'ativado' : 'desativado'}`,
-                'success'
-            );
-        }
+async togglePickupLocation(locationId) {
+
+    const location =
+        this.settings.shipping.pickupLocations.find(
+            l => Number(l.id) === Number(locationId)
+        );
+
+    if (!location) {
+        return;
     }
 
-    editPickupLocation(locationId) {
-        const location = this.settings.shipping.pickupLocations.find(l => l.id === locationId);
-        if (location) {
-            this.openEditModal('pickup-location', location);
+    const payload = {
+        name: location.name,
+        street: location.street || "",
+        number: location.number || "",
+        complement: location.complement || "",
+        neighborhood: location.neighborhood || "",
+        city: location.city || "",
+        state: location.state || "",
+        zipcode: location.zipcode || "",
+        active: !location.active
+    };
+
+    const response = await fetch(
+        `http://localhost:3600/seller-pickup-locations/${locationId}`,
+        {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload)
         }
+    );
+
+    if (!response.ok) {
+        this.showNotification(
+            "Erro ao atualizar ponto de retirada.",
+            "error"
+        );
+        return;
     }
 
-    deletePickupLocation(locationId) {
-        if (confirm('Tem certeza que deseja excluir este ponto de retirada?')) {
-            this.settings.shipping.pickupLocations = this.settings.shipping.pickupLocations.filter(
-                l => l.id !== locationId
-            );
-            this.loadPickupLocations();
-            
-            this.unsavedChanges = true;
-            this.debounceAutoSave();
-            
-            this.showNotification('Ponto de retirada excluído com sucesso', 'success');
-        }
+    await this.carregarPontosRetirada();
+
+    this.showNotification(
+        `Ponto ${payload.active ? "ativado" : "desativado"} com sucesso!`,
+        "success"
+    );
+}
+
+editPickupLocation(locationId) {
+
+    const location =
+        this.settings.shipping.pickupLocations.find(
+            l => Number(l.id) === Number(locationId)
+        );
+
+    if (!location) {
+        this.showNotification(
+            "Ponto de retirada não encontrado.",
+            "error"
+        );
+        return;
     }
+
+    this.openEditModal(
+        "pickup-location",
+        location
+    );
+}
+
+async deletePickupLocation(locationId) {
+
+    if (!confirm("Tem certeza que deseja excluir este ponto de retirada?")) {
+        return;
+    }
+
+    const response = await fetch(
+        `http://localhost:3600/seller-pickup-locations/${locationId}`,
+        {
+            method: "DELETE"
+        }
+    );
+
+    if (!response.ok) {
+        this.showNotification("Erro ao excluir ponto.", "error");
+        return;
+    }
+
+    await this.carregarPontosRetirada();
+
+    this.showNotification(
+        "Ponto de retirada excluído com sucesso!",
+        "success"
+    );
+}
 
     toggleIntegration(integrationId) {
         const integration = this.settings.integrations[integrationId];
@@ -1589,51 +2196,97 @@ class VendedorConfiguracoes {
         setTimeout(() => modal.classList.add('active'), 10);
     }
 
-    addPickupLocation() {
-        const modal = this.createModal('Adicionar Ponto de Retirada', `
-            <div class="form-group">
-                <label>Nome do local</label>
-                <input type="text" class="form-input" id="locationName" placeholder="Ex: Loja Principal">
-            </div>
-            <div class="form-group">
-                <label>Endereço completo</label>
-                <input type="text" class="form-input" id="locationAddress" placeholder="Rua, número, bairro, cidade...">
-            </div>
-            <div class="form-group">
-                <label>Horário de funcionamento</label>
-                <input type="text" class="form-input" id="locationSchedule" placeholder="Ex: Seg a Sex: 09h-18h">
-            </div>
-        `, 'Adicionar', () => {
-            const name = document.getElementById('locationName')?.value.trim();
-            const address = document.getElementById('locationAddress')?.value.trim();
-            const schedule = document.getElementById('locationSchedule')?.value.trim();
-            
-            if (!name || !address) {
-                this.showNotification('Preencha todos os campos obrigatórios', 'error');
-                return false;
+addPickupLocation() {
+
+    const modal = this.createModal("Adicionar Ponto de Retirada", `
+        <div class="form-group">
+            <label>Nome do local</label>
+            <input type="text" class="form-input" id="pickupName">
+        </div>
+
+        <div class="form-group">
+            <label>CEP</label>
+            <input type="text" class="form-input" id="pickupZipcode">
+        </div>
+
+        <div class="form-group">
+            <label>Rua</label>
+            <input type="text" class="form-input" id="pickupStreet">
+        </div>
+
+        <div class="form-group">
+            <label>Número</label>
+            <input type="text" class="form-input" id="pickupNumber">
+        </div>
+
+        <div class="form-group">
+            <label>Complemento</label>
+            <input type="text" class="form-input" id="pickupComplement">
+        </div>
+
+        <div class="form-group">
+            <label>Bairro</label>
+            <input type="text" class="form-input" id="pickupNeighborhood">
+        </div>
+
+        <div class="form-group">
+            <label>Cidade</label>
+            <input type="text" class="form-input" id="pickupCity">
+        </div>
+
+        <div class="form-group">
+            <label>Estado</label>
+            <input type="text" class="form-input" id="pickupState" maxlength="2">
+        </div>
+    `, "Salvar", async () => {
+
+        const payload = {
+            user_id: this.usuario.id,
+            name: document.getElementById("pickupName")?.value || "",
+            zipcode: document.getElementById("pickupZipcode")?.value || "",
+            street: document.getElementById("pickupStreet")?.value || "",
+            number: document.getElementById("pickupNumber")?.value || "",
+            complement: document.getElementById("pickupComplement")?.value || "",
+            neighborhood: document.getElementById("pickupNeighborhood")?.value || "",
+            city: document.getElementById("pickupCity")?.value || "",
+            state: document.getElementById("pickupState")?.value || "",
+            active: true
+        };
+
+        console.log("Payload ponto retirada:", payload);
+
+        const response = await fetch(
+            "http://localhost:3600/seller-pickup-locations",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(payload)
             }
-            
-            const newLocation = {
-                id: `loc_${Date.now()}`,
-                name: name,
-                address: address,
-                schedule: schedule || 'Segunda a Sexta: 09h às 18h',
-                active: true
-            };
-            
-            this.settings.shipping.pickupLocations.push(newLocation);
-            this.loadPickupLocations();
-            
-            this.unsavedChanges = true;
-            this.debounceAutoSave();
-            
-            this.showNotification(`Ponto de retirada ${name} adicionado!`, 'success');
-            return true;
-        });
-        
-        document.body.appendChild(modal);
-        setTimeout(() => modal.classList.add('active'), 10);
-    }
+        );
+
+const result = await response.json();
+console.log("Resposta ponto retirada:", result);
+
+        if (!response.ok) {
+            this.showNotification("Erro ao cadastrar ponto.", "error");
+            return false;
+        }
+
+        await this.carregarPontosRetirada();
+
+        this.showNotification(
+            "Ponto de retirada cadastrado!",
+            "success"
+        );
+
+        return true;
+    });
+
+    document.body.appendChild(modal);
+    setTimeout(() => modal.classList.add("active"), 10);
+}
 
     addWebhook() {
         const modal = this.createModal('Criar Webhook', `
@@ -1994,30 +2647,102 @@ class VendedorConfiguracoes {
         `;
     }
 
-    getPickupLocationForm(location) {
-        if (!location) return '';
-        
-        return `
-            <div class="form-group">
-                <label>Nome do local</label>
-                <input type="text" class="form-input" id="locationName" value="${location.name || ''}">
-            </div>
-            <div class="form-group">
-                <label>Endereço completo</label>
-                <textarea class="form-input" id="locationAddress" rows="2">${location.address || ''}</textarea>
-            </div>
-            <div class="form-group">
-                <label>Horário de funcionamento</label>
-                <input type="text" class="form-input" id="locationSchedule" value="${location.schedule || ''}">
-            </div>
-            <div class="form-group">
-                <label style="display: flex; align-items: center; gap: 0.5rem;">
-                    <input type="checkbox" id="locationActive" ${location.active ? 'checked' : ''}>
-                    Local ativo
-                </label>
-            </div>
-        `;
-    }
+getPickupLocationForm(location) {
+
+    return `
+        <div class="form-group">
+            <label>Nome do local</label>
+            <input
+                type="text"
+                class="form-input"
+                id="editPickupName"
+                value="${location.name || ""}"
+            >
+        </div>
+
+        <div class="form-group">
+            <label>CEP</label>
+            <input
+                type="text"
+                class="form-input"
+                id="editPickupZipcode"
+                value="${location.zipcode || ""}"
+            >
+        </div>
+
+        <div class="form-group">
+            <label>Rua</label>
+            <input
+                type="text"
+                class="form-input"
+                id="editPickupStreet"
+                value="${location.street || ""}"
+            >
+        </div>
+
+        <div class="form-group">
+            <label>Número</label>
+            <input
+                type="text"
+                class="form-input"
+                id="editPickupNumber"
+                value="${location.number || ""}"
+            >
+        </div>
+
+        <div class="form-group">
+            <label>Complemento</label>
+            <input
+                type="text"
+                class="form-input"
+                id="editPickupComplement"
+                value="${location.complement || ""}"
+            >
+        </div>
+
+        <div class="form-group">
+            <label>Bairro</label>
+            <input
+                type="text"
+                class="form-input"
+                id="editPickupNeighborhood"
+                value="${location.neighborhood || ""}"
+            >
+        </div>
+
+        <div class="form-group">
+            <label>Cidade</label>
+            <input
+                type="text"
+                class="form-input"
+                id="editPickupCity"
+                value="${location.city || ""}"
+            >
+        </div>
+
+        <div class="form-group">
+            <label>Estado</label>
+            <input
+                type="text"
+                class="form-input"
+                id="editPickupState"
+                maxlength="2"
+                value="${location.state || ""}"
+            >
+        </div>
+
+        <div class="form-group">
+            <label>
+                <input
+                    type="checkbox"
+                    id="editPickupActive"
+                    ${location.active ? "checked" : ""}
+                >
+                Ponto ativo
+            </label>
+        </div>
+    `;
+}
 
     getWebhookForm(webhook) {
         if (!webhook) return '';
@@ -2067,48 +2792,57 @@ class VendedorConfiguracoes {
 
     // ============= SALVAMENTO DE EDIÇÕES =============
 
-    saveBasicInfo() {
-        const store = this.settings.store;
-        
-        store.name = document.getElementById('storeName')?.value || store.name;
-        store.cnpj = document.getElementById('storeCnpj')?.value || store.cnpj;
-        store.ie = document.getElementById('storeIe')?.value || store.ie;
-        store.phone = document.getElementById('storePhone')?.value || store.phone;
-        store.email = document.getElementById('storeEmail')?.value || store.email;
-        store.website = document.getElementById('storeWebsite')?.value || store.website;
-        store.description = document.getElementById('storeDescription')?.value || store.description;
-        
-        this.loadStoreData();
-        this.unsavedChanges = true;
-        this.debounceAutoSave();
-        
-        this.showNotification('Informações básicas atualizadas!', 'success');
-        return true;
-    }
+async saveBasicInfo() {
+    const store = this.settings.store;
 
-    saveAddress() {
-        const address = this.settings.address;
-        
-        address.zipcode = document.getElementById('addressZipcode')?.value || address.zipcode;
-        address.street = document.getElementById('addressStreet')?.value || address.street;
-        address.number = document.getElementById('addressNumber')?.value || address.number;
-        address.complement = document.getElementById('addressComplement')?.value || address.complement;
-        address.neighborhood = document.getElementById('addressNeighborhood')?.value || address.neighborhood;
-        address.city = document.getElementById('addressCity')?.value || address.city;
-        address.state = document.getElementById('addressState')?.value || address.state;
-        
-        // Reconstruir logradouro completo
-        address.street = `${address.street || ''}${address.number ? `, ${address.number}` : ''}`;
-        
-        this.loadAddress();
-        this.unsavedChanges = true;
-        this.debounceAutoSave();
-        
-        this.showNotification('Endereço atualizado!', 'success');
-        return true;
-    }
+    store.name = document.getElementById("storeName")?.value || store.name;
+    store.cnpj = document.getElementById("storeCnpj")?.value || store.cnpj;
+    store.ie = document.getElementById("storeIe")?.value || store.ie;
+    store.phone = document.getElementById("storePhone")?.value || store.phone;
+    store.email = document.getElementById("storeEmail")?.value || store.email;
+    store.website = document.getElementById("storeWebsite")?.value || store.website;
+    store.description = document.getElementById("storeDescription")?.value || store.description;
 
-    saveSchedule() {
+    await this.salvarPerfilVendedor();
+
+    this.loadStoreData();
+
+    return true;
+}
+
+async saveAddress() {
+
+    const address = this.settings.address;
+
+    address.zipcode =
+        document.getElementById("addressZipcode")?.value || "";
+
+    address.street =
+        document.getElementById("addressStreet")?.value || "";
+
+    address.number =
+        document.getElementById("addressNumber")?.value || "";
+
+    address.complement =
+        document.getElementById("addressComplement")?.value || "";
+
+    address.neighborhood =
+        document.getElementById("addressNeighborhood")?.value || "";
+
+    address.city =
+        document.getElementById("addressCity")?.value || "";
+
+    address.state =
+        document.getElementById("addressState")?.value || "";
+
+    await this.salvarEnderecoVendedor();
+
+    this.loadAddress();
+
+    return true;
+}
+
+    async saveSchedule() {
         const schedule = this.settings.schedule;
         
         // Segunda a Sexta
@@ -2128,16 +2862,19 @@ class VendedorConfiguracoes {
         }
         
         // Domingo
-        schedule.sunday.closed = document.getElementById('scheduleSunClosed')?.checked || true;
+schedule.sunday.closed =
+    document.getElementById("scheduleSunClosed")?.checked || false;
         
         // Feriados
-        schedule.holidays.closed = document.getElementById('scheduleHolidaysClosed')?.checked || true;
+schedule.holidays.closed =
+    document.getElementById("scheduleHolidaysClosed")?.checked || false;
         
         this.loadSchedule();
         this.unsavedChanges = true;
         this.debounceAutoSave();
         
         this.showNotification('Horário de funcionamento atualizado!', 'success');
+        await this.salvarHorarioVendedor();
         return true;
     }
 
@@ -2159,23 +2896,66 @@ class VendedorConfiguracoes {
         return true;
     }
 
-    savePickupLocation(locationId) {
-        const location = this.settings.shipping.pickupLocations.find(l => l.id === locationId);
-        if (location) {
-            location.name = document.getElementById('locationName')?.value || location.name;
-            location.address = document.getElementById('locationAddress')?.value || location.address;
-            location.schedule = document.getElementById('locationSchedule')?.value || location.schedule;
-            location.active = document.getElementById('locationActive')?.checked || false;
-            
-            this.loadPickupLocations();
-            this.unsavedChanges = true;
-            this.debounceAutoSave();
-            
-            this.showNotification('Ponto de retirada atualizado!', 'success');
-            return true;
+async savePickupLocation(locationId) {
+
+    const payload = {
+        name:
+            document.getElementById("editPickupName")?.value || "",
+
+        zipcode:
+            document.getElementById("editPickupZipcode")?.value || "",
+
+        street:
+            document.getElementById("editPickupStreet")?.value || "",
+
+        number:
+            document.getElementById("editPickupNumber")?.value || "",
+
+        complement:
+            document.getElementById("editPickupComplement")?.value || "",
+
+        neighborhood:
+            document.getElementById("editPickupNeighborhood")?.value || "",
+
+        city:
+            document.getElementById("editPickupCity")?.value || "",
+
+        state:
+            document.getElementById("editPickupState")?.value || "",
+
+        active:
+            document.getElementById("editPickupActive")?.checked || false
+    };
+
+    const response = await fetch(
+        `http://localhost:3600/seller-pickup-locations/${locationId}`,
+        {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload)
         }
+    );
+
+    if (!response.ok) {
+        this.showNotification(
+            "Erro ao editar ponto de retirada.",
+            "error"
+        );
+
         return false;
     }
+
+    await this.carregarPontosRetirada();
+
+    this.showNotification(
+        "Ponto de retirada atualizado!",
+        "success"
+    );
+
+    return true;
+}
 
     saveWebhook(webhookId) {
         const webhook = this.settings.webhooks.find(w => w.id === webhookId);
@@ -2228,11 +3008,16 @@ class VendedorConfiguracoes {
         setTimeout(() => {
             const confirmBtn = document.getElementById(`confirmBtn_${modalId}`);
             if (confirmBtn) {
-                confirmBtn.addEventListener('click', () => {
-                    if (onConfirm()) {
-                        modal.remove();
-                    }
-                });
+confirmBtn.addEventListener('click', async () => {
+
+    const result =
+        await onConfirm();
+
+    if (result !== false) {
+        modal.remove();
+    }
+
+});
             }
             
             // Configurar checkboxes de horário
@@ -2278,16 +3063,14 @@ class VendedorConfiguracoes {
         clearTimeout(this.autoSaveTimer);
         this.autoSaveTimer = setTimeout(() => {
             if (this.unsavedChanges) {
-                this.autoSave();
+                // this.autoSave();
             }
         }, 3000);
     }
 
-    autoSave() {
-        if (this.saveSettings()) {
-            this.showNotification('Alterações salvas automaticamente', 'info');
-        }
-    }
+autoSave() {
+    this.unsavedChanges = false;
+}
 
     saveAllSettings() {
         this.showNotification('Salvando todas as configurações...', 'info');
@@ -2352,13 +3135,49 @@ class VendedorConfiguracoes {
         }
     }
 
-    updateElementText(selector, text) {
-        // Função simples para atualizar texto por seletor
-        const element = document.querySelector(selector);
-        if (element) {
-            element.textContent = text;
-        }
+updateElementText(selector, text) {
+
+    if (selector.includes(":contains")) {
+
+        const match =
+            selector.match(/:contains\("(.+?)"\)/);
+
+        if (!match) return;
+
+        const labelText =
+            match[1];
+
+        const items =
+            document.querySelectorAll(".info-item");
+
+        items.forEach(item => {
+
+            const label =
+                item.querySelector("label")?.textContent.trim();
+
+            const value =
+                item.querySelector("p");
+
+            if (
+                label === labelText &&
+                value
+            ) {
+                value.textContent =
+                    text || "Não informado";
+            }
+        });
+
+        return;
     }
+
+    const element =
+        document.querySelector(selector);
+
+    if (element) {
+        element.textContent =
+            text || "Não informado";
+    }
+}
 
     getSettingName(element) {
         // Tentar encontrar o nome da configuração baseado no contexto
@@ -2395,6 +3214,8 @@ class VendedorConfiguracoes {
         const lastPart = parts[parts.length - 1];
         current[lastPart] = value;
     }
+
+    
 
     // ============= VALIDAÇÕES E FORMATAÇÕES =============
 
@@ -2585,6 +3406,43 @@ class VendedorConfiguracoes {
             }
         }, 800);
     }
+
+async carregarPontosRetirada() {
+
+    if (!this.usuario || !this.usuario.id) return;
+
+    try {
+        const response = await fetch(
+            `http://localhost:3600/seller-pickup-locations/user/${this.usuario.id}`
+        );
+
+        const result = await response.json();
+
+        this.sellerPickupLocations = result.data || [];
+
+        this.settings.shipping.pickupLocations =
+            this.sellerPickupLocations.map(location => ({
+                id: location.id,
+                name: location.name,
+                address: `${location.street}, ${location.number} - ${location.neighborhood}, ${location.city} - ${location.state}`,
+                schedule: location.zipcode,
+                active: Boolean(location.active),
+
+                street: location.street,
+                number: location.number,
+                complement: location.complement,
+                neighborhood: location.neighborhood,
+                city: location.city,
+                state: location.state,
+                zipcode: location.zipcode
+            }));
+
+        this.loadPickupLocations();
+
+    } catch (error) {
+        console.error("Erro ao carregar pontos de retirada:", error);
+    }
+}
 
     formatPhone(e) {
         let value = e.target.value.replace(/\D/g, '');

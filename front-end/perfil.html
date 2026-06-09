@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,15 +14,16 @@
     <script>
         new window.VLibras.Widget('https://vlibras.gov.br/app');
     </script>
-        <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q755SR73MY"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag() { dataLayer.push(arguments); }
-            gtag('js', new Date());
-            gtag('config', 'G-Q755SR73MY');
-        </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q755SR73MY"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-Q755SR73MY');
+    </script>
 </head>
+
 <body class="cliente-inicio">
     <!-- Header Principal -->
     <header class="main-header">
@@ -31,7 +33,7 @@
                     <img src="IMG/reuse-logo-(2).svg" alt="ReUse Logo">
                     <span class="logo-text">ReUse</span>
                 </a>
-                
+
                 <nav class="categories-bar">
                     <div class="categories-container">
                         <button class="category-btn">
@@ -57,7 +59,7 @@
                     </div>
                 </nav>
             </div>
-            
+
             <div class="user-actions">
                 <button class="action-btn" id="colorblindBtn" title="Acessibilidade Visual">
                     <i class="bi bi-universal-access"></i>
@@ -66,11 +68,11 @@
                 <button class="action-btn" id="darkModeBtn" title="Modo Noturno">
                     <i class="bi bi-moon"></i>
                 </button>
-                
+
                 <button class="action-btn favorites-btn" id="favoritesBtn" title="Favoritos">
                     <i class="bi bi-heart"></i>
                 </button>
-                
+
                 <button class="action-btn cart-btn" id="cartBtn" title="Carrinho" data-count="2">
                     <i class="bi bi-cart"></i>
                 </button>
@@ -95,11 +97,11 @@
                         <div class="profile-details">
                             <h1 class="profile-name">João Silva</h1>
                             <p class="profile-email">joao.silva@email.com</p>
+                            <button class="change-photo-btn" id="changePhotoBtn">
+                                <i class="bi bi-camera-fill"></i>
+                                Alterar Foto de Perfil
+                            </button>
                             <div class="profile-badges">
-                                <span class="badge premium">
-                                    <i class="bi bi-star-fill"></i>
-                                    Cliente Premium
-                                </span>
                                 <span class="badge eco">
                                     <i class="bi bi-recycle"></i>
                                     42 Doações
@@ -146,14 +148,14 @@
                         <span>Preferências</span>
                     </button>
                 </nav>
-                
+
                 <div class="sidebar-stats">
                     <div class="stat-card">
                         <div class="stat-icon">
                             <i class="bi bi-cart-check"></i>
                         </div>
                         <div class="stat-info">
-                            <h4>15</h4>
+                            <h4 id="profilePurchasesCount">0</h4>
                             <p>Compras</p>
                         </div>
                     </div>
@@ -162,7 +164,7 @@
                             <i class="bi bi-heart"></i>
                         </div>
                         <div class="stat-info">
-                            <h4>8</h4>
+                            <h4 id="profileFavoritesCount">0</h4>
                             <p>Favoritos</p>
                         </div>
                     </div>
@@ -171,12 +173,12 @@
                             <i class="bi bi-recycle"></i>
                         </div>
                         <div class="stat-info">
-                            <h4>42</h4>
+                            <h4 id="profileDonationsCount">0</h4>
                             <p>Doações</p>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="sidebar-help">
                     <h4><i class="bi bi-question-circle"></i> Precisa de ajuda?</h4>
                     <p>Entre em contato com nosso suporte</p>
@@ -195,7 +197,7 @@
                         <h2><i class="bi bi-person-circle"></i> Dados Pessoais</h2>
                         <p>Gerencie suas informações pessoais e de contato</p>
                     </div>
-                    
+
                     <form class="profile-form" id="personalDataForm">
                         <div class="form-grid">
                             <div class="form-group">
@@ -203,9 +205,9 @@
                                     <i class="bi bi-person"></i>
                                     Nome Completo
                                 </label>
-                                <input type="text" id="nomeCompleto" value="João Silva Santos" >
+                                <input type="text" id="nomeCompleto" value="João Silva Santos">
                             </div>
-                            
+
                             <div class="form-group">
                                 <label for="cpf">
                                     <i class="bi bi-card-text"></i>
@@ -213,37 +215,37 @@
                                 </label>
                                 <input type="text" id="cpf" value="123.456.789-00" readonly>
                             </div>
-                            
+
                             <div class="form-group">
                                 <label for="dataNascimento">
                                     <i class="bi bi-calendar"></i>
                                     Data de Nascimento
                                 </label>
-                                <input type="date" id="dataNascimento" value="1990-05-15" >
+                                <input type="date" id="dataNascimento" value="1990-05-15">
                             </div>
-                            
+
                             <div class="form-group">
                                 <label for="telefone">
                                     <i class="bi bi-telephone"></i>
                                     Telefone
                                 </label>
-                                <input type="tel" id="telefone" value="(11) 99999-8888" >
+                                <input type="tel" id="telefone" value="(11) 99999-8888">
                             </div>
-                            
+
                             <div class="form-group full-width">
                                 <label for="email">
                                     <i class="bi bi-envelope"></i>
                                     E-mail
                                 </label>
-                                <input type="email" id="email" value="joao.silva@email.com" >
+                                <input type="email" id="email" value="joao.silva@email.com">
                             </div>
-                            
+
                             <div class="form-group">
                                 <label for="genero">
                                     <i class="bi bi-gender-ambiguous"></i>
                                     Gênero
                                 </label>
-                                <select id="genero" >
+                                <select id="genero">
                                     <option value="masculino">Masculino</option>
                                     <option value="feminino">Feminino</option>
                                     <option value="outro">Outro</option>
@@ -251,7 +253,7 @@
                                 </select>
                             </div>
                         </div>
-                        
+
                         <div class="form-actions">
                             <button type="button" class="btn-secondary" id="cancelPersonalBtn">
                                 Cancelar
@@ -270,7 +272,7 @@
                         <h2><i class="bi bi-shield-lock"></i> Segurança</h2>
                         <p>Proteja sua conta e gerencie acesso</p>
                     </div>
-                    
+
                     <div class="security-cards">
                         <div class="security-card">
                             <div class="security-icon">
@@ -285,7 +287,7 @@
                                 </button>
                             </div>
                         </div>
-                        
+
                         <div class="security-card">
                             <div class="security-icon">
                                 <i class="bi bi-shield-check"></i>
@@ -302,7 +304,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="security-card">
                             <div class="security-icon">
                                 <i class="bi bi-device-phone"></i>
@@ -316,7 +318,7 @@
                                 </button>
                             </div>
                         </div>
-                        
+
                         <div class="security-card">
                             <div class="security-icon">
                                 <i class="bi bi-clock-history"></i>
@@ -331,31 +333,59 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- Alterar Senha (inicialmente oculto) -->
                     <div class="change-password-form" id="changePasswordForm" style="display: none;">
                         <h3><i class="bi bi-key"></i> Alterar Senha</h3>
                         <form id="passwordForm">
                             <div class="form-group">
                                 <label for="currentPassword">Senha Atual</label>
-                                <input type="password" id="currentPassword" placeholder="Digite sua senha atual" >
+                                <div class="password-wrapper">
+                                    <input type="password" id="currentPassword" placeholder="Digite sua senha atual">
+                                    <button type="button" class="toggle-password" data-target="currentPassword">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+                                </div>
                             </div>
-                            
+
                             <div class="form-group">
-                                <label for="newPassword">Nova Senha</label>
-                                <input type="password" id="newPassword" placeholder="Digite a nova senha" >
+                                <div class="form-group">
+                                    <label for="newPassword">
+                                        Nova Senha
+                                    </label>
+
+                                    <div class="password-wrapper">
+
+                                        <input type="password" id="newPassword" placeholder="Digite a nova senha">
+
+                                        <button type="button" class="toggle-password" data-target="newPassword">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
+
+                                    </div>
+                                </div>
                             </div>
-                            
+
                             <div class="form-group">
-                                <label for="confirmPassword">Confirmar Nova Senha</label>
-                                <input type="password" id="confirmPassword" placeholder="Confirme a nova senha" >
+                                <label for="confirmPassword">
+                                    Confirmar Nova Senha
+                                </label>
+
+                                <div class="password-wrapper">
+
+                                    <input type="password" id="confirmPassword" placeholder="Confirme a nova senha">
+
+                                    <button type="button" class="toggle-password" data-target="confirmPassword">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+
+                                </div>
                             </div>
-                            
                             <div class="password-strength">
                                 <div class="strength-bar"></div>
                                 <span class="strength-text">Força da senha: <strong>Média</strong></span>
                             </div>
-                            
+
                             <div class="form-actions">
                                 <button type="button" class="btn-secondary cancel-password">
                                     Cancelar
@@ -375,53 +405,31 @@
                         <h2><i class="bi bi-credit-card"></i> Cartões</h2>
                         <p>Gerencie seus métodos de pagamento</p>
                     </div>
-                    
+
                     <div class="payment-methods">
-                        <div class="cards-list">
-                            <div class="card-item primary">
-                                <div class="card-icon">
-                                    <i class="bi bi-credit-card-2-front"></i>
-                                </div>
-                                <div class="card-details">
-                                    <h3>Cartão Principal</h3>
-                                    <p class="card-number">**** **** **** 4321</p>
-                                    <p class="card-info">Visa • Válido até 12/2025</p>
-                                </div>
-                                <div class="card-actions">
-                                    <button class="card-action" title="Editar">
-                                        <i class="bi bi-pencil"></i>
-                                    </button>
-                                    <button class="card-action" title="Remover">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            
-                            <div class="card-item">
-                                <div class="card-icon">
+                        <div class="cards-list" id="cardsList">
+
+                            <div class="empty-cards" id="emptyCards">
+
+                                <div class="empty-icon">
                                     <i class="bi bi-credit-card"></i>
                                 </div>
-                                <div class="card-details">
-                                    <h3>Cartão Secundário</h3>
-                                    <p class="card-number">**** **** **** 8765</p>
-                                    <p class="card-info">Mastercard • Válido até 08/2024</p>
-                                </div>
-                                <div class="card-actions">
-                                    <button class="card-action" title="Editar">
-                                        <i class="bi bi-pencil"></i>
-                                    </button>
-                                    <button class="card-action" title="Remover">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
-                                </div>
+
+                                <h3>Nenhum cartão cadastrado</h3>
+
+                                <p>
+                                    Você ainda não possui cartões cadastrados.
+                                </p>
+
                             </div>
+
                         </div>
-                        
+
                         <button class="add-card-btn" id="addCardBtn">
                             <i class="bi bi-plus-lg"></i>
                             Adicionar Novo Cartão
                         </button>
-                        
+
                         <!-- Formulário para Adicionar Cartão -->
                         <div class="add-card-form" id="addCardForm" style="display: none;">
                             <h3><i class="bi bi-plus-circle"></i> Adicionar Cartão</h3>
@@ -429,36 +437,36 @@
                                 <div class="form-grid">
                                     <div class="form-group full-width">
                                         <label for="cardNumber">Número do Cartão</label>
-                                        <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" >
+                                        <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456">
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label for="cardHolder">Nome no Cartão</label>
-                                        <input type="text" id="cardHolder" placeholder="JOÃO SILVA" >
+                                        <input type="text" id="cardHolder" placeholder="JOÃO SILVA">
                                     </div>
-                                    
+
                                     <div class="form-row">
                                         <div class="form-group">
                                             <label for="expiryDate">Validade</label>
-                                            <input type="text" id="expiryDate" placeholder="MM/AA" >
+                                            <input type="text" id="expiryDate" placeholder="MM/AA">
                                         </div>
-                                        
+
                                         <div class="form-group">
                                             <label for="cvv">CVV</label>
-                                            <input type="text" id="cvv" placeholder="123" >
+                                            <input type="text" id="cvv" placeholder="123">
                                         </div>
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label for="cardType">Bandeira</label>
-                                        <select id="cardType" >
+                                        <select id="cardType">
                                             <option value="visa">Visa</option>
                                             <option value="mastercard">Mastercard</option>
                                             <option value="amex">American Express</option>
                                             <option value="elo">Elo</option>
                                         </select>
                                     </div>
-                                    
+
                                     <div class="form-group full-width">
                                         <div class="checkbox-group">
                                             <input type="checkbox" id="setAsPrimary" checked>
@@ -466,7 +474,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="form-actions">
                                     <button type="button" class="btn-secondary cancel-add-card">
                                         Cancelar
@@ -487,123 +495,107 @@
                         <h2><i class="bi bi-geo-alt"></i> Endereços</h2>
                         <p>Gerencie seus endereços de entrega</p>
                     </div>
-                    
-                    <div class="addresses-list">
-                        <div class="address-card primary">
-                            <div class="address-header">
-                                <h3><i class="bi bi-house-check"></i> Endereço Principal</h3>
-                                <span class="address-tag">Principal</span>
+
+                    <div class="addresses-list" id="addressesList">
+                        <div class="empty-addresses">
+                            <div class="empty-icon">
+                                <i class="bi bi-geo-alt"></i>
                             </div>
-                            <div class="address-body">
-                                <p class="address-line">Rua das Flores, 123</p>
-                                <p class="address-line">Apto 45 - Centro</p>
-                                <p class="address-line">São Paulo - SP</p>
-                                <p class="address-line">CEP: 01234-567</p>
-                                <p class="address-contact">Telefone: (11) 99999-8888</p>
-                            </div>
-                            <div class="address-actions">
-                                <button class="address-action" data-action="edit">
-                                    <i class="bi bi-pencil"></i>
-                                    Editar
-                                </button>
-                                <button class="address-action" data-action="remove">
-                                    <i class="bi bi-trash"></i>
-                                    Remover
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <div class="address-card">
-                            <div class="address-header">
-                                <h3><i class="bi bi-building"></i> Trabalho</h3>
-                            </div>
-                            <div class="address-body">
-                                <p class="address-line">Av. Paulista, 1000</p>
-                                <p class="address-line">10º andar - Bela Vista</p>
-                                <p class="address-line">São Paulo - SP</p>
-                                <p class="address-line">CEP: 01310-100</p>
-                                <p class="address-contact">Telefone: (11) 3333-4444</p>
-                            </div>
-                            <div class="address-actions">
-                                <button class="address-action" data-action="set-primary">
-                                    <i class="bi bi-star"></i>
-                                    Tornar Principal
-                                </button>
-                                <button class="address-action" data-action="edit">
-                                    <i class="bi bi-pencil"></i>
-                                    Editar
-                                </button>
-                                <button class="address-action" data-action="remove">
-                                    <i class="bi bi-trash"></i>
-                                    Remover
-                                </button>
-                            </div>
+                            <h3>Nenhum endereço cadastrado</h3>
+                            <p>Você ainda não possui endereços cadastrados.</p>
                         </div>
                     </div>
-                    
+
                     <button class="add-address-btn" id="addAddressBtn">
                         <i class="bi bi-plus-lg"></i>
                         Adicionar Novo Endereço
                     </button>
-                    
+
                     <!-- Formulário para Adicionar/Editar Endereço -->
                     <div class="address-form-container" id="addressFormContainer" style="display: none;">
                         <form class="address-form" id="addressForm">
                             <div class="form-grid">
                                 <div class="form-group">
                                     <label for="addressName">Apelido do Endereço</label>
-                                    <input type="text" id="addressName" placeholder="Casa, Trabalho, etc." >
+                                    <input type="text" id="addressName" placeholder="Casa, Trabalho, etc.">
                                 </div>
-                                
+
                                 <div class="form-group full-width">
                                     <label for="street">Rua/Avenida</label>
-                                    <input type="text" id="street" placeholder="Rua das Flores" >
+                                    <input type="text" id="street" placeholder="Rua das Flores">
                                 </div>
-                                
+
                                 <div class="form-row">
                                     <div class="form-group">
                                         <label for="number">Número</label>
-                                        <input type="text" id="number" placeholder="123" >
+                                        <input type="text" id="number" placeholder="123">
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label for="complement">Complemento</label>
-                                        <input type="text" id="complement" placeholder="Apto 45" >
+                                        <input type="text" id="complement" placeholder="Apto 45">
                                     </div>
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="neighborhood">Bairro</label>
-                                    <input type="text" id="neighborhood" placeholder="Centro" >
+                                    <input type="text" id="neighborhood" placeholder="Centro">
                                 </div>
-                                
+
                                 <div class="form-row">
                                     <div class="form-group">
                                         <label for="city">Cidade</label>
-                                        <input type="text" id="city" placeholder="São Paulo" >
+                                        <input type="text" id="city" placeholder="São Paulo">
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label for="state">Estado</label>
-                                        <select id="state" >
-                                            <option value="SP">São Paulo</option>
-                                            <option value="RJ">Rio de Janeiro</option>
+                                        <select id="state" name="state" required>
+
+                                            <option value="">Selecione o Estado</option>
+
+                                            <option value="AC">Acre</option>
+                                            <option value="AL">Alagoas</option>
+                                            <option value="AP">Amapá</option>
+                                            <option value="AM">Amazonas</option>
+                                            <option value="BA">Bahia</option>
+                                            <option value="CE">Ceará</option>
+                                            <option value="DF">Distrito Federal</option>
+                                            <option value="ES">Espírito Santo</option>
+                                            <option value="GO">Goiás</option>
+                                            <option value="MA">Maranhão</option>
+                                            <option value="MT">Mato Grosso</option>
+                                            <option value="MS">Mato Grosso do Sul</option>
                                             <option value="MG">Minas Gerais</option>
-                                            <!-- Adicione outros estados -->
+                                            <option value="PA">Pará</option>
+                                            <option value="PB">Paraíba</option>
+                                            <option value="PR">Paraná</option>
+                                            <option value="PE">Pernambuco</option>
+                                            <option value="PI">Piauí</option>
+                                            <option value="RJ">Rio de Janeiro</option>
+                                            <option value="RN">Rio Grande do Norte</option>
+                                            <option value="RS">Rio Grande do Sul</option>
+                                            <option value="RO">Rondônia</option>
+                                            <option value="RR">Roraima</option>
+                                            <option value="SC">Santa Catarina</option>
+                                            <option value="SP">São Paulo</option>
+                                            <option value="SE">Sergipe</option>
+                                            <option value="TO">Tocantins</option>
+
                                         </select>
                                     </div>
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="zipCode">CEP</label>
-                                    <input type="text" id="zipCode" placeholder="01234-567" >
+                                    <input type="text" id="zipCode" placeholder="01234-567">
                                 </div>
-                                
+
                                 <div class="form-group full-width">
                                     <label for="addressPhone">Telefone para Contato</label>
-                                    <input type="tel" id="addressPhone" placeholder="(11) 99999-8888" >
+                                    <input type="tel" id="addressPhone" placeholder="(11) 99999-8888">
                                 </div>
-                                
+
                                 <div class="form-group full-width">
                                     <div class="checkbox-group">
                                         <input type="checkbox" id="setAsPrimaryAddress">
@@ -611,7 +603,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="form-actions">
                                 <button type="button" class="btn-secondary cancel-address">
                                     Cancelar
@@ -631,7 +623,7 @@
                         <h2><i class="bi bi-eye-slash"></i> Privacidade</h2>
                         <p>Controle suas configurações de privacidade</p>
                     </div>
-                    
+
                     <div class="privacy-settings">
                         <div class="privacy-setting">
                             <div class="setting-info">
@@ -645,7 +637,7 @@
                                 </label>
                             </div>
                         </div>
-                        
+
                         <div class="privacy-setting">
                             <div class="setting-info">
                                 <h3>Mostrar Histórico de Compras</h3>
@@ -658,7 +650,7 @@
                                 </label>
                             </div>
                         </div>
-                        
+
                         <div class="privacy-setting">
                             <div class="setting-info">
                                 <h3>Mostrar Doações Realizadas</h3>
@@ -671,7 +663,7 @@
                                 </label>
                             </div>
                         </div>
-                        
+
                         <div class="privacy-setting">
                             <div class="setting-info">
                                 <h3>Permitir Mensagens de Estranhos</h3>
@@ -684,7 +676,7 @@
                                 </label>
                             </div>
                         </div>
-                        
+
                         <div class="privacy-setting">
                             <div class="setting-info">
                                 <h3>Mostrar Localização</h3>
@@ -697,7 +689,7 @@
                                 </label>
                             </div>
                         </div>
-                        
+
                         <div class="privacy-setting">
                             <div class="setting-info">
                                 <h3>Recomendações Personalizadas</h3>
@@ -711,7 +703,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="privacy-actions">
                         <button class="btn-secondary" id="exportDataBtn">
                             <i class="bi bi-download"></i>
@@ -730,7 +722,7 @@
                         <h2><i class="bi bi-bell"></i> Notificações</h2>
                         <p>Configure como você deseja receber notificações</p>
                     </div>
-                    
+
                     <div class="notification-settings">
                         <div class="notification-category">
                             <h3><i class="bi bi-envelope"></i> E-mail</h3>
@@ -758,7 +750,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="notification-category">
                             <h3><i class="bi bi-phone"></i> Push & SMS</h3>
                             <div class="notification-options">
@@ -785,7 +777,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="notification-category">
                             <h3><i class="bi bi-chat"></i> Comunicação</h3>
                             <div class="notification-options">
@@ -821,40 +813,10 @@
                         <h2><i class="bi bi-sliders"></i> Preferências</h2>
                         <p>Personalize sua experiência na plataforma</p>
                     </div>
-                    
+
                     <div class="preferences-settings">
-                        <div class="preference-group">
-                            <h3><i class="bi bi-globe"></i> Idioma e Região</h3>
-                            <div class="preference-options">
-                                <div class="preference-option">
-                                    <label for="language">Idioma</label>
-                                    <select id="language" >
-                                        <option value="pt-br" selected>Português (Brasil)</option>
-                                        <option value="en">English</option>
-                                        <option value="es">Español</option>
-                                    </select>
-                                </div>
-                                
-                                <div class="preference-option">
-                                    <label for="currency">Moeda</label>
-                                    <select id="currency" >
-                                        <option value="BRL" selected>Real (R$)</option>
-                                        <option value="USD">Dólar (US$)</option>
-                                        <option value="EUR">Euro (€)</option>
-                                    </select>
-                                </div>
-                                
-                                <div class="preference-option">
-                                    <label for="timezone">Fuso Horário</label>
-                                    <select id="timezone" >
-                                        <option value="America/Sao_Paulo" selected>Brasília (UTC-3)</option>
-                                        <option value="America/New_York">Nova York (UTC-5)</option>
-                                        <option value="Europe/London">Londres (UTC+0)</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        
+
+
                         <div class="preference-group">
                             <h3><i class="bi bi-palette"></i> Aparência</h3>
                             <div class="theme-options">
@@ -864,14 +826,14 @@
                                     </div>
                                     <span>Claro</span>
                                 </div>
-                                
+
                                 <div class="theme-option" data-theme="dark">
                                     <div class="theme-preview dark">
                                         <i class="bi bi-moon"></i>
                                     </div>
                                     <span>Escuro</span>
                                 </div>
-                                
+
                                 <div class="theme-option active" data-theme="auto">
                                     <div class="theme-preview auto">
                                         <i class="bi bi-circle-half"></i>
@@ -880,68 +842,9 @@
                                 </div>
                             </div>
                         </div>
-                        
-                        <div class="preference-group">
-                            <h3><i class="bi bi-filter"></i> Filtros e Exibição</h3>
-                            <div class="preference-options">
-                                <div class="preference-option">
-                                    <label for="itemsPerPage">Itens por página</label>
-                                    <select id="itemsPerPage" >
-                                        <option value="12">12 itens</option>
-                                        <option value="24" selected>24 itens</option>
-                                        <option value="36">36 itens</option>
-                                        <option value="48">48 itens</option>
-                                    </select>
-                                </div>
-                                
-                                <div class="preference-option">
-                                    <label for="sortPreference">Ordenação padrão</label>
-                                    <select id="sortPreference" >
-                                        <option value="relevance">Relevância</option>
-                                        <option value="price_asc">Preço: menor primeiro</option>
-                                        <option value="price_desc" selected>Preço: maior primeiro</option>
-                                        <option value="newest">Mais recentes</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="preference-group">
-                            <h3><i class="bi bi-shield-check"></i> Acessibilidade</h3>
-                            <div class="accessibility-options">
-                                <div class="accessibility-option">
-                                    <div class="accessibility-info">
-                                        <h4>Modo Daltonismo</h4>
-                                        <p>Adapta cores para diferentes tipos de daltonismo</p>
-                                    </div>
-                                    <button class="btn-secondary" id="configureColorblind">
-                                        Configurar
-                                    </button>
-                                </div>
-                                
-                                <div class="accessibility-option">
-                                    <div class="accessibility-info">
-                                        <h4>Leitor de Tela</h4>
-                                        <p>Otimização para tecnologias assistivas</p>
-                                    </div>
-                                    <label class="switch">
-                                        <input type="checkbox" checked>
-                                        <span class="slider"></span>
-                                    </label>
-                                </div>
-                                
-                                <div class="accessibility-option">
-                                    <div class="accessibility-info">
-                                        <h4>Reduzir Animações</h4>
-                                        <p>Minimiza movimentos e transições</p>
-                                    </div>
-                                    <label class="switch">
-                                        <input type="checkbox">
-                                        <span class="slider"></span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+
+
+
                     </div>
                 </section>
             </div>
@@ -958,7 +861,8 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>Tem certeza que deseja sair da sua conta? Você precisará fazer login novamente para acessar seus dados.</p>
+                <p>Tem certeza que deseja sair da sua conta? Você precisará fazer login novamente para acessar seus
+                    dados.</p>
             </div>
             <div class="modal-actions">
                 <button class="btn-secondary" id="cancelLogout">Cancelar</button>
@@ -986,7 +890,7 @@
         </div>
     </div>
 
-       <!-- Modal de Confirmação de Logout -->
+    <!-- Modal de Confirmação de Logout -->
     <div class="modal" id="logoutModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -1005,79 +909,79 @@
     </div>
 
     <!-- Menu de Favoritos -->
-<div class="favorites-menu" id="favoritesMenu">
-    <div class="favorites-overlay"></div>
-    <div class="favorites-sidebar">
-        <div class="favorites-header">
-            <h3><i class="bi bi-heart-fill"></i> Meus Favoritos</h3>
-            <button class="close-favorites" id="closeFavorites">
-                <i class="bi bi-x-lg"></i>
-            </button>
-        </div>
-        <div class="favorites-body" id="favoritesBody">
-            <!-- Os itens favoritos serão carregados aqui via JavaScript -->
-            <div class="empty-favorites">
-                <div class="empty-icon">
-                    <i class="bi bi-heart"></i>
-                </div>
-                <h4>Nenhum favorito ainda</h4>
-                <p>Adicione produtos aos favoritos para vê-los aqui</p>
+    <div class="favorites-menu" id="favoritesMenu">
+        <div class="favorites-overlay"></div>
+        <div class="favorites-sidebar">
+            <div class="favorites-header">
+                <h3><i class="bi bi-heart-fill"></i> Meus Favoritos</h3>
+                <button class="close-favorites" id="closeFavorites">
+                    <i class="bi bi-x-lg"></i>
+                </button>
             </div>
-        </div>
-        <div class="favorites-footer">
-            <button class="btn btn-secondary" id="clearFavorites">
-                <i class="bi bi-trash"></i> Limpar Favoritos
-            </button>
-   
-        </div>
-    </div>
-</div>
+            <div class="favorites-body" id="favoritesBody">
+                <!-- Os itens favoritos serão carregados aqui via JavaScript -->
+                <div class="empty-favorites">
+                    <div class="empty-icon">
+                        <i class="bi bi-heart"></i>
+                    </div>
+                    <h4>Nenhum favorito ainda</h4>
+                    <p>Adicione produtos aos favoritos para vê-los aqui</p>
+                </div>
+            </div>
+            <div class="favorites-footer">
+                <button class="btn btn-secondary" id="clearFavorites">
+                    <i class="bi bi-trash"></i> Limpar Favoritos
+                </button>
 
-<!-- Menu do Carrinho -->
-<div class="cart-menu" id="cartMenu">
-    <div class="cart-overlay"></div>
-    <div class="cart-sidebar">
-        <div class="cart-header">
-            <h3><i class="bi bi-cart3"></i> Meu Carrinho</h3>
-            <button class="close-cart" id="closeCart">
-                <i class="bi bi-x-lg"></i>
-            </button>
-        </div>
-        <div class="cart-body" id="cartBody">
-            <!-- Os itens do carrinho serão carregados aqui via JavaScript -->
-            <div class="empty-cart">
-                <div class="empty-icon">
-                    <i class="bi bi-cart"></i>
-                </div>
-                <h4>Carrinho vazio</h4>
-                <p>Adicione produtos ao carrinho para vê-los aqui</p>
             </div>
-        </div>
-        <div class="cart-summary">
-            <div class="summary-row">
-                <span>Subtotal</span>
-                <span class="subtotal-price" id="cartSubtotal">R$ 0,00</span>
-            </div>
-            <div class="summary-row">
-                <span>Frete</span>
-                <span class="shipping-price">Grátis</span>
-            </div>
-            <div class="summary-divider"></div>
-            <div class="summary-row total">
-                <span>Total</span>
-                <span class="total-price" id="cartTotal">R$ 0,00</span>
-            </div>
-        </div>
-        <div class="cart-footer">
-            <button class="btn btn-secondary" id="clearCart">
-                <i class="bi bi-trash"></i> Limpar Carrinho
-            </button>
-            <button class="btn btn-primary" id="checkoutBtn">
-                <i class="bi bi-bag-check"></i> Finalizar Compra
-            </button>
         </div>
     </div>
-</div>
+
+    <!-- Menu do Carrinho -->
+    <div class="cart-menu" id="cartMenu">
+        <div class="cart-overlay"></div>
+        <div class="cart-sidebar">
+            <div class="cart-header">
+                <h3><i class="bi bi-cart3"></i> Meu Carrinho</h3>
+                <button class="close-cart" id="closeCart">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+            <div class="cart-body" id="cartBody">
+                <!-- Os itens do carrinho serão carregados aqui via JavaScript -->
+                <div class="empty-cart">
+                    <div class="empty-icon">
+                        <i class="bi bi-cart"></i>
+                    </div>
+                    <h4>Carrinho vazio</h4>
+                    <p>Adicione produtos ao carrinho para vê-los aqui</p>
+                </div>
+            </div>
+            <div class="cart-summary">
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span class="subtotal-price" id="cartSubtotal">R$ 0,00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Frete</span>
+                    <span class="shipping-price">Grátis</span>
+                </div>
+                <div class="summary-divider"></div>
+                <div class="summary-row total">
+                    <span>Total</span>
+                    <span class="total-price" id="cartTotal">R$ 0,00</span>
+                </div>
+            </div>
+            <div class="cart-footer">
+                <button class="btn btn-secondary" id="clearCart">
+                    <i class="bi bi-trash"></i> Limpar Carrinho
+                </button>
+                <button class="btn btn-primary" id="checkoutBtn">
+                    <i class="bi bi-bag-check"></i> Finalizar Compra
+                </button>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -1089,12 +993,13 @@
     <script src="JS/accessibility_menu.js"></script>
     <script src="JS/perfil_cliente.js"></script>
 
-        <!-- Widget VLibras -->
-        <div vw class="enabled">
-            <div vw-access-button class="active"></div>
-            <div vw-plugin-wrapper>
-                <div class="vw-plugin-top-wrapper"></div>
-            </div>
+    <!-- Widget VLibras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
         </div>
+    </div>
 </body>
+
 </html>

@@ -1,0 +1,29 @@
+### Criar perfil do vendedor
+POST http://localhost:3600/seller-profiles
+Content-Type: application/json
+
+{
+    "user_id": 5,
+    "store_name": "Loja ReUse do Murilo",
+    "cnpj": "12.345.678/0001-90",
+    "state_registration": "123.456.789.012",
+    "phone": "(16) 99999-9999",
+    "website": "www.lojareuse.com",
+    "description": "Loja de produtos usados e sustentáveis."
+}
+
+### Buscar perfil do vendedor
+GET http://localhost:3600/seller-profiles/user/5
+
+### Atualizar perfil do vendedor
+PUT http://localhost:3600/seller-profiles/user/5
+Content-Type: application/json
+
+{
+    "store_name": "Loja ReUse Atualizada",
+    "cnpj": "12.345.678/0001-90",
+    "state_registration": "123.456.789.012",
+    "phone": "(16) 98888-7777",
+    "website": "www.reuseatualizada.com",
+    "description": "Descrição atualizada da loja."
+}

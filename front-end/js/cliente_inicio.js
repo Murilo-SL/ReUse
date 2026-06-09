@@ -543,3 +543,187 @@ window.showDonationErrorNotification = function(message) {
         window.clienteInicio.showDonationError(message);
     }
 };
+
+
+
+document.addEventListener("click", (event) => {
+
+const favoriteBtn =
+    event.target.closest(".add-to-favorites");
+
+if (favoriteBtn) {
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    const productItem =
+        favoriteBtn.closest(".product-item");
+
+    if (
+        window.favoritesMenu &&
+        productItem
+    ) {
+
+        window.favoritesMenu.toggleProductFavorite(
+            productItem,
+            favoriteBtn
+        );
+
+    }
+
+    return;
+}
+
+    const cartBtn =
+        event.target.closest(".add-cart-btn");
+
+    if (cartBtn) {
+        const productId = cartBtn.dataset.id;
+
+        console.log("Adicionar ao carrinho:", productId);
+
+        return;
+    }
+
+    const buyBtn =
+        event.target.closest(".buy-btn");
+
+    if (buyBtn) {
+        const productId = buyBtn.dataset.id;
+
+        console.log("Comprar produto:", productId);
+
+        return;
+    }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    carregarProdutos();
+
+});
+
+
+async function carregarProdutos() {
+
+    try {
+
+        const response =
+            await fetch(
+                "http://localhost:3600/products"
+            );
+
+        const result =
+            await response.json();
+
+        console.log(
+            "Produtos:",
+            result
+        );
+
+        const productsGrid =
+            document.getElementById(
+                "productsGrid"
+            );
+
+        if (!productsGrid) return;
+
+        productsGrid.innerHTML = "";
+
+        if (
+            !result.data ||
+            result.data.length === 0
+        ) {
+
+            productsGrid.innerHTML = `
+                <div class="empty-products">
+                    Nenhum produto encontrado
+                </div>
+            `;
+
+            return;
+        }
+
+        result.data.forEach(product => {
+
+            const imageUrl =
+                product.image_url
+                ? `http://localhost:3600/${product.image_url}`
+                : "IMG/no-image.png";
+
+productsGrid.innerHTML += `
+    <div class="product-item" data-product-id="${product.id}">
+
+        <a
+            href="produto.html?id=${product.id}"
+            class="product-link"
+        >
+            <div class="product-card" data-id="${product.id}">
+
+                <div class="product-image">
+                    <img
+                        src="${imageUrl}"
+                        alt="${product.name}"
+                    >
+                </div>
+
+                <div class="product-info">
+
+                    <h3 class="product-title">
+                        ${product.name}
+                    </h3>
+
+                    <p class="product-description">
+                        ${product.description || ""}
+                    </p>
+
+                    <div class="product-price">
+                        R$ ${Number(product.price)
+                            .toFixed(2)
+                            .replace(".", ",")}
+                    </div>
+
+
+
+                </div>
+
+        <div class="product-actions">
+
+            <button
+                type="button"
+                class="btn btn-primary add-to-cart"
+                data-id="${product.id}"
+                data-name="${product.name}"
+                data-price="${product.price}"
+                data-image="${imageUrl}"
+            >
+                <i class="bi bi-cart-plus"></i>
+                Comprar
+            </button>
+
+            <button
+                type="button"
+                class="btn btn-outline add-to-favorites"
+                data-id="${product.id}"
+                title="Favoritar"
+            >
+                <i class="bi bi-heart"></i>
+            </button>
+
+
+            </div>
+        </a>
+
+    </div>
+`;
+        });
+
+    } catch (error) {
+
+        console.error(
+            "Erro ao carregar produtos:",
+            error
+        );
+
+    }
+}

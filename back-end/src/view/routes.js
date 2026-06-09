@@ -5,6 +5,19 @@ const usersRoutes = require("./usersRoutes");
 const contatosRoutes = require("./contatosRoutes");
 const uploadsRoutes = require("./uploadsRoutes");
 const authRoutes = require("./authRoutes");
+const cardsRoutes = require("./cardsRoutes");
+const addressesRoutes = require("./addressesRoutes");
+const productsRoutes = require("./productsRoutes");
+const favoritesRoutes = require("./favoritesRoutes");
+const cartRoutes = require("./cartRoutes");
+const sellerProfilesRoutes = require("./sellerProfilesRoutes");
+const sellerAddressesRoutes = require("./sellerAddressesRoutes");
+const sellerSchedulesRoutes = require("./sellerSchedulesRoutes");
+const sellerPaymentMethodsRoutes = require("./sellerPaymentMethodsRoutes");
+const sellerShippingMethodsRoutes = require("./sellerShippingMethodsRoutes");
+const sellerPickupLocationsRoutes = require("./sellerPickupLocationsRoutes");
+
+
 
 // NOVAS ROTAS
 const sellersRoutes = require("./sellersRoutes");
@@ -16,6 +29,17 @@ routes.use(usersRoutes);
 routes.use(contatosRoutes);
 routes.use(uploadsRoutes);
 routes.use(authRoutes);
+routes.use(cardsRoutes);
+routes.use(addressesRoutes);
+routes.use(productsRoutes);
+routes.use(favoritesRoutes);
+routes.use(cartRoutes);
+routes.use(sellerProfilesRoutes);
+routes.use(sellerAddressesRoutes);
+routes.use(sellerSchedulesRoutes);
+routes.use(sellerPaymentMethodsRoutes);
+routes.use(sellerShippingMethodsRoutes);
+routes.use(sellerPickupLocationsRoutes);
 
 // NOVAS ROTAS
 routes.use(sellersRoutes);

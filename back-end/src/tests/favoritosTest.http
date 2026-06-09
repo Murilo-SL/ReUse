@@ -1,0 +1,14 @@
+POST http://localhost:3600/favorites
+Content-Type: application/json
+
+{
+    "user_id": 5,
+    "product_id": 1
+}
+
+###
+GET http://localhost:3600/favorites/user/5
+
+
+###
+DELETE http://localhost:3600/favorites/5/1

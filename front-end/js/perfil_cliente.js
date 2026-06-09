@@ -1,5 +1,788 @@
 // perfil-cliente.js - Gerenciamento completo e otimizado da página de perfil
 
+document.addEventListener("DOMContentLoaded", async () => {
+    await carregarPerfilUsuario();
+    await carregarCartoesUsuario();
+    await carregarEnderecosUsuario();
+});
+
+async function carregarPerfilUsuario() {
+
+    try {
+
+        const usuario = JSON.parse(
+            localStorage.getItem("usuario")
+        );
+
+        if (!usuario || !usuario.id) {
+
+            console.error(
+                "Usuário não encontrado no localStorage"
+            );
+
+            return;
+        }
+
+        const response = await fetch(
+            `http://localhost:3600/users/${usuario.id}`
+        );
+
+        const result = await response.json();
+
+        console.log(
+            "Dados do usuário:",
+            result
+        );
+
+        if (
+            !result.data ||
+            result.data.length === 0
+        ) {
+
+            console.error(
+                "Usuário não encontrado no banco"
+            );
+
+            return;
+        }
+
+        const dadosUsuario =
+            result.data[0];
+
+        preencherPerfil(
+            dadosUsuario
+        );
+
+        // FOTO DE PERFIL
+
+        const avatarContainer =
+            document.querySelector(
+                ".profile-avatar-large"
+            );
+
+        const avatarTexto =
+            avatarContainer?.querySelector(
+                "span"
+            );
+
+        if (
+            dadosUsuario.profile_image &&
+            avatarTexto
+        ) {
+
+            avatarTexto.innerHTML = `
+                <img
+                    src="http://localhost:3600/${dadosUsuario.profile_image}"
+                    alt="Foto de Perfil"
+                    style="
+                        width:100%;
+                        height:100%;
+                        border-radius:50%;
+                        object-fit:cover;
+                    "
+                >
+            `;
+        }
+
+    } catch (error) {
+
+        console.error(
+            "Erro ao carregar perfil:",
+            error
+        );
+
+    }
+}
+
+async function carregarCartoesUsuario() {
+
+    const usuario = JSON.parse(
+        localStorage.getItem("usuario")
+    );
+
+    if (!usuario || !usuario.id) {
+        return;
+    }
+
+    try {
+
+        const response = await fetch(
+            `http://localhost:3600/cards/user/${usuario.id}`
+        );
+
+        const result = await response.json();
+
+        const cardsList =
+            document.getElementById("cardsList");
+
+        if (!cardsList) return;
+
+        cardsList.innerHTML = "";
+
+        if (!result.data || result.data.length === 0) {
+
+            cardsList.innerHTML = `
+                <div class="empty-cards">
+                    <div class="empty-icon">
+                        <i class="bi bi-credit-card"></i>
+                    </div>
+
+                    <h3>Nenhum cartão cadastrado</h3>
+
+                    <p>
+                        Você ainda não possui cartões cadastrados.
+                    </p>
+                </div>
+            `;
+
+            return;
+        }
+
+        result.data.forEach(card => {
+
+            cardsList.innerHTML += `
+                <div class="card-item ${card.is_primary ? "primary" : ""}">
+
+                    <div class="card-icon">
+                        <i class="bi bi-credit-card-2-front"></i>
+                    </div>
+
+                    <div class="card-details">
+                        <h3>
+                            ${card.is_primary
+                    ? "Cartão Principal"
+                    : "Cartão"
+                }
+                        </h3>
+
+                        <p class="card-number">
+                            **** **** **** ${card.card_last_digits}
+                        </p>
+
+                        <p class="card-info">
+                            ${card.card_brand}
+                            •
+                            Válido até
+                            ${card.expiry_date}
+                        </p>
+                    </div>
+
+                    <div class="card-actions">
+
+                        <button
+                            type="button"
+                            class="card-action edit-card-btn"
+                            data-id="${card.id}"
+                            data-holder="${card.card_holder}"
+                            data-brand="${card.card_brand}"
+                            data-expiry="${card.expiry_date}"
+                            data-primary="${card.is_primary}"
+                            title="Editar"
+                        >
+                            <i class="bi bi-pencil"></i>
+                        </button>
+
+                        <button
+                            type="button"
+                            class="card-action delete-card-btn"
+                            data-id="${card.id}"
+                            title="Remover"
+                        >
+                            <i class="bi bi-trash"></i>
+                        </button>
+
+                    </div>
+
+                </div>
+            `;
+
+        });
+
+    } catch (erro) {
+
+        console.error("Erro ao carregar cartões:", erro);
+
+    }
+}
+
+async function buscarCep() {
+
+    const cepInput =
+        document.getElementById("zipCode");
+
+    if (!cepInput) return;
+
+    const cep =
+        cepInput.value.replace(/\D/g, "");
+
+    if (cep.length !== 8) {
+        mostrarMensagem(
+            "CEP inválido. Digite 8 números.",
+            "error"
+        );
+        return;
+    }
+
+    try {
+
+        const response = await fetch(
+            `https://viacep.com.br/ws/${cep}/json/`
+        );
+
+        const data = await response.json();
+
+        if (data.erro) {
+            mostrarMensagem(
+                "CEP não encontrado.",
+                "error"
+            );
+            return;
+        }
+
+        document.getElementById("street").value =
+            data.logradouro || "";
+
+        document.getElementById("neighborhood").value =
+            data.bairro || "";
+
+        document.getElementById("city").value =
+            data.localidade || "";
+
+        document.getElementById("state").value =
+            data.uf || "";
+
+        mostrarMensagem(
+            "CEP encontrado!",
+            "success"
+        );
+
+    } catch (error) {
+
+        console.error("Erro ao buscar CEP:", error);
+
+        mostrarMensagem(
+            "Erro ao consultar CEP.",
+            "error"
+        );
+    }
+}
+
+async function salvarCartao(event) {
+
+    event.preventDefault();
+
+    const usuario = JSON.parse(
+        localStorage.getItem("usuario")
+    );
+
+    if (!usuario || !usuario.id) {
+        mostrarMensagem("Usuário não encontrado.", "error");
+        return;
+    }
+
+    const form = document.getElementById("newCardForm");
+
+    const editando =
+        form.dataset.editing === "true";
+
+    const cardNumber = document
+        .getElementById("cardNumber")
+        .value
+        .replace(/\D/g, "");
+
+    if (!editando && cardNumber.length < 4) {
+        mostrarMensagem("Informe o número do cartão.", "error");
+        return;
+    }
+
+    const payload = {
+        user_id: usuario.id,
+        card_holder: document.getElementById("cardHolder").value.trim(),
+        card_last_digits: cardNumber
+            ? cardNumber.slice(-4)
+            : "0000",
+        card_brand: document.getElementById("cardType").value,
+        expiry_date: document.getElementById("expiryDate").value.trim(),
+        is_primary: document.getElementById("setAsPrimary").checked
+    };
+
+    const url = editando
+        ? `http://localhost:3600/cards/${form.dataset.cardId}`
+        : "http://localhost:3600/cards";
+
+    const method = editando ? "PUT" : "POST";
+
+    const response = await fetch(url, {
+        method,
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+    });
+
+    const result = await response.json();
+
+    console.log("Cartão salvo:", result);
+
+    form.reset();
+
+    delete form.dataset.editing;
+    delete form.dataset.cardId;
+
+    document.getElementById("addCardForm").style.display = "none";
+
+    const titulo =
+        document.querySelector("#addCardForm h3");
+
+    if (titulo) {
+        titulo.innerHTML =
+            `<i class="bi bi-plus-circle"></i> Adicionar Cartão`;
+    }
+
+    const botaoSalvar =
+        form.querySelector('button[type="submit"]');
+
+    if (botaoSalvar) {
+        botaoSalvar.innerHTML =
+            `<i class="bi bi-check-lg"></i> Adicionar Cartão`;
+    }
+
+    await carregarCartoesUsuario();
+
+    mostrarMensagem(
+        editando
+            ? "Cartão atualizado com sucesso!"
+            : "Cartão cadastrado com sucesso!",
+        "success"
+    );
+}
+
+async function excluirCartao(id) {
+
+    if (!confirm("Deseja excluir este cartão?")) return;
+
+    await fetch(`http://localhost:3600/cards/${id}`, {
+        method: "DELETE"
+    });
+
+    await carregarCartoesUsuario();
+}
+
+function editarCartao(botao) {
+
+    const id = botao.dataset.id;
+    const holder = botao.dataset.holder;
+    const brand = botao.dataset.brand;
+    const expiry = botao.dataset.expiry;
+    const primary = botao.dataset.primary;
+
+    document.getElementById("cardHolder").value = holder;
+    document.getElementById("cardType").value = brand;
+    document.getElementById("expiryDate").value = expiry;
+    document.getElementById("setAsPrimary").checked =
+        primary == 1 || primary === "true";
+
+    document.getElementById("cardNumber").value = "";
+
+    const form = document.getElementById("newCardForm");
+
+    form.dataset.editing = "true";
+    form.dataset.cardId = id;
+
+    document.getElementById("addCardForm").style.display = "block";
+
+    const titulo =
+        document.querySelector("#addCardForm h3");
+
+    if (titulo) {
+        titulo.innerHTML =
+            `<i class="bi bi-pencil"></i> Editar Cartão`;
+    }
+
+    const botaoSalvar =
+        form.querySelector('button[type="submit"]');
+
+    if (botaoSalvar) {
+        botaoSalvar.innerHTML =
+            `<i class="bi bi-check-lg"></i> Salvar Alterações`;
+    }
+}
+
+async function carregarEnderecosUsuario() {
+
+    const usuario = JSON.parse(localStorage.getItem("usuario"));
+
+    if (!usuario || !usuario.id) return;
+
+    try {
+
+        const response = await fetch(
+            `http://localhost:3600/addresses/user/${usuario.id}`
+        );
+
+        const result = await response.json();
+
+        const addressesList =
+            document.getElementById("addressesList");
+
+        if (!addressesList) return;
+
+        addressesList.innerHTML = "";
+
+        if (!result.data || result.data.length === 0) {
+
+            addressesList.innerHTML = `
+                <div class="empty-addresses">
+                    <div class="empty-icon">
+                        <i class="bi bi-geo-alt"></i>
+                    </div>
+                    <h3>Nenhum endereço cadastrado</h3>
+                    <p>Você ainda não possui endereços cadastrados.</p>
+                </div>
+            `;
+
+            return;
+        }
+
+        result.data.forEach(address => {
+
+            addressesList.innerHTML += `
+                <div class="address-card ${address.is_primary ? "primary" : ""}">
+                    <div class="address-header">
+                        <h3>
+                            <i class="bi ${address.is_primary ? "bi-house-check" : "bi-geo-alt"}"></i>
+                            ${address.address_name || "Endereço"}
+                        </h3>
+
+                        ${address.is_primary
+                    ? `<span class="address-tag">Principal</span>`
+                    : ""
+                }
+                    </div>
+
+                    <div class="address-body">
+                        <p class="address-line">
+                            ${address.street}, ${address.number}
+                        </p>
+
+                        <p class="address-line">
+                            ${address.complement || ""}
+                        </p>
+
+                        <p class="address-line">
+                            ${address.neighborhood || ""}
+                        </p>
+
+                        <p class="address-line">
+                            ${address.city} - ${address.state}
+                        </p>
+
+                        <p class="address-line">
+                            CEP: ${address.zip_code || ""}
+                        </p>
+
+                        <p class="address-contact">
+                            Telefone: ${address.phone || ""}
+                        </p>
+                    </div>
+
+                    <div class="address-actions">
+                        <button
+    type="button"
+    class="address-action edit-address-btn"
+    data-id="${address.id}"
+    data-name="${address.address_name || ""}"
+    data-street="${address.street || ""}"
+    data-number="${address.number || ""}"
+    data-complement="${address.complement || ""}"
+    data-neighborhood="${address.neighborhood || ""}"
+    data-city="${address.city || ""}"
+    data-state="${address.state || ""}"
+    data-zip="${address.zip_code || ""}"
+    data-phone="${address.phone || ""}"
+    data-primary="${address.is_primary}"
+>
+    <i class="bi bi-pencil"></i>
+    Editar
+</button>
+
+<button
+    type="button"
+    class="address-action delete-address-btn"
+    data-id="${address.id}"
+>
+    <i class="bi bi-trash"></i>
+    Remover
+</button>
+                    </div>
+                </div>
+            `;
+
+        });
+
+    } catch (error) {
+
+        console.error("Erro ao carregar endereços:", error);
+    }
+}
+
+function editarEndereco(botao) {
+
+    const form =
+        document.getElementById("addressForm");
+
+    document.getElementById("addressName").value =
+        botao.dataset.name || "";
+
+    document.getElementById("street").value =
+        botao.dataset.street || "";
+
+    document.getElementById("number").value =
+        botao.dataset.number || "";
+
+    document.getElementById("complement").value =
+        botao.dataset.complement || "";
+
+    document.getElementById("neighborhood").value =
+        botao.dataset.neighborhood || "";
+
+    document.getElementById("city").value =
+        botao.dataset.city || "";
+
+    document.getElementById("state").value =
+        botao.dataset.state || "";
+
+    document.getElementById("zipCode").value =
+        botao.dataset.zip || "";
+
+    document.getElementById("addressPhone").value =
+        botao.dataset.phone || "";
+
+    document.getElementById("setAsPrimaryAddress").checked =
+        botao.dataset.primary == 1 ||
+        botao.dataset.primary === "true";
+
+    form.dataset.editing = "true";
+    form.dataset.addressId = botao.dataset.id;
+
+    document.getElementById("addressFormContainer").style.display = "block";
+
+    const submitBtn =
+        form.querySelector('button[type="submit"]');
+
+    if (submitBtn) {
+        submitBtn.innerHTML =
+            `<i class="bi bi-check-lg"></i> Salvar Alterações`;
+    }
+}
+
+async function salvarEndereco(event) {
+
+    event.preventDefault();
+
+    const usuario = JSON.parse(
+    localStorage.getItem("usuario")
+);
+
+    const form =
+        document.getElementById("addressForm");
+
+    const editando =
+        form.dataset.editing === "true";
+
+    if (!usuario || !usuario.id) {
+        mostrarMensagem("Usuário não encontrado.", "error");
+        return;
+    }
+
+    const payload = {
+        user_id: usuario.id,
+
+        address_name:
+            document.getElementById("addressName")?.value.trim() || "",
+
+        street:
+            document.getElementById("street")?.value.trim() || "",
+
+        number:
+            document.getElementById("number")?.value.trim() || "",
+
+        complement:
+            document.getElementById("complement")?.value.trim() || "",
+
+        neighborhood:
+            document.getElementById("neighborhood")?.value.trim() || "",
+
+        city:
+            document.getElementById("city")?.value.trim() || "",
+
+        state:
+            document.getElementById("state")?.value.trim() || "",
+
+        zip_code:
+            document.getElementById("zipCode")?.value.trim() || "",
+
+        phone:
+            document.getElementById("addressPhone")?.value.trim() || "",
+
+        is_primary:
+            document.getElementById("setAsPrimaryAddress")?.checked || false
+    };
+
+    console.log("Payload endereço:", payload);
+
+    try {
+
+        const url = editando
+            ? `http://localhost:3600/addresses/${form.dataset.addressId}`
+            : "http://localhost:3600/addresses";
+
+        const method = editando ? "PUT" : "POST";
+
+        const response = await fetch(
+            url,
+            {
+                method,
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(payload)
+            }
+        );
+
+        const text = await response.text();
+
+        console.log("Resposta bruta:", text);
+
+        let result;
+
+        try {
+            result = JSON.parse(text);
+        } catch {
+            throw new Error(text);
+        }
+
+        if (!response.ok) {
+            throw new Error(
+                result.message || "Erro ao salvar endereço"
+            );
+        }
+
+        console.log("Endereço salvo:", result);
+
+        document.getElementById("addressForm").reset();
+
+        delete form.dataset.editing;
+        delete form.dataset.addressId;
+
+        const submitBtn =
+            form.querySelector('button[type="submit"]');
+
+        if (submitBtn) {
+            submitBtn.innerHTML =
+                `<i class="bi bi-check-lg"></i> Salvar Endereço`;
+        }
+
+        document.getElementById("addressFormContainer").style.display = "none";
+
+        await carregarEnderecosUsuario();
+
+        mostrarMensagem(
+            editando
+                ? "Endereço atualizado com sucesso!"
+                : "Endereço cadastrado com sucesso!",
+            "success"
+        );
+
+    } catch (error) {
+
+        console.error("Erro ao salvar endereço:", error);
+
+        mostrarMensagem("Erro ao salvar endereço. Veja o console do servidor.", "error");
+    }
+}
+
+async function excluirEndereco(id) {
+
+    if (!confirm("Deseja excluir este endereço?")) return;
+
+    await fetch(`http://localhost:3600/addresses/${id}`, {
+        method: "DELETE"
+    });
+
+    await carregarEnderecosUsuario();
+}
+
+function preencherPerfil(dados) {
+
+    const nomeCompleto =
+        `${dados.first_name || ""} ${dados.last_name || ""}`.trim();
+
+    // Cabeçalho do perfil
+    const profileName =
+        document.querySelector(".profile-name");
+
+    const profileEmail =
+        document.querySelector(".profile-email");
+
+    if (profileName)
+        profileName.textContent = nomeCompleto;
+
+    if (profileEmail)
+        profileEmail.textContent = dados.email;
+
+    // Avatar
+    const avatar =
+        document.querySelector(".profile-avatar-large span");
+
+    if (avatar) {
+
+        avatar.textContent = nomeCompleto
+            .split(" ")
+            .map(nome => nome[0])
+            .slice(0, 2)
+            .join("")
+            .toUpperCase();
+    }
+
+    // Formulário
+    const nomeInput =
+        document.getElementById("nomeCompleto");
+
+    const cpfInput =
+        document.getElementById("cpf");
+
+    const nascimentoInput =
+        document.getElementById("dataNascimento");
+
+    const telefoneInput =
+        document.getElementById("telefone");
+
+    const emailInput =
+        document.getElementById("email");
+
+    if (nomeInput)
+        nomeInput.value = nomeCompleto;
+
+    if (cpfInput)
+        cpfInput.value = dados.cpf || "";
+
+    if (nascimentoInput && dados.birth_date) {
+
+        nascimentoInput.value =
+            new Date(dados.birth_date)
+                .toISOString()
+                .split("T")[0];
+
+    }
+
+    if (telefoneInput)
+        telefoneInput.value = dados.phone || "";
+
+    if (emailInput)
+        emailInput.value = dados.email || "";
+}
+
 class PerfilCliente {
     constructor() {
         this.currentSection = null;
@@ -30,6 +813,14 @@ class PerfilCliente {
             console.error('Erro na inicialização:', error);
             this.showNotification('Erro ao carregar perfil', 'error');
         }
+
+        window.addEventListener(
+            "usuarioAtualizado",
+            () => {
+                carregarPerfilUsuario();
+            }
+        );
+
     }
 
     async cacheElements() {
@@ -42,23 +833,23 @@ class PerfilCliente {
             avatarEditBtn: document.getElementById('editAvatarBtn'),
             profileName: document.querySelector('.profile-name'),
             profileEmail: document.querySelector('.profile-email'),
-            
+
             // Navegação
             navItems: document.querySelectorAll('.nav-item'),
             profileSections: document.querySelectorAll('.profile-section'),
-            
+
             // Formulários
             personalDataForm: document.getElementById('personalDataForm'),
             passwordForm: document.getElementById('passwordForm'),
             newCardForm: document.getElementById('newCardForm'),
             addressForm: document.getElementById('addressForm'),
-            
+
             // Botões
             addCardBtn: document.getElementById('addCardBtn'),
             addAddressBtn: document.getElementById('addAddressBtn'),
             helpBtn: document.getElementById('helpBtn'),
             cancelPersonalBtn: document.getElementById('cancelPersonalBtn'),
-            
+
             // Modais
             confirmationModal: document.getElementById('confirmationModal'),
             confirmationTitle: document.getElementById('confirmationTitle'),
@@ -66,18 +857,18 @@ class PerfilCliente {
             closeConfirmationModal: document.getElementById('closeConfirmationModal'),
             cancelAction: document.getElementById('cancelAction'),
             confirmAction: document.getElementById('confirmAction'),
-            
+
             // Seções específicas
             changePasswordForm: document.getElementById('changePasswordForm'),
             addCardForm: document.getElementById('addCardForm'),
             addressFormContainer: document.getElementById('addressFormContainer'),
-            
+
             // Preferências
             themeOptions: document.querySelectorAll('.theme-option'),
             configureColorblindBtn: document.getElementById('configureColorblind'),
             exportDataBtn: document.getElementById('exportDataBtn'),
             deleteAccountBtn: document.getElementById('deleteAccountBtn'),
-            
+
             // Estatísticas
             statsCards: document.querySelectorAll('.stat-card')
         };
@@ -97,7 +888,7 @@ class PerfilCliente {
                     </button>
                 </div>
             `;
-            
+
             const overlay = document.querySelector('.profile-info-overlay');
             if (overlay) {
                 overlay.insertAdjacentHTML('afterbegin', avatarHtml);
@@ -178,7 +969,7 @@ class PerfilCliente {
         document.addEventListener('submit', this.handleGlobalSubmit.bind(this));
         document.addEventListener('input', this.handleGlobalInput.bind(this));
         document.addEventListener('change', this.handleGlobalChange.bind(this));
-        
+
         // Eventos específicos
         if (this.elements.avatarEditBtn) {
             this.elements.avatarEditBtn.addEventListener('click', this.handleAvatarEdit.bind(this));
@@ -221,7 +1012,7 @@ class PerfilCliente {
 
     handleGlobalClick(e) {
         const target = e.target;
-        
+
         // Navegação
         if (target.closest('.nav-item')) {
             e.preventDefault();
@@ -237,15 +1028,45 @@ class PerfilCliente {
             return;
         }
 
-        if (target.closest('.address-action')) {
-            const action = target.closest('.address-action');
-            this.handleAddressAction(action);
+        if (target.closest('#addressesList .edit-address-btn')) {
+            e.preventDefault();
+
+            const button =
+                target.closest('.edit-address-btn');
+
+            editarEndereco(button);
+
             return;
         }
 
-        if (target.closest('.card-action')) {
-            const action = target.closest('.card-action');
-            this.handleCardAction(action);
+        if (target.closest('#addressesList .delete-address-btn')) {
+            e.preventDefault();
+
+            const button =
+                target.closest('.delete-address-btn');
+
+            excluirEndereco(button.dataset.id);
+
+            return;
+        }
+
+        if (target.closest('#cardsList .edit-card-btn')) {
+            e.preventDefault();
+
+            const button = target.closest('.edit-card-btn');
+
+            editarCartao(button);
+
+            return;
+        }
+
+        if (target.closest('#cardsList .delete-card-btn')) {
+            e.preventDefault();
+
+            const button = target.closest('.delete-card-btn');
+
+            excluirCartao(button.dataset.id);
+
             return;
         }
 
@@ -299,7 +1120,7 @@ class PerfilCliente {
     handleGlobalSubmit(e) {
         e.preventDefault();
         const form = e.target;
-        
+
         if (this.isSubmitting) {
             return;
         }
@@ -311,15 +1132,17 @@ class PerfilCliente {
                 case 'personalDataForm':
                     this.handlePersonalDataSubmit(form);
                     break;
+
                 case 'passwordForm':
                     this.handlePasswordChange(form);
                     break;
+
                 case 'newCardForm':
-                    this.handleNewCardSubmit(form);
-                    break;
+                    return;
+
                 case 'addressForm':
-                    this.handleAddressSubmit(form);
-                    break;
+                    return;
+
                 default:
                     console.warn('Formulário não reconhecido:', form.id);
             }
@@ -335,7 +1158,7 @@ class PerfilCliente {
 
     handleGlobalInput(e) {
         const target = e.target;
-        
+
         // Validação em tempo real
         if (target.matches('#newPassword, #confirmPassword')) {
             this.updatePasswordStrength();
@@ -360,7 +1183,7 @@ class PerfilCliente {
 
     handleGlobalChange(e) {
         const target = e.target;
-        
+
         // Atualizar preferências
         if (target.matches('#language, #currency, #timezone, #itemsPerPage, #sortPreference')) {
             this.updatePreference(target.id, target.value);
@@ -368,27 +1191,41 @@ class PerfilCliente {
     }
 
     async loadUserData() {
+
         try {
-            // Tentar carregar do localStorage
-            const storedData = localStorage.getItem('reuse_user_data');
-            
-            if (storedData) {
-                this.userData = JSON.parse(storedData);
-            } else {
-                // Carregar dados padrão
-                this.userData = await this.fetchDefaultUserData();
-                localStorage.setItem('reuse_user_data', JSON.stringify(this.userData));
+
+            const usuario = JSON.parse(
+                localStorage.getItem("usuario")
+            );
+
+            if (!usuario) {
+
+                console.error("Usuário não encontrado");
+
+                return;
             }
 
-            // Atualizar interface
+            this.userData = {
+                id: usuario.id,
+                nome: usuario.nomeCompleto ||
+                    `${usuario.first_name || ""} ${usuario.last_name || ""}`.trim(),
+                email: usuario.email,
+                telefone: usuario.phone || "",
+                cpf: usuario.cpf || "",
+                dataNascimento: usuario.birth_date || "",
+                genero: usuario.genero || ""
+            };
+
             this.updateProfileDisplay();
             this.populateForms();
-            this.loadPreferences();
-            
+
         } catch (error) {
-            console.error('Erro ao carregar dados do usuário:', error);
-            this.userData = this.getDefaultUserData();
-            this.updateProfileDisplay();
+
+            console.error(
+                "Erro ao carregar usuário:",
+                error
+            );
+
         }
     }
 
@@ -506,54 +1343,77 @@ class PerfilCliente {
     }
 
     updateProfileDisplay() {
+
         if (!this.userData) return;
 
-        // Atualizar avatar
-        if (this.elements.profileAvatar) {
-            const initialsSpan = this.elements.profileAvatar.querySelector('span');
-            if (initialsSpan) {
-                initialsSpan.textContent = this.getInitials();
-            }
-        }
+        const nome =
+            this.userData.nome || "Usuário";
 
-        // Atualizar nome
-        if (this.elements.profileName) {
-            this.elements.profileName.textContent = this.userData.nome;
-        }
+        const email =
+            this.userData.email || "";
 
-        // Atualizar email
-        if (this.elements.profileEmail) {
-            this.elements.profileEmail.textContent = this.userData.email;
-        }
+        // Cabeçalho
+        const profileName =
+            document.querySelector(".profile-name");
 
-        // Atualizar outras partes da interface
-        this.updateStats();
-        this.updateAddressList();
-        this.updateCardsList();
-        this.updateSettings();
+        const profileEmail =
+            document.querySelector(".profile-email");
+
+        if (profileName)
+            profileName.textContent = nome;
+
+        if (profileEmail)
+            profileEmail.textContent = email;
+
+        // Avatar
+        const avatar =
+            document.querySelector(".profile-avatar-large span");
+
+        if (avatar) {
+
+            avatar.textContent = nome
+                .split(" ")
+                .map(p => p[0])
+                .slice(0, 2)
+                .join("")
+                .toUpperCase();
+        }
     }
 
     populateForms() {
+
         if (!this.userData) return;
 
-        // Dados pessoais
-        if (this.elements.personalDataForm) {
-            const fields = {
-                'nomeCompleto': this.userData.nome,
-                'email': this.userData.email,
-                'telefone': this.userData.telefone,
-                'dataNascimento': this.userData.dataNascimento,
-                'genero': this.userData.genero,
-                'cpf': this.userData.cpf
-            };
+        const nomeCompleto =
+            document.getElementById("nomeCompleto");
 
-            Object.entries(fields).forEach(([id, value]) => {
-                const field = document.getElementById(id);
-                if (field && value) {
-                    field.value = value;
-                }
-            });
-        }
+        const email =
+            document.getElementById("email");
+
+        const telefone =
+            document.getElementById("telefone");
+
+        const cpf =
+            document.getElementById("cpf");
+
+        const dataNascimento =
+            document.getElementById("dataNascimento");
+
+        if (nomeCompleto)
+            nomeCompleto.value = this.userData.nome || "";
+
+        if (email)
+            email.value = this.userData.email || "";
+
+        if (telefone)
+            telefone.value = this.userData.telefone || "";
+
+        if (cpf)
+            cpf.value = this.userData.cpf || "";
+
+        if (dataNascimento)
+            dataNascimento.value =
+                this.userData.dataNascimento || "";
     }
 
     loadPreferences() {
@@ -586,7 +1446,7 @@ class PerfilCliente {
         // Verificar hash da URL
         const hash = window.location.hash.substring(1);
         const validSections = [
-            'dados-pessoais', 'seguranca', 'cartoes', 
+            'dados-pessoais', 'seguranca', 'cartoes',
             'enderecos', 'privacidade', 'notificacoes', 'preferencias'
         ];
 
@@ -609,8 +1469,8 @@ class PerfilCliente {
         if (this.currentSection === sectionId) return;
 
         // Animar transição
-        const currentSection = this.currentSection 
-            ? document.getElementById(this.currentSection) 
+        const currentSection = this.currentSection
+            ? document.getElementById(this.currentSection)
             : null;
         const targetSection = document.getElementById(sectionId);
         const targetNavItem = document.querySelector(`[data-section="${sectionId}"]`);
@@ -621,7 +1481,7 @@ class PerfilCliente {
         if (currentSection) {
             currentSection.classList.remove('active');
             currentSection.classList.add('fading-out');
-            
+
             setTimeout(() => {
                 currentSection.classList.remove('fading-out');
             }, 300);
@@ -676,7 +1536,7 @@ class PerfilCliente {
             cpfInput.addEventListener('input', (e) => {
                 let value = e.target.value.replace(/\D/g, '');
                 if (value.length > 11) value = value.substring(0, 11);
-                
+
                 if (value.length > 9) {
                     value = value.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
                 } else if (value.length > 6) {
@@ -684,7 +1544,7 @@ class PerfilCliente {
                 } else if (value.length > 3) {
                     value = value.replace(/(\d{3})(\d{3})/, '$1.$2');
                 }
-                
+
                 e.target.value = value;
             });
         }
@@ -695,56 +1555,124 @@ class PerfilCliente {
             zipCodeInput.addEventListener('input', (e) => {
                 let value = e.target.value.replace(/\D/g, '');
                 if (value.length > 8) value = value.substring(0, 8);
-                
+
                 if (value.length > 5) {
                     value = value.replace(/(\d{5})(\d{3})/, '$1-$2');
                 }
-                
+
                 e.target.value = value;
             });
         }
     }
 
     async handlePersonalDataSubmit(form) {
-        try {
-            const formData = new FormData(form);
-            const data = Object.fromEntries(formData.entries());
 
-            // Validar
-            if (!this.validatePersonalData(data)) {
+        try {
+
+            const usuario = JSON.parse(
+                localStorage.getItem("usuario")
+            );
+
+            if (!usuario || !usuario.id) {
+                this.showNotification("Usuário não encontrado.", "error");
                 return;
             }
 
-            // Mostrar indicador de carregamento
-            const submitBtn = form.querySelector('button[type="submit"]');
+            const nomeCompleto =
+                document.getElementById("nomeCompleto").value.trim();
+
+            const partesNome = nomeCompleto.split(" ");
+
+            const first_name = partesNome[0] || "";
+
+            const last_name =
+                partesNome.slice(1).join(" ");
+
+            const payload = {
+                first_name,
+                last_name,
+                email: document.getElementById("email").value.trim(),
+                phone: document.getElementById("telefone").value.trim(),
+                birth_date: document.getElementById("dataNascimento").value,
+                cpf: document.getElementById("cpf").value.trim()
+            };
+
+            const submitBtn =
+                form.querySelector('button[type="submit"]');
+
             const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="bi bi-hourglass"></i> Salvando...';
+
+            submitBtn.innerHTML =
+                '<i class="bi bi-hourglass"></i> Salvando...';
+
             submitBtn.disabled = true;
 
-            // Atualizar dados
-            this.userData = { ...this.userData, ...data };
-            
-            // Salvar
-            await this.saveUserData();
-            
-            // Restaurar botão
+            const response = await fetch(
+                `http://localhost:3600/users/${usuario.id}`,
+                {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(payload)
+                }
+            );
+
+            const result = await response.json();
+
+            console.log("Perfil atualizado:", result);
+
             submitBtn.innerHTML = originalText;
             submitBtn.disabled = false;
-            
-            // Atualizar display
-            this.updateProfileDisplay();
-            
-            // Notificar sucesso
-            this.showNotification('Dados pessoais atualizados com sucesso!', 'success');
-            
+
+            usuario.first_name = first_name;
+            usuario.last_name = last_name;
+            usuario.nomeCompleto = nomeCompleto;
+            usuario.email = payload.email;
+            usuario.phone = payload.phone;
+            usuario.birth_date = payload.birth_date;
+            usuario.cpf = payload.cpf;
+
+            localStorage.setItem(
+                "usuario",
+                JSON.stringify(usuario)
+            );
+
+            this.userData = {
+                ...this.userData,
+                nome: nomeCompleto,
+                email: payload.email,
+                telefone: payload.phone,
+                dataNascimento: payload.birth_date,
+                cpf: payload.cpf
+            };
+
+            preencherPerfil({
+                first_name,
+                last_name,
+                email: payload.email,
+                phone: payload.phone,
+                birth_date: payload.birth_date,
+                cpf: payload.cpf
+            });
+
+            window.dispatchEvent(
+                new Event("usuarioAtualizado")
+            );
+
+            this.showNotification(
+                "Dados pessoais atualizados com sucesso!",
+                "success"
+            );
+
         } catch (error) {
-            console.error('Erro ao salvar dados:', error);
-            this.showNotification('Erro ao salvar dados', 'error');
-            
-            // Restaurar botão em caso de erro
-            const submitBtn = form.querySelector('button[type="submit"]');
-            submitBtn.innerHTML = '<i class="bi bi-check-lg"></i> Salvar Alterações';
-            submitBtn.disabled = false;
+
+            console.error("Erro ao salvar perfil:", error);
+
+            this.showNotification(
+                "Erro ao salvar dados pessoais.",
+                "error"
+            );
         }
     }
 
@@ -784,45 +1712,112 @@ class PerfilCliente {
     }
 
     async handlePasswordChange(form) {
-        try {
-            const formData = new FormData(form);
-            const data = Object.fromEntries(formData.entries());
 
-            // Validar
-            if (!this.validatePasswordData(data)) {
+        try {
+
+            const usuario = JSON.parse(
+                localStorage.getItem("usuario")
+            );
+
+            if (!usuario || !usuario.id) {
+                this.showNotification(
+                    "Usuário não encontrado.",
+                    "error"
+                );
                 return;
             }
 
-            // Mostrar indicador de carregamento
-            const submitBtn = form.querySelector('button[type="submit"]');
+            const currentPassword =
+                document.getElementById("currentPassword").value.trim();
+
+            const newPassword =
+                document.getElementById("newPassword").value.trim();
+
+            const confirmPassword =
+                document.getElementById("confirmPassword").value.trim();
+
+            if (!currentPassword || !newPassword || !confirmPassword) {
+                this.showNotification(
+                    "Preencha todos os campos de senha.",
+                    "error"
+                );
+                return;
+            }
+
+            if (newPassword !== confirmPassword) {
+                this.showNotification(
+                    "A nova senha e a confirmação não coincidem.",
+                    "error"
+                );
+                return;
+            }
+
+            if (newPassword.length < 8) {
+                this.showNotification(
+                    "A nova senha deve ter pelo menos 8 caracteres.",
+                    "error"
+                );
+                return;
+            }
+
+            const submitBtn =
+                form.querySelector('button[type="submit"]');
+
             const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="bi bi-hourglass"></i> Alterando...';
+
+            submitBtn.innerHTML =
+                '<i class="bi bi-hourglass"></i> Atualizando...';
+
             submitBtn.disabled = true;
 
-            // Simular alteração
-            await new Promise(resolve => setTimeout(resolve, 1500));
-            
-            // Restaurar botão
+            const response = await fetch(
+                `http://localhost:3600/users/${usuario.id}/password`,
+                {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        currentPassword,
+                        newPassword
+                    })
+                }
+            );
+
+            const result = await response.json();
+
             submitBtn.innerHTML = originalText;
             submitBtn.disabled = false;
-            
-            // Fechar formulário
-            this.toggleForm('changePasswordForm', false);
+
+            if (!result.success) {
+                this.showNotification(
+                    result.message || "Erro ao alterar senha.",
+                    "error"
+                );
+                return;
+            }
+
             form.reset();
-            
-            // Notificar sucesso
-            this.showNotification('Senha alterada com sucesso!', 'success');
-            
+
+            document.getElementById("changePasswordForm").style.display = "none";
+
+            this.showNotification(
+                "Senha alterada com sucesso!",
+                "success"
+            );
+
         } catch (error) {
-            console.error('Erro ao alterar senha:', error);
-            this.showNotification('Erro ao alterar senha', 'error');
-            
-            // Restaurar botão em caso de erro
-            const submitBtn = form.querySelector('button[type="submit"]');
-            submitBtn.innerHTML = '<i class="bi bi-check-lg"></i> Atualizar Senha';
-            submitBtn.disabled = false;
+
+            console.error("Erro ao alterar senha:", error);
+
+            this.showNotification(
+                "Erro ao conectar com o servidor.",
+                "error"
+            );
         }
     }
+
+
 
     validatePasswordData(data) {
         const errors = [];
@@ -851,7 +1846,7 @@ class PerfilCliente {
         const password = document.getElementById('newPassword')?.value || '';
         const strengthBar = document.querySelector('.strength-bar');
         const strengthText = document.querySelector('.strength-text strong');
-        
+
         if (!strengthBar || !strengthText) return;
 
         let strength = 0;
@@ -861,7 +1856,7 @@ class PerfilCliente {
         // Verificar comprimento
         if (password.length >= 8) strength += 25;
         if (password.length >= 12) strength += 25;
-        
+
         // Verificar complexidade
         if (/[A-Z]/.test(password)) strength += 25;
         if (/[0-9]/.test(password)) strength += 25;
@@ -931,7 +1926,7 @@ class PerfilCliente {
 
             // Adicionar cartão
             if (!this.userData.cartoes) this.userData.cartoes = [];
-            
+
             const novoCartao = {
                 id: Date.now(),
                 ...data,
@@ -940,34 +1935,36 @@ class PerfilCliente {
             };
 
             this.userData.cartoes.push(novoCartao);
-            
+
             // Salvar
             await this.saveUserData();
-            
+
             // Restaurar botão
             submitBtn.innerHTML = originalText;
             submitBtn.disabled = false;
-            
+
             // Fechar formulário
             this.toggleForm('addCardForm', false);
             form.reset();
-            
+
             // Atualizar lista
             this.updateCardsList();
-            
+
             // Notificar sucesso
             this.showNotification('Cartão adicionado com sucesso!', 'success');
-            
+
         } catch (error) {
             console.error('Erro ao adicionar cartão:', error);
             this.showNotification('Erro ao adicionar cartão', 'error');
-            
+
             // Restaurar botão em caso de erro
             const submitBtn = form.querySelector('button[type="submit"]');
             submitBtn.innerHTML = '<i class="bi bi-check-lg"></i> Adicionar Cartão';
             submitBtn.disabled = false;
         }
     }
+
+
 
     validateCardData(data) {
         const errors = [];
@@ -1006,7 +2003,7 @@ class PerfilCliente {
     formatCardNumber(input) {
         let value = input.value.replace(/\D/g, '');
         if (value.length > 16) value = value.substring(0, 16);
-        
+
         value = value.replace(/(\d{4})/g, '$1 ').trim();
         input.value = value;
     }
@@ -1014,11 +2011,11 @@ class PerfilCliente {
     formatExpiryDate(input) {
         let value = input.value.replace(/\D/g, '');
         if (value.length > 4) value = value.substring(0, 4);
-        
+
         if (value.length >= 2) {
             value = value.replace(/(\d{2})(\d{2})/, '$1/$2');
         }
-        
+
         input.value = value;
     }
 
@@ -1040,7 +2037,7 @@ class PerfilCliente {
 
             // Adicionar endereço
             if (!this.userData.enderecos) this.userData.enderecos = [];
-            
+
             const novoEndereco = {
                 id: Date.now(),
                 ...data,
@@ -1048,28 +2045,28 @@ class PerfilCliente {
             };
 
             this.userData.enderecos.push(novoEndereco);
-            
+
             // Salvar
             await this.saveUserData();
-            
+
             // Restaurar botão
             submitBtn.innerHTML = originalText;
             submitBtn.disabled = false;
-            
+
             // Fechar formulário
             this.toggleForm('addressFormContainer', false);
             form.reset();
-            
+
             // Atualizar lista
             this.updateAddressList();
-            
+
             // Notificar sucesso
             this.showNotification('Endereço salvo com sucesso!', 'success');
-            
+
         } catch (error) {
             console.error('Erro ao salvar endereço:', error);
             this.showNotification('Erro ao salvar endereço', 'error');
-            
+
             // Restaurar botão em caso de erro
             const submitBtn = form.querySelector('button[type="submit"]');
             submitBtn.innerHTML = '<i class="bi bi-check-lg"></i> Salvar Endereço';
@@ -1110,18 +2107,18 @@ class PerfilCliente {
     formatZipCode(input) {
         let value = input.value.replace(/\D/g, '');
         if (value.length > 8) value = value.substring(0, 8);
-        
+
         if (value.length > 5) {
             value = value.replace(/(\d{5})(\d{3})/, '$1-$2');
         }
-        
+
         input.value = value;
     }
 
     formatPhoneNumber(input) {
         let value = input.value.replace(/\D/g, '');
         if (value.length > 11) value = value.substring(0, 11);
-        
+
         if (value.length > 10) {
             value = value.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
         } else if (value.length > 6) {
@@ -1131,7 +2128,7 @@ class PerfilCliente {
         } else if (value.length > 0) {
             value = value.replace(/(\d{2})/, '($1) ');
         }
-        
+
         input.value = value;
     }
 
@@ -1140,7 +2137,7 @@ class PerfilCliente {
         if (!form) return;
 
         const shouldShow = show !== null ? show : form.style.display === 'none';
-        
+
         if (shouldShow) {
             form.style.display = 'block';
             setTimeout(() => {
@@ -1213,18 +2210,18 @@ class PerfilCliente {
                 try {
                     // Remover do array
                     this.userData.enderecos = this.userData.enderecos?.filter(a => a.id != addressId) || [];
-                    
+
                     // Salvar
                     await this.saveUserData();
-                    
+
                     // Remover do DOM
                     if (addressCard) {
                         addressCard.remove();
                     }
-                    
+
                     // Notificar sucesso
                     this.showNotification('Endereço removido com sucesso!', 'success');
-                    
+
                 } catch (error) {
                     console.error('Erro ao remover endereço:', error);
                     this.showNotification('Erro ao remover endereço', 'error');
@@ -1242,13 +2239,13 @@ class PerfilCliente {
 
             // Salvar
             await this.saveUserData();
-            
+
             // Atualizar interface
             this.updateAddressList();
-            
+
             // Notificar sucesso
             this.showNotification('Endereço definido como principal!', 'success');
-            
+
         } catch (error) {
             console.error('Erro ao definir endereço principal:', error);
             this.showNotification('Erro ao definir endereço principal', 'error');
@@ -1275,18 +2272,18 @@ class PerfilCliente {
                 try {
                     // Remover do array
                     this.userData.cartoes = this.userData.cartoes?.filter(c => c.id != cardId) || [];
-                    
+
                     // Salvar
                     await this.saveUserData();
-                    
+
                     // Remover do DOM
                     if (cardItem) {
                         cardItem.remove();
                     }
-                    
+
                     // Notificar sucesso
                     this.showNotification('Cartão removido com sucesso!', 'success');
-                    
+
                 } catch (error) {
                     console.error('Erro ao remover cartão:', error);
                     this.showNotification('Erro ao remover cartão', 'error');
@@ -1444,7 +2441,7 @@ class PerfilCliente {
 
             // Notificar
             this.showNotification(`Tema ${this.getThemeName(theme)} aplicado!`, 'success');
-            
+
         } catch (error) {
             console.error('Erro ao aplicar tema:', error);
             this.showNotification('Erro ao aplicar tema', 'error');
@@ -1478,12 +2475,12 @@ class PerfilCliente {
     handleToggleChange(checkbox) {
         const name = checkbox.name || checkbox.id;
         const value = checkbox.checked;
-        
+
         if (!this.userData.configuracoes) this.userData.configuracoes = {};
         this.userData.configuracoes[name] = value;
-        
+
         this.saveUserData();
-        
+
         // Feedback visual
         const settingName = this.getSettingName(name);
         const status = value ? 'ativada' : 'desativada';
@@ -1536,7 +2533,7 @@ class PerfilCliente {
                 reader.onload = (e) => {
                     // Em produção, você salvaria a URL da imagem
                     this.showNotification('Foto de perfil atualizada com sucesso!', 'success');
-                    
+
                     // Aqui você atualizaria a imagem real
                     // this.elements.profileAvatar.style.backgroundImage = `url(${e.target.result})`;
                 };
@@ -1559,27 +2556,27 @@ class PerfilCliente {
     async exportUserData() {
         try {
             this.showNotification('Preparando seus dados para exportação...', 'info');
-            
+
             await new Promise(resolve => setTimeout(resolve, 1500));
-            
+
             // Criar blob com os dados
             const dataStr = JSON.stringify(this.userData, null, 2);
             const dataBlob = new Blob([dataStr], { type: 'application/json' });
-            
+
             // Criar link para download
             const downloadUrl = URL.createObjectURL(dataBlob);
             const link = document.createElement('a');
             link.href = downloadUrl;
             link.download = `reuse-dados-${Date.now()}.json`;
-            
+
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
-            
+
             URL.revokeObjectURL(downloadUrl);
-            
+
             this.showNotification('Dados exportados com sucesso!', 'success');
-            
+
         } catch (error) {
             console.error('Erro ao exportar dados:', error);
             this.showNotification('Erro ao exportar dados', 'error');
@@ -1690,7 +2687,7 @@ class PerfilCliente {
         notification.className = `profile-notification ${type}`;
         notification.setAttribute('role', 'alert');
         notification.setAttribute('aria-live', 'polite');
-        
+
         // Ícone
         const icons = {
             success: 'bi-check-circle-fill',
@@ -1799,12 +2796,12 @@ class PerfilCliente {
     async saveUserData() {
         try {
             localStorage.setItem('reuse_user_data', JSON.stringify(this.userData));
-            
+
             // Disparar evento customizado
-            window.dispatchEvent(new CustomEvent('userDataUpdated', { 
-                detail: this.userData 
+            window.dispatchEvent(new CustomEvent('userDataUpdated', {
+                detail: this.userData
             }));
-            
+
             return true;
         } catch (error) {
             console.error('Erro ao salvar dados:', error);
@@ -1921,7 +2918,7 @@ class PerfilCliente {
 
     handleResize() {
         this.isMobile = window.matchMedia('(max-width: 768px)').matches;
-        
+
         // Ajustar layout baseado no tamanho da tela
         if (this.isMobile) {
             this.closeAllForms();
@@ -1953,13 +2950,13 @@ class PerfilCliente {
                 const allNavs = Array.from(this.elements.navItems);
                 const currentIndex = allNavs.indexOf(activeNav);
                 let nextIndex;
-                
+
                 if (e.key === 'ArrowRight') {
                     nextIndex = (currentIndex + 1) % allNavs.length;
                 } else {
                     nextIndex = (currentIndex - 1 + allNavs.length) % allNavs.length;
                 }
-                
+
                 allNavs[nextIndex].click();
                 allNavs[nextIndex].focus();
                 e.preventDefault();
@@ -1970,7 +2967,7 @@ class PerfilCliente {
     showWelcomeMessage() {
         // Mostrar mensagem de boas-vindas apenas na primeira visita
         const hasSeenWelcome = sessionStorage.getItem('hasSeenProfileWelcome');
-        
+
         if (!hasSeenWelcome && this.userData?.nome) {
             setTimeout(() => {
                 const firstName = this.userData.nome.split(' ')[0];
@@ -1995,7 +2992,7 @@ class PerfilCliente {
 
         // Verificar periodicamente
         setInterval(ensureAvatarVisibility, 1000);
-        
+
         // Verificar inicialmente
         ensureAvatarVisibility();
     }
@@ -2184,10 +3181,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 avatar.style.visibility = 'visible';
                 avatar.style.opacity = '1';
             }
-            
+
             // Garantir navegação básica
             document.querySelectorAll('.nav-item').forEach(item => {
-                item.addEventListener('click', function() {
+                item.addEventListener('click', function () {
                     const sectionId = this.dataset.section;
                     document.querySelectorAll('.profile-section').forEach(section => {
                         section.classList.remove('active');
@@ -2195,7 +3192,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     document.querySelectorAll('.nav-item').forEach(navItem => {
                         navItem.classList.remove('active');
                     });
-                    
+
                     const targetSection = document.getElementById(sectionId);
                     if (targetSection) {
                         targetSection.classList.add('active');
@@ -2261,4 +3258,282 @@ function setupProfileIntegration() {
 // Exportar para uso global
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = PerfilCliente;
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const changePhotoBtn = document.getElementById("changePhotoBtn");
+    const editAvatarBtn = document.getElementById("editAvatarBtn");
+
+    if (changePhotoBtn) {
+        changePhotoBtn.addEventListener("click", selecionarFoto);
+    }
+
+    if (editAvatarBtn) {
+        editAvatarBtn.addEventListener("click", selecionarFoto);
+    }
+});
+
+function selecionarFoto() {
+
+    const input = document.createElement("input");
+
+    input.type = "file";
+    input.accept = "image/png,image/jpeg,image/webp";
+
+    input.onchange = () => {
+        const file = input.files[0];
+
+        if (!file) return;
+
+        enviarFoto(file);
+    };
+
+    input.click();
+}
+
+async function enviarFoto(file) {
+
+    try {
+
+        const usuario = JSON.parse(
+            localStorage.getItem("usuario")
+        );
+
+        if (!usuario || !usuario.id) {
+            mostrarMensagem("Usuário não encontrado.", "error");
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append("photo", file);
+
+        const response = await fetch(
+            `http://localhost:3600/users/${usuario.id}/photo`,
+            {
+                method: "POST",
+                body: formData
+            }
+        );
+
+        const result = await response.json();
+
+        if (!result.success) {
+            mostrarMensagem("Erro ao salvar foto.", "error");
+            return;
+        }
+
+        usuario.profile_image = result.image;
+
+        localStorage.setItem(
+            "usuario",
+            JSON.stringify(usuario)
+        );
+
+        const fotoUrl =
+            `http://localhost:3600/${result.image}?t=${Date.now()}`;
+
+        document.querySelectorAll(".profile-avatar-large").forEach(avatar => {
+            avatar.innerHTML = `
+                <img
+                    src="${fotoUrl}"
+                    alt="Foto de Perfil"
+                    style="
+                        width:100%;
+                        height:100%;
+                        object-fit:cover;
+                        border-radius:50%;
+                    "
+                >
+
+                <button
+                    class="avatar-edit-btn"
+                    id="editAvatarBtn"
+                    title="Alterar foto"
+                >
+                    <i class="bi bi-camera"></i>
+                </button>
+            `;
+        });
+
+        document.querySelectorAll("#userAvatar").forEach(avatar => {
+            avatar.innerHTML = `
+                <img
+                    src="${fotoUrl}"
+                    alt="Perfil"
+                    style="
+                        width:100%;
+                        height:100%;
+                        object-fit:cover;
+                        border-radius:50%;
+                    "
+                >
+            `;
+        });
+
+        const novoBotao = document.getElementById("editAvatarBtn");
+
+        if (novoBotao) {
+            novoBotao.addEventListener("click", selecionarFoto);
+        }
+
+        window.dispatchEvent(
+            new Event("usuarioAtualizado")
+        );
+
+        mostrarMensagem("Foto atualizada com sucesso!", "success");
+
+    } catch (erro) {
+
+        console.error(erro);
+        mostrarMensagem("Erro ao enviar foto.", "error");
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    carregarCartoesUsuario();
+
+    const newCardForm = document.getElementById("newCardForm");
+
+    if (newCardForm) {
+        newCardForm.addEventListener("submit", salvarCartao);
+    }
+
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const addressForm =
+        document.getElementById("addressForm");
+
+    if (addressForm) {
+        addressForm.addEventListener("submit", salvarEndereco);
+    }
+
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    document.querySelectorAll(".toggle-password").forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            const inputId = button.dataset.target;
+            const input = document.getElementById(inputId);
+            const icon = button.querySelector("i");
+
+            if (!input || !icon) return;
+
+            if (input.type === "password") {
+                input.type = "text";
+                icon.classList.remove("bi-eye");
+                icon.classList.add("bi-eye-slash");
+            } else {
+                input.type = "password";
+                icon.classList.remove("bi-eye-slash");
+                icon.classList.add("bi-eye");
+            }
+
+        });
+
+    });
+
+});
+
+
+function mostrarMensagem(texto, tipo = "info") {
+
+    const antiga = document.querySelector(".custom-message");
+
+    if (antiga) antiga.remove();
+
+    const mensagem = document.createElement("div");
+
+    mensagem.className = `custom-message ${tipo}`;
+
+    mensagem.innerHTML = `
+        <i class="bi ${tipo === "success"
+            ? "bi-check-circle-fill"
+            : tipo === "error"
+                ? "bi-x-circle-fill"
+                : "bi-info-circle-fill"
+        }"></i>
+        <span>${texto}</span>
+    `;
+
+    document.body.appendChild(mensagem);
+
+    setTimeout(() => {
+        mensagem.classList.add("show");
+    }, 10);
+
+    setTimeout(() => {
+        mensagem.classList.remove("show");
+
+        setTimeout(() => {
+            mensagem.remove();
+        }, 300);
+    }, 3000);
+}
+
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const zipCode =
+        document.getElementById("zipCode");
+
+    if (zipCode) {
+        zipCode.addEventListener("blur", buscarCep);
+    }
+
+});
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    carregarResumoPerfil();
+});
+
+async function carregarResumoPerfil() {
+
+    const usuario = JSON.parse(
+        localStorage.getItem("usuario")
+    );
+
+    if (!usuario || !usuario.id) {
+        return;
+    }
+
+    try {
+
+        // Favoritos
+        const favResponse = await fetch(
+            `http://localhost:3600/favorites/user/${usuario.id}`
+        );
+
+        const favResult = await favResponse.json();
+
+        const favoritos =
+            favResult.data ? favResult.data.length : 0;
+
+        document.getElementById("profileFavoritesCount").textContent =
+            favoritos;
+
+        // Compras
+        // Por enquanto ainda não temos tabela de pedidos.
+        document.getElementById("profilePurchasesCount").textContent =
+            0;
+
+        // Doações
+        // Por enquanto ainda não temos tabela de doações.
+        document.getElementById("profileDonationsCount").textContent =
+            0;
+
+    } catch (error) {
+
+        console.error(
+            "Erro ao carregar resumo do perfil:",
+            error
+        );
+    }
 }
