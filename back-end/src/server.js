@@ -39,17 +39,11 @@ app.use(express.json());
 app.use(routes);
 
 // uploads
-app.use(
-    '/uploads',
-    express.static(
-        path.resolve(__dirname, '..', 'uploads')
-    )
-);
-
+// uploads
 app.use(
     "/uploads",
     express.static(
-        path.join(__dirname, "uploads")
+        path.join(__dirname, "..", "uploads")
     )
 );
 

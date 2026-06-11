@@ -644,7 +644,10 @@ async function carregarProdutos() {
             return;
         }
 
-        result.data.forEach(product => {
+const produtosInicio =
+    result.data.slice(0, 4);
+
+produtosInicio.forEach(product => {
 
             const imageUrl =
                 product.image_url

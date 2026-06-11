@@ -1,8 +1,8 @@
+
 const { db } = require("../databases/DatabaseContext.js");
 const { valuesParams, extrair_dados,  gerar_sqlFields ,
    gerar_sqlParams, gerar_sqlSets } = require( "../utils/sqlcomandos.js")
 const tableName = 'users';
-
 // selecionar todos os usuarios 
 async function Get(){
   const sqlText = `SELECT * FROM ${tableName} ORDER BY id`;
@@ -103,6 +103,63 @@ async function UpdatePassword(id, currentPassword, newPassword) {
     };
 }
 
+async function ChangePassword(id, payload) {
+
+    const currentPassword = payload.currentPassword;
+    const newPassword = payload.newPassword;
+
+    if (!currentPassword || !newPassword) {
+        return {
+            statusCode: 400,
+            message: "Preencha todos os campos."
+        };
+    }
+
+    const sqlSelect = `
+        SELECT password_hash
+        FROM users
+        WHERE id = ?
+    `;
+
+    const [rows] =
+        await db.execute(sqlSelect, [id]);
+
+    if (rows.length === 0) {
+        return {
+            statusCode: 404,
+            message: "Usuário não encontrado."
+        };
+    }
+
+    if (rows[0].password_hash !== currentPassword) {
+        return {
+            statusCode: 401,
+            message: "Senha atual incorreta."
+        };
+    }
+
+    const sqlUpdate = `
+        UPDATE users
+        SET password_hash = ?
+        WHERE id = ?
+    `;
+
+    const [result] =
+        await db.execute(
+            sqlUpdate,
+            [
+                newPassword,
+                id
+            ]
+        );
+
+    return {
+        statusCode: 200,
+        message: "Senha alterada com sucesso.",
+        data: result
+    };
+}
+
 async function UpdateProfileImage(
     id,
     profile_image
@@ -147,5 +204,6 @@ module.exports = {
     Put,
     Delete,
     UpdatePassword,
+    ChangePassword,
     EndPointName
 }

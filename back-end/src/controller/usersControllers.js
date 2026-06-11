@@ -62,6 +62,14 @@ async function UpdatePassword(req, res) {
     return responseData;
 }
 
+async function ChangePassword(req, res) {
+
+    return await myModel.ChangePassword(
+        req.params.id,
+        req.body
+    );
+}
+
 async function UpdateProfileImage(
     req,
     res
@@ -141,6 +149,7 @@ module.exports = {
     Put,
     Delete,
     UpdateProfileImage,
+    ChangePassword,
     UpdatePassword,
     EndPointName
 }

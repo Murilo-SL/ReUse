@@ -1,20 +1,180 @@
-### Criar produto de teste
+### Cadastrar novo produto
 POST http://localhost:3600/products
 Content-Type: application/json
 
 {
-    "user_id": 5,
+    "user_id": 1,
     "name": "Camiseta ReUse",
     "description": "Camiseta usada em bom estado",
     "price": 49.90,
     "category": "Roupas",
     "condition_status": "Bom",
-    "image_url": "",
+    "image_url": "uploads/products/camisetareuse.png",
     "status": "ativo"
 }
 
-### Listar produtos
+###
+POST http://localhost:3600/products
+Content-Type: application/json
+
+{
+    "user_id": 1,
+    "name": "Camisa Polo Azul Marinho",
+    "description": "Camisa polo masculina azul marinho em excelente estado de conservação.",
+    "price": 79.90,
+    "category": "Roupas",
+    "condition_status": "Ótimo",
+    "image_url": "uploads/products/blusapolo.jpeg",
+    "status": "ativo"
+}
+
+###
+POST http://localhost:3600/products
+Content-Type: application/json
+
+{
+    "user_id": 1,
+    "name": "Cubo Educativo Infantil",
+    "description": "Brinquedo educativo de encaixe com formas geométricas coloridas, ideal para estimular a coordenação motora e o aprendizado das crianças.",
+    "price": 59.90,
+    "category": "Brinquedos",
+    "condition_status": "Ótimo",
+    "image_url": "uploads/products/cuboeducativo.png",
+    "status": "ativo"
+}
+
+### 
+POST http://localhost:3600/products
+Content-Type: application/json
+
+{
+    "user_id": 1,
+    "name": "Geladeira Brastemp Frost Free Inox",
+    "description": "Geladeira Brastemp Frost Free em aço inox, excelente estado de conservação, totalmente funcional, ideal para residências e apartamentos.",
+    "price": 1899.90,
+    "category": "Eletrodomésticos",
+    "condition_status": "Bom",
+    "image_url": "uploads/products/geladeirabrastemp.png",
+    "status": "ativo"
+}
+
+###
+POST http://localhost:3600/products
+Content-Type: application/json
+
+{
+    "user_id": 1,
+    "name": "Saia Midi Marrom",
+    "description": "Saia midi elegante em ótimo estado de conservação, ideal para diversas ocasiões.",
+    "price": 89.90,
+    "category": "Roupas",
+    "condition_status": "Ótimo",
+    "image_url": "uploads/products/saiamidimarrom.png",
+    "status": "ativo"
+}
+
+###
+POST http://localhost:3600/products
+Content-Type: application/json
+
+{
+    "user_id": 1,
+    "name": "Colar Dourado Gota",
+    "description": "Colar delicado com pingente em formato de gota dourada, excelente estado.",
+    "price": 129.90,
+    "category": "Joias e Acessórios",
+    "condition_status": "Ótimo",
+    "image_url": "uploads/products/colargota.png",
+    "status": "ativo"
+}
+
+###
+POST http://localhost:3600/products
+Content-Type: application/json
+
+{
+    "user_id": 1,
+    "name": "Anel Solitário Dourado",
+    "description": "Anel dourado com pedra central brilhante, perfeito para ocasiões especiais.",
+    "price": 249.90,
+    "category": "Joias e Acessórios",
+    "condition_status": "Ótimo",
+    "image_url": "uploads/products/anel.png",
+    "status": "ativo"
+}
+
+###
+POST http://localhost:3600/products
+Content-Type: application/json
+
+{
+    "user_id": 1,
+    "name": "Secador de Cabelo Profissional",
+    "description": "Secador de cabelo potente, funcionando perfeitamente e em excelente estado.",
+    "price": 159.90,
+    "category": "Beleza",
+    "condition_status": "Bom",
+    "image_url": "uploads/products/secador.png",
+    "status": "ativo"
+}
+
+###
+POST http://localhost:3600/products
+Content-Type: application/json
+
+{
+    "user_id": 1,
+    "name": "Monitor LED Full HD 24\"",
+    "description": "Monitor LED Full HD de 24 polegadas, ideal para trabalho e estudos.",
+    "price": 699.90,
+    "category": "Informática",
+    "condition_status": "Ótimo",
+    "image_url": "uploads/products/monitorfullhd.png",
+    "status": "ativo"
+}
+
+###
+POST http://localhost:3600/products
+Content-Type: application/json
+
+{
+    "user_id": 1,
+    "name": "Short Jeans Feminino",
+    "description": "Short jeans feminino em excelente estado, confortável e moderno.",
+    "price": 49.90,
+    "category": "Roupas",
+    "condition_status": "Bom",
+    "image_url": "uploads/products/shortjeans.png",
+    "status": "ativo"
+}
+
+###
+POST http://localhost:3600/products
+Content-Type: application/json
+
+{
+    "user_id": 1,
+    "name": "Livro Pai Rico Pai Pobre",
+    "description": "Livro clássico de Robert T. Kiyosaki sobre educação financeira, em excelente estado.",
+    "price": 39.90,
+    "category": "Livros",
+    "condition_status": "Ótimo",
+    "image_url": "uploads/products/pairicopaipobre.png",
+    "status": "ativo"
+}
+
+
+### Todos os usuários veem todos os produtos
 GET http://localhost:3600/products
 
-### Listar produtos do usuário
+
+### Ver produto por ID
+GET http://localhost:3600/products/1
+
+
+### Ver produtos do vendedor
 GET http://localhost:3600/products/user/5
+
+
+### Deletar produto
+DELETE http://localhost:3600/products/9

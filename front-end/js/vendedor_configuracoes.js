@@ -120,6 +120,8 @@ init() {
     this.carregarPontosRetirada();
 }
 
+
+
     initializeComponents() {
         // Elementos principais
         this.tabButtons = document.querySelectorAll('.tab-btn');
@@ -200,6 +202,20 @@ init() {
             input.addEventListener('change', () => this.handleInputChange());
             input.addEventListener('keyup', () => this.debounceAutoSave());
         });
+
+        const updatePasswordBtn =
+    document.getElementById(
+        "updatePasswordBtn"
+    );
+
+if (updatePasswordBtn) {
+
+    updatePasswordBtn.addEventListener(
+        "click",
+        (e) => this.handlePasswordChange(e)
+    );
+
+}
 
         // Prevenir navegação com alterações não salvas
         window.addEventListener('beforeunload', (e) => {
@@ -3281,39 +3297,85 @@ updateElementText(selector, text) {
         }
     }
 
-    handlePasswordChange(e) {
-        e.preventDefault();
-        
-        const passwordInputs = e.target.querySelectorAll('input[type="password"]');
-        const currentPassword = passwordInputs[0]?.value;
-        const newPassword = passwordInputs[1]?.value;
-        const confirmPassword = passwordInputs[2]?.value;
-        
-        if (!currentPassword) {
-            this.showNotification('Digite sua senha atual', 'error');
-            return;
-        }
-        
-        if (newPassword !== confirmPassword) {
-            this.showNotification('As senhas não coincidem', 'error');
-            return;
-        }
-        
-        if (newPassword.length < 8) {
-            this.showNotification('A senha deve ter no mínimo 8 caracteres', 'error');
-            return;
-        }
-        
-        // Simular verificação de senha atual
-        if (currentPassword !== '12345678') {
-            this.showNotification('Senha atual incorreta', 'error');
-            return;
-        }
-        
-        this.showNotification('Senha atualizada com sucesso!', 'success');
-        e.target.reset();
-        this.unsavedChanges = false;
+async handlePasswordChange(e) {
+
+    e.preventDefault();
+
+    const usuario =
+        JSON.parse(localStorage.getItem("usuario"));
+
+    if (!usuario || !usuario.id) {
+        this.showNotification(
+            "Usuário não encontrado.",
+            "error"
+        );
+        return;
     }
+
+    const currentPassword =
+        document.getElementById("currentPassword")?.value;
+
+    const newPassword =
+        document.getElementById("newPassword")?.value;
+
+    const confirmPassword =
+        document.getElementById("confirmPassword")?.value;
+
+    if (!currentPassword || !newPassword || !confirmPassword) {
+        this.showNotification(
+            "Preencha todos os campos.",
+            "error"
+        );
+        return;
+    }
+
+    if (newPassword !== confirmPassword) {
+        this.showNotification(
+            "A nova senha e a confirmação não coincidem.",
+            "error"
+        );
+        return;
+    }
+
+    try {
+
+        const response = await fetch(
+            `http://localhost:3600/users/change-password/${usuario.id}`,
+            {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    currentPassword,
+                    newPassword
+                })
+            }
+        );
+
+        const result = await response.json();
+
+        if (!response.ok || result.success === false) {
+            throw new Error(
+                result.message || "Erro ao alterar senha."
+            );
+        }
+
+        this.showNotification(
+            "Senha alterada com sucesso!",
+            "success"
+        );
+
+        this.passwordForm.reset();
+
+    } catch (error) {
+
+        this.showNotification(
+            error.message,
+            "error"
+        );
+    }
+}
 
     formatCNPJ(e) {
         let value = e.target.value.replace(/\D/g, '');
@@ -3442,6 +3504,95 @@ async carregarPontosRetirada() {
     } catch (error) {
         console.error("Erro ao carregar pontos de retirada:", error);
     }
+}
+
+async handlePasswordChange(e) {
+
+    if (e) {
+        e.preventDefault();
+    }
+
+    const usuario = this.usuario;
+
+    if (!usuario || !usuario.id) {
+        this.showNotification(
+            "Usuário não encontrado.",
+            "error"
+        );
+        return;
+    }
+
+    const currentPassword =
+        document.getElementById("currentPassword").value;
+
+    const newPassword =
+        document.getElementById("newPassword").value;
+
+    const confirmPassword =
+        document.getElementById("confirmPassword").value;
+
+    if (
+        !currentPassword ||
+        !newPassword ||
+        !confirmPassword
+    ) {
+        this.showNotification(
+            "Preencha todos os campos.",
+            "error"
+        );
+        return;
+    }
+
+    if (newPassword !== confirmPassword) {
+        this.showNotification(
+            "As senhas não coincidem.",
+            "error"
+        );
+        return;
+    }
+
+    try {
+
+        const response = await fetch(
+            `http://localhost:3600/users/change-password/${usuario.id}`,
+            {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    currentPassword,
+                    newPassword
+                })
+            }
+        );
+
+        const result = await response.json();
+
+        if (!response.ok) {
+            throw new Error(
+                result.message || "Erro ao alterar senha."
+            );
+        }
+
+        this.showNotification(
+            "Senha alterada com sucesso!",
+            "success"
+        );
+
+        document.getElementById("currentPassword").value = "";
+        document.getElementById("newPassword").value = "";
+        document.getElementById("confirmPassword").value = "";
+
+    } catch (err) {
+
+        this.showNotification(
+            err.message,
+            "error"
+        );
+
+    }
+
 }
 
     formatPhone(e) {

@@ -9,10 +9,10 @@ const perfilStorage = multer.diskStorage({
 
     destination: (req, file, cb) => {
 
-        cb(
-            null,
-            "src/uploads/perfis"
-        );
+cb(
+    null,
+    "uploads/perfis"
+);
 
     },
 
@@ -43,10 +43,10 @@ const productStorage = multer.diskStorage({
 
     destination: (req, file, cb) => {
 
-        cb(
-            null,
-            "src/uploads/products"
-        );
+cb(
+    null,
+    "uploads/products"
+);
 
     },
 

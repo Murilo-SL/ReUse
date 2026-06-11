@@ -1,6 +1,8 @@
 const Routes = require("express");
+
 const myController =
     require("../controller/productsController");
+
 const { uploadProduct } =
     require("../config/uploadConfig");
 
@@ -14,7 +16,10 @@ routes.get(
     async (req, res) => {
 
         const responseData =
-            await myController.Get(req, res);
+            await myController.Get(
+                req,
+                res
+            );
 
         res.status(200)
             .json(responseData);
@@ -53,7 +58,13 @@ routes.get(
 
 routes.post(
     endPoint,
+    uploadProduct.single("image"),
     async (req, res) => {
+
+        if (req.file) {
+            req.body.image_url =
+                `uploads/products/${req.file.filename}`;
+        }
 
         const responseData =
             await myController.Post(
@@ -82,19 +93,15 @@ routes.put(
 );
 
 routes.post(
-
     `${endPoint}/:id/image`,
-
     uploadProduct.single("image"),
-
     async (req, res) => {
 
         const responseData =
-            await myController
-                .UpdateProductImage(
-                    req,
-                    res
-                );
+            await myController.UpdateProductImage(
+                req,
+                res
+            );
 
         res.status(200)
             .json(responseData);

@@ -1,110 +1,110 @@
 const express =
-require("express");
+    require("express");
 
 const routes =
-express.Router();
+    express.Router();
 
 const myController =
-require("../controller/sellerPickupLocationsController");
+    require("../controller/sellerPickupLocationsController");
 
 const endPoint =
-`/${myController.EndPointName()}`;
+    `/${myController.EndPointName()}`;
 
 routes.get(
 
-`${endPoint}/user/:userId`,
+    `${endPoint}/user/:userId`,
 
-async(req,res)=>{
+    async (req, res) => {
 
-const responseData=
+        const responseData =
 
-await myController.GetByUser(
+            await myController.GetByUser(
 
-req,
+                req,
 
-res
+                res
 
-);
+            );
 
-res
-.status(200)
-.json(responseData);
+        res
+            .status(200)
+            .json(responseData);
 
-}
+    }
 
 );
 
 routes.post(
 
-endPoint,
+    endPoint,
 
-async(req,res)=>{
+    async (req, res) => {
 
-const responseData=
+        const responseData =
 
-await myController.Post(
+            await myController.Post(
 
-req,
+                req,
 
-res
+                res
 
-);
+            );
 
-res
-.status(200)
-.json(responseData);
+        res
+            .status(200)
+            .json(responseData);
 
-}
+    }
 
 );
 
 routes.put(
 
-`${endPoint}/:id`,
+    `${endPoint}/:id`,
 
-async(req,res)=>{
+    async (req, res) => {
 
-const responseData=
+        const responseData =
 
-await myController.Put(
+            await myController.Put(
 
-req,
+                req,
 
-res
+                res
 
-);
+            );
 
-res
-.status(200)
-.json(responseData);
+        res
+            .status(200)
+            .json(responseData);
 
-}
+    }
 
 );
 
 routes.delete(
 
-`${endPoint}/:id`,
+    `${endPoint}/:id`,
 
-async(req,res)=>{
+    async (req, res) => {
 
-const responseData=
+        const responseData =
 
-await myController.Delete(
+            await myController.Delete(
 
-req,
+                req,
 
-res
+                res
+
+            );
+
+        res
+            .status(200)
+            .json(responseData);
+
+    }
 
 );
 
-res
-.status(200)
-.json(responseData);
-
-}
-
-);
-
-module.exports=
-routes;
+module.exports =
+    routes;

@@ -51,6 +51,21 @@ routes.put(
     }
 );
 
+routes.put(
+    `${endPoint}/change-password/:id`,
+    async (req, res) => {
+
+        const responseData =
+            await myController.ChangePassword(
+                req,
+                res
+            );
+
+        res.status(responseData.statusCode || 200)
+            .json(responseData);
+    }
+);
+
 routes.post(
 
     `${endPoint}/:id/photo`,
